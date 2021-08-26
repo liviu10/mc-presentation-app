@@ -1,0 +1,40 @@
+$articleList: (
+    card_background_color:   map-get($pale_cerulean, "color_khaki"),
+    card_font_color:         map-get($basic_colors, "color_black"),
+    button_background_color: map-get($analogous_dark_vanilla, "color_green_mist"),
+    button_border_color:     map-get($analogous_dark_vanilla, "color_green_mist"),
+    button_font_color:       map-get($basic_colors, "color_black"),
+);
+
+.lv-container-articles-list {
+    & .card {
+        margin: rem-convertor(16px) 0rem;
+        width: 100%;
+        background-color: map-get($articleList, "card_background_color");
+        &-title {
+            margin-top: rem-convertor(16px);
+            margin-bottom: rem-convertor(16px) !important;
+            width: 100%;
+            font-size: rem-convertor(24px);
+            text-align: left !important;
+            & span {
+                font-size: rem-convertor(20px);
+                font-style: italic;
+            }
+        }
+        &-body {
+            & .btn {
+                background-color: map-get($articleList, "button_background_color");
+                border-color: map-get($articleList, "button_border_color");
+                border-radius: rem-convertor(0px);
+                color: map-get($articleList, "button_font_color");
+                font-weight: bold;
+                &:focus {
+                    border-color: transparent !important;
+                    box-shadow: 0 1px 1px transparent inset, 0 0 8px transparent !important;
+                    outline: 0 none !important;
+                }
+            }
+        }
+    }
+}

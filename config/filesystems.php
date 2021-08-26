@@ -55,6 +55,11 @@ return [
             'visibility' => 'public',
         ],
 
+        'pages' => [
+            'driver' => 'local',
+            'root' => base_path('resources/views/pages'),
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

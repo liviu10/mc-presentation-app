@@ -17,6 +17,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Application Owner
+    |--------------------------------------------------------------------------
+    |
+    | This value is the name of your application's owner. This value is used when the
+    | framework needs to place the application's owner name in a notification or
+    | any other location as required by the application or its packages.
+    |
+    */
+
+    'owner' => env('APP_OWNER', 'Site Owner'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Environment
     |--------------------------------------------------------------------------
     |
@@ -58,6 +71,20 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Social Media URLs
+    |--------------------------------------------------------------------------
+    |
+    | These URLs are used to display the social media URLs in the 
+    | Home page and the Footer section.
+    |
+    */
+
+    'facebook_url' => env('FACEBOOK_URL', 'http://localhost'),
+    'instagram_url' => env('INSTAGRAM_URL', 'http://localhost'),
+    'youtube_url' => env('YOUTUBE_URL', 'http://localhost'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Timezone
     |--------------------------------------------------------------------------
     |
@@ -84,10 +111,7 @@ return [
 
     'locales' => [
         'en' => 'EN',
-        'es' => 'ES',
-        'fr' => 'FR',
-        'pt-BR' => 'BR',
-        'zh-CN' => '中文',
+        'ro' => 'RO',
     ],
 
     /*

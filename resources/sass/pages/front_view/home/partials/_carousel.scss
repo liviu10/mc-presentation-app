@@ -1,0 +1,58 @@
+$lvContainerBanner: (
+    carousel_indicators_bg_color:      map-get($basic_colors, "color_black"),
+    carousel_caption_bg_color:         map-get($basic_colors, "color_white"),
+    carousel_caption_font_color:       map-get($basic_colors, "color_black"),
+    carousel_caption_bg_color_btn:     map-get($pale_cerulean, "color_khaki"),
+    carousel_caption_border_color_btn: map-get($pale_cerulean, "color_khaki"),
+    carousel_caption_font_color_btn:   map-get($basic_colors, "color_black"),
+    carousel_controls_bg_color:        map-get($basic_colors, "color_white"),
+    carousel_controls_font_color:      map-get($basic_colors, "color_black")
+);
+
+.lv-container-banner {
+    & .carousel-indicators {
+        & button {
+            border-radius: 50%;
+            width: rem-convertor(15px);
+            height: rem-convertor(15px);
+            background-color: map-get($lvContainerBanner, "carousel_indicators_bg_color");
+        }
+    }
+    & .carousel-inner {
+        & .carousel-item {
+            transition-duration: 1.5s;
+        }
+    }
+    & .carousel-caption {
+        padding-top: rem-convertor(8px);
+        padding-bottom: rem-convertor(40px);
+        background-color: map-get($lvContainerBanner, "carousel_caption_bg_color");
+        opacity: 0.70;
+        & h5, & p {
+            color: map-get($lvContainerBanner, "carousel_caption_font_color");
+            user-select: none;
+        }
+        & .btn {
+            background-color: map-get($lvContainerBanner, "carousel_caption_bg_color_btn");
+            border-color: map-get($lvContainerBanner, "carousel_caption_border_color_btn");
+            color: map-get($lvContainerBanner, "carousel_caption_font_color_btn");
+            font-weight: bold;
+            &:focus {
+                border-color: transparent !important;
+                box-shadow: 0 rem-convertor(1px) rem-convertor(1px) transparent inset, 0 0 rem-convertor(8px) transparent !important;
+                outline: 0 none !important;
+            }
+        }
+    }
+    & .carousel-control-prev, & .carousel-control-next {
+        & .fas {
+            @include flex-center();
+            border-radius: 50%;
+            width: rem-convertor(36px);
+            height: rem-convertor(36px);
+            background-color: map-get($lvContainerBanner, "carousel_controls_bg_color");
+            color: map-get($lvContainerBanner, "carousel_controls_font_color");
+            opacity: 0.70;
+        }
+    }
+}
