@@ -19,7 +19,7 @@
             <div class="carousel-inner">
                 @foreach ( $displayCarouselImgUrls as $carouselImageUrl )
                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                    <img src="{{ asset('storage/' . $carouselImageUrl) }}" class="d-block w-100" alt="...">
+                    <img src="{{ asset('storage/images/carousel/' . $carouselImageUrl) }}" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>First slide label</h5>
                         <p>Some representative placeholder content for the first slide.</p>
@@ -69,7 +69,7 @@
                         <h5 class="card-title">ARTICOLE</h5>
                     </div>
                     <a href="{{ url('/blog/articles/list') }}">
-                        <img src="{{ url('../images/Card-img0.png') }}" class="d-block w-100" alt="...">
+                        <img src="{{ asset('storage/images/main-categories/' . $displayMainCategoriesImgUrls[0]) }}" class="d-block w-100" alt="...">
                     </a>
                     <div class="card-body">
                         <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore iusto, magni quae, et laborum recusandae, cumque aperiam hic suscipit odio mollitia fugit aliquam velit nihil.</p>
@@ -86,7 +86,7 @@
                         <h5 class="card-title">AUDIO</h5>
                     </div>
                     <a href="{{ url('/blog/audios/list') }}">
-                        <img src="{{ url('../images/Card-img1.png') }}" class="d-block w-100" alt="...">
+                        <img src="{{ asset('storage/images/main-categories/' . $displayMainCategoriesImgUrls[1]) }}" class="d-block w-100" alt="...">
                     </a>
                     <div class="card-body">
                         <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore iusto, magni quae, et laborum recusandae, cumque aperiam hic suscipit odio mollitia fugit aliquam velit nihil.</p>
@@ -103,7 +103,7 @@
                         <h5 class="card-title">VIDEO</h5>
                     </div>
                     <a href="{{ url('/blog/videos/list') }}">
-                        <img src="{{ url('../images/Card-img2.png') }}" class="d-block w-100" alt="...">
+                        <img src="{{ asset('storage/images/main-categories/' . $displayMainCategoriesImgUrls[2]) }}" class="d-block w-100" alt="...">
                     </a>
                     <div class="card-body">
                         <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore iusto, magni quae, et laborum recusandae, cumque aperiam hic suscipit odio mollitia fugit aliquam velit nihil.</p>

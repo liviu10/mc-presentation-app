@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{ url('/') }}">
-            <img src="{{ url('../images/Logo-img.png') }}" alt="">
+            <img src="{{ asset('storage/images/Logo-img.png') }}" alt="">
             <p class="text-wrap">Lorem ipsum dolor sit amet.</p>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

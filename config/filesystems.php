@@ -48,9 +48,44 @@ return [
             'root' => storage_path('app'),
         ],
 
-        'public' => [
+        'audio' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
+            'root' => storage_path('app/public/audio'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+
+        'video' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/video'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+
+        'carousel' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/images/carousel'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+
+        'articles' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/images/articles'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+
+        'categories' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/images/main-categories'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+
+        'images' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/images'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
