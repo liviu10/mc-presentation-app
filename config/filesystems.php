@@ -83,6 +83,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'contact' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/images/contact-form'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+
         'images' => [
             'driver' => 'local',
             'root' => storage_path('app/public/images'),
