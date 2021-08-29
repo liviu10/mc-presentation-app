@@ -183,4 +183,17 @@ class UrlSettingsController extends Controller
 
         return $getMainCategoriesFolder;
     }
+
+    /**
+     * Get contact me page image url.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getContactMePageImagesUrl()
+    {
+        $getContactFormFolder = Storage::disk('contact')->files();
+
+        return $getContactFormFolder;
+    }
 }

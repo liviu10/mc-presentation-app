@@ -6,7 +6,7 @@
     <div class="container lv-container-contact-form">
         <!-- PICTURE PAGE, SECTION START -->
             <div class="card" style="width: 18rem;">
-                <img src="{{ url('../images/dance-question-mark.jpg') }}" class="card-img-top" alt="...">
+                <img src="{{ asset('/storage/images/contact-form/' . $displayContactFormImgUrls[0]) }}" class="card-img-top" alt="...">
             </div>
         <!-- PICTURE PAGE, SECTION END -->
 
