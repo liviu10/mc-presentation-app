@@ -19,6 +19,8 @@ use App\Http\Controllers\AboutMeController;
 use App\Http\Controllers\ContactMeController;
 use App\Http\Controllers\BlogController;
 
+Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
+
 Route::group(['/'], function () {
     // Route to the Home Page
     Route::get('/', [HomeController::class, 'index']);

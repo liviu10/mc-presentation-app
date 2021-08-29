@@ -25,6 +25,22 @@
                     @endif
                 </li>
                 @endfor
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="flag-icon flag-icon-{{Config::get('languages')[App::getLocale()]['flag-icon']}}"></span> 
+                    {{ Config::get('languages')[App::getLocale()]['display'] }}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li>
+                        @foreach (Config::get('languages') as $lang => $language)
+                            <a class="dropdown-item" href="{{ route('lang.switch', $lang) }}">
+                                <span class="flag-icon flag-icon-{{$language['flag-icon']}}"></span> 
+                                {{$language['display']}}
+                            </a>
+                        @endforeach
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
