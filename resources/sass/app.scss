@@ -1,12 +1,26 @@
 @import 'variables';
-
 @import '~bootstrap/scss/bootstrap';
 @import '~sweetalert2/dist/sweetalert2';
 @import '~@fortawesome/fontawesome-svg-core/styles';
+// @import 'elements/card';
+// @import 'elements/navbar';
+// @import 'elements/buttons';
+// @import 'elements/transitions';
+// @import 'components/server-error';
 
-@import 'elements/card';
-@import 'elements/navbar';
-@import 'elements/buttons';
-@import 'elements/transitions';
+/***** IMPORT CSS STYLES *****/
+@import 'components/_components.scss';
+@import 'utilities/_utilities.scss';
+@import 'pages/_pages.scss';
 
-@import 'components/server-error';
+$background_color: map-get($pale_cerulean, "color_dirty_white");
+$font_color: map-get($basic_colors, "color_black");
+
+body {
+    background-color: $background_color;
+    color: $font_color;
+    font-family: 'Merriweather Sans Regular', sans-serif;
+}
+#container_app {
+    margin-top: rem-convertor(76px);
+}

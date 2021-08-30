@@ -1,12 +1,4 @@
 {
-  "app_name": "",
-  "navigation_bar": {
-    "first_button": "Home",
-    "second_button": "Schedule Appointment",
-    "third_button": "Blog",
-    "forth_button": "About me",
-    "fifth_button": "Contact me"
-  },
   "ok": "Ok",
   "cancel": "Cancel",
   "error_alert_title": "Oops...",

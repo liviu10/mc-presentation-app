@@ -1,0 +1,92 @@
+@import '../../../utilities/_utilities.scss';
+
+$background_color: map-get($pale_cerulean, "color_khaki");
+$font_color: inherit;
+
+.container-fluid {
+    &.container-footer {
+        @include flex-center();
+        flex-direction: column;
+        height: 15%;
+        background-color: $background_color;
+        & .container-footer-menu {
+            @include flex-center();
+            flex-direction: row !important;
+            margin-top: rem-convertor(20px);
+            width: 100%;
+            &-button {
+                @include flex-center();
+                flex-direction: column !important;
+                width: 50%;
+                & p {
+                    margin-bottom: rem-convertor(0px);
+                    font-weight: bold;
+                    & a {
+                        color: $font_color;
+                    }
+                }
+            }
+            &-contact {
+                @include flex-center();
+                flex-direction: column !important;
+                width: 50%;
+                & p {
+                    margin-bottom: rem-convertor(0px);
+                    color: $font_color;
+                    font-weight: bold;
+                    user-select: none;
+                    &:last-child {
+                        padding-top: rem-convertor(10px);
+                    }
+                    & .btn {
+                        border-width: rem-convertor(0px) !important;
+                        padding: rem-convertor(4.5px) !important;
+                        background-color: transparent;
+                    }
+                    & a {
+                        color: $font-color;
+                        & .fab {
+                            @include flex-center();
+                            &.fa-facebook-f {
+                                border-radius: 50%;
+                                width: rem-convertor(30px);
+                                height: rem-convertor(30px);
+                                background-color: #3B5998;
+                                color: #FFFFFF;
+                            }
+                            &.fa-instagram {
+                                border-radius: 50%;
+                                width: rem-convertor(30px);
+                                height: rem-convertor(30px);
+                                background-color: #125688;
+                                color: #FFFFFF;
+                            }
+                            &.fa-youtube {
+                                border-radius: 50%;
+                                width: rem-convertor(30px);
+                                height: rem-convertor(30px);
+                                background-color: #BB0000;
+                                color: #FFFFFF;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        & .container-footer-copyright {
+            @include flex-center();
+            margin-top: rem-convertor(20px);
+            width: 100%;
+            & p {
+                margin-bottom: rem-convertor(0px);
+                color: $font_color !important;
+                font-size: rem-convertor(14px);
+                font-weight: bold;
+                user-select: none;
+                & a {
+                    color: $font_color !important;
+                }
+            }
+        }
+    }
+}
