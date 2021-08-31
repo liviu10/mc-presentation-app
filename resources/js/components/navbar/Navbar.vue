@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-white">
-    <div class="container">
+    <div class="container-fluid">
       <!-- NAVBAR BRAND SECTION START -->
       <router-link :to="{ name: 'home' }" class="navbar-brand">
         <div class="text-uppercase">
@@ -10,17 +10,17 @@
       <!-- NAVBAR BRAND SECTION END -->
 
       <!-- NAVBAR HAMBURGER MENU SECTION START -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon" />
       </button>
       <!-- NAVBAR HAMBURGER MENU SECTION END -->
 
-      <div id="navbarToggler" class="collapse navbar-collapse">
+      <div id="navbarSupportedContent" class="collapse navbar-collapse">
         <!-- NAVBAR MENU BUTTONS IF USER IS LOGGED IN SECTION START -->
         <navbar-buttons />
         <!-- NAVBAR MENU BUTTONS USER IS LOGGED IN SECTION END -->
 
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ms-auto">
           <!-- LANGUAGE SWITCHER SECTION START -->
           <locale-dropdown />
           <!-- LANGUAGE SWITCHER SECTION END -->

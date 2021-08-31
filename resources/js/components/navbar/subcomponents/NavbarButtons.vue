@@ -1,28 +1,28 @@
 <template>
-  <ul v-if="user" class="navbar-nav">
+  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
     <li class="nav-item">
-      <router-link :to="{ name: 'home' }" class="nav-link">
-        {{ $t('navigation_bar.first_button') }}
+      <router-link :to="{ name: 'home-page' }" class="nav-link">
+        {{ $t('navigation_bar.main_menu.first_button') }}
       </router-link>
     </li>
     <li class="nav-item">
       <router-link :to="{ name: 'schedule-appointment' }" class="nav-link">
-        {{ $t('navigation_bar.second_button') }}
+        {{ $t('navigation_bar.main_menu.second_button') }}
       </router-link>
     </li>
     <li class="nav-item">
       <router-link :to="{ name: 'blog' }" class="nav-link">
-        {{ $t('navigation_bar.third_button') }}
+        {{ $t('navigation_bar.main_menu.third_button') }}
       </router-link>
     </li>
     <li class="nav-item">
       <router-link :to="{ name: 'about-me' }" class="nav-link">
-        {{ $t('navigation_bar.forth_button') }}
+        {{ $t('navigation_bar.main_menu.forth_button') }}
       </router-link>
     </li>
     <li class="nav-item">
       <router-link :to="{ name: 'contact-me' }" class="nav-link">
-        {{ $t('navigation_bar.fifth_button') }}
+        {{ $t('navigation_bar.main_menu.fifth_button') }}
       </router-link>
     </li>
   </ul>

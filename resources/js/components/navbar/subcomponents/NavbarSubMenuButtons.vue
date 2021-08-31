@@ -1,30 +1,40 @@
 <template>
   <!-- SPECIFIC BUTTONS IF USER IS LOGGED IN SECTION START -->
   <li v-if="user" class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <img :src="user.photo_url" class="rounded-circle profile-photo mr-1">
+    <a id="navbarDropdown" class="nav-link dropdown-toggle text-dark d-flex justify-content-start align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <img :src="user.photo_url" class="rounded-circle profile-photo me-1">
       {{ user.name }}
     </a>
-    <div class="dropdown-menu py-0">
-      <a class="dropdown-item pl-2 py-2 dropdown-profile" href="" />
-      <router-link :to="{ name: 'documents.documentation' }" class="dropdown-item pl-2 py-2">
-        <fa icon="book-open" fixed-width />
-        {{ $t('navigation_bar.documentation_button') }}
-      </router-link>
-      <router-link :to="{ name: 'settings.update-profile' }" class="dropdown-item pl-2 py-2">
-        <fa icon="user" fixed-width />
-        {{ $t('navigation_bar.settings_button') }}
-      </router-link>
-      <router-link :to="{ name: 'application-settings' }" class="dropdown-item pl-2 py-2">
-        <fa icon="cog" fixed-width />
-        {{ $t('navigation_bar.application_settings_button') }}
-      </router-link>
+    <ul class="dropdown-menu py-0" aria-labelledby="navbarDropdown">
+      <li>
+        <a class="dropdown-item ps-2 py-2 dropdown-profile" href="" />
+      </li>
+      <li>
+        <router-link :to="{ name: '' }" class="dropdown-item ps-2 py-2">
+          <fa icon="book-open" fixed-width />
+          {{ $t('navigation_bar.sub_menu.first_button') }}
+        </router-link>
+      </li>
+      <li>
+        <router-link :to="{ name: 'settings.profile' }" class="dropdown-item ps-2 py-2">
+          <fa icon="user" fixed-width />
+          {{ $t('navigation_bar.sub_menu.second_button') }}
+        </router-link>
+      </li>
+      <li>
+        <router-link :to="{ name: '' }" class="dropdown-item ps-2 py-2">
+          <fa icon="cog" fixed-width />
+          {{ $t('navigation_bar.sub_menu.third_button') }}
+        </router-link>
+      </li>
       <div class="dropdown-divider my-0" />
-      <a href="#" class="dropdown-item pl-2 py-2" @click.prevent="logout">
-        <fa icon="sign-out-alt" fixed-width />
-        {{ $t('navigation_bar.logout_button') }}
-      </a>
-    </div>
+      <li>
+        <a href="#" class="dropdown-item ps-2 py-2" @click.prevent="logout">
+          <fa icon="sign-out-alt" fixed-width />
+          {{ $t('navigation_bar.sub_menu.forth_button') }}
+        </a>
+      </li>
+    </ul>
   </li>
   <!-- SPECIFIC BUTTONS IF USER IS LOGGED IN SECTION END -->
 </template>

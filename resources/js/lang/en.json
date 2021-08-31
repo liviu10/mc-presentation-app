@@ -1,11 +1,28 @@
 {
   "app_name": "",
   "navigation_bar": {
-    "first_button": "Home",
-    "second_button": "Schedule Appointment",
-    "third_button": "Blog",
-    "forth_button": "About me",
-    "fifth_button": "Contact me"
+    "main_menu": {
+      "first_button": "Home",
+      "second_button": "Schedule Appointment",
+      "third_button": "Blog",
+      "forth_button": "About me",
+      "fifth_button": "Contact me"
+    },
+    "sub_menu": {
+      "first_button": "Documentation",
+      "second_button": "Profile Settings",
+      "third_button": "Application Settings",
+      "forth_button": "Logout"
+    }
+  },
+  "user": {
+    "about-me-page": {},
+    "article-blog-page": {},
+    "audio-blog-page": {},
+    "video-blog-page": {},
+    "contact-me-page": {},
+    "schedule-appointment-page": {},
+    "home-page": {}
   },
   "ok": "Ok",
   "cancel": "Cancel",
