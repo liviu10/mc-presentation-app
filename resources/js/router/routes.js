@@ -5,21 +5,19 @@ function page (path) {
 export default [
   // URL route for the home page
   { path: '/', name: 'home-page', component: page('user/index.vue') },
+
   // URL route for the schedule appointment page
   { path: '/schedule-appointment', name: 'schedule-appointment', component: page('user/schedule-appointment/index.vue') },
+
   // URL group routes for the blog pages: written, audio and video articles pages
-  {
-    path: '/blog',
-    name: 'blog',
-    component: page('user/blog/index.vue'),
-    children: [
-      { path: 'article', name: 'blog.article', component: page('user/blog/article.vue') },
-      { path: 'audio', name: 'blog.audio', component: page('user/blog/audio.vue') },
-      { path: 'video', name: 'blog.video', component: page('user/blog/video.vue') }
-    ]
-  },
+  { path: '/blog', name: 'blog', component: page('user/blog/index.vue') },
+  { path: '/blog/article', name: 'article.index', component: page('user/blog/article/index.vue') },
+  { path: '/blog/audio', name: 'audio.index', component: page('user/blog/audio/index.vue') },
+  { path: '/blog/video', name: 'video.index', component: page('user/blog/video/index.vue') },
+
   // URL route for the about me page
   { path: '/about-me', name: 'about-me', component: page('user/about-me/index.vue') },
+
   // URL route for the contact me page
   { path: '/contact-me', name: 'contact-me', component: page('user/contact-me/index.vue') },
 

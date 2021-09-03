@@ -26,14 +26,16 @@ $lvContainerTestimonials: (
             transition-duration: 2.5s;
         }
     }
-    & .carousel-control-prev, .carousel-control-next {
-        & .fas {
-            @include flex-center();
-            border-radius: 50%;
-            width: rem-convertor(36px);
-            height: rem-convertor(36px);
-            background-color: map-get($lvContainerTestimonials, "testimonials_card_bg_color_btn");
-            color: map-get($lvContainerTestimonials, "testimonials_font_color");
+    & .carousel-control-prev, & .carousel-control-next {
+        @include flex-center();
+        border-radius: 50%;
+        width: rem-convertor(36px);
+        height: rem-convertor(36px);
+        background-color: map-get($lvContainerTestimonials, "testimonials_card_bg_color_btn");
+        color: map-get($lvContainerTestimonials, "testimonials_font_color");
+        &-icon {
+            width: rem-convertor(20px);
+            height: rem-convertor(20px);
         }
     }
 }
