@@ -35,6 +35,14 @@
     "schedule-appointment-page": {},
     "home-page": {}
   },
+  "error_pages": {
+    "page_not_found": {
+      "title": "Page Not Found!",
+      "action": {
+        "first": "Go back to Home Page!"
+      }
+    }
+  },
   "ok": "Ok",
   "cancel": "Cancel",
   "error_alert_title": "Oops...",
@@ -43,8 +51,6 @@
   "token_expired_alert_text": "Please log in again to continue.",
   "login": "Log In",
   "register": "Register",
-  "page_not_found": "Page Not Found",
-  "go_home": "Go Home",
   "logout": "Logout",
   "email": "Email",
   "remember_me": "Remember Me",

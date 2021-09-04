@@ -1,19 +1,40 @@
 <template>
-  <card class="text-center">
-    <h3 class="mb-4">
-      {{ $t('page_not_found') }}
-    </h3>
-
-    <div class="links">
-      <router-link :to="{ name: 'welcome' }">
-        {{ $t('go_home') }}
-      </router-link>
+  <div class="lv-container-error page-not-found">
+    <!-- ERROR PAGE ACTIONS, SECTION START -->
+    <div class="action">
+      <div class="action-body">
+        <img src="/images/error/not-found_img.jpg" alt="">
+      </div>
+      <div class="action-buttons">
+        <!-- ERROR PAGE TITLE, SECTION START -->
+        <div class="title">
+          <h3>
+            {{ $t('error_pages.page_not_found.title') }}
+          </h3>
+        </div>
+        <!-- ERROR PAGE TITLE, SECTION END -->
+        <router-link v-for="action in actions" :key="action.id" :to="{ name: action.button_url }" class="btn btn-primary">
+          {{ action.button_name }}
+        </router-link>
+      </div>
     </div>
-  </card>
+    <!-- ERROR PAGE ACTIONS, SECTION END -->
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'NotFound'
+  name: 'PageNotFound',
+  data: function () {
+    return {
+      actions: [
+        {
+          id: 1,
+          button_url: 'home-page',
+          button_name: this.$t('error_pages.page_not_found.action.first')
+        }
+      ]
+    }
+  }
 }
 </script>
