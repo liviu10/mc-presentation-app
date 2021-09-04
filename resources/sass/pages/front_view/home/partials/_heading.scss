@@ -6,35 +6,51 @@ $lvContainerHeading: (
 
 .lv-container-heading {
     @include flex-center();
-    margin-top: rem-convertor(30px);
-    margin-bottom: rem-convertor(30px);
     & .container-lead {
         width: 80%;
+        & .display-4, & .lead {
+            margin-top: rem-convertor(8px);
+            margin-bottom: rem-convertor(8px) !important;
+        }
     }
     & .container-buttons {
-        display: inline-table;
+        @include flex-center();
+        flex-direction: column;
         width: 20%;
+        height: 100%;
         text-align: center;
-        & .btn {
-            background-color: map-get($lvContainerHeading, "heading_bg_color_btn");
-            border-color: map-get($lvContainerHeading, "heading_border_color_btn");
-            border-radius: rem-convertor(0px);
-            font-weight: bold;
-            color: map-get($lvContainerHeading, "heading_font_color_btn");
-            &:focus {
-                border-color: transparent !important;
-                box-shadow: 0 1px 1px transparent inset, 0 0 8px transparent !important;
-                outline: 0 none !important;
-            }
-            &:first-child {
+        &-appointment, &-social-media {
+            & .btn {
+                margin-top: rem-convertor(20px);
                 margin-bottom: rem-convertor(20px);
-                width: 100%;
+                background-color: map-get($lvContainerHeading, "heading_bg_color_btn");
+                border-color: map-get($lvContainerHeading, "heading_border_color_btn");
+                border-radius: rem-convertor(0px);
+                font-weight: bold;
+                color: map-get($lvContainerHeading, "heading_font_color_btn");
+                &:focus {
+                    border-color: transparent !important;
+                    box-shadow: 0 1px 1px transparent inset, 0 0 8px transparent !important;
+                    outline: 0 none !important;
+                }
+                & .fab {
+                    @include flex-center();
+                    width: rem-convertor(25px);
+                    height: rem-convertor(25px);
+                }
             }
-            & .fab {
-                @include flex-center();
-                width: rem-convertor(25px);
-                height: rem-convertor(25px);
+        }
+        &-appointment {
+            & .btn {
+                padding-right: rem-convertor(8px);
+                padding-left: rem-convertor(8px);
+                width: rem-convertor(177px);
             }
+        }
+        &-social-media {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
         }
     }
 }

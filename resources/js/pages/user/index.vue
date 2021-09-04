@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-lg-10 m-auto">
+    <div class="col-lg-12 m-auto">
       <!-- CAROUSEL, SECTION START -->
       <div id="carouselExampleCaptions" class="carousel slide lv-container-banner" data-bs-ride="carousel">
         <div class="carousel-indicators">
@@ -69,19 +69,23 @@
           </p>
         </div>
         <div class="container-buttons">
-          <button type="button" class="btn btn-primary">
-            <i class="far fa-clock" />
-            Programează-te!
-          </button>
-          <a href="https://www.facebook.com/groups/269560668238590/?ref=share" class="btn btn-primary" target="_blank" title="Urmărește-mă pe Facebook!">
-            <fa :icon="['fab', 'facebook']" fixed-width />
-          </a>
-          <a href="" class="btn btn-primary" target="_blank" title="Urmărește-mă pe Instagram!">
-            <fa :icon="['fab', 'instagram']" fixed-width />
-          </a>
-          <a href="" class="btn btn-primary" target="_blank" title="Urmărește-mă pe Youtube!">
-            <fa :icon="['fab', 'youtube']" fixed-width />
-          </a>
+          <div class="container-buttons-appointment">
+            <button type="button" class="btn btn-primary btn-lg">
+              <i class="far fa-clock" />
+              Programează-te!
+            </button>
+          </div>
+          <div class="container-buttons-social-media">
+            <a href="https://www.facebook.com/groups/269560668238590/?ref=share" class="btn btn-primary btn-lg" target="_blank" title="Urmărește-mă pe Facebook!">
+              <fa :icon="['fab', 'facebook']" fixed-width />
+            </a>
+            <a href="" class="btn btn-primary btn-lg" target="_blank" title="Urmărește-mă pe Instagram!">
+              <fa :icon="['fab', 'instagram']" fixed-width />
+            </a>
+            <a href="" class="btn btn-primary btn-lg" target="_blank" title="Urmărește-mă pe Youtube!">
+              <fa :icon="['fab', 'youtube']" fixed-width />
+            </a>
+          </div>
         </div>
       </div>
       <!-- HEADING, SECTION END -->
@@ -154,11 +158,11 @@
       <!-- MAIN CATEGORIES, SECTION END -->
 
       <!-- TESTIMONIALS, SECTION START -->
-      <div id="carouselExampleIndicators" class="carousel slide lv-container-testimonials" data-bs-ride="carousel">
+      <div id="carouselExampleCaptions1" class="carousel slide lv-container-testimonials" data-bs-ride="carousel">
         <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1" />
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2" />
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3" />
+          <button type="button" data-bs-target="#carouselExampleCaptions1" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1" />
+          <button type="button" data-bs-target="#carouselExampleCaptions1" data-bs-slide-to="1" aria-label="Slide 2" />
+          <button type="button" data-bs-target="#carouselExampleCaptions1" data-bs-slide-to="2" aria-label="Slide 3" />
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active">
@@ -177,11 +181,11 @@
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, autem. Repellendus rerum deleniti dolores sed aperiam tempora reprehenderit iste dolorem? In, ut veniam modi ab unde optio illo nostrum at molestiae vel porro, voluptatibus accusamus dolorem hic inventore neque quae eveniet libero error. Temporibus, natus laborum facilis, eum dolor id ipsa dignissimos et, sunt quo autem. Voluptatum modi magni iusto optio eaque atque dolore dignissimos accusamus, eligendi ipsum fugiat cupiditate repudiandae nihil. Vel, tenetur aliquid.</p>
           </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions1" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true" />
           <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions1" data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true" />
           <span class="visually-hidden">Next</span>
         </button>

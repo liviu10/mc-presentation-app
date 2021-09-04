@@ -3,3 +3,9 @@
 @import 'partials/_heading.scss';
 @import 'partials/_newsletter.scss';
 @import 'partials/_testimonials.scss';
+
+.lv-container-heading, .lv-container-categories,
+.lv-container-newsletter, .lv-container-testimonials {
+    margin-top: rem-convertor(50px);
+    margin-bottom: rem-convertor(50px);
+}
