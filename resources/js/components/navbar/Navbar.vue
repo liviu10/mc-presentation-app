@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-white">
     <div class="container-fluid">
       <!-- NAVBAR BRAND SECTION START -->
-      <router-link :to="{ name: 'home' }" class="navbar-brand">
+      <router-link :to="{ name: 'home-page' }" class="navbar-brand">
         <img src="/images/logo/Logo-img.png" alt="">
         <p class="text-wrap">
           Lorem ipsum dolor sit amet.

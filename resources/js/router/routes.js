@@ -21,6 +21,9 @@ export default [
   // URL route for the contact me page
   { path: '/contact-me', name: 'contact-me', component: page('user/contact-me/index.vue') },
 
+  // URL route for the terms and conditions page
+  { path: '/terms-and-conditions', name: 'terms-and-conditions', component: page('user/terms-and-conditions/index.vue') },
+
   // URL routes for the Administration Panel of the Web Application
   {
     path: '/admin',

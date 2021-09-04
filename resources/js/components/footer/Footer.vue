@@ -20,7 +20,9 @@
       <div class="container-footer-copyright">
         <p>
           Copyright &#169; 2021
-          <a href="#">Madalina Corina Marius</a>
+          <router-link :to="{ name: 'home-page' }">
+            Mădălina Corina Marius
+          </router-link>
         </p>
       </div>
     </div>

@@ -15,6 +15,17 @@
       "forth_button": "Delogare"
     }
   },
+  "footer": {
+    "footer_menu": {
+      "first_button": "TERMENI ȘI CONDIȚII"
+    },
+    "social_menu": {
+      "title": "Urmărește-mă pe:",
+      "facebook": "Urmărește-mă pe Facebook!",
+      "instagram": "Urmărește-mă pe Instagram!",
+      "youtube": "Urmărește-mă pe Youtube!"
+    }
+  },
   "user": {
     "about-me-page": {},
     "article-blog-page": {},

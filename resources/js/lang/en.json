@@ -15,6 +15,17 @@
       "forth_button": "Logout"
     }
   },
+  "footer": {
+    "footer_menu": {
+      "first_button": "TERMS AND CONDITIONS"
+    },
+    "social_menu": {
+      "title": "Follow me on:",
+      "facebook": "Follow me on Facebook!",
+      "instagram": "Follow me on Instagram!",
+      "youtube": "Follow me on Youtube!"
+    }
+  },
   "user": {
     "about-me-page": {},
     "article-blog-page": {},

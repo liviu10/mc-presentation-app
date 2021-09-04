@@ -1,13 +1,13 @@
 <template>
   <p>
-    <span>Mă găsești și pe:</span>
-    <a href="https://www.facebook.com/groups/269560668238590/?ref=share" class="btn btn-primary btn-lg" target="_blank" title="Urmărește-mă pe Facebook!">
+    <span>{{ $t('footer.social_menu.title') }}</span>
+    <a href="https://www.facebook.com/groups/269560668238590/?ref=share" class="btn btn-primary btn-lg" target="_blank" :title="$t('footer.social_menu.facebook')">
       <fa :icon="['fab', 'facebook']" fixed-width />
     </a>
-    <a href="" class="btn btn-primary btn-lg" target="_blank" title="Urmărește-mă pe Instagram!">
+    <a href="" class="btn btn-primary btn-lg" target="_blank" :title="$t('footer.social_menu.instagram')">
       <fa :icon="['fab', 'instagram']" fixed-width />
     </a>
-    <a href="" class="btn btn-primary btn-lg" target="_blank" title="Urmărește-mă pe Youtube!">
+    <a href="" class="btn btn-primary btn-lg" target="_blank" :title="$t('footer.social_menu.youtube')">
       <fa :icon="['fab', 'youtube']" fixed-width />
     </a>
   </p>
