@@ -5,8 +5,6 @@ $lvContainerTestimonials: (
 );
 
 .lv-container-testimonials {
-    margin-top: rem-convertor(60px);
-    margin-bottom: rem-convertor(60px);
     & .carousel-indicators {
         & button {
             border-radius: 50%;
@@ -28,6 +26,7 @@ $lvContainerTestimonials: (
     }
     & .carousel-control-prev, & .carousel-control-next {
         @include flex-center();
+        top: 100px;
         border-radius: 50%;
         width: rem-convertor(36px);
         height: rem-convertor(36px);

@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-lg-10 m-auto">
+    <div class="col-lg-12 m-auto">
       <h1>APP CONTACT ME PAGE</h1>
     </div>
   </div>

@@ -43,6 +43,8 @@ $navbar_link_font_family: 'Merriweather Sans Bold', sans-serif;
         background-color: $background_color;
         border-top: rem-convertor(0px) !important;
         & .dropdown-item {
+            padding-right: rem-convertor(4px);
+            padding-left: rem-convertor(4px);
             color: $font_color;
             &:first-child {
                 &:active, &:focus, &:hover {

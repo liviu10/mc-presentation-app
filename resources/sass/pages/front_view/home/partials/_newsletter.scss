@@ -6,8 +6,6 @@ $lvContainerNewsletter: (
 );
 
 .lv-container-newsletter {
-    margin-top: rem-convertor(60px);
-    margin-bottom: rem-convertor(60px);
     & form {
         margin-bottom: rem-convertor(0px);
     }
@@ -23,8 +21,8 @@ $lvContainerNewsletter: (
                 height: rem-convertor(60px);
             }
             & .btn {
-                border-radius: rem-convertor(0px);
                 height: rem-convertor(60px);
+                border-radius: rem-convertor(0px);
                 background-color: map-get($lvContainerNewsletter, "newsletter_bg_color_btn");
                 border-color: map-get($lvContainerNewsletter, "newsletter_border_color_btn");
                 border-radius: rem-convertor(0px);
@@ -45,7 +43,6 @@ $lvContainerNewsletter: (
         & .form-check {
             margin-bottom: rem-convertor(0px);
             &-input {
-                margin-top: rem-convertor(6px);
                 width: rem-convertor(20px);
                 height: rem-convertor(20px);
             }

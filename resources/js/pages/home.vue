@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-lg-10 m-auto">
+    <div class="col-lg-12 m-auto">
       <card :title="$t('home')">
         {{ $t('you_are_logged_in') }}
       </card>
