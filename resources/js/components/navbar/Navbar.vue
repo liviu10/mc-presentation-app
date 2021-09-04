@@ -3,9 +3,10 @@
     <div class="container-fluid">
       <!-- NAVBAR BRAND SECTION START -->
       <router-link :to="{ name: 'home' }" class="navbar-brand">
-        <div class="text-uppercase">
-          {{ $t('app_name') }}
-        </div>
+        <img src="/images/logo/Logo-img.png" alt="">
+        <p class="text-wrap">
+          Lorem ipsum dolor sit amet.
+        </p>
       </router-link>
       <!-- NAVBAR BRAND SECTION END -->
 
@@ -20,7 +21,7 @@
         <navbar-buttons />
         <!-- NAVBAR MENU BUTTONS USER IS LOGGED IN SECTION END -->
 
-        <ul class="navbar-nav ms-auto">
+        <ul class="navbar-nav">
           <!-- LANGUAGE SWITCHER SECTION START -->
           <locale-dropdown />
           <!-- LANGUAGE SWITCHER SECTION END -->
@@ -39,6 +40,7 @@ import { mapGetters } from 'vuex'
 import LocaleDropdown from './subcomponents/LocaleDropdown'
 import NavbarButtons from './subcomponents/NavbarButtons.vue'
 import NavbarSubMenuButtons from './subcomponents/NavbarSubMenuButtons.vue'
+
 export default {
   components: {
     LocaleDropdown,
