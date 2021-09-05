@@ -147,6 +147,10 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'full_name'      => 'Name and Surname',
+        'email'          => 'Email Address',
+        'privacy_policy' => 'Terms and Conditions',
+    ],
 
 ];

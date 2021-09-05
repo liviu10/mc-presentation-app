@@ -134,6 +134,19 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'full_name' => [
+            'required'  => ':attribute sunt obligatorii.',
+            'regex'     => ':attribute conține un format invalid',
+            'max'       => ':attribute nu trebuie să depășească 255 de caractere.',
+        ],
+        'email' => [
+            'required'  => ':attribute este obligatorie.',
+            'max'       => ':attribute nu trebuie să depășească 255 de caractere.',
+            'unique'    => ':attribute există deja în baza de date.',
+        ],
+        'privacy_policy' => [
+            'accepted'  => 'Trebuie să accepți :attribute.',
+        ],
     ],
 
     /*
@@ -147,6 +160,10 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'full_name'      => 'Numele și Prenumele',
+        'email'          => 'Adresa de Email',
+        'privacy_policy' => 'Termenii și Condițiile',
+    ],
 
 ];
