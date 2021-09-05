@@ -33,7 +33,11 @@
     "video-blog-page": {},
     "contact-me-page": {},
     "schedule-appointment-page": {},
-    "home-page": {}
+    "home-page": {
+      "general": {
+        "message_subscribe": "Felicitări! Te-ai abonat cu succes la newsletter-ul meu!"
+      }
+    }
   },
   "error_pages": {
     "page_not_found": {
