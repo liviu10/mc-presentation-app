@@ -33,7 +33,11 @@
     "video-blog-page": {},
     "contact-me-page": {},
     "schedule-appointment-page": {},
-    "home-page": {}
+    "home-page": {
+      "general": {
+        "message_subscribe": "Congratulation! You have successfully subscribed to my newsletter!"
+      }
+    }
   },
   "error_pages": {
     "page_not_found": {
