@@ -31,7 +31,11 @@
     "article-blog-page": {},
     "audio-blog-page": {},
     "video-blog-page": {},
-    "contact-me-page": {},
+    "contact-me-page": {
+      "general": {
+        "message_subscribe": "Mesajul tău a fost trimis cu success! Te voi contacta în cel mai scurt timp!"
+      }
+    },
     "schedule-appointment-page": {},
     "home-page": {
       "general": {

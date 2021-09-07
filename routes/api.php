@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\ContactMeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ProfileController;
@@ -47,3 +48,4 @@ Route::group(['middleware' => 'guest:api'], function () {
 });
 
 Route::apiResource('', HomeController::class);
+Route::apiResource('/contact-me', ContactMeController::class);

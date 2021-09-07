@@ -150,6 +150,7 @@ return [
     'attributes' => [
         'full_name'      => 'Name and Surname',
         'email'          => 'Email Address',
+        'message'        => 'Message',
         'privacy_policy' => 'Terms and Conditions',
     ],
 
