@@ -1,5 +1,5 @@
 <template>
-  <div class="container lv-container-newsletter">
+  <div class="container lv-con-sect-newsletter">
     <form @submit.prevent="subscribe" @keydown="form.onKeydown($event)">
       <alert-success :form="form" :message="message_success" />
       <div class="row">

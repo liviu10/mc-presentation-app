@@ -1,19 +1,19 @@
-$lvContainerHeading: (
+$lvContainerSectionHeading: (
     heading_bg_color_btn:     map-get($pale_cerulean, "color_khaki"),
     heading_border_color_btn: map-get($pale_cerulean, "color_khaki"),
     heading_font_color_btn:   map-get($basic_colors, "color_black"),
 );
 
-.lv-container-heading {
+.lv-con-sect-heading {
     @include flex-center();
-    & .container-lead {
+    &-lead {
         width: 80%;
         & .display-4, & .lead {
             margin-top: rem-convertor(8px);
             margin-bottom: rem-convertor(8px) !important;
         }
     }
-    & .container-buttons {
+    &-buttons {
         @include flex-center();
         flex-direction: column;
         width: 20%;
@@ -23,11 +23,11 @@ $lvContainerHeading: (
             & .btn {
                 margin-top: rem-convertor(20px);
                 margin-bottom: rem-convertor(20px);
-                background-color: map-get($lvContainerHeading, "heading_bg_color_btn");
-                border-color: map-get($lvContainerHeading, "heading_border_color_btn");
+                background-color: map-get($lvContainerSectionHeading, "heading_bg_color_btn");
+                border-color: map-get($lvContainerSectionHeading, "heading_border_color_btn");
                 border-radius: rem-convertor(0px);
                 font-weight: bold;
-                color: map-get($lvContainerHeading, "heading_font_color_btn");
+                color: map-get($lvContainerSectionHeading, "heading_font_color_btn");
                 &:focus {
                     border-color: transparent !important;
                     box-shadow: 0 1px 1px transparent inset, 0 0 8px transparent !important;

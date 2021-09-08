@@ -1,4 +1,4 @@
-$lvContainerBanner: (
+$lvContainerSectionBanner: (
     carousel_indicators_bg_color:      map-get($basic_colors, "color_black"),
     carousel_caption_bg_color:         map-get($basic_colors, "color_white"),
     carousel_caption_font_color:       map-get($basic_colors, "color_black"),
@@ -9,13 +9,13 @@ $lvContainerBanner: (
     carousel_controls_font_color:      map-get($basic_colors, "color_black")
 );
 
-.lv-container-banner {
+.lv-con-sect-banner {
     & .carousel-indicators {
         & button {
             border-radius: 50%;
             width: rem-convertor(15px);
             height: rem-convertor(15px);
-            background-color: map-get($lvContainerBanner, "carousel_indicators_bg_color");
+            background-color: map-get($lvContainerSectionBanner, "carousel_indicators_bg_color");
         }
     }
     & .carousel-inner {
@@ -26,16 +26,16 @@ $lvContainerBanner: (
     & .carousel-caption {
         padding-top: rem-convertor(8px);
         padding-bottom: rem-convertor(40px);
-        background-color: map-get($lvContainerBanner, "carousel_caption_bg_color");
+        background-color: map-get($lvContainerSectionBanner, "carousel_caption_bg_color");
         opacity: 0.70;
         & h5, & p {
-            color: map-get($lvContainerBanner, "carousel_caption_font_color");
+            color: map-get($lvContainerSectionBanner, "carousel_caption_font_color");
             user-select: none;
         }
         & .btn {
-            background-color: map-get($lvContainerBanner, "carousel_caption_bg_color_btn");
-            border-color: map-get($lvContainerBanner, "carousel_caption_border_color_btn");
-            color: map-get($lvContainerBanner, "carousel_caption_font_color_btn");
+            background-color: map-get($lvContainerSectionBanner, "carousel_caption_bg_color_btn");
+            border-color: map-get($lvContainerSectionBanner, "carousel_caption_border_color_btn");
+            color: map-get($lvContainerSectionBanner, "carousel_caption_font_color_btn");
             font-weight: bold;
             &:focus {
                 border-color: transparent !important;
@@ -50,8 +50,8 @@ $lvContainerBanner: (
             border-radius: 50%;
             width: rem-convertor(36px);
             height: rem-convertor(36px);
-            background-color: map-get($lvContainerBanner, "carousel_controls_bg_color");
-            color: map-get($lvContainerBanner, "carousel_controls_font_color");
+            background-color: map-get($lvContainerSectionBanner, "carousel_controls_bg_color");
+            color: map-get($lvContainerSectionBanner, "carousel_controls_font_color");
             opacity: 0.70;
         }
     }

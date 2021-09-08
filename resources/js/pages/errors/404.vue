@@ -1,11 +1,11 @@
 <template>
-  <div class="lv-container-error page-not-found">
+  <div class="lv-con-pg-error page-not-found">
     <!-- ERROR PAGE ACTIONS, SECTION START -->
-    <div class="action">
+    <div class="page-not-found-action">
       <div class="action-body">
         <img src="/images/error/not-found_img.jpg" alt="">
       </div>
-      <div class="action-buttons">
+      <div class="page-not-found-action-buttons">
         <!-- ERROR PAGE TITLE, SECTION START -->
         <div class="title">
           <h3>

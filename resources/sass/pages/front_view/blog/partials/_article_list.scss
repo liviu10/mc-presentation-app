@@ -1,4 +1,4 @@
-$articleList: (
+$lvContainerSectionArticleList: (
     card_background_color:   map-get($pale_cerulean, "color_khaki"),
     card_font_color:         map-get($basic_colors, "color_black"),
     button_background_color: map-get($analogous_dark_vanilla, "color_green_mist"),
@@ -6,11 +6,11 @@ $articleList: (
     button_font_color:       map-get($basic_colors, "color_black"),
 );
 
-.lv-container-articles-list {
+.lv-con-sect-articles-list {
     & .card {
         margin: rem-convertor(16px) 0rem;
         width: 100%;
-        background-color: map-get($articleList, "card_background_color");
+        background-color: map-get($lvContainerSectionArticleList, "card_background_color");
         &-title {
             margin-top: rem-convertor(16px);
             margin-bottom: rem-convertor(16px) !important;
@@ -24,10 +24,10 @@ $articleList: (
         }
         &-body {
             & .btn {
-                background-color: map-get($articleList, "button_background_color");
-                border-color: map-get($articleList, "button_border_color");
+                background-color: map-get($lvContainerSectionArticleList, "button_background_color");
+                border-color: map-get($lvContainerSectionArticleList, "button_border_color");
                 border-radius: rem-convertor(0px);
-                color: map-get($articleList, "button_font_color");
+                color: map-get($lvContainerSectionArticleList, "button_font_color");
                 font-weight: bold;
                 &:focus {
                     border-color: transparent !important;

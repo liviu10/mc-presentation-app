@@ -1,5 +1,5 @@
 <template>
-  <div class="container lv-container-categories">
+  <div class="container lv-con-sect-categories">
     <!-- MAIN CATEGORIES: WRITTEN ARTICLES, AUDIO AND VIDEO, SECTION START -->
     <div v-for="category in main_categories"
          :key="category.id"

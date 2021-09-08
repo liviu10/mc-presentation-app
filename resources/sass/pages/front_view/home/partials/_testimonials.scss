@@ -1,16 +1,16 @@
-$lvContainerTestimonials: (
+$lvContainerSectionTestimonials: (
     testimonials_carousel_indicators_bg_color: map-get($basic_colors, "color_black"),
     testimonials_card_bg_color_btn:            map-get($basic_colors, "color_black"),
     testimonials_font_color:                   map-get($basic_colors, "color_white"),
 );
 
-.lv-container-testimonials {
+.lv-con-sect-testimonials {
     & .carousel-indicators {
         & button {
             border-radius: 50%;
             width: rem-convertor(15px);
             height: rem-convertor(15px);
-            background-color: map-get($lvContainerTestimonials, "testimonials_carousel_indicators_bg_color");
+            background-color: map-get($lvContainerSectionTestimonials, "testimonials_carousel_indicators_bg_color");
         }
     }
     & .carousel-inner {
@@ -30,8 +30,8 @@ $lvContainerTestimonials: (
         border-radius: 50%;
         width: rem-convertor(36px);
         height: rem-convertor(36px);
-        background-color: map-get($lvContainerTestimonials, "testimonials_card_bg_color_btn");
-        color: map-get($lvContainerTestimonials, "testimonials_font_color");
+        background-color: map-get($lvContainerSectionTestimonials, "testimonials_card_bg_color_btn");
+        color: map-get($lvContainerSectionTestimonials, "testimonials_font_color");
         &-icon {
             width: rem-convertor(20px);
             height: rem-convertor(20px);

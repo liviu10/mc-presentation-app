@@ -1,10 +1,10 @@
 <template>
   <div class="row">
     <div class="col-lg-12 m-auto">
-      <div class="container lv-container-articles">
+      <div class="container lv-con-sect-articles">
         <h1>APP WRITTEN ARTICLES PAGE</h1>
         <!-- LIST OF WRITTEN ARTICLES, SECTION START -->
-        <div class="lv-container-articles-list">
+        <div class="lv-con-sect-articles-list">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">

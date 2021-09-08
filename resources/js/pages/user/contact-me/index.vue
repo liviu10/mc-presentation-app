@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-lg-12 m-auto">
-      <div class="container lv-container-contact-form">
+      <div class="container lv-con-pg-contact-form">
         <!-- PICTURE PAGE, SECTION START -->
         <div class="card" style="width: 18rem;">
           <img src="images/contact/dance-question-mark.jpg" class="card-img-top" alt="...">
@@ -10,13 +10,13 @@
 
         <!-- CONTACT FORM, SECTION START -->
         <div class="container-contact-form">
-          <div class="container-contact-head">
+          <div class="container-contact-form-head">
             <h1>Lorem, ipsum dolor.</h1>
             <p class="lead">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum distinctio amet eos beatae culpa autem, quis consequatur alias adipisci ipsam.
             </p>
           </div>
-          <div class="container-contact-main">
+          <div class="container-contact-form-main">
             <form @submit.prevent="subscribe" @keydown="form.onKeydown($event)">
               <alert-success :form="form" :message="message_success" />
               <!-- FULL NAME, SECTION START -->

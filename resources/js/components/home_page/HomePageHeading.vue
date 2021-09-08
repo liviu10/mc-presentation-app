@@ -1,6 +1,6 @@
 <template>
-  <div class="container lv-container-heading">
-    <div class="container-lead">
+  <div class="container lv-con-sect-heading">
+    <div class="lv-con-sect-heading-lead">
       <h1 class="display-4">
         Fluid jumbotron
       </h1>
@@ -10,8 +10,8 @@
         nulla doloribus nesciunt ipsam deleniti. Voluptates dicta praesentium quaerat?
       </p>
     </div>
-    <div class="container-buttons">
-      <div class="container-buttons-appointment">
+    <div class="lv-con-sect-heading-buttons">
+      <div class="lv-con-sect-heading-buttons-appointment">
         <button type="button"
                 class="btn btn-primary btn-lg"
                 @click="goTo"
@@ -20,7 +20,7 @@
           Programează-te!
         </button>
       </div>
-      <div class="container-buttons-social-media">
+      <div class="lv-con-sect-heading-buttons-social-media">
         <a v-for="share_button in jumbotron_buttons"
            :key="share_button.id"
            :href="share_button.url"

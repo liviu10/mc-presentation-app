@@ -5,7 +5,7 @@ $lvContainerError: (
 );
 
 .page-not-found {
-    .action {
+    &-action {
         @include flex-center();
         &-buttons {
             position: absolute;

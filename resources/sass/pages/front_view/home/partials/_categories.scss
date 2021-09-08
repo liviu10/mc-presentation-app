@@ -1,19 +1,19 @@
-$lvContainerCategories: (
+$lvContainerSectionCategories: (
     categories_card_bg_color: map-get($pale_cerulean, "color_khaki"),
     categories_font_color:    map-get($basic_colors, "color_black"),
 );
 
-.lv-container-categories {
+.lv-con-sect-categories {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     & .card {
         border-radius: rem-convertor(0px);
-        background-color: map-get($lvContainerCategories, "categories_card_bg_color") !important;
+        background-color: map-get($lvContainerSectionCategories, "categories_card_bg_color") !important;
         border-width: rem-convertor(0px);
         &-title {
             margin-bottom: rem-convertor(0px);
-            color: map-get($lvContainerCategories, "categories_font_color") !important;
+            color: map-get($lvContainerSectionCategories, "categories_font_color") !important;
             text-align: center;
         }
         &-body {
@@ -25,11 +25,11 @@ $lvContainerCategories: (
                 flex-direction: column;
             }
             & a {
-                color: map-get($lvContainerCategories, "categories_font_color") !important;
+                color: map-get($lvContainerSectionCategories, "categories_font_color") !important;
             }
         }
         &-text {
-            color: map-get($lvContainerCategories, "categories_font_color") !important;
+            color: map-get($lvContainerSectionCategories, "categories_font_color") !important;
             text-align: justify;
         }
     }

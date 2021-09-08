@@ -1,12 +1,12 @@
-$lvContainerContactForm: (
+$lvContainerPageContactForm: (
     contact_form_bg_color_btn:     map-get($pale_cerulean, "color_khaki"),
     contact_form_border_color_btn: map-get($pale_cerulean, "color_khaki"),
     contact_form_font_color_btn:   map-get($basic_colors, "color_black"),
     contact_form_check_font_color: map-get($basic_colors, "color_black"),
 );
-$lvContainerContactFormFont: 'Merriweather Sans Bold', sans-serif;
+$lvContainerPageContactFormFont: 'Merriweather Sans Bold', sans-serif;
 
-.lv-container-contact-form {
+.lv-con-pg-contact-form {
     @include flex-center();
     height: 100vh;
     & .card {
@@ -14,19 +14,19 @@ $lvContainerContactFormFont: 'Merriweather Sans Bold', sans-serif;
     }
     & .container-contact-form {
         margin-left: rem-convertor(40px);
-        & .container-contact-head {
+        &-head {
             @include flex-center();
             flex-direction: column;
             margin-bottom: rem-convertor(50px);
             & h1, & p {
                 margin-bottom: rem-convertor(0px);
-                font-family: map-get($lvContainerContactForm, "contact_form_font_family");
+                font-family: map-get($lvContainerPageContactForm, "contact_form_font_family");
             }
             & p {
                 margin-top: rem-convertor(32px);
             }
         }
-        & .container-contact-main {
+        &-main {
             form {
                 margin-bottom: rem-convertor(0px);
             }
@@ -51,17 +51,17 @@ $lvContainerContactFormFont: 'Merriweather Sans Bold', sans-serif;
                 }
                 &-label {
                     & a {
-                        color: map-get($lvContainerContactForm, "contact_form_check_font_color");
+                        color: map-get($lvContainerPageContactForm, "contact_form_check_font_color");
                     }
                 }
             }
             & .btn {
                 border-radius: rem-convertor(0px);
                 height: rem-convertor(60px);
-                background-color: map-get($lvContainerContactForm, "contact_form_bg_color_btn");
-                border-color: map-get($lvContainerContactForm, "contact_form_border_color_btn");
+                background-color: map-get($lvContainerPageContactForm, "contact_form_bg_color_btn");
+                border-color: map-get($lvContainerPageContactForm, "contact_form_border_color_btn");
                 border-radius: rem-convertor(0px);
-                color: map-get($lvContainerContactForm, "contact_form_font_color_btn");
+                color: map-get($lvContainerPageContactForm, "contact_form_font_color_btn");
                 font-weight: bold;
                 &:focus {
                     border-color: transparent !important;

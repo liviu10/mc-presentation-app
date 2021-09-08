@@ -2,7 +2,7 @@
 @import 'partials/_audio_list.scss';
 @import 'partials/_video_list.scss';
 
-$lvContainerBlog: (
+$lvContainerPageBlog: (
     card_blog_bg_color:   map-get($pale_cerulean, "color_khaki"),
     card_blog_font_color: map-get($basic_colors, "color_black"),
 );
@@ -16,11 +16,11 @@ $lvContainerBlog: (
     height: 100vh;
     & .card {
         border-radius: rem-convertor(0px);
-        background-color: map-get($lvContainerBlog, "card_blog_bg_color") !important;
+        background-color: map-get($lvContainerPageBlog, "card_blog_bg_color") !important;
         border-width: rem-convertor(0px);
         &-title {
             margin-bottom: rem-convertor(0px);
-            color: map-get($lvContainerBlog, "card_blog_font_color") !important;
+            color: map-get($lvContainerPageBlog, "card_blog_font_color") !important;
             text-align: center;
         }
         &-body {
@@ -32,16 +32,16 @@ $lvContainerBlog: (
                 flex-direction: column;
             }
             & a {
-                color: map-get($lvContainerBlog, "card_blog_font_color") !important;
+                color: map-get($lvContainerPageBlog, "card_blog_font_color") !important;
             }
         }
         &-text {
-            color: map-get($lvContainerBlog, "card_blog_font_color") !important;
+            color: map-get($lvContainerPageBlog, "card_blog_font_color") !important;
             text-align: justify;
         }
     }
 }
-.lv-container-articles {
+.lv-con-sect-articles, .lv-con-sect-audio, .lv-con-sect-video {
     margin: rem-convertor(120px) 0rem;
     & h1 {
         margin: rem-convertor(32px) 0rem;

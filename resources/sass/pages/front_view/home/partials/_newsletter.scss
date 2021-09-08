@@ -1,11 +1,11 @@
-$lvContainerNewsletter: (
+$lvContainerSectionNewsletter: (
     newsletter_bg_color_btn:          map-get($pale_cerulean, "color_khaki"),
     newsletter_border_color_btn:      map-get($pale_cerulean, "color_khaki"),
     newsletter_font_color_btn:        map-get($basic_colors, "color_black"),
     newsletter_font_color_form_check: map-get($basic_colors, "color_black"),
 );
 
-.lv-container-newsletter {
+.lv-con-sect-newsletter {
     & form {
         margin-bottom: rem-convertor(0px);
     }
@@ -23,10 +23,10 @@ $lvContainerNewsletter: (
             & .btn {
                 height: rem-convertor(60px);
                 border-radius: rem-convertor(0px);
-                background-color: map-get($lvContainerNewsletter, "newsletter_bg_color_btn");
-                border-color: map-get($lvContainerNewsletter, "newsletter_border_color_btn");
+                background-color: map-get($lvContainerSectionNewsletter, "newsletter_bg_color_btn");
+                border-color: map-get($lvContainerSectionNewsletter, "newsletter_border_color_btn");
                 border-radius: rem-convertor(0px);
-                color: map-get($lvContainerNewsletter, "newsletter_font_color_btn");
+                color: map-get($lvContainerSectionNewsletter, "newsletter_font_color_btn");
                 font-weight: bold;
                 &:focus {
                     border-color: transparent !important;
@@ -48,7 +48,7 @@ $lvContainerNewsletter: (
             }
             &-label {
                 & a {
-                    color: map-get($lvContainerNewsletter, "newsletter_font_color_form_check");
+                    color: map-get($lvContainerSectionNewsletter, "newsletter_font_color_form_check");
                 }
             }
         }

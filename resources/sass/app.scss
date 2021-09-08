@@ -1,3 +1,9 @@
+/*
+    Each VueJs component has it's own CSS custom class, this can be be lv-cnn-pg-home or lv-cnn-sect-home, where:
+    1. lv-con-pg-home refers to the home page container;
+    2. lv-con-sect-home refers to the home page section container;
+*/
+
 @import 'variables';
 @import '~bootstrap/scss/bootstrap';
 @import '~sweetalert2/dist/sweetalert2';
