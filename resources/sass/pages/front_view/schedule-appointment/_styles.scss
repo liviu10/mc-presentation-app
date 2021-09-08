@@ -1,0 +1,48 @@
+@import 'partials/_start_questionnaire.scss';
+
+$lvContainerPageAppointment: (
+    heading_bg_color_btn:     map-get($pale_cerulean, "color_khaki"),
+    heading_border_color_btn: map-get($pale_cerulean, "color_khaki"),
+    heading_font_color_btn:   map-get($basic_colors, "color_black"),
+);
+
+.lv-con-pg-appointment {
+    margin-top: rem-convertor(50px);
+    margin-bottom: rem-convertor(50px);
+    &-title {
+        margin-top: rem-convertor(16px);
+        margin-bottom: rem-convertor(16px);
+        h1 {
+            margin-top: rem-convertor(0px);
+            margin-bottom: rem-convertor(0px);
+            text-align: center;
+        }
+    }
+    &-body {
+        & .lead, p {
+            margin-top: rem-convertor(16px);
+        }
+    }
+    &-button {
+        @include flex-center();
+        & .btn {
+            margin-top: rem-convertor(20px);
+            margin-bottom: rem-convertor(20px);
+            background-color: map-get($lvContainerPageAppointment, "heading_bg_color_btn");
+            border-color: map-get($lvContainerPageAppointment, "heading_border_color_btn");
+            border-radius: rem-convertor(0px);
+            font-weight: bold;
+            color: map-get($lvContainerPageAppointment, "heading_font_color_btn");
+            &:focus {
+                border-color: transparent !important;
+                box-shadow: 0 1px 1px transparent inset, 0 0 8px transparent !important;
+                outline: 0 none !important;
+            }
+            & .fab {
+                @include flex-center();
+                width: rem-convertor(25px);
+                height: rem-convertor(25px);
+            }
+        }
+    }
+}
