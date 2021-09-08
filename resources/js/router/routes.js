@@ -8,6 +8,7 @@ export default [
 
   // URL route for the schedule appointment page
   { path: '/schedule-appointment', name: 'schedule-appointment', component: page('user/schedule-appointment/index.vue') },
+  { path: '/schedule-appointment/start-questionnaire', name: 'schedule-appointment.index', component: page('user/schedule-appointment/start-questionnaire/index.vue') },
 
   // URL group routes for the blog pages: written, audio and video articles pages
   { path: '/blog', name: 'blog', component: page('user/blog/index.vue') },
