@@ -20,6 +20,9 @@
         <div class="carousel-caption d-none d-md-block">
           <h5>{{ carousel_image.caption_title }}</h5>
           <p>{{ carousel_image.caption_text }}</p>
+          <button type="button" class="btn btn-primary">
+            Află mai multe!
+          </button>
         </div>
       </div>
     </div>
