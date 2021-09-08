@@ -12,7 +12,10 @@
     </div>
     <div class="container-buttons">
       <div class="container-buttons-appointment">
-        <button type="button" class="btn btn-primary btn-lg">
+        <button type="button"
+                class="btn btn-primary btn-lg"
+                @click="goTo"
+        >
           <i class="far fa-clock" />
           Programează-te!
         </button>
@@ -75,6 +78,11 @@ export default {
       ]
     }
   },
-  computed: {}
+  computed: {},
+  methods: {
+    goTo () {
+      this.$router.push({ path: '/schedule-appointment' })
+    }
+  }
 }
 </script>
