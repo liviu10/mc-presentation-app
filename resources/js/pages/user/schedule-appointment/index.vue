@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-lg-12 m-auto">
-      <div class="lv-con-pg-appointment">
+      <div class="container lv-con-pg-appointment">
         <div class="lv-con-pg-appointment-title">
           <h1>Pregătire pentru Întâlnire</h1>
         </div>
