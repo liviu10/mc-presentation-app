@@ -1,7 +1,15 @@
+@import 'about-me/_styles.scss';
+@import 'blog/_styles.scss';
 @import 'contact-me/_styles.scss';
 @import 'errors/_styles.scss';
 @import 'home/_styles.scss';
 @import 'schedule-appointment/_styles.scss';
 @import 'terms-and-conditions/_styles.scss';
 
-.lv-con-pg-error {}
+
+.lv-con-pg-about, .lv-con-pg-blog,
+.lv-con-pg-contact-form, .lv-con-pg.error,
+.lv-con-pg-appointment, .lv-con-pg-terms {
+    margin-top: rem-convertor(50px);
+    margin-bottom: rem-convertor(50px);
+}

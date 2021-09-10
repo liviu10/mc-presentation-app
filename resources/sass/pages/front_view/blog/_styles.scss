@@ -11,8 +11,6 @@ $lvContainerPageBlog: (
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    margin-top: rem-convertor(60px);
-    margin-bottom: rem-convertor(60px);
     height: 100vh;
     & .card {
         border-radius: rem-convertor(0px);

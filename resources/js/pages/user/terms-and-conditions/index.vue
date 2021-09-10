@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-lg-12 m-auto">
-      <div class="lv-con-pg-terms">
+      <div class="container lv-con-pg-terms">
         <div class="lv-con-pg-terms-title">
           <!-- PAGE TITLE & PUBLICATION DATE, SECTION START -->
           <h1>Terms and Conditions</h1>
