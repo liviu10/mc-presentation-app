@@ -75,6 +75,7 @@ $font_color: inherit;
         }
         & .container-footer-copyright {
             @include flex-center();
+            flex-direction: column;
             margin-top: rem-convertor(20px);
             width: 100%;
             & p {

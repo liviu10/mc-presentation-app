@@ -1,0 +1,37 @@
+.lv-con-pg-terms {
+    margin-top: rem-convertor(50px);
+    margin-bottom: rem-convertor(50px);
+    &-title {
+        margin-bottom: rem-convertor(35px);
+        & h1 {
+            margin-bottom: rem-convertor(0px);
+            font-weight: bold;
+        }
+        & p {
+            margin-bottom: rem-convertor(35px);
+        }
+        &-subtitle {
+            margin-bottom: rem-convertor(20px);
+        }
+        &-lead, &-info {
+            margin-bottom: rem-convertor(0px);
+        }
+        &-info {
+            font-weight: bold;
+        }
+    }
+    &-body {
+        &-content {
+            margin-top: rem-convertor(35px);
+            margin-bottom: rem-convertor(35px);
+            &-subtitle {
+                margin-top: rem-convertor(16px);
+                margin-bottom: rem-convertor(16px);
+                font-weight: bold;
+            }
+            &-paragraph {
+                margin-bottom: rem-convertor(0px);
+            }
+        }
+    }
+}
