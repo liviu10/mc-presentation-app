@@ -39,7 +39,10 @@
     "schedule-appointment-page": {},
     "home-page": {
       "general": {
-        "message_subscribe": "Felicitări! Te-ai abonat cu succes la newsletter-ul meu!"
+        "swal_newsletter": {
+          "title": "Bun venit!",
+          "message": "Felicitări! Te-ai abonat cu succes la newsletter-ul meu!"
+        }
       }
     }
   },
