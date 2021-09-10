@@ -1,7 +1,6 @@
 <template>
   <div class="container lv-con-sect-newsletter">
     <form @submit.prevent="subscribe" @keydown="form.onKeydown($event)">
-      <alert-success :form="form" :message="message_success" />
       <div class="row">
         <!-- FULL NAME, SECTION START -->
         <div class="col col-5">
@@ -59,13 +58,13 @@
 
 <script>
 import Form from 'vform'
+import Swal from 'sweetalert2/dist/sweetalert2.js'
 
 export default {
   name: 'HomePageNewsletter',
   components: {},
   data: function () {
     return {
-      message_success: this.$t('user.home-page.general.message_subscribe'),
       form: new Form({
         full_name: '',
         email: '',
@@ -79,6 +78,18 @@ export default {
       const newsletterApi = '/api'
       const { data } = await this.form.post(newsletterApi)
       console.log('>>>>>> Newsletter Api URL: ', data)
+      Swal.fire({
+        title: this.$t('user.home-page.general.swal_newsletter.title'),
+        text: this.$t('user.home-page.general.swal_newsletter.message'),
+        imageUrl: 'https://unsplash.it/400/200',
+        imageWidth: 320,
+        imageHeight: 240,
+        imageAlt: ''
+      }).then((result) => {
+        this.form.full_name = null
+        this.form.email = null
+        this.form.privacy_policy = null
+      })
     }
   }
 }

@@ -39,7 +39,10 @@
     "schedule-appointment-page": {},
     "home-page": {
       "general": {
-        "message_subscribe": "Congratulation! You have successfully subscribed to my newsletter!"
+        "swal_newsletter": {
+          "title": "Welcome!",
+          "message": "Congratulation! You have successfully subscribed to my newsletter!"
+        }
       }
     }
   },
