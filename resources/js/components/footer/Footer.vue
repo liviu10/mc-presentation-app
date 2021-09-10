@@ -23,6 +23,11 @@
           <router-link :to="{ name: 'home-page' }">
             Mădălina Corina Marius
           </router-link>
+          All rights reserved
+        </p>
+        <p>
+          Desined by
+          <a href="https://github.com/liviu10">Liviu Voica</a>
         </p>
       </div>
     </div>
