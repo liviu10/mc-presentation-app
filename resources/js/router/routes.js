@@ -13,6 +13,8 @@ export default [
   // URL group routes for the blog pages: written, audio and video articles pages
   { path: '/blog', name: 'blog', component: page('user/blog/index.vue') },
   { path: '/blog/article', name: 'article.index', component: page('user/blog/article/index.vue') },
+  // To replace index param with the post id from the database
+  { path: '/blog/article/view/index', name: 'view.index', component: page('user/blog/article/view/index.vue') },
   { path: '/blog/audio', name: 'audio.index', component: page('user/blog/audio/index.vue') },
   { path: '/blog/video', name: 'video.index', component: page('user/blog/video/index.vue') },
 
