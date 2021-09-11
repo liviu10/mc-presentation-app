@@ -21,7 +21,7 @@
           <h5>{{ carousel_image.caption_title }}</h5>
           <p>{{ carousel_image.caption_text }}</p>
           <button type="button" class="btn btn-primary">
-            Află mai multe!
+            {{ $t('user.home_page.carousel.find_out_more_btn') }}
           </button>
         </div>
       </div>

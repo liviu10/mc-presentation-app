@@ -17,7 +17,8 @@
   },
   "footer": {
     "footer_menu": {
-      "first_button": "TERMS AND CONDITIONS"
+      "first_button": "TERMS AND CONDITIONS",
+      "second_button": "Unsubscribe from the newsletter"
     },
     "social_menu": {
       "title": "Follow me on:",
@@ -37,11 +38,38 @@
       }
     },
     "schedule-appointment-page": {},
-    "home-page": {
-      "general": {
-        "swal_newsletter": {
+    "home_page": {
+      "page_title": "Home",
+      "carousel": {
+        "find_out_more_btn": "Find out more!"
+      },
+      "heading": {
+        "schedule_appointment_btn": "Schedule!",
+        "social_media_btn": {
+          "facebook_title": "Follow me on Facebook!",
+          "instagram_title": "Follow me on Instagram!",
+          "youtube_title": "Follow me on Youtube!"
+        }
+      },
+      "main_categories": {},
+      "testimonials": {},
+      "newsletter": {
+        "input_full_name": "Your name and surname",
+        "input_email_address": "Your email address",
+        "subscribe_button": "Subscribe!",
+        "i_agree_with": "I agree with the ",
+        "privacy_policy": "Privacy Policy",
+        "swal": {
           "title": "Welcome!",
           "message": "Congratulation! You have successfully subscribed to my newsletter!"
+        },
+        "swal_unsubscribe": {
+          "title": "Are you sure you want to unsubscribe?",
+          "message": "Please insert your email address!",
+          "input_email_address": "Your email address",
+          "confirm_button": "Yes, Unsubscribe me!",
+          "after_confirm_title": "You have unsubscribed from my newsletter!",
+          "after_confirm_button": "OK"
         }
       }
     }

@@ -39,6 +39,9 @@ export default {
     HomePageMainCategories,
     HomePageTestimonials,
     HomePageNewsletter
+  },
+  metaInfo () {
+    return { title: this.$t('user.home_page.page_title') }
   }
 }
 </script>

@@ -17,7 +17,8 @@
   },
   "footer": {
     "footer_menu": {
-      "first_button": "TERMENI ȘI CONDIȚII"
+      "first_button": "TERMENI ȘI CONDIȚII",
+      "second_button": "Dezabonează-te de la newsletter"
     },
     "social_menu": {
       "title": "Urmărește-mă pe:",
@@ -37,11 +38,39 @@
       }
     },
     "schedule-appointment-page": {},
-    "home-page": {
-      "general": {
-        "swal_newsletter": {
+    "home_page": {
+      "page_title": "Acasă",
+      "carousel": {
+        "find_out_more_btn": "Află mai multe!"
+      },
+      "heading": {
+        "schedule_appointment_btn": "Programează-te!",
+        "social_media_btn": {
+          "facebook_title": "Urmărește-mă pe Facebook!",
+          "instagram_title": "Urmărește-mă pe Instagram!",
+          "youtube_title": "Urmărește-mă pe Youtube!"
+        }
+      },
+      "main_categories": {},
+      "testimonials": {},
+      "newsletter": {
+        "input_full_name": "Numele și prenumele tău",
+        "input_email_address": "Adresa ta de email",
+        "subscribe_button": "Abonează-te!",
+        "i_agree_with": "Sunt de acord cu ",
+        "privacy_policy": "Termenii și Condițiile",
+        "swal": {
           "title": "Bun venit!",
-          "message": "Felicitări! Te-ai abonat cu succes la newsletter-ul meu!"
+          "message": "Felicitări! Te-ai abonat cu success la newsletter-ul meu!"
+        },
+        "swal_unsubscribe": {
+          "title": "Ești sigur(ă) că vrei să te dezabonezi?",
+          "message": "Te rog inserează adresa ta de email!",
+          "input_email_address": "Adresa ta de email",
+          "confirm_button": "Da, Dezabonează-mă!",
+          "validation_message": "",
+          "after_confirm_title": "Te-ai dezabonat de la newsletter-ul meu!",
+          "after_confirm_button": "OK"
         }
       }
     }

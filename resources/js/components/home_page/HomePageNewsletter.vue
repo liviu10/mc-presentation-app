@@ -9,7 +9,7 @@
                  type="text"
                  :class="{ 'is-invalid': form.errors.has('full_name') }"
                  class="form-control"
-                 placeholder="Numele si Prenumele tau"
+                 :placeholder="$t('user.home_page.newsletter.input_full_name')"
                  name="full_name"
           >
           <has-error :form="form" field="full_name" />
@@ -22,15 +22,17 @@
                  type="email"
                  :class="{ 'is-invalid': form.errors.has('email') }"
                  class="form-control"
-                 placeholder="Adresa ta de e-mail"
+                 :placeholder="$t('user.home_page.newsletter.input_email_address')"
                  name="email"
           >
           <has-error :form="form" field="email" />
         </div>
         <!-- EMAIL ADDRESS, SECTION END -->
         <div class="col col-2">
-          <button type="submit" class="btn btn-success">
-            ABONEAZA-TE!
+          <button type="submit"
+                  class="btn btn-success"
+          >
+            {{ capitalizeSubscribeButton }}
           </button>
         </div>
       </div>
@@ -45,8 +47,10 @@
                  name="privacy_policy"
           >
           <label class="form-check-label lead" for="flexCheckChecked">
-            Sunt de acord cu
-            <router-link :to="{ name: 'home-page' }">termenii si conditiile</router-link>
+            <span>
+              {{ $t('user.home_page.newsletter.i_agree_with') }}
+              <router-link :to="{ name: 'terms-and-conditions' }">{{ $t('user.home_page.newsletter.privacy_policy') }}</router-link>
+            </span>
           </label>
           <has-error :form="form" field="privacy_policy" />
         </div>
@@ -72,15 +76,20 @@ export default {
       })
     }
   },
-  computed: {},
+  computed: {
+    capitalizeSubscribeButton () {
+      const subscribeButtonLabel = this.$t('user.home_page.newsletter.subscribe_button')
+      return subscribeButtonLabel.toUpperCase()
+    }
+  },
   methods: {
     async subscribe () {
       const newsletterApi = '/api'
       const { data } = await this.form.post(newsletterApi)
       console.log('>>>>>> Newsletter Api URL: ', data)
       Swal.fire({
-        title: this.$t('user.home-page.general.swal_newsletter.title'),
-        text: this.$t('user.home-page.general.swal_newsletter.message'),
+        title: this.$t('user.home_page.newsletter.swal.title'),
+        text: this.$t('user.home_page.newsletter.swal.message'),
         imageUrl: 'https://unsplash.it/400/200',
         imageWidth: 320,
         imageHeight: 240,
