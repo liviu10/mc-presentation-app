@@ -17,7 +17,7 @@
                 @click="goTo"
         >
           <i class="far fa-clock" />
-          Programează-te!
+          {{ $t('user.home_page.heading.schedule_appointment_btn') }}
         </button>
       </div>
       <div class="lv-con-sect-heading-buttons-social-media">
@@ -47,7 +47,7 @@ export default {
           url: 'https://www.facebook.com/groups/269560668238590/?ref=share',
           class: 'btn btn-primary btn-lg',
           target: '_blank',
-          title: 'Urmărește-mă pe Facebook!',
+          title: this.$t('user.home_page.heading.social_media_btn.facebook_title'),
           icon: {
             prefix: 'fab',
             class: 'facebook'
@@ -58,7 +58,7 @@ export default {
           url: '',
           class: 'btn btn-primary btn-lg',
           target: '_blank',
-          title: 'Urmărește-mă pe Instagram!',
+          title: this.$t('user.home_page.heading.social_media_btn.instagram_title'),
           icon: {
             prefix: 'fab',
             class: 'instagram'
@@ -69,7 +69,7 @@ export default {
           url: '',
           class: 'btn btn-primary btn-lg',
           target: '_blank',
-          title: 'Urmărește-mă pe Youtube!',
+          title: this.$t('user.home_page.heading.social_media_btn.youtube_title'),
           icon: {
             prefix: 'fab',
             class: 'youtube'

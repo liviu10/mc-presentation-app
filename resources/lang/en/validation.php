@@ -134,6 +134,22 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'full_name' => [
+            'required'  => ':attribute is required.',
+            'regex'     => ':attribute contains invalid characters.',
+            'max'       => ':attribute must not exceed 255 characters.',
+        ],
+        'email' => [
+            'required'  => ':attribute is required.',
+            'max'       => ':attribute must not exceed 255 characters.',
+        ],
+        'message' => [
+            'required'  => ':attribute is required.',
+            'min'       => ':attribute must not exceed 60 characters.',
+        ],
+        'privacy_policy' => [
+            'accepted'  => 'You must accept the :attribute.',
+        ],
     ],
 
     /*
