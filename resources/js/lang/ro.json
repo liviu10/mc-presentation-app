@@ -77,6 +77,7 @@
         "input_full_name": "Numele și prenumele tău",
         "input_email_address": "Adresa ta de email",
         "subscribe_button": "Abonează-te!",
+        "unsubscribe_button": "Dezabonează-te!",
         "i_agree_with": "Sunt de acord cu ",
         "privacy_policy": "Termenii și Condițiile",
         "swal": {

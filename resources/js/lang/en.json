@@ -77,6 +77,7 @@
         "input_full_name": "Your name and surname",
         "input_email_address": "Your email address",
         "subscribe_button": "Subscribe!",
+        "unsubscribe_button": "Unsubscribe!",
         "i_agree_with": "I agree with the ",
         "privacy_policy": "Privacy Policy",
         "swal": {

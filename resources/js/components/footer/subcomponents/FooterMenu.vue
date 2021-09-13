@@ -6,21 +6,35 @@
       </router-link>
     </p>
     <form @submit.prevent="unsubscribe">
-      <button type="submit">
-        UBSUBSCRIBE
+      <input id="email"
+             v-model="form.email"
+             type="email"
+             :class="{ 'is-invalid': form.errors.has('email') }"
+             class="form-control"
+             :placeholder="$t('user.home_page.newsletter.input_email_address')"
+             name="email"
+      >
+      <has-error :form="form" field="email" />
+      <button type="submit"
+              class="btn btn-success"
+      >
+        {{ capitalizeUnsubscribeButton }}
       </button>
     </form>
   </div>
 </template>
 
 <script>
-import Swal from 'sweetalert2/dist/sweetalert2.js'
+import Form from 'vform'
 
 export default {
   name: 'FooterMenu',
   components: {},
   data: function () {
     return {
+      form: new Form({
+        email: ''
+      }),
       footer_buttons: [
         {
           id: 1,
@@ -30,27 +44,17 @@ export default {
       ]
     }
   },
-  computed: {},
+  computed: {
+    capitalizeUnsubscribeButton () {
+      const unsubscribeButtonLabel = this.$t('user.home_page.newsletter.unsubscribe_button')
+      return unsubscribeButtonLabel.toUpperCase()
+    }
+  },
   methods: {
     async unsubscribe () {
-      // const newsletterApi = '/api'
-      // const { data } = await this.form.post(newsletterApi)
-      // console.log('>>>>>>', this.form)
-      Swal.fire({
-        title: this.$t('user.home_page.newsletter.swal_unsubscribe.title'),
-        text: this.$t('user.home_page.newsletter.swal_unsubscribe.message'),
-        input: 'email',
-        inputPlaceholder: this.$t('user.home_page.newsletter.swal_unsubscribe.input_email_address'),
-        showCancelButton: true,
-        confirmButtonText: this.$t('user.home_page.newsletter.swal_unsubscribe.confirm_button')
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire({
-            title: this.$t('user.home_page.newsletter.swal_unsubscribe.after_confirm_title'),
-            confirmButtonText: this.$t('user.home_page.newsletter.swal_unsubscribe.after_confirm_button')
-          })
-        }
-      })
+      const newsletterApi = '/api'
+      const { data } = await this.form.get(newsletterApi)
+      console.log('>>>>>> ON CLICK MODAL: ', data)
     }
   }
 }
