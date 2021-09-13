@@ -103,6 +103,25 @@
 
 <script>
 export default {
-  name: 'VideoArticlesPage'
+  name: 'VideoArticlesPage',
+  components: {},
+  layout: '',
+  middleware: '',
+  props: {},
+  data: function () {
+    return {}
+  },
+  computed: {
+    // mapped getters
+  },
+  mounted () {},
+  methods: {
+    showMore () {
+      this.$router.push({ path: '/blog/video' })
+    }
+  },
+  metaInfo () {
+    return { title: this.$t('user.video_blog_page.page_title') }
+  }
 }
 </script>

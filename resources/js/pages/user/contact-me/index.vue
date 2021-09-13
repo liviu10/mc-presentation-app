@@ -91,6 +91,9 @@ import Form from 'vform'
 export default {
   name: 'ContactMePage',
   components: {},
+  layout: '',
+  middleware: '',
+  props: {},
   data: function () {
     return {
       message_success: this.$t('user.contact-me-page.general.message_sent'),
@@ -102,13 +105,22 @@ export default {
       })
     }
   },
-  computed: {},
+  computed: {
+    // mapped getters
+  },
+  mounted () {},
   methods: {
+    showMore () {
+      this.$router.push({ path: '/blog/article' })
+    },
     async subscribe () {
       const contactMeApi = '/api/contact-me'
       const { data } = await this.form.post(contactMeApi)
       console.log('>>>>>> Contact Me Api URL: ', data)
     }
+  },
+  metaInfo () {
+    return { title: this.$t('user.contact_me_page.page_title') }
   }
 }
 </script>

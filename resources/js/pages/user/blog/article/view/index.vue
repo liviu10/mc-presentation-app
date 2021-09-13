@@ -91,11 +91,19 @@
 export default {
   name: 'WrittenArticlesPage',
   components: {},
+  layout: '',
+  middleware: '',
   props: {},
   data: function () {
     return {}
   },
-  computed: {},
-  mounted () {}
+  computed: {
+    // mapped getters
+  },
+  mounted () {},
+  methods: {},
+  metaInfo () {
+    return { title: this.$t('user.article_blog_page.page_title') }
+  }
 }
 </script>

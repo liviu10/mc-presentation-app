@@ -28,16 +28,36 @@
     }
   },
   "user": {
-    "about-me-page": {},
-    "article-blog-page": {},
-    "audio-blog-page": {},
-    "video-blog-page": {},
-    "contact-me-page": {
+    "about_me_page": {
+      "page_title": "About me"
+    },
+    "blog_page": {
+      "page_title": "Blog"
+    },
+    "article_blog_page": {
+      "page_title": "Written articles"
+    },
+    "audio_blog_page": {
+      "page_title": "Audio articles"
+    },
+    "video_blog_page": {
+      "page_title": "Video articles"
+    },
+    "contact_me_page": {
+      "page_title": "Contact me",
       "general": {
         "message_sent": "You have successfully sent me a message! I will contact you shortly!"
       }
     },
-    "schedule-appointment-page": {},
+    "schedule_appointment_page": {
+      "page_title": "Schedule appointment",
+      "start_questionnaire": {
+        "page_title": "Start the questionnaire"
+      }
+    },
+    "terms_and_conditions_page": {
+      "page_title": "Terms and conditions"
+    },
     "home_page": {
       "page_title": "Home",
       "carousel": {

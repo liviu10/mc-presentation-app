@@ -10,6 +10,21 @@
 
 <script>
 export default {
-  name: 'StartQuestionnairePage'
+  name: 'StartQuestionnairePage',
+  components: {},
+  layout: '',
+  middleware: '',
+  props: {},
+  data: function () {
+    return {}
+  },
+  computed: {
+    // mapped getters
+  },
+  mounted () {},
+  methods: {},
+  metaInfo () {
+    return { title: this.$t('user.schedule_appointment_page.start_questionnaire.page_title') }
+  }
 }
 </script>

@@ -18,6 +18,9 @@ import MainCategories from '~/pages/user/blog/partials/MainCategories.vue'
 
 export default {
   name: 'BlogPage',
+  metaInfo () {
+    return { title: this.$t('user.blog_page.page_title') }
+  },
   components: {
     MainCategories
   }

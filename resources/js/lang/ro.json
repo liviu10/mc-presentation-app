@@ -28,16 +28,36 @@
     }
   },
   "user": {
-    "about-me-page": {},
-    "article-blog-page": {},
-    "audio-blog-page": {},
-    "video-blog-page": {},
+    "about_me_page": {
+      "page_title": "Despre mine"
+    },
+    "blog_page": {
+      "page_title": "Blog"
+    },
+    "article_blog_page": {
+      "page_title": "Articole scrise"
+    },
+    "audio_blog_page": {
+      "page_title": "Articole audio"
+    },
+    "video_blog_page": {
+      "page_title": "Articole video"
+    },
     "contact-me-page": {
+      "page_title": "Contactează-mă",
       "general": {
         "message_subscribe": "Mesajul tău a fost trimis cu success! Te voi contacta în cel mai scurt timp!"
       }
     },
-    "schedule-appointment-page": {},
+    "schedule_appointment_page": {
+      "page_title": "Programează o întâlnire",
+      "start_questionnaire": {
+        "page_title": "Începe chestionarul"
+      }
+    },
+    "terms_and_conditions_page": {
+      "page_title": "Termeni și condiții"
+    },
     "home_page": {
       "page_title": "Acasă",
       "carousel": {

@@ -133,6 +133,25 @@
 
 <script>
 export default {
-  name: 'TermsAndConditionsPage'
+  name: 'TermsAndConditionsPage',
+  components: {},
+  layout: '',
+  middleware: '',
+  props: {},
+  data: function () {
+    return {}
+  },
+  computed: {
+    // mapped getters
+  },
+  mounted () {},
+  methods: {
+    showMore () {
+      this.$router.push({ path: '/blog/article' })
+    }
+  },
+  metaInfo () {
+    return { title: this.$t('user.blog_page.page_title') }
+  }
 }
 </script>

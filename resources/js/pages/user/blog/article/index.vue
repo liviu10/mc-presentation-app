@@ -93,16 +93,23 @@
 export default {
   name: 'WrittenArticlesPage',
   components: {},
+  layout: '',
+  middleware: '',
   props: {},
   data: function () {
     return {}
   },
-  computed: {},
+  computed: {
+    // mapped getters
+  },
   mounted () {},
   methods: {
     showMore () {
       this.$router.push({ path: '/blog/article' })
     }
+  },
+  metaInfo () {
+    return { title: this.$t('user.article_blog_page.page_title') }
   }
 }
 </script>

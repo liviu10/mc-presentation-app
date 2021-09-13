@@ -41,11 +41,24 @@
 <script>
 export default {
   name: 'ScheduleAppointmentPage',
-  computed: {},
+  components: {},
+  layout: '',
+  middleware: '',
+  props: {},
+  data: function () {
+    return {}
+  },
+  computed: {
+    // mapped getters
+  },
+  mounted () {},
   methods: {
     goTo () {
       this.$router.push({ path: '/schedule-appointment/start-questionnaire' })
     }
+  },
+  metaInfo () {
+    return { title: this.$t('user.schedule_appointment_page.page_title') }
   }
 }
 </script>
