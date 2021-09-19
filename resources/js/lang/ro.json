@@ -32,7 +32,30 @@
       "page_title": "Despre mine"
     },
     "blog_page": {
-      "page_title": "Blog"
+      "page_title": "Blog",
+      "rating_system": {
+        "very_bad": "(Foarte Rău)",
+        "bad": "(Rău)",
+        "normal": "(Normal)",
+        "good": "(Bine)",
+        "very_good": "(Foarte Bine)"
+      },
+      "social_menu": {
+        "title": "Distribuie pe:",
+        "like": "Apreciez",
+        "dislike": "Nu apreciez",
+        "facebook": "Distribuie pe Facebook!",
+        "instagram": "Distribuie pe Instagram!",
+        "email": "Distribuie acest articol pe email!"
+      },
+      "comment_form": {
+        "input_full_name": "Numele și prenumele tău",
+        "input_email_address": "Adresa ta de email",
+        "input_message": "Inserează un comentariu",
+        "i_agree_with": "Sunt de acord cu ",
+        "privacy_policy": "Termenii și Condițiile",
+        "post_comment": "Postează un comentariu"
+      }
     },
     "article_blog_page": {
       "page_title": "Articole scrise"
