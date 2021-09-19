@@ -2,6 +2,47 @@
   <div class="row">
     <div class="col-lg-12 m-auto">
       <div class="container lv-con-pg-appointment">
+        <div class="display-tooltip display-tooltip--appointment-title display-tooltip--hide">
+          1
+          <span class="display-tooltip-text">
+            <h1>Title:</h1>
+            <p>
+              <ul>
+                <li>
+                  In cazul in care e nevoie putem schimba titlul acestei pagini.
+                </li>
+              </ul>
+            </p>
+          </span>
+        </div>
+        <div class="display-tooltip display-tooltip--appointment-subtitle display-tooltip--hide">
+          2
+          <span class="display-tooltip-text">
+            <h1>Subtitle:</h1>
+            <p>
+              <ul>
+                <li>
+                  De gasit un text de multumire ca o anumita persona a decis sa aleaga serviciile tale (aproximativ 20-30 cuvinte).
+                </li>
+              </ul>
+            </p>
+          </span>
+        </div>
+        <div class="display-tooltip display-tooltip--appointment-body display-tooltip--hide">
+          3
+          <span class="display-tooltip-text">
+            <h1>Body:</h1>
+            <p>
+              <ul>
+                <li>
+                  De gasit un text din care sa reiasa scopul pentru care vrei sa faci acest chestionar (maxim 200 de cuvinte).
+                </li>
+              </ul>
+              Referitor la punctul 3, textul pentru care l-am notat initial este: Pentru a stii cat de mult sa te ajut este nevoie sa completezi
+              un chestionar cu privire la provocarile tale, pasiunile tale si muzica pe care o asculti.
+            </p>
+          </span>
+        </div>
         <div class="lv-con-pg-appointment-title">
           <h1>Pregătire pentru Întâlnire</h1>
         </div>

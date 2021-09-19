@@ -7,17 +7,22 @@ $lvContainerPageAppointment: (
 );
 
 .lv-con-pg-appointment {
+    @include flex-center();
+    flex-direction: column;
+    height: 100vh;
     &-title {
-        margin-top: rem-convertor(16px);
-        margin-bottom: rem-convertor(16px);
+        margin-bottom: rem-convertor(50px);
         h1 {
-            margin-top: rem-convertor(0px);
             margin-bottom: rem-convertor(0px);
             text-align: center;
         }
     }
     &-body {
-        & .lead, p {
+        & .lead {
+            margin-top: rem-convertor(32px);
+            margin-bottom: rem-convertor(32px);
+        }
+        & p {
             margin-top: rem-convertor(16px);
         }
     }

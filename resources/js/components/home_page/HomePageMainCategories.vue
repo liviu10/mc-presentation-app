@@ -1,6 +1,25 @@
 <template>
   <div class="container lv-con-sect-categories">
     <!-- MAIN CATEGORIES: WRITTEN ARTICLES, AUDIO AND VIDEO, SECTION START -->
+    <div class="display-tooltip display-tooltip--main-categories display-tooltip--hide">
+      7
+      <span class="display-tooltip-text">
+        <h1>Categorii blog:</h1>
+        <p>
+          <ul>
+            <li>
+              De gasit o scurta descriere pentru categoria blogului tau: articole scrise (aproximativ 25-30 cuvinte).
+            </li>
+            <li>
+              De gasit o scurta descriere pentru categoria blogului tau: articole audio (aproximativ 25-30 cuvinte).
+            </li>
+            <li>
+              De gasit o scurta descriere pentru categoria blogului tau: articole video (aproximativ 25-30 cuvinte).
+            </li>
+          </ul>
+        </p>
+      </span>
+    </div>
     <div v-for="category in main_categories"
          :key="category.id"
          class="card"

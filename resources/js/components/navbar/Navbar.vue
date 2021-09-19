@@ -8,6 +8,36 @@
           Lorem ipsum dolor sit amet.
         </p>
       </router-link>
+      <div class="display-tooltip display-tooltip--logo display-tooltip--hide">
+        1
+        <span class="display-tooltip-text">
+          <h1>Logo:</h1>
+          <p>
+            <ul>
+              <li>
+                De caucat o poza pentru logo care sa aiba cel putin dimensiunea de 1024px (width) / 768px (height).
+                De preferat ar fi ca logo-ul sa fie in centrul pozei pe care o gasesti.
+              </li>
+              <li>
+                Dimensiunea imaginii pentru logo este ideal sa fie de 240px (width) / 40px (height).
+              </li>
+            </ul>
+          </p>
+        </span>
+      </div>
+      <div class="display-tooltip display-tooltip--motto display-tooltip--hide">
+        2
+        <span class="display-tooltip-text">
+          <h1>Motto:</h1>
+          <p>
+            <ul>
+              <li>
+                De gasit o fraza tip mott (aproximativ 5-7 cuvinte)
+              </li>
+            </ul>
+          </p>
+        </span>
+      </div>
       <!-- NAVBAR BRAND SECTION END -->
 
       <!-- NAVBAR HAMBURGER MENU SECTION START -->
