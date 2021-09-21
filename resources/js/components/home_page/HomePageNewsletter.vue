@@ -84,7 +84,8 @@ export default {
   },
   methods: {
     async subscribe () {
-      const newsletterApi = '/api'
+      const url = window.location.origin
+      const newsletterApi = url + '/api/newsletter'
       const { data } = await this.form.post(newsletterApi)
       console.log('>>>>>> Newsletter Api URL: ', data)
       Swal.fire({

@@ -26,7 +26,7 @@
           All rights reserved
         </p>
         <p>
-          Desined by
+          Designed by
           <a href="https://github.com/liviu10">Liviu Voica</a>
         </p>
       </div>

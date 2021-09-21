@@ -9,9 +9,11 @@ use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\ContactMeController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,4 +50,6 @@ Route::group(['middleware' => 'guest:api'], function () {
 });
 
 Route::apiResource('', HomeController::class);
+Route::delete('/newsletter/delete-all', [NewsletterController::class, 'deleteAllRecords']);
+Route::apiResource('/newsletter', NewsletterController::class);
 Route::apiResource('/contact-me', ContactMeController::class);

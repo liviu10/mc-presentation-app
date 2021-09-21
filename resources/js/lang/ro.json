@@ -17,8 +17,22 @@
   },
   "footer": {
     "footer_menu": {
-      "first_button": "TERMENI ȘI CONDIȚII",
-      "second_button": "Dezabonează-te de la newsletter"
+      "first_button": "Termeni și Condiții",
+      "second_button": "Dezabonează-te de la newsletter",
+      "unsubscribe_newsletter": {
+        "input_email_address": "Adresa ta de email",
+        "modal_unsubscribe": {
+          "title": "Ești sigur că vrei să te dezabonezi de le newsletter-ul meu?",
+          "message": "Pentru a te dezabona de la newsletter-ul meu te rog inserează adresa ta de email in câmpul de mai jos!",
+          "input_placeholder": "Adresa ta de email",
+          "confirm_button": "Da, Dezabonează-mă!",
+          "cancel_button": "Anulare!"
+        },
+        "swal_confirmation": {
+          "title": "Dezabonare cu success!",
+          "message": "Te-ai dezabonat cu success de la newsletter-ul meu! Totuși încă mă găsești pe: "
+        }
+      }
     },
     "social_menu": {
       "title": "Urmărește-mă pe:",
@@ -100,21 +114,11 @@
         "input_full_name": "Numele și prenumele tău",
         "input_email_address": "Adresa ta de email",
         "subscribe_button": "Abonează-te!",
-        "unsubscribe_button": "Dezabonează-te!",
         "i_agree_with": "Sunt de acord cu ",
         "privacy_policy": "Termenii și Condițiile",
         "swal": {
           "title": "Bun venit!",
           "message": "Felicitări! Te-ai abonat cu success la newsletter-ul meu!"
-        },
-        "swal_unsubscribe": {
-          "title": "Ești sigur(ă) că vrei să te dezabonezi?",
-          "message": "Te rog inserează adresa ta de email!",
-          "input_email_address": "Adresa ta de email",
-          "confirm_button": "Da, Dezabonează-mă!",
-          "validation_message": "",
-          "after_confirm_title": "Te-ai dezabonat de la newsletter-ul meu!",
-          "after_confirm_button": "OK"
         }
       }
     }

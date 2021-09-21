@@ -1,5 +1,14 @@
 @import '../../../utilities/_utilities.scss';
 
+$lvContainerSectionFooter: (
+    unsubscribe_bg_color_btn_cancel:     map-get($pale_cerulean, "color_khaki"),
+    unsubscribe_border_color_btn_cancel: map-get($pale_cerulean, "color_khaki"),
+    unsubscribe_bg_color_btn:            map-get($analogous_dark_vanilla, "color_green_mist"),
+    unsubscribe_border_color_btn:        map-get($analogous_dark_vanilla, "color_green_mist"),
+    unsubscribe_font_color_btn:          map-get($basic_colors, "color_black"),
+    unsubscribe_font_color_form_check:   map-get($basic_colors, "color_black"),
+);
+
 $background_color: map-get($pale_cerulean, "color_khaki");
 $font_color: inherit;
 
@@ -23,6 +32,54 @@ $font_color: inherit;
                     font-weight: bold;
                     & a {
                         color: $font_color;
+                    }
+                }
+                & .modal {
+                    &-header {
+                        justify-content: center !important;
+                        align-items: center;
+                    }
+                    &-body {
+                        & p {
+                            margin: rem-convertor(16px) rem-convertor(0px);
+                        }
+                        & form {
+                            margin: rem-convertor(32px) rem-convertor(0px);
+                            & .form-control {
+                                border-radius: rem-convertor(0px);
+                                height: rem-convertor(60px);
+                            }
+                        }
+                    }
+                    &-buttons {
+                        @include flex-center();
+                        margin: rem-convertor(16px) rem-convertor(0px);
+                        & .btn {
+                            height: rem-convertor(60px);
+                            border-radius: rem-convertor(0px);
+                            background-color: map-get($lvContainerSectionFooter, "unsubscribe_bg_color_btn_cancel");
+                            border-color: map-get($lvContainerSectionFooter, "unsubscribe_border_color_btn_cancel");
+                            border-radius: rem-convertor(0px);
+                            color: map-get($lvContainerSectionFooter, "unsubscribe_font_color_btn");
+                            font-weight: bold;
+                            &:focus {
+                                border-color: transparent !important;
+                                box-shadow: 0 rem-convertor(1px) rem-convertor(1px) transparent inset, 0 0 rem-convertor(8px) transparent !important;
+                                outline: 0 none !important;
+                            }
+                            &:first-of-type {
+                                margin-right: rem-convertor(16px);
+                            }
+                            &:last-of-type {
+                                background-color: map-get($lvContainerSectionFooter, "unsubscribe_bg_color_btn");
+                                border-color: map-get($lvContainerSectionFooter, "unsubscribe_border_color_btn");
+                            }
+                        }
+                        & input[type="email"]:focus {
+                            border-color: transparent;
+                            box-shadow: 0 rem-convertor(1px) rem-convertor(1px) transparent inset, 0 0 rem-convertor(8px) transparent;
+                            outline: 0 none;
+                        }
                     }
                 }
             }
