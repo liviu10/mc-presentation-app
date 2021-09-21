@@ -8,6 +8,7 @@
 
 <script>
 export default {
-  name: 'AdminHomePage'
+  name: 'AdminHomePage',
+  middleware: 'auth'
 }
 </script>
