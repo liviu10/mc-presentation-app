@@ -17,8 +17,22 @@
   },
   "footer": {
     "footer_menu": {
-      "first_button": "TERMS AND CONDITIONS",
-      "second_button": "Unsubscribe from the newsletter"
+      "first_button": "Terms and Conditions",
+      "second_button": "Unsubscribe from the newsletter",
+      "unsubscribe_newsletter": {
+        "input_email_address": "Your email address",
+        "modal_unsubscribe": {
+          "title": "Are you sure you want to unsubscribe?",
+          "message": "To unsubscribe from my newsletter you need to insert you email address in the field below!",
+          "input_placeholder": "Your email address",
+          "confirm_button": "Yes, Unsubscribe me!",
+          "cancel_button": "Cancel!"
+        },
+        "swal_confirmation": {
+          "title": "Successfully unsubscribed!",
+          "message": "You have successfully unsubscribed from my newsletter! You can still find me on: "
+        }
+      }
     },
     "social_menu": {
       "title": "Follow me on:",
@@ -100,20 +114,11 @@
         "input_full_name": "Your name and surname",
         "input_email_address": "Your email address",
         "subscribe_button": "Subscribe!",
-        "unsubscribe_button": "Unsubscribe!",
         "i_agree_with": "I agree with the ",
         "privacy_policy": "Privacy Policy",
         "swal": {
           "title": "Welcome!",
           "message": "Congratulation! You have successfully subscribed to my newsletter!"
-        },
-        "swal_unsubscribe": {
-          "title": "Are you sure you want to unsubscribe?",
-          "message": "Please insert your email address!",
-          "input_email_address": "Your email address",
-          "confirm_button": "Yes, Unsubscribe me!",
-          "after_confirm_title": "You have unsubscribed from my newsletter!",
-          "after_confirm_button": "OK"
         }
       }
     }
