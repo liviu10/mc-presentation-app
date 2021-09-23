@@ -162,7 +162,7 @@ export default {
   props: {},
   data: function () {
     return {
-      message_success: this.$t('user.contact-me-page.general.message_sent'),
+      message_success: this.$t('user.contact_me_page.general.message_sent'),
       form: new Form({
         full_name: '',
         email: '',
@@ -181,8 +181,10 @@ export default {
     },
     async subscribe () {
       const contactMeApi = '/api/contact-me'
-      const { data } = await this.form.post(contactMeApi)
-      console.log('>>>>>> Contact Me Api URL: ', data)
+      await this.form.post(contactMeApi)
+      this.form.full_name = null
+      this.form.email = null
+      this.form.privacy_policy = null
     }
   },
   metaInfo () {

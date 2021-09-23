@@ -53,7 +53,7 @@
 
         <ul class="navbar-nav">
           <!-- LANGUAGE SWITCHER SECTION START -->
-          <locale-dropdown />
+          <!-- <locale-dropdown /> -->
           <!-- LANGUAGE SWITCHER SECTION END -->
 
           <!-- SPECIFIC BUTTONS IF USER IS LOGGED IN OR LOGGED OUT SECTION START -->

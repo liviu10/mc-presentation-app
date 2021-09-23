@@ -1,5 +1,5 @@
 /*
-    Each VueJs component has it's own CSS custom class, this can be be lv-cnn-pg-home or lv-cnn-sect-home, where:
+    Each VueJs component has it's own CSS custom class, this can be lv-con-pg-home or lv-con-sect-home, where:
     1. lv-con-pg-home refers to the home page container;
     2. lv-con-sect-home refers to the home page section container;
 */
@@ -19,7 +19,7 @@
 @import 'utilities/_utilities.scss';
 @import 'pages/_pages.scss';
 
-$background_color: map-get($pale_cerulean, "color_dirty_white");
+$background_color: map-get($pale_cerulean, "color_dirty_white"); // change it with #A1E2E2
 $font_color: map-get($basic_colors, "color_black");
 
 body {

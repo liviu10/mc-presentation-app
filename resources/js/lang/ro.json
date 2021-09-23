@@ -80,7 +80,7 @@
     "video_blog_page": {
       "page_title": "Articole video"
     },
-    "contact-me-page": {
+    "contact_me_page": {
       "page_title": "Contactează-mă",
       "general": {
         "message_subscribe": "Mesajul tău a fost trimis cu success! Te voi contacta în cel mai scurt timp!"
@@ -117,8 +117,8 @@
         "i_agree_with": "Sunt de acord cu ",
         "privacy_policy": "Termenii și Condițiile",
         "swal": {
-          "title": "Bun venit!",
-          "message": "Felicitări! Te-ai abonat cu success la newsletter-ul meu!"
+          "title": "Mulțumesc!",
+          "message": "Sunt recunoscătoare că te-ai abonat la newsletter-ul meu! În curând vei primi pe email mai multe surprize din partea mea!"
         }
       }
     }

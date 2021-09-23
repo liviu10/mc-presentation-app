@@ -117,8 +117,8 @@
         "i_agree_with": "I agree with the ",
         "privacy_policy": "Privacy Policy",
         "swal": {
-          "title": "Welcome!",
-          "message": "Congratulation! You have successfully subscribed to my newsletter!"
+          "title": "Thank you!",
+          "message": "I am grateful that you subscribed to my newsletter! You will soon receive more surprises by email from me!"
         }
       }
     }
