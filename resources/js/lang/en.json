@@ -46,13 +46,24 @@
       "page_title": "About me"
     },
     "blog_page": {
-      "page_title": "Blog",
+      "page_title": "Blog"
+    },
+    "article_blog_page": {
+      "page_title": "Written articles",
       "rating_system": {
-        "very_bad": "(Very Bad)",
-        "bad": "(Bad)",
-        "normal": "(Normal)",
-        "good": "(Good)",
-        "very_good": "(Very Good)"
+        "title": "Rate this: ",
+        "options": {
+          "very_bad": "(Very Bad)",
+          "bad": "(Bad)",
+          "normal": "(Normal)",
+          "good": "(Good)",
+          "very_good": "(Very Good)"
+        }
+      },
+      "article_subcategory": "Subcategory",
+      "like_dislike_system": {
+        "like": " likes",
+        "dislike": " dislikes"
       },
       "social_menu": {
         "title": "Share on:",
@@ -68,11 +79,9 @@
         "input_message": "Enter your comment",
         "i_agree_with": "I agree with the ",
         "privacy_policy": "Privacy Policy",
-        "post_comment": "Post comment"
+        "post_comment": "Post comment",
+        "success_message": "Your have successfully posted a new comment! This comment will be soon approved by an admin!"
       }
-    },
-    "article_blog_page": {
-      "page_title": "Written articles"
     },
     "audio_blog_page": {
       "page_title": "Audio articles"

@@ -67,13 +67,13 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import LocaleDropdown from './subcomponents/LocaleDropdown'
+// import LocaleDropdown from './subcomponents/LocaleDropdown'
 import NavbarButtons from './subcomponents/NavbarButtons.vue'
 import NavbarSubMenuButtons from './subcomponents/NavbarSubMenuButtons.vue'
 
 export default {
   components: {
-    LocaleDropdown,
+    // LocaleDropdown,
     NavbarButtons,
     NavbarSubMenuButtons
   },
