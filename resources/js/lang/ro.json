@@ -46,13 +46,24 @@
       "page_title": "Despre mine"
     },
     "blog_page": {
-      "page_title": "Blog",
+      "page_title": "Blog"
+    },
+    "article_blog_page": {
+      "page_title": "Articole scrise",
       "rating_system": {
-        "very_bad": "(Foarte Rău)",
-        "bad": "(Rău)",
-        "normal": "(Normal)",
-        "good": "(Bine)",
-        "very_good": "(Foarte Bine)"
+        "title": "Evaluează: ",
+        "options": {
+          "very_bad": "(Foarte Rău)",
+          "bad": "(Rău)",
+          "normal": "(Normal)",
+          "good": "(Bine)",
+          "very_good": "(Foarte Bine)"
+        }
+      },
+      "article_subcategory": "Subcategorie",
+      "like_dislike_system": {
+        "like": " apreciază",
+        "dislike": " nu apreciază"
       },
       "social_menu": {
         "title": "Distribuie pe:",
@@ -68,11 +79,9 @@
         "input_message": "Inserează un comentariu",
         "i_agree_with": "Sunt de acord cu ",
         "privacy_policy": "Termenii și Condițiile",
-        "post_comment": "Postează un comentariu"
+        "post_comment": "Postează un comentariu",
+        "success_message": "Comentariul tău a fost postat cu success! Acesta va fi în curând aprobat de un administrator!"
       }
-    },
-    "article_blog_page": {
-      "page_title": "Articole scrise"
     },
     "audio_blog_page": {
       "page_title": "Articole audio"

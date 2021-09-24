@@ -22,10 +22,24 @@ $lvContainerPageWrittenArticleFont: 'Merriweather Sans Bold', sans-serif;
     }
     &-view-body {
         margin: rem-convertor(30px) rem-convertor(0px);
-        &-heading {
+        &-heading-slp {
             display: flex;
             & p {
                 margin-left: rem-convertor(16px);
+            }
+        }
+        &-heading-srp {
+            display: flex;
+            flex-direction: row-reverse;
+            & p {
+                margin-right: rem-convertor(16px);
+            }
+        }
+        &-bottom-btm {
+            display: flex;
+            flex-direction: column;
+            & p {
+                margin-bottom: rem-convertor(16px);
             }
         }
         & p {
@@ -55,6 +69,16 @@ $lvContainerPageWrittenArticleFont: 'Merriweather Sans Bold', sans-serif;
                         stroke-width: rem-convertor(1px);
                     }
                 }
+            }
+        }
+    }
+    &-view-subcategory {
+        & p {
+            display: flex;
+            align-items: center;
+            margin-bottom: rem-convertor(8px);
+            & a {
+                font-style: italic;
             }
         }
     }
