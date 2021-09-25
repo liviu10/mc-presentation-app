@@ -17,6 +17,7 @@ class CreateBlogSubcategoriesTable extends Migration
         Schema::create('blog_subcategories', function (Blueprint $table) {
             $table->id();
             $table->string('blog_category_code', 6);
+            $table->string('blog_subcategory_title', 255);
             $table->string('blog_subcategory_description', 255);
             $table->string('blog_subcategory_is_active', 3);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
