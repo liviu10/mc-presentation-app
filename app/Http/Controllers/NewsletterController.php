@@ -4,20 +4,29 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Newsletter;
+use App\Models\ErrorAndNotificationSystem;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
 class NewsletterController extends Controller
 {
-    protected $modelName;
-    protected $tableName;
-    protected $tableAllColumns;
+    protected $modelNameNewsletter;
+    protected $tableNameNewsletter;
+    protected $tableAllColumnsNewsletter;
+
+    protected $modelNameErrorSystem;
+    protected $tableNameErrorSystem;
+    protected $tableAllColumnsErrorSystem;
 
     public function __construct()
     {
-        $this->modelName              = new Newsletter();
-        $this->tableName              = $this->modelName->getTable();
-        $this->tableAllColumns        = Schema::getColumnListing($this->tableName);
+        $this->modelNameNewsletter        = new Newsletter();
+        $this->tableNameNewsletter        = $this->modelNameNewsletter->getTable();
+        $this->tableAllColumnsNewsletter  = Schema::getColumnListing($this->tableNameNewsletter);
+
+        $this->modelNameErrorSystem       = new ErrorAndNotificationSystem();
+        $this->tableNameErrorSystem       = $this->modelNameErrorSystem->getTable();
+        $this->tableAllColumnsErrorSystem = Schema::getColumnListing($this->tableNameErrorSystem);
     }
 
     /**
@@ -29,22 +38,23 @@ class NewsletterController extends Controller
     {
         try 
         {
-            $apiDisplayAllRecords = $this->modelName->all();
+            $apiDisplayAllRecords = $this->modelNameNewsletter->all();
             if ($apiDisplayAllRecords->isEmpty()) 
             {
                 return response([
-                    'notify_code'              => 'INFO_01',
-                    'notify_short_description' => 'Currently, there are no users that have subscribed to your newsletter!',
-                    'notify_reference'         => '!!! Insert documentation link here !!!',
-                    'records'                  => $apiDisplayAllRecords,
+                    'notify_code'              => 'INFO_0001',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('newsletter.index.info_0001_admin_message', [ 'tableName' => $this->tableNameNewsletter ]),
                 ], 404);
             }
             else 
             {
                 return response([
-                    'notify_code'              => 'INFO_02',
-                    'notify_short_description' => 'The list of subscribed users was successfully fetched from the database!',
-                    'notify_reference'         => '!!! Insert documentation link here !!!',
+                    'notify_code'              => 'INFO_0002',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0002')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0002')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('newsletter.index.info_0002_admin_message'),
                     'records'                  => $apiDisplayAllRecords,
                 ], 201);
             }
@@ -54,9 +64,10 @@ class NewsletterController extends Controller
             if ($mysqlError->getCode() === '42S02') 
             {
                 return response([
-                    'notify_code'              => 'ERR_01',
-                    'notify_short_description' => 'The table you are looking for does not exist in the database!',
-                    'notify_reference'         => '!!! Insert documentation link here !!!',
+                    'notify_code'              => 'ERR_0001',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('newsletter.index.err_0001_admin_message'),
                 ], 500);
             }
         }
@@ -87,16 +98,17 @@ class NewsletterController extends Controller
                 'email'          => 'required|email:filter|max:255|unique:newsletter',
                 'privacy_policy' => 'accepted',
             ]);
-            $apiInsertSingleRecord = $this->modelName->create([
+            $apiInsertSingleRecord = $this->modelNameNewsletter->create([
                 'full_name'      => $request->get('full_name'),
                 'email'          => $request->get('email'),
                 'privacy_policy' => $request->get('privacy_policy'),
             ]);
             return response([
-                'notify_code'                  => 'INFO_03',
-                'notify_short_description'     => 'You have successfully subscribed to the newsletter! Welcome to my website, ' . $request->get('full_name') . '!',
-                'notify_reference'             => '!!! Insert documentation link here !!!',
-                'records'                      => $apiInsertSingleRecord,
+                'notify_code'              => 'INFO_0003',
+                'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0003')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0003')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                'admin_message'            => __('newsletter.store.info_0003_admin_message'),
+                'records'                  => $apiInsertSingleRecord,
             ], 201);
         }
         catch  (\Illuminate\Database\QueryException $mysqlError)
@@ -104,19 +116,19 @@ class NewsletterController extends Controller
             if ($mysqlError->getCode() === '42S02') 
             {
                 return response([
-                    'error_code'               => 'ERR_01',
-                    'error_short_description'  => 'It appears that the table is missing from the database!',
-                    'error_reference'          => '!!! Insert documentation link here !!!',
-                    'user_message'             => 'The record(s) you are trying to insert in the field(s) [Full Name] and [Email] could not be saved in the database! Please contact the website administrator!',
+                    'notify_code'              => 'ERR_0001',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('newsletter.store.err_0001_admin_message'),
                 ], 500);
             }
             if ($mysqlError->getCode() === '42S22') 
             {
                 return response([
-                    'error_code'               => 'ERR_02',
-                    'error_short_description'  => 'It appears that one or more columns are missing from the table!',
-                    'error_reference'          => '!!! Insert documentation link here !!!',
-                    'user_message'             => 'The record(s) you are trying to insert in the field(s) [Full Name] and [Email] could not be saved in the database! Please contact the website administrator!',
+                    'notify_code'              => 'ERR_0002',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0002')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0002')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('newsletter.store.err_0002_admin_message'),
                 ], 500);
             }
         }
@@ -132,30 +144,33 @@ class NewsletterController extends Controller
     {
         try 
         {
-            $apiDisplayAllRecords = $this->modelName->all();
-            $apiDisplaySingleRecord = $this->modelName->find($id);
+            $apiDisplayAllRecords = $this->modelNameNewsletter->all();
+            $apiDisplaySingleRecord = $this->modelNameNewsletter->find($id);
             if ($apiDisplayAllRecords->isEmpty()) 
             {
                 return response([
-                    'notify_code'              => 'INFO_01',
-                    'notify_short_description' => 'Currently, there are no users that have subscribed to your newsletter!',
-                    'notify_reference'         => '!!! Insert documentation link here !!!',
+                    'notify_code'              => 'INFO_0001',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('newsletter.show.info_0001_admin_message', [ 'tableName' => $this->tableNameNewsletter ]),
                 ], 404);
             }
             elseif (is_null($apiDisplaySingleRecord)) 
             {
                 return response([
-                    'notify_code'              => 'INFO_04',
-                    'notify_short_description' => 'The user subscription you are looking for does not exist in the database!',
-                    'notify_reference'         => '!!! Insert documentation link here !!!',
+                    'notify_code'              => 'INFO_0004',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0004')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0004')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('newsletter.show.info_0004_admin_message', [ 'tableName' => $this->tableNameNewsletter ]),
                 ], 404);
             }
             else 
             {
                 return response([
-                    'notify_code'              => 'INFO_05',
-                    'notify_short_description' => 'The user subscription was successfully fetched from the database!',
-                    'notify_reference'         => '!!! Insert documentation link here !!!',
+                    'notify_code'              => 'INFO_0002',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0002')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0002')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('newsletter.show.info_0002_admin_message'),
                     'record'                   => $apiDisplaySingleRecord,
                 ], 201);
             }
@@ -165,10 +180,10 @@ class NewsletterController extends Controller
             if ($mysqlError->getCode() === '42S02') 
             {
                 return response([
-                    'notify_code'              => 'ERR_01',
-                    'notify_short_description' => 'It appears that the table is missing from the database!',
-                    'notify_reference'         => '!!! Insert documentation link here !!!',
-                    'user_message'             => 'The record(s) you are trying to view could not be fetched from the database! Please contact the website administrator!',
+                    'notify_code'              => 'ERR_0001',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('newsletter.show.err_0001_admin_message'),
                 ], 500);
             }
         }
@@ -196,15 +211,16 @@ class NewsletterController extends Controller
     {
         try 
         {
-            $apiUpdateSingleRecord = $this->modelName->find($id);
+            $apiUpdateSingleRecord = $this->modelNameNewsletter->find($id);
             $apiUpdateSingleRecord->update($request->validate([
                 'email'          => 'required|email:filter|max:255|unique:newsletter',
             ]));
             return response([
-                'notify_code'                  => 'INFO_06',
-                'notify_short_description'     => 'You have successfully change your email address!',
-                'notify_reference'             => '!!! Insert documentation link here !!!',
-                'records'                      => $apiUpdateSingleRecord,
+                'notify_code'              => 'INFO_0006',
+                'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0006')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0006')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                'admin_message'            => __('newsletter.update.info_0006_admin_message'),
+                'records'                  => $apiUpdateSingleRecord,
             ], 201);
         }
         catch (\Illuminate\Database\QueryException $mysqlError) 
@@ -212,18 +228,19 @@ class NewsletterController extends Controller
             if ($mysqlError->getCode() === '42S02')
             {
                 return response([
-                    'notify_code'              => 'ERR_01',
-                    'notify_short_description' => 'The table you are looking for does not exist in the database!',
-                    'notify_reference'         => '!!! Insert documentation link here !!!',
+                    'notify_code'              => 'ERR_0001',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('newsletter.update.err_0001_admin_message'),
                 ], 500);
             }
             if ($mysqlError->getCode() === '42S22') 
             {
                 return response([
-                    'error_code'               => 'ERR_02',
-                    'error_short_description'  => 'It appears that one or more columns are missing from the table!',
-                    'error_reference'          => '!!! Insert documentation link here !!!',
-                    'user_message'             => 'The record(s) you are trying to insert in the field(s) [Full Name] and [Email] could not be saved in the database! Please contact the website administrator!',
+                    'notify_code'              => 'ERR_0002',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0002')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0002')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('newsletter.update.err_0002_admin_message'),
                 ], 500);
             }
         }
@@ -239,33 +256,37 @@ class NewsletterController extends Controller
     {
         try
         {
-            $apiDisplayAllRecords = $this->modelName->all();
-            $findUserSubscriptionByEmailAddress = $this->modelName->where($this->tableAllColumns[2], '=', $email)->get();
+            $apiDisplayAllRecords = $this->modelNameNewsletter->all();
+            $findUserSubscriptionByEmailAddress = $this->modelNameNewsletter->where($this->tableAllColumnsNewsletter[2], '=', $email)->get();
             if ($apiDisplayAllRecords->isEmpty()) 
             {
                 return response([
-                    'notify_code'              => 'INFO_01',
-                    'notify_short_description' => 'Currently, there are no users that have subscribed to your newsletter!',
-                    'notify_reference'         => '!!! Insert documentation link here !!!',
+                    'notify_code'              => 'INFO_0001',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('newsletter.delete.info_0001_admin_message', [ 'tableName' => $this->modelNameNewsletter ]),
                 ], 404);
             }
-            $getEmailAddress = $this->modelName->where($this->tableAllColumns[2], '=', $email)->pluck($this->tableAllColumns[2])[0];
+            $getEmailAddress = $this->modelNameNewsletter->where($this->tableAllColumnsNewsletter[2], '=', $email)->pluck($this->tableAllColumnsNewsletter[2])[0];
             if (is_null($getEmailAddress)) 
             {
                 return response([
-                    'notify_code'              => 'INFO_07',
-                    'notify_short_description' => 'The user subscription you are trying to delete does not exist in the database!',
-                    'notify_reference'         => '!!! Insert documentation link here !!!',
+                    'notify_code'              => 'INFO_0007',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0007')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0007')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('newsletter.delete.info_0007_admin_message', [ 'tableName' => $this->modelNameNewsletter ]),
                 ], 404);
             }
             else 
             {
-                $findUserIdByEmailAddress = $this->modelName->where($this->tableAllColumns[2], '=', $email)->pluck($this->tableAllColumns[0])[0];
-                $apiDeleteSingleRecord = $this->modelName->find($findUserIdByEmailAddress)->delete();
+                $findUserIdByEmailAddress = $this->modelNameNewsletter->where($this->tableAllColumnsNewsletter[2], '=', $email)->pluck($this->tableAllColumnsNewsletter[0])[0];
+                $apiDeleteSingleRecord = $this->modelNameNewsletter->find($findUserIdByEmailAddress)->delete();
                 return response([
-                    'notify_code'              => 'INFO_05',
-                    'notify_short_description' => 'The user subscription you have selected was successfully deleted from the database',
-                    'notify_reference'         => '!!! Insert documentation link here !!!',
+                    'notify_code'              => 'INFO_0006',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0006')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0006')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('newsletter.delete.info_0006_admin_message'),
+                    'deleted_records'          => $apiDisplayAllRecords,
                 ], 200);
             }
         }
@@ -274,9 +295,10 @@ class NewsletterController extends Controller
             if ($mysqlError->getCode() === '42S02') 
             {
                 return response([
-                    'notify_code'              => 'ERR_01',
-                    'notify_short_description' => 'The table you are looking for does not exist in the database!',
-                    'notify_reference'         => '!!! Insert documentation link here !!!',
+                    'notify_code'              => 'ERR_0001',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('newsletter.delete.err_0001_admin_message'),
                 ], 500);
             }
         }
@@ -291,31 +313,33 @@ class NewsletterController extends Controller
     {
         try 
         {
-            $apiDisplayAllRecords = $this->modelName->all();
+            $apiDisplayAllRecords = $this->modelNameNewsletter->all();
             if ($apiDisplayAllRecords->isEmpty()) 
             {
                 return response([
-                    'notify_code'              => 'INFO_01',
-                    'notify_short_description' => 'Currently, there are no users that have subscribed to your newsletter!',
-                    'notify_reference'         => '!!! Insert documentation link here !!!',
+                    'notify_code'              => 'INFO_0001',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('newsletter.delete_all_records.info_0001_admin_message', [ 'tableName' => $this->tableNameNewsletter ]),
                 ], 404);
             }
             elseif (is_null($apiDisplayAllRecords)) 
             {
                 return response([
-                    'notify_code'              => 'INFO_07',
-                    'notify_short_description' => 'The user subscription you are trying to delete does not exist in the database!',
-                    'notify_reference'         => '!!! Insert documentation link here !!!',
+                    'notify_code'              => 'INFO_0005',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0005')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0005')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('newsletter.delete_all_records.info_0005_admin_message', [ 'tableName' => $this->tableNameNewsletter ]),
                 ], 404);
             }
             else 
             {
-                $apiDeleteSingleRecord = $this->modelName->truncate();
+                $apiDeleteSingleRecord = $this->modelNameNewsletter->truncate();
                 return response([
-                    'notify_code'              => 'INFO_08',
-                    'notify_short_description' => 'You have successfully delete all the records from the database!',
-                    'notify_reference'         => '!!! Insert documentation link here !!!',
-                    'user_message'             => $apiDisplayAllRecords,
+                    'notify_code'              => 'INFO_0007',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0007')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0007')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('newsletter.delete_all_records.info_0007_admin_message'),
                 ], 200);
             }
         }
@@ -324,9 +348,10 @@ class NewsletterController extends Controller
             if ($mysqlError->getCode() === '42S02') 
             {
                 return response([
-                    'notify_code'              => 'ERR_01',
-                    'notify_short_description' => 'The table you are looking for does not exist in the database!',
-                    'notify_reference'         => '!!! Insert documentation link here !!!',
+                    'notify_code'              => 'ERR_0001',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('newsletter.delete_all_records.err_0001_admin_message'),
                 ], 500);
             }
         }

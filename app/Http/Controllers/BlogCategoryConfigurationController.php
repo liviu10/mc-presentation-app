@@ -4,20 +4,29 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\BlogCategoryConfiguration;
+use App\Models\ErrorAndNotificationSystem;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
 class BlogCategoryConfigurationController extends Controller
 {
-    protected $modelName;
-    protected $tableName;
-    protected $tableAllColumns;
+    protected $modelNameBlogCategories;
+    protected $tableNameBlogCategories;
+    protected $tableAllColumnsBlogCategories;
+
+    protected $modelNameErrorSystem;
+    protected $tableNameErrorSystem;
+    protected $tableAllColumnsErrorSystem;
 
     public function __construct()
     {
-        $this->modelName              = new BlogCategoryConfiguration();
-        $this->tableName              = $this->modelName->getTable();
-        $this->tableAllColumns        = Schema::getColumnListing($this->tableName);
+        $this->modelNameBlogCategories       = new BlogCategoryConfiguration();
+        $this->tableNameBlogCategories       = $this->modelNameBlogCategories->getTable();
+        $this->tableAllColumnsBlogCategories = Schema::getColumnListing($this->tableNameBlogCategories);
+
+        $this->modelNameErrorSystem          = new ErrorAndNotificationSystem();
+        $this->tableNameErrorSystem          = $this->modelNameErrorSystem->getTable();
+        $this->tableAllColumnsErrorSystem    = Schema::getColumnListing($this->tableNameErrorSystem);
     }
 
     /**
@@ -29,22 +38,23 @@ class BlogCategoryConfigurationController extends Controller
     {
         try 
         {
-            $apiDisplayAllRecords = $this->modelName->all();
+            $apiDisplayAllRecords = $this->modelNameBlogCategories->all();
             if ($apiDisplayAllRecords->isEmpty()) 
             {
                 return response([
-                    'notify_code'              => 'INFO_01',
-                    'notify_short_description' => 'Currently, there are no defined categories!',
-                    'notify_reference'         => '!!! Insert documentation link here !!!',
-                    'records'                  => $apiDisplayAllRecords,
+                    'notify_code'              => 'INFO_0001',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('blog_categories.index.info_0001_admin_message'),
                 ], 404);
             }
             else 
             {
                 return response([
-                    'notify_code'              => 'INFO_02',
-                    'notify_short_description' => 'The list of blog categories was successfully fetched from the database!',
-                    'notify_reference'         => '!!! Insert documentation link here !!!',
+                    'notify_code'              => 'INFO_0002',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0002')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0002')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('blog_categories.index.info_0002_admin_message'),
                     'records'                  => $apiDisplayAllRecords,
                 ], 201);
             }
@@ -54,9 +64,10 @@ class BlogCategoryConfigurationController extends Controller
             if ($mysqlError->getCode() === '42S02') 
             {
                 return response([
-                    'notify_code'              => 'ERR_01',
-                    'notify_short_description' => 'The table you are looking for does not exist in the database!',
-                    'notify_reference'         => '!!! Insert documentation link here !!!',
+                    'notify_code'              => 'ERR_0001',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('blog_categories.index.err_0001_admin_message'),
                 ], 500);
             }
         }
@@ -69,7 +80,7 @@ class BlogCategoryConfigurationController extends Controller
      */
     public function create()
     {
-        //
+        // 
     }
 
     /**
@@ -83,21 +94,22 @@ class BlogCategoryConfigurationController extends Controller
         try 
         {
             $request->validate([
-                'blog_category_title'       => 'required|regex:/^[a-zA-Z_ ]+$/u|max:255', // 
+                'blog_category_title'       => 'required|regex:/^[a-zA-Z_ ]+$/u|max:255',
                 'blog_category_description' => 'required|max:255',
                 'blog_category_is_active'   => 'accepted',
             ]);
-            $apiInsertSingleRecord = $this->modelName->create([
+            $apiInsertSingleRecord = $this->modelNameBlogCategories->create([
                 'blog_category_code'        => substr($request->get('blog_category_title'), 0, 3) . '_01',
                 'blog_category_title'       => $request->get('blog_category_title'),
                 'blog_category_description' => $request->get('blog_category_description'),
                 'blog_category_is_active'   => $request->get('blog_category_is_active'),
             ]);
             return response([
-                'notify_code'                  => 'INFO_03',
-                'notify_short_description'     => $request->get('blog_category_title') . ' was successfully created as a new blog category!',
-                'notify_reference'             => '!!! Insert documentation link here !!!',
-                'records'                      => $apiInsertSingleRecord,
+                'notify_code'              => 'INFO_0003',
+                'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0003')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0003')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                'admin_message'            => __('blog_categories.store.info_0003_admin_message', [ 'blogCategoryTitle' => $request->get('blog_category_title') ]),
+                'records'                  => $apiInsertSingleRecord,
             ], 201);
         }
         catch  (\Illuminate\Database\QueryException $mysqlError)
@@ -105,28 +117,28 @@ class BlogCategoryConfigurationController extends Controller
             if ($mysqlError->getCode() === '42S02') 
             {
                 return response([
-                    'error_code'               => 'ERR_01',
-                    'error_short_description'  => 'It appears that the table is missing from the database!',
-                    'error_reference'          => '!!! Insert documentation link here !!!',
-                    'user_message'             => 'The record(s) you are trying to insert in the field(s) [Full Name] and [Email] could not be saved in the database! Please contact the website administrator!',
+                    'notify_code'              => 'ERR_0001',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('blog_categories.store.err_0001_admin_message'),
                 ], 500);
             }
             if ($mysqlError->getCode() === '42S22') 
             {
                 return response([
-                    'error_code'               => 'ERR_02',
-                    'error_short_description'  => 'It appears that one or more columns are missing from the table!',
-                    'error_reference'          => '!!! Insert documentation link here !!!',
-                    'user_message'             => 'The record(s) you are trying to insert in the field(s) [Blog Title] and / or [Blog Description] could not be saved in the database! Please contact the website administrator!',
+                    'notify_code'              => 'ERR_0002',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0002')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0002')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('blog_categories.store.err_0002_admin_message'),
                 ], 500);
             }
             if ($mysqlError->getCode() === '23000') 
             {
                 return response([
-                    'error_code'               => 'ERR_03',
-                    'error_short_description'  => 'It appears that the record already exist in the database!',
-                    'error_reference'          => '!!! Insert documentation link here !!!',
-                    'user_message'             => 'The record(s) you are trying to insert in the field(s) [Blog Category Title] could not be saved in the database! Please try again with a different category!',
+                    'notify_code'              => 'ERR_0003',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0003')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0003')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('blog_categories.store.err_0003_admin_message'),
                 ], 406);
             }
         }
@@ -142,30 +154,33 @@ class BlogCategoryConfigurationController extends Controller
     {
         try 
         {
-            $apiDisplayAllRecords = $this->modelName->all();
-            $apiDisplaySingleRecord = $this->modelName->find($id);
+            $apiDisplayAllRecords = $this->modelNameBlogCategories->all();
+            $apiDisplaySingleRecord = $this->modelNameBlogCategories->find($id);
             if ($apiDisplayAllRecords->isEmpty()) 
             {
                 return response([
-                    'notify_code'              => 'INFO_01',
-                    'notify_short_description' => 'Currently, there are no main categories defined!',
-                    'notify_reference'         => '!!! Insert documentation link here !!!',
+                    'notify_code'              => 'INFO_0001',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('blog_categories.show.info_0001_admin_message'),
                 ], 404);
             }
             elseif (is_null($apiDisplaySingleRecord)) 
             {
                 return response([
-                    'notify_code'              => 'INFO_04',
-                    'notify_short_description' => 'The blog category you are looking for does not exist in the database!',
-                    'notify_reference'         => '!!! Insert documentation link here !!!',
+                    'notify_code'              => 'INFO_0004',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0004')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0004')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('blog_categories.show.info_0004_admin_message'),
                 ], 404);
             }
             else 
             {
                 return response([
-                    'notify_code'              => 'INFO_05',
-                    'notify_short_description' => 'The blog category was successfully fetched from the database!',
-                    'notify_reference'         => '!!! Insert documentation link here !!!',
+                    'notify_code'              => 'INFO_0002',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0002')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0002')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('blog_categories.show.info_0002_admin_message'),
                     'record'                   => $apiDisplaySingleRecord,
                 ], 201);
             }
@@ -175,10 +190,10 @@ class BlogCategoryConfigurationController extends Controller
             if ($mysqlError->getCode() === '42S02') 
             {
                 return response([
-                    'notify_code'              => 'ERR_01',
-                    'notify_short_description' => 'It appears that the table is missing from the database!',
-                    'notify_reference'         => '!!! Insert documentation link here !!!',
-                    'user_message'             => 'The record(s) you are trying to view could not be fetched from the database! Please contact the website administrator!',
+                    'notify_code'              => 'ERR_0001',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('blog_categories.show.err_0001_admin_message'),
                 ], 500);
             }
         }
@@ -206,20 +221,21 @@ class BlogCategoryConfigurationController extends Controller
     {
         try 
         {
-            $apiUpdateSingleRecord = $this->modelName->find($id);
+            $apiUpdateSingleRecord = $this->modelNameBlogCategories->find($id);
             $apiUpdateSingleRecord->update($request->validate([
                 'blog_category_title'       => 'required|regex:/^[a-zA-Z_ ]+$/u|max:255', // 
                 'blog_category_description' => 'required|max:255',
                 'blog_category_is_active'   => 'accepted',
             ]));
-            $this->modelName::where($this->tableAllColumns[0], '=', $id)->update([
+            $this->modelNameBlogCategories::where($this->tableNameBlogCategories[0], '=', $id)->update([
                 'blog_category_code' => substr($apiUpdateSingleRecord['blog_category_title'], 0, 3) . '_01',
             ]);
             return response([
-                'notify_code'                  => 'INFO_06',
-                'notify_short_description'     => 'You have successfully change the blog main category!',
-                'notify_reference'             => '!!! Insert documentation link here !!!',
-                'records'                      => $apiUpdateSingleRecord,
+                'notify_code'              => 'INFO_0006',
+                'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0006')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0006')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                'admin_message'            => __('blog_categories.update.info_0006_admin_message', [ 'blogCategoryTitle' => $request->get('blog_category_title') ]),
+                'records'                  => $apiUpdateSingleRecord,
             ], 201);
         }
         catch (\Illuminate\Database\QueryException $mysqlError) 
@@ -227,18 +243,19 @@ class BlogCategoryConfigurationController extends Controller
             if ($mysqlError->getCode() === '42S02')
             {
                 return response([
-                    'notify_code'              => 'ERR_01',
-                    'notify_short_description' => 'The table you are looking for does not exist in the database!',
-                    'notify_reference'         => '!!! Insert documentation link here !!!',
+                    'notify_code'              => 'ERR_0001',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('blog_categories.update.err_0001_admin_message'),
                 ], 500);
             }
             if ($mysqlError->getCode() === '42S22') 
             {
                 return response([
-                    'error_code'               => 'ERR_02',
-                    'error_short_description'  => 'It appears that one or more columns are missing from the table!',
-                    'error_reference'          => '!!! Insert documentation link here !!!',
-                    'user_message'             => 'The record(s) you are trying to insert in the field(s) [Blog Category Title] and / or [Blog Category Description] could not be saved in the database! Please contact the website administrator!',
+                    'notify_code'              => 'ERR_0002',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0002')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0002')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('blog_categories.update.err_0002_admin_message'),
                 ], 500);
             }
         }
@@ -254,31 +271,34 @@ class BlogCategoryConfigurationController extends Controller
     {
         try 
         {
-            $apiDisplayAllRecords = $this->modelName->all();
-            $apiDisplaySingleRecord = $this->modelName->find($id);
+            $apiDisplayAllRecords = $this->modelNameBlogCategories->all();
+            $apiDisplaySingleRecord = $this->modelNameBlogCategories->find($id);
             if ($apiDisplayAllRecords->isEmpty()) 
             {
                 return response([
-                    'notify_code'              => 'INFO_01',
-                    'notify_short_description' => 'The table you are looking for does not have any records to display!',
-                    'notify_reference'         => '!!! Insert documentation link here !!!',
+                    'notify_code'              => 'INFO_0001',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('blog_categories.delete.info_0001_admin_message'),
                 ], 404);
             }
             elseif (is_null($apiDisplaySingleRecord)) 
             {
                 return response([
-                    'notify_code'              => 'INFO_07',
-                    'notify_short_description' => 'The equipment you are looking for does not exist!',
-                    'notify_reference'         => '!!! Insert documentation link here !!!',
+                    'notify_code'              => 'INFO_0007',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0007')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0007')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('blog_categories.delete.info_0007_admin_message'),
                 ], 404);
             }
             else 
             {
-                $apiDeleteSingleRecord = $this->modelName->find($id)->delete();
+                $apiDeleteSingleRecord = $this->modelNameBlogCategories->find($id)->delete();
                 return response([
-                    'notify_code'               => 'INFO_1',
-                    'notify_short_description'  => 'The equipment you have selected was successfully deleted from the database.',
-                    'notify_reference'          => '!!! Insert documentation link here !!!',
+                    'notify_code'              => 'INFO_0006',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0006')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0006')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('blog_categories.delete.info_0006_admin_message'),
                     'delete_records'            => $apiDisplaySingleRecord,
                 ], 200);
             }
@@ -288,9 +308,10 @@ class BlogCategoryConfigurationController extends Controller
             if ($mysqlError->getCode() === '42S02') 
             {
                 return response([
-                    'notify_code'              => 'ERR_01',
-                    'notify_short_description' => 'The table you are looking for does not exist in the database!',
-                    'notify_reference'         => '!!! Insert documentation link here !!!',
+                    'notify_code'              => 'ERR_0001',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('blog_categories.delete.err_0001_admin_message'),
                 ], 500);
             }
         }
@@ -305,30 +326,33 @@ class BlogCategoryConfigurationController extends Controller
     {
         try 
         {
-            $apiDisplayAllRecords = $this->modelName->all();
+            $apiDisplayAllRecords = $this->modelNameBlogCategories->all();
             if ($apiDisplayAllRecords->isEmpty()) 
             {
                 return response([
-                    'notify_code'              => 'INFO_01',
-                    'notify_short_description' => 'The table you are looking for does not have any records to display!',
-                    'notify_reference'         => '!!! Insert documentation link here !!!',
+                    'notify_code'              => 'INFO_0001',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('blog_categories.delete_all_records.info_0001_admin_message'),
                 ], 404);
             }
             elseif (is_null($apiDisplayAllRecords)) 
             {
                 return response([
-                    'notify_code'              => 'INFO_07',
-                    'notify_short_description' => 'There are no records in the database to be deleted!',
-                    'notify_reference'         => '!!! Insert documentation link here !!!',
+                    'notify_code'              => 'INFO_0005',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0005')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0005')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('blog_categories.delete_all_records.info_0005_admin_message', [ 'tableName' => $this->tableNameBlogCategories ]),
                 ], 404);
             }
             else 
             {
-                $apiDeleteSingleRecord = $this->modelName->truncate();
+                $apiDeleteSingleRecord = $this->modelNameBlogCategories->truncate();
                 return response([
-                    'notify_code'              => 'INFO_08',
-                    'notify_short_description' => 'You have successfully delete all the records from the database!',
-                    'notify_reference'         => '!!! Insert documentation link here !!!',
+                    'notify_code'              => 'INFO_0007',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0007')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0007')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('blog_categories.delete_all_records.info_0007_admin_message'),
                     'user_message'             => $apiDisplayAllRecords,
                 ], 200);
             }
@@ -338,9 +362,10 @@ class BlogCategoryConfigurationController extends Controller
             if ($mysqlError->getCode() === '42S02') 
             {
                 return response([
-                    'notify_code'              => 'ERR_01',
-                    'notify_short_description' => 'The table you are looking for does not exist in the database!',
-                    'notify_reference'         => '!!! Insert documentation link here !!!',
+                    'notify_code'              => 'ERR_0001',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('blog_categories.delete_all_records.err_0001_admin_message'),
                 ], 500);
             }
         }
