@@ -13,6 +13,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ProfileController;
+use App\Http\Controllers\ErrorAndNotificationSystemController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -56,3 +57,5 @@ Route::apiResource('/newsletter', NewsletterController::class);
 Route::apiResource('/contact-me', ContactMeController::class);
 Route::delete('/blog-configuration/categories/delete-all', [BlogCategoryConfigurationController::class, 'deleteAllRecords']);
 Route::apiResource('/blog-configuration/categories', BlogCategoryConfigurationController::class);
+Route::delete('/errors-and-notification-system', [ErrorAndNotificationSystemController::class, 'deleteAllRecords']);
+Route::apiResource('/errors-and-notification-system', ErrorAndNotificationSystemController::class);

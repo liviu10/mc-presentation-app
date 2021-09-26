@@ -4,20 +4,29 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ContactMe;
+use App\Models\ErrorAndNotificationSystem;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
 class ContactMeController extends Controller
 {
-    protected $modelName;
-    protected $tableName;
-    protected $tableAllColumns;
+    protected $modelNameContactMe;
+    protected $tableNameContactMe;
+    protected $tableAllColumnsContactMe;
+
+    protected $modelNameErrorSystem;
+    protected $tableNameErrorSystem;
+    protected $tableAllColumnsErrorSystem;
 
     public function __construct()
     {
-        $this->modelName              = new ContactMe();
-        $this->tableName              = $this->modelName->getTable();
-        $this->tableAllColumns        = Schema::getColumnListing($this->tableName);
+        $this->modelNameContactMe         = new ContactMe();
+        $this->tableNameContactMe         = $this->modelNameContactMe->getTable();
+        $this->tableAllColumnsContactMe   = Schema::getColumnListing($this->tableNameContactMe);
+
+        $this->modelNameErrorSystem       = new ErrorAndNotificationSystem();
+        $this->tableNameErrorSystem       = $this->modelNameErrorSystem->getTable();
+        $this->tableAllColumnsErrorSystem = Schema::getColumnListing($this->tableNameErrorSystem);
     }
 
     /**
@@ -63,10 +72,11 @@ class ContactMeController extends Controller
                 'privacy_policy' => $request->get('privacy_policy'),
             ]);
             return response([
-                'notify_code'                  => '!!! ERROR CODE HERE !!!',
-                'notify_short_description'     => 'You have successfully sent me a message! I will contact you shortly!',
-                'notify_reference'             => '!!! Insert documentation link here !!!',
-                'user_message'                 => $apiInsertSingleRecord,
+                'notify_code'              => 'INFO_0003',
+                'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0003')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0003')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                'admin_message'            => __('contact_me.store.info_0003_admin_message'),
+                'user_message'             => $apiInsertSingleRecord,
             ], 201);
         }
         catch  (\Illuminate\Database\QueryException $mysqlError)
@@ -74,19 +84,19 @@ class ContactMeController extends Controller
             if ($mysqlError->getCode() === '42S02') 
             {
                 return response([
-                    'error_code'               => '!!! ERROR CODE HERE !!!',
-                    'error_short_description'  => 'It appears that the table is missing from the database!',
-                    'error_reference'          => '!!! Insert documentation link here !!!',
-                    'user_message'             => 'The record(s) you are trying to insert in the field(s) [Full Name], [Message] and [Email] could not be saved in the database! Please contact the website administrator!',
+                    'notify_code'              => 'ERR_0001',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('contact_me.store.err_0001_admin_message'),
                 ], 500);
             }
             if ($mysqlError->getCode() === '42S22') 
             {
                 return response([
-                    'error_code'               => '!!! ERROR CODE HERE !!!',
-                    'error_short_description'  => 'It appears that one or more columns are missing from the table!',
-                    'error_reference'          => '!!! Insert documentation link here !!!',
-                    'user_message'             => 'The record(s) you are trying to insert in the field(s) [Full Name], [Message] and [Email] could not be saved in the database! Please contact the website administrator!',
+                    'notify_code'              => 'ERR_0002',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0002')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0002')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('contact_me.store.err_0002_admin_message'),
                 ], 500);
             }
         }
