@@ -1,26 +1,26 @@
 <template>
   <div class="container lv-con-sect-categories">
     <!-- MAIN CATEGORIES: WRITTEN ARTICLES, AUDIO AND VIDEO, SECTION START -->
-    <div v-for="category in main_categories"
+    <div v-for="category in displayBlogMainCategories"
          :key="category.id"
          class="card"
          style="width: 20rem;"
     >
       <div class="card-body">
         <h5 class="card-title">
-          {{ category.card_title }}
+          {{ category.blog_category_title }}
         </h5>
       </div>
-      <router-link :to="{ name: category.img_redirect_to }">
-        <img :src="category.img_src" class="d-block w-100" alt="...">
+      <router-link :to="{ path: category.blog_category_path }">
+        <img :src="category.blog_image_card_url" class="d-block w-100" alt="...">
       </router-link>
       <div class="card-body">
         <p class="card-text">
-          {{ category.card_body }}
+          {{ category.blog_category_description }}
         </p>
       </div>
       <div class="card-body">
-        <a v-for="subcategory in category.subcategories"
+        <a v-for="subcategory in subcategories"
            :key="subcategory.id"
            :href="subcategory.url"
         >
@@ -33,87 +33,52 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import axios from 'axios'
+Vue.use(axios)
+
+window.axios = require('axios')
+
 export default {
   name: 'MainCategories',
   components: {},
   data: function () {
     return {
-      main_categories: [
+      subcategories: [
         {
           id: 1,
-          card_title: 'ARTICOLE',
-          img_redirect_to: 'article.index',
-          img_src: '/images/cards/Card-img0.png',
-          card_body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore iusto, magni quae, et laborum recusandae, cumque aperiam hic suscipit odio mollitia fugit aliquam velit nihil.',
-          subcategories: [
-            {
-              id: 1,
-              url: 'article.index',
-              name: 'Subcategorie 1'
-            },
-            {
-              id: 2,
-              url: 'article.index',
-              name: 'Subcategorie 2'
-            },
-            {
-              id: 3,
-              url: 'article.index',
-              name: 'Subcategorie 3'
-            }
-          ]
+          url: 'blog',
+          name: 'Subcategorie 1'
         },
         {
           id: 2,
-          card_title: 'AUDIO',
-          img_redirect_to: 'audio.index',
-          img_src: '/images/cards/Card-img1.png',
-          card_body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore iusto, magni quae, et laborum recusandae, cumque aperiam hic suscipit odio mollitia fugit aliquam velit nihil.',
-          subcategories: [
-            {
-              id: 1,
-              url: 'audio.index',
-              name: 'Subcategorie 1'
-            },
-            {
-              id: 2,
-              url: 'audio.index',
-              name: 'Subcategorie 2'
-            },
-            {
-              id: 3,
-              url: 'audio.index',
-              name: 'Subcategorie 3'
-            }
-          ]
+          url: 'blog',
+          name: 'Subcategorie 2'
         },
         {
           id: 3,
-          card_title: 'VIDEO',
-          img_redirect_to: 'video.index',
-          img_src: '/images/cards/Card-img2.png',
-          card_body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore iusto, magni quae, et laborum recusandae, cumque aperiam hic suscipit odio mollitia fugit aliquam velit nihil.',
-          subcategories: [
-            {
-              id: 1,
-              url: 'video.index',
-              name: 'Subcategorie 1'
-            },
-            {
-              id: 2,
-              url: 'video.index',
-              name: 'Subcategorie 2'
-            },
-            {
-              id: 3,
-              url: 'video.index',
-              name: 'Subcategorie 3'
-            }
-          ]
+          url: 'blog',
+          name: 'Subcategorie 3'
         }
-      ]
+      ],
+      displayBlogMainCategories: null
     }
   },
-  computed: {}
+  computed: {},
+  mounted () {
+    this.getBlogMainCategories()
+  },
+  methods: {
+    getBlogMainCategories: function () {
+      const url = window.location.origin
+      const blogMainCategoriesApi = url + '/api/blog-configuration/categories'
+      axios
+        .get(blogMainCategoriesApi)
+        .then(response => {
+          console.log('>>>>> Blog Main Categories Api Data', response.data)
+          this.displayBlogMainCategories = response.data.records
+        })
+    }
+  }
 }
 </script>

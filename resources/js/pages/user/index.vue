@@ -10,7 +10,7 @@
       <!-- HEADING, SECTION END -->
 
       <!-- MAIN CATEGORIES, SECTION START -->
-      <home-page-main-categories />
+      <main-categories />
       <!-- MAIN CATEGORIES, SECTION END -->
 
       <!-- TESTIMONIALS, SECTION START -->
@@ -27,7 +27,7 @@
 <script>
 import HomePageCarousel from '~/components/home_page/HomePageCarousel.vue'
 import HomePageHeading from '~/components/home_page/HomePageHeading.vue'
-import HomePageMainCategories from '~/components/home_page/HomePageMainCategories.vue'
+import MainCategories from '~/pages/user/blog/partials/MainCategories.vue'
 import HomePageTestimonials from '~/components/home_page/HomePageTestimonials.vue'
 import HomePageNewsletter from '~/components/home_page/HomePageNewsletter.vue'
 
@@ -36,7 +36,7 @@ export default {
   components: {
     HomePageCarousel,
     HomePageHeading,
-    HomePageMainCategories,
+    MainCategories,
     HomePageTestimonials,
     HomePageNewsletter
   },

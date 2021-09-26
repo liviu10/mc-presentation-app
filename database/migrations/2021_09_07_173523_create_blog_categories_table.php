@@ -20,6 +20,8 @@ class CreateBlogCategoriesTable extends Migration
             $table->string('blog_category_title', 255);
             $table->string('blog_category_description', 255);
             $table->string('blog_category_is_active', 3);
+            $table->string('blog_image_card_url', 255);
+            $table->string('blog_category_path', 255);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->timestamp('deleted_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
