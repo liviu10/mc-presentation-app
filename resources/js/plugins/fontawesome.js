@@ -15,7 +15,8 @@ import {
 
 library.add(
   faUser, faLock, faSignOutAlt, faCog, faGithub, faBookOpen, faArrowLeft, faFileExport, faEye, faEdit, faTrash,
-  faFacebook, faInstagram, faYoutube, faChevronRight, faChevronLeft, faQuoteLeft, faQuoteRight, faBookReader, faEnvelope, faThumbsUp, faThumbsDown
+  faFacebook, faInstagram, faYoutube, faChevronRight, faChevronLeft, faQuoteLeft, faQuoteRight, faBookReader, faEnvelope,
+  faThumbsUp, faThumbsDown
 )
 
 Vue.component('Fa', FontAwesomeIcon)

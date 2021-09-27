@@ -1,0 +1,62 @@
+@import '../../../utilities/_utilities.scss';
+
+$audioPlayer: (
+    audio_player_bg_color_btn:     map-get($pale_cerulean, "color_khaki"),
+    audio_player_border_color_btn: map-get($pale_cerulean, "color_khaki"),
+    audio_player_font_color_btn:   map-get($basic_colors, "color_black"),
+    audio_player_check_font_color: map-get($basic_colors, "color_black"),
+);
+
+.aplayer {
+    &-info {
+        padding: rem-convertor(12px) !important;
+        height: rem-convertor(100px) !important;
+    }
+    &-pic {
+        width: rem-convertor(100px) !important;
+        height: rem-convertor(100px) !important;
+    }
+    &-music {
+        @include flex-center-left-center();
+        margin-left: rem-convertor(0px) !important;
+        padding-bottom: rem-convertor(0px) !important;
+        & span {
+            font-size: rem-convertor(16px) !important;
+            &:first-of-type {
+                font-weight: bold !important;
+            }
+        }
+    }
+    &-title {
+        margin-right: rem-convertor(4px) !important;
+    }
+    &-time {
+        height: rem-convertor(20px) !important;
+        color: #000000 !important;
+        font-size: rem-convertor(16px) !important;
+    }
+    &-icon {
+        width: rem-convertor(20px) !important;
+        height: rem-convertor(20px) !important;
+        font-size: rem-convertor(16px) !important;
+        opacity: 1 !important;
+    }
+    &-pause {
+        width: rem-convertor(26px) !important;
+        height: rem-convertor(26px) !important;
+    }
+    &-icon-pause {
+        top: rem-convertor(3px) !important;
+        bottom: rem-convertor(3px) !important;
+    }
+    &-volume-bar-wrap {
+        height: rem-convertor(60px) !important;
+        &:after {
+            height: rem-convertor(80px) !important;
+        }
+    }
+    &-volume-bar {
+        bottom: rem-convertor(5px) !important;
+        height: rem-convertor(56.8px) !important;
+    }
+}

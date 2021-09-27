@@ -14,8 +14,10 @@ export default [
   { path: '/blog', name: 'blog', component: page('user/blog/index.vue') },
   { path: '/blog/article', name: 'article.index', component: page('user/blog/article/index.vue') },
   // To replace index param with the post id from the database
-  { path: '/blog/article/view/index', name: 'view.index', component: page('user/blog/article/view/index.vue') },
+  { path: '/blog/article/view/index', name: 'article-view-index', component: page('user/blog/article/view/index.vue') },
   { path: '/blog/audio', name: 'audio.index', component: page('user/blog/audio/index.vue') },
+  // To replace index param with the post id from the database
+  { path: '/blog/audio/view/index', name: 'audio-view-index', component: page('user/blog/audio/view/index.vue') },
   { path: '/blog/video', name: 'video.index', component: page('user/blog/video/index.vue') },
 
   // URL route for the about me page
