@@ -11,7 +11,7 @@
             <div class="row g-0">
               <div class="col-md-4">
                 <video controls>
-                  <source src="videos/demo_video.mp4" type="video/mp4">
+                  <source src="/videos/demo_video.mp4" type="video/mp4">
                 </video>
               </div>
               <div class="col-md-8">

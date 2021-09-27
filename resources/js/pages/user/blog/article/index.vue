@@ -21,7 +21,7 @@
                 <fa icon="quote-left" fixed-width />
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus harum libero tenetur quaerat? Nam incidunt eligendi quibusdam ut earum? Asperiores, cum? Possimus aspernatur eum inventore, esse commodi facilis. Ex veritatis itaque fuga nostrum eligendi, asperiores unde, corporis animi nihil iure nisi ea, at beatae voluptatem in architecto! Libero quod hic voluptates, at omnis repellendus, necessitatibus blanditiis numquam nulla esse molestias dolorum sed nobis qui, illo ullam dolore. Quaerat aliquam non soluta eum voluptatum corporis dolor.
               </p>
-              <router-link :to="{ name: 'view.index' }" class="btn btn-primary">
+              <router-link :to="{ name: 'article-view-index' }" class="btn btn-primary">
                 <fa icon="book-reader" fixed-width />
                 Citeste mai mult!
               </router-link>
@@ -43,7 +43,7 @@
                 <fa icon="quote-left" fixed-width />
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus harum libero tenetur quaerat? Nam incidunt eligendi quibusdam ut earum? Asperiores, cum? Possimus aspernatur eum inventore, esse commodi facilis. Ex veritatis itaque fuga nostrum eligendi, asperiores unde, corporis animi nihil iure nisi ea, at beatae voluptatem in architecto! Libero quod hic voluptates, at omnis repellendus, necessitatibus blanditiis numquam nulla esse molestias dolorum sed nobis qui, illo ullam dolore. Quaerat aliquam non soluta eum voluptatum corporis dolor.
               </p>
-              <router-link :to="{ name: 'article.index' }" class="btn btn-primary">
+              <router-link :to="{ name: 'article-view-index' }" class="btn btn-primary">
                 <fa icon="book-reader" fixed-width />
                 Citeste mai mult!
               </router-link>
@@ -65,7 +65,7 @@
                 <fa icon="quote-left" fixed-width />
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus harum libero tenetur quaerat? Nam incidunt eligendi quibusdam ut earum? Asperiores, cum? Possimus aspernatur eum inventore, esse commodi facilis. Ex veritatis itaque fuga nostrum eligendi, asperiores unde, corporis animi nihil iure nisi ea, at beatae voluptatem in architecto! Libero quod hic voluptates, at omnis repellendus, necessitatibus blanditiis numquam nulla esse molestias dolorum sed nobis qui, illo ullam dolore. Quaerat aliquam non soluta eum voluptatum corporis dolor.
               </p>
-              <router-link :to="{ name: 'article.index' }" class="btn btn-primary">
+              <router-link :to="{ name: 'article-view-index' }" class="btn btn-primary">
                 <fa icon="book-reader" fixed-width />
                 Citeste mai mult!
               </router-link>
