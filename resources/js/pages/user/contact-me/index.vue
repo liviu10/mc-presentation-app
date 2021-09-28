@@ -11,9 +11,9 @@
         <!-- CONTACT FORM, SECTION START -->
         <div class="container-contact-form">
           <div class="container-contact-form-head">
-            <h1>Lorem, ipsum dolor.</h1>
+            <h1>{{ $t('user.contact_me_page.title') }}</h1>
             <p class="lead">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum distinctio amet eos beatae culpa autem, quis consequatur alias adipisci ipsam.
+              {{ $t('user.contact_me_page.paragraph') }}
             </p>
           </div>
           <div class="card-alternative m-auto" style="width: 20rem;">
@@ -29,7 +29,7 @@
                        type="text"
                        :class="{ 'is-invalid': form.errors.has('full_name') }"
                        class="form-control"
-                       placeholder="Numele si Prenumele tau"
+                       :placeholder="$t('user.contact_me_page.contact_form.input_full_name')"
                        name="full_name"
                 >
                 <has-error :form="form" field="full_name" />
@@ -42,7 +42,7 @@
                        type="email"
                        :class="{ 'is-invalid': form.errors.has('email') }"
                        class="form-control"
-                       placeholder="Adresa ta de e-mail"
+                       :placeholder="$t('user.contact_me_page.contact_form.input_email_address')"
                        name="email"
                 >
                 <has-error :form="form" field="email" />
@@ -54,7 +54,7 @@
                           v-model="form.message"
                           :class="{ 'is-invalid': form.errors.has('email') }"
                           class="form-control form-message"
-                          placeholder="Lasa-mi un mesaj"
+                          :placeholder="$t('user.contact_me_page.contact_form.input_message')"
                           name="message"
                 />
                 <has-error :form="form" field="message" />
@@ -72,11 +72,11 @@
                   >
                   <label class="form-check-label lead" for="flexCheckChecked">
                     <span @click="acceptPrivacyPolicy">
-                      Sunt de acord cu
+                      {{ $t('user.contact_me_page.contact_form.i_agree_with') }}
                       <span class="a-typography"
                             @click="redirectToPrivacyPolicy"
                       >
-                        Termenii și Condițiile
+                        {{ $t('user.contact_me_page.contact_form.privacy_policy') }}
                       </span>
                     </span>
                   </label>
@@ -86,7 +86,7 @@
               <!-- PRIVACY POLICY, SECTION END -->
               <div class="form-button">
                 <button type="submit" class="btn btn-primary">
-                  TRIMITE MESAJUL
+                  {{ capitalizeSendMessageButton }}
                 </button>
               </div>
             </form>
@@ -109,7 +109,7 @@ export default {
   props: {},
   data: function () {
     return {
-      message_success: this.$t('user.contact_me_page.general.message_sent'),
+      message_success: this.$t('user.contact_me_page.contact_form.message_sent'),
       form: new Form({
         full_name: '',
         email: '',
@@ -120,6 +120,10 @@ export default {
   },
   computed: {
     // mapped getters
+    capitalizeSendMessageButton () {
+      const sendMessageButtonLabel = this.$t('user.contact_me_page.contact_form.contact_form_button')
+      return sendMessageButtonLabel.toUpperCase()
+    }
   },
   mounted () {},
   methods: {
