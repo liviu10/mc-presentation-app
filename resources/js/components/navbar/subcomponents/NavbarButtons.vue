@@ -1,5 +1,5 @@
 <template>
-  <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+  <ul class="navbar-nav ms-auto">
     <li v-for="navbar_button in navbar_buttons" :key="navbar_button.id">
       <router-link :to="{ name: navbar_button.button_url }" class="nav-link">
         {{ navbar_button.button_name }}

@@ -42,13 +42,48 @@ $lvContainerSectionNewsletter: (
         }
         & .form-check {
             margin-bottom: rem-convertor(0px);
+            @media only screen and (max-width: 767px) {
+                @include flex-center();
+                flex-direction: column;
+            }
+            &-privacy-policy {
+                @media only screen and (max-width: 767px) {
+                    flex-direction: row;
+                }
+            }
             &-input {
                 width: rem-convertor(20px);
                 height: rem-convertor(20px);
+                @media only screen and (max-width: 767px) {
+                    margin-right: rem-convertor(4px);
+                }
             }
             &-label {
-                & a {
-                    color: map-get($lvContainerSectionNewsletter, "newsletter_font_color_form_check");
+                & .a-typography {
+                    margin: rem-convertor(8px) 0rem;
+                    padding: 0rem;
+                    font-style: normal;
+                    font-variant: normal;
+                    font-weight: normal;
+                    text-align: left;
+                    text-decoration: none;
+                    white-space: normal;
+                    word-break: normal;
+                    word-spacing: normal;
+                    text-decoration: underline;
+                    text-indent: rem-convertor(0px);
+                    &:visited, &:active {
+                        color: map-get($lvContainerSectionNewsletter, "newsletter_font_color_form_check");
+                    }
+                    &:hover {
+                        color: map-get($lvContainerSectionNewsletter, "newsletter_font_color_form_check");
+                        cursor: pointer;
+                    }
+                }
+            }
+            & .invalid-feedback {
+                @media only screen and (max-width: 767px) {
+                    text-align: center;
                 }
             }
         }

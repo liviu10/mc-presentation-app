@@ -2,7 +2,7 @@
   <div class="main-layout">
     <navbar />
 
-    <div class="container-lg">
+    <div class="container-lg container-application">
       <child />
     </div>
 

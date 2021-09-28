@@ -1,3 +1,5 @@
+@import '../../../utilities/_utilities.scss';
+
 $lvContainerSectionCategories: (
     categories_card_bg_color: map-get($pale_cerulean, "color_khaki"),
     categories_font_color:    map-get($basic_colors, "color_black"),
@@ -7,10 +9,26 @@ $lvContainerSectionCategories: (
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    @media only screen and (max-width: 992px) {
+        padding-right: 0rem !important;
+        padding-left: 0rem !important;
+    }
+    @media only screen and (max-width: 767px) {
+        flex-direction: column;
+    }
     & .card {
         border-radius: rem-convertor(0px);
         background-color: map-get($lvContainerSectionCategories, "categories_card_bg_color") !important;
         border-width: rem-convertor(0px);
+        @media only screen and (max-width: 767px) {
+            width: 100% !important;
+        }
+        &:nth-of-type(2) {
+            @media only screen and (max-width: 767px) {
+                margin-top: rem-convertor(16px);
+                margin-bottom: rem-convertor(16px);
+            }
+        }
         &-title {
             margin-bottom: rem-convertor(0px);
             color: map-get($lvContainerSectionCategories, "categories_font_color") !important;

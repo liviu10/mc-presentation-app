@@ -1,78 +1,12 @@
 <template>
   <div class="row">
     <div class="col-lg-12 m-auto">
-      <div class="display-tooltip display-tooltip--contact-title display-tooltip--hide">
-        1
-        <span class="display-tooltip-text">
-          <h1>Title:</h1>
-          <p>
-            <ul>
-              <li>
-                De gasit un titlu potrivit pentru pagina de contact.
-              </li>
-            </ul>
-          </p>
-        </span>
-      </div>
-      <div class="display-tooltip display-tooltip--contact-description display-tooltip--hide">
-        2
-        <span class="display-tooltip-text">
-          <h1>Description:</h1>
-          <p>
-            <ul>
-              <li>
-                De gasit o scurta descriere a paginii de contact (maxim 50 de cuvinte).
-              </li>
-            </ul>
-          </p>
-        </span>
-      </div>
       <div class="container lv-con-pg-contact-form">
         <!-- PICTURE PAGE, SECTION START -->
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 20rem;">
           <img src="images/contact/dance-question-mark.jpg" class="card-img-top" alt="...">
         </div>
         <!-- PICTURE PAGE, SECTION END -->
-
-        <div class="display-tooltip display-tooltip--contact-field-name display-tooltip--hide">
-          3
-          <span class="display-tooltip-text">
-            <h1>Camp Nume si Prenume:</h1>
-            <p>
-              <ul>
-                <li>
-                  Daca este cazul putem schimba textul "Numele si Prenumele tau" care se vede in interiorul casetei de inserare.
-                </li>
-              </ul>
-            </p>
-          </span>
-        </div>
-        <div class="display-tooltip display-tooltip--contact-field-email display-tooltip--hide">
-          4
-          <span class="display-tooltip-text">
-            <h1>Camp Adresa e-mail:</h1>
-            <p>
-              <ul>
-                <li>
-                  Daca este cazul putem schimba textul "Adresa ta de e-mail" care se vede in interiorul casetei de inserare.
-                </li>
-              </ul>
-            </p>
-          </span>
-        </div>
-        <div class="display-tooltip display-tooltip--contact-field-message display-tooltip--hide">
-          5
-          <span class="display-tooltip-text">
-            <h1>Camp Mesaj:</h1>
-            <p>
-              <ul>
-                <li>
-                  Daca este cazul putem schimba textul "Lasa-mi un mesaj" care se vede in interiorul casetei de inserare.
-                </li>
-              </ul>
-            </p>
-          </span>
-        </div>
 
         <!-- CONTACT FORM, SECTION START -->
         <div class="container-contact-form">
@@ -81,6 +15,9 @@
             <p class="lead">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum distinctio amet eos beatae culpa autem, quis consequatur alias adipisci ipsam.
             </p>
+          </div>
+          <div class="card-alternative m-auto" style="width: 20rem;">
+            <img src="images/contact/dance-question-mark.jpg" class="card-img-top" alt="...">
           </div>
           <div class="container-contact-form-main">
             <form @submit.prevent="subscribe" @keydown="form.onKeydown($event)">
@@ -125,23 +62,33 @@
               <!-- MESSAGE, SECTION END -->
               <!-- PRIVACY POLICY, SECTION START -->
               <div class="my-4 form-check">
-                <input id="privacy_policy"
-                       v-model="form.privacy_policy"
-                       type="checkbox"
-                       :class="{ 'is-invalid': form.errors.has('privacy_policy') }"
-                       class="form-check-input"
-                       name="privacy_policy"
-                >
-                <label class="form-check-label lead" for="flexCheckChecked">
-                  Sunt de acord cu
-                  <router-link :to="{ name: 'home-page' }">termenii si conditiile</router-link>
-                </label>
+                <div class="form-check-privacy-policy">
+                  <input id="privacy_policy"
+                         v-model="form.privacy_policy"
+                         type="checkbox"
+                         :class="{ 'is-invalid': form.errors.has('privacy_policy') }"
+                         class="form-check-input"
+                         name="privacy_policy"
+                  >
+                  <label class="form-check-label lead" for="flexCheckChecked">
+                    <span @click="acceptPrivacyPolicy">
+                      Sunt de acord cu
+                      <span class="a-typography"
+                            @click="redirectToPrivacyPolicy"
+                      >
+                        Termenii și Condițiile
+                      </span>
+                    </span>
+                  </label>
+                </div>
                 <has-error :form="form" field="privacy_policy" />
               </div>
               <!-- PRIVACY POLICY, SECTION END -->
-              <button type="submit" class="btn btn-primary">
-                TRIMITE MESAJUL
-              </button>
+              <div class="form-button">
+                <button type="submit" class="btn btn-primary">
+                  TRIMITE MESAJUL
+                </button>
+              </div>
             </form>
           </div>
         </div>
@@ -176,8 +123,15 @@ export default {
   },
   mounted () {},
   methods: {
-    showMore () {
-      this.$router.push({ path: '/blog/article' })
+    acceptPrivacyPolicy () {
+      if (this.form.privacy_policy === true) {
+        this.form.privacy_policy = false
+      } else {
+        this.form.privacy_policy = true
+      }
+    },
+    redirectToPrivacyPolicy () {
+      this.$router.push({ name: 'terms-and-conditions' })
     },
     async subscribe () {
       const contactMeApi = '/api/contact-me'

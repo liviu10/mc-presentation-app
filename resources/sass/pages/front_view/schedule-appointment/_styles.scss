@@ -9,25 +9,48 @@ $lvContainerPageAppointment: (
 .lv-con-pg-appointment {
     @include flex-center();
     flex-direction: column;
-    height: 100vh;
+    @media only screen and (max-width: 992px) {
+        padding-right: 0rem !important;
+        padding-left: 0rem !important;
+    }
     &-title {
+        margin-top: rem-convertor(50px);
         margin-bottom: rem-convertor(50px);
+        @media only screen and (max-width: 575px) {
+            margin-top: 0rem !important;
+            margin-bottom: 0rem !important;
+        }
         h1 {
             margin-bottom: rem-convertor(0px);
             text-align: center;
         }
     }
     &-body {
+        margin-top: rem-convertor(64px);
+        margin-bottom: rem-convertor(64px);
+        @media only screen and (max-width: 575px) {
+            margin-top: 0rem !important;
+            margin-bottom: 0rem !important;
+        }
         & .lead {
-            margin-top: rem-convertor(32px);
-            margin-bottom: rem-convertor(32px);
+            margin-top: rem-convertor(64px);
+            margin-bottom: rem-convertor(64px);
+            @media only screen and (max-width: 992px) {
+                text-align: justify;
+            }
         }
         & p {
             margin-top: rem-convertor(16px);
+            margin-bottom: rem-convertor(16px);
+            @media only screen and (max-width: 992px) {
+                text-align: justify;
+            }
         }
     }
     &-button {
         @include flex-center();
+        margin-top: rem-convertor(16px);
+        margin-bottom: rem-convertor(16px);
         & .btn {
             margin-top: rem-convertor(20px);
             margin-bottom: rem-convertor(20px);
