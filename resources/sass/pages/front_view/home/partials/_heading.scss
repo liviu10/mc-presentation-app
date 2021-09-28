@@ -6,11 +6,39 @@ $lvContainerSectionHeading: (
 
 .lv-con-sect-heading {
     @include flex-center();
+    @media only screen and (max-width: 992px) {
+        padding-right: 0rem !important;
+        padding-left: 0rem !important;
+    }
+    @media only screen and (max-width: 767px) {
+        flex-direction: column;
+        max-width: 100% !important;
+    }
     &-lead {
         width: 80%;
+        @media only screen and (max-width: 992px) {
+            margin-right: rem-convertor(8px);
+            width: 70%;
+        }
+        @media only screen and (max-width: 767px) {
+            margin-right: 0rem;
+            width: 100%;
+        }
         & .display-4, & .lead {
             margin-top: rem-convertor(8px);
             margin-bottom: rem-convertor(8px) !important;
+        }
+        & .display-4 {
+            @media only screen and (max-width: 767px) {
+                margin-top: rem-convertor(16px);
+                margin-bottom: rem-convertor(16px) !important;
+                text-align: center;
+            }
+        }
+        & .lead {
+            @media only screen and (max-width: 992px) {
+                text-align: justify;
+            }
         }
     }
     &-buttons {
@@ -19,6 +47,12 @@ $lvContainerSectionHeading: (
         width: 20%;
         height: 100%;
         text-align: center;
+        @media only screen and (max-width: 992px) {
+            width: 30%;
+        }
+        @media only screen and (max-width: 767px) {
+            width: 100%;
+        }
         &-appointment, &-social-media {
             & .btn {
                 margin-top: rem-convertor(20px);
@@ -28,23 +62,37 @@ $lvContainerSectionHeading: (
                 border-radius: rem-convertor(0px);
                 font-weight: bold;
                 color: map-get($lvContainerSectionHeading, "heading_font_color_btn");
+                @media only screen and (max-width: 767px) {
+                    margin-top: 0rem;
+                    margin-bottom: 0rem;
+                }
                 &:focus {
                     border-color: transparent !important;
                     box-shadow: 0 1px 1px transparent inset, 0 0 8px transparent !important;
                     outline: 0 none !important;
                 }
-                & .fab {
+                & .svg-inline--fa {
                     @include flex-center();
                     width: rem-convertor(25px);
                     height: rem-convertor(25px);
+                    @media only screen and (max-width: 767px) {
+                        width: rem-convertor(35px);
+                        height: rem-convertor(35px);
+                    }
                 }
             }
         }
         &-appointment {
+            @media only screen and (max-width: 767px) {
+                margin-top: rem-convertor(20px);
+            }
             & .btn {
                 padding-right: rem-convertor(8px);
                 padding-left: rem-convertor(8px);
                 width: rem-convertor(177px);
+                @media only screen and (max-width: 767px) {
+                    width: rem-convertor(300px);
+                }
             }
         }
         &-social-media {

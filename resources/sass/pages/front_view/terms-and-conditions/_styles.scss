@@ -1,4 +1,8 @@
 .lv-con-pg-terms {
+    @media only screen and (max-width: 475px) {
+        padding-right: 0rem !important;
+        padding-left: 0rem !important;
+    }
     &-title {
         margin-bottom: rem-convertor(35px);
         & h1 {
@@ -8,11 +12,26 @@
         & p {
             margin-bottom: rem-convertor(35px);
         }
+        & h1, & p:first-of-type {
+            @media only screen and (max-width: 575px) {
+                text-align: center;
+            }
+        }
+        & h3 {
+            @media only screen and (max-width: 475px) {
+                text-align: center;
+            }
+        }
         &-subtitle {
             margin-bottom: rem-convertor(20px);
         }
         &-lead, &-info {
             margin-bottom: rem-convertor(0px);
+        }
+        &-lead {
+            @media only screen and (max-width: 992px) {
+                text-align: justify;
+            }
         }
         &-info {
             font-weight: bold;
@@ -26,9 +45,15 @@
                 margin-top: rem-convertor(16px);
                 margin-bottom: rem-convertor(16px);
                 font-weight: bold;
+                @media only screen and (max-width: 475px) {
+                    text-align: center;
+                }
             }
             &-paragraph {
                 margin-bottom: rem-convertor(0px);
+                @media only screen and (max-width: 992px) {
+                    text-align: justify !important;
+                }
             }
         }
     }

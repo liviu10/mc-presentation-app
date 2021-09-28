@@ -23,10 +23,17 @@ $font_color: inherit;
             flex-direction: row !important;
             margin-top: rem-convertor(20px);
             width: 100%;
+            @media only screen and (max-width: 575px) {
+                flex-direction: column !important;
+            }
             &-button {
                 @include flex-center();
                 flex-direction: column !important;
                 width: 50%;
+                @media only screen and (max-width: 575px) {
+                    margin-bottom: rem-convertor(12px);
+                    width: 100%;
+                }
                 & p {
                     margin-bottom: rem-convertor(0px);
                     font-weight: bold;
@@ -93,12 +100,17 @@ $font_color: inherit;
                     font-weight: bold;
                     user-select: none;
                     &:last-child {
-                        padding-top: rem-convertor(10px);
+                        @media only screen and (max-width: 575px) {
+                            text-align: center;
+                        }
                     }
                     & .btn {
                         border-width: rem-convertor(0px) !important;
                         padding: rem-convertor(4.5px) !important;
                         background-color: transparent;
+                        @media only screen and (max-width: 575px) {
+                            padding: 0rem !important;
+                        }
                     }
                     & a {
                         color: $font-color;
@@ -141,6 +153,11 @@ $font_color: inherit;
                 font-size: rem-convertor(14px);
                 font-weight: bold;
                 user-select: none;
+                &:first-child {
+                    @media only screen and (max-width: 575px) {
+                        text-align: center;
+                    }
+                }
                 & a {
                     color: $font_color !important;
                 }

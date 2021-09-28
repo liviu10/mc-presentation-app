@@ -3,7 +3,7 @@
     <form @submit.prevent="subscribe" @keydown="form.onKeydown($event)">
       <div class="row">
         <!-- FULL NAME, SECTION START -->
-        <div class="col col-5">
+        <div class="col col-xxl-5 col-xl-5 col-lg-5 col-md-6 col-sm-12 col-12">
           <input id="full_name"
                  v-model="form.full_name"
                  type="text"
@@ -16,7 +16,7 @@
         </div>
         <!-- FULL NAME, SECTION END -->
         <!-- EMAIL ADDRESS, SECTION START -->
-        <div class="col col-5">
+        <div class="col col-xxl-5 col-xl-5 col-lg-5 col-md-6 col-sm-12 col-12">
           <input id="email"
                  v-model="form.email"
                  type="email"
@@ -28,9 +28,9 @@
           <has-error :form="form" field="email" />
         </div>
         <!-- EMAIL ADDRESS, SECTION END -->
-        <div class="col col-2">
+        <div class="col col-xxl-2 col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12">
           <button type="submit"
-                  class="btn btn-success"
+                  class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 btn btn-success"
           >
             {{ capitalizeSubscribeButton }}
           </button>
@@ -39,19 +39,25 @@
       <div class="row">
         <!-- PRIVACY POLICY, SECTION START -->
         <div class="form-check">
-          <input id="privacy_policy"
-                 v-model="form.privacy_policy"
-                 type="checkbox"
-                 :class="{ 'is-invalid': form.errors.has('privacy_policy') }"
-                 class="form-check-input"
-                 name="privacy_policy"
-          >
-          <label class="form-check-label lead" for="flexCheckChecked">
-            <span>
-              {{ $t('user.home_page.newsletter.i_agree_with') }}
-              <router-link :to="{ name: 'terms-and-conditions' }">{{ $t('user.home_page.newsletter.privacy_policy') }}</router-link>
-            </span>
-          </label>
+          <div class="form-check-privacy-policy">
+            <input id="privacy_policy"
+                   v-model="form.privacy_policy"
+                   type="checkbox"
+                   :class="{ 'is-invalid': form.errors.has('privacy_policy') }"
+                   class="form-check-input"
+                   name="privacy_policy"
+            >
+            <label class="form-check-label lead" for="flexCheckChecked">
+              <span @click="acceptPrivacyPolicy">
+                {{ $t('user.home_page.newsletter.i_agree_with') }}
+                <span class="a-typography"
+                      @click="redirectToPrivacyPolicy"
+                >
+                  {{ $t('user.home_page.newsletter.privacy_policy') }}
+                </span>
+              </span>
+            </label>
+          </div>
           <has-error :form="form" field="privacy_policy" />
         </div>
         <!-- PRIVACY POLICY, SECTION END -->
@@ -83,6 +89,16 @@ export default {
     }
   },
   methods: {
+    acceptPrivacyPolicy () {
+      if (this.form.privacy_policy === true) {
+        this.form.privacy_policy = false
+      } else {
+        this.form.privacy_policy = true
+      }
+    },
+    redirectToPrivacyPolicy () {
+      this.$router.push({ name: 'terms-and-conditions' })
+    },
     async subscribe () {
       const url = window.location.origin
       const newsletterApi = url + '/api/newsletter'

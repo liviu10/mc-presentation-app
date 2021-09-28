@@ -8,12 +8,35 @@ $lvContainerPageContactFormFont: 'Merriweather Sans Bold', sans-serif;
 
 .lv-con-pg-contact-form {
     @include flex-center();
-    height: 100vh;
+    @media only screen and (max-width: 1400px) {
+        padding-right: 0rem;
+        padding-left: 0rem;
+    }
     & .card {
         border-radius: rem-convertor(0px);
+        @media only screen and (max-width: 767px) {
+            display: none;
+        }
     }
     & .container-contact-form {
         margin-left: rem-convertor(40px);
+        @media only screen and (max-width: 1400px) {
+            margin-left: rem-convertor(32px);
+        }
+        @media only screen and (max-width: 1200px) {
+            margin-left: rem-convertor(32px);
+            width: 80%;
+        }
+        @media only screen and (max-width: 992px) {
+            margin-left: rem-convertor(24px);
+        }
+        @media only screen and (max-width: 768px) {
+            margin-left: rem-convertor(16px);
+        }
+        @media only screen and (max-width: 767px) {
+            margin-left: 0rem;
+            width: 100%;
+        }
         &-head {
             @include flex-center();
             flex-direction: column;
@@ -24,6 +47,26 @@ $lvContainerPageContactFormFont: 'Merriweather Sans Bold', sans-serif;
             }
             & p {
                 margin-top: rem-convertor(32px);
+                @media only screen and (min-width: 320px) {
+                    text-align: justify;
+                }
+            }
+        }
+        & .card-alternative {
+            border-radius: rem-convertor(0px);
+            @media only screen and (min-width: 768px) {
+                display: none;
+            }
+            @media only screen and (max-width: 767px) {
+                margin-bottom: rem-convertor(50px) !important;
+            }
+            @media only screen and (max-width: 375px) {
+                width: rem-convertor(296px) !important;
+            }
+            & img {
+                @media only screen and (max-width: 375px) {
+                    width: rem-convertor(296px) !important;
+                }
             }
         }
         &-main {
@@ -45,28 +88,65 @@ $lvContainerPageContactFormFont: 'Merriweather Sans Bold', sans-serif;
             }
             & .form-check {
                 margin-bottom: rem-convertor(0px);
+                @media only screen and (max-width: 575px) and (min-width: 320px) {
+                    @include flex-center();
+                    flex-direction: column;
+                }
+                &-privacy-policy {
+                    @media only screen and (max-width: 575px) and (min-width: 320px) {
+                        flex-direction: row;
+                    }
+                }
                 &-input {
                     width: rem-convertor(20px);
                     height: rem-convertor(20px);
                 }
                 &-label {
-                    & a {
-                        color: map-get($lvContainerPageContactForm, "contact_form_check_font_color");
+                    & .a-typography {
+                        margin: rem-convertor(8px) 0rem;
+                        padding: 0rem;
+                        font-style: normal;
+                        font-variant: normal;
+                        font-weight: normal;
+                        text-align: left;
+                        text-decoration: none;
+                        white-space: normal;
+                        word-break: normal;
+                        word-spacing: normal;
+                        text-decoration: underline;
+                        text-indent: rem-convertor(0px);
+                        &:visited, &:active {
+                            color: map-get($lvContainerPageContactForm, "newsletter_font_color_form_check");
+                        }
+                        &:hover {
+                            color: map-get($lvContainerPageContactForm, "newsletter_font_color_form_check");
+                            cursor: pointer;
+                        }
+                    }
+                }
+                & .invalid-feedback {
+                    @media only screen and (max-width: 767px) {
+                        text-align: center;
                     }
                 }
             }
-            & .btn {
-                border-radius: rem-convertor(0px);
-                height: rem-convertor(60px);
-                background-color: map-get($lvContainerPageContactForm, "contact_form_bg_color_btn");
-                border-color: map-get($lvContainerPageContactForm, "contact_form_border_color_btn");
-                border-radius: rem-convertor(0px);
-                color: map-get($lvContainerPageContactForm, "contact_form_font_color_btn");
-                font-weight: bold;
-                &:focus {
-                    border-color: transparent !important;
-                    box-shadow: 0 rem-convertor(1px) rem-convertor(1px) transparent inset, 0 0 rem-convertor(1px) transparent !important;
-                    outline: 0 none !important;
+            & .form-button {
+                @media only screen and (max-width: 576px) {
+                    @include flex-center();
+                }
+                & .btn {
+                    border-radius: rem-convertor(0px);
+                    height: rem-convertor(60px);
+                    background-color: map-get($lvContainerPageContactForm, "contact_form_bg_color_btn");
+                    border-color: map-get($lvContainerPageContactForm, "contact_form_border_color_btn");
+                    border-radius: rem-convertor(0px);
+                    color: map-get($lvContainerPageContactForm, "contact_form_font_color_btn");
+                    font-weight: bold;
+                    &:focus {
+                        border-color: transparent !important;
+                        box-shadow: 0 rem-convertor(1px) rem-convertor(1px) transparent inset, 0 0 rem-convertor(1px) transparent !important;
+                        outline: 0 none !important;
+                    }
                 }
             }
         }

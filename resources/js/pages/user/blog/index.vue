@@ -2,9 +2,6 @@
   <div class="row">
     <div class="col-lg-12 m-auto">
       <div class="container lv-con-pg-blog">
-        <div class="lv-con-pg-blog-title">
-          <h1>APP BLOG PAGE</h1>
-        </div>
         <!-- MAIN CATEGORIES, SECTION START -->
         <main-categories />
         <!-- MAIN CATEGORIES, SECTION END -->
