@@ -91,8 +91,16 @@
     },
     "contact_me_page": {
       "page_title": "Contactează-mă",
-      "general": {
-        "message_subscribe": "Mesajul tău a fost trimis cu success! Te voi contacta în cel mai scurt timp!"
+      "title": "Lorem, ipsum dolor.",
+      "paragraph": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum distinctio amet eos beatae culpa autem, quis consequatur alias adipisci ipsam.",
+      "contact_form": {
+        "input_full_name": "Numele și prenumele tău",
+        "input_email_address": "Adresa ta de email",
+        "input_message": "Lasă-mi un mesaj",
+        "i_agree_with": "Sunt de acord cu ",
+        "privacy_policy": "Termenii și Condițiile",
+        "contact_form_button": "Trimite mesajul",
+        "message_sent": "Mesajul tău a fost trimis cu success! Te voi contacta în cel mai scurt timp!"
       }
     },
     "schedule_appointment_page": {

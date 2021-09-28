@@ -91,7 +91,15 @@
     },
     "contact_me_page": {
       "page_title": "Contact me",
-      "general": {
+      "title": "Lorem, ipsum dolor.",
+      "paragraph": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum distinctio amet eos beatae culpa autem, quis consequatur alias adipisci ipsam.",
+      "contact_form": {
+        "input_full_name": "Your name and surname",
+        "input_email_address": "Your email address",
+        "input_message": "Leave me a message",
+        "i_agree_with": "I agree with the ",
+        "privacy_policy": "Privacy Policy",
+        "contact_form_button": "Send message",
         "message_sent": "You have successfully sent me a message! I will contact you shortly!"
       }
     },
