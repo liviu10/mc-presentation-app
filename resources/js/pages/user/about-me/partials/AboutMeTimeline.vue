@@ -1,6 +1,6 @@
 <template>
   <div class="lv-con-pg-about-timeline">
-    <h1>TIMELINE</h1>
+    <h1>{{ $t('user.about_me_page.timeline_section_title') }}</h1>
     <!-- HORIZONTAL TIMELINE, SECTION START -->
     <div class="bar" />
     <div class="timeline">
