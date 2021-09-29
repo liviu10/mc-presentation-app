@@ -1,0 +1,18 @@
+@import 'partials/_timeline.scss';
+
+.lv-con-pg-about {
+    @include flex-center();
+    flex-direction: column;
+    &-video, & video {
+        width: rem-convertor(720px);
+        height: rem-convertor(480px);
+        @media only screen and (max-width: 767px) {
+            width: rem-convertor(480px);
+            height: rem-convertor(360px);
+        }
+        @media only screen and (max-width: 479px) {
+            width: rem-convertor(320px);
+            height: rem-convertor(240px);
+        }
+    }
+}
