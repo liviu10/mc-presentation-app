@@ -2,16 +2,29 @@
   <div class="row">
     <div class="col-lg-12 m-auto">
       <div class="container lv-con-pg-about">
-        <h1>APP ABOUT ME PAGE</h1>
+        <!-- ABOUT ME VIDEO, SECTION START -->
+        <div class="lv-con-pg-about-video">
+          <video controls>
+            <source src="/videos/demo_video.mp4" type="video/mp4">
+          </video>
+        </div>
+        <!-- ABOUT ME VIDEO, SECTION END -->
+        <!-- TIMELINE, SECTION START -->
+        <about-me-timeline />
+        <!-- TIMELINE, SECTION END -->
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import AboutMeTimeline from '~/pages/user/about-me/partials/AboutMeTimeline.vue'
+
 export default {
   name: 'AboutMePage',
-  components: {},
+  components: {
+    AboutMeTimeline
+  },
   layout: '',
   middleware: '',
   props: {},
@@ -19,7 +32,7 @@ export default {
     return {}
   },
   computed: {
-    // mapped getters
+    // mapped getters}
   },
   mounted () {},
   methods: {},
