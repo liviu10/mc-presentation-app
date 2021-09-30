@@ -111,8 +111,21 @@ $lvTimeline: (
                 }
                 & .card {
                     & img {
+                        &:hover {
+                            cursor: zoom-in;
+                        }
                         @media only screen and (max-width: 374px) {
                             height: rem-convertor(280px);
+                        }
+                    }
+                    &-text {
+                        & span {
+                            font-style: italic;
+                            &:hover {
+                                cursor: pointer;
+                                font-style: italic;
+                                text-decoration: underline;
+                            }
                         }
                     }
                 }
@@ -199,6 +212,9 @@ $lvTimeline: (
                     max-width: rem-convertor(600px);
                 }
             }
+            &-content {
+                width: auto !important;
+            }
             &-title {
                 border-bottom: 0rem;
             }
@@ -210,6 +226,26 @@ $lvTimeline: (
                 }
                 @media only screen and (min-width: 320px) {
                     width: 100%;
+                }
+                & .fa-window-close {
+                    position: absolute;
+                    top: 3%;
+                    left: 92%;
+                    width: rem-convertor(30px);
+                    height: rem-convertor(30px);
+                    color: #FFFFFF;
+                    opacity: 1 !important;
+                    @media only screen and (max-width: 320px) {
+                        left: 86%;
+                    }
+                }
+                & img {
+                    @media only screen and (min-width: 320px) {
+                        width: 100%;
+                    }
+                }
+                &--image {
+                    padding: 0rem !important;
                 }
             }
             &-footer {

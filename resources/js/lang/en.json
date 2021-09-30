@@ -45,6 +45,7 @@
     "about_me_page": {
       "page_title": "About me",
       "timeline_section_title": "Timeline",
+      "timeline_section_read_more": "Read more",
       "timeline_modal_close": "Close"
     },
     "blog_page": {
