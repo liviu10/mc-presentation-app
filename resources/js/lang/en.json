@@ -44,7 +44,8 @@
   "user": {
     "about_me_page": {
       "page_title": "About me",
-      "timeline_section_title": "Timeline"
+      "timeline_section_title": "Timeline",
+      "timeline_modal_close": "Close"
     },
     "blog_page": {
       "page_title": "Blog"

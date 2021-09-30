@@ -21,7 +21,8 @@
               {{ image.eventImageText }}
             </p>
           </div>
-          <!-- ENLARGE TIMELINE PICTURE, SECTION START -->
+
+          <!-- IMAGE DETAILS, SECTION START -->
           <div :id="'exampleModal' + image.id"
                class="modal fade"
                tabindex="-1"
@@ -30,25 +31,26 @@
           >
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
+                <div class="modal-header">
+                  <h4 id="exampleModalLabel" class="modal-title">
+                    Modal title
+                  </h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+                </div>
                 <div class="modal-body">
-                  <fa type="button"
-                      icon="window-close"
-                      fixed-width
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                      title="Închide fereastra!"
-                  />
-                  <img :src="image.eventImageSource"
-                       :alt="image.eventImageAlternativeTitle"
-                  >
-                  <button type="button" class="btn btn-primary">
-                    Vezi mai multe
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid distinctio beatae incidunt quas, tempora voluptatem natus vero harum. Facere architecto ipsa, necessitatibus voluptatum qui tempora nostrum unde dolor dolores reiciendis minus hic atque nam. Tempore neque, nemo odit totam excepturi aliquam, aperiam eos non autem libero id nihil aut tempora laborum. Similique quos optio non suscipit alias! Laborum autem accusamus consectetur, explicabo nam ipsa, expedita officiis dolor sequi debitis voluptate corrupti? Sit exercitationem officia non, ipsa quaerat repellendus! Ipsa magni illo vel expedita quisquam cum, dicta quae doloribus libero sed odio maiores corrupti explicabo? Commodi deleniti iste voluptatum voluptate facilis? Iure magnam a alias dolorum, id consequuntur quo porro vitae velit deleniti. Magni, eveniet in molestias, numquam quae rem quam fugiat fuga modi maxime tempore. Tempore cum vero minus esse asperiores fuga exercitationem adipisci porro reprehenderit, pariatur eius non vel quas maiores temporibus repellat rerum illum quibusdam voluptatibus saepe eos enim itaque voluptatum ad. Officiis, suscipit harum ea tempora voluptatum repellat quibusdam repudiandae reiciendis at, cumque consequatur accusantium minus expedita obcaecati velit et! Molestiae nostrum earum quasi deserunt at, natus delectus eum facilis quam ipsum reiciendis odit laborum iusto maxime, aliquam a minus! Magnam architecto libero maiores ea eius. Vitae, eos. Culpa delectus praesentium aut necessitatibus. Error, voluptatum nesciunt nam eius facere, ex sapiente, culpa natus deserunt corrupti distinctio ullam molestiae ratione hic quos maxime tenetur ea! Mollitia alias aperiam dolorum velit dicta impedit vero libero quam facilis voluptatibus dolorem, deleniti maxime quis delectus amet accusantium. Impedit eaque illum accusamus.
+                  </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    {{ $t('user.about_me_page.timeline_modal_close') }}
                   </button>
                 </div>
               </div>
             </div>
           </div>
-          <!-- ENLARGE TIMELINE PICTURE, SECTION END -->
+          <!-- IMAGE DETAILS, SECTION END -->
         </div>
       </div>
       <!-- HORIZONTAL TIMELINE PICTURES, SECTION END -->
