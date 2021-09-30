@@ -1,10 +1,10 @@
-$lvContainerError: (
-    error_page_bg_color_btn:     map-get($pale_cerulean, "color_khaki"),
-    error_page_border_color_btn: map-get($pale_cerulean, "color_khaki"),
-    error_page_font_color_btn:   map-get($basic_colors, "color_black"),
+$lvContainerUnderConstruction: (
+    under_construction_page_bg_color_btn:     map-get($pale_cerulean, "color_khaki"),
+    under_construction_page_border_color_btn: map-get($pale_cerulean, "color_khaki"),
+    under_construction_page_font_color_btn:   map-get($basic_colors, "color_black"),
 );
 
-.page-not-found {
+.under-construction-page {
     &-action {
         @include flex-center();
         &-buttons {
@@ -23,20 +23,24 @@ $lvContainerError: (
             & .title {
                 & h3 {
                     margin: rem-convertor(0px) !important;
+                    text-align: center;
                 }
             }
             & .buttons {
                 @include flex-center();
                 & .btn {
-                    background-color: map-get($lvContainerError, "error_page_bg_color_btn");
-                    border-color: map-get($lvContainerError, "error_page_border_color_btn");
+                    background-color: map-get($lvContainerUnderConstruction, "under_construction_page_bg_color_btn");
+                    border-color: map-get($lvContainerUnderConstruction, "under_construction_page_border_color_btn");
                     border-radius: rem-convertor(0px);
                     font-weight: bold;
-                    color: map-get($lvContainerError, "error_page_font_color_btn");
+                    color: map-get($lvContainerUnderConstruction, "under_construction_page_font_color_btn");
                     &:focus {
                         border-color: transparent !important;
                         box-shadow: 0 1px 1px transparent inset, 0 0 8px transparent !important;
                         outline: 0 none !important;
+                    }
+                    &:first-of-type {
+                        margin-right: rem-convertor(10px);
                     }
                 }
             }

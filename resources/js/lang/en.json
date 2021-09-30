@@ -149,6 +149,13 @@
       "action": {
         "first": "Go back to Home Page!"
       }
+    },
+    "under_construction_page": {
+      "title": "This page is under construction!",
+      "action": {
+        "first": "Go back to Home Page!",
+        "second": "Go back to Previous Page!"
+      }
     }
   },
   "ok": "Ok",

@@ -149,6 +149,13 @@
       "action": {
         "first": "Întoarce-te la pagina principală!"
       }
+    },
+    "under_construction_page": {
+      "title": "Pagina solicitată este în construcție!",
+      "action": {
+        "first": "Întoarce-te la pagina principală!",
+        "second": "Întoarce-te la pagina anterioară!"
+      }
     }
   }
 }

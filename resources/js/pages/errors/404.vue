@@ -13,9 +13,17 @@
           </h3>
         </div>
         <!-- ERROR PAGE TITLE, SECTION END -->
-        <router-link v-for="action in actions" :key="action.id" :to="{ name: action.button_url }" class="btn btn-primary">
-          {{ action.button_name }}
-        </router-link>
+        <!-- ERROR PAGE BUTTONS, SECTION START -->
+        <div class="buttons">
+          <router-link v-for="action in actions"
+                       :key="action.id"
+                       :to="{ name: action.button_url }"
+                       class="btn btn-primary"
+          >
+            {{ action.button_name }}
+          </router-link>
+        </div>
+        <!-- ERROR PAGE BUTTONS, SECTION END -->
       </div>
     </div>
     <!-- ERROR PAGE ACTIONS, SECTION END -->
