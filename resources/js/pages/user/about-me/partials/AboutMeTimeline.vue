@@ -15,24 +15,55 @@
                  class="card-img-top"
                  :alt="image.eventImageAlternativeTitle"
                  data-bs-toggle="modal"
-                 :data-bs-target="'#exampleModal' + image.id"
+                 :data-bs-target="'#enlargeImageModal' + image.id"
             >
             <p class="card-text">
               {{ image.eventImageText }}
+              <span data-bs-toggle="modal"
+                    :data-bs-target="'#readMoreImageModal' + image.id"
+              >
+                ({{ $t('user.about_me_page.timeline_section_read_more') }})
+              </span>
             </p>
           </div>
 
-          <!-- IMAGE DETAILS, SECTION START -->
-          <div :id="'exampleModal' + image.id"
+          <!-- ENLARGE TIMELINE PICTURE, SECTION START -->
+          <div :id="'enlargeImageModal' + image.id"
                class="modal fade"
                tabindex="-1"
-               aria-labelledby="exampleModalLabel"
+               aria-labelledby="enlargeImageModalLabel"
+               aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-body modal-body--image">
+                  <fa type="button"
+                      icon="window-close"
+                      fixed-width
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                      :title="$t('user.about_me_page.timeline_modal_close')"
+                  />
+                  <img :src="image.eventImageSource"
+                       :alt="image.eventImageAlternativeTitle"
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ENLARGE TIMELINE PICTURE, SECTION END -->
+
+          <!-- IMAGE DETAILS, SECTION START -->
+          <div :id="'readMoreImageModal' + image.id"
+               class="modal fade"
+               tabindex="-1"
+               aria-labelledby="readMoreImageModalLabel"
                aria-hidden="true"
           >
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h4 id="exampleModalLabel" class="modal-title">
+                  <h4 id="readMoreImageModalLabel" class="modal-title">
                     Modal title
                   </h4>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />
