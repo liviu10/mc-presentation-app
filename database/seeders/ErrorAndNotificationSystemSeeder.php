@@ -75,6 +75,14 @@ class ErrorAndNotificationSystemSeeder extends Seeder
             ],
             [
                 'id'                       => '8',
+                'notify_code'              => 'INFO_0008',
+                'notify_short_description' => 'The record(s) you have selected was (were) successfully updated in the database!',
+                'notify_reference'         => '!!! Insert documentation link here !!!',
+                'created_at'               => '2021-09-26 00:00:00',
+                'updated_at'               => '2021-09-26 00:00:00',
+            ],
+            [
+                'id'                       => '9',
                 'notify_code'              => 'ERR_0001',
                 'notify_short_description' => 'The table you are looking for does not exist in the database!',
                 'notify_reference'         => '!!! Insert documentation link here !!!',
@@ -82,7 +90,7 @@ class ErrorAndNotificationSystemSeeder extends Seeder
                 'updated_at'               => '2021-09-26 00:00:00',
             ],
             [
-                'id'                       => '9',
+                'id'                       => '10',
                 'notify_code'              => 'ERR_0002',
                 'notify_short_description' => 'One or more column(s) is (are) missing from the table!',
                 'notify_reference'         => '!!! Insert documentation link here !!!',
@@ -90,7 +98,7 @@ class ErrorAndNotificationSystemSeeder extends Seeder
                 'updated_at'               => '2021-09-26 00:00:00',
             ],
             [
-                'id'                       => '10',
+                'id'                       => '11',
                 'notify_code'              => 'ERR_0003',
                 'notify_short_description' => 'Integrity constraint violation! The record(s) already exists in the database!',
                 'notify_reference'         => '!!! Insert documentation link here !!!',

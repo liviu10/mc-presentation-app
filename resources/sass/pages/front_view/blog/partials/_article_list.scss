@@ -1,17 +1,15 @@
 $lvContainerPageWrittenArticle: (
-    contact_form_bg_color_btn:     map-get($pale_cerulean, "color_khaki"),
-    contact_form_border_color_btn: map-get($pale_cerulean, "color_khaki"),
-    contact_form_font_color_btn:   map-get($basic_colors, "color_black"),
-    contact_form_check_font_color: map-get($basic_colors, "color_black"),
+    comment_form_bg_color_btn:     map-get($pale_cerulean, "color_khaki"),
+    comment_form_border_color_btn: map-get($pale_cerulean, "color_khaki"),
+    comment_form_font_color_btn:   map-get($basic_colors, "color_black"),
+    comment_form_check_font_color: map-get($basic_colors, "color_black"),
 );
 $lvContainerPageWrittenArticleFont: 'Merriweather Sans Bold', sans-serif;
 
 .lv-con-pg-articles {
     &-view-title {
-        & h4, & p {
-            margin-bottom: rem-convertor(0px);
-        }
         & p {
+            margin-bottom: rem-convertor(0px);
             font-size: rem-convertor(16px);
             font-style: italic;
         }
@@ -86,10 +84,10 @@ $lvContainerPageWrittenArticleFont: 'Merriweather Sans Bold', sans-serif;
         margin-bottom: rem-convertor(16px);
         & .btn {
             border-radius: rem-convertor(0px);
-            background-color: map-get($lvContainerPageWrittenArticle, "contact_form_bg_color_btn");
-            border-color: map-get($lvContainerPageWrittenArticle, "contact_form_border_color_btn");
+            background-color: map-get($lvContainerPageWrittenArticle, "comment_form_bg_color_btn");
+            border-color: map-get($lvContainerPageWrittenArticle, "comment_form_border_color_btn");
             border-radius: rem-convertor(0px);
-            color: map-get($lvContainerPageWrittenArticle, "contact_form_font_color_btn");
+            color: map-get($lvContainerPageWrittenArticle, "comment_form_font_color_btn");
             font-weight: bold;
             &:focus {
                 border-color: transparent !important;
@@ -111,7 +109,7 @@ $lvContainerPageWrittenArticleFont: 'Merriweather Sans Bold', sans-serif;
                 margin-bottom: rem-convertor(50px);
                 & h1, & p {
                     margin-bottom: rem-convertor(0px);
-                    font-family: map-get($lvContainerPageWrittenArticle, "contact_form_font_family");
+                    font-family: map-get($lvContainerPageWrittenArticle, "comment_form_font_family");
                 }
                 & p {
                     margin-top: rem-convertor(32px);
@@ -141,8 +139,31 @@ $lvContainerPageWrittenArticleFont: 'Merriweather Sans Bold', sans-serif;
                         height: rem-convertor(20px);
                     }
                     &-label {
-                        & a {
-                            color: map-get($lvContainerPageWrittenArticle, "contact_form_check_font_color");
+                        & .a-typography {
+                            margin: rem-convertor(8px) 0rem;
+                            padding: 0rem;
+                            font-style: normal;
+                            font-variant: normal;
+                            font-weight: normal;
+                            text-align: left;
+                            text-decoration: none;
+                            white-space: normal;
+                            word-break: normal;
+                            word-spacing: normal;
+                            text-decoration: underline;
+                            text-indent: rem-convertor(0px);
+                            &:visited, &:active {
+                                color: map-get($lvContainerPageWrittenArticle, "comment_form_check_font_color");
+                            }
+                            &:hover {
+                                color: map-get($lvContainerPageWrittenArticle, "comment_form_check_font_color");
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                    & .invalid-feedback {
+                        @media only screen and (max-width: 767px) {
+                            text-align: center;
                         }
                     }
                 }
@@ -153,10 +174,10 @@ $lvContainerPageWrittenArticleFont: 'Merriweather Sans Bold', sans-serif;
                 & .btn {
                     border-radius: rem-convertor(0px);
                     height: rem-convertor(60px);
-                    background-color: map-get($lvContainerPageWrittenArticle, "contact_form_bg_color_btn");
-                    border-color: map-get($lvContainerPageWrittenArticle, "contact_form_border_color_btn");
+                    background-color: map-get($lvContainerPageWrittenArticle, "comment_form_bg_color_btn");
+                    border-color: map-get($lvContainerPageWrittenArticle, "comment_form_border_color_btn");
                     border-radius: rem-convertor(0px);
-                    color: map-get($lvContainerPageWrittenArticle, "contact_form_font_color_btn");
+                    color: map-get($lvContainerPageWrittenArticle, "comment_form_font_color_btn");
                     font-weight: bold;
                     &:focus {
                         border-color: transparent !important;

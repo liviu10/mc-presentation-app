@@ -3,7 +3,7 @@
     <div class="col-lg-12 m-auto">
       <div class="container lv-con-pg-articles">
         <div class="lv-con-pg-articles-title">
-          <h1>APP DISPLAY WRITTEN ARTICLE PAGE</h1>
+          <h1>TITLUL ARTICOLULUI SCRIS</h1>
         </div>
         <div class="lv-con-pg-articles-view">
           <!-- ARTICLE TEMPLATE, SECTION START -->
@@ -123,9 +123,14 @@
                            name="privacy_policy"
                     >
                     <label class="form-check-label lead" for="flexCheckChecked">
-                      {{ $t('user.article_blog_page.comment_form.i_agree_with') }}
-                      <router-link :to="{ name: 'home-page' }">{{ $t('user.article_blog_page.comment_form.privacy_policy') }}</router-link>
-                    </label>
+                      <span @click="acceptPrivacyPolicy">
+                        {{ $t('user.article_blog_page.comment_form.i_agree_with') }}
+                        <span class="a-typography"
+                              @click="redirectToPrivacyPolicy"
+                        >
+                          {{ $t('user.article_blog_page.comment_form.privacy_policy') }}
+                        </span>
+                      </span></label>
                     <has-error :form="form" field="privacy_policy" />
                   </div>
                   <!-- PRIVACY POLICY, SECTION END -->
@@ -153,7 +158,7 @@ import 'vue-rate/dist/vue-rate.css'
 import Form from 'vform'
 
 // import SingleLeftPicture from '../templates/SingleLeftPicture'
-import SingleRightPicture from '../templates/SingleRightPicture.vue'
+// import SingleRightPicture from '../templates/SingleRightPicture.vue'
 // import SingleBottomPicture from '../templates/SingleBottomPicture.vue'
 
 Vue.use(rate)
@@ -162,7 +167,7 @@ export default {
   name: 'WrittenArticlesPage',
   components: {
     // SingleLeftPicture,
-    SingleRightPicture
+    // SingleRightPicture
     // SingleBottomPicture
   },
   layout: '',
@@ -217,6 +222,16 @@ export default {
       const writtenArticleApi = '/api/written-article'
       const { data } = await this.form.post(writtenArticleApi)
       console.log('>>>>>> Written Article Api URL: ', data)
+    },
+    acceptPrivacyPolicy () {
+      if (this.form.privacy_policy === true) {
+        this.form.privacy_policy = false
+      } else {
+        this.form.privacy_policy = true
+      }
+    },
+    redirectToPrivacyPolicy () {
+      this.$router.push({ name: 'terms-and-conditions' })
     }
   },
   metaInfo () {
