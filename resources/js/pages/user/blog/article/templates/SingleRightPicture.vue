@@ -2,7 +2,6 @@
   <div>
     <!-- SINGLE RIGHT PICTURE WRITTEN ARTICLE TEMPLATE TITLE, SECTION START -->
     <div class="lv-con-pg-articles-view-title">
-      <h4>Lorem, ipsum dolor.</h4>
       <p>
         <span>Mădălina Corina Marius</span> &bullet;
         <span>Septembrie 11 2021</span> &bullet;

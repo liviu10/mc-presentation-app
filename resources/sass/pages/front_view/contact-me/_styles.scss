@@ -116,10 +116,10 @@ $lvContainerPageContactFormFont: 'Merriweather Sans Bold', sans-serif;
                         text-decoration: underline;
                         text-indent: rem-convertor(0px);
                         &:visited, &:active {
-                            color: map-get($lvContainerPageContactForm, "newsletter_font_color_form_check");
+                            color: map-get($lvContainerPageContactForm, "contact_form_check_font_color");
                         }
                         &:hover {
-                            color: map-get($lvContainerPageContactForm, "newsletter_font_color_form_check");
+                            color: map-get($lvContainerPageContactForm, "contact_form_check_font_color");
                             cursor: pointer;
                         }
                     }

@@ -16,7 +16,7 @@ class CreateBlogSubcategoriesTable extends Migration
     {
         Schema::create('blog_subcategories', function (Blueprint $table) {
             $table->id();
-            $table->string('blog_category_code', 6);
+            // $table->string('blog_category_code', 6);
             $table->string('blog_subcategory_title', 255);
             $table->string('blog_subcategory_description', 255);
             $table->string('blog_subcategory_is_active', 3);
@@ -24,11 +24,11 @@ class CreateBlogSubcategoriesTable extends Migration
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->timestamp('deleted_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
-        DB::unprepared(
-            'ALTER TABLE `mc_presentation_app_db`.`blog_subcategories` 
-            ADD CONSTRAINT `BlogCategoryCode` FOREIGN KEY (`blog_category_code`)
-            REFERENCES `mc_presentation_app_db`.`blog_categories` (`blog_category_code`) ON DELETE RESTRICT ON UPDATE CASCADE;'
-        );
+        // DB::unprepared(
+        //     'ALTER TABLE `mc_presentation_app_db`.`blog_subcategories` 
+        //     ADD CONSTRAINT `BlogCategoryCode` FOREIGN KEY (`blog_category_code`)
+        //     REFERENCES `mc_presentation_app_db`.`blog_categories` (`blog_category_code`) ON DELETE RESTRICT ON UPDATE CASCADE;'
+        // );
     }
 
     /**

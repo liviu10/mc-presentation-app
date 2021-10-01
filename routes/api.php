@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\BlogCategoryConfigurationController;
+use App\Http\Controllers\BlogSubcategoryConfigurationController;
 use App\Http\Controllers\ContactMeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsletterController;
@@ -51,11 +52,35 @@ Route::group(['middleware' => 'guest:api'], function () {
     Route::get('oauth/{driver}/callback', [OAuthController::class, 'handleCallback'])->name('oauth.callback');
 });
 
-Route::apiResource('', HomeController::class);
-Route::delete('/newsletter/delete-all', [NewsletterController::class, 'deleteAllRecords']);
-Route::apiResource('/newsletter', NewsletterController::class);
-Route::apiResource('/contact-me', ContactMeController::class);
-Route::delete('/blog-configuration/categories/delete-all', [BlogCategoryConfigurationController::class, 'deleteAllRecords']);
-Route::apiResource('/blog-configuration/categories', BlogCategoryConfigurationController::class);
+/*
+|--------------------------------------------------------------------------
+| API Routes for the Front View of the Web Application
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for the front view of the application.
+| These routes are loaded by the RouteServiceProvider within a group which
+| is assigned the "api" middleware group. Enjoy building your API!
+|
+*/
+Route::group(['middleware' => 'guest:api'], function () {
+    // Home page
+    Route::apiResource('', HomeController::class);
+
+    // Newsletter section
+    Route::delete('/newsletter/delete-all', [NewsletterController::class, 'deleteAllRecords']);
+    Route::apiResource('/newsletter', NewsletterController::class);
+
+    // Contact me page
+    Route::apiResource('/contact-me', ContactMeController::class);
+
+    // Blog main categories
+    Route::delete('/blog-configuration/categories/delete-all', [BlogCategoryConfigurationController::class, 'deleteAllRecords']);
+    Route::apiResource('/blog-configuration/categories', BlogCategoryConfigurationController::class);
+    
+    // Blog subcategories
+    Route::delete('/blog-configuration/subcategories/delete-all', [BlogSubcategoryConfigurationController::class, 'deleteAllRecords']);
+    Route::apiResource('/blog-configuration/subcategories', BlogSubcategoryConfigurationController::class);
+});
+
 Route::delete('/errors-and-notification-system', [ErrorAndNotificationSystemController::class, 'deleteAllRecords']);
 Route::apiResource('/errors-and-notification-system', ErrorAndNotificationSystemController::class);
