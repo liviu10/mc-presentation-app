@@ -31,6 +31,7 @@ class NewsletterController extends Controller
 
     /**
      * Display a listing of the resource.
+     * This route method is available only for admin.
      *
      * @return \Illuminate\Http\Response
      */
@@ -74,17 +75,8 @@ class NewsletterController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
+     * This route method is available only for user.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -107,7 +99,7 @@ class NewsletterController extends Controller
                 'notify_code'              => 'INFO_0003',
                 'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0003')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                 'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0003')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                'admin_message'            => __('newsletter.store.info_0003_admin_message'),
+                'admin_message'            => __('newsletter.store.info_0003_admin_message', [ 'fullName' => $request->get('full_name') ]),
                 'records'                  => $apiInsertSingleRecord,
             ], 201);
         }
@@ -136,6 +128,7 @@ class NewsletterController extends Controller
 
     /**
      * Display the specified resource.
+     * This route method is available only for admin.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -190,18 +183,8 @@ class NewsletterController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        // 
-    }
-
-    /**
      * Update the specified resource in storage.
+     * This route method is available only for admin.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -248,6 +231,7 @@ class NewsletterController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * This route method is available only for admin.
      *
      * @param  string  $email
      * @return \Illuminate\Http\Response
@@ -306,6 +290,7 @@ class NewsletterController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * This route method is available only for admin.
      *
      * @return \Illuminate\Http\Response
      */
