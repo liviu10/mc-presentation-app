@@ -16,20 +16,16 @@ class CreateBlogCategoriesTable extends Migration
     {
         Schema::create('blog_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('blog_category_code', 6)->unique('blog_category_code');
             $table->string('blog_category_title', 255);
-            $table->string('blog_category_description', 255);
+            $table->string('blog_category_short_description', 255);
+            $table->longText('blog_category_description');
             $table->string('blog_category_is_active', 3);
             $table->string('blog_image_card_url', 255);
             $table->string('blog_category_path', 255);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
-            $table->timestamp('deleted_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamp('deleted_at')->nullable();
         });
-
-        DB::unprepared(
-            'ALTER TABLE `mc_presentation_app_db`.`blog_categories` DROP PRIMARY KEY, ADD PRIMARY KEY (`id`, `blog_category_code`);'
-        );
     }
 
     /**
