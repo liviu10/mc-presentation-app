@@ -17,6 +17,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ErrorAndNotificationSystemSeeder::class,
             BlogCategoriesSeeder::class,
+            BlogSubcategoriesSeeder::class,
+            BlogArticlesSeeder::class,
+            BlogArticleCommentsSeeder::class,
+            BlogArticleCommentRepliesSeeder::class,
         ]);
     }
 }

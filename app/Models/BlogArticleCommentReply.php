@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BlogSubcategoryConfiguration extends Model
+class BlogArticleCommentReply extends Model
 {
     use HasFactory;
 
@@ -14,7 +14,7 @@ class BlogSubcategoryConfiguration extends Model
      * 
      * @var string
      */
-    protected $table = 'blog_subcategories';
+    protected $table = 'blog_article_comment_replies';
 
     /**
      * The primary key associated with the table.
@@ -36,9 +36,15 @@ class BlogSubcategoryConfiguration extends Model
      * @var string
      */
     protected $fillable = [
-        'blog_subcategory_title',
-        'blog_subcategory_description',
-        'blog_subcategory_is_active',
+        'blog_category_id',
+        'blog_subcategory_id',
+        'blog_article_id',
+        'blog_article_comment_id',
+        'full_name',
+        'email',
+        'comment_reply',
+        'comment_reply_is_public',
+        'privacy_policy',
     ];
 
     /**
@@ -47,7 +53,8 @@ class BlogSubcategoryConfiguration extends Model
      * @var string
      */
     protected $attributes = [
-        'blog_subcategory_is_active' => false,
+        'comment_reply_is_public' => false,
+        'privacy_policy'          => false,
     ];
 
     /**
@@ -61,4 +68,13 @@ class BlogSubcategoryConfiguration extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    /**
+     * Eloquent relationship between Blog Article Comments and Article Comment Replies.
+     * Many blog articles comment replies may have only one blog article comment.
+     */
+    public function blog_article_comment()
+    {
+        return $this->belongsTo('App\Models\BlogArticleComment');
+    }
 }
