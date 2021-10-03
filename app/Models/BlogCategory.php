@@ -36,8 +36,8 @@ class BlogCategory extends Model
      * @var string
      */
     protected $fillable = [
-        'blog_category_code',
         'blog_category_title',
+        'blog_category_short_description',
         'blog_category_description',
         'blog_category_is_active',
         'blog_image_card_url',

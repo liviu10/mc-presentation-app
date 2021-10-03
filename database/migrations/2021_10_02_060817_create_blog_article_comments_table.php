@@ -20,8 +20,8 @@ class CreateBlogArticleCommentsTable extends Migration
             $table->foreignId('blog_subcategory_id');
             $table->foreignId('blog_article_id');
             $table->string('full_name', 255)->nullable(false);
-            $table->string('email', 255)->nullable(false)->unique();
-            $table->text('comment');
+            $table->string('email', 255)->nullable(false);
+            $table->longText('comment');
             $table->string('comment_is_public', 3);
             $table->string('privacy_policy', 3);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));

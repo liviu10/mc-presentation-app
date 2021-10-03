@@ -20,8 +20,9 @@ return [
     ],
     'store' => [
         'info_0003_admin_message' => 'O nouă categorie de blog a fost creată (:blogCategoryTitle) în baza de date!',
-        'err_0001_admin_message'  => 'Categoria blog-ului (:blogCategoryTitle) pe care dorești să o inserezi în tabelul [:tableName] nu a putut fi salvată în baza de date, deoarece acesta nu există! Te rog contactează administratorul website-ului!',
-        'err_0002_admin_message'  => 'Categoria blog-ului (:blogCategoryTitle) pe care dorești să o inserezi în tabelul [:tableName] nu a putut fi salvată în baza de date, deoarece acesta nu conține același număr de coloane cât a fost solicitat în API! Te rog contactează administratorul website-ului!',
+        'info_0009_admin_message' => 'O nouă categorie de blog a fost creată în baza de date! Cu toate acestea, statusul categoriei (:blogCategoryTitle) a fost setat ca inactiv! Poți activa această categorie în panoul de administrare!',
+        'err_0001_admin_message'  => 'Categoria blog-ului (:blogCategoryTitle) pe care dorești să o inserezi în tabelul [:tableName] nu a putut fi salvată în baza de date, deoarece tabelul nu există! Te rog contactează administratorul website-ului!',
+        'err_0002_admin_message'  => 'Categoria blog-ului (:blogCategoryTitle) pe care dorești să o inserezi în tabelul [:tableName] nu a putut fi salvată în baza de date, deoarece tabelul nu conține același număr de coloane cât a fost solicitat în API! Te rog contactează administratorul website-ului!',
         'err_0003_admin_message'  => 'Categoria blog-ului (:blogCategoryTitle) pe care dorești să o inserezi în tabelul [:tableName] nu a putut fi salvată în baza de date, deoarece această categorie exită deja! Te rog încearcă din nou, iar dacă problema persistă contactează administratorul website-ului!',
     ],
     'show' => [
@@ -32,8 +33,8 @@ return [
     ],
     'update' => [
         'info_0008_admin_message' => 'Categoria blog-ului selectată (:blogCategoryTitle) a fost schimbată cu succes!',
-        'err_0001_admin_message'  => 'Categoria blog-ului (:blogCategoryTitle) pe care dorești să o modifici în tabelul [:tableName] nu a putut fi salvată în baza de date! Te rog contactează administratorul website-ului!',
-        'err_0002_admin_message'  => 'Categoria blog-ului (:blogCategoryTitle) pe care dorești să o modifici în tabelul [:tableName] nu a putut fi salvată în baza de date, deoarece acesta nu conține același număr de coloane cât a fost solicitat în API! Te rog contactează administratorul website-ului!',
+        'err_0001_admin_message'  => 'Categoria blog-ului (:blogCategoryTitle) pe care dorești să o modifici în tabelul [:tableName] nu a putut fi salvată în baza de date, deoarece tabelul nu există! Te rog contactează administratorul website-ului!',
+        'err_0002_admin_message'  => 'Categoria blog-ului (:blogCategoryTitle) pe care dorești să o modifici în tabelul [:tableName] nu a putut fi salvată în baza de date, deoarece tabelul nu conține același număr de coloane cât a fost solicitat în API! Te rog contactează administratorul website-ului!',
     ],
     'delete' => [
         'info_0001_admin_message' => 'Momentan, nu există nicio categorie de blog definită în tabelul [:tableName] din baza de date!',

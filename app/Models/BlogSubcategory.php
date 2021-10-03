@@ -31,6 +31,7 @@ class BlogSubcategory extends Model
     protected $fillable = [
         'blog_category_id',
         'blog_subcategory_title',
+        'blog_subcategory_short_description',
         'blog_subcategory_description',
         'blog_subcategory_is_active',
     ];
