@@ -15,7 +15,11 @@ return [
 
     'index' => [
         'info_0001_admin_message' => 'Se pare că tabelul următor din baza de date: :tableName este gol!',
-        'info_0002_admin_message' => 'Lista erorilor și a notificărilor a fost adusă din baza de date! Această listă conține :tableRecordCount înregistrare(ări)!',
+        'info_0002_admin_message' => 
+        [
+            'message_1' => 'Lista erorilor și a notificărilor a fost adusă din baza de date! Această listă conține :tableRecordCount înregistrări!',
+            'message_2' => 'Lista erorilor și a notificărilor a fost adusă din baza de date! Această listă conține :tableRecordCount înregistrare!',
+        ],
         'err_0001_admin_message'  => 'Înregistrările pe care dorești să le vizualizezi nu au putut fi afișate din baza de date! Te rog să încerci mai târziu, iar dacă problema persistă contactează administratorul website-ului!',
     ],
     'store' => [
