@@ -55,7 +55,7 @@ class ContactMeController extends Controller
                 'message'        => 'required|min:60',
                 'privacy_policy' => 'accepted',
             ]);
-            $apiInsertSingleRecord = $this->modelName->create([
+            $apiInsertSingleRecord = $this->modelNameContactMe->create([
                 'full_name'      => $request->get('full_name'),
                 'email'          => $request->get('email'),
                 'message'        => $request->get('message'),
