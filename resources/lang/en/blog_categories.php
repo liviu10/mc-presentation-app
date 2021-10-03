@@ -20,8 +20,9 @@ return [
     ],
     'store' => [
         'info_0003_admin_message' => 'A new blog category was created (:blogCategoryTitle) in the database!',
-        'err_0001_admin_message'  => 'The blog category (:blogCategoryTitle) you are trying to insert in the table [:tableName] could not be saved in the database, because it does not exist! Please contact the website administrator!',
-        'err_0002_admin_message'  => 'The blog category (:blogCategoryTitle) you are trying to insert in the table [:tableName] could not be saved in the database, because it does not contain the same number of column as what was requested in API! Please contact the website administrator!',
+        'info_0009_admin_message' => 'A new blog category was created in the database! However, the status of this newly created blog category (:blogCategoryTitle) was set to inactive! You can active this blog category in the administration panel!',
+        'err_0001_admin_message'  => 'The blog category (:blogCategoryTitle) you are trying to insert in the table [:tableName] could not be saved in the database, because the table does not exist! Please contact the website administrator!',
+        'err_0002_admin_message'  => 'The blog category (:blogCategoryTitle) you are trying to insert in the table [:tableName] could not be saved in the database, because the table does not contain the same number of column as what was requested in API! Please contact the website administrator!',
         'err_0003_admin_message'  => 'The blog category (:blogCategoryTitle) you are trying to insert in the table [:tableName] could not be saved in the database, because this already exist! Please try again and if the problem persist contact the website administrator!',
     ],
     'show' => [
@@ -32,8 +33,8 @@ return [
     ],
     'update' => [
         'info_0008_admin_message' => 'The selected blog category (:blogCategoryTitle) was successfully modified!',
-        'err_0001_admin_message'  => 'The blog category (:blogCategoryTitle) you are trying to modify in the table [:tableName] could not be saved in the database, because it does not exist! Please contact the website administrator!',
-        'err_0002_admin_message'  => 'The blog category (:blogCategoryTitle) you are trying to modify in the table [:tableName] could not be saved in the database, because it does not contain the same number of column as what was requested in API! Please contact the website administrator!',
+        'err_0001_admin_message'  => 'The blog category (:blogCategoryTitle) you are trying to modify in the table [:tableName] could not be saved in the database, because the table does not exist! Please contact the website administrator!',
+        'err_0002_admin_message'  => 'The blog category (:blogCategoryTitle) you are trying to modify in the table [:tableName] could not be saved in the database, because the table does not contain the same number of column as what was requested in API! Please contact the website administrator!',
     ],
     'delete' => [
         'info_0001_admin_message' => 'Currently, there are no defined blog categories in the database table [:tableName]!',
