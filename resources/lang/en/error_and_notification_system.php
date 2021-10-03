@@ -15,7 +15,11 @@ return [
 
     'index' => [
         'info_0001_admin_message' => 'It appears that the following database table: :tableName is empty!',
-        'info_0002_admin_message' => 'The list of errors and notifications was successfully fetched from the database! This list contains :tableRecordCount record(s)!',
+        'info_0002_admin_message' => 
+            [
+                'message_1' => 'The list of errors and notifications was successfully fetched from the database! This list contains :tableRecordCount records!',
+                'message_2' => 'The list of errors and notifications was successfully fetched from the database! This list contains :tableRecordCount record!',
+            ],
         'err_0001_admin_message'  => 'The records you are trying to view could not be fetched from the database! Please try again later and if the problem persists contact the website administrator!',
     ],
     'store' => [

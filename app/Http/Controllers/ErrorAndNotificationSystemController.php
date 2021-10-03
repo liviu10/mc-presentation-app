@@ -41,13 +41,26 @@ class ErrorAndNotificationSystemController extends Controller
             }
             else 
             {
-                return response([
-                    'notify_code'              => 'INFO_0002',
-                    'notify_short_description' => $this->modelName::where($this->tableAllColumns[1], '=', 'INFO_0002')->pluck($this->tableAllColumns[2])[0],
-                    'notify_reference'         => $this->modelName::where($this->tableAllColumns[1], '=', 'INFO_0002')->pluck($this->tableAllColumns[3])[0],
-                    'admin_message'            => __('error_and_notification_system.index.info_0002_admin_message', [ 'tableRecordCount' => $apiDisplayAllRecords->count() ]),
-                    'records'                  => $apiDisplayAllRecords,
-                ], 201);
+                if ($apiDisplayAllRecords->count() === 1)
+                {
+                    return response([
+                        'notify_code'              => 'INFO_0002',
+                        'notify_short_description' => $this->modelName::where($this->tableAllColumns[1], '=', 'INFO_0002')->pluck($this->tableAllColumns[2])[0],
+                        'notify_reference'         => $this->modelName::where($this->tableAllColumns[1], '=', 'INFO_0002')->pluck($this->tableAllColumns[3])[0],
+                        'admin_message'            => __('error_and_notification_system.index.info_0002_admin_message.message_2', [ 'tableRecordCount' => $apiDisplayAllRecords->count() ]),
+                        'records'                  => $apiDisplayAllRecords,
+                    ], 201);
+                }
+                else 
+                {
+                    return response([
+                        'notify_code'              => 'INFO_0002',
+                        'notify_short_description' => $this->modelName::where($this->tableAllColumns[1], '=', 'INFO_0002')->pluck($this->tableAllColumns[2])[0],
+                        'notify_reference'         => $this->modelName::where($this->tableAllColumns[1], '=', 'INFO_0002')->pluck($this->tableAllColumns[3])[0],
+                        'admin_message'            => __('error_and_notification_system.index.info_0002_admin_message.message_1', [ 'tableRecordCount' => $apiDisplayAllRecords->count() ]),
+                        'records'                  => $apiDisplayAllRecords,
+                    ], 201);
+                }
             }
         }
         catch (\Illuminate\Database\QueryException $mysqlError)
