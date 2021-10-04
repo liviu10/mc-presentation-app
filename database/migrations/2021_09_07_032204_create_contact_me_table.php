@@ -17,8 +17,8 @@ class CreateContactMeTable extends Migration
         Schema::create('contact_me', function (Blueprint $table) {
             $table->id();
             $table->string('full_name', 255)->nullable(false);
-            $table->string('email', 255)->nullable(false)->unique();
-            $table->text('message');
+            $table->string('email', 255)->nullable(false);
+            $table->longText('message');
             $table->string('privacy_policy', 3);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));

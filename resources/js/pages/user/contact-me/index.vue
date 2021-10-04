@@ -142,6 +142,7 @@ export default {
       await this.form.post(contactMeApi)
       this.form.full_name = null
       this.form.email = null
+      this.form.message = null
       this.form.privacy_policy = null
     }
   },
