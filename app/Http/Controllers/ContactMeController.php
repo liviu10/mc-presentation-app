@@ -53,14 +53,26 @@ class ContactMeController extends Controller
                 'full_name'      => 'required|regex:/^[a-zA-Z_ ]+$/u|max:255',
                 'email'          => 'required|email:filter|max:255',
                 'message'        => 'required|min:60',
-                'privacy_policy' => 'accepted',
+                // 'privacy_policy' => 'accepted',
             ]);
-            $apiInsertSingleRecord = $this->modelNameContactMe->create([
-                'full_name'      => $request->get('full_name'),
-                'email'          => $request->get('email'),
-                'message'        => $request->get('message'),
-                'privacy_policy' => $request->get('privacy_policy'),
-            ]);
+            if (is_null($request->get('privacy_policy'))) 
+            {
+                $apiInsertSingleRecord = $this->modelNameContactMe->create([
+                    'full_name'      => $request->get('full_name'),
+                    'email'          => $request->get('email'),
+                    'message'        => $request->get('message'),
+                    'privacy_policy' => '0',
+                ]);
+            }
+            else 
+            {
+                $apiInsertSingleRecord = $this->modelNameContactMe->create([
+                    'full_name'      => $request->get('full_name'),
+                    'email'          => $request->get('email'),
+                    'message'        => $request->get('message'),
+                    'privacy_policy' => '1',
+                ]);
+            }
             return response([
                 'notify_code'              => 'INFO_0003',
                 'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0003')->pluck($this->tableAllColumnsErrorSystem[2])[0],
