@@ -36,7 +36,41 @@ class ContactMeController extends Controller
      */
     public function index()
     {
-        // 
+        try 
+        {
+            $apiDisplayAllRecords = $this->modelNameContactMe->all();
+            if ($apiDisplayAllRecords->isEmpty()) 
+            {
+                return response([
+                    'notify_code'              => 'INFO_0001',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('contact_me.index.info_0001_admin_message', [ 'tableName' => $this->tableNameContactMe ]),
+                ], 404);
+            }
+            else 
+            {
+                return response([
+                    'notify_code'              => 'INFO_0002',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0002')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0002')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('contact_me.index.info_0002_admin_message'),
+                    'records'                  => $apiDisplayAllRecords,
+                ], 201);
+            }
+        }
+        catch (\Illuminate\Database\QueryException $mysqlError)
+        {
+            if ($mysqlError->getCode() === '42S02') 
+            {
+                return response([
+                    'notify_code'              => 'ERR_0001',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('contact_me.index.err_0001_admin_message', [ 'tableName' => $this->tableNameContactMe ]),
+                ], 500);
+            }
+        }
     }
 
     /**
@@ -112,7 +146,51 @@ class ContactMeController extends Controller
      */
     public function show($id)
     {
-        //
+        try 
+        {
+            $apiDisplayAllRecords = $this->modelNameContactMe->all();
+            $apiDisplaySingleRecord = $this->modelNameContactMe->find($id);
+            if ($apiDisplayAllRecords->isEmpty()) 
+            {
+                return response([
+                    'notify_code'              => 'INFO_0001',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('contact_me.show.info_0001_admin_message', [ 'tableName' => $this->tableNameContactMe ]),
+                ], 404);
+            }
+            elseif (is_null($apiDisplaySingleRecord)) 
+            {
+                return response([
+                    'notify_code'              => 'INFO_0004',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0004')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0004')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('contact_me.show.info_0004_admin_message'),
+                ], 404);
+            }
+            else 
+            {
+                return response([
+                    'notify_code'              => 'INFO_0002',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0002')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0002')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('contact_me.show.info_0002_admin_message'),
+                    'record'                   => $apiDisplaySingleRecord,
+                ], 201);
+            }
+        }
+        catch (\Illuminate\Database\QueryException $mysqlError)
+        {
+            if ($mysqlError->getCode() === '42S02') 
+            {
+                return response([
+                    'notify_code'              => 'ERR_0001',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('contact_me.show.err_0001_admin_message', [ 'tableName' => $this->tableNameContactMe ]),
+                ], 500);
+            }
+        }
     }
 
     /**
@@ -124,7 +202,46 @@ class ContactMeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try 
+        {
+            $apiUpdateSingleRecord = $this->modelNameContactMe->find($id);
+            $apiUpdateSingleRecord->update($request->validate([
+                'blog_category_title'             => 'required|regex:/^[a-zA-Z_ ]+$/u|max:255',
+                'blog_category_short_description' => 'required|max:255',
+                'blog_category_description'       => 'required',
+                // 'blog_category_is_active'         => 'accepted',
+                'blog_image_card_url'             => 'required|max:255',
+                'blog_category_path'              => 'required|max:255',
+            ]));
+            return response([
+                'notify_code'              => 'INFO_0008',
+                'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0008')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0008')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                'admin_message'            => __('contact_me.update.info_0008_admin_message'),
+                'records'                  => $apiUpdateSingleRecord,
+            ], 201);
+        }
+        catch (\Illuminate\Database\QueryException $mysqlError) 
+        {
+            if ($mysqlError->getCode() === '42S02')
+            {
+                return response([
+                    'notify_code'              => 'ERR_0001',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('contact_me.update.err_0001_admin_message', [ 'tableName' => $this->tableNameContactMe, ]),
+                ], 500);
+            }
+            if ($mysqlError->getCode() === '42S22') 
+            {
+                return response([
+                    'notify_code'              => 'ERR_0002',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0002')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0002')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('contact_me.update.err_0002_admin_message', [ 'tableName' => $this->tableNameContactMe, ]),
+                ], 500);
+            }
+        }
     }
 
     /**
@@ -135,6 +252,107 @@ class ContactMeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try 
+        {
+            $apiDisplayAllRecords = $this->modelNameContactMe->all();
+            $apiDisplaySingleRecord = $this->modelNameContactMe->find($id);
+            if ($apiDisplayAllRecords->isEmpty()) 
+            {
+                return response([
+                    'notify_code'              => 'INFO_0001',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('contact_me.delete.info_0001_admin_message', [ 'tableName' => $this->tableNameContactMe ]),
+                ], 404);
+            }
+            elseif (is_null($apiDisplaySingleRecord)) 
+            {
+                return response([
+                    'notify_code'              => 'INFO_0005',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0005')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0005')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('contact_me.delete.info_0005_admin_message'),
+                ], 404);
+            }
+            else 
+            {
+                $apiDeleteSingleRecord = $this->modelNameContactMe->find($id)->delete();
+                return response([
+                    'notify_code'              => 'INFO_0006',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0006')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0006')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('contact_me.delete.info_0006_admin_message', [ 'blogCategoryTitle' => $apiDisplaySingleRecord['blog_category_title'] ]),
+                    'delete_records'            => $apiDisplaySingleRecord,
+                ], 200);
+            }
+        }
+        catch (\Illuminate\Database\QueryException $mysqlError)
+        {
+            if ($mysqlError->getCode() === '42S02') 
+            {
+                return response([
+                    'notify_code'              => 'ERR_0001',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('contact_me.delete.err_0001_admin_message', [ 'blogCategoryTitle' => $apiDisplaySingleRecord['blog_category_title'] ]),
+                ], 500);
+            }
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteAllRecords()
+    {
+        try 
+        {
+            $apiDisplayAllRecords = $this->modelNameContactMe->all();
+            if ($apiDisplayAllRecords->isEmpty()) 
+            {
+                return response([
+                    'notify_code'              => 'INFO_0001',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('contact_me.delete_all_records.info_0001_admin_message', [ 'tableName' => $this->tableNameContactMe ]),
+                ], 404);
+            }
+            elseif (is_null($apiDisplayAllRecords)) 
+            {
+                return response([
+                    'notify_code'              => 'INFO_0005',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0005')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0005')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('contact_me.delete_all_records.info_0005_admin_message'),
+                ], 404);
+            }
+            else 
+            {
+                DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+                $apiDeleteSingleRecord = $this->modelNameContactMe->truncate();
+                DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+                return response([
+                    'notify_code'              => 'INFO_0007',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0007')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0007')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('contact_me.delete_all_records.info_0007_admin_message'),
+                    'user_message'             => $apiDisplayAllRecords,
+                ], 200);
+            }
+        }
+        catch (\Illuminate\Database\QueryException $mysqlError)
+        {
+            if ($mysqlError->getCode() === '42S02') 
+            {
+                return response([
+                    'notify_code'              => 'ERR_0001',
+                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                    'admin_message'            => __('contact_me.delete_all_records.err_0001_admin_message'),
+                ], 500);
+            }
+        }
     }
 }
