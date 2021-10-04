@@ -112,6 +112,7 @@ Route::group(['middleware' => 'guest:api'], function () {
 
 
     // Contact me page API routes
+    Route::delete('/contact-me/delete-all', [ContactMeController::class, 'deleteAllRecords']);
     Route::apiResource('/contact-me', ContactMeController::class);
 });
 
