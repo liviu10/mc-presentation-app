@@ -94,9 +94,9 @@ class BlogArticleCommentReplyController extends Controller
         try 
         {
             $request->validate([
-                'blog_category_id'    => 'required', // TODO: how to validated dropdown list
-                'blog_subcategory_id' => 'required', // TODO: how to validated dropdown list
-                'blog_article_id'     => 'required', // TODO: how to validated dropdown list
+                'blog_category_id'    => 'required', // TODO: How to validate a dropdown list
+                'blog_subcategory_id' => 'required', // TODO: How to validate a dropdown list
+                'blog_article_id'     => 'required', // TODO: How to validate a dropdown list
                 'full_name'           => 'required|regex:/^[a-zA-Z_ ]+$/u|max:255',
                 'email'               => 'required|email:filter|max:255',
                 'comment_reply'       => 'required|max:255',
@@ -240,9 +240,9 @@ class BlogArticleCommentReplyController extends Controller
         {
             $apiUpdateSingleRecord = $this->modelNameBlogArticleCommentReply->find($id);
             $apiUpdateSingleRecord->update($request->validate([
-                'blog_category_id'    => 'required', // TODO: how to validated dropdown list
-                'blog_subcategory_id' => 'required', // TODO: how to validated dropdown list
-                'blog_article_id'     => 'required', // TODO: how to validated dropdown list
+                'blog_category_id'    => 'required', // TODO: How to validate a dropdown list
+                'blog_subcategory_id' => 'required', // TODO: How to validate a dropdown list
+                'blog_article_id'     => 'required', // TODO: How to validate a dropdown list
                 'full_name'           => 'required|regex:/^[a-zA-Z_ ]+$/u|max:255',
                 'email'               => 'required|email:filter|max:255',
                 'comment_reply'       => 'required|max:255',

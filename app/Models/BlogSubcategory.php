@@ -34,6 +34,7 @@ class BlogSubcategory extends Model
         'blog_subcategory_short_description',
         'blog_subcategory_description',
         'blog_subcategory_is_active',
+        'blog_subcategory_slug',
     ];
 
     /**

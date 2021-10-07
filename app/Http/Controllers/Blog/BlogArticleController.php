@@ -94,8 +94,8 @@ class BlogArticleController extends Controller
         try 
         {
             $request->validate([
-                'blog_category_id'               => 'required', // TODO: how to validated dropdown list
-                'blog_subcategory_id'            => 'required', // TODO: how to validated dropdown list
+                'blog_category_id'               => 'required', // TODO: How to validate a dropdown list
+                'blog_subcategory_id'            => 'required', // TODO: How to validate a dropdown list
                 'blog_article_title'             => 'required|regex:/^[a-zA-Z_ ]+$/u|max:255',
                 'blog_article_short_description' => 'required|max:255',
                 'blog_article_content'           => 'required',
@@ -103,15 +103,22 @@ class BlogArticleController extends Controller
                 // 'blog_article_is_video'          => 'accepted',
                 // 'blog_article_is_active'         => 'accepted',
             ]);
+            $averageAdultReadingSpeed = 225;
+            $articleTitleReadingTime = round(str_word_count($request->get('blog_article_title')) / $averageAdultReadingSpeed);
+            $articleShortDescriptionReadingTime = round(str_word_count($request->get('blog_article_short_description')) / $averageAdultReadingSpeed);
+            $articleDescriptionReadingTime = round(str_word_count($request->get('blog_article_content')) / $averageAdultReadingSpeed);
+            $articleTotalReadingTime = $articleTitleReadingTime + $articleShortDescriptionReadingTime + $articleDescriptionReadingTime;
             $apiInsertSingleRecord = $this->modelNameBlogArticles->create([
                 'blog_category_id'               => $request->get('blog_category_id'),
                 'blog_subcategory_id'            => $request->get('blog_subcategory_id'),
                 'blog_article_title'             => $request->get('blog_article_title'),
                 'blog_article_short_description' => $request->get('blog_article_short_description'),
                 'blog_article_content'           => $request->get('blog_article_content'),
+                'blog_article_slug'              => '/' . strtolower(str_replace(' ', '-', $request->get('blog_article_title'))),
                 'blog_article_is_audio'          => $request->get('blog_article_is_audio'),
                 'blog_article_is_video'          => $request->get('blog_article_is_video'),
                 'blog_article_is_active'         => $request->get('blog_article_is_active'),
+                'blog_article_reading_time'      => $articleTotalReadingTime,
             ]);
             if ($request->get('blog_article_is_audio') === '1' && $request->get('blog_article_is_active') === '1') 
             {
@@ -297,16 +304,33 @@ class BlogArticleController extends Controller
         try 
         {
             $apiUpdateSingleRecord = $this->modelNameBlogArticles->find($id);
-            $apiUpdateSingleRecord->update($request->validate([
-                'blog_category_id'               => 'required', // TODO: how to validated dropdown list
-                'blog_subcategory_id'            => 'required', // TODO: how to validated dropdown list
+            $request->validate([
+                'blog_category_id'               => 'required', // TODO: How to validate a dropdown list
+                'blog_subcategory_id'            => 'required', // TODO: How to validate a dropdown list
                 'blog_article_title'             => 'required|regex:/^[a-zA-Z_ ]+$/u|max:255',
                 'blog_article_short_description' => 'required|max:255',
                 'blog_article_content'           => 'required',
                 // 'blog_article_is_audio'          => 'accepted',
                 // 'blog_article_is_video'          => 'accepted',
                 // 'blog_article_is_active'         => 'accepted',
-            ]));
+            ]);
+            $averageAdultReadingSpeed = 225;
+            $articleTitleReadingTime = round(str_word_count($request->get('blog_article_title')) / $averageAdultReadingSpeed);
+            $articleShortDescriptionReadingTime = round(str_word_count($request->get('blog_article_short_description')) / $averageAdultReadingSpeed);
+            $articleDescriptionReadingTime = round(str_word_count($request->get('blog_article_content')) / $averageAdultReadingSpeed);
+            $articleTotalReadingTime = $articleTitleReadingTime + $articleShortDescriptionReadingTime + $articleDescriptionReadingTime;
+            $apiUpdateSingleRecord->update([
+                'blog_category_id'               => $request->get('blog_category_id'),
+                'blog_subcategory_id'            => $request->get('blog_subcategory_id'),
+                'blog_article_title'             => $request->get('blog_article_title'),
+                'blog_article_short_description' => $request->get('blog_article_short_description'),
+                'blog_article_content'           => $request->get('blog_article_content'),
+                'blog_article_slug'              => '/' . strtolower($request->get('blog_article_title')),
+                'blog_article_is_audio'          => $request->get('blog_article_is_audio'),
+                'blog_article_is_video'          => $request->get('blog_article_is_video'),
+                'blog_article_is_active'         => $request->get('blog_article_is_active'),
+                'blog_article_reading_time'      => $articleTotalReadingTime,
+            ]);
             return response([
                 'notify_code'              => 'INFO_0008',
                 'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0008')->pluck($this->tableAllColumnsErrorSystem[2])[0],
@@ -376,7 +400,7 @@ class BlogArticleController extends Controller
             }
             else 
             {
-                $apiDeleteSingleRecord = $this->modelNameBlogCategories->find($id)->delete();
+                $apiDeleteSingleRecord = $this->modelNameBlogArticles->find($id)->delete();
                 return response([
                     'notify_code'              => 'INFO_0006',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0006')->pluck($this->tableAllColumnsErrorSystem[2])[0],
@@ -453,6 +477,88 @@ class BlogArticleController extends Controller
                     'admin_message'            => __('blog_articles.delete_all_records.err_0001_admin_message'),
                 ], 500);
             }
+        }
+    }
+
+    /**
+     * Display a listing of all written blog articles.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getAllWrittenBlogArticles()
+    {
+        if (response($this->index())->status() === 200) 
+        {
+            $allWrittenBlogArticles = $this->modelNameBlogArticles::where('blog_category_id', '=', '1')
+                                                ->where('blog_article_is_active', '<>', '0')
+                                                ->orderBy('created_at', 'DESC')
+                                                ->get();
+            return response([
+                'results'              => $allWrittenBlogArticles,
+            ], 200);
+        }
+        else 
+        {
+            return response([
+                'notify_code'              => 'INFO_0018',
+                'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0018')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0018')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                'user_message'             => 'The resource you are trying to view does not exist on the server! Please contact the website administrator!',
+            ], 404);
+        }
+    }
+
+    /**
+     * Display a listing of all audio blog articles.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getAllAudioBlogArticles()
+    {
+        if (response($this->index())->status() === 200) 
+        {
+            $allAudioBlogArticles = $this->modelNameBlogArticles::where('blog_category_id', '=', '2')
+                                                ->where('blog_article_is_active', '<>', '0')
+                                                ->get();
+            return response([
+                'results'              => $allAudioBlogArticles,
+            ], 200);
+        }
+        else 
+        {
+            return response([
+                'notify_code'              => 'INFO_0018',
+                'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0018')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0018')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                'user_message'             => 'The resource you are trying to view does not exist on the server! Please contact the website administrator!',
+            ], 404);
+        }
+    }
+
+    /**
+     * Display a listing of all video blog articles.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getAllVideoBlogArticles()
+    {
+        if (response($this->index())->status() === 200) 
+        {
+            $allVideoBlogArticles = $this->modelNameBlogArticles::where('blog_category_id', '=', '3')
+                                                ->where('blog_article_is_active', '<>', '0')
+                                                ->get();
+            return response([
+                'results'              => $allVideoBlogArticles,
+            ], 200);
+        }
+        else 
+        {
+            return response([
+                'notify_code'              => 'INFO_0018',
+                'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0018')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0018')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                'user_message'             => 'The resource you are trying to view does not exist on the server! Please contact the website administrator!',
+            ], 404);
         }
     }
 }

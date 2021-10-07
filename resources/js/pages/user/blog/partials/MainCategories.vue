@@ -1,7 +1,7 @@
 <template>
   <div class="container lv-con-sect-categories">
     <!-- MAIN CATEGORIES: WRITTEN ARTICLES, AUDIO AND VIDEO, SECTION START -->
-    <div v-for="category in displayBlogMainCategories"
+    <div v-for="category in displayBlogCategoriesAndSubcategories"
          :key="category.id"
          class="card"
          style="width: 20rem;"
@@ -16,15 +16,15 @@
       </router-link>
       <div class="card-body">
         <p class="card-text">
-          {{ category.blog_category_description }}
+          {{ category.blog_category_short_description }}
         </p>
       </div>
       <div class="card-body">
-        <a v-for="subcategory in subcategories"
+        <a v-for="subcategory in category.blog_subcategories"
            :key="subcategory.id"
-           :href="subcategory.url"
+           :href="category.blog_category_path + '/subcategory' + subcategory.blog_subcategory_slug"
         >
-          {{ subcategory.name }}
+          {{ subcategory.blog_subcategory_title }}
         </a>
       </div>
     </div>
@@ -44,39 +44,22 @@ export default {
   components: {},
   data: function () {
     return {
-      subcategories: [
-        {
-          id: 1,
-          url: 'blog',
-          name: 'Subcategorie 1'
-        },
-        {
-          id: 2,
-          url: 'blog',
-          name: 'Subcategorie 2'
-        },
-        {
-          id: 3,
-          url: 'blog',
-          name: 'Subcategorie 3'
-        }
-      ],
-      displayBlogMainCategories: null
+      displayBlogCategoriesAndSubcategories: null
     }
   },
   computed: {},
   mounted () {
-    this.getBlogMainCategories()
+    this.getBlogCategoriesAndSubcategories()
   },
   methods: {
-    getBlogMainCategories: function () {
+    getBlogCategoriesAndSubcategories: function () {
       const url = window.location.origin
-      const blogMainCategoriesApi = url + '/api/blog-configuration/categories'
+      const blogCategoriesAndSubcategoriesApi = url + '/api/blog-configuration/categories-and-subcategories'
       axios
-        .get(blogMainCategoriesApi)
+        .get(blogCategoriesAndSubcategoriesApi)
         .then(response => {
-          console.log('>>>>> Blog Main Categories Api Data', response.data)
-          this.displayBlogMainCategories = response.data.records
+          console.log('>>>>> Blog Categories and Subcategories Api Data', response.data)
+          this.displayBlogCategoriesAndSubcategories = response.data.results
         })
     }
   }

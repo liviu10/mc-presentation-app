@@ -41,9 +41,11 @@ class BlogArticle extends Model
         'blog_article_title',
         'blog_article_short_description',
         'blog_article_content',
+        'blog_article_slug',
         'blog_article_is_audio',
         'blog_article_is_video',
         'blog_article_is_active',
+        'blog_article_reading_time',
     ];
 
     /**
@@ -67,6 +69,14 @@ class BlogArticle extends Model
         'created_at',
         'updated_at',
         'deleted_at',
+    ];
+
+    /**
+     * Cast timestamp columns.
+     */
+    protected $casts = [
+        'created_at' => 'date:d.m.Y',
+        'updated_at' => 'date:d.m.Y',
     ];
 
     /**

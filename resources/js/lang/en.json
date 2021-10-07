@@ -48,42 +48,55 @@
       "timeline_section_read_more": "Read more",
       "timeline_modal_close": "Close"
     },
-    "blog_page": {
-      "page_title": "Blog"
-    },
-    "article_blog_page": {
-      "page_title": "Written articles",
-      "rating_system": {
-        "title": "Rate this: ",
-        "options": {
-          "very_bad": "(Very Bad)",
-          "bad": "(Bad)",
-          "normal": "(Normal)",
-          "good": "(Good)",
-          "very_good": "(Very Good)"
+    "blog_system_pages": {
+      "meta_title": "Blog",
+      "written_article_blog_pages": {
+        "meta_title": "Written list articles",
+        "page_title": "Written list articles",
+        "reading_time": {
+          "less_than_one_minute": "Less than 1 min reading",
+          "more_than_one_minute": "min reading"
+        },
+        "read_more": "Read more!",
+        "article_blog_page": {
+          "page_title": "Written article",
+          "rating_system": {
+            "title": "Rate this: ",
+            "options": {
+              "very_bad": "(Very Bad)",
+              "bad": "(Bad)",
+              "normal": "(Normal)",
+              "good": "(Good)",
+              "very_good": "(Very Good)"
+            }
+          },
+          "article_subcategory": "Subcategory",
+          "like_dislike_system": {
+            "like": " likes",
+            "dislike": " dislikes"
+          },
+          "social_menu": {
+            "title": "Share on:",
+            "like": "Like",
+            "dislike": "Dislike",
+            "facebook": "Share on Facebook!",
+            "instagram": "Share on Instagram!",
+            "email": "Share this article on email!"
+          },
+          "comment_form": {
+            "input_full_name": "Your Name and Surname",
+            "input_email_address": "Your email address",
+            "input_message": "Enter your comment",
+            "i_agree_with": "I agree with the ",
+            "privacy_policy": "Privacy Policy",
+            "post_comment": "Post comment",
+            "success_message": "Your have successfully posted a new comment! This comment will be soon approved by an admin!"
+          }
         }
       },
-      "article_subcategory": "Subcategory",
-      "like_dislike_system": {
-        "like": " likes",
-        "dislike": " dislikes"
-      },
-      "social_menu": {
-        "title": "Share on:",
-        "like": "Like",
-        "dislike": "Dislike",
-        "facebook": "Share on Facebook!",
-        "instagram": "Share on Instagram!",
-        "email": "Share this article on email!"
-      },
-      "comment_form": {
-        "input_full_name": "Your Name and Surname",
-        "input_email_address": "Your email address",
-        "input_message": "Enter your comment",
-        "i_agree_with": "I agree with the ",
-        "privacy_policy": "Privacy Policy",
-        "post_comment": "Post comment",
-        "success_message": "Your have successfully posted a new comment! This comment will be soon approved by an admin!"
+      "general_settings": {
+        "published_on": "Published at:",
+        "more_articles": "More {type}"
       }
     },
     "audio_blog_page": {

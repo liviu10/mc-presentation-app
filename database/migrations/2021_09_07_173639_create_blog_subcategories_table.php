@@ -21,6 +21,7 @@ class CreateBlogSubcategoriesTable extends Migration
             $table->string('blog_subcategory_short_description', 255);
             $table->longText('blog_subcategory_description');
             $table->string('blog_subcategory_is_active', 3);
+            $table->string('blog_subcategory_slug', 255);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->timestamp('deleted_at')->nullable();
