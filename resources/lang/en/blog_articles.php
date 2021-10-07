@@ -14,8 +14,14 @@ return [
     */
 
     'index' => [
-        'info_0001_admin_message' => 'Currently, there are no blog articles in the database table [:tableName]!',
-        'info_0002_admin_message' => 'The list of all blog articles was fetched successfully from the database!',
+        'info_0001_admin_message' => [
+            'message_1' => 'Currently, there are no blog articles in the database table [:tableName]!',
+            'message_2' => 'Currently, there are no blog articles!',
+        ],
+        'info_0002_admin_message' => [
+            'message_1' => 'The list of all blog articles was fetched successfully from the database!',
+            'message_2' => 'The list of all blog articles was fetched successfully!',
+        ],
         'err_0001_admin_message'  => 'The blog articles you are trying to view could not be fetched from the database!, because the [:tableName] does not exist in the database! Please contact the website administrator!',
     ],
     'store' => [

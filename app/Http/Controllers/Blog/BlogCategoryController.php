@@ -46,7 +46,7 @@ class BlogCategoryController extends Controller
                     'notify_code'              => 'INFO_0001',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('blog_categories.index.info_0001_admin_message', [ 'tableName' => $this->tableNameBlogCategories ]),
+                    'admin_message'            => __('blog_categories.index.info_0001_admin_message.message_1', [ 'tableName' => $this->tableNameBlogCategories ]),
                 ], 404);
             }
             else 
@@ -68,7 +68,7 @@ class BlogCategoryController extends Controller
                     'notify_code'              => 'ERR_0001',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('blog_categories.index.err_0001_admin_message', [ 'tableName' => $this->tableNameBlogCategories ]),
+                    'admin_message'            => __('blog_categories.index.err_0001_admin_message.message_1', [ 'tableName' => $this->tableNameBlogCategories ]),
                 ], 500);
             }
         }
@@ -180,7 +180,7 @@ class BlogCategoryController extends Controller
                     'notify_code'              => 'INFO_0001',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('blog_categories.show.info_0001_admin_message', [ 'tableName' => $this->tableNameBlogCategories ]),
+                    'admin_message'            => __('blog_categories.show.info_0001_admin_message.message_1', [ 'tableName' => $this->tableNameBlogCategories ]),
                 ], 404);
             }
             elseif (is_null($apiDisplaySingleRecord)) 
@@ -337,7 +337,7 @@ class BlogCategoryController extends Controller
                     'notify_code'              => 'INFO_0001',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('blog_categories.delete.info_0001_admin_message', [ 'tableName' => $this->tableNameBlogCategories ]),
+                    'admin_message'            => __('blog_categories.delete.info_0001_admin_message.message_1', [ 'tableName' => $this->tableNameBlogCategories ]),
                 ], 404);
             }
             elseif (is_null($apiDisplaySingleRecord)) 
@@ -391,7 +391,7 @@ class BlogCategoryController extends Controller
                     'notify_code'              => 'INFO_0001',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('blog_categories.delete_all_records.info_0001_admin_message', [ 'tableName' => $this->tableNameBlogCategories ]),
+                    'admin_message'            => __('blog_categories.delete_all_records.info_0001_admin_message.message_1', [ 'tableName' => $this->tableNameBlogCategories ]),
                 ], 404);
             }
             elseif (is_null($apiDisplayAllRecords)) 
@@ -440,26 +440,35 @@ class BlogCategoryController extends Controller
     {
         if (response($this->index())->status() === 200) 
         {
-            // TODO: How to filter the eager load for each of the records in the blog_categories table
-            $allBlogCategoriesAndSubcategories = $this->modelNameBlogCategories::where('blog_category_is_active', '<>', '0')
-                                                ->limit(3)
+            // TODO: Limit blog_subcategories to 3 records for each blog_category record
+            $allBlogCategoriesAndSubcategories = $this->modelNameBlogCategories::where('blog_category_is_active', '<>', '0')->limit(3)
                                                 ->with([
                                                     'blog_subcategories' => function ($query) {
                                                         $query->where('blog_subcategory_is_active', '<>', '0');
                                                     }
-                                                ])
-                                                ->get();
-            return response([
-                'results'              => $allBlogCategoriesAndSubcategories,
-            ], 200);
+                                                ])->get();
+            if ($allBlogCategoriesAndSubcategories->isEmpty())
+            {
+                return response([
+                    'notify_code'          => 'INFO_0001',
+                    'user_message'         => __('blog_categories.index.info_0001_admin_message.message_2'),
+                    'results'              => $allBlogCategoriesAndSubcategories,
+                ], 404);
+            }
+            else 
+            {
+                return response([
+                    'notify_code'          => 'INFO_0002',
+                    'user_message'         => __('blog_categories.index.info_0002_admin_message.message_2'),
+                    'results'              => $allBlogCategoriesAndSubcategories,
+                ], 200);
+            }
         }
         else 
         {
             return response([
-                'notify_code'              => 'INFO_0018',
-                'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0018')->pluck($this->tableAllColumnsErrorSystem[2])[0],
-                'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0018')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                'user_message'             => 'The resource you are trying to view does not exist on the server! Please contact the website administrator!',
+                'notify_code'              => 'INFO_0001',
+                'user_message'             => __('blog_categories.index.info_0001_admin_message.message_2'),
             ], 404);
         }
     }

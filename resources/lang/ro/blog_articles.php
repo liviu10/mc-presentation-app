@@ -14,8 +14,14 @@ return [
     */
 
     'index' => [
-        'info_0001_admin_message' => 'Momentan, nu există niciun articol în tabelul [:tableName] din baza de date!',
-        'info_0002_admin_message' => 'Lista tuturor articolelor blog-ului a fost adusă cu success din baza de date!',
+        'info_0001_admin_message' => [
+            'message_1' => 'Momentan, nu există niciun articol în tabelul [:tableName] din baza de date!',
+            'message_2' => 'Momentan, nu există niciun articol!',
+        ],
+        'info_0002_admin_message' => [
+            'message_1' => 'Lista tuturor articolelor blog-ului a fost adusă cu success din baza de date!',
+            'message_2' => 'Lista tuturor articolelor blog-ului a fost adusă cu success!',
+        ],
         'err_0001_admin_message'  => 'Articolele blog-ului pe care dorești să le vizualizezi nu pot fi afișate, deoarece tabelul [:tableName] nu există în baza de date! Te rog contactează administratorul website-ului!',
     ],
     'store' => [

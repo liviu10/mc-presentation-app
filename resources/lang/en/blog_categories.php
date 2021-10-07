@@ -14,8 +14,14 @@ return [
     */
 
     'index' => [
-        'info_0001_admin_message' => 'Currently, there are no defined blog categories in the database table [:tableName]!',
-        'info_0002_admin_message' => 'The list of blog categories was fetched successfully from the database!',
+        'info_0001_admin_message' => [
+            'message_1' => 'Currently, there are no defined blog categories in the database table [:tableName]!',
+            'message_2' => 'Currently, there are no defined blog categories!',
+        ],
+        'info_0002_admin_message' => [
+            'message_1' => 'The list of blog categories was fetched successfully from the database!',
+            'message_2' => 'The list of blog categories was fetched successfully!',
+        ],
         'err_0001_admin_message'  => 'The blog categories you are trying to view could not be fetched from the database!, because the [:tableName] does not exist in the database! Please contact the website administrator!',
     ],
     'store' => [
