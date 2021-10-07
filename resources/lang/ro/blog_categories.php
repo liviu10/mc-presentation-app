@@ -14,8 +14,14 @@ return [
     */
 
     'index' => [
-        'info_0001_admin_message' => 'Momentan, nu există nicio categorie de blog definită în tabelul [:tableName] din baza de date!',
-        'info_0002_admin_message' => 'Lista categoriilor blog-ului a fost adusă cu succes din baza de date!',
+        'info_0001_admin_message' => [
+            'message_1' => 'Momentan, nu există nicio categorie de blog definită în tabelul [:tableName] din baza de date!',
+            'message_2' => 'Momentan, nu există nicio categorie de blog definită!',
+        ],
+        'info_0002_admin_message' => [
+            'message_1' => 'Lista categoriilor blog-ului a fost adusă cu succes din baza de date!',
+            'message_2' => 'Lista categoriilor blog-ului a fost adusă cu succes!',
+        ],
         'err_0001_admin_message'  => 'Categoriile blog-ului pe care dorești să le vizualizezi nu pot fi afișate, deoarece tabelul [:tableName] nu există în baza de date! Te rog contactează administratorul website-ului!',
     ],
     'store' => [

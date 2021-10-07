@@ -4,14 +4,19 @@
       <h1>{{ capitalizePageTitle }}</h1>
     </div>
     <!-- LIST OF WRITTEN ARTICLES, SECTION START -->
-    <div v-for="writtenArticle in displayAllWrittenBlogArticles"
+    <div v-if="!displayAllWrittenBlogArticles" class="lv-con-pg-articles-list">
+      <h1>{{ notifyMessage }}</h1>
+    </div>
+    <div v-for="writtenArticle in displayAllWrittenBlogArticles" v-else
          :key="writtenArticle.id"
          class="lv-con-pg-articles-list"
     >
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">
-            {{ writtenArticle.blog_article_title }}
+            <a :href="writtenArticle.blog_article_slug">
+              {{ writtenArticle.blog_article_title }}
+            </a>
             <span v-if="writtenArticle.blog_article_reading_time <= 1">
               ({{ $t('user.blog_system_pages.written_article_blog_pages.reading_time.less_than_one_minute') }})
             </span>
@@ -27,18 +32,17 @@
             <fa icon="quote-left" fixed-width />
             {{ writtenArticle.blog_article_short_description }}
           </p>
-          <router-link :to="{ name: 'article-view-index' }"
-                       class="btn btn-primary"
-          >
+          <a :href="writtenArticle.blog_article_slug" class="btn btn-primary">
             <fa icon="book-reader" fixed-width />
             {{ $t('user.blog_system_pages.written_article_blog_pages.read_more') }}
-          </router-link>
+          </a>
         </div>
       </div>
     </div>
     <!-- LIST OF WRITTEN ARTICLES, SECTION END -->
     <!-- MORE WRITTEN ARTICLES, SECTION START -->
-    <div class="lv-con-pg-articles-button-more">
+    <div v-if="!displayAllWrittenBlogArticles || (displayAllWrittenBlogArticles.length >= 1 && displayAllWrittenBlogArticles.length <= 3) " />
+    <div v-else class="lv-con-pg-articles-button-more">
       <button type="button" class="btn btn-primary btn-lg">
         <i class="far fa-clock" />
         {{ $t('user.blog_system_pages.general_settings.more_articles', { type: 'articole' }) }}!
@@ -60,6 +64,8 @@ export default {
   components: {},
   data: function () {
     return {
+      notifyCode: null,
+      notifyMessage: null,
       displayAllWrittenBlogArticles: null
     }
   },
@@ -80,7 +86,12 @@ export default {
         .get(allWrittenBlogArticlesApi)
         .then(response => {
           console.log('>>>>> Written Blog Articles Api Data', response.data)
-          this.displayAllWrittenBlogArticles = response.data.results
+          if (response.data.results.length === 0) {
+            this.notifyCode = response.data.notify_code
+            this.notifyMessage = response.data.user_message
+          } else {
+            this.displayAllWrittenBlogArticles = response.data.results
+          }
         })
     }
   }

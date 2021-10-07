@@ -55,7 +55,7 @@ class BlogArticleController extends Controller
                     'notify_code'              => 'INFO_0001',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('blog_articles.index.info_0001_admin_message', [ 'tableName' => $this->modelNameBlogArticles ]),
+                    'admin_message'            => __('blog_articles.index.info_0001_admin_message.message_1', [ 'tableName' => $this->modelNameBlogArticles ]),
                 ], 404);
             }
             else 
@@ -64,7 +64,7 @@ class BlogArticleController extends Controller
                     'notify_code'              => 'INFO_0002',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0002')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0002')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('blog_articles.index.info_0002_admin_message'),
+                    'admin_message'            => __('blog_articles.index.info_0002_admin_message.message_1'),
                     'records'                  => $apiDisplayAllRecords,
                 ], 201);
             }
@@ -108,18 +108,52 @@ class BlogArticleController extends Controller
             $articleShortDescriptionReadingTime = round(str_word_count($request->get('blog_article_short_description')) / $averageAdultReadingSpeed);
             $articleDescriptionReadingTime = round(str_word_count($request->get('blog_article_content')) / $averageAdultReadingSpeed);
             $articleTotalReadingTime = $articleTitleReadingTime + $articleShortDescriptionReadingTime + $articleDescriptionReadingTime;
-            $apiInsertSingleRecord = $this->modelNameBlogArticles->create([
-                'blog_category_id'               => $request->get('blog_category_id'),
-                'blog_subcategory_id'            => $request->get('blog_subcategory_id'),
-                'blog_article_title'             => $request->get('blog_article_title'),
-                'blog_article_short_description' => $request->get('blog_article_short_description'),
-                'blog_article_content'           => $request->get('blog_article_content'),
-                'blog_article_slug'              => '/' . strtolower(str_replace(' ', '-', $request->get('blog_article_title'))),
-                'blog_article_is_audio'          => $request->get('blog_article_is_audio'),
-                'blog_article_is_video'          => $request->get('blog_article_is_video'),
-                'blog_article_is_active'         => $request->get('blog_article_is_active'),
-                'blog_article_reading_time'      => $articleTotalReadingTime,
-            ]);
+            if ($request->get('blog_category_id') === '1') 
+            {
+                $apiInsertSingleRecord = $this->modelNameBlogArticles->create([
+                    'blog_category_id'               => $request->get('blog_category_id'),
+                    'blog_subcategory_id'            => $request->get('blog_subcategory_id'),
+                    'blog_article_title'             => $request->get('blog_article_title'),
+                    'blog_article_short_description' => $request->get('blog_article_short_description'),
+                    'blog_article_content'           => $request->get('blog_article_content'),
+                    'blog_article_slug'              => '/blog/article/view/' . strtolower(str_replace(' ', '-', $request->get('blog_article_title'))),
+                    'blog_article_is_audio'          => $request->get('blog_article_is_audio'),
+                    'blog_article_is_video'          => $request->get('blog_article_is_video'),
+                    'blog_article_is_active'         => $request->get('blog_article_is_active'),
+                    'blog_article_reading_time'      => $articleTotalReadingTime,
+                ]);
+            }
+            elseif ($request->get('blog_category_id') === '2') 
+            {
+                $apiInsertSingleRecord = $this->modelNameBlogArticles->create([
+                    'blog_category_id'               => $request->get('blog_category_id'),
+                    'blog_subcategory_id'            => $request->get('blog_subcategory_id'),
+                    'blog_article_title'             => $request->get('blog_article_title'),
+                    'blog_article_short_description' => $request->get('blog_article_short_description'),
+                    'blog_article_content'           => $request->get('blog_article_content'),
+                    'blog_article_slug'              => '/blog/audio/view/' . strtolower(str_replace(' ', '-', $request->get('blog_article_title'))),
+                    'blog_article_is_audio'          => $request->get('blog_article_is_audio'),
+                    'blog_article_is_video'          => $request->get('blog_article_is_video'),
+                    'blog_article_is_active'         => $request->get('blog_article_is_active'),
+                    'blog_article_reading_time'      => $articleTotalReadingTime,
+                ]);
+            }
+            else 
+            {
+                $apiInsertSingleRecord = $this->modelNameBlogArticles->create([
+                    'blog_category_id'               => $request->get('blog_category_id'),
+                    'blog_subcategory_id'            => $request->get('blog_subcategory_id'),
+                    'blog_article_title'             => $request->get('blog_article_title'),
+                    'blog_article_short_description' => $request->get('blog_article_short_description'),
+                    'blog_article_content'           => $request->get('blog_article_content'),
+                    'blog_article_slug'              => '/blog/video/view/' . strtolower(str_replace(' ', '-', $request->get('blog_article_title'))),
+                    'blog_article_is_audio'          => $request->get('blog_article_is_audio'),
+                    'blog_article_is_video'          => $request->get('blog_article_is_video'),
+                    'blog_article_is_active'         => $request->get('blog_article_is_active'),
+                    'blog_article_reading_time'      => $articleTotalReadingTime,
+                ]);
+            }
+
             if ($request->get('blog_article_is_audio') === '1' && $request->get('blog_article_is_active') === '1') 
             {
                 return response([
@@ -128,7 +162,7 @@ class BlogArticleController extends Controller
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0010')->pluck($this->tableAllColumnsErrorSystem[3])[0],
                     'admin_message'            => __('blog_articles.store.info_0010_admin_message', [ 
                         'blogArticleTitle' => $request->get('blog_article_title'),
-                        'blogSubcategoryTitle' => $this->modelNameBlogSubcategories::where($this->tableAllColumnsBlogSubcategories[0], '=', $request->get('blog_subcategory_id'))->pluck($this->tableAllColumnsBlogSubcategories[1])[0],
+                        'blogSubcategoryTitle' => $this->modelNameBlogSubcategories::where($this->tableAllColumnsBlogSubcategories[0], '=', $request->get('blog_subcategory_id'))->pluck($this->tableAllColumnsBlogSubcategories[2])[0],
                     ]),
                     'records'                  => $apiInsertSingleRecord,
                 ], 201);
@@ -141,7 +175,7 @@ class BlogArticleController extends Controller
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0011')->pluck($this->tableAllColumnsErrorSystem[3])[0],
                     'admin_message'            => __('blog_articles.store.info_0011_admin_message', [ 
                         'blogArticleTitle' => $request->get('blog_article_title'),
-                        'blogSubcategoryTitle' => $this->modelNameBlogSubcategories::where($this->tableAllColumnsBlogSubcategories[0], '=', $request->get('blog_subcategory_id'))->pluck($this->tableAllColumnsBlogSubcategories[1])[0],
+                        'blogSubcategoryTitle' => $this->modelNameBlogSubcategories::where($this->tableAllColumnsBlogSubcategories[0], '=', $request->get('blog_subcategory_id'))->pluck($this->tableAllColumnsBlogSubcategories[2])[0],
                     ]),
                     'records'                  => $apiInsertSingleRecord,
                 ], 201);
@@ -154,7 +188,7 @@ class BlogArticleController extends Controller
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0012')->pluck($this->tableAllColumnsErrorSystem[3])[0],
                     'admin_message'            => __('blog_articles.store.info_0012_admin_message', [ 
                         'blogArticleTitle' => $request->get('blog_article_title'),
-                        'blogSubcategoryTitle' => $this->modelNameBlogSubcategories::where($this->tableAllColumnsBlogSubcategories[0], '=', $request->get('blog_subcategory_id'))->pluck($this->tableAllColumnsBlogSubcategories[1])[0],
+                        'blogSubcategoryTitle' => $this->modelNameBlogSubcategories::where($this->tableAllColumnsBlogSubcategories[0], '=', $request->get('blog_subcategory_id'))->pluck($this->tableAllColumnsBlogSubcategories[2])[0],
                     ]),
                     'records'                  => $apiInsertSingleRecord,
                 ], 201);
@@ -167,7 +201,7 @@ class BlogArticleController extends Controller
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0013')->pluck($this->tableAllColumnsErrorSystem[3])[0],
                     'admin_message'            => __('blog_articles.store.info_0013_admin_message', [ 
                         'blogArticleTitle' => $request->get('blog_article_title'),
-                        'blogSubcategoryTitle' => $this->modelNameBlogSubcategories::where($this->tableAllColumnsBlogSubcategories[0], '=', $request->get('blog_subcategory_id'))->pluck($this->tableAllColumnsBlogSubcategories[1])[0],
+                        'blogSubcategoryTitle' => $this->modelNameBlogSubcategories::where($this->tableAllColumnsBlogSubcategories[0], '=', $request->get('blog_subcategory_id'))->pluck($this->tableAllColumnsBlogSubcategories[2])[0],
                     ]),
                     'records'                  => $apiInsertSingleRecord,
                 ], 201);
@@ -180,7 +214,7 @@ class BlogArticleController extends Controller
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0014')->pluck($this->tableAllColumnsErrorSystem[3])[0],
                     'admin_message'            => __('blog_articles.store.info_0014_admin_message', [ 
                         'blogArticleTitle' => $request->get('blog_article_title'),
-                        'blogSubcategoryTitle' => $this->modelNameBlogSubcategories::where($this->tableAllColumnsBlogSubcategories[0], '=', $request->get('blog_subcategory_id'))->pluck($this->tableAllColumnsBlogSubcategories[1])[0],
+                        'blogSubcategoryTitle' => $this->modelNameBlogSubcategories::where($this->tableAllColumnsBlogSubcategories[0], '=', $request->get('blog_subcategory_id'))->pluck($this->tableAllColumnsBlogSubcategories[2])[0],
                     ]),
                     'records'                  => $apiInsertSingleRecord,
                 ], 201);
@@ -255,7 +289,7 @@ class BlogArticleController extends Controller
                     'notify_code'              => 'INFO_0001',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('blog_articles.show.info_0001_admin_message', [ 'tableName' => $this->modelNameBlogArticles ]),
+                    'admin_message'            => __('blog_articles.show.info_0001_admin_message.message_1', [ 'tableName' => $this->modelNameBlogArticles ]),
                 ], 404);
             }
             elseif (is_null($apiDisplaySingleRecord)) 
@@ -319,18 +353,51 @@ class BlogArticleController extends Controller
             $articleShortDescriptionReadingTime = round(str_word_count($request->get('blog_article_short_description')) / $averageAdultReadingSpeed);
             $articleDescriptionReadingTime = round(str_word_count($request->get('blog_article_content')) / $averageAdultReadingSpeed);
             $articleTotalReadingTime = $articleTitleReadingTime + $articleShortDescriptionReadingTime + $articleDescriptionReadingTime;
-            $apiUpdateSingleRecord->update([
-                'blog_category_id'               => $request->get('blog_category_id'),
-                'blog_subcategory_id'            => $request->get('blog_subcategory_id'),
-                'blog_article_title'             => $request->get('blog_article_title'),
-                'blog_article_short_description' => $request->get('blog_article_short_description'),
-                'blog_article_content'           => $request->get('blog_article_content'),
-                'blog_article_slug'              => '/' . strtolower($request->get('blog_article_title')),
-                'blog_article_is_audio'          => $request->get('blog_article_is_audio'),
-                'blog_article_is_video'          => $request->get('blog_article_is_video'),
-                'blog_article_is_active'         => $request->get('blog_article_is_active'),
-                'blog_article_reading_time'      => $articleTotalReadingTime,
-            ]);
+            if ($request->get('blog_category_id') === 1) 
+            {
+                $apiUpdateSingleRecord->update([
+                    'blog_category_id'               => $request->get('blog_category_id'),
+                    'blog_subcategory_id'            => $request->get('blog_subcategory_id'),
+                    'blog_article_title'             => $request->get('blog_article_title'),
+                    'blog_article_short_description' => $request->get('blog_article_short_description'),
+                    'blog_article_content'           => $request->get('blog_article_content'),
+                    'blog_article_slug'              => '/blog/article/view/' . strtolower($request->get('blog_article_title')),
+                    'blog_article_is_audio'          => $request->get('blog_article_is_audio'),
+                    'blog_article_is_video'          => $request->get('blog_article_is_video'),
+                    'blog_article_is_active'         => $request->get('blog_article_is_active'),
+                    'blog_article_reading_time'      => $articleTotalReadingTime,
+                ]);
+            }
+            elseif ($request->get('blog_category_id') === 2) 
+            {
+                $apiUpdateSingleRecord->update([
+                    'blog_category_id'               => $request->get('blog_category_id'),
+                    'blog_subcategory_id'            => $request->get('blog_subcategory_id'),
+                    'blog_article_title'             => $request->get('blog_article_title'),
+                    'blog_article_short_description' => $request->get('blog_article_short_description'),
+                    'blog_article_content'           => $request->get('blog_article_content'),
+                    'blog_article_slug'              => '/blog/audio/view/' . strtolower($request->get('blog_article_title')),
+                    'blog_article_is_audio'          => $request->get('blog_article_is_audio'),
+                    'blog_article_is_video'          => $request->get('blog_article_is_video'),
+                    'blog_article_is_active'         => $request->get('blog_article_is_active'),
+                    'blog_article_reading_time'      => $articleTotalReadingTime,
+                ]);
+            }
+            else 
+            {
+                $apiUpdateSingleRecord->update([
+                    'blog_category_id'               => $request->get('blog_category_id'),
+                    'blog_subcategory_id'            => $request->get('blog_subcategory_id'),
+                    'blog_article_title'             => $request->get('blog_article_title'),
+                    'blog_article_short_description' => $request->get('blog_article_short_description'),
+                    'blog_article_content'           => $request->get('blog_article_content'),
+                    'blog_article_slug'              => '/blog/video/view/' . strtolower($request->get('blog_article_title')),
+                    'blog_article_is_audio'          => $request->get('blog_article_is_audio'),
+                    'blog_article_is_video'          => $request->get('blog_article_is_video'),
+                    'blog_article_is_active'         => $request->get('blog_article_is_active'),
+                    'blog_article_reading_time'      => $articleTotalReadingTime,
+                ]);
+            }
             return response([
                 'notify_code'              => 'INFO_0008',
                 'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0008')->pluck($this->tableAllColumnsErrorSystem[2])[0],
@@ -386,7 +453,7 @@ class BlogArticleController extends Controller
                     'notify_code'              => 'INFO_0001',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('blog_articles.delete.info_0001_admin_message', [ 'tableName' => $this->modelNameBlogArticles ]),
+                    'admin_message'            => __('blog_articles.delete.info_0001_admin_message.message_1', [ 'tableName' => $this->modelNameBlogArticles ]),
                 ], 404);
             }
             elseif (is_null($apiDisplaySingleRecord)) 
@@ -440,7 +507,7 @@ class BlogArticleController extends Controller
                     'notify_code'              => 'INFO_0001',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('blog_articles.delete_all_records.info_0001_admin_message', [ 'tableName' => $this->modelNameBlogArticles ]),
+                    'admin_message'            => __('blog_articles.delete_all_records.info_0001_admin_message.message_1', [ 'tableName' => $this->modelNameBlogArticles ]),
                 ], 404);
             }
             elseif (is_null($apiDisplayAllRecords)) 
@@ -481,7 +548,7 @@ class BlogArticleController extends Controller
     }
 
     /**
-     * Display a listing of all written blog articles.
+     * Display a listing of all written blog articles no matter the subcategory.
      *
      * @return \Illuminate\Http\Response
      */
@@ -493,9 +560,22 @@ class BlogArticleController extends Controller
                                                 ->where('blog_article_is_active', '<>', '0')
                                                 ->orderBy('created_at', 'DESC')
                                                 ->get();
-            return response([
-                'results'              => $allWrittenBlogArticles,
-            ], 200);
+            if ($allWrittenBlogArticles->isEmpty()) 
+            {
+                return response([
+                    'notify_code'          => 'INFO_0001',
+                    'user_message'         => __('blog_articles.index.info_0001_admin_message.message_2'),
+                    'results'              => $allWrittenBlogArticles,
+                ], 200);
+            }
+            else 
+            {
+                return response([
+                    'notify_code'          => 'INFO_0002',
+                    'user_message'         => __('blog_articles.index.info_0002_admin_message.message_2'),
+                    'results'              => $allWrittenBlogArticles,
+                ], 200);
+            }
         }
         else 
         {
