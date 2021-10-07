@@ -94,19 +94,35 @@ class BlogSubcategoryController extends Controller
         try 
         {
             $request->validate([
-                'blog_category_id'                   => 'required', // TODO: how to validated dropdown list
+                'blog_category_id'                   => 'required', // TODO: How to validate a dropdown list
                 'blog_subcategory_title'             => 'required|regex:/^[a-zA-Z_ ]+$/u|max:255',
                 'blog_subcategory_short_description' => 'required|max:255',
                 'blog_subcategory_description'       => 'required',
                 // 'blog_subcategory_is_active'         => 'accepted',
             ]);
-            $apiInsertSingleRecord = $this->modelNameBlogSubcategories->create([
-                'blog_category_id'                   => $request->get('blog_category_id'),
-                'blog_subcategory_title'             => $request->get('blog_subcategory_title'),
-                'blog_subcategory_short_description' => $request->get('blog_subcategory_short_description'),
-                'blog_subcategory_description'       => $request->get('blog_subcategory_description'),
-                'blog_subcategory_is_active'         => $request->get('blog_subcategory_is_active'),
-            ]);
+            if (str_word_count($request->get('blog_subcategory_title')) === 1) 
+            {
+                $apiInsertSingleRecord = $this->modelNameBlogSubcategories->create([
+                    'blog_category_id'                   => $request->get('blog_category_id'),
+                    'blog_subcategory_title'             => $request->get('blog_subcategory_title'),
+                    'blog_subcategory_short_description' => $request->get('blog_subcategory_short_description'),
+                    'blog_subcategory_description'       => $request->get('blog_subcategory_description'),
+                    'blog_subcategory_is_active'         => $request->get('blog_subcategory_is_active'),
+                    'blog_subcategory_slug'              => '/' . strtolower($request->get('blog_subcategory_title')),
+                ]);
+            }
+            else 
+            {
+                $apiInsertSingleRecord = $this->modelNameBlogSubcategories->create([
+                    'blog_category_id'                   => $request->get('blog_category_id'),
+                    'blog_subcategory_title'             => $request->get('blog_subcategory_title'),
+                    'blog_subcategory_short_description' => $request->get('blog_subcategory_short_description'),
+                    'blog_subcategory_description'       => $request->get('blog_subcategory_description'),
+                    'blog_subcategory_is_active'         => $request->get('blog_subcategory_is_active'),
+                    'blog_subcategory_slug'              => '/' . strtolower(str_replace(' ', '-', $request->get('blog_subcategory_title'))),
+                ]);
+            }
+
             if ($request->get('blog_subcategory_is_active') === '1') 
             {
                 return response([
@@ -239,18 +255,63 @@ class BlogSubcategoryController extends Controller
         try 
         {
             $apiUpdateSingleRecord = $this->modelNameBlogSubcategories->find($id);
-            $apiUpdateSingleRecord->update($request->validate([
-                'blog_category_id'                   => 'required', // TODO: how to validated dropdown list
+            $request->validate([
+                'blog_category_id'                   => 'required', // TODO: How to validate a dropdown list
                 'blog_subcategory_title'             => 'required|regex:/^[a-zA-Z_ ]+$/u|max:255',
                 'blog_subcategory_short_description' => 'required|max:255',
                 'blog_subcategory_description'       => 'required',
                 // 'blog_subcategory_is_active'         => 'accepted',
-            ]));
+            ]);
+            if ($request->get('blog_subcategory_is_active') === '1' && str_word_count($request->get('blog_subcategory_title')) === 1) 
+            {
+                $apiUpdateSingleRecord->update([
+                    'blog_category_id'                   => $request->get('blog_category_id'),
+                    'blog_subcategory_title'             => $request->get('blog_subcategory_title'),
+                    'blog_subcategory_short_description' => $request->get('blog_subcategory_short_description'),
+                    'blog_subcategory_description'       => $request->get('blog_subcategory_description'),
+                    'blog_subcategory_is_active'         => '1',
+                    'blog_subcategory_slug'              => '/' . strtolower($request->get('blog_subcategory_title')),
+                ]);
+            }
+            elseif ($request->get('blog_subcategory_is_active') === '0' && str_word_count($request->get('blog_subcategory_title')) === 1) 
+            {
+                $apiUpdateSingleRecord->update([
+                    'blog_category_id'                   => $request->get('blog_category_id'),
+                    'blog_subcategory_title'             => $request->get('blog_subcategory_title'),
+                    'blog_subcategory_short_description' => $request->get('blog_subcategory_short_description'),
+                    'blog_subcategory_description'       => $request->get('blog_subcategory_description'),
+                    'blog_subcategory_is_active'         => '0',
+                    'blog_subcategory_slug'              => '/' . strtolower($request->get('blog_subcategory_title')),
+                ]);
+            }
+            elseif ($request->get('blog_subcategory_is_active') === '1' && str_word_count($request->get('blog_subcategory_title')) > 1)
+            {
+                $apiUpdateSingleRecord->update([
+                    'blog_category_id'                   => $request->get('blog_category_id'),
+                    'blog_subcategory_title'             => $request->get('blog_subcategory_title'),
+                    'blog_subcategory_short_description' => $request->get('blog_subcategory_short_description'),
+                    'blog_subcategory_description'       => $request->get('blog_subcategory_description'),
+                    'blog_subcategory_is_active'         => '1',
+                    'blog_subcategory_slug'              => '/' . strtolower(str_replace(' ', '-', $request->get('blog_subcategory_title'))),
+                ]);
+            }
+            else 
+            {
+                $apiUpdateSingleRecord->update([
+                    'blog_category_id'                   => $request->get('blog_category_id'),
+                    'blog_subcategory_title'             => $request->get('blog_subcategory_title'),
+                    'blog_subcategory_short_description' => $request->get('blog_subcategory_short_description'),
+                    'blog_subcategory_description'       => $request->get('blog_subcategory_description'),
+                    'blog_subcategory_is_active'         => '0',
+                    'blog_subcategory_slug'              => '/' . strtolower(str_replace(' ', '-', $request->get('blog_subcategory_title'))),
+                ]);
+            }
+
             return response([
                 'notify_code'              => 'INFO_0008',
                 'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0008')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                 'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0008')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                'admin_message'            => __('blog_categories.update.info_0008_admin_message', [ 'blogSubcategoryTitle' => $request->get('blog_subcategory_title') ]),
+                'admin_message'            => __('blog_subcategories.update.info_0008_admin_message', [ 'blogSubcategoryTitle' => $request->get('blog_subcategory_title') ]),
                 'records'                  => $apiUpdateSingleRecord,
             ], 201);
         }

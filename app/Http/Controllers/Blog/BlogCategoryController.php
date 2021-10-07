@@ -57,7 +57,7 @@ class BlogCategoryController extends Controller
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0002')->pluck($this->tableAllColumnsErrorSystem[3])[0],
                     'admin_message'            => __('blog_categories.index.info_0002_admin_message'),
                     'records'                  => $apiDisplayAllRecords,
-                ], 201);
+                ], 200);
             }
         }
         catch (\Illuminate\Database\QueryException $mysqlError)
@@ -229,14 +229,59 @@ class BlogCategoryController extends Controller
         try 
         {
             $apiUpdateSingleRecord = $this->modelNameBlogCategories->find($id);
-            $apiUpdateSingleRecord->update($request->validate([
+            $request->validate([
                 'blog_category_title'             => 'required|regex:/^[a-zA-Z_ ]+$/u|max:255',
                 'blog_category_short_description' => 'required|max:255',
                 'blog_category_description'       => 'required',
                 // 'blog_category_is_active'         => 'accepted',
                 'blog_image_card_url'             => 'required|max:255',
                 'blog_category_path'              => 'required|max:255',
-            ]));
+            ]);
+            if ($request->get('blog_category_is_active') === '1' && str_word_count($request->get('blog_category_title')) === 1)
+            {
+                $apiUpdateSingleRecord->update([
+                    'blog_category_title'             => $request->get('blog_category_title'),
+                    'blog_category_short_description' => $request->get('blog_category_short_description'),
+                    'blog_category_description'       => $request->get('blog_category_description'),
+                    'blog_category_is_active'         => '1',
+                    'blog_image_card_url'             => '/' . strtolower($request->get('blog_category_title')),
+                    'blog_category_path'              => strtolower($request->get('blog_category_path')),
+                ]);
+            }
+            elseif ($request->get('blog_category_is_active') === '0' && str_word_count($request->get('blog_category_title')) === 1)
+            {
+                $apiUpdateSingleRecord->update([
+                    'blog_category_title'             => $request->get('blog_category_title'),
+                    'blog_category_short_description' => $request->get('blog_category_short_description'),
+                    'blog_category_description'       => $request->get('blog_category_description'),
+                    'blog_category_is_active'         => '0',
+                    'blog_image_card_url'             => '/' . strtolower($request->get('blog_category_title')),
+                    'blog_category_path'              => strtolower($request->get('blog_category_path')),
+                ]);
+            }
+            elseif ($request->get('blog_subcategory_is_active') === '1' && str_word_count($request->get('blog_category_title')) > 1) 
+            {
+                $apiUpdateSingleRecord->update([
+                    'blog_category_title'             => $request->get('blog_category_title'),
+                    'blog_category_short_description' => $request->get('blog_category_short_description'),
+                    'blog_category_description'       => $request->get('blog_category_description'),
+                    'blog_category_is_active'         => '1',
+                    'blog_image_card_url'             => '/' . strtolower(str_replace(' ', '-', $request->get('blog_category_title'))),
+                    'blog_category_path'              => strtolower($request->get('blog_category_path')),
+                ]);
+            }
+            else 
+            {
+                $apiUpdateSingleRecord->update([
+                    'blog_category_title'             => $request->get('blog_category_title'),
+                    'blog_category_short_description' => $request->get('blog_category_short_description'),
+                    'blog_category_description'       => $request->get('blog_category_description'),
+                    'blog_category_is_active'         => '0',
+                    'blog_image_card_url'             => '/' . strtolower(str_replace(' ', '-', $request->get('blog_category_title'))),
+                    'blog_category_path'              => strtolower($request->get('blog_category_path')),
+                ]);
+            }
+
             return response([
                 'notify_code'              => 'INFO_0008',
                 'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0008')->pluck($this->tableAllColumnsErrorSystem[2])[0],
@@ -383,6 +428,39 @@ class BlogCategoryController extends Controller
                     'admin_message'            => __('blog_categories.delete_all_records.err_0001_admin_message'),
                 ], 500);
             }
+        }
+    }
+
+    /**
+     * Display a listing of all blog main categories and subcategories.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getAllBlogMainCategories()
+    {
+        if (response($this->index())->status() === 200) 
+        {
+            // TODO: How to filter the eager load for each of the records in the blog_categories table
+            $allBlogCategoriesAndSubcategories = $this->modelNameBlogCategories::where('blog_category_is_active', '<>', '0')
+                                                ->limit(3)
+                                                ->with([
+                                                    'blog_subcategories' => function ($query) {
+                                                        $query->where('blog_subcategory_is_active', '<>', '0');
+                                                    }
+                                                ])
+                                                ->get();
+            return response([
+                'results'              => $allBlogCategoriesAndSubcategories,
+            ], 200);
+        }
+        else 
+        {
+            return response([
+                'notify_code'              => 'INFO_0018',
+                'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0018')->pluck($this->tableAllColumnsErrorSystem[2])[0],
+                'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0018')->pluck($this->tableAllColumnsErrorSystem[3])[0],
+                'user_message'             => 'The resource you are trying to view does not exist on the server! Please contact the website administrator!',
+            ], 404);
         }
     }
 }

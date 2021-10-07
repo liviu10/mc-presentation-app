@@ -48,42 +48,55 @@
       "timeline_section_read_more": "Citește mai mult",
       "timeline_modal_close": "Închide"
     },
-    "blog_page": {
-      "page_title": "Blog"
-    },
-    "article_blog_page": {
-      "page_title": "Articole scrise",
-      "rating_system": {
-        "title": "Evaluează: ",
-        "options": {
-          "very_bad": "(Foarte Rău)",
-          "bad": "(Rău)",
-          "normal": "(Normal)",
-          "good": "(Bine)",
-          "very_good": "(Foarte Bine)"
+    "blog_system_pages": {
+      "meta_title": "Blog",
+      "written_article_blog_pages": {
+        "meta_title": "Listă article scrise",
+        "page_title": "Listă article scrise",
+        "reading_time": {
+          "less_than_one_minute": "Mai puțin de 1 min citire",
+          "more_than_one_minute": "min citire"
+        },
+        "read_more": "Citește mai mult!",
+        "article_blog_page": {
+          "page_title": "Articol scris",
+          "rating_system": {
+            "title": "Evaluează: ",
+            "options": {
+              "very_bad": "(Foarte Rău)",
+              "bad": "(Rău)",
+              "normal": "(Normal)",
+              "good": "(Bine)",
+              "very_good": "(Foarte Bine)"
+            }
+          },
+          "article_subcategory": "Subcategorie",
+          "like_dislike_system": {
+            "like": " apreciază",
+            "dislike": " nu apreciază"
+          },
+          "social_menu": {
+            "title": "Distribuie pe:",
+            "like": "Apreciez",
+            "dislike": "Nu apreciez",
+            "facebook": "Distribuie pe Facebook!",
+            "instagram": "Distribuie pe Instagram!",
+            "email": "Distribuie acest articol pe email!"
+          },
+          "comment_form": {
+            "input_full_name": "Numele și prenumele tău",
+            "input_email_address": "Adresa ta de email",
+            "input_message": "Inserează un comentariu",
+            "i_agree_with": "Sunt de acord cu ",
+            "privacy_policy": "Termenii și Condițiile",
+            "post_comment": "Postează un comentariu",
+            "success_message": "Comentariul tău a fost postat cu success! Acesta va fi în curând aprobat de un administrator!"
+          }
         }
       },
-      "article_subcategory": "Subcategorie",
-      "like_dislike_system": {
-        "like": " apreciază",
-        "dislike": " nu apreciază"
-      },
-      "social_menu": {
-        "title": "Distribuie pe:",
-        "like": "Apreciez",
-        "dislike": "Nu apreciez",
-        "facebook": "Distribuie pe Facebook!",
-        "instagram": "Distribuie pe Instagram!",
-        "email": "Distribuie acest articol pe email!"
-      },
-      "comment_form": {
-        "input_full_name": "Numele și prenumele tău",
-        "input_email_address": "Adresa ta de email",
-        "input_message": "Inserează un comentariu",
-        "i_agree_with": "Sunt de acord cu ",
-        "privacy_policy": "Termenii și Condițiile",
-        "post_comment": "Postează un comentariu",
-        "success_message": "Comentariul tău a fost postat cu success! Acesta va fi în curând aprobat de un administrator!"
+      "general_settings": {
+        "published_on": "Publicat la:",
+        "more_articles": "Mai multe {type}"
       }
     },
     "audio_blog_page": {
