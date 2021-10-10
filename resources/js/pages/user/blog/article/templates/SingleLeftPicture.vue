@@ -4,9 +4,22 @@
       <!-- SINGLE LEFT PICTURE WRITTEN ARTICLE TEMPLATE TITLE, SECTION START -->
       <div class="lv-con-pg-articles-view-title">
         <p>
+          <span>
+            <img src="/images/user/user-profile-img.jpg" alt="">
+          </span> &bullet;
           <span>{{ singleArticle.blog_article_author }}</span> &bullet;
-          <span>{{ singleArticle.created_at }}</span> &bullet;
-          <span>{{ singleArticle.blog_article_reading_time }} minute citire</span>
+          <span v-if="singleArticle.updated_at == singleArticle.created_at">
+            {{ new Date(singleArticle.created_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}
+          </span>
+          <span v-else>
+            {{ new Date(singleArticle.created_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}
+          </span> &bullet;
+          <span v-if="singleArticle.blog_article_reading_time <= 1">
+            {{ $t('user.blog_system_pages.written_article_blog_pages.reading_time.less_than_one_minute') }}
+          </span>
+          <span v-else>
+            {{ singleArticle.blog_article_reading_time }} {{ $t('user.blog_system_pages.written_article_blog_pages.reading_time.more_than_one_minute') }}
+          </span>
         </p>
         <div class="title-divider" />
       </div>
@@ -105,7 +118,7 @@ export default {
       axios
         .get(fullApiUrl)
         .then(response => {
-          console.log('>>>>> Display Single Written Blog Article Api Data')
+          console.log('>>>>> Display a single blog article')
           if (response.data.results.length === 0) {
             this.notifyCode = response.data.notify_code
             this.notifyMessage = response.data.user_message

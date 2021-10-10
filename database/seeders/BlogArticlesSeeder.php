@@ -32,8 +32,8 @@ class BlogArticlesSeeder extends Seeder
                 'blog_article_rating_system'     => '5',
                 'blog_article_likes'             => '19',
                 'blog_article_dislikes'          => '5',
-                'created_at'                     => '2021-09-04 00:00:00',
-                'updated_at'                     => '2021-09-04 00:00:00',
+                'created_at'                     => '2021-09-23 12:30:00',
+                'updated_at'                     => '2021-09-23 12:45:00',
             ],
             [
                 'id'                             => '2',
@@ -51,8 +51,8 @@ class BlogArticlesSeeder extends Seeder
                 'blog_article_rating_system'     => '5',
                 'blog_article_likes'             => '24',
                 'blog_article_dislikes'          => '0',
-                'created_at'                     => '2021-09-05 00:00:00',
-                'updated_at'                     => '2021-09-05 00:00:00',
+                'created_at'                     => '2021-09-23 12:30:00',
+                'updated_at'                     => '2021-09-23 12:45:00',
             ],
             [
                 'id'                             => '3',
@@ -203,8 +203,8 @@ class BlogArticlesSeeder extends Seeder
                 'blog_article_rating_system'     => '5',
                 'blog_article_likes'             => '49',
                 'blog_article_dislikes'          => '1',
-                'created_at'                     => '2021-09-23 00:00:00',
-                'updated_at'                     => '2021-09-23 00:00:00',
+                'created_at'                     => '2021-09-23 12:30:00',
+                'updated_at'                     => '2021-09-23 12:45:00',
             ],
             [
                 'id'                             => '11',
@@ -222,8 +222,8 @@ class BlogArticlesSeeder extends Seeder
                 'blog_article_rating_system'     => '5',
                 'blog_article_likes'             => '12',
                 'blog_article_dislikes'          => '20',
-                'created_at'                     => '2021-09-24 00:00:00',
-                'updated_at'                     => '2021-09-24 00:00:00',
+                'created_at'                     => '2021-09-24 12:30:00',
+                'updated_at'                     => '2021-09-24 12:30:00',
             ],
             [
                 'id'                             => '12',
@@ -279,8 +279,8 @@ class BlogArticlesSeeder extends Seeder
                 'blog_article_rating_system'     => '5',
                 'blog_article_likes'             => '21',
                 'blog_article_dislikes'          => '8',
-                'created_at'                     => '2021-09-25 00:00:00',
-                'updated_at'                     => '2021-09-25 00:00:00',
+                'created_at'                     => '2021-09-25 12:30:00',
+                'updated_at'                     => '2021-09-25 12:30:00',
             ],
             [
                 'id'                             => '15',
@@ -298,8 +298,8 @@ class BlogArticlesSeeder extends Seeder
                 'blog_article_rating_system'     => '5',
                 'blog_article_likes'             => '37',
                 'blog_article_dislikes'          => '0',
-                'created_at'                     => '2021-09-28 00:00:00',
-                'updated_at'                     => '2021-09-28 00:00:00',
+                'created_at'                     => '2021-09-28 12:30:00',
+                'updated_at'                     => '2021-09-28 12:45:00',
             ],
         ];
         BlogArticle::insert($records);

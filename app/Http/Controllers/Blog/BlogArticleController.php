@@ -630,10 +630,19 @@ class BlogArticleController extends Controller
     {
         if (response($this->index())->status() === 200) 
         {
-            $allWrittenBlogArticles = $this->modelNameBlogArticles::where($this->blogCategoryId, '=', '1')
-                                                ->where($this->blogArticleIsActive, '<>', '0')
-                                                ->orderBy('created_at', 'DESC')
-                                                ->get();
+            $allWrittenBlogArticles = $this->modelNameBlogArticles::select(
+                $this->blogArticleId,
+                $this->blogArticleTitle,
+                $this->blogArticleReadingTime,
+                $this->blogCreatedAt,
+                $this->blogUpdatedAt,
+                $this->blogArticleShortDescription,
+                $this->blogArticleSlug,
+            )
+            ->where($this->blogCategoryId, '=', '1')
+            ->where($this->blogArticleIsActive, '<>', '0')
+            ->orderBy('created_at', 'DESC')
+            ->get();
             if ($allWrittenBlogArticles->isEmpty()) 
             {
                 return response([
@@ -761,6 +770,8 @@ class BlogArticleController extends Controller
             $this->blogArticleRatingSystem,
             $this->blogArticleLikes,
             $this->blogArticleDislikes,
+            $this->blogCreatedAt,
+            $this->blogUpdatedAt,
         )
         ->where($this->blogArticleId, '=', $id)->where($this->blogArticleIsActive, '<>', '0')
         ->with([

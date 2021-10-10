@@ -96,6 +96,7 @@
       },
       "general_settings": {
         "published_on": "Published at:",
+        "modified_on": "Modified at:",
         "more_articles": "More {type}"
       }
     },

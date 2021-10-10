@@ -23,9 +23,13 @@
             <span v-else>
               ({{ writtenArticle.blog_article_reading_time }} {{ $t('user.blog_system_pages.written_article_blog_pages.reading_time.more_than_one_minute') }})
             </span>
-            <p>
+            <p v-if="writtenArticle.updated_at == writtenArticle.created_at">
               {{ $t('user.blog_system_pages.general_settings.published_on') }}
-              <span>{{ writtenArticle.created_at }}</span>
+              <span>{{ new Date(writtenArticle.created_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}</span>
+            </p>
+            <p v-else-if="writtenArticle.updated_at > writtenArticle.created_at">
+              {{ $t('user.blog_system_pages.general_settings.modified_on') }}
+              <span>{{ new Date(writtenArticle.updated_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}</span>
             </p>
           </h5>
           <p class="card-text">
@@ -86,7 +90,7 @@ export default {
       axios
         .get(fullApiUrl)
         .then(response => {
-          console.log('>>>>> Written Blog Articles Api Data')
+          console.log('>>>>> List of written blog articles <<<<<<')
           if (response.data.results.length === 0) {
             this.notifyCode = response.data.notify_code
             this.notifyMessage = response.data.user_message

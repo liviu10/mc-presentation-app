@@ -54,8 +54,8 @@
         "meta_title": "Listă article scrise",
         "page_title": "Listă article scrise",
         "reading_time": {
-          "less_than_one_minute": "Mai puțin de 1 min citire",
-          "more_than_one_minute": "min citire"
+          "less_than_one_minute": "Mai puțin de 1 min de lectură",
+          "more_than_one_minute": "min de lectură"
         },
         "read_more": "Citește mai mult!",
         "article_blog_page": {
@@ -96,6 +96,7 @@
       },
       "general_settings": {
         "published_on": "Publicat la:",
+        "modified_on": "Modificat la:",
         "more_articles": "Mai multe {type}"
       }
     },

@@ -10,8 +10,17 @@ $lvContainerPageWrittenArticleFont: 'Merriweather Sans Bold', sans-serif;
     &-view-title {
         & p {
             margin-bottom: rem-convertor(0px);
+            padding: rem-convertor(6.5px) 0rem;
             font-size: rem-convertor(16px);
             font-style: italic;
+            & span {
+                & img {
+                    border: rem-convertor(1px) solid transparent;
+                    border-radius: 50%;
+                    width: rem-convertor(30px);
+                    height: rem-convertor(30px);
+                }
+            }
         }
         & .title-divider {
             margin: rem-convertor(8px) rem-convertor(0px);

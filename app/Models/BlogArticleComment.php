@@ -69,14 +69,6 @@ class BlogArticleComment extends Model
     ];
 
     /**
-     * Cast timestamp columns.
-     */
-    protected $casts = [
-        'created_at' => 'date:d.m.Y',
-        'updated_at' => 'date:d.m.Y',
-    ];
-
-    /**
      * Eloquent relationship between Blog Articles and Article Comments.
      * Many blog articles comments may have only one blog article.
      */
