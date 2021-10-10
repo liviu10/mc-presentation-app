@@ -69,6 +69,14 @@ class BlogArticleComment extends Model
     ];
 
     /**
+     * Cast timestamp columns.
+     */
+    protected $casts = [
+        'created_at' => 'date:d.m.Y',
+        'updated_at' => 'date:d.m.Y',
+    ];
+
+    /**
      * Eloquent relationship between Blog Articles and Article Comments.
      * Many blog articles comments may have only one blog article.
      */
@@ -81,7 +89,7 @@ class BlogArticleComment extends Model
      * Eloquent relationship between Blog Article Comments and Article Comment Replies.
      * One blog article comment may have one or many blog article comment replies.
      */
-    public function blog_article_comment_reply()
+    public function blog_article_comment_replies()
     {
         return $this->hasMany('App\Models\BlogArticleCommentReply');
     }

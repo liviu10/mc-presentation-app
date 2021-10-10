@@ -453,7 +453,7 @@ class BlogCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getAllBlogMainCategories()
+    public function getAllBlogMainCategoriesAndSubcategories()
     {
         if (response($this->index())->status() === 200) 
         {

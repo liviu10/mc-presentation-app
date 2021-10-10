@@ -14,7 +14,7 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">
-            <a :href="writtenArticle.blog_article_slug">
+            <a :href="writtenArticle.blog_article_slug + '/' + writtenArticle.id">
               {{ writtenArticle.blog_article_title }}
             </a>
             <span v-if="writtenArticle.blog_article_reading_time <= 1">
@@ -32,7 +32,7 @@
             <fa icon="quote-left" fixed-width />
             {{ writtenArticle.blog_article_short_description }}
           </p>
-          <a :href="writtenArticle.blog_article_slug" class="btn btn-primary">
+          <a :href="writtenArticle.blog_article_slug + '/' + writtenArticle.id" class="btn btn-primary">
             <fa icon="book-reader" fixed-width />
             {{ $t('user.blog_system_pages.written_article_blog_pages.read_more') }}
           </a>
@@ -81,11 +81,12 @@ export default {
   methods: {
     getAllWrittenBlogArticles: function () {
       const url = window.location.origin
-      const allWrittenBlogArticlesApi = url + '/api/blog-configuration/articles/all-written-articles'
+      const apiEndPoint = '/api/blog-configuration/articles/all-written-articles'
+      const fullApiUrl = url + apiEndPoint
       axios
-        .get(allWrittenBlogArticlesApi)
+        .get(fullApiUrl)
         .then(response => {
-          console.log('>>>>> Written Blog Articles Api Data', response.data)
+          console.log('>>>>> Written Blog Articles Api Data')
           if (response.data.results.length === 0) {
             this.notifyCode = response.data.notify_code
             this.notifyMessage = response.data.user_message

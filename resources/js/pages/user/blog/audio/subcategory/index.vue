@@ -3,7 +3,7 @@
     <div class="col-lg-12 m-auto">
       <div class="container lv-con-pg-subcategories">
         <div class="lv-con-pg-subcategories-title">
-          <h1>LISTA ARTICOLELOR DIN SUBCATEGORIA X</h1>
+          <h1>LISTA ARTICOLELOR AUDIO DIN SUBCATEGORIA X</h1>
         </div>
         <div class="lv-con-pg-subcategories-view" />
       </div>
@@ -19,7 +19,7 @@ Vue.use(axios)
 window.axios = require('axios')
 
 export default {
-  name: 'WrittenArticleSubcategoriesPage',
+  name: 'AudioArticleSubcategoriesPage',
   components: {},
   layout: '',
   middlewa: '',

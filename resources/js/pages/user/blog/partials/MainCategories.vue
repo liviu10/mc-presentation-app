@@ -1,7 +1,7 @@
 <template>
   <div class="container lv-con-sect-categories">
     <!-- MAIN CATEGORIES: WRITTEN ARTICLES, AUDIO AND VIDEO, SECTION START -->
-    <div v-for="category in displayBlogCategoriesAndSubcategories"
+    <div v-for="category in displayAllBlogCategoriesAndSubcategories"
          :key="category.id"
          class="card"
          style="width: 20rem;"
@@ -22,7 +22,7 @@
       <div class="card-body">
         <a v-for="subcategory in category.blog_subcategories"
            :key="subcategory.id"
-           :href="category.blog_category_path + '/subcategory' + subcategory.blog_subcategory_slug"
+           :href="subcategory.blog_subcategory_slug"
         >
           {{ subcategory.blog_subcategory_title }}
         </a>
@@ -44,22 +44,23 @@ export default {
   components: {},
   data: function () {
     return {
-      displayBlogCategoriesAndSubcategories: null
+      displayAllBlogCategoriesAndSubcategories: null
     }
   },
   computed: {},
   mounted () {
-    this.getBlogCategoriesAndSubcategories()
+    this.getAllBlogMainCategoriesAndSubcategories()
   },
   methods: {
-    getBlogCategoriesAndSubcategories: function () {
+    getAllBlogMainCategoriesAndSubcategories: function () {
       const url = window.location.origin
-      const blogCategoriesAndSubcategoriesApi = url + '/api/blog-configuration/categories-and-subcategories'
+      const apiEndPoint = '/api/blog-configuration/categories-and-subcategories'
+      const fullApiUrl = url + apiEndPoint
       axios
-        .get(blogCategoriesAndSubcategoriesApi)
+        .get(fullApiUrl)
         .then(response => {
-          console.log('>>>>> Blog Categories and Subcategories Api Data', response.data)
-          this.displayBlogCategoriesAndSubcategories = response.data.results
+          console.log('>>>>> Blog Categories and Subcategories Api Data')
+          this.displayAllBlogCategoriesAndSubcategories = response.data.results
         })
     }
   }

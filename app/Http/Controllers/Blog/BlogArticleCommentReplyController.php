@@ -4,39 +4,69 @@ namespace App\Http\Controllers\Blog;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\BlogArticleComment;
 use App\Models\BlogArticleCommentReply;
 use App\Models\ErrorAndNotificationSystem;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
 class BlogArticleCommentReplyController extends Controller
 {
-    protected $modelNameBlogArticle;
-    protected $tableNameBlogArticle;
-    protected $tableAllColumnsBlogArticle;
+    // Blog Article Comment Replies table and necessary columns
+    protected $modelNameBlogArticleComment;
+    protected $tableNameBlogArticleComment;
+    protected $blogCategoryId;
+    protected $blogSubcategoryId;
+    protected $blogArticleId;
+    protected $fullName;
+    protected $email;
+    protected $comment;
+    protected $commentIsPublic;
+    protected $privacyPolicy;
+    protected $commentCreatedAt;
+    protected $commentUpdatedAt;
+    protected $commentDeletedAt;
 
-    protected $modelNameBlogArticleCommentReply;
-    protected $tableNameBlogArticleCommentReply;
-    protected $tableAllColumnsBlogArticleCommentReply;
-
+    // Error and Notification System table and necessary columns
     protected $modelNameErrorSystem;
     protected $tableNameErrorSystem;
-    protected $tableAllColumnsErrorSystem;
+    protected $notifyCode;
+    protected $notifyShortDescription;
+    protected $notifyReference;
+
+    // HTTP response object attributes
+    protected $adminMessage;
+    protected $userMessage;
+    protected $records;
+    protected $results;
+    protected $deletedRecords;
 
     public function __construct()
     {
-        $this->modelNameBlogArticleComment       = new BlogArticleComment();
-        $this->tableNameBlogArticleComment       = $this->modelNameBlogArticleComment->getTable();
-        $this->tableAllColumnsBlogArticleComment = Schema::getColumnListing($this->tableNameBlogArticleComment);
+        $this->modelNameBlogArticleCommentReplies = new BlogArticleCommentReply();
+        $this->tableNameBlogArticleCommentReplies = 'blog_article_comment_replies';
+        $this->blogCategoryId                     = 'blog_category_id';
+        $this->blogSubcategoryId                  = 'blog_subcategory_id';
+        $this->blogArticleId                      = 'blog_article_id';
+        $this->blogArticleCommentId               = 'blog_article_comment_id';
+        $this->fullName                           = 'full_name';
+        $this->email                              = 'email';
+        $this->commentReply                       = 'comment_reply';
+        $this->commentReplyIsPublic               = 'comment_reply_is_public';
+        $this->privacyPolicy                      = 'privacy_policy';
+        $this->commentCreatedAt                   = 'created_at';
+        $this->commentUpdatedAt                   = 'updated_at';
+        $this->commentDeletedAt                   = 'deleted_at';
 
-        $this->modelNameBlogArticleCommentReply       = new BlogArticleCommentReply();
-        $this->tableNameBlogArticleCommentReply       = $this->modelNameBlogArticleCommentReply->getTable();
-        $this->tableAllColumnsBlogArticleCommentReply = Schema::getColumnListing($this->tableNameBlogArticleCommentReply);
+        $this->modelNameErrorSystem               = new ErrorAndNotificationSystem();
+        $this->tableNameErrorSystem               = 'errors_and_notification_system';
+        $this->notifyCode                         = 'notify_code';
+        $this->notifyShortDescription             = 'notify_short_description';
+        $this->notifyReference                    = 'notify_reference';
 
-        $this->modelNameErrorSystem          = new ErrorAndNotificationSystem();
-        $this->tableNameErrorSystem          = $this->modelNameErrorSystem->getTable();
-        $this->tableAllColumnsErrorSystem    = Schema::getColumnListing($this->tableNameErrorSystem);
+        $this->adminMessage                       = 'admin_message';
+        $this->userMessage                        = 'user_message';
+        $this->records                            = 'records';
+        $this->results                            = 'results';
+        $this->deletedRecords                     = 'deletedRecords';
     }
 
     /**
@@ -48,24 +78,24 @@ class BlogArticleCommentReplyController extends Controller
     {
         try 
         {
-            $apiDisplayAllRecords = $this->modelNameBlogArticleCommentReply->where('comment_reply_is_public', '<>', '0')->get();
+            $apiDisplayAllRecords = $this->modelNameBlogArticleCommentReplies->where($this->commentReplyIsPublic, '<>', '0')->get();
             if ($apiDisplayAllRecords->isEmpty()) 
             {
                 return response([
-                    'notify_code'              => 'INFO_0001',
-                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
-                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('blog_article_comment_replies.index.info_0001_admin_message', [ 'tableName' => $this->modelNameBlogArticleCommentReply ]),
+                    $this->notifyCode             => 'INFO_0001',
+                    $this->notifyShortDescription => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0001')->pluck($this->notifyShortDescription)[0],
+                    $this->notifyReference        => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0001')->pluck($this->notifyReference)[0],
+                    $this->adminMessage           => __('blog_article_comment_replies.index.info_0001_admin_message', [ 'tableName' => $this->tableNameBlogArticleCommentReply ]),
                 ], 404);
             }
             else 
             {
                 return response([
-                    'notify_code'              => 'INFO_0002',
-                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0002')->pluck($this->tableAllColumnsErrorSystem[2])[0],
-                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0002')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('blog_article_comment_replies.index.info_0002_admin_message'),
-                    'records'                  => $apiDisplayAllRecords,
+                    $this->notifyCode             => 'INFO_0002',
+                    $this->notifyShortDescription => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0002')->pluck($this->notifyShortDescription)[0],
+                    $this->notifyReference        => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0002')->pluck($this->notifyReference)[0],
+                    $this->adminMessage           => __('blog_article_comment_replies.index.info_0002_admin_message'),
+                    $this->records                => $apiDisplayAllRecords,
                 ], 201);
             }
         }
@@ -74,10 +104,10 @@ class BlogArticleCommentReplyController extends Controller
             if ($mysqlError->getCode() === '42S02') 
             {
                 return response([
-                    'notify_code'              => 'ERR_0001',
-                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
-                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('blog_article_comment_replies.index.err_0001_admin_message', [ 'tableName' => $this->modelNameBlogArticleCommentReply ]),
+                    $this->notifyCode             => 'ERR_0001',
+                    $this->notifyShortDescription => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'ERR_0001')->pluck($this->notifyShortDescription)[0],
+                    $this->notifyReference        => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'ERR_0001')->pluck($this->notifyReference)[0],
+                    $this->adminMessage           => __('blog_article_comment_replies.index.err_0001_admin_message', [ 'tableName' => $this->tableNameBlogArticleCommentReply ]),
                 ], 500);
             }
         }
@@ -94,49 +124,47 @@ class BlogArticleCommentReplyController extends Controller
         try 
         {
             $request->validate([
-                'blog_category_id'    => 'required', // TODO: How to validate a dropdown list
-                'blog_subcategory_id' => 'required', // TODO: How to validate a dropdown list
-                'blog_article_id'     => 'required', // TODO: How to validate a dropdown list
-                'full_name'           => 'required|regex:/^[a-zA-Z_ ]+$/u|max:255',
-                'email'               => 'required|email:filter|max:255',
-                'comment_reply'       => 'required|max:255',
-                // 'comment_reply_is_public'   => 'accepted',
-                // 'privacy_policy'      => 'accepted',
+                $this->blogCategoryId    => 'required', // TODO: How to validate a dropdown list
+                $this->blogSubcategoryId => 'required', // TODO: How to validate a dropdown list
+                $this->blogArticleId     => 'required', // TODO: How to validate a dropdown list
+                $this->fullName          => 'required|regex:/^[a-zA-Z_ ]+$/u|max:255',
+                $this->email             => 'required|email:filter|max:255',
+                $this->commentReply      => 'required|max:255',
             ]);
             $apiInsertSingleRecord = $this->modelNameBlogArticleCommentReply->create([
-                'blog_category_id'    => $request->get('blog_category_id'),
-                'blog_subcategory_id' => $request->get('blog_subcategory_id'),
-                'blog_article_id'     => $request->get('blog_article_id'),
-                'full_name'           => $request->get('full_name'),
-                'email'               => $request->get('email'),
-                'comment_reply'       => $request->get('comment_reply'),
-                'comment_reply_is_public' => $request->get('comment_reply_is_public'),
-                'privacy_policy'      => $request->get('privacy_policy'),
+                $this->blogCategoryId       => $request->get($this->blogCategoryId),
+                $this->blogSubcategoryId    => $request->get($this->blogSubcategoryId),
+                $this->blogArticleId        => $request->get($this->blogArticleId),
+                $this->fullName             => $request->get($this->fullName),
+                $this->email                => $request->get($this->email),
+                $this->commentReply         => $request->get($this->commentReply),
+                $this->commentReplyIsPublic => $request->get($this->commentReplyIsPublic),
+                $this->privacyPolicy        => $request->get($this->privacyPolicy),
             ]);
             if ($request->get('comment_is_public') === '1') 
             {
                 return response([
-                    'notify_code'              => 'INFO_0016',
-                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0016')->pluck($this->tableAllColumnsErrorSystem[2])[0],
-                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0016')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('blog_article_comment_replies.store.info_0016_admin_message', [ 
-                        'fullName' => $request->get('full_name'),
+                    $this->notifyCode             => 'INFO_0016',
+                    $this->notifyShortDescription => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0016')->pluck($this->notifyShortDescription)[0],
+                    $this->notifyReference        => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0016')->pluck($this->notifyReference)[0],
+                    $this->adminMessage           => __('blog_article_comment_replies.store.info_0016_admin_message', [ 
+                        'fullName' => $request->get($this->fullName),
                         'blogArticleTitle'     => $request->get('blog_article_title'),
                     ]),
-                    'records'                  => $apiInsertSingleRecord,
+                    $this->records                => $apiInsertSingleRecord,
                 ], 201);
             }
             else
             {
                 return response([
-                    'notify_code'              => 'INFO_0017',
-                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0017')->pluck($this->tableAllColumnsErrorSystem[2])[0],
-                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0017')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('blog_article_comment_replies.store.info_0017_admin_message', [ 
-                        'fullName' => $request->get('full_name'),
+                    $this->notifyCode             => 'INFO_0017',
+                    $this->notifyShortDescription => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0017')->pluck($this->notifyShortDescription)[0],
+                    $this->notifyReference        => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0017')->pluck($this->notifyReference)[0],
+                    $this->adminMessage           => __('blog_article_comment_replies.store.info_0017_admin_message', [ 
+                        'fullName' => $request->get($this->fullName),
                         'blogArticleTitle'     => $request->get('blog_article_title'),
                     ]),
-                    'records'                  => $apiInsertSingleRecord,
+                    $this->records                => $apiInsertSingleRecord,
                 ], 201);
             }
         }
@@ -145,28 +173,28 @@ class BlogArticleCommentReplyController extends Controller
             if ($mysqlError->getCode() === '42S02') 
             {
                 return response([
-                    'notify_code'              => 'ERR_0001',
-                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
-                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('blog_article_comment_replies.store.err_0001_admin_message', [ 'tableName' => $this->modelNameBlogArticleCommentReply, ]),
+                    $this->notifyCode             => 'ERR_0001',
+                    $this->notifyShortDescription => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'ERR_0001')->pluck($this->notifyShortDescription)[0],
+                    $this->notifyReference        => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'ERR_0001')->pluck($this->notifyReference)[0],
+                    $this->adminMessage           => __('blog_article_comment_replies.store.err_0001_admin_message', [ 'tableName' => $this->tableNameBlogArticleCommentReply, ]),
                 ], 500);
             }
             if ($mysqlError->getCode() === '42S22') 
             {
                 return response([
-                    'notify_code'              => 'ERR_0002',
-                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0002')->pluck($this->tableAllColumnsErrorSystem[2])[0],
-                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0002')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('blog_article_comment_replies.store.err_0002_admin_message', [ 'tableName' => $this->modelNameBlogArticleCommentReply, ]),
+                    $this->notifyCode             => 'ERR_0002',
+                    $this->notifyShortDescription => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'ERR_0002')->pluck($this->notifyShortDescription)[0],
+                    $this->notifyReference        => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'ERR_0002')->pluck($this->notifyReference)[0],
+                    $this->adminMessage           => __('blog_article_comment_replies.store.err_0002_admin_message', [ 'tableName' => $this->tableNameBlogArticleCommentReply, ]),
                 ], 500);
             }
             if ($mysqlError->getCode() === '23000') 
             {
                 return response([
-                    'notify_code'              => 'ERR_0003',
-                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0003')->pluck($this->tableAllColumnsErrorSystem[2])[0],
-                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0003')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('blog_article_comment_replies.store.err_0003_admin_message', [ 'tableName' => $this->modelNameBlogArticleCommentReply, ]),
+                    $this->notifyCode             => 'ERR_0003',
+                    $this->notifyShortDescription => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'ERR_0003')->pluck($this->notifyShortDescription)[0],
+                    $this->notifyReference        => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'ERR_0003')->pluck($this->notifyReference)[0],
+                    $this->adminMessage           => __('blog_article_comment_replies.store.err_0003_admin_message', [ 'tableName' => $this->tableNameBlogArticleCommentReply, ]),
                 ], 406);
             }
         }
@@ -187,29 +215,29 @@ class BlogArticleCommentReplyController extends Controller
             if ($apiDisplayAllRecords->isEmpty()) 
             {
                 return response([
-                    'notify_code'              => 'INFO_0001',
-                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
-                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('blog_article_comment_replies.show.info_0001_admin_message', [ 'tableName' => $this->modelNameBlogArticleCommentReply ]),
+                    $this->notifyCode             => 'INFO_0001',
+                    $this->notifyShortDescription => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0001')->pluck($this->notifyShortDescription)[0],
+                    $this->notifyReference        => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0001')->pluck($this->notifyReference)[0],
+                    $this->adminMessage           => __('blog_article_comment_replies.show.info_0001_admin_message', [ 'tableName' => $this->tableNameBlogArticleCommentReply ]),
                 ], 404);
             }
             elseif (is_null($apiDisplaySingleRecord)) 
             {
                 return response([
-                    'notify_code'              => 'INFO_0004',
-                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0004')->pluck($this->tableAllColumnsErrorSystem[2])[0],
-                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0004')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('blog_article_comment_replies.show.info_0004_admin_message'),
+                    $this->notifyCode             => 'INFO_0004',
+                    $this->notifyShortDescription => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0004')->pluck($this->notifyShortDescription)[0],
+                    $this->notifyReference        => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0004')->pluck($this->notifyReference)[0],
+                    $this->adminMessage           => __('blog_article_comment_replies.show.info_0004_admin_message'),
                 ], 404);
             }
             else 
             {
                 return response([
-                    'notify_code'              => 'INFO_0002',
-                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0002')->pluck($this->tableAllColumnsErrorSystem[2])[0],
-                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0002')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('blog_article_comment_replies.show.info_0002_admin_message', [ 'blogArticleTitle' => $apiDisplaySingleRecord['blog_article_title'] ]),
-                    'record'                   => $apiDisplaySingleRecord,
+                    $this->notifyCode             => 'INFO_0002',
+                    $this->notifyShortDescription => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0002')->pluck($this->notifyShortDescription)[0],
+                    $this->notifyReference        => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0002')->pluck($this->notifyReference)[0],
+                    $this->adminMessage           => __('blog_article_comment_replies.show.info_0002_admin_message', [ 'blogArticleTitle' => $apiDisplaySingleRecord['blog_article_title'] ]),
+                    $this->records                => $apiDisplaySingleRecord,
                 ], 201);
             }
         }
@@ -218,10 +246,10 @@ class BlogArticleCommentReplyController extends Controller
             if ($mysqlError->getCode() === '42S02') 
             {
                 return response([
-                    'notify_code'              => 'ERR_0001',
-                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
-                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('blog_article_comment_replies.show.err_0001_admin_message', [ 'tableName' => $this->modelNameBlogArticleCommentReply ]),
+                    $this->notifyCode             => 'ERR_0001',
+                    $this->notifyShortDescription => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'ERR_0001')->pluck($this->notifyShortDescription)[0],
+                    $this->notifyReference        => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'ERR_0001')->pluck($this->notifyReference)[0],
+                    $this->adminMessage           => __('blog_article_comment_replies.show.err_0001_admin_message', [ 'tableName' => $this->tableNameBlogArticleCommentReply ]),
                 ], 500);
             }
         }
@@ -240,21 +268,19 @@ class BlogArticleCommentReplyController extends Controller
         {
             $apiUpdateSingleRecord = $this->modelNameBlogArticleCommentReply->find($id);
             $apiUpdateSingleRecord->update($request->validate([
-                'blog_category_id'    => 'required', // TODO: How to validate a dropdown list
-                'blog_subcategory_id' => 'required', // TODO: How to validate a dropdown list
-                'blog_article_id'     => 'required', // TODO: How to validate a dropdown list
-                'full_name'           => 'required|regex:/^[a-zA-Z_ ]+$/u|max:255',
-                'email'               => 'required|email:filter|max:255',
-                'comment_reply'       => 'required|max:255',
-                // 'comment_reply_is_public'   => 'accepted',
-                // 'privacy_policy'      => 'accepted',
+                $this->blogCategoryId    => 'required', // TODO: How to validate a dropdown list
+                $this->blogSubcategoryId => 'required', // TODO: How to validate a dropdown list
+                $this->blogArticleId     => 'required', // TODO: How to validate a dropdown list
+                $this->fullName          => 'required|regex:/^[a-zA-Z_ ]+$/u|max:255',
+                $this->email             => 'required|email:filter|max:255',
+                $this->commentReply      => 'required|max:255',
             ]));
             return response([
-                'notify_code'              => 'INFO_0008',
-                'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0008')->pluck($this->tableAllColumnsErrorSystem[2])[0],
-                'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0008')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                'admin_message'            => __('blog_article_comment_replies.update.info_0008_admin_message'),
-                'records'                  => $apiUpdateSingleRecord,
+                $this->notifyCode             => 'INFO_0008',
+                $this->notifyShortDescription => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0008')->pluck($this->notifyShortDescription)[0],
+                $this->notifyReference        => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0008')->pluck($this->notifyReference)[0],
+                $this->adminMessage           => __('blog_article_comment_replies.update.info_0008_admin_message'),
+                $this->records                => $apiUpdateSingleRecord,
             ], 201);
         }
         catch (\Illuminate\Database\QueryException $mysqlError) 
@@ -262,19 +288,19 @@ class BlogArticleCommentReplyController extends Controller
             if ($mysqlError->getCode() === '42S02')
             {
                 return response([
-                    'notify_code'              => 'ERR_0001',
-                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
-                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('blog_article_comment_replies.update.err_0001_admin_message', [ 'tableName' => $this->modelNameBlogArticleCommentReply, ]),
+                    $this->notifyCode             => 'ERR_0001',
+                    $this->notifyShortDescription => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'ERR_0001')->pluck($this->notifyShortDescription)[0],
+                    $this->notifyReference        => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'ERR_0001')->pluck($this->notifyReference)[0],
+                    $this->adminMessage           => __('blog_article_comment_replies.update.err_0001_admin_message', [ 'tableName' => $this->tableNameBlogArticleCommentReply, ]),
                 ], 500);
             }
             if ($mysqlError->getCode() === '42S22') 
             {
                 return response([
-                    'notify_code'              => 'ERR_0002',
-                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0002')->pluck($this->tableAllColumnsErrorSystem[2])[0],
-                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0002')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('blog_article_comment_replies.update.err_0002_admin_message', [ 'tableName' => $this->modelNameBlogArticleCommentReply, ]),
+                    $this->notifyCode             => 'ERR_0002',
+                    $this->notifyShortDescription => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'ERR_0002')->pluck($this->notifyShortDescription)[0],
+                    $this->notifyReference        => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'ERR_0002')->pluck($this->notifyReference)[0],
+                    $this->adminMessage           => __('blog_article_comment_replies.update.err_0002_admin_message', [ 'tableName' => $this->tableNameBlogArticleCommentReply, ]),
                 ], 500);
             }
         }
@@ -295,30 +321,30 @@ class BlogArticleCommentReplyController extends Controller
             if ($apiDisplayAllRecords->isEmpty()) 
             {
                 return response([
-                    'notify_code'              => 'INFO_0001',
-                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
-                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('blog_article_comment_replies.delete.info_0001_admin_message', [ 'tableName' => $this->modelNameBlogArticleCommentReply ]),
+                    $this->notifyCode             => 'INFO_0001',
+                    $this->notifyShortDescription => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0001')->pluck($this->notifyShortDescription)[0],
+                    $this->notifyReference        => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0001')->pluck($this->notifyReference)[0],
+                    $this->adminMessage           => __('blog_article_comment_replies.delete.info_0001_admin_message', [ 'tableName' => $this->tableNameBlogArticleCommentReply ]),
                 ], 404);
             }
             elseif (is_null($apiDisplaySingleRecord)) 
             {
                 return response([
-                    'notify_code'              => 'INFO_0005',
-                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0005')->pluck($this->tableAllColumnsErrorSystem[2])[0],
-                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0005')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('blog_article_comment_replies.delete.info_0005_admin_message'),
+                    $this->notifyCode             => 'INFO_0005',
+                    $this->notifyShortDescription => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0005')->pluck($this->notifyShortDescription)[0],
+                    $this->notifyReference        => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0005')->pluck($this->notifyReference)[0],
+                    $this->adminMessage           => __('blog_article_comment_replies.delete.info_0005_admin_message'),
                 ], 404);
             }
             else 
             {
                 $apiDeleteSingleRecord = $this->modelNameBlogArticleCommentReply->find($id)->delete();
                 return response([
-                    'notify_code'              => 'INFO_0006',
-                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0006')->pluck($this->tableAllColumnsErrorSystem[2])[0],
-                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0006')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('blog_article_comment_replies.delete.info_0006_admin_message'),
-                    'delete_records'            => $apiDisplaySingleRecord,
+                    $this->notifyCode             => 'INFO_0006',
+                    $this->notifyShortDescription => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0006')->pluck($this->notifyShortDescription)[0],
+                    $this->notifyReference        => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0006')->pluck($this->notifyReference)[0],
+                    $this->adminMessage           => __('blog_article_comment_replies.delete.info_0006_admin_message'),
+                    $this->deletedRecords         => $apiDisplaySingleRecord,
                 ], 200);
             }
         }
@@ -327,10 +353,10 @@ class BlogArticleCommentReplyController extends Controller
             if ($mysqlError->getCode() === '42S02') 
             {
                 return response([
-                    'notify_code'              => 'ERR_0001',
-                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
-                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('blog_article_comment_replies.delete.err_0001_admin_message'),
+                    $this->notifyCode             => 'ERR_0001',
+                    $this->notifyShortDescription => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'ERR_0001')->pluck($this->notifyShortDescription)[0],
+                    $this->notifyReference        => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'ERR_0001')->pluck($this->notifyReference)[0],
+                    $this->adminMessage           => __('blog_article_comment_replies.delete.err_0001_admin_message'),
                 ], 500);
             }
         }
@@ -349,19 +375,19 @@ class BlogArticleCommentReplyController extends Controller
             if ($apiDisplayAllRecords->isEmpty()) 
             {
                 return response([
-                    'notify_code'              => 'INFO_0001',
-                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
-                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('blog_article_comment_replies.delete_all_records.info_0001_admin_message', [ 'tableName' => $this->modelNameBlogArticleCommentReply ]),
+                    $this->notifyCode             => 'INFO_0001',
+                    $this->notifyShortDescription => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0001')->pluck($this->notifyShortDescription)[0],
+                    $this->notifyReference        => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0001')->pluck($this->notifyReference)[0],
+                    $this->adminMessage           => __('blog_article_comment_replies.delete_all_records.info_0001_admin_message', [ 'tableName' => $this->tableNameBlogArticleCommentReply ]),
                 ], 404);
             }
             elseif (is_null($apiDisplayAllRecords)) 
             {
                 return response([
-                    'notify_code'              => 'INFO_0005',
-                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0005')->pluck($this->tableAllColumnsErrorSystem[2])[0],
-                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0005')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('blog_article_comment_replies.delete_all_records.info_0005_admin_message'),
+                    $this->notifyCode             => 'INFO_0005',
+                    $this->notifyShortDescription => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0005')->pluck($this->notifyShortDescription)[0],
+                    $this->notifyReference        => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0005')->pluck($this->notifyReference)[0],
+                    $this->adminMessage           => __('blog_article_comment_replies.delete_all_records.info_0005_admin_message'),
                 ], 404);
             }
             else 
@@ -370,11 +396,11 @@ class BlogArticleCommentReplyController extends Controller
                 $apiDeleteSingleRecord = $this->modelNameBlogArticleCommentReply->truncate();
                 DB::statement('SET FOREIGN_KEY_CHECKS=1;');
                 return response([
-                    'notify_code'              => 'INFO_0007',
-                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0007')->pluck($this->tableAllColumnsErrorSystem[2])[0],
-                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0007')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('blog_article_comment_replies.delete_all_records.info_0007_admin_message'),
-                    'user_message'             => $apiDisplayAllRecords,
+                    $this->notifyCode             => 'INFO_0007',
+                    $this->notifyShortDescription => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0007')->pluck($this->notifyShortDescription)[0],
+                    $this->notifyReference        => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0007')->pluck($this->notifyReference)[0],
+                    $this->adminMessage           => __('blog_article_comment_replies.delete_all_records.info_0007_admin_message'),
+                    $this->userMessage            => $apiDisplayAllRecords,
                 ], 200);
             }
         }
@@ -383,10 +409,10 @@ class BlogArticleCommentReplyController extends Controller
             if ($mysqlError->getCode() === '42S02') 
             {
                 return response([
-                    'notify_code'              => 'ERR_0001',
-                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
-                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('blog_article_comment_replies.delete_all_records.err_0001_admin_message'),
+                    $this->notifyCode             => 'ERR_0001',
+                    $this->notifyShortDescription => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'ERR_0001')->pluck($this->notifyShortDescription)[0],
+                    $this->notifyReference        => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'ERR_0001')->pluck($this->notifyReference)[0],
+                    $this->adminMessage           => __('blog_article_comment_replies.delete_all_records.err_0001_admin_message'),
                 ], 500);
             }
         }

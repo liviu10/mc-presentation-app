@@ -156,12 +156,14 @@ import Vue from 'vue'
 import rate from 'vue-rate'
 import 'vue-rate/dist/vue-rate.css'
 import Form from 'vform'
+import axios from 'axios'
 
 import SingleLeftPicture from '../templates/SingleLeftPicture'
 // import SingleRightPicture from '../templates/SingleRightPicture.vue'
 // import SingleBottomPicture from '../templates/SingleBottomPicture.vue'
-
+Vue.use(axios)
 Vue.use(rate)
+window.axios = require('axios')
 
 export default {
   name: 'WrittenArticlesPage',

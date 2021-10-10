@@ -38,6 +38,8 @@ class BlogArticle extends Model
     protected $fillable = [
         'blog_category_id',
         'blog_subcategory_id',
+        'blog_article_author',
+        'blog_article_reading_time',
         'blog_article_title',
         'blog_article_short_description',
         'blog_article_content',
@@ -45,7 +47,9 @@ class BlogArticle extends Model
         'blog_article_is_audio',
         'blog_article_is_video',
         'blog_article_is_active',
-        'blog_article_reading_time',
+        'blog_article_rating_system',
+        'blog_article_likes',
+        'blog_article_dislikes',
     ];
 
     /**
