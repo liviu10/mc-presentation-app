@@ -76,14 +76,6 @@ class BlogArticle extends Model
     ];
 
     /**
-     * Cast timestamp columns.
-     */
-    protected $casts = [
-        'created_at' => 'date:d.m.Y',
-        'updated_at' => 'date:d.m.Y',
-    ];
-
-    /**
      * Eloquent relationship between Blog Subcategories and Articles.
      * Many blog articles may have only one blog subcategory.
      */

@@ -59,7 +59,7 @@ export default {
       axios
         .get(fullApiUrl)
         .then(response => {
-          console.log('>>>>> Blog Categories and Subcategories Api Data')
+          console.log('>>>>> Display blog categories and subcategories <<<<<<')
           this.displayAllBlogCategoriesAndSubcategories = response.data.results
         })
     }
