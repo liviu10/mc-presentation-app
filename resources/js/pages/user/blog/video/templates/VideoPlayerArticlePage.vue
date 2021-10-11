@@ -1,8 +1,8 @@
 <template>
-  <!-- AUDIO PAGE TEMPLATE, SECTION START -->
-  <!-- TODO: Prepare a template for displaying a single audio article from the database -->
+  <!-- VIDEO PAGE TEMPLATE, SECTION START -->
+  <!-- TODO: Prepare a template for displaying a single video article from the database -->
   <div />
-  <!-- AUDIO PAGE TEMPLATE, SECTION END -->
+  <!-- VIDEO PAGE TEMPLATE, SECTION END -->
 </template>
 
 <script>
@@ -12,7 +12,7 @@ Vue.use(axios)
 window.axios = require('axios')
 
 export default {
-  name: 'AudioPageArticle',
+  name: 'VideoPageArticle',
   components: {},
   layout: '',
   middleware: '',
@@ -21,17 +21,17 @@ export default {
     return {
       notifyCode: null,
       notifyMessage: null,
-      showAudioArticle: null
+      showVideoArticle: null
     }
   },
   computed: {
     // mapped getters
   },
   mounted () {
-    this.displaySingleAudioArticle()
+    this.displaySingleVideoArticle()
   },
   methods: {
-    displaySingleAudioArticle: function () {
+    displaySingleVideoArticle: function () {
       const url = window.location.origin
       const apiEndPoint = '/api/blog-configuration/articles/'
       const urlParameter = this.$route.params.id
@@ -39,12 +39,12 @@ export default {
       axios
         .get(fullApiUrl)
         .then(response => {
-          console.log('>>>>> Display a single audio blog article')
+          console.log('>>>>> Display a single video blog article')
           if (response.data.results.length === 0) {
             this.notifyCode = response.data.notify_code
             this.notifyMessage = response.data.user_message
           } else {
-            this.showAudioArticle = response.data.results
+            this.showVideoArticle = response.data.results
           }
         })
     }

@@ -103,7 +103,7 @@ Route::group(['middleware' => 'guest:api'], function () {
     Route::get('/blog-configuration/articles/all-written-articles', [BlogArticleController::class, 'getAllWrittenBlogArticles']);
     Route::get('/blog-configuration/articles/all-audio-articles', [BlogArticleController::class, 'getAllAudioBlogArticles']);
     Route::get('/blog-configuration/articles/all-video-articles', [BlogArticleController::class, 'getAllVideoBlogArticles']);
-    Route::get('/blog-configuration/articles/{id}', [BlogArticleController::class, 'displaySingleWrittenArticle']);
+    Route::get('/blog-configuration/articles/{id}', [BlogArticleController::class, 'displaySingleBlogArticle']);
     Route::delete('/blog-configuration/articles/delete-all', [BlogArticleController::class, 'deleteAllRecords']);
     Route::apiResource('/blog-configuration/articles', BlogArticleController::class);
         // Blog Article Comments

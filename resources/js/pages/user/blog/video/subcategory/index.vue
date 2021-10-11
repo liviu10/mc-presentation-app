@@ -49,7 +49,7 @@ export default {
     }
   },
   metaInfo () {
-    return { title: this.$t('user.article_blog_page.page_title') }
+    return { title: this.$t('user.blog_system_pages.video_article_blog_pages.article_blog_page.page_title') }
   }
 }
 </script>

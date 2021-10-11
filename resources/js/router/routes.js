@@ -21,12 +21,12 @@ export default [
   // URL routes for the audio blog pages
   { path: '/blog/audio', name: 'audio.index', component: page('user/blog/audio/index.vue') },
   { path: '/blog/audio/subcategory/:subcategoryTitle', name: 'audio.subcategory.index', component: page('user/blog/audio/subcategory/index.vue') },
-  { path: '/blog/audio/view/:articleTitle', name: 'audio.view.index', component: page('user/blog/audio/view/index.vue') },
+  { path: '/blog/audio/view/:id', name: 'audio.view.index', component: page('user/blog/audio/view/index.vue') },
 
   // URL routes for the video blog pages
   { path: '/blog/video', name: 'video.index', component: page('user/blog/video/index.vue') },
   { path: '/blog/video/subcategory/:subcategoryTitle', name: 'video.subcategory.index', component: page('user/blog/video/subcategory/index.vue') },
-  { path: '/blog/video/view/:articleTitle', name: 'video.view.index', component: page('user/blog/video/view/index.vue') },
+  { path: '/blog/video/view/:id', name: 'video.view.index', component: page('user/blog/video/view/index.vue') },
 
   // URL route for the about me page
   { path: '/about-me', name: 'about-me', component: page('user/about-me/index.vue') },

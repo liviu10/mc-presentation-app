@@ -24,7 +24,7 @@ class BlogArticleController extends Controller
     protected $blogCategoryId;
     protected $blogSubcategoryId;
     protected $blogArticleAuthor;
-    protected $blogArticleReadingTime;
+    protected $blogArticleTime;
     protected $blogArticleTitle;
     protected $blogArticleShortDescription;
     protected $blogArticleContent;
@@ -65,7 +65,7 @@ class BlogArticleController extends Controller
         $this->blogArticleId               = 'id';
         $this->blogSubcategoryId           = 'blog_subcategory_id';
         $this->blogArticleAuthor           = 'blog_article_author';
-        $this->blogArticleReadingTime      = 'blog_article_reading_time';
+        $this->blogArticleTime             = 'blog_article_time';
         $this->blogArticleTitle            = 'blog_article_title';
         $this->blogArticleShortDescription = 'blog_article_short_description';
         $this->blogArticleContent          = 'blog_article_content';
@@ -166,7 +166,7 @@ class BlogArticleController extends Controller
                     $this->blogCategoryId              => $request->get($this->blogCategoryId),
                     $this->blogSubcategoryId           => $request->get($this->blogSubcategoryId),
                     $this->blogArticleAuthor           => $request->get($this->blogArticleAuthor),
-                    $this->blogArticleReadingTime      => $articleTotalReadingTime,
+                    $this->blogArticleTime             => $articleTotalReadingTime,
                     $this->blogArticleTitle            => $request->get($this->blogArticleTitle),
                     $this->blogArticleShortDescription => $request->get($this->blogArticleShortDescription),
                     $this->blogArticleContent          => $request->get($this->blogArticleContent),
@@ -185,7 +185,7 @@ class BlogArticleController extends Controller
                     $this->blogCategoryId              => $request->get($this->blogCategoryId),
                     $this->blogSubcategoryId           => $request->get($this->blogSubcategoryId),
                     $this->blogArticleAuthor           => $request->get($this->blogArticleAuthor),
-                    $this->blogArticleReadingTime      => $articleTotalReadingTime,
+                    $this->blogArticleTime             => $articleTotalReadingTime,
                     $this->blogArticleTitle            => $request->get($this->blogArticleTitle),
                     $this->blogArticleShortDescription => $request->get($this->blogArticleShortDescription),
                     $this->blogArticleContent          => $request->get($this->blogArticleContent),
@@ -204,7 +204,7 @@ class BlogArticleController extends Controller
                     $this->blogCategoryId              => $request->get($this->blogCategoryId),
                     $this->blogSubcategoryId           => $request->get($this->blogSubcategoryId),
                     $this->blogArticleAuthor           => $request->get($this->blogArticleAuthor),
-                    $this->blogArticleReadingTime      => $articleTotalReadingTime,
+                    $this->blogArticleTime             => $articleTotalReadingTime,
                     $this->blogArticleTitle            => $request->get($this->blogArticleTitle),
                     $this->blogArticleShortDescription => $request->get($this->blogArticleShortDescription),
                     $this->blogArticleContent          => $request->get($this->blogArticleContent),
@@ -421,7 +421,7 @@ class BlogArticleController extends Controller
                     $this->blogCategoryId              => $request->get($this->blogCategoryId),
                     $this->blogSubcategoryId           => $request->get($this->blogSubcategoryId),
                     $this->blogArticleAuthor           => $request->get($this->blogArticleAuthor),
-                    $this->blogArticleReadingTime      => $articleTotalReadingTime,
+                    $this->blogArticleTime             => $articleTotalReadingTime,
                     $this->blogArticleTitle            => $request->get($this->blogArticleTitle),
                     $this->blogArticleShortDescription => $request->get($this->blogArticleShortDescription),
                     $this->blogArticleContent          => $request->get($this->blogArticleContent),
@@ -440,7 +440,7 @@ class BlogArticleController extends Controller
                     $this->blogCategoryId              => $request->get($this->blogCategoryId),
                     $this->blogSubcategoryId           => $request->get($this->blogSubcategoryId),
                     $this->blogArticleAuthor           => $request->get($this->blogArticleAuthor),
-                    $this->blogArticleReadingTime      => $articleTotalReadingTime,
+                    $this->blogArticleTime             => $articleTotalReadingTime,
                     $this->blogArticleTitle            => $request->get($this->blogArticleTitle),
                     $this->blogArticleShortDescription => $request->get($this->blogArticleShortDescription),
                     $this->blogArticleContent          => $request->get($this->blogArticleContent),
@@ -459,7 +459,7 @@ class BlogArticleController extends Controller
                     $this->blogCategoryId              => $request->get($this->blogCategoryId),
                     $this->blogSubcategoryId           => $request->get($this->blogSubcategoryId),
                     $this->blogArticleAuthor           => $request->get($this->blogArticleAuthor),
-                    $this->blogArticleReadingTime      => $articleTotalReadingTime,
+                    $this->blogArticleTime             => $articleTotalReadingTime,
                     $this->blogArticleTitle            => $request->get($this->blogArticleTitle),
                     $this->blogArticleShortDescription => $request->get($this->blogArticleShortDescription),
                     $this->blogArticleContent          => $request->get($this->blogArticleContent),
@@ -633,7 +633,7 @@ class BlogArticleController extends Controller
             $allWrittenBlogArticles = $this->modelNameBlogArticles::select(
                 $this->blogArticleId,
                 $this->blogArticleTitle,
-                $this->blogArticleReadingTime,
+                $this->blogArticleTime,
                 $this->blogCreatedAt,
                 $this->blogUpdatedAt,
                 $this->blogArticleShortDescription,
@@ -680,9 +680,20 @@ class BlogArticleController extends Controller
     {
         if (response($this->index())->status() === 200) 
         {
-            $allAudioBlogArticles = $this->modelNameBlogArticles::where($this->blogCategoryId, '=', '2')
-                                                ->where($this->blogArticleIsActive, '<>', '0')
-                                                ->get();
+            $allAudioBlogArticles = $this->modelNameBlogArticles::select(
+                $this->blogArticleId,
+                $this->blogArticleTitle,
+                $this->blogArticleTime,
+                $this->blogCreatedAt,
+                $this->blogUpdatedAt,
+                $this->blogArticleShortDescription,
+                $this->blogArticleSlug,
+            )
+            ->where($this->blogCategoryId, '=', '2')
+            ->where($this->blogArticleIsAudio, '=', '1')
+            ->where($this->blogArticleIsActive, '<>', '0')
+            ->orderBy('created_at', 'DESC')
+            ->get();
             if ($allAudioBlogArticles->isEmpty()) 
             {
                 return response([
@@ -720,9 +731,20 @@ class BlogArticleController extends Controller
     {
         if (response($this->index())->status() === 200) 
         {
-            $allVideoBlogArticles = $this->modelNameBlogArticles::where($this->blogCategoryId, '=', '3')
-                                                ->where($this->blogArticleIsActive, '<>', '0')
-                                                ->get();
+            $allVideoBlogArticles = $this->modelNameBlogArticles::select(
+                $this->blogArticleId,
+                $this->blogArticleTitle,
+                $this->blogArticleTime,
+                $this->blogCreatedAt,
+                $this->blogUpdatedAt,
+                $this->blogArticleShortDescription,
+                $this->blogArticleSlug,
+            )
+            ->where($this->blogCategoryId, '=', '3')
+            ->where($this->blogArticleIsVideo, '=', '1')
+            ->where($this->blogArticleIsActive, '<>', '0')
+            ->orderBy('created_at', 'DESC')
+            ->get();
             if ($allVideoBlogArticles->isEmpty()) 
             {
                 return response([
@@ -757,72 +779,68 @@ class BlogArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function displaySingleWrittenArticle($id)
+    public function displaySingleBlogArticle($id)
     {
-        $displayWrittenArticle = $this->modelNameBlogArticles::select(
-            $this->blogArticleId,
-            $this->blogArticleTitle,
-            $this->blogArticleAuthor,
-            $this->blogCreatedAt,
-            $this->blogArticleReadingTime,
-            $this->blogArticleShortDescription,
-            $this->blogArticleContent,
-            $this->blogArticleRatingSystem,
-            $this->blogArticleLikes,
-            $this->blogArticleDislikes,
-            $this->blogCreatedAt,
-            $this->blogUpdatedAt,
-        )
-        ->where($this->blogArticleId, '=', $id)->where($this->blogArticleIsActive, '<>', '0')
-        ->with([
-            // TODO: How do you load a parent through the belongsTo method (many to one relationship)
-            'blog_article_comments' => function ($query) {
-                $query->select('blog_article_id', 'id', 'full_name', 'email', 'comment', 'created_at', 'updated_at')
-                      ->where('comment_is_public', '<>', '0');
-            },
-            'blog_article_comments.blog_article_comment_replies' => function ($query) {
-                $query->select('blog_article_comment_id', 'id', 'full_name', 'email', 'comment_reply', 'created_at', 'updated_at')
-                      ->where('comment_reply_is_public', '<>', '0');
+        if (response($this->index())->status() === 200) 
+        {
+            $displayBlogArticle = $this->modelNameBlogArticles::select(
+                $this->blogArticleId,
+                $this->blogArticleTitle,
+                $this->blogArticleAuthor,
+                $this->blogCreatedAt,
+                $this->blogArticleTime,
+                $this->blogArticleShortDescription,
+                $this->blogArticleContent,
+                $this->blogArticleRatingSystem,
+                $this->blogArticleLikes,
+                $this->blogArticleDislikes,
+                $this->blogCreatedAt,
+                $this->blogUpdatedAt,
+            )
+            ->where($this->blogArticleId, '=', $id)->where($this->blogArticleIsActive, '<>', '0')
+            ->with([
+                // TODO: How do you load a parent through the belongsTo method (many to one relationship)
+                'blog_article_comments' => function ($query) {
+                    $query->select('blog_article_id', 'id', 'full_name', 'email', 'comment', 'created_at', 'updated_at')
+                          ->where('comment_is_public', '<>', '0');
+                },
+                'blog_article_comments.blog_article_comment_replies' => function ($query) {
+                    $query->select('blog_article_comment_id', 'id', 'full_name', 'email', 'comment_reply', 'created_at', 'updated_at')
+                          ->where('comment_reply_is_public', '<>', '0');
+                }
+            ])
+            ->get();
+    
+            return response([
+                $this->notifyCode  => 'INFO_0002',
+                $this->userMessage => __('blog_articles.index.info_0002_admin_message.message_2'),
+                $this->results     => $displayBlogArticle,
+            ], 200);
+            if ($displayBlogArticle->isEmpty()) 
+            {
+                return response([
+                    $this->notifyCode  => 'INFO_0001',
+                    $this->userMessage => __('blog_articles.index.info_0001_admin_message.message_2'),
+                    $this->results     => $displayBlogArticle,
+                ], 200);
             }
-        ])
-        ->get();
-
-        return response([
-            $this->notifyCode  => 'INFO_0002',
-            $this->userMessage => __('blog_articles.index.info_0002_admin_message.message_2'),
-            $this->results     => $displayWrittenArticle,
-        ], 200);
-
-        // if (response($this->index())->status() === 200) 
-        // {
-        //     $displayWrittenArticle = $this->modelNameBlogArticles::where($this->blogCategoryId, '=', '3')
-        //                                         ->where($this->blogArticleIsActive, '<>', '0')
-        //                                         ->get();
-        //     if ($displayWrittenArticle->isEmpty()) 
-        //     {
-        //         return response([
-        //             $this->notifyCode  => 'INFO_0001',
-        //             $this->userMessage => __('blog_articles.index.info_0001_admin_message.message_2'),
-        //             $this->results     => $displayWrittenArticle,
-        //         ], 200);
-        //     }
-        //     else 
-        //     {
-        //         return response([
-        //             $this->notifyCode  => 'INFO_0002',
-        //             $this->userMessage => __('blog_articles.index.info_0002_admin_message.message_2'),
-        //             $this->results     => $displayWrittenArticle,
-        //         ], 200);
-        //     }
-        // }
-        // else 
-        // {
-        //     return response([
-        //         $this->notifyCode             => 'INFO_0018',
-        //         $this->notifyShortDescription => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0018')->pluck($this->notifyShortDescription)[0],
-        //         $this->notifyReference        => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0018')->pluck($this->notifyReference)[0],
-        //         $this->userMessage            => 'The resource you are trying to view does not exist on the server! Please contact the website administrator!',
-        //     ], 404);
-        // }
+            else 
+            {
+                return response([
+                    $this->notifyCode  => 'INFO_0002',
+                    $this->userMessage => __('blog_articles.index.info_0002_admin_message.message_2'),
+                    $this->results     => $displayBlogArticle,
+                ], 200);
+            }
+        }
+        else 
+        {
+            return response([
+                $this->notifyCode             => 'INFO_0018',
+                $this->notifyShortDescription => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0018')->pluck($this->notifyShortDescription)[0],
+                $this->notifyReference        => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0018')->pluck($this->notifyReference)[0],
+                $this->userMessage            => 'The resource you are trying to view does not exist on the server! Please contact the website administrator!',
+            ], 404);
+        }
     }
 }

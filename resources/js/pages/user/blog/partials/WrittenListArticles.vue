@@ -17,11 +17,11 @@
             <a :href="writtenArticle.blog_article_slug + '/' + writtenArticle.id">
               {{ writtenArticle.blog_article_title }}
             </a>
-            <span v-if="writtenArticle.blog_article_reading_time <= 1">
+            <span v-if="writtenArticle.blog_article_time <= 1">
               ({{ $t('user.blog_system_pages.written_article_blog_pages.reading_time.less_than_one_minute') }})
             </span>
             <span v-else>
-              ({{ writtenArticle.blog_article_reading_time }} {{ $t('user.blog_system_pages.written_article_blog_pages.reading_time.more_than_one_minute') }})
+              ({{ writtenArticle.blog_article_time }} {{ $t('user.blog_system_pages.written_article_blog_pages.reading_time.more_than_one_minute') }})
             </span>
             <p v-if="writtenArticle.updated_at == writtenArticle.created_at">
               {{ $t('user.blog_system_pages.general_settings.published_on') }}

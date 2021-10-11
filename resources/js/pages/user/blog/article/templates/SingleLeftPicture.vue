@@ -14,11 +14,11 @@
           <span v-else>
             {{ new Date(singleArticle.created_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}
           </span> &bullet;
-          <span v-if="singleArticle.blog_article_reading_time <= 1">
+          <span v-if="singleArticle.blog_article_time <= 1">
             {{ $t('user.blog_system_pages.written_article_blog_pages.reading_time.less_than_one_minute') }}
           </span>
           <span v-else>
-            {{ singleArticle.blog_article_reading_time }} {{ $t('user.blog_system_pages.written_article_blog_pages.reading_time.more_than_one_minute') }}
+            {{ singleArticle.blog_article_time }} {{ $t('user.blog_system_pages.written_article_blog_pages.reading_time.more_than_one_minute') }}
           </span>
         </p>
         <div class="title-divider" />
@@ -107,10 +107,10 @@ export default {
     // mapped getters
   },
   mounted () {
-    this.displaySingleWrittenArticle()
+    this.displaySingleBlogArticle()
   },
   methods: {
-    displaySingleWrittenArticle: function () {
+    displaySingleBlogArticle: function () {
       const url = window.location.origin
       const apiEndPoint = '/api/blog-configuration/articles/'
       const urlParameter = this.$route.params.id

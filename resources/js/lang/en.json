@@ -94,17 +94,99 @@
           }
         }
       },
+      "audio_article_blog_pages": {
+        "meta_title": "Audio list articles",
+        "page_title": "Audio list articles",
+        "listening_time": {
+          "less_than_one_minute": "Less than 1 min audio",
+          "more_than_one_minute": "min audio"
+        },
+        "read_more": "See more!",
+        "article_blog_page": {
+          "page_title": "Audio article",
+          "rating_system": {
+            "title": "Rate this: ",
+            "options": {
+              "very_bad": "(Very Bad)",
+              "bad": "(Bad)",
+              "normal": "(Normal)",
+              "good": "(Good)",
+              "very_good": "(Very Good)"
+            }
+          },
+          "article_subcategory": "Subcategory",
+          "like_dislike_system": {
+            "like": " likes",
+            "dislike": " dislikes"
+          },
+          "social_menu": {
+            "title": "Share on:",
+            "like": "Like",
+            "dislike": "Dislike",
+            "facebook": "Share on Facebook!",
+            "instagram": "Share on Instagram!",
+            "email": "Share this article on email!"
+          },
+          "comment_form": {
+            "input_full_name": "Your Name and Surname",
+            "input_email_address": "Your email address",
+            "input_message": "Enter your comment",
+            "i_agree_with": "I agree with the ",
+            "privacy_policy": "Privacy Policy",
+            "post_comment": "Post comment",
+            "success_message": "Your have successfully posted a new comment! This comment will be soon approved by an admin!"
+          }
+        }
+      },
+      "video_article_blog_pages": {
+        "meta_title": "Video list articles",
+        "page_title": "Video list articles",
+        "listening_time": {
+          "less_than_one_minute": "Less than 1 min watching",
+          "more_than_one_minute": "min watching"
+        },
+        "read_more": "See more!",
+        "article_blog_page": {
+          "page_title": "Video article",
+          "rating_system": {
+            "title": "Rate this: ",
+            "options": {
+              "very_bad": "(Very Bad)",
+              "bad": "(Bad)",
+              "normal": "(Normal)",
+              "good": "(Good)",
+              "very_good": "(Very Good)"
+            }
+          },
+          "article_subcategory": "Subcategory",
+          "like_dislike_system": {
+            "like": " likes",
+            "dislike": " dislikes"
+          },
+          "social_menu": {
+            "title": "Share on:",
+            "like": "Like",
+            "dislike": "Dislike",
+            "facebook": "Share on Facebook!",
+            "instagram": "Share on Instagram!",
+            "email": "Share this article on email!"
+          },
+          "comment_form": {
+            "input_full_name": "Your Name and Surname",
+            "input_email_address": "Your email address",
+            "input_message": "Enter your comment",
+            "i_agree_with": "I agree with the ",
+            "privacy_policy": "Privacy Policy",
+            "post_comment": "Post comment",
+            "success_message": "Your have successfully posted a new comment! This comment will be soon approved by an admin!"
+          }
+        }
+      },
       "general_settings": {
         "published_on": "Published at:",
         "modified_on": "Modified at:",
         "more_articles": "More {type}"
       }
-    },
-    "audio_blog_page": {
-      "page_title": "Audio articles"
-    },
-    "video_blog_page": {
-      "page_title": "Video articles"
     },
     "contact_me_page": {
       "page_title": "Contact me",

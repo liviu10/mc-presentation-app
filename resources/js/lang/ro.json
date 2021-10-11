@@ -51,8 +51,8 @@
     "blog_system_pages": {
       "meta_title": "Blog",
       "written_article_blog_pages": {
-        "meta_title": "Listă article scrise",
-        "page_title": "Listă article scrise",
+        "meta_title": "Listă articole scrise",
+        "page_title": "Listă articole scrise",
         "reading_time": {
           "less_than_one_minute": "Mai puțin de 1 min de lectură",
           "more_than_one_minute": "min de lectură"
@@ -94,17 +94,99 @@
           }
         }
       },
+      "audio_article_blog_pages": {
+        "meta_title": "Listă articole audio",
+        "page_title": "Listă articole audio",
+        "listening_time": {
+          "less_than_one_minute": "Mai puțin de 1 min de ascultare",
+          "more_than_one_minute": "min de ascultare"
+        },
+        "read_more": "Vezi mai mult!",
+        "article_blog_page": {
+          "page_title": "Articol audio",
+          "rating_system": {
+            "title": "Evaluează: ",
+            "options": {
+              "very_bad": "(Foarte Rău)",
+              "bad": "(Rău)",
+              "normal": "(Normal)",
+              "good": "(Bine)",
+              "very_good": "(Foarte Bine)"
+            }
+          },
+          "article_subcategory": "Subcategorie",
+          "like_dislike_system": {
+            "like": " apreciază",
+            "dislike": " nu apreciază"
+          },
+          "social_menu": {
+            "title": "Distribuie pe:",
+            "like": "Apreciez",
+            "dislike": "Nu apreciez",
+            "facebook": "Distribuie pe Facebook!",
+            "instagram": "Distribuie pe Instagram!",
+            "email": "Distribuie acest articol pe email!"
+          },
+          "comment_form": {
+            "input_full_name": "Numele și prenumele tău",
+            "input_email_address": "Adresa ta de email",
+            "input_message": "Inserează un comentariu",
+            "i_agree_with": "Sunt de acord cu ",
+            "privacy_policy": "Termenii și Condițiile",
+            "post_comment": "Postează un comentariu",
+            "success_message": "Comentariul tău a fost postat cu success! Acesta va fi în curând aprobat de un administrator!"
+          }
+        }
+      },
+      "video_article_blog_pages": {
+        "meta_title": "Listă articole video",
+        "page_title": "Listă articole video",
+        "listening_time": {
+          "less_than_one_minute": "Mai puțin de 1 min de vizualizare",
+          "more_than_one_minute": "min de vizualizare"
+        },
+        "read_more": "Vezi mai mult!",
+        "article_blog_page": {
+          "page_title": "Articol video",
+          "rating_system": {
+            "title": "Evaluează: ",
+            "options": {
+              "very_bad": "(Foarte Rău)",
+              "bad": "(Rău)",
+              "normal": "(Normal)",
+              "good": "(Bine)",
+              "very_good": "(Foarte Bine)"
+            }
+          },
+          "article_subcategory": "Subcategorie",
+          "like_dislike_system": {
+            "like": " apreciază",
+            "dislike": " nu apreciază"
+          },
+          "social_menu": {
+            "title": "Distribuie pe:",
+            "like": "Apreciez",
+            "dislike": "Nu apreciez",
+            "facebook": "Distribuie pe Facebook!",
+            "instagram": "Distribuie pe Instagram!",
+            "email": "Distribuie acest articol pe email!"
+          },
+          "comment_form": {
+            "input_full_name": "Numele și prenumele tău",
+            "input_email_address": "Adresa ta de email",
+            "input_message": "Inserează un comentariu",
+            "i_agree_with": "Sunt de acord cu ",
+            "privacy_policy": "Termenii și Condițiile",
+            "post_comment": "Postează un comentariu",
+            "success_message": "Comentariul tău a fost postat cu success! Acesta va fi în curând aprobat de un administrator!"
+          }
+        }
+      },
       "general_settings": {
         "published_on": "Publicat la:",
         "modified_on": "Modificat la:",
         "more_articles": "Mai multe {type}"
       }
-    },
-    "audio_blog_page": {
-      "page_title": "Articole audio"
-    },
-    "video_blog_page": {
-      "page_title": "Articole video"
     },
     "contact_me_page": {
       "page_title": "Contactează-mă",

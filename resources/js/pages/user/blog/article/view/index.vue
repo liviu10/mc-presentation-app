@@ -223,7 +223,7 @@ export default {
     async commentArticle () {
       const writtenArticleApi = '/api/written-article'
       const { data } = await this.form.post(writtenArticleApi)
-      console.log('>>>>>> Written Article Api URL: ', data)
+      console.log('>>>>> Comment on written articles <<<<<<')
     },
     acceptPrivacyPolicy () {
       if (this.form.privacy_policy === true) {
