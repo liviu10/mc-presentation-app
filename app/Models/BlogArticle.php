@@ -39,7 +39,7 @@ class BlogArticle extends Model
         'blog_category_id',
         'blog_subcategory_id',
         'blog_article_author',
-        'blog_article_reading_time',
+        'blog_article_time',
         'blog_article_title',
         'blog_article_short_description',
         'blog_article_content',

@@ -1,42 +1,18 @@
 <template>
   <div class="row">
     <div class="col-lg-12 m-auto">
-      <div class="container lv-con-pg-audio">
-        <div class="lv-con-pg-audio-title">
-          <h1>APP AUDIO ARTICLES PAGE</h1>
-        </div>
-        <!-- LIST OF AUDIO ARTICLES, SECTION START -->
-        <audio-player-article-page />
-        <!-- LIST OF AUDIO ARTICLES, SECTION END -->
-        <!-- LIST OF AUDIO ARTICLES, SECTION START -->
-        <audio-player-article-page />
-        <!-- LIST OF AUDIO ARTICLES, SECTION END -->
-        <!-- LIST OF AUDIO ARTICLES, SECTION START -->
-        <audio-player-article-page />
-        <!-- LIST OF AUDIO ARTICLES, SECTION END -->
-        <!-- MORE AUDIO ARTICLES, SECTION START -->
-        <div class="lv-con-pg-audio-button-more">
-          <button type="button"
-                  class="btn btn-primary btn-lg"
-                  @click="showMore"
-          >
-            <i class="far fa-clock" />
-            Mai multe articole audio!
-          </button>
-        </div>
-        <!-- MORE AUDIO ARTICLES, SECTION END -->
-      </div>
+      <audio-list-articles />
     </div>
   </div>
 </template>
 
 <script>
-import AudioPlayerArticlePage from './templates/AudioPlayerArticlePage.vue'
+import AudioListArticles from '~/pages/user/blog/partials/AudioListArticles.vue'
 
 export default {
   name: 'AudioArticlesPage',
   components: {
-    AudioPlayerArticlePage
+    AudioListArticles
   },
   layout: '',
   middleware: '',
@@ -48,13 +24,9 @@ export default {
     // mapped getters
   },
   mounted () {},
-  methods: {
-    showMore () {
-      this.$router.push({ path: '/blog/audio' })
-    }
-  },
+  methods: {},
   metaInfo () {
-    return { title: this.$t('user.audio_blog_page.page_title') }
+    return { title: this.$t('user.blog_system_pages.audio_article_blog_pages.meta_title') }
   }
 }
 </script>

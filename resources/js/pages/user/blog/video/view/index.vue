@@ -1,8 +1,8 @@
 <template>
   <div class="row">
     <div class="col-lg-12 m-auto">
-      <div class="container lv-con-pg-audio">
-        <h1>APP DISPLAY AUDIO ARTICLE PAGE</h1>
+      <div class="container lv-con-pg-video">
+        <h1>APP DISPLAY VIDEO ARTICLE PAGE</h1>
       </div>
     </div>
   </div>
@@ -17,7 +17,7 @@ import Form from 'vform'
 Vue.use(rate)
 
 export default {
-  name: 'AudioArticlesPage',
+  name: 'VideoArticlesPage',
   components: {},
   layout: '',
   middlewa: '',
@@ -68,13 +68,13 @@ export default {
       this.countDislikes += 1
     },
     async commentArticle () {
-      const audioArticleApi = '/blog-configuration/article-comments'
-      const { data } = await this.form.post(audioArticleApi)
-      console.log('>>>>> Comment on audio articles <<<<<<')
+      const videoArticleApi = '/blog-configuration/article-comments'
+      const { data } = await this.form.post(videoArticleApi)
+      console.log('>>>>> Comment on video articles <<<<<<')
     }
   },
   metaInfo () {
-    return { title: this.$t('user.blog_system_pages.audio_article_blog_pages.article_blog_page.page_title') }
+    return { title: this.$t('user.blog_system_pages.video_article_blog_pages.article_blog_page.page_title') }
   }
 }
 </script>

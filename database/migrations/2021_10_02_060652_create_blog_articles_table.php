@@ -19,7 +19,7 @@ class CreateBlogArticlesTable extends Migration
             $table->foreignId('blog_category_id');
             $table->foreignId('blog_subcategory_id');
             $table->string('blog_article_author', 255);
-            $table->integer('blog_article_reading_time');
+            $table->integer('blog_article_time');
             $table->string('blog_article_title', 255);
             $table->string('blog_article_short_description', 255);
             $table->longText('blog_article_content');
