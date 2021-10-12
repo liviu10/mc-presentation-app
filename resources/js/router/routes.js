@@ -15,17 +15,17 @@ export default [
 
   // URL routes for the written blog pages
   { path: '/blog/article', name: 'article.index', component: page('user/blog/article/index.vue') },
-  { path: '/blog/article/subcategory/:subcategoryTitle', name: 'article.subcategory.index', component: page('user/blog/article/subcategory/index.vue') },
+  { path: '/blog/subcategory/:id/all-written-articles', name: 'article.subcategory.index', component: page('user/blog/article/subcategory/index.vue') },
   { path: '/blog/article/view/:id', name: 'article.view.index', component: page('user/blog/article/view/index.vue') },
 
   // URL routes for the audio blog pages
   { path: '/blog/audio', name: 'audio.index', component: page('user/blog/audio/index.vue') },
-  { path: '/blog/audio/subcategory/:subcategoryTitle', name: 'audio.subcategory.index', component: page('user/blog/audio/subcategory/index.vue') },
+  { path: '/blog/audio/subcategory/:id/all-audio-articles', name: 'audio.subcategory.index', component: page('user/blog/audio/subcategory/index.vue') },
   { path: '/blog/audio/view/:id', name: 'audio.view.index', component: page('user/blog/audio/view/index.vue') },
 
   // URL routes for the video blog pages
   { path: '/blog/video', name: 'video.index', component: page('user/blog/video/index.vue') },
-  { path: '/blog/video/subcategory/:subcategoryTitle', name: 'video.subcategory.index', component: page('user/blog/video/subcategory/index.vue') },
+  { path: '/blog/video/subcategory/:id/all-video-articles', name: 'video.subcategory.index', component: page('user/blog/video/subcategory/index.vue') },
   { path: '/blog/video/view/:id', name: 'video.view.index', component: page('user/blog/video/view/index.vue') },
 
   // URL route for the about me page
