@@ -19,32 +19,38 @@ Vue.use(axios)
 window.axios = require('axios')
 
 export default {
-  name: 'WrittenArticleSubcategoriesPage',
+  name: 'BlogSubcategoryWrittenArticlesPage',
   components: {},
   layout: '',
   middlewa: '',
   props: {},
   data: function () {
     return {
-      displayAllBlogCategoriesAndSubcategories: null
+      notifyCode: null,
+      notifyMessage: null,
+      displayAllBlogSubcategoryWrittenArticles: null
     }
   },
   computed: {
-    // mapped getters
+    capitalizePageTitle () {
+      const pageTitle = this.$t('user.blog_system_pages.written_article_blog_pages.page_title')
+      return pageTitle.toUpperCase()
+    }
   },
   mounted () {
-    this.getAllBlogMainCategoriesAndSubcategories()
+    this.getAllBlogSubcategoryWrittenArticles()
   },
   methods: {
-    getAllBlogMainCategoriesAndSubcategories: function () {
-      const domain = window.location.origin
-      const apiEndPoint = '/api/blog-configuration/categories-and-subcategories'
-      const fullApiUrl = domain + apiEndPoint
+    getAllBlogSubcategoryWrittenArticles: function () {
+      const url = window.location.origin
+      const apiEndPoint = '/api/blog-configuration/subcategory/'
+      const urlParameter = this.$route.params.id
+      const fullApiUrl = url + apiEndPoint + urlParameter + '/all-written-articles'
       axios
         .get(fullApiUrl)
         .then(response => {
-          console.log('>>>>> Blog Categories and Subcategories Api Data', response.data)
-          this.displayAllBlogCategoriesAndSubcategories = response.data.results
+          console.log('>>>>> Display a list of all written articles for a given blog subcategory <<<<<', response.data)
+          this.displayAllBlogSubcategoryWrittenArticles = response.data.results
         })
     }
   },

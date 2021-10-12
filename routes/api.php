@@ -97,6 +97,9 @@ Route::group(['middleware' => 'guest:api'], function () {
     Route::delete('/blog-configuration/categories/delete-all', [BlogCategoryController::class, 'deleteAllRecords']);
     Route::apiResource('/blog-configuration/categories', BlogCategoryController::class);
         // Blog Subcategories
+    Route::get('/blog-configuration/subcategory/{id}/all-written-articles', [BlogSubcategoryController::class, 'getAllBlogSubcategoryWrittenArticles']);
+    Route::get('/blog-configuration/subcategory/{id}/all-audio-articles', [BlogSubcategoryController::class, 'getAllBlogSubcategoryAudioArticles']);
+    Route::get('/blog-configuration/subcategory/{id}/all-video-articles', [BlogSubcategoryController::class, 'getAllBlogSubcategoryVideoArticles']);
     Route::delete('/blog-configuration/subcategories/delete-all', [BlogSubcategoryController::class, 'deleteAllRecords']);
     Route::apiResource('/blog-configuration/subcategories', BlogSubcategoryController::class);
         // Blog Articles
