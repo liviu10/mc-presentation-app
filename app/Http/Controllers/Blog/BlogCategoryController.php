@@ -96,7 +96,7 @@ class BlogCategoryController extends Controller
                     $this->notifyCode             => 'INFO_0002',
                     $this->notifyShortDescription => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0002')->pluck($this->notifyShortDescription)[0],
                     $this->notifyReference        => $this->modelNameErrorSystem::where($this->notifyCode, '=', 'INFO_0002')->pluck($this->notifyReference)[0],
-                    $this->adminMessage           => __('blog_categories.index.info_0002_admin_message'),
+                    $this->adminMessage           => __('blog_categories.index.info_0002_admin_message.message_2'),
                     $this->records                => $apiDisplayAllRecords,
                 ], 200);
             }
@@ -459,19 +459,19 @@ class BlogCategoryController extends Controller
         {
             // TODO: Limit blog_subcategories to 3 records for each blog_category record
             $allBlogCategoriesAndSubcategories = $this->modelNameBlogCategories::select(
-                                                    $this->blogCategoryId,
-                                                    $this->blogCategoryTitle,
-                                                    $this->blogCategoryShortDescription,
-                                                    $this->blogImageCardUrl,
-                                                    $this->blogCategoryPath
-                                                )
-                                                ->where($this->blogCategoryIsActive, '<>', '0')->limit(3)
-                                                ->with([
-                                                    'blog_subcategories' => function ($query) {
-                                                        $query->select('blog_category_id', 'blog_subcategory_title', 'blog_subcategory_slug')
-                                                              ->where('blog_subcategory_is_active', '<>', '0');
-                                                    }
-                                                ])->get();
+                $this->blogCategoryId,
+                $this->blogCategoryTitle,
+                $this->blogCategoryShortDescription,
+                $this->blogImageCardUrl,
+                $this->blogCategoryPath
+            )
+            ->where($this->blogCategoryIsActive, '<>', '0')->limit(3)
+            ->with([
+                'blog_subcategories' => function ($query) {
+                    $query->select('blog_category_id', 'blog_subcategory_title', 'blog_subcategory_slug')
+                            ->where('blog_subcategory_is_active', '<>', '0');
+                }
+            ])->get();
             if ($allBlogCategoriesAndSubcategories->isEmpty())
             {
                 return response([
