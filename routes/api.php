@@ -20,7 +20,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsletterController;
 
 // Import the Schedule Appointment Controller file
-
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\EventBookingController;
 
 // Import the Blog System Controller files
 use App\Http\Controllers\Blog\BlogCategoryController;
@@ -89,7 +90,8 @@ Route::group(['middleware' => 'guest:api'], function () {
     Route::apiResource('/newsletter', NewsletterController::class);
 
     // Schedule Appointment page API routes
-
+    Route::apiResource('/schedule-appointment', EventController::class);
+    Route::apiResource('/schedule-appointment/bookings', EventBookingController::class);
 
     // Blog System API routes
         // Blog Categories
