@@ -45,6 +45,12 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import axios from 'axios'
+Vue.use(axios)
+
+window.axios = require('axios')
+
 export default {
   name: 'StartQuestionnairePage',
   components: {},
@@ -52,11 +58,27 @@ export default {
   middleware: '',
   props: {},
   data: function () {
-    return {}
+    return {
+      displayQuestionnaire: null
+    }
   },
   computed: {},
-  mounted () {},
-  methods: {},
+  mounted () {
+    this.getQuestionnaire()
+  },
+  methods: {
+    getQuestionnaire: function () {
+      const url = window.location.origin
+      const apiEndPoint = '/api/schedule-appointment/questionnaire'
+      const fullApiUrl = url + apiEndPoint
+      axios
+        .get(fullApiUrl)
+        .then(response => {
+          console.log('>>>>> Display Questionnaire <<<<<<', response)
+          this.displayQuestionnaire = response.data.results
+        })
+    }
+  },
   metaInfo () {
     return { title: this.$t('user.schedule_appointment_page.start_questionnaire.page_title') }
   }
