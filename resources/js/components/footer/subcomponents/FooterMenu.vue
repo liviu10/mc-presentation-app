@@ -95,9 +95,11 @@ export default {
     },
     async unsubscribe () {
       const url = window.location.origin
-      const newsletterApi = url + '/api/newsletter'
+      const apiEndPoint = '/api/unsubscribe'
+      const urlParam = this.form.email
+      const fullApiUrl = url + apiEndPoint + '/' + urlParam
       axios
-        .delete(newsletterApi + '/' + this.form.email)
+        .delete(fullApiUrl)
         .then(response => {
           const urserMessage = response.data.user_message
           this.closeModal()

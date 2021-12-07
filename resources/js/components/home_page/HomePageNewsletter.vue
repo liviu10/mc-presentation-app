@@ -101,8 +101,9 @@ export default {
     },
     async subscribe () {
       const url = window.location.origin
-      const newsletterApi = url + '/api/newsletter'
-      const { data } = await this.form.post(newsletterApi)
+      const apiEndPoint = '/api/subscribe'
+      const fullApiUrl = url + apiEndPoint
+      const { data } = await this.form.post(fullApiUrl)
       console.log('>>>>>> Newsletter Api URL: ', data)
       Swal.fire({
         title: this.$t('user.home_page.newsletter.swal.title'),

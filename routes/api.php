@@ -16,7 +16,6 @@ use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ProfileController;
 
 // Import the Home page and the Newsletter Controller files
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsletterController;
 
 // Import the Schedule Appointment Controller file
@@ -43,50 +42,22 @@ use App\Http\Controllers\ErrorAndNotificationSystemController;
 
 /*
 |--------------------------------------------------------------------------
-| API Routes for the Login & Registration System of the Web Application
+| FRONT VIEW WEB APPLICATION CONTROLLERS
 |--------------------------------------------------------------------------
 |
-| Here is where you can register API routes for the login & registration system
-| of the application. These routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
+| Here is where you can import all the controller files that are only
+| available for the front view web application. These controllers will handle
+| only the HTTP requests that comes from the user.
 |
 */
+    // Import the Home page and the Newsletter Controller files
+    use App\Http\Controllers\User\HomePage\HomeController;
+    use App\Http\Controllers\User\HomePage\SubscribeToNewsletterController;
 
-Route::group(['middleware' => 'auth:api'], function () {
-    Route::post('logout', [LoginController::class, 'logout']);
-    Route::get('user', [UserController::class, 'current']);
-    Route::patch('settings/profile', [ProfileController::class, 'update']);
-    Route::patch('settings/password', [PasswordController::class, 'update']);
-});
-
-Route::group(['middleware' => 'guest:api'], function () {
-    Route::post('login', [LoginController::class, 'login']);
-    Route::post('register', [RegisterController::class, 'register']);
-    Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail']);
-    Route::post('password/reset', [ResetPasswordController::class, 'reset']);
-    Route::post('email/verify/{user}', [VerificationController::class, 'verify'])->name('verification.verify');
-    Route::post('email/resend', [VerificationController::class, 'resend']);
-    Route::post('oauth/{driver}', [OAuthController::class, 'redirect']);
-    Route::get('oauth/{driver}/callback', [OAuthController::class, 'handleCallback'])->name('oauth.callback');
-});
 
 /*
 |--------------------------------------------------------------------------
-| API Routes for the Administration View of the Web Application
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for the administration view of the application.
-| These routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-Route::group(['middleware' => 'auth:api', 'prefix' => '/admin'], function () {
-    
-});
-
-/*
-|--------------------------------------------------------------------------
-| API Routes for the Front View of the Web Application
+| FRONT VIEW WEB APPLICATION API ROUTES
 |--------------------------------------------------------------------------
 |
 | Here is where you can register API routes for the front view of the application.
@@ -95,10 +66,10 @@ Route::group(['middleware' => 'auth:api', 'prefix' => '/admin'], function () {
 |
 */
 Route::group(['middleware' => 'guest:api'], function () {
-    // Home page and Newsletter section API routes
+    // Home page and Newsletter API routes
     Route::apiResource('', HomeController::class);
-    Route::delete('/newsletter/delete-all', [NewsletterController::class, 'deleteAllRecords']);
-    Route::apiResource('/newsletter', NewsletterController::class);
+    Route::apiResource('/subscribe', SubscribeToNewsletterController::class)->only(['store']);
+    Route::apiResource('/unsubscribe', SubscribeToNewsletterController::class)->only(['destroy']);
 
     // Schedule Appointment page API routes
     Route::group([ 'prefix' => '/schedule-appointment' ], function () {
@@ -148,3 +119,49 @@ Route::group(['middleware' => 'guest:api'], function () {
 
 Route::delete('/errors-and-notification-system', [ErrorAndNotificationSystemController::class, 'deleteAllRecords']);
 Route::apiResource('/errors-and-notification-system', ErrorAndNotificationSystemController::class);
+
+/* --- ADMIN ROUTES BELOW --- */
+/*
+|--------------------------------------------------------------------------
+| API Routes for the Login & Registration System of the Web Application
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for the login & registration system
+| of the application. These routes are loaded by the RouteServiceProvider within a group which
+| is assigned the "api" middleware group. Enjoy building your API!
+|
+*/
+
+Route::group(['middleware' => 'auth:api'], function () {
+    Route::post('logout', [LoginController::class, 'logout']);
+    Route::get('user', [UserController::class, 'current']);
+    Route::patch('settings/profile', [ProfileController::class, 'update']);
+    Route::patch('settings/password', [PasswordController::class, 'update']);
+});
+
+Route::group(['middleware' => 'guest:api'], function () {
+    Route::post('login', [LoginController::class, 'login']);
+    Route::post('register', [RegisterController::class, 'register']);
+    Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail']);
+    Route::post('password/reset', [ResetPasswordController::class, 'reset']);
+    Route::post('email/verify/{user}', [VerificationController::class, 'verify'])->name('verification.verify');
+    Route::post('email/resend', [VerificationController::class, 'resend']);
+    Route::post('oauth/{driver}', [OAuthController::class, 'redirect']);
+    Route::get('oauth/{driver}/callback', [OAuthController::class, 'handleCallback'])->name('oauth.callback');
+});
+
+/*
+|--------------------------------------------------------------------------
+| API Routes for the Administration View of the Web Application
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for the administration view of the application.
+| These routes are loaded by the RouteServiceProvider within a group which
+| is assigned the "api" middleware group. Enjoy building your API!
+|
+*/
+Route::group(['middleware' => 'auth:api', 'prefix' => '/admin'], function () {
+    // Newsletter system API routes
+    Route::delete('/newsletter-system/delete-all', [NewsletterController::class, 'deleteAllRecords']);
+    Route::apiResource('/newsletter-system', NewsletterController::class);
+});
