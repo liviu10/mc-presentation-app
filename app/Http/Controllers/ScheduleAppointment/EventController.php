@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\ScheduleAppointment;
 
 use Illuminate\Http\Request;
-use App\Models\QuestionnaireQuestionType;
+use App\Http\Controllers\Controller;
+use App\Models\Event;
 use App\Models\ErrorAndNotificationSystem;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
-class QuestionnaireQuestionTypeController extends Controller
+class EventController extends Controller
 {
-    protected $modelNameQuestionnaireQuestionType;
-    protected $tableNameQuestionnaireQuestionType;
-    protected $tableAllColumnsQuestionnaireQuestionType;
+    protected $modelNameEvent;
+    protected $tableNameEvent;
+    protected $tableAllColumnsEvent;
 
     protected $modelNameErrorSystem;
     protected $tableNameErrorSystem;
@@ -20,13 +21,13 @@ class QuestionnaireQuestionTypeController extends Controller
 
     public function __construct()
     {
-        $this->modelNameQuestionnaireQuestionType       = new QuestionnaireQuestionType();
-        $this->tableNameQuestionnaireQuestionType       = $this->modelNameQuestionnaireQuestionType->getTable();
-        $this->tableAllColumnsQuestionnaireQuestionType = Schema::getColumnListing($this->tableNameQuestionnaireQuestionType);
+        $this->modelNameEvent             = new Event();
+        $this->tableNameEvent             = $this->modelNameEvent->getTable();
+        $this->tableAllColumnsEvent       = Schema::getColumnListing($this->tableNameEvent);
 
-        $this->modelNameErrorSystem         = new ErrorAndNotificationSystem();
-        $this->tableNameErrorSystem         = $this->modelNameErrorSystem->getTable();
-        $this->tableAllColumnsErrorSystem   = Schema::getColumnListing($this->tableNameErrorSystem);
+        $this->modelNameErrorSystem       = new ErrorAndNotificationSystem();
+        $this->tableNameErrorSystem       = $this->modelNameErrorSystem->getTable();
+        $this->tableAllColumnsErrorSystem = Schema::getColumnListing($this->tableNameErrorSystem);
     }
 
     /**
@@ -38,14 +39,14 @@ class QuestionnaireQuestionTypeController extends Controller
     {
         try 
         {
-            $apiDisplayAllRecords = $this->modelNameQuestionnaireQuestionType->all();
+            $apiDisplayAllRecords = $this->modelNameEvent->all();
             if ($apiDisplayAllRecords->isEmpty()) 
             {
                 return response([
                     'notify_code'              => 'INFO_0001',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('questionnaire.index.info_0001_admin_message', [ 'tableName' => $this->tableNameQuestionnaireQuestionType ]),
+                    'admin_message'            => __('event.index.info_0001_admin_message', [ 'tableName' => $this->tableNameEvent ]),
                 ], 404);
             }
             else 
@@ -54,7 +55,7 @@ class QuestionnaireQuestionTypeController extends Controller
                     'notify_code'              => 'INFO_0002',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0002')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0002')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('questionnaire.index.info_0002_admin_message'),
+                    'admin_message'            => __('event.index.info_0002_admin_message'),
                     'records'                  => $apiDisplayAllRecords,
                 ], 201);
             }
@@ -67,7 +68,7 @@ class QuestionnaireQuestionTypeController extends Controller
                     'notify_code'              => 'ERR_0001',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('questionnaire.index.err_0001_admin_message', [ 'tableName' => $this->tableNameQuestionnaireQuestionType ]),
+                    'admin_message'            => __('event.index.err_0001_admin_message', [ 'tableName' => $this->tableNameEvent ]),
                 ], 500);
             }
         }
@@ -91,7 +92,7 @@ class QuestionnaireQuestionTypeController extends Controller
             ]);
             if (is_null($request->get('privacy_policy'))) 
             {
-                $apiInsertSingleRecord = $this->modelNameQuestionnaireQuestionType->create([
+                $apiInsertSingleRecord = $this->modelNameEvent->create([
                     'full_name'      => $request->get('full_name'),
                     'email'          => $request->get('email'),
                     'message'        => $request->get('message'),
@@ -100,7 +101,7 @@ class QuestionnaireQuestionTypeController extends Controller
             }
             else 
             {
-                $apiInsertSingleRecord = $this->modelNameQuestionnaireQuestionType->create([
+                $apiInsertSingleRecord = $this->modelNameEvent->create([
                     'full_name'      => $request->get('full_name'),
                     'email'          => $request->get('email'),
                     'message'        => $request->get('message'),
@@ -111,7 +112,7 @@ class QuestionnaireQuestionTypeController extends Controller
                 'notify_code'              => 'INFO_0003',
                 'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0003')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                 'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0003')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                'admin_message'            => __('questionnaire.store.info_0003_admin_message'),
+                'admin_message'            => __('event.store.info_0003_admin_message'),
                 'user_message'             => $apiInsertSingleRecord,
             ], 201);
         }
@@ -123,7 +124,7 @@ class QuestionnaireQuestionTypeController extends Controller
                     'notify_code'              => 'ERR_0001',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('questionnaire.store.err_0001_admin_message'),
+                    'admin_message'            => __('event.store.err_0001_admin_message'),
                 ], 500);
             }
             if ($mysqlError->getCode() === '42S22') 
@@ -132,7 +133,7 @@ class QuestionnaireQuestionTypeController extends Controller
                     'notify_code'              => 'ERR_0002',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0002')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0002')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('questionnaire.store.err_0002_admin_message'),
+                    'admin_message'            => __('event.store.err_0002_admin_message'),
                 ], 500);
             }
         }
@@ -148,15 +149,15 @@ class QuestionnaireQuestionTypeController extends Controller
     {
         try 
         {
-            $apiDisplayAllRecords = $this->modelNameQuestionnaireQuestionType->all();
-            $apiDisplaySingleRecord = $this->modelNameQuestionnaireQuestionType->find($id);
+            $apiDisplayAllRecords = $this->modelNameEvent->all();
+            $apiDisplaySingleRecord = $this->modelNameEvent->find($id);
             if ($apiDisplayAllRecords->isEmpty()) 
             {
                 return response([
                     'notify_code'              => 'INFO_0001',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('questionnaire.show.info_0001_admin_message', [ 'tableName' => $this->tableNameQuestionnaireQuestionType ]),
+                    'admin_message'            => __('event.show.info_0001_admin_message', [ 'tableName' => $this->tableNameEvent ]),
                 ], 404);
             }
             elseif (is_null($apiDisplaySingleRecord)) 
@@ -165,7 +166,7 @@ class QuestionnaireQuestionTypeController extends Controller
                     'notify_code'              => 'INFO_0004',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0004')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0004')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('questionnaire.show.info_0004_admin_message'),
+                    'admin_message'            => __('event.show.info_0004_admin_message'),
                 ], 404);
             }
             else 
@@ -174,7 +175,7 @@ class QuestionnaireQuestionTypeController extends Controller
                     'notify_code'              => 'INFO_0002',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0002')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0002')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('questionnaire.show.info_0002_admin_message'),
+                    'admin_message'            => __('event.show.info_0002_admin_message'),
                     'record'                   => $apiDisplaySingleRecord,
                 ], 201);
             }
@@ -187,7 +188,7 @@ class QuestionnaireQuestionTypeController extends Controller
                     'notify_code'              => 'ERR_0001',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('questionnaire.show.err_0001_admin_message', [ 'tableName' => $this->tableNameQuestionnaireQuestionType ]),
+                    'admin_message'            => __('event.show.err_0001_admin_message', [ 'tableName' => $this->tableNameEvent ]),
                 ], 500);
             }
         }
@@ -204,7 +205,7 @@ class QuestionnaireQuestionTypeController extends Controller
     {
         try 
         {
-            $apiUpdateSingleRecord = $this->modelNameQuestionnaireQuestionType->find($id);
+            $apiUpdateSingleRecord = $this->modelNameEvent->find($id);
             $apiUpdateSingleRecord->update($request->validate([
                 'blog_category_title'             => 'required|regex:/^[a-zA-Z_ ]+$/u|max:255',
                 'blog_category_short_description' => 'required|max:255',
@@ -217,7 +218,7 @@ class QuestionnaireQuestionTypeController extends Controller
                 'notify_code'              => 'INFO_0008',
                 'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0008')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                 'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0008')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                'admin_message'            => __('questionnaire.update.info_0008_admin_message'),
+                'admin_message'            => __('event.update.info_0008_admin_message'),
                 'records'                  => $apiUpdateSingleRecord,
             ], 201);
         }
@@ -229,7 +230,7 @@ class QuestionnaireQuestionTypeController extends Controller
                     'notify_code'              => 'ERR_0001',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('questionnaire.update.err_0001_admin_message', [ 'tableName' => $this->tableNameQuestionnaireQuestionType, ]),
+                    'admin_message'            => __('event.update.err_0001_admin_message', [ 'tableName' => $this->tableNameEvent, ]),
                 ], 500);
             }
             if ($mysqlError->getCode() === '42S22') 
@@ -238,7 +239,7 @@ class QuestionnaireQuestionTypeController extends Controller
                     'notify_code'              => 'ERR_0002',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0002')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0002')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('questionnaire.update.err_0002_admin_message', [ 'tableName' => $this->tableNameQuestionnaireQuestionType, ]),
+                    'admin_message'            => __('event.update.err_0002_admin_message', [ 'tableName' => $this->tableNameEvent, ]),
                 ], 500);
             }
         }
@@ -254,15 +255,15 @@ class QuestionnaireQuestionTypeController extends Controller
     {
         try 
         {
-            $apiDisplayAllRecords = $this->modelNameQuestionnaireQuestionType->all();
-            $apiDisplaySingleRecord = $this->modelNameQuestionnaireQuestionType->find($id);
+            $apiDisplayAllRecords = $this->modelNameEvent->all();
+            $apiDisplaySingleRecord = $this->modelNameEvent->find($id);
             if ($apiDisplayAllRecords->isEmpty()) 
             {
                 return response([
                     'notify_code'              => 'INFO_0001',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('questionnaire.delete.info_0001_admin_message', [ 'tableName' => $this->tableNameQuestionnaireQuestionType ]),
+                    'admin_message'            => __('event.delete.info_0001_admin_message', [ 'tableName' => $this->tableNameEvent ]),
                 ], 404);
             }
             elseif (is_null($apiDisplaySingleRecord)) 
@@ -271,17 +272,17 @@ class QuestionnaireQuestionTypeController extends Controller
                     'notify_code'              => 'INFO_0005',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0005')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0005')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('questionnaire.delete.info_0005_admin_message'),
+                    'admin_message'            => __('event.delete.info_0005_admin_message'),
                 ], 404);
             }
             else 
             {
-                $apiDeleteSingleRecord = $this->modelNameQuestionnaireQuestionType->find($id)->delete();
+                $apiDeleteSingleRecord = $this->modelNameEvent->find($id)->delete();
                 return response([
                     'notify_code'              => 'INFO_0006',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0006')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0006')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('questionnaire.delete.info_0006_admin_message', [ 'blogCategoryTitle' => $apiDisplaySingleRecord['blog_category_title'] ]),
+                    'admin_message'            => __('event.delete.info_0006_admin_message', [ 'blogCategoryTitle' => $apiDisplaySingleRecord['blog_category_title'] ]),
                     'delete_records'            => $apiDisplaySingleRecord,
                 ], 200);
             }
@@ -294,7 +295,7 @@ class QuestionnaireQuestionTypeController extends Controller
                     'notify_code'              => 'ERR_0001',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('questionnaire.delete.err_0001_admin_message', [ 'blogCategoryTitle' => $apiDisplaySingleRecord['blog_category_title'] ]),
+                    'admin_message'            => __('event.delete.err_0001_admin_message', [ 'blogCategoryTitle' => $apiDisplaySingleRecord['blog_category_title'] ]),
                 ], 500);
             }
         }
@@ -309,14 +310,14 @@ class QuestionnaireQuestionTypeController extends Controller
     {
         try 
         {
-            $apiDisplayAllRecords = $this->modelNameQuestionnaireQuestionType->all();
+            $apiDisplayAllRecords = $this->modelNameEvent->all();
             if ($apiDisplayAllRecords->isEmpty()) 
             {
                 return response([
                     'notify_code'              => 'INFO_0001',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('questionnaire.delete_all_records.info_0001_admin_message', [ 'tableName' => $this->tableNameQuestionnaireQuestionType ]),
+                    'admin_message'            => __('event.delete_all_records.info_0001_admin_message', [ 'tableName' => $this->tableNameEvent ]),
                 ], 404);
             }
             elseif (is_null($apiDisplayAllRecords)) 
@@ -325,19 +326,19 @@ class QuestionnaireQuestionTypeController extends Controller
                     'notify_code'              => 'INFO_0005',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0005')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0005')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('questionnaire.delete_all_records.info_0005_admin_message'),
+                    'admin_message'            => __('event.delete_all_records.info_0005_admin_message'),
                 ], 404);
             }
             else 
             {
                 DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-                $apiDeleteSingleRecord = $this->modelNameQuestionnaireQuestionType->truncate();
+                $apiDeleteSingleRecord = $this->modelNameEvent->truncate();
                 DB::statement('SET FOREIGN_KEY_CHECKS=1;');
                 return response([
                     'notify_code'              => 'INFO_0007',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0007')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0007')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('questionnaire.delete_all_records.info_0007_admin_message'),
+                    'admin_message'            => __('event.delete_all_records.info_0007_admin_message'),
                     'user_message'             => $apiDisplayAllRecords,
                 ], 200);
             }
@@ -350,7 +351,7 @@ class QuestionnaireQuestionTypeController extends Controller
                     'notify_code'              => 'ERR_0001',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('questionnaire.delete_all_records.err_0001_admin_message'),
+                    'admin_message'            => __('event.delete_all_records.err_0001_admin_message'),
                 ], 500);
             }
         }

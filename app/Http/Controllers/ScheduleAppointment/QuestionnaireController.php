@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\ScheduleAppointment;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\Questionnaire;
 use App\Models\ErrorAndNotificationSystem;
 use Illuminate\Support\Facades\Schema;

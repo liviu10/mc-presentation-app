@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\ScheduleAppointment;
 
 use Illuminate\Http\Request;
-use App\Models\Event;
+use App\Http\Controllers\Controller;
+use App\Models\EventBooking;
 use App\Models\ErrorAndNotificationSystem;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
 class EventController extends Controller
 {
-    protected $modelNameEvent;
-    protected $tableNameEvent;
-    protected $tableAllColumnsEvent;
+    protected $modelNameEventBooking;
+    protected $tableNameEventBooking;
+    protected $tableAllColumnsEventBooking;
 
     protected $modelNameErrorSystem;
     protected $tableNameErrorSystem;
@@ -20,13 +21,13 @@ class EventController extends Controller
 
     public function __construct()
     {
-        $this->modelNameEvent             = new Event();
-        $this->tableNameEvent             = $this->modelNameEvent->getTable();
-        $this->tableAllColumnsEvent       = Schema::getColumnListing($this->tableNameEvent);
+        $this->modelNameEventBooking       = new EventBooking();
+        $this->tableNameEventBooking       = $this->modelNameEventBooking->getTable();
+        $this->tableAllColumnsEventBooking = Schema::getColumnListing($this->tableNameEventBooking);
 
-        $this->modelNameErrorSystem       = new ErrorAndNotificationSystem();
-        $this->tableNameErrorSystem       = $this->modelNameErrorSystem->getTable();
-        $this->tableAllColumnsErrorSystem = Schema::getColumnListing($this->tableNameErrorSystem);
+        $this->modelNameErrorSystem        = new ErrorAndNotificationSystem();
+        $this->tableNameErrorSystem        = $this->modelNameErrorSystem->getTable();
+        $this->tableAllColumnsErrorSystem  = Schema::getColumnListing($this->tableNameErrorSystem);
     }
 
     /**
@@ -38,14 +39,14 @@ class EventController extends Controller
     {
         try 
         {
-            $apiDisplayAllRecords = $this->modelNameEvent->all();
+            $apiDisplayAllRecords = $this->modelNameEventBooking->all();
             if ($apiDisplayAllRecords->isEmpty()) 
             {
                 return response([
                     'notify_code'              => 'INFO_0001',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('event.index.info_0001_admin_message', [ 'tableName' => $this->tableNameEvent ]),
+                    'admin_message'            => __('event.index.info_0001_admin_message', [ 'tableName' => $this->tableNameEventBooking ]),
                 ], 404);
             }
             else 
@@ -67,7 +68,7 @@ class EventController extends Controller
                     'notify_code'              => 'ERR_0001',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('event.index.err_0001_admin_message', [ 'tableName' => $this->tableNameEvent ]),
+                    'admin_message'            => __('event.index.err_0001_admin_message', [ 'tableName' => $this->tableNameEventBooking ]),
                 ], 500);
             }
         }
@@ -91,7 +92,7 @@ class EventController extends Controller
             ]);
             if (is_null($request->get('privacy_policy'))) 
             {
-                $apiInsertSingleRecord = $this->modelNameEvent->create([
+                $apiInsertSingleRecord = $this->modelNameEventBooking->create([
                     'full_name'      => $request->get('full_name'),
                     'email'          => $request->get('email'),
                     'message'        => $request->get('message'),
@@ -100,7 +101,7 @@ class EventController extends Controller
             }
             else 
             {
-                $apiInsertSingleRecord = $this->modelNameEvent->create([
+                $apiInsertSingleRecord = $this->modelNameEventBooking->create([
                     'full_name'      => $request->get('full_name'),
                     'email'          => $request->get('email'),
                     'message'        => $request->get('message'),
@@ -148,15 +149,15 @@ class EventController extends Controller
     {
         try 
         {
-            $apiDisplayAllRecords = $this->modelNameEvent->all();
-            $apiDisplaySingleRecord = $this->modelNameEvent->find($id);
+            $apiDisplayAllRecords = $this->modelNameEventBooking->all();
+            $apiDisplaySingleRecord = $this->modelNameEventBooking->find($id);
             if ($apiDisplayAllRecords->isEmpty()) 
             {
                 return response([
                     'notify_code'              => 'INFO_0001',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('event.show.info_0001_admin_message', [ 'tableName' => $this->tableNameEvent ]),
+                    'admin_message'            => __('event.show.info_0001_admin_message', [ 'tableName' => $this->tableNameEventBooking ]),
                 ], 404);
             }
             elseif (is_null($apiDisplaySingleRecord)) 
@@ -187,7 +188,7 @@ class EventController extends Controller
                     'notify_code'              => 'ERR_0001',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('event.show.err_0001_admin_message', [ 'tableName' => $this->tableNameEvent ]),
+                    'admin_message'            => __('event.show.err_0001_admin_message', [ 'tableName' => $this->tableNameEventBooking ]),
                 ], 500);
             }
         }
@@ -204,7 +205,7 @@ class EventController extends Controller
     {
         try 
         {
-            $apiUpdateSingleRecord = $this->modelNameEvent->find($id);
+            $apiUpdateSingleRecord = $this->modelNameEventBooking->find($id);
             $apiUpdateSingleRecord->update($request->validate([
                 'blog_category_title'             => 'required|regex:/^[a-zA-Z_ ]+$/u|max:255',
                 'blog_category_short_description' => 'required|max:255',
@@ -229,7 +230,7 @@ class EventController extends Controller
                     'notify_code'              => 'ERR_0001',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('event.update.err_0001_admin_message', [ 'tableName' => $this->tableNameEvent, ]),
+                    'admin_message'            => __('event.update.err_0001_admin_message', [ 'tableName' => $this->tableNameEventBooking, ]),
                 ], 500);
             }
             if ($mysqlError->getCode() === '42S22') 
@@ -238,7 +239,7 @@ class EventController extends Controller
                     'notify_code'              => 'ERR_0002',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0002')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0002')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('event.update.err_0002_admin_message', [ 'tableName' => $this->tableNameEvent, ]),
+                    'admin_message'            => __('event.update.err_0002_admin_message', [ 'tableName' => $this->tableNameEventBooking, ]),
                 ], 500);
             }
         }
@@ -254,15 +255,15 @@ class EventController extends Controller
     {
         try 
         {
-            $apiDisplayAllRecords = $this->modelNameEvent->all();
-            $apiDisplaySingleRecord = $this->modelNameEvent->find($id);
+            $apiDisplayAllRecords = $this->modelNameEventBooking->all();
+            $apiDisplaySingleRecord = $this->modelNameEventBooking->find($id);
             if ($apiDisplayAllRecords->isEmpty()) 
             {
                 return response([
                     'notify_code'              => 'INFO_0001',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('event.delete.info_0001_admin_message', [ 'tableName' => $this->tableNameEvent ]),
+                    'admin_message'            => __('event.delete.info_0001_admin_message', [ 'tableName' => $this->tableNameEventBooking ]),
                 ], 404);
             }
             elseif (is_null($apiDisplaySingleRecord)) 
@@ -276,7 +277,7 @@ class EventController extends Controller
             }
             else 
             {
-                $apiDeleteSingleRecord = $this->modelNameEvent->find($id)->delete();
+                $apiDeleteSingleRecord = $this->modelNameEventBooking->find($id)->delete();
                 return response([
                     'notify_code'              => 'INFO_0006',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0006')->pluck($this->tableAllColumnsErrorSystem[2])[0],
@@ -309,14 +310,14 @@ class EventController extends Controller
     {
         try 
         {
-            $apiDisplayAllRecords = $this->modelNameEvent->all();
+            $apiDisplayAllRecords = $this->modelNameEventBooking->all();
             if ($apiDisplayAllRecords->isEmpty()) 
             {
                 return response([
                     'notify_code'              => 'INFO_0001',
                     'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
                     'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('event.delete_all_records.info_0001_admin_message', [ 'tableName' => $this->tableNameEvent ]),
+                    'admin_message'            => __('event.delete_all_records.info_0001_admin_message', [ 'tableName' => $this->tableNameEventBooking ]),
                 ], 404);
             }
             elseif (is_null($apiDisplayAllRecords)) 
@@ -331,7 +332,7 @@ class EventController extends Controller
             else 
             {
                 DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-                $apiDeleteSingleRecord = $this->modelNameEvent->truncate();
+                $apiDeleteSingleRecord = $this->modelNameEventBooking->truncate();
                 DB::statement('SET FOREIGN_KEY_CHECKS=1;');
                 return response([
                     'notify_code'              => 'INFO_0007',
