@@ -19,10 +19,7 @@ use App\Http\Controllers\Settings\ProfileController;
 use App\Http\Controllers\NewsletterController;
 
 // Import the Schedule Appointment Controller file
-use App\Http\Controllers\ScheduleAppointment\ScheduleAppointmentController;
-use App\Http\Controllers\ScheduleAppointment\EventController;
-use App\Http\Controllers\ScheduleAppointment\EventBookingController;
-use App\Http\Controllers\ScheduleAppointment\QuestionnaireController;
+
 
 // Import the Blog System Controller files
 use App\Http\Controllers\Blog\BlogCategoryController;
@@ -54,6 +51,11 @@ use App\Http\Controllers\ErrorAndNotificationSystemController;
     use App\Http\Controllers\User\HomePage\HomeController;
     use App\Http\Controllers\User\HomePage\SubscribeToNewsletterController;
 
+    // Import the Schedule Appointment Controller files
+    use App\Http\Controllers\User\ScheduleAppointmentPage\ScheduleAppointmentController;
+    use App\Http\Controllers\User\ScheduleAppointmentPage\QuestionnaireAppointmentController;
+    use App\Http\Controllers\User\ScheduleAppointmentPage\BookAppointmentController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -73,9 +75,9 @@ Route::group(['middleware' => 'guest:api'], function () {
 
     // Schedule Appointment page API routes
     Route::group([ 'prefix' => '/schedule-appointment' ], function () {
-        Route::apiResource('/', ScheduleAppointmentController::class);
-        Route::apiResource('/bookings', EventBookingController::class);
-        Route::apiResource('/questionnaire', QuestionnaireController::class);
+        Route::apiResource('/', ScheduleAppointmentController::class)->only(['index']);
+        Route::apiResource('/questionnaire', QuestionnaireAppointmentController::class)->only(['index', 'store']);
+        Route::apiResource('/booking', BookAppointmentController::class)->only(['index', 'store']);
     });
 
     // Blog System API routes
