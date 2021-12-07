@@ -54,7 +54,7 @@ export default {
   mounted () {},
   methods: {
     goTo () {
-      this.$router.push({ path: '/schedule-appointment/start-questionnaire' })
+      this.$router.push({ name: 'schedule-appointment.index' })
     }
   },
   metaInfo () {
