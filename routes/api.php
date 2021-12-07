@@ -99,29 +99,38 @@ Route::group(['middleware' => 'guest:api'], function () {
     });
 
     // Blog System API routes
+    Route::group([ 'prefix' => '/blog-configuration' ], function () {
         // Blog Categories
-    Route::get('/blog-configuration/categories-and-subcategories', [BlogCategoryController::class, 'getAllBlogMainCategoriesAndSubcategories']);
-    Route::delete('/blog-configuration/categories/delete-all', [BlogCategoryController::class, 'deleteAllRecords']);
-    Route::apiResource('/blog-configuration/categories', BlogCategoryController::class);
+        Route::get('/categories-and-subcategories', [BlogCategoryController::class, 'getAllBlogMainCategoriesAndSubcategories']);
+        Route::delete('/categories/delete-all', [BlogCategoryController::class, 'deleteAllRecords']);
+
+        Route::apiResource('/categories', BlogCategoryController::class);
         // Blog Subcategories
-    Route::get('/blog-configuration/subcategory/{id}/all-written-articles', [BlogSubcategoryController::class, 'getAllBlogSubcategoryWrittenArticles']);
-    Route::get('/blog-configuration/subcategory/{id}/all-audio-articles', [BlogSubcategoryController::class, 'getAllBlogSubcategoryAudioArticles']);
-    Route::get('/blog-configuration/subcategory/{id}/all-video-articles', [BlogSubcategoryController::class, 'getAllBlogSubcategoryVideoArticles']);
-    Route::delete('/blog-configuration/subcategories/delete-all', [BlogSubcategoryController::class, 'deleteAllRecords']);
-    Route::apiResource('/blog-configuration/subcategories', BlogSubcategoryController::class);
+        Route::get('/subcategory/{id}/all-written-articles', [BlogSubcategoryController::class, 'getAllBlogSubcategoryWrittenArticles']);
+        Route::get('/subcategory/{id}/all-audio-articles', [BlogSubcategoryController::class, 'getAllBlogSubcategoryAudioArticles']);
+        Route::get('/subcategory/{id}/all-video-articles', [BlogSubcategoryController::class, 'getAllBlogSubcategoryVideoArticles']);
+        Route::delete('/subcategories/delete-all', [BlogSubcategoryController::class, 'deleteAllRecords']);
+        Route::apiResource('/subcategories', BlogSubcategoryController::class);
+
         // Blog Articles
-    Route::get('/blog-configuration/articles/all-written-articles', [BlogArticleController::class, 'getAllWrittenBlogArticles']);
-    Route::get('/blog-configuration/articles/all-audio-articles', [BlogArticleController::class, 'getAllAudioBlogArticles']);
-    Route::get('/blog-configuration/articles/all-video-articles', [BlogArticleController::class, 'getAllVideoBlogArticles']);
-    Route::get('/blog-configuration/articles/{id}', [BlogArticleController::class, 'displaySingleBlogArticle']);
-    Route::delete('/blog-configuration/articles/delete-all', [BlogArticleController::class, 'deleteAllRecords']);
-    Route::apiResource('/blog-configuration/articles', BlogArticleController::class);
+        Route::get('/articles/all-written-articles', [BlogArticleController::class, 'getAllWrittenBlogArticles']);
+        Route::get('/articles/all-audio-articles', [BlogArticleController::class, 'getAllAudioBlogArticles']);
+        Route::get('/articles/all-video-articles', [BlogArticleController::class, 'getAllVideoBlogArticles']);
+        Route::get('/articles/{id}', [BlogArticleController::class, 'displaySingleBlogArticle']);
+        Route::delete('/articles/delete-all', [BlogArticleController::class, 'deleteAllRecords']);
+        Route::apiResource('/articles', BlogArticleController::class);
+
         // Blog Article Comments
-    Route::delete('/blog-configuration/article-comments/delete-all', [BlogArticleCommentController::class, 'deleteAllRecords']);
-    Route::apiResource('/blog-configuration/article-comments', BlogArticleCommentController::class);
+        Route::delete('/article-comments/delete-all', [BlogArticleCommentController::class, 'deleteAllRecords']);
+        Route::apiResource('/article-comments', BlogArticleCommentController::class);
+
         // Blog Article Comment Replies
-    Route::delete('/blog-configuration/article-comment-replies/delete-all', [BlogArticleCommentReplyController::class, 'deleteAllRecords']);
-    Route::apiResource('/blog-configuration/article-comment-replies', BlogArticleCommentReplyController::class);
+        Route::delete('/article-comment-replies/delete-all', [BlogArticleCommentReplyController::class, 'deleteAllRecords']);
+        Route::apiResource('/article-comment-replies', BlogArticleCommentReplyController::class);
+    });
+
+
+
 
     // About me page API routes
 
