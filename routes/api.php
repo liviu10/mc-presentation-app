@@ -80,21 +80,9 @@ Route::group(['middleware' => 'guest:api', 'prefix' => '/'], function () {
         Route::apiResource('/questionnaire', QuestionnaireAppointmentController::class)->only(['index', 'store']);
         Route::apiResource('/booking', BookAppointmentController::class)->only(['index', 'store']);
     });
-
-<<<<<<< HEAD
-    // About me page API route
-    Route::apiResource('/about-me', AboutMeController::class)->only(['index']);
-
-    // Contact me page API route
-    Route::apiResource('/contact-me', ContactMeController::class)->only(['store']);
-
-    // Blog System API routes
-    Route::group([ 'prefix' => '/blog-configuration' ], function () {
-        // Blog Categories
-=======
+    
     // Blog page API routes
     Route::group([ 'prefix' => '/blog' ], function () {
->>>>>>> 5afa7dd1b15f20aa2d4b33286e69fac3bdfe5fb8
         Route::get('/categories-and-subcategories', [BlogCategoryController::class, 'getAllBlogMainCategoriesAndSubcategories']);
         Route::get('/subcategory/{id}/all-written-articles', [BlogSubcategoryController::class, 'getAllBlogSubcategoryWrittenArticles']);
         Route::get('/subcategory/{id}/all-audio-articles', [BlogSubcategoryController::class, 'getAllBlogSubcategoryAudioArticles']);
