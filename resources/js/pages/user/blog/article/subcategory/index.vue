@@ -22,7 +22,7 @@ export default {
   name: 'BlogSubcategoryWrittenArticlesPage',
   components: {},
   layout: '',
-  middlewa: '',
+  middleware: '',
   props: {},
   data: function () {
     return {
@@ -43,14 +43,14 @@ export default {
   methods: {
     getAllBlogSubcategoryWrittenArticles: function () {
       const url = window.location.origin
-      const apiEndPoint = '/api/blog-configuration/subcategory/'
+      const apiEndPoint = '/api/blog/subcategory/'
       const urlParameter = this.$route.params.id
       const fullApiUrl = url + apiEndPoint + urlParameter + '/all-written-articles'
       axios
         .get(fullApiUrl)
         .then(response => {
           console.log('>>>>> Display a list of all written articles for a given blog subcategory <<<<<', response.data)
-          this.displayAllBlogSubcategoryWrittenArticles = response.data.results
+          this.displayAllBlogSubcategoryWrittenArticles = response.data.results[0]
         })
     }
   },
