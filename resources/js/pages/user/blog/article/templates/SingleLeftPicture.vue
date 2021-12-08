@@ -112,7 +112,7 @@ export default {
   methods: {
     displaySingleBlogArticle: function () {
       const url = window.location.origin
-      const apiEndPoint = '/api/blog-configuration/articles/'
+      const apiEndPoint = '/api/blog/articles/'
       const urlParameter = this.$route.params.id
       const fullApiUrl = url + apiEndPoint + urlParameter
       axios

@@ -85,7 +85,7 @@ export default {
   methods: {
     getAllWrittenBlogArticles: function () {
       const url = window.location.origin
-      const apiEndPoint = '/api/blog-configuration/articles/all-written-articles'
+      const apiEndPoint = '/api/blog/articles/all-written-articles'
       const fullApiUrl = url + apiEndPoint
       axios
         .get(fullApiUrl)

@@ -54,7 +54,7 @@ export default {
   methods: {
     getAllBlogMainCategoriesAndSubcategories: function () {
       const url = window.location.origin
-      const apiEndPoint = '/api/blog-configuration/categories-and-subcategories'
+      const apiEndPoint = '/api/blog/categories-and-subcategories'
       const fullApiUrl = url + apiEndPoint
       axios
         .get(fullApiUrl)
