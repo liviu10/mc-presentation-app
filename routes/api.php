@@ -20,14 +20,6 @@ use App\Http\Controllers\NewsletterController;
 
 // Import the Schedule Appointment Controller file
 
-
-// Import the Blog System Controller files
-use App\Http\Controllers\Blog\BlogCategoryController;
-use App\Http\Controllers\Blog\BlogSubcategoryController;
-use App\Http\Controllers\Blog\BlogArticleController;
-use App\Http\Controllers\Blog\BlogArticleCommentController;
-use App\Http\Controllers\Blog\BlogArticleCommentReplyController;
-
 // Import the Error and Notification System Controller file
 use App\Http\Controllers\ErrorAndNotificationSystemController;
 
@@ -49,6 +41,11 @@ use App\Http\Controllers\ErrorAndNotificationSystemController;
     use App\Http\Controllers\User\ScheduleAppointmentPage\ScheduleAppointmentController;
     use App\Http\Controllers\User\ScheduleAppointmentPage\QuestionnaireAppointmentController;
     use App\Http\Controllers\User\ScheduleAppointmentPage\BookAppointmentController;
+
+    // Import the Blog System Controller files
+    use App\Http\Controllers\User\BlogPage\BlogCategoryController;
+    use App\Http\Controllers\User\BlogPage\BlogSubcategoryController;
+    use App\Http\Controllers\User\BlogPage\BlogArticleController;
 
     // Import the About Me page Controller files
     use App\Http\Controllers\User\AboutMePage\AboutMeController;
@@ -84,6 +81,7 @@ Route::group(['middleware' => 'guest:api', 'prefix' => '/'], function () {
         Route::apiResource('/booking', BookAppointmentController::class)->only(['index', 'store']);
     });
 
+<<<<<<< HEAD
     // About me page API route
     Route::apiResource('/about-me', AboutMeController::class)->only(['index']);
 
@@ -93,37 +91,26 @@ Route::group(['middleware' => 'guest:api', 'prefix' => '/'], function () {
     // Blog System API routes
     Route::group([ 'prefix' => '/blog-configuration' ], function () {
         // Blog Categories
+=======
+    // Blog page API routes
+    Route::group([ 'prefix' => '/blog' ], function () {
+>>>>>>> 5afa7dd1b15f20aa2d4b33286e69fac3bdfe5fb8
         Route::get('/categories-and-subcategories', [BlogCategoryController::class, 'getAllBlogMainCategoriesAndSubcategories']);
-        Route::delete('/categories/delete-all', [BlogCategoryController::class, 'deleteAllRecords']);
-
-        Route::apiResource('/categories', BlogCategoryController::class);
-        // Blog Subcategories
         Route::get('/subcategory/{id}/all-written-articles', [BlogSubcategoryController::class, 'getAllBlogSubcategoryWrittenArticles']);
         Route::get('/subcategory/{id}/all-audio-articles', [BlogSubcategoryController::class, 'getAllBlogSubcategoryAudioArticles']);
         Route::get('/subcategory/{id}/all-video-articles', [BlogSubcategoryController::class, 'getAllBlogSubcategoryVideoArticles']);
-        Route::delete('/subcategories/delete-all', [BlogSubcategoryController::class, 'deleteAllRecords']);
-        Route::apiResource('/subcategories', BlogSubcategoryController::class);
-
-        // Blog Articles
         Route::get('/articles/all-written-articles', [BlogArticleController::class, 'getAllWrittenBlogArticles']);
         Route::get('/articles/all-audio-articles', [BlogArticleController::class, 'getAllAudioBlogArticles']);
         Route::get('/articles/all-video-articles', [BlogArticleController::class, 'getAllVideoBlogArticles']);
         Route::get('/articles/{id}', [BlogArticleController::class, 'displaySingleBlogArticle']);
-        Route::delete('/articles/delete-all', [BlogArticleController::class, 'deleteAllRecords']);
-        Route::apiResource('/articles', BlogArticleController::class);
-
-        // Blog Article Comments
-        Route::delete('/article-comments/delete-all', [BlogArticleCommentController::class, 'deleteAllRecords']);
-        Route::apiResource('/article-comments', BlogArticleCommentController::class);
-
-        // Blog Article Comment Replies
-        Route::delete('/article-comment-replies/delete-all', [BlogArticleCommentReplyController::class, 'deleteAllRecords']);
-        Route::apiResource('/article-comment-replies', BlogArticleCommentReplyController::class);
     });
-});
 
-Route::delete('/errors-and-notification-system', [ErrorAndNotificationSystemController::class, 'deleteAllRecords']);
-Route::apiResource('/errors-and-notification-system', ErrorAndNotificationSystemController::class);
+    // About me page API routes
+    Route::apiResource('/about-me', AboutMeController::class)->only(['index']);
+
+    // Contact me page API routes
+    Route::apiResource('/contact-me', ContactMeController::class)->only(['store']);
+});
 
 /* --- ADMIN ROUTES BELOW --- */
 /*
@@ -136,6 +123,9 @@ Route::apiResource('/errors-and-notification-system', ErrorAndNotificationSystem
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::delete('/errors-and-notification-system', [ErrorAndNotificationSystemController::class, 'deleteAllRecords']);
+Route::apiResource('/errors-and-notification-system', ErrorAndNotificationSystemController::class);
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::post('logout', [LoginController::class, 'logout']);

@@ -68,7 +68,7 @@ export default {
       this.countDislikes += 1
     },
     async commentArticle () {
-      const audioArticleApi = '/blog-configuration/article-comments'
+      const audioArticleApi = '/blog/article-comments'
       const { data } = await this.form.post(audioArticleApi)
       console.log('>>>>> Comment on audio articles <<<<<<')
     }

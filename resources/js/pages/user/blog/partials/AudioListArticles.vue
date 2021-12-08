@@ -105,7 +105,7 @@ export default {
   methods: {
     getAllAudioBlogArticles: function () {
       const url = window.location.origin
-      const apiEndPoint = '/api/blog-configuration/articles/all-audio-articles'
+      const apiEndPoint = '/api/blog/articles/all-audio-articles'
       const fullApiUrl = url + apiEndPoint
       axios
         .get(fullApiUrl)
