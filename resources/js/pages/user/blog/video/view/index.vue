@@ -68,7 +68,7 @@ export default {
       this.countDislikes += 1
     },
     async commentArticle () {
-      const videoArticleApi = '/blog-configuration/article-comments'
+      const videoArticleApi = '/blog/article-comments'
       const { data } = await this.form.post(videoArticleApi)
       console.log('>>>>> Comment on video articles <<<<<<')
     }

@@ -26,25 +26,31 @@ export default {
   props: {},
   data: function () {
     return {
-      displayAllBlogCategoriesAndSubcategories: null
+      notifyCode: null,
+      notifyMessage: null,
+      displayAllBlogSubcategoryVideoArticles: null
     }
   },
   computed: {
-    // mapped getters
+    capitalizePageTitle () {
+      const pageTitle = this.$t('user.blog_system_pages.video_article_blog_pages.page_title')
+      return pageTitle.toUpperCase()
+    }
   },
   mounted () {
-    this.getAllBlogMainCategoriesAndSubcategories()
+    this.getAllBlogSubcategoryVideoArticles()
   },
   methods: {
-    getAllBlogMainCategoriesAndSubcategories: function () {
-      const domain = window.location.origin
-      const apiEndPoint = '/api/blog-configuration/categories-and-subcategories'
-      const fullApiUrl = domain + apiEndPoint
+    getAllBlogSubcategoryVideoArticles: function () {
+      const url = window.location.origin
+      const apiEndPoint = '/api/blog/subcategory/'
+      const urlParameter = this.$route.params.id
+      const fullApiUrl = url + apiEndPoint + urlParameter + '/all-video-articles'
       axios
         .get(fullApiUrl)
         .then(response => {
-          console.log('>>>>> Blog Categories and Subcategories Api Data', response.data)
-          this.displayAllBlogCategoriesAndSubcategories = response.data.results
+          console.log('>>>>> Display a list of all video articles for a given blog subcategory <<<<<', response.data)
+          this.displayAllBlogSubcategoryVideoArticles = response.data.results[0]
         })
     }
   },

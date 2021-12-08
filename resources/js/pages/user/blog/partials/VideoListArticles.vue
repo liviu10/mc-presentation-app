@@ -96,7 +96,7 @@ export default {
   methods: {
     getAllVideoBlogArticles: function () {
       const url = window.location.origin
-      const apiEndPoint = '/api/blog-configuration/articles/all-video-articles'
+      const apiEndPoint = '/api/blog/articles/all-video-articles'
       const fullApiUrl = url + apiEndPoint
       axios
         .get(fullApiUrl)
