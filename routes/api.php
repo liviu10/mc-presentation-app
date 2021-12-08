@@ -72,7 +72,7 @@ use App\Http\Controllers\ErrorAndNotificationSystemController;
 */
 Route::group(['middleware' => 'guest:api'], function () {
     // Home page and Newsletter API routes
-    Route::apiResource('', HomeController::class);
+    Route::apiResource('', HomeController::class)->only(['index']);
     Route::apiResource('/subscribe', SubscribeToNewsletterController::class)->only(['store']);
     Route::apiResource('/unsubscribe', SubscribeToNewsletterController::class)->only(['destroy']);
 
