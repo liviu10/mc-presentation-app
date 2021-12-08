@@ -80,7 +80,7 @@ Route::group(['middleware' => 'guest:api', 'prefix' => '/'], function () {
         Route::apiResource('/questionnaire', QuestionnaireAppointmentController::class)->only(['index', 'store']);
         Route::apiResource('/booking', BookAppointmentController::class)->only(['index', 'store']);
     });
-  
+    
     // Blog page API routes
     Route::group([ 'prefix' => '/blog' ], function () {
         Route::get('/categories-and-subcategories', [BlogCategoryController::class, 'getAllBlogMainCategoriesAndSubcategories']);
