@@ -53,6 +53,9 @@ use App\Http\Controllers\ErrorAndNotificationSystemController;
     // Import the Contact Me page Controller file
     use App\Http\Controllers\User\ContactMePage\ContactMeController;
 
+    // Import the Contact Me page Controller file
+    use App\Http\Controllers\User\TermsAndConditionsPage\TermsAndConditionsController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -64,11 +67,12 @@ use App\Http\Controllers\ErrorAndNotificationSystemController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::group(['middleware' => 'guest:api'], function () {
-    // Home page and Newsletter API routes
+Route::group(['middleware' => 'guest:api', 'prefix' => '/'], function () {
+    // Home page, Newsletter and Terms and Conditions page API routes
     Route::apiResource('', HomeController::class)->only(['index']);
     Route::apiResource('/subscribe', SubscribeToNewsletterController::class)->only(['store']);
     Route::apiResource('/unsubscribe', SubscribeToNewsletterController::class)->only(['destroy']);
+    Route::apiResource('/terms-and-conditions', TermsAndConditionsController::class)->only(['index']);
 
     // Schedule Appointment page API routes
     Route::group([ 'prefix' => '/schedule-appointment' ], function () {
@@ -76,7 +80,7 @@ Route::group(['middleware' => 'guest:api'], function () {
         Route::apiResource('/questionnaire', QuestionnaireAppointmentController::class)->only(['index', 'store']);
         Route::apiResource('/booking', BookAppointmentController::class)->only(['index', 'store']);
     });
-
+  
     // Blog page API routes
     Route::group([ 'prefix' => '/blog' ], function () {
         Route::get('/categories-and-subcategories', [BlogCategoryController::class, 'getAllBlogMainCategoriesAndSubcategories']);
