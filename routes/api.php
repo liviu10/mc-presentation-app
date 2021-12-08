@@ -28,12 +28,6 @@ use App\Http\Controllers\Blog\BlogArticleController;
 use App\Http\Controllers\Blog\BlogArticleCommentController;
 use App\Http\Controllers\Blog\BlogArticleCommentReplyController;
 
-// Import the About me page Controller file
-
-
-// Import the Contact me page Controller file
-use App\Http\Controllers\ContactMeController;
-
 // Import the Error and Notification System Controller file
 use App\Http\Controllers\ErrorAndNotificationSystemController;
 
@@ -56,8 +50,11 @@ use App\Http\Controllers\ErrorAndNotificationSystemController;
     use App\Http\Controllers\User\ScheduleAppointmentPage\QuestionnaireAppointmentController;
     use App\Http\Controllers\User\ScheduleAppointmentPage\BookAppointmentController;
 
-    // Import the Home page and the Newsletter Controller files
+    // Import the About Me page Controller files
     use App\Http\Controllers\User\AboutMePage\AboutMeController;
+    
+    // Import the Contact Me page Controller file
+    use App\Http\Controllers\User\ContactMePage\ContactMeController;
 
 
 /*
@@ -83,8 +80,11 @@ Route::group(['middleware' => 'guest:api'], function () {
         Route::apiResource('/booking', BookAppointmentController::class)->only(['index', 'store']);
     });
 
-    // Import the About me page Controller file
+    // About me page API routes
     Route::apiResource('/about-me', AboutMeController::class)->only(['index']);
+
+    // Contact me page API routes
+    Route::apiResource('/contact-me', ContactMeController::class)->only(['store']);
 
     // Blog System API routes
     Route::group([ 'prefix' => '/blog-configuration' ], function () {
@@ -116,13 +116,6 @@ Route::group(['middleware' => 'guest:api'], function () {
         Route::delete('/article-comment-replies/delete-all', [BlogArticleCommentReplyController::class, 'deleteAllRecords']);
         Route::apiResource('/article-comment-replies', BlogArticleCommentReplyController::class);
     });
-
-    // About me page API routes
-
-
-    // Contact me page API routes
-    Route::delete('/contact-me/delete-all', [ContactMeController::class, 'deleteAllRecords']);
-    Route::apiResource('/contact-me', ContactMeController::class);
 });
 
 Route::delete('/errors-and-notification-system', [ErrorAndNotificationSystemController::class, 'deleteAllRecords']);
