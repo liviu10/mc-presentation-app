@@ -12,7 +12,7 @@
         </h5>
       </div>
       <router-link :to="{ path: category.blog_category_path }">
-        <img :src="category.blog_image_card_url" class="d-block w-100" alt="...">
+        <img :src="category.blog_image_card_url" class="d-block w-100" width="400" height="300" alt="...">
       </router-link>
       <div class="card-body">
         <p class="card-text">

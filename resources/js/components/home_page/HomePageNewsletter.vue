@@ -4,7 +4,7 @@
       <div class="row">
         <!-- FULL NAME, SECTION START -->
         <div class="col col-xxl-5 col-xl-5 col-lg-5 col-md-6 col-sm-12 col-12">
-          <input id="full_name"
+          <input id="subscriber_full_name"
                  v-model="form.full_name"
                  type="text"
                  :class="{ 'is-invalid': form.errors.has('full_name') }"
@@ -17,7 +17,7 @@
         <!-- FULL NAME, SECTION END -->
         <!-- EMAIL ADDRESS, SECTION START -->
         <div class="col col-xxl-5 col-xl-5 col-lg-5 col-md-6 col-sm-12 col-12">
-          <input id="email"
+          <input id="subscriber_email"
                  v-model="form.email"
                  type="email"
                  :class="{ 'is-invalid': form.errors.has('email') }"
@@ -47,7 +47,7 @@
                    class="form-check-input"
                    name="privacy_policy"
             >
-            <label class="form-check-label lead" for="flexCheckChecked">
+            <label class="form-check-label lead" for="privacy_policy">
               <span @click="acceptPrivacyPolicy">
                 {{ $t('user.home_page.newsletter.i_agree_with') }}
                 <span class="a-typography"

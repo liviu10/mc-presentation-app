@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <!-- NAVBAR BRAND SECTION START -->
       <router-link :to="{ name: 'home-page' }" class="navbar-brand">
-        <img src="/images/logo/Logo-img.png" alt="">
+        <img src="/images/logo/Logo-img.png" width="240" height="60" alt="">
         <p class="text-wrap">
           Lorem ipsum dolor sit amet.
         </p>

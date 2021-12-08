@@ -109,13 +109,13 @@ export default {
         title: this.$t('footer.footer_menu.unsubscribe_newsletter.swal_confirmation.title'),
         text: this.$t('footer.footer_menu.unsubscribe_newsletter.swal_confirmation.message'),
         footer:
-          '<a href="https://www.facebook.com/groups/269560668238590/?ref=share" target="_blank">' +
+          '<a href="https://www.facebook.com/groups/269560668238590/?ref=share" target="_blank" rel="noreferrer">' +
             'Facebook' +
           '</a>' + '&nbsp;&nbsp; | &nbsp;&nbsp;' +
-          '<a href="" target="_blank">' +
+          '<a href="" target="_blank" rel="noreferrer">' +
             'Instagram' +
           '</a>' + '&nbsp;&nbsp; | &nbsp;&nbsp;' +
-          '<a href="" target="_blank">' +
+          '<a href="" target="_blank" rel="noreferrer">' +
             'Youtube' +
           '</a>',
         icon: 'success',
@@ -125,13 +125,3 @@ export default {
   }
 }
 </script>
-
-    <a href="https://www.facebook.com/groups/269560668238590/?ref=share" class="btn btn-primary btn-lg" target="_blank" :title="$t('footer.social_menu.facebook')">
-      <fa :icon="['fab', 'facebook']" fixed-width />
-    </a>
-    <a href="" class="btn btn-primary btn-lg" target="_blank" :title="$t('footer.social_menu.instagram')">
-      <fa :icon="['fab', 'instagram']" fixed-width />
-    </a>
-    <a href="" class="btn btn-primary btn-lg" target="_blank" :title="$t('footer.social_menu.youtube')">
-      <fa :icon="['fab', 'youtube']" fixed-width />
-    </a>

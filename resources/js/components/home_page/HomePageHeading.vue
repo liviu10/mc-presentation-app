@@ -27,6 +27,7 @@
            :class="share_button.class"
            :target="share_button.target"
            :title="share_button.title"
+           rel="noreferrer"
         >
           <fa :icon="[share_button.icon.prefix, share_button.icon.class]" fixed-width />
         </a>
