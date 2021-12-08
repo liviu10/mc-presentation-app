@@ -56,6 +56,9 @@ use App\Http\Controllers\ErrorAndNotificationSystemController;
     use App\Http\Controllers\User\ScheduleAppointmentPage\QuestionnaireAppointmentController;
     use App\Http\Controllers\User\ScheduleAppointmentPage\BookAppointmentController;
 
+    // Import the Home page and the Newsletter Controller files
+    use App\Http\Controllers\User\AboutMePage\AboutMeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -79,6 +82,9 @@ Route::group(['middleware' => 'guest:api'], function () {
         Route::apiResource('/questionnaire', QuestionnaireAppointmentController::class)->only(['index', 'store']);
         Route::apiResource('/booking', BookAppointmentController::class)->only(['index', 'store']);
     });
+
+    // Import the About me page Controller file
+    Route::apiResource('/about-me', AboutMeController::class)->only(['index']);
 
     // Blog System API routes
     Route::group([ 'prefix' => '/blog-configuration' ], function () {
