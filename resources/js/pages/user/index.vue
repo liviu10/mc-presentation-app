@@ -25,11 +25,11 @@
 </template>
 
 <script>
-import HomePageCarousel from '~/components/home_page/HomePageCarousel.vue'
-import HomePageHeading from '~/components/home_page/HomePageHeading.vue'
-import MainCategories from '~/pages/user/blog/partials/MainCategories.vue'
-import HomePageTestimonials from '~/components/home_page/HomePageTestimonials.vue'
-import HomePageNewsletter from '~/components/home_page/HomePageNewsletter.vue'
+import HomePageCarousel from './partials/HomePageCarousel.vue'
+import HomePageHeading from './partials/HomePageHeading.vue'
+import MainCategories from './blog/partials/MainCategories.vue'
+import HomePageTestimonials from './partials/HomePageTestimonials.vue'
+import HomePageNewsletter from './partials/HomePageNewsletter.vue'
 
 export default {
   name: 'HomePage',
