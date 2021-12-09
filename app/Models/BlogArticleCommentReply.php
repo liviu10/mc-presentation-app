@@ -24,11 +24,18 @@ class BlogArticleCommentReply extends Model
     protected $primaryKey = 'id';
 
     /**
-     * The data type of the auto-incrementing ID.
+     * The foreign key associated with the table.
+     * 
+     * @var string
+     */
+    protected $foreignKey = 'blog_article_comment_id';
+    
+    /**
+     * The data type of the database table foreign key.
      *
      * @var string
      */
-    protected $keyType = 'int';
+    protected $foreignKeyType = 'int';
 
     /**
      * The attributes that are mass assignable.
@@ -36,9 +43,6 @@ class BlogArticleCommentReply extends Model
      * @var string
      */
     protected $fillable = [
-        'blog_category_id',
-        'blog_subcategory_id',
-        'blog_article_id',
         'blog_article_comment_id',
         'full_name',
         'email',
@@ -69,12 +73,22 @@ class BlogArticleCommentReply extends Model
         'deleted_at',
     ];
 
+    public function scopeIsCommentReplyPublic ($query) 
+    {
+        return $query->where('comment_reply_is_public', true);
+    }
+
+    public function scopeIsNotCommentReplyPublic ($query) 
+    {
+        return $query->where('comment_reply_is_public', false);
+    }
+
     /**
-     * Eloquent relationship between Blog Article Comments and Article Comment Replies.
-     * Many blog articles comment replies may have only one blog article comment.
+     * Eloquent relationship between blog_article_comment_replies and blog_article_comments.
+     * One or many blog article comment reply(ies) may have only one blog article comment.
      */
     public function blog_article_comment()
     {
-        return $this->belongsTo('App\Models\BlogArticleComment');
+        return $this->belongsTo('App\Models\Blog\BlogArticleComment');
     }
 }

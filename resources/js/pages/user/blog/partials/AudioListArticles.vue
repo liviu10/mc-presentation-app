@@ -111,12 +111,7 @@ export default {
         .get(fullApiUrl)
         .then(response => {
           console.log('>>>>> List of audio blog articles <<<<<<')
-          if (response.data.results.length === 0) {
-            this.notifyCode = response.data.notify_code
-            this.notifyMessage = response.data.user_message
-          } else {
-            this.displayAllAudioBlogArticles = response.data.results
-          }
+          this.displayAllAudioBlogArticles = response.data
         })
     }
   }

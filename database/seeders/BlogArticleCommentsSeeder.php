@@ -18,8 +18,6 @@ class BlogArticleCommentsSeeder extends Seeder
         $records = [
             [
                 'id'                  => '1',
-                'blog_category_id'    => '1',
-                'blog_subcategory_id' => '1',
                 'blog_article_id'     => '1',
                 'full_name'           => 'Liviu Voica',
                 'email'               => 'voica.liviu10@gmail.com',
@@ -31,8 +29,6 @@ class BlogArticleCommentsSeeder extends Seeder
             ],
             [
                 'id'                  => '2',
-                'blog_category_id'    => '1',
-                'blog_subcategory_id' => '1',
                 'blog_article_id'     => '1',
                 'full_name'           => 'Popescu Adrian George',
                 'email'               => 'popescu.george@gmail.com',
@@ -44,8 +40,6 @@ class BlogArticleCommentsSeeder extends Seeder
             ],
             [
                 'id'                  => '3',
-                'blog_category_id'    => '1',
-                'blog_subcategory_id' => '1',
                 'blog_article_id'     => '1',
                 'full_name'           => 'Alina Ionescu',
                 'email'               => 'aline_ionescu@yahoo.com',

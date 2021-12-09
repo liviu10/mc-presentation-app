@@ -24,11 +24,18 @@ class BlogArticleComment extends Model
     protected $primaryKey = 'id';
 
     /**
-     * The data type of the auto-incrementing ID.
+     * The foreign key associated with the table.
+     * 
+     * @var string
+     */
+    protected $foreignKey = 'blog_article_id';
+    
+    /**
+     * The data type of the database table foreign key.
      *
      * @var string
      */
-    protected $keyType = 'int';
+    protected $foreignKeyType = 'int';
 
     /**
      * The attributes that are mass assignable.
@@ -36,8 +43,6 @@ class BlogArticleComment extends Model
      * @var string
      */
     protected $fillable = [
-        'blog_category_id',
-        'blog_subcategory_id',
         'blog_article_id',
         'full_name',
         'email',
@@ -68,21 +73,31 @@ class BlogArticleComment extends Model
         'deleted_at',
     ];
 
-    /**
-     * Eloquent relationship between Blog Articles and Article Comments.
-     * Many blog articles comments may have only one blog article.
-     */
-    public function blog_article()
+    public function scopeIsCommentPublic ($query) 
     {
-        return $this->belongsTo('App\Models\BlogArticle');
+        return $query->where('comment_is_public', true);
+    }
+
+    public function scopeIsNotCommentPublic ($query) 
+    {
+        return $query->where('comment_is_public', false);
     }
 
     /**
-     * Eloquent relationship between Blog Article Comments and Article Comment Replies.
-     * One blog article comment may have one or many blog article comment replies.
+     * Eloquent relationship between blog_article_comments and blog_article_comment_replies.
+     * One blog article comment may have one or more blog article comment replies.
      */
     public function blog_article_comment_replies()
     {
-        return $this->hasMany('App\Models\BlogArticleCommentReply');
+        return $this->hasMany('App\Models\Blog\BlogArticleCommentReply');
+    }
+
+    /**
+     * Eloquent relationship between blog_article_comments and blog_articles.
+     * One or many blog article comment(s) may have only one blog article.
+     */
+    public function blog_article()
+    {
+        return $this->belongsTo('App\Models\Blog\BlogArticle');
     }
 }
