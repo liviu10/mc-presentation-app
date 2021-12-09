@@ -60,7 +60,7 @@ export default {
         .get(fullApiUrl)
         .then(response => {
           console.log('>>>>> Display blog categories and subcategories <<<<<<')
-          this.displayAllBlogCategoriesAndSubcategories = response.data.results
+          this.displayAllBlogCategoriesAndSubcategories = response.data
         })
     }
   }
