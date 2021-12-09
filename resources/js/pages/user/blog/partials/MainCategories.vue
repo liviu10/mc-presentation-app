@@ -22,7 +22,7 @@
       <div class="card-body">
         <a v-for="subcategory in category.blog_subcategories"
            :key="subcategory.id"
-           :href="subcategory.blog_subcategory_slug"
+           :href="subcategory.blog_subcategory_path"
         >
           {{ subcategory.blog_subcategory_title }}
         </a>

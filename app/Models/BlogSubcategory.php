@@ -103,7 +103,7 @@ class BlogSubcategory extends Model
      */
     public function blog_articles()
     {
-        return $this->hasMany('App\Models\Blog\BlogArticle');
+        return $this->hasMany('App\Models\BlogArticle');
     }
 
     /**
@@ -112,6 +112,6 @@ class BlogSubcategory extends Model
      */
     public function blog_category()
     {
-        return $this->belongsTo('App\Models\Blog\BlogCategory');
+        return $this->belongsTo('App\Models\BlogCategory');
     }
 }

@@ -87,10 +87,12 @@ Route::group(['middleware' => 'guest:api', 'prefix' => '/'], function () {
         Route::get('/subcategory/{id}/all-written-articles', [BlogSubcategoryController::class, 'getAllBlogSubcategoryWrittenArticles']);
         Route::get('/subcategory/{id}/all-audio-articles', [BlogSubcategoryController::class, 'getAllBlogSubcategoryAudioArticles']);
         Route::get('/subcategory/{id}/all-video-articles', [BlogSubcategoryController::class, 'getAllBlogSubcategoryVideoArticles']);
-        Route::get('/articles/all-written-articles', [BlogArticleController::class, 'getAllWrittenBlogArticles']);
-        Route::get('/articles/all-audio-articles', [BlogArticleController::class, 'getAllAudioBlogArticles']);
-        Route::get('/articles/all-video-articles', [BlogArticleController::class, 'getAllVideoBlogArticles']);
-        Route::get('/articles/{id}', [BlogArticleController::class, 'displaySingleBlogArticle']);
+        Route::group([ 'prefix' => '/articles' ], function () {
+            Route::get('/all-written-articles', [BlogSubcategoryController::class, 'getAllWrittenBlogArticles']);
+            Route::get('/all-audio-articles', [BlogSubcategoryController::class, 'getAllAudioBlogArticles']);
+            Route::get('/all-video-articles', [BlogSubcategoryController::class, 'getAllVideoBlogArticles']);
+            Route::get('/{id}', [BlogArticleController::class, 'displaySingleBlogArticle']);
+        });
     });
 
     // About me page API routes

@@ -44,12 +44,11 @@ class BlogCategoryController extends Controller
             'blog_image_card_url',
             'blog_category_path'
         )
-        ->where('blog_category_is_active', '<>', '0')
+        ->IsActive()
         ->whereIn('blog_category_title', ['ARTICOLE', 'AUDIO', 'VIDEO'])
         ->with([
             'blog_subcategories' => function ($query) {
-                $query->select('blog_category_id', 'blog_subcategory_title', 'blog_subcategory_slug')
-                    ->where('blog_subcategory_is_active', '<>', '0');
+                $query->select('blog_category_id', 'blog_subcategory_title', 'blog_subcategory_path')->IsActive();
             }
         ])
         ->get();

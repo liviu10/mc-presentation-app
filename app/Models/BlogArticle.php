@@ -84,7 +84,7 @@ class BlogArticle extends Model
      */
     public function blog_article_comments()
     {
-        return $this->hasMany('App\Models\Blog\BlogArticleComment');
+        return $this->hasMany('App\Models\BlogArticleComment');
     }
 
     /**
@@ -93,6 +93,6 @@ class BlogArticle extends Model
      */
     public function blog_subcategory()
     {
-        return $this->belongsTo('App\Models\Blog\BlogSubcategory');
+        return $this->belongsTo('App\Models\BlogSubcategory');
     }
 }
