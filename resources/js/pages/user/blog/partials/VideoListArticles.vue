@@ -102,12 +102,7 @@ export default {
         .get(fullApiUrl)
         .then(response => {
           console.log('>>>>> List of video blog articles <<<<<<')
-          if (response.data.results.length === 0) {
-            this.notifyCode = response.data.notify_code
-            this.notifyMessage = response.data.user_message
-          } else {
-            this.displayAllVideoBlogArticles = response.data.results
-          }
+          this.displayAllVideoBlogArticles = response.data
         })
     }
   }

@@ -65,13 +65,23 @@ class BlogCategory extends Model
         'deleted_at',
     ];
 
+    public function scopeIsActive ($query) 
+    {
+        return $query->where('blog_category_is_active', true);
+    }
+
+    public function scopeIsNotActive ($query) 
+    {
+        return $query->where('blog_category_is_active', false);
+    }
+
     /**
-     * Eloquent relationship between Blog Categories and Subcategories.
+     * Eloquent relationship between blog_categories and blog_subcategories.
      * One blog category may have one or more blog subcategories.
      *
      */
     public function blog_subcategories()
     {
-        return $this->hasMany('App\Models\BlogSubcategory');
+        return $this->hasMany('App\Models\Blog\BlogSubcategory');
     }
 }

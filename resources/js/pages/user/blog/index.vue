@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import MainCategories from '~/pages/user/blog/partials/MainCategories.vue'
+import MainCategories from './partials/MainCategories.vue'
 
 export default {
   name: 'BlogPage',

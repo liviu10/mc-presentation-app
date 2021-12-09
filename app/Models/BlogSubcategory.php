@@ -24,6 +24,20 @@ class BlogSubcategory extends Model
     protected $primaryKey = 'id';
 
     /**
+     * The foreign key associated with the table.
+     * 
+     * @var string
+     */
+    protected $foreignKey = 'blog_category_id';
+    
+    /**
+     * The data type of the database table foreign key.
+     *
+     * @var string
+     */
+    protected $foreignKeyType = 'int';
+
+    /**
      * The attributes that are mass assignable.
      * 
      * @var string
@@ -34,7 +48,16 @@ class BlogSubcategory extends Model
         'blog_subcategory_short_description',
         'blog_subcategory_description',
         'blog_subcategory_is_active',
-        'blog_subcategory_slug',
+        'blog_subcategory_path',
+    ];
+
+    /**
+     * The attributes that are mass assignable.
+     * 
+     * @var string
+     */
+    protected $attributes = [
+        'blog_subcategory_is_active' => false,
     ];
 
     /**
@@ -49,21 +72,46 @@ class BlogSubcategory extends Model
         'deleted_at',
     ];
 
-    /**
-     * Eloquent relationship between Blog Categories and Subcategories.
-     * Many blog subcategories may have only one blog category.
-     */
-    public function blog_category()
+    public function scopeIsActive ($query) 
     {
-        return $this->belongsTo('App\Models\BlogCategory');
+        return $query->where('blog_subcategory_is_active', true);
+    }
+
+    public function scopeIsNotActive ($query) 
+    {
+        return $query->where('blog_subcategory_is_active', false);
+    }
+
+    public function scopeIsWrittenArticle ($query) 
+    {
+        return $query->where('blog_category_id', '=', 1);
+    }
+
+    public function scopeIsAudioArticle ($query) 
+    {
+        return $query->where('blog_category_id', '=', 2);
+    }
+
+    public function scopeIsVideoArticle ($query) 
+    {
+        return $query->where('blog_category_id', '=', 3);
     }
 
     /**
-     * Eloquent relationship between Blog Subcategories and Articles.
-     * One blog subcategory may have one or many blog articles.
+     * Eloquent relationship between blog_subcategories and blog_articles.
+     * One blog subcategory may have one or more blog articles.
      */
     public function blog_articles()
     {
-        return $this->hasMany('App\Models\BlogArticle');
+        return $this->hasMany('App\Models\Blog\BlogArticle');
+    }
+
+    /**
+     * Eloquent relationship between blog_subcategories and blog_categories.
+     * One or many blog subcategory(ies) may have only one blog category.
+     */
+    public function blog_category()
+    {
+        return $this->belongsTo('App\Models\Blog\BlogCategory');
     }
 }

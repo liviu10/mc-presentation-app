@@ -18,9 +18,6 @@ class BlogArticleCommentRepliesSeeder extends Seeder
         $records = [
             [
                 'id'                      => '1',
-                'blog_category_id'        => '1',
-                'blog_subcategory_id'     => '1',
-                'blog_article_id'         => '1',
                 'blog_article_comment_id' => '1',
                 'full_name'               => 'Vasile Ionita',
                 'email'                   => '22_ionita@gmail.com',
@@ -32,9 +29,6 @@ class BlogArticleCommentRepliesSeeder extends Seeder
             ],
             [
                 'id'                      => '2',
-                'blog_category_id'        => '1',
-                'blog_subcategory_id'     => '1',
-                'blog_article_id'         => '1',
                 'blog_article_comment_id' => '1',
                 'full_name'               => 'George Adrian',
                 'email'                   => 'geo_adi@yahoo.com',
@@ -46,9 +40,6 @@ class BlogArticleCommentRepliesSeeder extends Seeder
             ],
             [
                 'id'                      => '3',
-                'blog_category_id'        => '1',
-                'blog_subcategory_id'     => '1',
-                'blog_article_id'         => '1',
                 'blog_article_comment_id' => '1',
                 'full_name'               => 'Madalina Corina',
                 'email'                   => 'mada_corina@gmail.com',

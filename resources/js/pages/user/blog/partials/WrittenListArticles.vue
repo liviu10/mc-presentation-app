@@ -91,12 +91,7 @@ export default {
         .get(fullApiUrl)
         .then(response => {
           console.log('>>>>> List of written blog articles <<<<<<')
-          if (response.data.results.length === 0) {
-            this.notifyCode = response.data.notify_code
-            this.notifyMessage = response.data.user_message
-          } else {
-            this.displayAllWrittenBlogArticles = response.data.results
-          }
+          this.displayAllWrittenBlogArticles = response.data
         })
     }
   }
