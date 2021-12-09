@@ -89,7 +89,7 @@ class BlogArticleComment extends Model
      */
     public function blog_article_comment_replies()
     {
-        return $this->hasMany('App\Models\Blog\BlogArticleCommentReply');
+        return $this->hasMany('App\Models\BlogArticleCommentReply');
     }
 
     /**
@@ -98,6 +98,6 @@ class BlogArticleComment extends Model
      */
     public function blog_article()
     {
-        return $this->belongsTo('App\Models\Blog\BlogArticle');
+        return $this->belongsTo('App\Models\BlogArticle');
     }
 }

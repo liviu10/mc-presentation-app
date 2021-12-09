@@ -89,6 +89,6 @@ class BlogArticleCommentReply extends Model
      */
     public function blog_article_comment()
     {
-        return $this->belongsTo('App\Models\Blog\BlogArticleComment');
+        return $this->belongsTo('App\Models\BlogArticleComment');
     }
 }
