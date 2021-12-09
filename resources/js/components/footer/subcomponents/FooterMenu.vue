@@ -71,7 +71,6 @@ export default {
       form: new Form({
         email: ''
       }),
-      urserMessage: '',
       footer_buttons: [
         {
           id: 1,
@@ -101,9 +100,8 @@ export default {
       axios
         .delete(fullApiUrl)
         .then(response => {
-          const urserMessage = response.data.user_message
+          this.form.email = ''
           this.closeModal()
-          return urserMessage
         })
       await Swal.fire({
         title: this.$t('footer.footer_menu.unsubscribe_newsletter.swal_confirmation.title'),

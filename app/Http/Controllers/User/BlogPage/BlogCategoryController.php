@@ -4,23 +4,19 @@ namespace App\Http\Controllers\User\BlogPage;
 
 use App\Http\Controllers\Controller;
 use App\Models\BlogCategory;
-use App\Models\ErrorAndNotificationSystem;
-use Illuminate\Support\Facades\DB;
 
 class BlogCategoryController extends Controller
 {
     protected $modelNameBlogCategories;
-    protected $modelNameErrorSystem;
 
     /**
-     * Instantiate the variables that will be used to get the model and table name as well as the table's columns.
+     * Instantiate the variables that will be used to get the model.
      * 
      * @return Collection
      */
     public function __construct()
     {
-        $this->modelNameBlogCategories      = new BlogCategory();
-        $this->modelNameErrorSystem         = new ErrorAndNotificationSystem();
+        $this->modelNameBlogCategories = new BlogCategory();
     }
 
     /**
