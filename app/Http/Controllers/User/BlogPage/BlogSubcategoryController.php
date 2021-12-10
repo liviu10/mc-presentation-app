@@ -33,7 +33,7 @@ class BlogSubcategoryController extends Controller
      * Display a list of all blog written articles for a given blog subcategory.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Illuminate\Http\JsonResponse
      */
     public function getAllBlogSubcategoryWrittenArticles($id)
     {
@@ -69,7 +69,7 @@ class BlogSubcategoryController extends Controller
      * Display a list of all blog audio articles for a given blog subcategory.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Illuminate\Http\JsonResponse
      */
     public function getAllBlogSubcategoryAudioArticles($id)
     {
@@ -105,7 +105,7 @@ class BlogSubcategoryController extends Controller
      * Display a list of all blog video articles for a given blog subcategory.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Illuminate\Http\JsonResponse
      */
     public function getAllBlogSubcategoryVideoArticles($id)
     {
@@ -140,7 +140,7 @@ class BlogSubcategoryController extends Controller
     /**
      * Display a listing of all written blog articles.
      *
-     * @return \Illuminate\Http\Response
+     * @return Illuminate\Http\JsonResponse
      */
     public function getAllWrittenBlogArticles()
     {
@@ -171,7 +171,7 @@ class BlogSubcategoryController extends Controller
     /**
      * Display a listing of all audio blog articles.
      *
-     * @return \Illuminate\Http\Response
+     * @return Illuminate\Http\JsonResponse
      */
     public function getAllAudioBlogArticles()
     {
@@ -202,7 +202,7 @@ class BlogSubcategoryController extends Controller
     /**
      * Display a listing of all video blog articles.
      *
-     * @return \Illuminate\Http\Response
+     * @return Illuminate\Http\JsonResponse
      */
     public function getAllVideoBlogArticles()
     {

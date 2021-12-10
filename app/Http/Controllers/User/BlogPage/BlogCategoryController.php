@@ -32,7 +32,7 @@ class BlogCategoryController extends Controller
     /**
      * Display a listing of all blog main categories and subcategories.
      *
-     * @return \Illuminate\Http\Response
+     * @return Illuminate\Http\JsonResponse
      */
     public function getAllBlogMainCategoriesAndSubcategories()
     {
