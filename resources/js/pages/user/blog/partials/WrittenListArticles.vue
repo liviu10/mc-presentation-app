@@ -7,39 +7,41 @@
     <div v-if="!displayAllWrittenBlogArticles" class="lv-con-pg-articles-list">
       <h1>{{ notifyMessage }}</h1>
     </div>
-    <div v-for="writtenArticle in displayAllWrittenBlogArticles" v-else
-         :key="writtenArticle.id"
+    <div v-for="blogContent in displayAllWrittenBlogArticles" v-else
+         :key="blogContent.id"
          class="lv-con-pg-articles-list"
     >
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">
-            <a :href="writtenArticle.blog_article_slug + '/' + writtenArticle.id">
-              {{ writtenArticle.blog_article_title }}
+      <div v-for="writtenArticle in blogContent.blog_articles" :key="writtenArticle.id">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">
+              <a :href="writtenArticle.blog_article_path + '/' + writtenArticle.id">
+                {{ writtenArticle.blog_article_title }}
+              </a>
+              <span v-if="writtenArticle.blog_article_time <= 1">
+                ({{ $t('user.blog_system_pages.written_article_blog_pages.reading_time.less_than_one_minute') }})
+              </span>
+              <span v-else>
+                ({{ writtenArticle.blog_article_time }} {{ $t('user.blog_system_pages.written_article_blog_pages.reading_time.more_than_one_minute') }})
+              </span>
+              <p v-if="writtenArticle.updated_at == writtenArticle.created_at">
+                {{ $t('user.blog_system_pages.general_settings.published_on') }}
+                <span>{{ new Date(writtenArticle.created_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}</span>
+              </p>
+              <p v-else-if="writtenArticle.updated_at > writtenArticle.created_at">
+                {{ $t('user.blog_system_pages.general_settings.modified_on') }}
+                <span>{{ new Date(writtenArticle.updated_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}</span>
+              </p>
+            </h5>
+            <p class="card-text">
+              <fa icon="quote-left" fixed-width />
+              {{ writtenArticle.blog_article_short_description }}
+            </p>
+            <a :href="writtenArticle.blog_article_path + '/' + writtenArticle.id" class="btn btn-primary">
+              <fa icon="book-reader" fixed-width />
+              {{ $t('user.blog_system_pages.written_article_blog_pages.read_more') }}
             </a>
-            <span v-if="writtenArticle.blog_article_time <= 1">
-              ({{ $t('user.blog_system_pages.written_article_blog_pages.reading_time.less_than_one_minute') }})
-            </span>
-            <span v-else>
-              ({{ writtenArticle.blog_article_time }} {{ $t('user.blog_system_pages.written_article_blog_pages.reading_time.more_than_one_minute') }})
-            </span>
-            <p v-if="writtenArticle.updated_at == writtenArticle.created_at">
-              {{ $t('user.blog_system_pages.general_settings.published_on') }}
-              <span>{{ new Date(writtenArticle.created_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}</span>
-            </p>
-            <p v-else-if="writtenArticle.updated_at > writtenArticle.created_at">
-              {{ $t('user.blog_system_pages.general_settings.modified_on') }}
-              <span>{{ new Date(writtenArticle.updated_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}</span>
-            </p>
-          </h5>
-          <p class="card-text">
-            <fa icon="quote-left" fixed-width />
-            {{ writtenArticle.blog_article_short_description }}
-          </p>
-          <a :href="writtenArticle.blog_article_slug + '/' + writtenArticle.id" class="btn btn-primary">
-            <fa icon="book-reader" fixed-width />
-            {{ $t('user.blog_system_pages.written_article_blog_pages.read_more') }}
-          </a>
+          </div>
         </div>
       </div>
     </div>

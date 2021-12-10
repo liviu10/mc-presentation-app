@@ -33,7 +33,7 @@ class BlogArticleController extends Controller
      * Display a single blog article together with it's comments.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Illuminate\Http\JsonResponse
      */
     public function displaySingleBlogArticle($id)
     {
