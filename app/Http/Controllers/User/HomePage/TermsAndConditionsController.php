@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User\TermsAndConditionsPage;
+namespace App\Http\Controllers\User\HomePage;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
