@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin\ErrorAndNotificationSystem;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ErrorAndNotificationSystem;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\DB;
 
 class ErrorAndNotificationSystemController extends Controller
 {
