@@ -32,7 +32,7 @@ class BlogCategoryController extends Controller
     /**
      * Display a listing of all blog main categories and subcategories.
      *
-     * @return Illuminate\Http\JsonResponse
+     * @return Illuminate\Http\Response
      */
     public function getAllBlogMainCategoriesAndSubcategories()
     {
@@ -53,6 +53,25 @@ class BlogCategoryController extends Controller
         ])
         ->get();
 
-        return ($allBlogCategoriesAndSubcategories->isEmpty()) ? response([], 404)->json() : response()->json($allBlogCategoriesAndSubcategories);
+        if ($allBlogCategoriesAndSubcategories->isEmpty()) 
+        {
+            return response([
+                'title'              => 'Resource(s) not found!',
+                'notify_code'        => 'WAR_00001',
+                'description'        => 'The blog resource(s) does not exist! Please try again later!',
+                'http_response_code' => 404,
+                'records'            => [],
+            ], 404);
+        }
+        else 
+        {
+            return response([
+                'title'              => 'Success!',
+                'notify_code'        => 'INFO_00001',
+                'description'        => 'The blog resource(s) was(were) successfully fetched!',
+                'http_response_code' => 200,
+                'records'            => $allBlogCategoriesAndSubcategories,
+            ], 200);
+        }
     }
 }

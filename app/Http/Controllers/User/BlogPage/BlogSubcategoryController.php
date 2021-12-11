@@ -33,7 +33,7 @@ class BlogSubcategoryController extends Controller
      * Display a list of all blog written articles for a given blog subcategory.
      *
      * @param  int  $id
-     * @return Illuminate\Http\JsonResponse
+     * @return Illuminate\Http\Response
      */
     public function getAllBlogSubcategoryWrittenArticles($id)
     {
@@ -62,14 +62,33 @@ class BlogSubcategoryController extends Controller
         ])
         ->get();
 
-        return ($allWrittenArticlesForSubcategory->isEmpty()) ? response([], 404)->json() : response()->json($allWrittenArticlesForSubcategory);
+        if ($allWrittenArticlesForSubcategory->isEmpty()) 
+        {
+            return response([
+                'title'              => 'Resource(s) not found!',
+                'notify_code'        => 'WAR_00001',
+                'description'        => 'The blog resource(s) does not exist! Please try again later!',
+                'http_response_code' => 404,
+                'records'            => [],
+            ], 404);
+        }
+        else 
+        {
+            return response([
+                'title'              => 'Success!',
+                'notify_code'        => 'INFO_00001',
+                'description'        => 'The blog resource(s) was(were) successfully fetched!',
+                'http_response_code' => 200,
+                'records'            => $allWrittenArticlesForSubcategory,
+            ], 200);
+        }
     }
 
     /**
      * Display a list of all blog audio articles for a given blog subcategory.
      *
      * @param  int  $id
-     * @return Illuminate\Http\JsonResponse
+     * @return Illuminate\Http\Response
      */
     public function getAllBlogSubcategoryAudioArticles($id)
     {
@@ -98,14 +117,33 @@ class BlogSubcategoryController extends Controller
         ])
         ->get();
 
-        return ($allAudioArticlesForSubcategory->isEmpty()) ? response([], 404)->json() : response()->json($allAudioArticlesForSubcategory);
+        if ($allAudioArticlesForSubcategory->isEmpty()) 
+        {
+            return response([
+                'title'              => 'Resource(s) not found!',
+                'notify_code'        => 'WAR_00001',
+                'description'        => 'The blog resource(s) does not exist! Please try again later!',
+                'http_response_code' => 404,
+                'records'            => [],
+            ], 404);
+        }
+        else 
+        {
+            return response([
+                'title'              => 'Success!',
+                'notify_code'        => 'INFO_00001',
+                'description'        => 'The blog resource(s) was(were) successfully fetched!',
+                'http_response_code' => 200,
+                'records'            => $allAudioArticlesForSubcategory,
+            ], 200);
+        }
     }
 
     /**
      * Display a list of all blog video articles for a given blog subcategory.
      *
      * @param  int  $id
-     * @return Illuminate\Http\JsonResponse
+     * @return Illuminate\Http\Response
      */
     public function getAllBlogSubcategoryVideoArticles($id)
     {
@@ -134,13 +172,32 @@ class BlogSubcategoryController extends Controller
         ])
         ->get();
 
-        return ($allVideoArticlesForSubcategory->isEmpty()) ? response([], 404)->json() : response()->json($allVideoArticlesForSubcategory);
+        if ($allVideoArticlesForSubcategory->isEmpty()) 
+        {
+            return response([
+                'title'              => 'Resource(s) not found!',
+                'notify_code'        => 'WAR_00001',
+                'description'        => 'The blog resource(s) does not exist! Please try again later!',
+                'http_response_code' => 404,
+                'records'            => [],
+            ], 404);
+        }
+        else 
+        {
+            return response([
+                'title'              => 'Success!',
+                'notify_code'        => 'INFO_00001',
+                'description'        => 'The blog resource(s) was(were) successfully fetched!',
+                'http_response_code' => 200,
+                'records'            => $allVideoArticlesForSubcategory,
+            ], 200);
+        }
     }
 
     /**
      * Display a listing of all written blog articles.
      *
-     * @return Illuminate\Http\JsonResponse
+     * @return Illuminate\Http\Response
      */
     public function getAllWrittenBlogArticles()
     {
@@ -165,13 +222,32 @@ class BlogSubcategoryController extends Controller
         ])
         ->get();
 
-        return ($allWrittenBlogArticles->isEmpty()) ? response([], 404)->json() : response()->json($allWrittenBlogArticles);
+        if ($allWrittenBlogArticles->isEmpty()) 
+        {
+            return response([
+                'title'              => 'Resource(s) not found!',
+                'notify_code'        => 'WAR_00001',
+                'description'        => 'The blog resource(s) does not exist! Please try again later!',
+                'http_response_code' => 404,
+                'records'            => [],
+            ], 404);
+        }
+        else 
+        {
+            return response([
+                'title'              => 'Success!',
+                'notify_code'        => 'INFO_00001',
+                'description'        => 'The blog resource(s) was(were) successfully fetched!',
+                'http_response_code' => 200,
+                'records'            => $allWrittenBlogArticles,
+            ], 200);
+        }
     }
 
     /**
      * Display a listing of all audio blog articles.
      *
-     * @return Illuminate\Http\JsonResponse
+     * @return Illuminate\Http\Response
      */
     public function getAllAudioBlogArticles()
     {
@@ -196,13 +272,32 @@ class BlogSubcategoryController extends Controller
         ])
         ->get();
 
-        return ($allAudioBlogArticles->isEmpty()) ? response([], 404)->json() : response()->json($allAudioBlogArticles);
+        if ($allAudioBlogArticles->isEmpty()) 
+        {
+            return response([
+                'title'              => 'Resource(s) not found!',
+                'notify_code'        => 'WAR_00001',
+                'description'        => 'The blog resource(s) does not exist! Please try again later!',
+                'http_response_code' => 404,
+                'records'            => [],
+            ], 404);
+        }
+        else 
+        {
+            return response([
+                'title'              => 'Success!',
+                'notify_code'        => 'INFO_00001',
+                'description'        => 'The blog resource(s) was(were) successfully fetched!',
+                'http_response_code' => 200,
+                'records'            => $allAudioBlogArticles,
+            ], 200);
+        }
     }
 
     /**
      * Display a listing of all video blog articles.
      *
-     * @return Illuminate\Http\JsonResponse
+     * @return Illuminate\Http\Response
      */
     public function getAllVideoBlogArticles()
     {
@@ -227,6 +322,25 @@ class BlogSubcategoryController extends Controller
         ])
         ->get();
 
-        return ($allVideoBlogArticles->isEmpty()) ? response([], 404)->json() : response()->json($allVideoBlogArticles);
+        if ($allVideoBlogArticles->isEmpty()) 
+        {
+            return response([
+                'title'              => 'Resource(s) not found!',
+                'notify_code'        => 'WAR_00001',
+                'description'        => 'The blog resource(s) does not exist! Please try again later!',
+                'http_response_code' => 404,
+                'records'            => [],
+            ], 404);
+        }
+        else 
+        {
+            return response([
+                'title'              => 'Success!',
+                'notify_code'        => 'INFO_00001',
+                'description'        => 'The blog resource(s) was(were) successfully fetched!',
+                'http_response_code' => 200,
+                'records'            => $allVideoBlogArticles,
+            ], 200);
+        }
     }
 }

@@ -33,7 +33,7 @@ class BlogArticleController extends Controller
      * Display a single blog article together with it's comments.
      *
      * @param  int  $id
-     * @return Illuminate\Http\JsonResponse
+     * @return Illuminate\Http\Response
      */
     public function displaySingleBlogArticle($id)
     {
@@ -70,6 +70,25 @@ class BlogArticleController extends Controller
         ])
         ->get();
         
-        return ($displayBlogArticle->isEmpty()) ? response([], 404)->json() : response()->json($displayBlogArticle);
+        if ($displayBlogArticle->isEmpty()) 
+        {
+            return response([
+                'title'              => 'Resource(s) not found!',
+                'notify_code'        => 'WAR_00001',
+                'description'        => 'The blog resource(s) does not exist! Please try again later!',
+                'http_response_code' => 404,
+                'records'            => [],
+            ], 404);
+        }
+        else 
+        {
+            return response([
+                'title'              => 'Success!',
+                'notify_code'        => 'INFO_00001',
+                'description'        => 'The blog resource(s) was(were) successfully fetched!',
+                'http_response_code' => 200,
+                'records'            => $displayBlogArticle,
+            ], 200);
+        }
     }
 }
