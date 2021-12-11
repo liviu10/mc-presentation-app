@@ -4,25 +4,6 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
-// Import Login and Registration System Controller files
-use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\OAuthController;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Auth\ResetPasswordController;
-use App\Http\Controllers\Auth\UserController;
-use App\Http\Controllers\Auth\VerificationController;
-use App\Http\Controllers\Settings\PasswordController;
-use App\Http\Controllers\Settings\ProfileController;
-
-// Import the Home page and the Newsletter Controller files
-use App\Http\Controllers\NewsletterController;
-
-// Import the Schedule Appointment Controller file
-
-// Import the Error and Notification System Controller file
-use App\Http\Controllers\ErrorAndNotificationSystemController;
-
 /*
 |--------------------------------------------------------------------------
 | FRONT VIEW WEB APPLICATION CONTROLLERS
@@ -55,7 +36,6 @@ use App\Http\Controllers\ErrorAndNotificationSystemController;
 
     // Import the Contact Me page Controller file
     use App\Http\Controllers\User\TermsAndConditionsPage\TermsAndConditionsController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -101,6 +81,36 @@ Route::group(['middleware' => 'guest:api', 'prefix' => '/'], function () {
     // Contact me page API routes
     Route::apiResource('/contact-me', ContactMeController::class)->only(['store']);
 });
+
+/*
+|--------------------------------------------------------------------------
+| ADMIN VIEW WEB APPLICATION CONTROLLERS
+|--------------------------------------------------------------------------
+|
+| Here is where you can import all the controller files that are only
+| available for the front view web application. These controllers will handle
+| only the HTTP requests that comes from the user.
+|
+*/
+    // Import Login and Registration System Controller files
+    use App\Http\Controllers\Auth\ForgotPasswordController;
+    use App\Http\Controllers\Auth\LoginController;
+    use App\Http\Controllers\Auth\OAuthController;
+    use App\Http\Controllers\Auth\RegisterController;
+    use App\Http\Controllers\Auth\ResetPasswordController;
+    use App\Http\Controllers\Auth\UserController;
+    use App\Http\Controllers\Auth\VerificationController;
+    use App\Http\Controllers\Settings\PasswordController;
+    use App\Http\Controllers\Settings\ProfileController;
+
+    // Import the Home page and the Newsletter Controller files
+    use App\Http\Controllers\NewsletterController;
+
+    // Import the Schedule Appointment Controller file
+
+    // Import the Error and Notification System Controller file
+    use App\Http\Controllers\ErrorAndNotificationSystemController;
+
 
 /* --- ADMIN ROUTES BELOW --- */
 /*
