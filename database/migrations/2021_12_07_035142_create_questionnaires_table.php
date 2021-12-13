@@ -16,10 +16,10 @@ class CreateQuestionnairesTable extends Migration
     {
         Schema::create('questionnaires', function (Blueprint $table) {
             $table->id();
-            $table->string('questionnaire_title');
-            $table->longText('questionnaire_scope');
-            $table->longText('questionnaire_description');
-            $table->string('questionnaire_is_active', 3);
+            $table->string('title');
+            $table->longText('scope');
+            $table->longText('description');
+            $table->string('is_active', 3);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->timestamp('deleted_at')->nullable();

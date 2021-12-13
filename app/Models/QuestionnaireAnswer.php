@@ -14,7 +14,7 @@ class QuestionnaireAnswer extends Model
      * 
      * @var string
      */
-    protected $table = 'questionnaire_questions';
+    protected $table = 'questionnaire_answers';
 
     /**
      * The primary key associated with the table.
@@ -33,12 +33,9 @@ class QuestionnaireAnswer extends Model
     /**
      * The foreign key associated with the table.
      * 
-     * @var array
+     * @var int
      */
-    protected $foreignKey = [
-        'questionnaire_id',
-        'question_type_id',
-    ];
+    protected $foreignKey = 'questionnaire_question_id';
 
     /**
      * The data type of the foreign key.
@@ -53,12 +50,18 @@ class QuestionnaireAnswer extends Model
      * @var string
      */
     protected $fillable = [
-        'questionnaire_id',
-        'question_type_id',
-        'question_name',
-        'question_media_card_url',
-        'question_answer_suggestion',
-        'questionnaire_question_is_active',
+        'id',
+        'questionnaire_question_id',
+        'answer_1',
+        'answer_2',
+        'answer_3',
+        'answer_4',
+        'answer_5',
+        'answer_6',
+        'answer_7',
+        'answer_8',
+        'answer_9',
+        'answer_10'
     ];
 
     /**

@@ -22,8 +22,9 @@ class DatabaseSeeder extends Seeder
             BlogArticleCommentsSeeder::class,
             BlogArticleCommentRepliesSeeder::class,
             QuestionnaireSeeder::class,
-            QuestionnaireQuestionTypeSeeder::class,
+            // QuestionnaireQuestionTypeSeeder::class,
             QuestionnaireQuestionSeeder::class,
+            // QuestionnaireAnswerSeeder::class,
         ]);
     }
 }

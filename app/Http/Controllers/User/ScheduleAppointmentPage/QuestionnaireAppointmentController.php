@@ -2,32 +2,22 @@
 
 namespace App\Http\Controllers\User\ScheduleAppointmentPage;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Models\Questionnaire;
-use App\Models\ErrorAndNotificationSystem;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\DB;
 
 class QuestionnaireAppointmentController extends Controller
 {
     protected $modelNameQuestionnaire;
-    protected $tableNameQuestionnaire;
-    protected $tableAllColumnsQuestionnaire;
 
-    protected $modelNameErrorSystem;
-    protected $tableNameErrorSystem;
-    protected $tableAllColumnsErrorSystem;
-
+    /**
+     * Instantiate the variables that will be used to get the model.
+     * 
+     * @return Collection
+     */
     public function __construct()
     {
-        $this->modelNameQuestionnaire       = new Questionnaire();
-        $this->tableNameQuestionnaire       = $this->modelNameQuestionnaire->getTable();
-        $this->tableAllColumnsQuestionnaire = Schema::getColumnListing($this->tableNameQuestionnaire);
-
-        $this->modelNameErrorSystem         = new ErrorAndNotificationSystem();
-        $this->tableNameErrorSystem         = $this->modelNameErrorSystem->getTable();
-        $this->tableAllColumnsErrorSystem   = Schema::getColumnListing($this->tableNameErrorSystem);
+        $this->modelNameQuestionnaire = new Questionnaire();
     }
 
     /**
@@ -37,40 +27,33 @@ class QuestionnaireAppointmentController extends Controller
      */
     public function index()
     {
-        try 
+        $allQuestionnaires = $this->modelNameQuestionnaire::select(
+            'id',
+            'questionnaire_title',
+            'questionnaire_scope'
+        )
+        ->IsActive()
+        ->get();
+
+        if ($allQuestionnaires->isEmpty()) 
         {
-            $apiDisplayAllRecords = $this->modelNameQuestionnaire->all();
-            if ($apiDisplayAllRecords->isEmpty()) 
-            {
-                return response([
-                    'notify_code'              => 'INFO_0001',
-                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
-                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('questionnaire.index.info_0001_admin_message', [ 'tableName' => $this->tableNameQuestionnaire ]),
-                ], 404);
-            }
-            else 
-            {
-                return response([
-                    'notify_code'              => 'INFO_0002',
-                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0002')->pluck($this->tableAllColumnsErrorSystem[2])[0],
-                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0002')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('questionnaire.index.info_0002_admin_message'),
-                    'records'                  => $apiDisplayAllRecords,
-                ], 201);
-            }
+            return response([
+                'title'              => 'Resource(s) not found!',
+                'notify_code'        => 'WAR_00001',
+                'description'        => 'The questionnaire resource(s) does not exist! Please try again later!',
+                'http_response_code' => 404,
+                'records'            => [],
+            ], 404);
         }
-        catch (\Illuminate\Database\QueryException $mysqlError)
+        else 
         {
-            if ($mysqlError->getCode() === '42S02') 
-            {
-                return response([
-                    'notify_code'              => 'ERR_0001',
-                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
-                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('questionnaire.index.err_0001_admin_message', [ 'tableName' => $this->tableNameQuestionnaire ]),
-                ], 500);
-            }
+            return response([
+                'title'              => 'Success!',
+                'notify_code'        => 'INFO_00001',
+                'description'        => 'The questionnaire resource(s) was(were) successfully fetched!',
+                'http_response_code' => 200,
+                'records'            => $allQuestionnaires,
+            ], 200);
         }
     }
 
@@ -82,60 +65,56 @@ class QuestionnaireAppointmentController extends Controller
      */
     public function store(Request $request)
     {
-        try 
+        // 
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $singleQuestionnaire = $this->modelNameQuestionnaire::select(
+            'id',
+            'title',
+            'scope'
+        )
+        ->IsActive()
+        ->where('id', '=', $id)
+        ->with([
+            'questionnaire_questions' => function ($query) {
+                $query->select(
+                    'questionnaire_id',
+                    'id',
+                    'name',
+                    'media_card_url',
+                    'answer_suggestion'
+                );
+            }
+        ])
+        ->get();
+
+        if ($singleQuestionnaire->isEmpty()) 
         {
-            $request->validate([
-                'full_name'      => 'required|regex:/^[a-zA-Z_ ]+$/u|max:255',
-                'email'          => 'required|email:filter|max:255',
-                'message'        => 'required|min:60',
-                // 'privacy_policy' => 'accepted',
-            ]);
-            if (is_null($request->get('privacy_policy'))) 
-            {
-                $apiInsertSingleRecord = $this->modelNameQuestionnaire->create([
-                    'full_name'      => $request->get('full_name'),
-                    'email'          => $request->get('email'),
-                    'message'        => $request->get('message'),
-                    'privacy_policy' => '0',
-                ]);
-            }
-            else 
-            {
-                $apiInsertSingleRecord = $this->modelNameQuestionnaire->create([
-                    'full_name'      => $request->get('full_name'),
-                    'email'          => $request->get('email'),
-                    'message'        => $request->get('message'),
-                    'privacy_policy' => '1',
-                ]);
-            }
             return response([
-                'notify_code'              => 'INFO_0003',
-                'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0003')->pluck($this->tableAllColumnsErrorSystem[2])[0],
-                'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'INFO_0003')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                'admin_message'            => __('questionnaire.store.info_0003_admin_message'),
-                'user_message'             => $apiInsertSingleRecord,
-            ], 201);
+                'title'              => 'Resource(s) not found!',
+                'notify_code'        => 'WAR_00001',
+                'description'        => 'The questionnaire resource(s) does not exist! Please try again later!',
+                'http_response_code' => 404,
+                'records'            => [],
+            ], 404);
         }
-        catch  (\Illuminate\Database\QueryException $mysqlError)
+        else 
         {
-            if ($mysqlError->getCode() === '42S02') 
-            {
-                return response([
-                    'notify_code'              => 'ERR_0001',
-                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[2])[0],
-                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0001')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('questionnaire.store.err_0001_admin_message'),
-                ], 500);
-            }
-            if ($mysqlError->getCode() === '42S22') 
-            {
-                return response([
-                    'notify_code'              => 'ERR_0002',
-                    'notify_short_description' => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0002')->pluck($this->tableAllColumnsErrorSystem[2])[0],
-                    'notify_reference'         => $this->modelNameErrorSystem::where($this->tableAllColumnsErrorSystem[1], '=', 'ERR_0002')->pluck($this->tableAllColumnsErrorSystem[3])[0],
-                    'admin_message'            => __('questionnaire.store.err_0002_admin_message'),
-                ], 500);
-            }
+            return response([
+                'title'              => 'Success!',
+                'notify_code'        => 'INFO_00001',
+                'description'        => 'The questionnaire resource(s) was(were) successfully fetched!',
+                'http_response_code' => 200,
+                'records'            => $singleQuestionnaire,
+            ], 200);
         }
     }
 }
