@@ -53,7 +53,7 @@ use Illuminate\Support\Facades\Route;
         // Schedule Appointment page API routes
         Route::group([ 'prefix' => '/schedule-appointment' ], function () {
             Route::apiResource('/', ScheduleAppointmentController::class)->only(['index']);
-            Route::apiResource('/questionnaire', QuestionnaireAppointmentController::class)->only(['index', 'store']);
+            Route::apiResource('/questionnaire', QuestionnaireAppointmentController::class)->only(['index', 'store', 'show']);
             Route::apiResource('/booking', BookAppointmentController::class)->only(['index', 'store']);
         });
         

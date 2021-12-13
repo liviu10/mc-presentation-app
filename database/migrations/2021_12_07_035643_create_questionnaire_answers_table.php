@@ -16,7 +16,7 @@ class CreateQuestionnaireAnswersTable extends Migration
     {
         Schema::create('questionnaire_answers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('questionnaire_questions_id');
+            $table->foreignId('questionnaire_question_id');
             $table->string('answer_1');
             $table->string('answer_2');
             $table->string('answer_3');

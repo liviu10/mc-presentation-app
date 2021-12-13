@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Questionnaire extends Model
+class QuestionnaireContact extends Model
 {
     use HasFactory;
 
@@ -14,7 +14,7 @@ class Questionnaire extends Model
      * 
      * @var string
      */
-    protected $table = 'questionnaires';
+    protected $table = 'questionnaire_contact';
 
     /**
      * The primary key associated with the table.
@@ -31,15 +31,30 @@ class Questionnaire extends Model
     protected $keyType = 'int';
 
     /**
+     * The foreign key associated with the table.
+     * 
+     * @var int
+     */
+    protected $foreignKey = 'questionnaire_id';
+
+    /**
+     * The data type of the foreign key.
+     *
+     * @var string
+     */
+    protected $foreignKeyType = 'int';
+
+    /**
      * The attributes that are mass assignable.
      * 
      * @var string
      */
     protected $fillable = [
-        'title',
-        'scope',
-        'description',
-        'is_active',
+        'questionnaire_id',
+        'full_name',
+        'email',
+        'telephone_number',
+        'privacy_policy',
     ];
 
     /**
@@ -48,7 +63,7 @@ class Questionnaire extends Model
      * @var string
      */
     protected $attributes = [
-        'is_active' => false,
+        'privacy_policy' => false,
     ];
 
     /**
@@ -63,33 +78,13 @@ class Questionnaire extends Model
         'deleted_at',
     ];
 
-    public function scopeIsActive ($query) 
-    {
-        return $query->where('is_active', true);
-    }
-
-    public function scopeIsNotActive ($query) 
-    {
-        return $query->where('is_active', false);
-    }
-
     /**
-     * Eloquent relationship between questionnaires and questionnaire_questions.
-     * One questionnaire may have one or more questionnaire questions.
+     * Eloquent relationship between questionnaire_questions and questionnaires.
+     * Many questionnaire questions may have only one questionnaire.
      *
      */
-    public function questionnaire_questions()
+    public function questionnaire()
     {
-        return $this->hasMany('App\Models\QuestionnaireQuestion');
-    }
-
-    /**
-     * Eloquent relationship between questionnaires and questionnaire_contact.
-     * One questionnaire may have one or more questionnaire contacts.
-     *
-     */
-    public function questionnaire_contacts()
-    {
-        return $this->hasMany('App\Models\QuestionnaireContact');
+        return $this->belongsTo('App\Models\Questionnaire');
     }
 }

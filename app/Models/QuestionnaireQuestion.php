@@ -33,12 +33,9 @@ class QuestionnaireQuestion extends Model
     /**
      * The foreign key associated with the table.
      * 
-     * @var array
+     * @var int
      */
-    protected $foreignKey = [
-        'questionnaire_id',
-        'question_type_id',
-    ];
+    protected $foreignKey = 'questionnaire_id';
 
     /**
      * The data type of the foreign key.
@@ -54,20 +51,9 @@ class QuestionnaireQuestion extends Model
      */
     protected $fillable = [
         'questionnaire_id',
-        'question_type_id',
-        'question_name',
-        'question_media_card_url',
-        'question_answer_suggestion',
-        'questionnaire_question_is_active',
-    ];
-
-    /**
-     * The attributes that are mass assignable.
-     * 
-     * @var string
-     */
-    protected $attributes = [
-        'questionnaire_question_is_active' => false,
+        'name',
+        'media_card_url',
+        'answer_suggestion',
     ];
 
     /**
@@ -93,12 +79,12 @@ class QuestionnaireQuestion extends Model
     }
 
     /**
-     * Eloquent relationship between questionnaire_questions and questionnaire_question_types.
-     * Many questionnaire questions may have only one questionnaire question type.
+     * Eloquent relationship between questionnaire_questions and questionnaire_answers.
+     * One questionnaire question may have one or more questionnaire answers.
      *
      */
-    public function questionnaire_question_type()
+    public function questionnaire_answers()
     {
-        return $this->belongsTo('App\Models\QuestionnaireQuestionType');
+        return $this->hasMany('App\Models\QuestionnaireAnswer');
     }
 }

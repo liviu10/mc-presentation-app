@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
-class CreateQuestionnaireQuestionTypesTable extends Migration
+class CreateQuestionnaireContactTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,22 +14,25 @@ class CreateQuestionnaireQuestionTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('questionnaire_question_types', function (Blueprint $table) {
+        Schema::create('questionnaire_contact', function (Blueprint $table) {
             $table->id();
-            $table->string('question_type');
-            $table->longText('question_type_specifications');
+            $table->foreignId('questionnaire_id');
+            $table->string('full_name', 255)->nullable(false);
+            $table->string('email', 255)->nullable(false);
+            $table->string('telephone_number', 255)->nullable(false);
+            $table->string('privacy_policy', 3);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 
     /**
-     * Reverse the migrations.`
+     * Reverse the migrations.
      *
      * @return void
      */
     public function down()
     {
-        Schema::dropIfExists('questionnaire_question_types');
+        Schema::dropIfExists('questionnaire_contact');
     }
 }
