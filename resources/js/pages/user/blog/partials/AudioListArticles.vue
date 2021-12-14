@@ -1,15 +1,15 @@
 <template>
-  <div class="container lv-con-pg-audio">
-    <div class="lv-con-pg-audio-title">
+  <div class="lv-pg-audio">
+    <div class="lv-pg-audio-title">
       <h1>{{ capitalizePageTitle }}</h1>
     </div>
     <!-- LIST OF AUDIO ARTICLES, SECTION START -->
-    <div v-if="!displayAllAudioBlogArticles" class="lv-con-pg-audio-list">
+    <div v-if="!displayAllAudioBlogArticles" class="lv-pg-audio-list">
       <h1>{{ notifyMessage }}</h1>
     </div>
     <div v-for="blogContent in displayAllAudioBlogArticles" v-else
          :key="blogContent.id"
-         class="lv-con-pg-audio-list"
+         class="lv-pg-audio-list"
     >
       <div v-for="audioArticle in blogContent.blog_articles" :key="audioArticle.id">
         <div class="card">
@@ -39,19 +39,19 @@
             </p>
             <!-- AUDIO PLAYER, SECTION START -->
             <aplayer :music="{
-                      shuffle: false,
-                      repeat: 'no-repeat',
-                      title: 'Song Title',
-                      artist: ' — ' + 'Song Artist',
-                      src: '/audio/demo_file.mp3',
-                      pic: '/images/blog/audio-player-img.jpg',
-                    }"
-                    :audio="{
-                      autoplay: false,
-                      controls: true,
-                      preload: 'none',
-                      volume: 1
-                    }"
+                       shuffle: false,
+                       repeat: 'no-repeat',
+                       title: 'Song Title',
+                       artist: ' — ' + 'Song Artist',
+                       src: '/audio/demo_file.mp3',
+                       pic: '/images/blog/audio-player-img.jpg',
+                     }"
+                     :audio="{
+                       autoplay: false,
+                       controls: true,
+                       preload: 'none',
+                       volume: 1
+                     }"
             />
           <!-- AUDIO PLAYER, SECTION END -->
           </div>
@@ -62,7 +62,7 @@
 
     <!-- MORE AUDIO ARTICLES, SECTION START -->
     <div v-if="!displayAllAudioBlogArticles || (displayAllAudioBlogArticles.length >= 1 && displayAllAudioBlogArticles.length <= 3) " />
-    <div v-else class="lv-con-pg-articles-button-more">
+    <div v-else class="lv-pg-articles-button-more">
       <button type="button" class="btn btn-primary btn-lg">
         <i class="far fa-clock" />
         {{ $t('user.blog_system_pages.general_settings.more_articles', { type: 'audio' }) }}!

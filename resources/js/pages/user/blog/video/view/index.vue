@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-lg-12 m-auto">
-      <div class="container lv-con-pg-video">
+      <div class="lv-pg-video">
         <h1>APP DISPLAY VIDEO ARTICLE PAGE</h1>
       </div>
     </div>
@@ -17,7 +17,7 @@ import Form from 'vform'
 Vue.use(rate)
 
 export default {
-  name: 'VideoArticlesPage',
+  name: 'VideoArticles',
   components: {},
   layout: '',
   middlewa: '',

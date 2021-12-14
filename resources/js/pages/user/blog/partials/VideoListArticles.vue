@@ -1,15 +1,15 @@
 <template>
-  <div class="container lv-con-pg-video">
-    <div class="lv-con-pg-video-title">
+  <div class="lv-pg-video">
+    <div class="lv-pg-video-header">
       <h1>{{ capitalizePageTitle }}</h1>
     </div>
     <!-- LIST OF VIDEO ARTICLES, SECTION START -->
-    <div v-if="!displayAllVideoBlogArticles" class="lv-con-pg-video-list">
+    <div v-if="!displayAllVideoBlogArticles" class="lv-pg-video-body">
       <h1>{{ notifyMessage }}</h1>
     </div>
     <div v-for="blogContent in displayAllVideoBlogArticles" v-else
          :key="blogContent.id"
-         class="lv-con-pg-video-list"
+         class="lv-pg-video-body"
     >
       <div v-for="videoArticle in blogContent.blog_articles" :key="videoArticle.id">
         <div class="card">
@@ -56,7 +56,7 @@
 
     <!-- MORE VIDEO ARTICLES, SECTION START -->
     <div v-if="!displayAllVideoBlogArticles || (displayAllVideoBlogArticles.length >= 1 && displayAllVideoBlogArticles.length <= 3) " />
-    <div v-else class="lv-con-pg-articles-button-more">
+    <div v-else class="lv-pg-articles-button-more">
       <button type="button" class="btn btn-primary btn-lg">
         <i class="far fa-clock" />
         {{ $t('user.blog_system_pages.general_settings.more_articles', { type: 'video' }) }}!

@@ -11,12 +11,13 @@
 @import 'schedule-appointment/_styles.scss';
 @import 'terms-and-conditions/_styles.scss';
 
-.lv-pg-admin, .lv-pg-about-me {
+.lv-pg-admin, .lv-pg-about-me, 
+.lv-pg-blog, .lv-pg-articles, .lv-pg-subcategories {
     margin: rem-convertor(60px) 0rem;
     padding: 0rem;
 }
 
-.lv-pg-admin {
+.lv-pg-admin, .lv-pg-articles, .lv-pg-subcategories {
     &-header, &-body {
         padding: 0rem;
     }
@@ -31,7 +32,6 @@
 
 .lv-pg-not-found, .lv-pg-under-construction {}
 
-.lv-con-pg-blog,
 .lv-con-pg-contact-form,
 .lv-con-pg-appointment, .lv-con-pg-terms {
     margin-top: rem-convertor(50px);

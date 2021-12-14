@@ -14,7 +14,7 @@ $lvContainerPageBlog: (
     button_more_font_color:   map-get($basic_colors, "color_black"),
 );
 
-.lv-con-pg-blog {
+.lv-pg-blog {
     @include flex-center();
     flex-direction: column;
     @media only screen and (max-width: 992px) {
@@ -22,18 +22,18 @@ $lvContainerPageBlog: (
         padding-left: 0rem !important;
     }
 }
-.lv-con-pg-articles, .lv-con-pg-audio, .lv-con-pg-video {
+.lv-pg-articles, .lv-pg-audio, .lv-pg-video {
     @include flex-center();
     flex-direction: column;
     margin: rem-convertor(120px) 0rem;
-    &-title {
+    &-header {
         margin-bottom: rem-convertor(50px);
         & h1 {
             margin-bottom: rem-convertor(50px);
             text-align: center;
         }
     }
-    &-list {
+    &-body {
         & .card {
             margin: rem-convertor(20px) 0rem;
             width: 100%;
