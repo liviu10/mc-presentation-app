@@ -1,8 +1,8 @@
 <template>
   <div class="row">
     <div class="col-lg-12 m-auto">
-      <div class="container lv-con-pg-appointment">
-        <div class="lv-con-pg-appointment-title">
+      <div class="lv-pg-appointment">
+        <div class="lv-pg-appointment-header">
           <h1>Pregătire pentru Întâlnire</h1>
           <p>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit.
@@ -21,14 +21,14 @@
             ipsa iste officiis deserunt quod autem? Sunt quam non modi animi delectus et culpa cumque fuga, asperiores at?
           </p>
         </div>
-        <div v-for="questionnaire in displayAllQuestionnaires" :key="questionnaire.id" class="lv-con-pg-appointment-body">
+        <div v-for="questionnaire in displayAllQuestionnaires" :key="questionnaire.id" class="lv-pg-appointment-body">
           <p class="lead">
             {{ questionnaire.title }}
           </p>
           <p>
             {{ questionnaire.scope }}
           </p>
-          <div class="lv-con-pg-appointment-button">
+          <div class="lv-pg-appointment-button">
             <button type="button"
                     class="btn btn-primary btn-lg"
                     @click="goTo(questionnaire.id)"
@@ -54,7 +54,7 @@ Vue.use(Vuex)
 window.axios = require('axios')
 
 export default {
-  name: 'ScheduleAppointmentPage',
+  name: 'ScheduleAppointment',
   components: {},
   layout: '',
   middleware: '',

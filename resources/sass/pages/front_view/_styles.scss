@@ -13,13 +13,13 @@
 
 .lv-pg-admin, .lv-pg-about-me, 
 .lv-pg-blog, .lv-pg-articles, .lv-pg-subcategories,
-.lv-pg-contact, .lv-pg-terms {
+.lv-pg-contact, .lv-pg-terms, .lv-pg-appointment {
     margin: rem-convertor(60px) 0rem;
     padding: 0rem;
 }
 
 .lv-pg-admin, .lv-pg-articles, .lv-pg-subcategories
-.lv-pg-terms {
+.lv-pg-terms, .lv-pg-appointment {
     &-header, &-body {
         padding: 0rem;
     }
@@ -33,8 +33,3 @@
 }
 
 .lv-pg-not-found, .lv-pg-under-construction {}
-
-.lv-con-pg-appointment, .lv-con-pg-terms {
-    margin-top: rem-convertor(50px);
-    margin-bottom: rem-convertor(50px);
-}

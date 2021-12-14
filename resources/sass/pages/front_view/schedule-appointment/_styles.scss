@@ -6,14 +6,14 @@ $lvContainerPageAppointment: (
     heading_font_color_btn:   map-get($basic_colors, "color_black"),
 );
 
-.lv-con-pg-appointment {
+.lv-pg-appointment {
     @include flex-center();
     flex-direction: column;
     @media only screen and (max-width: 992px) {
         padding-right: 0rem !important;
         padding-left: 0rem !important;
     }
-    &-title {
+    &-header {
         margin-top: rem-convertor(50px);
         margin-bottom: rem-convertor(50px);
         @media only screen and (max-width: 575px) {
