@@ -96,35 +96,35 @@ export default {
         {
           id: 1,
           class: 'active',
-          img_src: '/images/carousel/Carousel-img0.jpg',
+          img_src: '/images/carousel/Carousel-img0_1920.webp',
           caption_title: 'First slide label',
           caption_text: 'Some representative placeholder content for the first slide.'
         },
         {
           id: 2,
           class: '',
-          img_src: '/images/carousel/Carousel-img1.jpg',
+          img_src: '/images/carousel/Carousel-img1_1920.webp',
           caption_title: 'Second slide label',
           caption_text: 'Some representative placeholder content for the second slide.'
         },
         {
           id: 3,
           class: '',
-          img_src: '/images/carousel/Carousel-img2.jpg',
+          img_src: '/images/carousel/Carousel-img2_1920.webp',
           caption_title: 'Third slide label',
           caption_text: 'Some representative placeholder content for the third slide.'
         },
         {
           id: 4,
           class: '',
-          img_src: '/images/carousel/Carousel-img3.jpg',
+          img_src: '/images/carousel/Carousel-img3_1920.webp',
           caption_title: 'Forth slide label',
           caption_text: 'Some representative placeholder content for the forth slide.'
         },
         {
           id: 5,
           class: '',
-          img_src: '/images/carousel/Carousel-img4.jpg',
+          img_src: '/images/carousel/Carousel-img4_1920.webp',
           caption_title: 'Fifth slide label',
           caption_text: 'Some representative placeholder content for the fifth slide.'
         }
