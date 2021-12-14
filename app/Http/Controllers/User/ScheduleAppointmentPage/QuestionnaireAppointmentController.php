@@ -29,8 +29,8 @@ class QuestionnaireAppointmentController extends Controller
     {
         $allQuestionnaires = $this->modelNameQuestionnaire::select(
             'id',
-            'questionnaire_title',
-            'questionnaire_scope'
+            'title',
+            'scope'
         )
         ->IsActive()
         ->get();
@@ -87,6 +87,7 @@ class QuestionnaireAppointmentController extends Controller
             'questionnaire_questions' => function ($query) {
                 $query->select(
                     'questionnaire_id',
+                    'question_type_id',
                     'id',
                     'name',
                     'media_card_url',

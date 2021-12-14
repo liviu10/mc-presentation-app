@@ -51,6 +51,7 @@ class QuestionnaireQuestion extends Model
      */
     protected $fillable = [
         'questionnaire_id',
+        'question_type_id',
         'name',
         'media_card_url',
         'answer_suggestion',

@@ -17,6 +17,7 @@ class CreateQuestionnaireQuestionsTable extends Migration
         Schema::create('questionnaire_questions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('questionnaire_id');
+            $table->foreignId('question_type_id');
             $table->string('name');
             $table->string('media_card_url');
             $table->string('answer_suggestion');

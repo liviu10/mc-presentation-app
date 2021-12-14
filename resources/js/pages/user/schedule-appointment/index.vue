@@ -4,32 +4,37 @@
       <div class="container lv-con-pg-appointment">
         <div class="lv-con-pg-appointment-title">
           <h1>Pregătire pentru Întâlnire</h1>
-        </div>
-        <div class="lv-con-pg-appointment-body">
-          <p class="lead">
+          <p>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Nobis animi nihil, nostrum voluptatibus fugit numquam perspiciatis est excepturi omnis molestiae!
+            Excepturi ipsam qui in architecto, dolorem quisquam exercitationem unde ab
+            illum consectetur consequuntur temporibus maiores error esse neque incidunt deleniti
+            est debitis necessitatibus non! Totam, quas nihil quia adipisci,
+            voluptas perferendis culpa error incidunt laudantium sed inventore mollitia.
+            Voluptate nesciunt quod officia reiciendis! Accusantium repudiandae illum ipsa nesciunt
+            dicta laudantium at esse sed. Non praesentium nostrum unde,
+            ab fugit necessitatibus facere cumque officiis. Illum dolorem ut quam,
+            id amet eveniet incidunt hic adipisci, totam fugit suscipit ipsam repudiandae
+            minus sed rem cumque minima recusandae quod labore saepe reiciendis deleniti doloribus omnis.
+            Unde quidem error vitae. Iusto, libero? Blanditiis qui quaerat natus accusamus amet officiis iure quam quasi
+            voluptates rerum cumque eum possimus, dolores aut quis sunt quisquam quos.
+            Architecto tenetur nisi aliquid excepturi voluptatibus harum repellat numquam quibusdam doloremque nihil fuga maxime deleniti distinctio,
+            ipsa iste officiis deserunt quod autem? Sunt quam non modi animi delectus et culpa cumque fuga, asperiores at?
+          </p>
+        </div>
+        <div v-for="questionnaire in displayAllQuestionnaires" :key="questionnaire.id" class="lv-con-pg-appointment-body">
+          <p class="lead">
+            {{ questionnaire.title }}
           </p>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Velit earum iure impedit voluptate, odio reiciendis asperiores neque,
-            culpa accusamus magni nam libero aliquam! Temporibus corporis recusandae aliquid ipsam voluptates,
-            cum eius ea voluptatibus laudantium sequi nihil sunt autem animi obcaecati fuga
-            aut repudiandae cumque culpa praesentium! Sit recusandae in eveniet dolorem
-            corporis quidem adipisci earum, possimus dolores alias quod doloribus obcaecati, autem,
-            et nulla nam consectetur asperiores harum mollitia error nesciunt officiis quas.
-            Quaerat quas magnam esse praesentium iste? Saepe sunt vero officiis labore distinctio assumenda voluptate,
-            explicabo adipisci rerum in nostrum voluptatibus recusandae magnam inventore veritatis nemo obcaecati perspiciatis,
-            tenetur exercitationem quis, ipsam officia. Beatae quod vitae similique repudiandae,
-            ut quas molestias quis aperiam consequatur officiis perspiciatis est et.
+            {{ questionnaire.scope }}
           </p>
           <div class="lv-con-pg-appointment-button">
             <button type="button"
                     class="btn btn-primary btn-lg"
-                    @click="goTo"
+                    @click="goTo(questionnaire.id)"
             >
               <i class="far fa-clock" />
-              Începe chestionar!
+              Începe chestionarul!
             </button>
           </div>
         </div>
@@ -39,6 +44,15 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import axios from 'axios'
+import Vuex, { mapGetters, mapActions } from 'vuex'
+
+Vue.use(axios)
+Vue.use(Vuex)
+
+window.axios = require('axios')
+
 export default {
   name: 'ScheduleAppointmentPage',
   components: {},
@@ -49,12 +63,27 @@ export default {
     return {}
   },
   computed: {
-    // mapped getters
+    ...mapGetters({
+      allQuestionnaires: 'questionnaire/allQuestionnaires'
+    }),
+    displayAllQuestionnaires () {
+      return this.allQuestionnaires.records
+    },
+    getHttpStatusResponseCode () {
+      // TODO: How to catch api endpoint errors and display them to the user
+      return this.allQuestionnaires.http_response_code
+    }
+  },
+  created () {
+    this.fetchQuestionnaires()
   },
   mounted () {},
   methods: {
-    goTo () {
-      this.$router.push({ name: 'schedule-appointment.index' })
+    ...mapActions({
+      fetchQuestionnaires: 'questionnaire/fetchQuestionnaires'
+    }),
+    goTo (id) {
+      this.$router.push({ path: '/schedule-appointment/questionnaire/' + id })
     }
   },
   metaInfo () {
