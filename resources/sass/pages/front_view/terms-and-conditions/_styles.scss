@@ -1,9 +1,9 @@
-.lv-con-pg-terms {
+.lv-pg-terms {
     @media only screen and (max-width: 475px) {
         padding-right: 0rem !important;
         padding-left: 0rem !important;
     }
-    &-title {
+    &-header {
         margin-bottom: rem-convertor(35px);
         & h1 {
             margin-bottom: rem-convertor(0px);
