@@ -12,7 +12,8 @@
 @import 'terms-and-conditions/_styles.scss';
 
 .lv-pg-admin, .lv-pg-about-me, 
-.lv-pg-blog, .lv-pg-articles, .lv-pg-subcategories {
+.lv-pg-blog, .lv-pg-articles, .lv-pg-subcategories,
+.lv-pg-contact {
     margin: rem-convertor(60px) 0rem;
     padding: 0rem;
 }

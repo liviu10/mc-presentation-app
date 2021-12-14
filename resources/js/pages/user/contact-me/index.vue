@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-lg-12 m-auto">
-      <div class="container lv-con-pg-contact-form">
+      <div class="lv-pg-contact">
         <!-- PICTURE PAGE, SECTION START -->
         <div class="card" style="width: 20rem;">
           <img src="images/contact/dance-question-mark.jpg" class="card-img-top" alt="...">
@@ -9,8 +9,8 @@
         <!-- PICTURE PAGE, SECTION END -->
 
         <!-- CONTACT FORM, SECTION START -->
-        <div class="container-contact-form">
-          <div class="container-contact-form-head">
+        <div class="lv-pg-contact-content">
+          <div class="lv-pg-contact-content-header">
             <h1>{{ $t('user.contact_me_page.title') }}</h1>
             <p class="lead">
               {{ $t('user.contact_me_page.paragraph') }}
@@ -19,7 +19,7 @@
           <div class="card-alternative m-auto" style="width: 20rem;">
             <img src="images/contact/dance-question-mark.jpg" class="card-img-top" alt="...">
           </div>
-          <div class="container-contact-form-main">
+          <div class="lv-pg-contact-content-body">
             <form @submit.prevent="subscribe" @keydown="form.onKeydown($event)">
               <alert-success :form="form" :message="message_success" />
               <!-- FULL NAME, SECTION START -->
