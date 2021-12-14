@@ -9,11 +9,27 @@
 
         <div class="container-footer-menu-contact">
           <!-- FOOTER MENU EMAIL, SECTION START -->
-          <footer-menu-email />
+          <p>
+            <i class="fas fa-at" />
+            <a href="mailto:contact@madalinacorina.ro">
+              contact@madalinacorina.ro
+            </a>
+          </p>
           <!-- FOOTER MENU EMAIL, SECTION END -->
 
           <!-- FOOTER MENU SOCIAL MEDIA, SECTION START -->
-          <footer-menu-social-media />
+          <p>
+            <span>{{ $t('footer.social_menu.title') }}</span>
+            <a href="https://www.facebook.com/groups/269560668238590/?ref=share" class="btn btn-primary btn-lg" target="_blank" :title="$t('footer.social_menu.facebook')" rel="noreferrer">
+              <fa :icon="['fab', 'facebook']" fixed-width />
+            </a>
+            <a href="" class="btn btn-primary btn-lg" target="_blank" :title="$t('footer.social_menu.instagram')" rel="noreferrer">
+              <fa :icon="['fab', 'instagram']" fixed-width />
+            </a>
+            <a href="" class="btn btn-primary btn-lg" target="_blank" :title="$t('footer.social_menu.youtube')" rel="noreferrer">
+              <fa :icon="['fab', 'youtube']" fixed-width />
+            </a>
+          </p>
           <!-- FOOTER MENU, SECTION START -->
         </div>
       </div>
@@ -21,13 +37,13 @@
         <p>
           Copyright &#169; 2021
           <router-link :to="{ name: 'home-page' }">
-            Mădălina Corina Marius
+            <span>Mădălina Corina Marius</span>
           </router-link>
-          All rights reserved
+          {{ $t('footer.copyright.info') }}
         </p>
         <p>
           Designed by
-          <a href="https://github.com/liviu10">Liviu Voica</a>
+          <a href="https://github.com/liviu10" target="_blank" rel="noreferrer">Liviu Voica</a>
         </p>
       </div>
     </div>
@@ -36,17 +52,11 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import FooterMenu from './subcomponents/FooterMenu.vue'
-import FooterMenuEmail from './subcomponents/FooterMenuEmail.vue'
-import FooterMenuSocialMedia from './subcomponents/FooterMenuSocialMedia.vue'
 
 export default {
   components: {
-    FooterMenu,
-    FooterMenuEmail,
-    FooterMenuSocialMedia
-  },
-  computed: mapGetters({})
+    FooterMenu
+  }
 }
 </script>
