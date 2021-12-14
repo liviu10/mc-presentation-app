@@ -16,7 +16,10 @@
         </p>
       </div>
       <div class="card-body">
-        <a v-for="subcategory in category.blog_subcategories" :key="subcategory.id" :href="subcategory.blog_subcategory_path">
+        <p class="card-text">
+          Aici vei găsi:
+        </p>
+        <a v-for="subcategory in category.blog_subcategories" :key="subcategory.id" :href="subcategory.blog_subcategory_path" :title="subcategory.blog_subcategory_title">
           {{ subcategory.blog_subcategory_title }}
         </a>
       </div>
