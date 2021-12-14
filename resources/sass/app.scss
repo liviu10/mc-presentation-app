@@ -16,12 +16,12 @@
 
 $background_color: map-get($pale_cerulean, "color_dirty_white"); // change it with #A1E2E2
 $font_color: map-get($basic_colors, "color_black");
-$font-family: 'Merriweather Sans Regular';
+$font_family: 'Merriweather Sans Regular';
 
 body {
     background-color: $background_color;
     color: $font_color;
-    font-family: $font-family;
+    font-family: $font_family;
 }
 #container_app {
     margin-top: rem-convertor(76px);
