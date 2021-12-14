@@ -1,5 +1,5 @@
 <template>
-  <div id="carouselExampleCaptions" class="carousel slide lv-con-sect-banner" data-bs-ride="carousel">
+  <div id="carouselExampleCaptions" class="carousel slide lv-con-banner" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button v-for="carousel_indicator in carousel_indicators"
               :key="carousel_indicator.id"

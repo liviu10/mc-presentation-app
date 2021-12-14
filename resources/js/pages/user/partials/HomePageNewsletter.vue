@@ -1,5 +1,5 @@
 <template>
-  <div class="container lv-con-sect-newsletter">
+  <div class="container lv-con-newsletter">
     <form @submit.prevent="subscribe" @keydown="form.onKeydown($event)">
       <div class="row">
         <!-- FULL NAME, SECTION START -->

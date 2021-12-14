@@ -3,8 +3,8 @@
 @import 'partials/_newsletter.scss';
 @import 'partials/_testimonials.scss';
 
-.lv-con-sect-heading, .lv-con-sect-categories,
-.lv-con-sect-newsletter, .lv-con-sect-testimonials {
+.lv-con-heading, .lv-con-categories,
+.lv-con-newsletter, .lv-con-testimonials {
     margin-top: rem-convertor(50px);
     margin-bottom: rem-convertor(50px);
 }

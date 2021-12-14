@@ -4,7 +4,7 @@ $lvContainerSectionHeading: (
     heading_font_color_btn:   map-get($basic_colors, "color_black"),
 );
 
-.lv-con-sect-heading {
+.lv-con-heading {
     @include flex-center();
     @media only screen and (max-width: 992px) {
         padding-right: 0rem !important;

@@ -9,7 +9,7 @@ $lvContainerSectionBanner: (
     carousel_controls_font_color:      map-get($basic_colors, "color_black")
 );
 
-.lv-con-sect-banner {
+.lv-con-banner {
     & .carousel-indicators {
         & button {
             border-radius: 50%;

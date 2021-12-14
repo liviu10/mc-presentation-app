@@ -1,17 +1,17 @@
 <template>
-  <div class="container lv-con-sect-heading">
-    <div class="lv-con-sect-heading-lead">
+  <div class="container lv-con-heading">
+    <div class="lv-con-heading-lead">
       <h1 class="display-4">
         Fluid jumbotron
       </h1>
       <p class="lead">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis dolorum blanditiis repellat porro est aliquid,
+        Lorem ipsum dolor sit amet contur adipisicing elit. Nobis dolorum blanditiis repellat porro est aliquid,
         esse magnam labore eaque maxime quae reiciendis vitae, harum fugiat adipisci ipsa placeat nostrum culpa quidem
         nulla doloribus nesciunt ipsam deleniti. Voluptates dicta praesentium quaerat?
       </p>
     </div>
-    <div class="lv-con-sect-heading-buttons">
-      <div class="lv-con-sect-heading-buttons-appointment">
+    <div class="lv-con-heading-buttons">
+      <div class="lv-con-heading-buttons-appointment">
         <button type="button"
                 class="btn btn-primary btn-lg"
                 @click="goTo"
@@ -20,7 +20,7 @@
           {{ $t('user.home_page.heading.schedule_appointment_btn') }}
         </button>
       </div>
-      <div class="lv-con-sect-heading-buttons-social-media">
+      <div class="lv-con-heading-buttons-social-media">
         <a v-for="share_button in jumbotron_buttons"
            :key="share_button.id"
            :href="share_button.url"
