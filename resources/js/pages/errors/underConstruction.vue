@@ -1,11 +1,11 @@
 <template>
-  <div class="lv-con-pg-error under-construction-page">
+  <div class="lv-pg-under-construction">
     <!-- UNDER CONSTRUCTION PAGE ACTIONS, SECTION START -->
-    <div class="under-construction-page-action">
+    <div class="lv-pg-under-construction-action">
       <div class="action-body">
         <img src="/images/error/under-construction_img.jpg" alt="">
       </div>
-      <div class="under-construction-page-action-buttons">
+      <div class="lv-pg-under-construction-action-buttons">
         <!-- UNDER CONSTRUCTION PAGE TITLE, SECTION START -->
         <div class="title">
           <h3>

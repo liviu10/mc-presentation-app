@@ -4,7 +4,7 @@ $lvContainerUnderConstruction: (
     under_construction_page_font_color_btn:   map-get($basic_colors, "color_black"),
 );
 
-.under-construction-page {
+.lv-pg-under-construction {
     &-action {
         @include flex-center();
         &-buttons {

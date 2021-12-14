@@ -1,14 +1,35 @@
 <template>
   <div class="row">
     <div class="col-lg-12 m-auto">
-      <h1>APP ADMIN PAGE</h1>
+      <div class="lv-pg-admin">
+        <div class="lv-pg-admin-header">
+          <h1>ADMIN DASHBOARD PAGE</h1>
+        </div>
+        <div class="lv-pg-admin-body">
+          <h1>BODY HERE</h1>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'AdminHomePage',
-  middleware: 'auth'
+  name: 'Admin',
+  components: {},
+  layout: '',
+  middleware: 'auth',
+  props: {},
+  data: function () {
+    return {}
+  },
+  computed: {
+    // mapped getters}
+  },
+  mounted () {},
+  methods: {},
+  metaInfo () {
+    return { title: 'Admin' }
+  }
 }
 </script>
