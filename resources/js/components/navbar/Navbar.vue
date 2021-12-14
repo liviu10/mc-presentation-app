@@ -5,7 +5,7 @@
       <router-link :to="{ name: 'home-page' }" class="navbar-brand">
         <img src="/images/logo/Logo-img.png" width="240" height="60" alt="">
         <p class="text-wrap">
-          Lorem ipsum dolor sit amet.
+          Motivație cu Contribuție și Muzică
         </p>
       </router-link>
       <!-- NAVBAR BRAND SECTION END -->
@@ -36,7 +36,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 // import LocaleDropdown from './subcomponents/LocaleDropdown'
 import NavbarButtons from './subcomponents/NavbarButtons.vue'
 import NavbarSubMenuButtons from './subcomponents/NavbarSubMenuButtons.vue'
@@ -46,9 +45,6 @@ export default {
     // LocaleDropdown,
     NavbarButtons,
     NavbarSubMenuButtons
-  },
-  computed: mapGetters({
-    user: 'auth/user'
-  })
+  }
 }
 </script>

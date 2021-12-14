@@ -65,7 +65,6 @@ window.axios = require('axios')
 
 export default {
   name: 'FooterMenu',
-  components: {},
   data: function () {
     return {
       form: new Form({
@@ -87,7 +86,6 @@ export default {
       ]
     }
   },
-  computed: {},
   methods: {
     closeModal () {
       this.$refs.close.click()

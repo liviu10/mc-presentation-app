@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 export default {
   name: 'NavbarButtons',
   components: {},
@@ -43,10 +42,7 @@ export default {
         }
       ]
     }
-  },
-  computed: mapGetters({
-    user: 'auth/user'
-  })
+  }
 }
 </script>
 <style lang="scss">

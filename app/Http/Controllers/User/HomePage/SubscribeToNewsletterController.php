@@ -24,7 +24,7 @@ class SubscribeToNewsletterController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\ResponseJson
      */
     public function store(Request $request)
     {
@@ -74,7 +74,7 @@ class SubscribeToNewsletterController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  string  $email
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\ResponseJson
      */
     public function destroy($email)
     {

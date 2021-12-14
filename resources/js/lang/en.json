@@ -39,6 +39,9 @@
       "facebook": "Follow me on Facebook!",
       "instagram": "Follow me on Instagram!",
       "youtube": "Follow me on Youtube!"
+    },
+    "copyright": {
+      "info": "All rights reserved"
     }
   },
   "user": {
