@@ -8,7 +8,8 @@ export default [
 
   // URL route for the schedule appointment page
   { path: '/schedule-appointment', name: 'schedule-appointment', component: page('user/schedule-appointment/index.vue') },
-  { path: '/schedule-appointment/questionnaire', name: 'schedule-appointment.index', component: page('user/schedule-appointment/questionnaire/index.vue') },
+  { path: '/schedule-appointment/questionnaire/:id', name: 'schedule-appointment.index', component: page('user/schedule-appointment/questionnaire/index.vue') },
+  { path: '/schedule-appointment/booking', name: 'booking.index', component: page('user/schedule-appointment/booking/index.vue') },
 
   // URL route for main blog categories page
   { path: '/blog', name: 'blog', component: page('user/blog/index.vue') },
@@ -62,7 +63,7 @@ export default [
   // Old URL routes for the login and register system
   // { path: '', name: 'home', component: page('home.vue') },
   // { path: '/login', name: 'login', component: page('auth/login.vue') },
-  // { path: '/register', name: 'register', component: page('auth/register.vue') },
+  // { path: '/register', name: 'register', component: page('auth/register.vue') }
   // { path: '/password/reset', name: 'password.request', component: page('auth/password/email.vue') },
   // { path: '/password/reset/:token', name: 'password.reset', component: page('auth/password/reset.vue') },
   // { path: '/email/verify/:id', name: 'verification.verify', component: page('auth/verification/verify.vue') },
