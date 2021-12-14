@@ -1,26 +1,27 @@
 /*
-    Each VueJs component has it's own CSS custom class, this can be lv-con-pg-home or lv-con-sect-home, where:
-    1. lv-con-pg-home refers to the home page container;
-    2. lv-con-sect-home refers to the home page section container;
+    Each VueJs component has it's own CSS custom class:
+    1. lv-pg-pageName refers to the whole page;
+    2. lv-con-sectionName refers to a section from a page;
+    3. lv-comp-componentName refers to a component from a page;
 */
 
-@import 'variables';
 @import '~bootstrap/scss/bootstrap';
 @import '~sweetalert2/dist/sweetalert2';
 @import '~@fortawesome/fontawesome-svg-core/styles';
 
 /***** IMPORT CSS STYLES *****/
-@import 'components/_components.scss';
-@import 'utilities/_utilities.scss';
-@import 'pages/_pages.scss';
+@import 'components/_global.scss';
+@import 'pages/_global.scss';
+@import 'utilities/_global.scss';
 
 $background_color: map-get($pale_cerulean, "color_dirty_white"); // change it with #A1E2E2
 $font_color: map-get($basic_colors, "color_black");
+$font_family: 'Merriweather Sans Regular';
 
 body {
     background-color: $background_color;
     color: $font_color;
-    font-family: 'Merriweather Sans Regular', sans-serif;
+    font-family: $font_family;
 }
 #container_app {
     margin-top: rem-convertor(76px);

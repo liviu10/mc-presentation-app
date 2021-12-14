@@ -5,7 +5,7 @@ $lvContainerSectionNewsletter: (
     newsletter_font_color_form_check: map-get($basic_colors, "color_black"),
 );
 
-.lv-con-sect-newsletter {
+.lv-con-newsletter {
     & form {
         margin-bottom: rem-convertor(0px);
     }

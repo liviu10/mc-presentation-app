@@ -1,15 +1,15 @@
 <template>
-  <div class="container lv-con-pg-articles">
-    <div class="lv-con-pg-articles-title">
+  <div class="lv-pg-articles">
+    <div class="lv-pg-articles-header">
       <h1>{{ capitalizePageTitle }}</h1>
     </div>
     <!-- LIST OF WRITTEN ARTICLES, SECTION START -->
-    <div v-if="!displayAllWrittenBlogArticles" class="lv-con-pg-articles-list">
+    <div v-if="!displayAllWrittenBlogArticles" class="lv-pg-articles-body">
       <h1>{{ notifyMessage }}</h1>
     </div>
     <div v-for="blogContent in displayAllWrittenBlogArticles" v-else
          :key="blogContent.id"
-         class="lv-con-pg-articles-list"
+         class="lv-pg-articles-body"
     >
       <div v-for="writtenArticle in blogContent.blog_articles" :key="writtenArticle.id">
         <div class="card">
@@ -48,7 +48,7 @@
     <!-- LIST OF WRITTEN ARTICLES, SECTION END -->
     <!-- MORE WRITTEN ARTICLES, SECTION START -->
     <div v-if="!displayAllWrittenBlogArticles || (displayAllWrittenBlogArticles.length >= 1 && displayAllWrittenBlogArticles.length <= 3) " />
-    <div v-else class="lv-con-pg-articles-button-more">
+    <div v-else class="lv-pg-articles-button-more">
       <button type="button" class="btn btn-primary btn-lg">
         <i class="far fa-clock" />
         {{ $t('user.blog_system_pages.general_settings.more_articles', { type: 'articole' }) }}!

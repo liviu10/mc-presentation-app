@@ -6,8 +6,8 @@ $lvContainerPageWrittenArticle: (
 );
 $lvContainerPageWrittenArticleFont: 'Merriweather Sans Bold', sans-serif;
 
-.lv-con-pg-articles {
-    &-view-title {
+.lv-pg-articles {
+    &-view-header {
         & p {
             margin-bottom: rem-convertor(0px);
             padding: rem-convertor(6.5px) 0rem;

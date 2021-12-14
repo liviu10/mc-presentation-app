@@ -6,7 +6,7 @@ $lvContainerPageContactForm: (
 );
 $lvContainerPageContactFormFont: 'Merriweather Sans Bold', sans-serif;
 
-.lv-con-pg-contact-form {
+.lv-pg-contact {
     @include flex-center();
     @media only screen and (max-width: 1400px) {
         padding-right: 0rem;
@@ -18,7 +18,7 @@ $lvContainerPageContactFormFont: 'Merriweather Sans Bold', sans-serif;
             display: none;
         }
     }
-    & .container-contact-form {
+    &-content {
         margin-left: rem-convertor(40px);
         @media only screen and (max-width: 1400px) {
             margin-left: rem-convertor(32px);
@@ -37,7 +37,7 @@ $lvContainerPageContactFormFont: 'Merriweather Sans Bold', sans-serif;
             margin-left: 0rem;
             width: 100%;
         }
-        &-head {
+        &-header {
             @include flex-center();
             flex-direction: column;
             margin-bottom: rem-convertor(50px);
@@ -69,7 +69,7 @@ $lvContainerPageContactFormFont: 'Merriweather Sans Bold', sans-serif;
                 }
             }
         }
-        &-main {
+        &-body {
             form {
                 margin-bottom: rem-convertor(0px);
             }

@@ -4,7 +4,7 @@ $lvContainerSectionTestimonials: (
     testimonials_font_color:                   map-get($basic_colors, "color_white"),
 );
 
-.lv-con-sect-testimonials {
+.lv-con-testimonials {
     & .carousel-indicators {
         & button {
             border-radius: 50%;

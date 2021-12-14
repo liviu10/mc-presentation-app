@@ -1,7 +1,7 @@
 $background_color: map-get($pale_cerulean, "color_khaki");
 $font_color: inherit;
 $navbar_brand_font_family: 'Charm Regular', cursive;
-$navbar_link_font_family: 'Merriweather Sans Bold', sans-serif;
+$navbar_link_font_family: inherit;
 
 .navbar {
     background-color: $background_color !important;

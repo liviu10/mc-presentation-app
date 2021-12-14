@@ -10,7 +10,7 @@
 import VideoListArticles from '~/pages/user/blog/partials/VideoListArticles.vue'
 
 export default {
-  name: 'VideoArticlesPage',
+  name: 'VideoArticle',
   components: {
     VideoListArticles
   },

@@ -2,7 +2,7 @@
   <div>
     <div v-for="singleArticle in showWrittenArticle" :key="singleArticle.id">
       <!-- SINGLE LEFT PICTURE WRITTEN ARTICLE TEMPLATE TITLE, SECTION START -->
-      <div class="lv-con-pg-articles-view-title">
+      <div class="lv-pg-articles-view-title">
         <p>
           <span>
             <img src="/images/user/user-profile-img.jpg" alt="">
@@ -25,11 +25,11 @@
       </div>
       <!-- SINGLE LEFT PICTURE WRITTEN ARTICLE TEMPLATE TITLE, SECTION END -->
       <!-- SINGLE LEFT PICTURE WRITTEN ARTICLE TEMPLATE BODY, SECTION START -->
-      <div class="lv-con-pg-articles-view-body">
+      <div class="lv-pg-articles-view-body">
         <p>
           {{ singleArticle.blog_article_short_description }}
         </p>
-        <div class="lv-con-pg-articles-view-body-heading-slp">
+        <div class="lv-pg-articles-view-body-heading-slp">
           <img src="/images/blog/article-img-320x320-0.jpg" alt="">
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit.

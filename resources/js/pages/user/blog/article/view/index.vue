@@ -1,18 +1,18 @@
 <template>
   <div class="row">
     <div class="col-lg-12 m-auto">
-      <div class="container lv-con-pg-articles">
-        <div class="lv-con-pg-articles-title">
+      <div class="lv-pg-articles">
+        <div class="lv-pg-articles-title">
           <h1>TITLUL ARTICOLULUI SCRIS</h1>
         </div>
-        <div class="lv-con-pg-articles-view">
+        <div class="lv-pg-articles-view">
           <!-- ARTICLE TEMPLATE, SECTION START -->
           <single-left-picture />
           <!-- <single-right-picture /> -->
           <!-- <single-bottom-picture /> -->
           <!-- ARTICLE TEMPLATE, SECTION END -->
           <!-- RATE THIS, SECTION START -->
-          <div class="lv-con-pg-articles-view-rate">
+          <div class="lv-pg-articles-view-rate">
             <p>
               {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.rating_system.title') }}
               <rate v-model="myRate"
@@ -32,7 +32,7 @@
           </div>
           <!-- RATE THIS, SECTION END -->
           <!-- ARTICLE SUBCATEGORY, SECTION START -->
-          <div class="lv-con-pg-articles-view-subcategory">
+          <div class="lv-pg-articles-view-subcategory">
             <p>
               {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.article_subcategory') }}:
               &nbsp;
@@ -41,7 +41,7 @@
           </div>
           <!-- ARTICLE SUBCATEGORY, SECTION END -->
           <!-- SHARE THIS, SECTION START -->
-          <div class="lv-con-pg-articles-view-share">
+          <div class="lv-pg-articles-view-share">
             <a class="btn btn-primary"
                target="_blank"
                :title="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.social_menu.like')"
@@ -69,7 +69,7 @@
           <!-- SHARE THIS, SECTION END -->
           <!-- COMMENTS, SECTION START -->
           <div class="comment-divider" />
-          <div class="lv-con-pg-articles-view-comments">
+          <div class="lv-pg-articles-view-comments">
             <!-- COMMENT FORM, SECTION START -->
             <div class="container-comment-form">
               <div class="container-comment-form-main">
@@ -166,7 +166,7 @@ Vue.use(rate)
 window.axios = require('axios')
 
 export default {
-  name: 'WrittenArticlesPage',
+  name: 'WrittenArticlesComponent',
   components: {
     SingleLeftPicture
     // SingleRightPicture

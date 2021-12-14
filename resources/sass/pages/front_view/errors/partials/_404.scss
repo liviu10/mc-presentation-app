@@ -4,7 +4,7 @@ $lvContainerError: (
     error_page_font_color_btn:   map-get($basic_colors, "color_black"),
 );
 
-.page-not-found {
+.lv-pg-not-found {
     &-action {
         @include flex-center();
         &-buttons {

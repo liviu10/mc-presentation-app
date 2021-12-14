@@ -1,5 +1,5 @@
 <template>
-  <div class="container lv-con-sect-categories">
+  <div class="lv-con-sect-categories">
     <!-- MAIN CATEGORIES: WRITTEN ARTICLES, AUDIO AND VIDEO, SECTION START -->
     <div v-for="category in displayAllBlogCategoriesAndSubcategories" :key="category.id" class="card" style="width: 20rem;">
       <div class="card-body">

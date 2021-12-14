@@ -10,7 +10,7 @@
 import WrittenListArticles from '~/pages/user/blog/partials/WrittenListArticles.vue'
 
 export default {
-  name: 'WrittenArticlesPage',
+  name: 'WrittenArticles',
   components: {
     WrittenListArticles
   },

@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-lg-12 m-auto">
-      <div class="container lv-con-pg-audio">
+      <div class="lv-pg-audio">
         <h1>APP DISPLAY AUDIO ARTICLE PAGE</h1>
       </div>
     </div>
@@ -17,10 +17,10 @@ import Form from 'vform'
 Vue.use(rate)
 
 export default {
-  name: 'AudioArticlesPage',
+  name: 'AudioArticles',
   components: {},
   layout: '',
-  middlewa: '',
+  middleware: '',
   props: {
     length: {
       type: Number,

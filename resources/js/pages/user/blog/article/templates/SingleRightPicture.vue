@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- SINGLE RIGHT PICTURE WRITTEN ARTICLE TEMPLATE TITLE, SECTION START -->
-    <div class="lv-con-pg-articles-view-title">
+    <div class="lv-pg-articles-view-title">
       <p>
         <span>Mădălina Corina Marius</span> &bullet;
         <span>Septembrie 11 2021</span> &bullet;
@@ -11,8 +11,8 @@
     </div>
     <!-- SINGLE RIGHT PICTURE WRITTEN ARTICLE TEMPLATE TITLE, SECTION END -->
     <!-- SINGLE RIGHT PICTURE WRITTEN ARTICLE TEMPLATE BODY, SECTION START -->
-    <div class="lv-con-pg-articles-view-body">
-      <div class="lv-con-pg-articles-view-body-heading-srp">
+    <div class="lv-pg-articles-view-body">
+      <div class="lv-pg-articles-view-body-heading-srp">
         <img src="/images/blog/article-img-320x320-1.jpg" alt="">
         <p>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit.

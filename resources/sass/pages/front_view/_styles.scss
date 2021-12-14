@@ -1,3 +1,8 @@
+/***** FRONT VIEW CSS PAGES *****/
+/* 
+    Import here all the CSS pages for the front view application.
+*/
+
 @import 'about-me/_styles.scss';
 @import 'blog/_styles.scss';
 @import 'contact-me/_styles.scss';
@@ -6,10 +11,25 @@
 @import 'schedule-appointment/_styles.scss';
 @import 'terms-and-conditions/_styles.scss';
 
-
-.lv-con-pg-about, .lv-con-pg-blog,
-.lv-con-pg-contact-form, .lv-con-pg.error,
-.lv-con-pg-appointment, .lv-con-pg-terms {
-    margin-top: rem-convertor(50px);
-    margin-bottom: rem-convertor(50px);
+.lv-pg-admin, .lv-pg-about-me, 
+.lv-pg-blog, .lv-pg-articles, .lv-pg-subcategories,
+.lv-pg-contact, .lv-pg-terms, .lv-pg-appointment {
+    margin: rem-convertor(60px) 0rem;
+    padding: 0rem;
 }
+
+.lv-pg-admin, .lv-pg-articles, .lv-pg-subcategories
+.lv-pg-terms, .lv-pg-appointment {
+    &-header, &-body {
+        padding: 0rem;
+    }
+    &-header {
+        margin: rem-convertor(32px) 0rem;
+        & h1 {
+            margin-bottom: 0rem !important;
+            text-align: center;
+        }
+    }
+}
+
+.lv-pg-not-found, .lv-pg-under-construction {}

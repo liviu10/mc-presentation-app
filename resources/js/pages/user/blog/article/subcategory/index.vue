@@ -1,11 +1,11 @@
 <template>
   <div class="row">
     <div class="col-lg-12 m-auto">
-      <div class="container lv-con-pg-subcategories">
-        <div class="lv-con-pg-subcategories-title">
+      <div class="lv-pg-subcategories">
+        <div class="lv-pg-subcategories-header">
           <h1>LISTA ARTICOLELOR DIN SUBCATEGORIA X</h1>
         </div>
-        <div class="lv-con-pg-subcategories-view" />
+        <div class="lv-pg-subcategories-body" />
       </div>
     </div>
   </div>
@@ -19,7 +19,7 @@ Vue.use(axios)
 window.axios = require('axios')
 
 export default {
-  name: 'BlogSubcategoryWrittenArticlesPage',
+  name: 'BlogSubcategoryWrittenArticles',
   components: {},
   layout: '',
   middleware: '',

@@ -1,17 +1,17 @@
 <template>
   <div class="row">
     <div class="col-lg-12 m-auto">
-      <div class="container lv-con-pg-terms">
-        <div class="lv-con-pg-terms-title">
+      <div class="lv-pg-terms">
+        <div class="lv-pg-terms-header">
           <!-- PAGE TITLE & PUBLICATION DATE, SECTION START -->
           <h1>Terms and Conditions</h1>
           <p>Date last modified: September 10, 2021</p>
           <!-- PAGE TITLE & PUBLICATION DATE, SECTION END -->
           <!-- PAGE SHORT DESCRIPTION, SECTION START -->
-          <h3 class="lv-con-pg-terms-title-subtitle">
+          <h3 class="lv-pg-terms-title-subtitle">
             Lorem, ipsum dolor.
           </h3>
-          <p class="lv-con-pg-terms-title-lead">
+          <p class="lv-pg-terms-title-lead">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit.
             Fugit ad sint odio laborum tempora unde enim fuga. Est nihil modi eligendi suscipit.
             Quod, illo doloribus voluptatibus corporis non in illum perferendis, aperiam ipsa sequi commodi ducimus mollitia nobis!
@@ -24,17 +24,17 @@
             a modi deserunt doloremque velit reiciendis minus nihil impedit tempora amet blanditiis quasi eum.
           </p>
           <!-- PAGE SHORT DESCRIPTION, SECTION END -->
-          <p class="lv-con-pg-terms-title-info">
+          <p class="lv-pg-terms-title-info">
             PLEASE READ THIS TERMS OF USE AGREEMENT VERY CAREFULLY BEFORE USING THE WEBSITE.
           </p>
         </div>
-        <div class="lv-con-pg-terms-body">
+        <div class="lv-pg-terms-body">
           <!-- PAGE TERMS & CONDITIONS, SECTION START -->
-          <div class="lv-con-pg-terms-body-content">
-            <h3 class="lv-con-pg-terms-body-content-subtitle">
+          <div class="lv-pg-terms-body-content">
+            <h3 class="lv-pg-terms-body-content-subtitle">
               1. Lorem, ipsum dolor.
             </h3>
-            <p class="lv-con-pg-terms-body-content-paragraph">
+            <p class="lv-pg-terms-body-content-paragraph">
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Ad tempore eum officiis? Eaque odio tenetur non ipsam, eveniet,
               ipsum veniam nihil sit explicabo sed molestiae repellat, deleniti ipsa?
@@ -49,11 +49,11 @@
           </div>
           <!-- PAGE TERMS & CONDITIONS, SECTION END -->
           <!-- PAGE TERMS & CONDITIONS, SECTION START -->
-          <div class="lv-con-pg-terms-body-content">
-            <h3 class="lv-con-pg-terms-body-content-subtitle">
+          <div class="lv-pg-terms-body-content">
+            <h3 class="lv-pg-terms-body-content-subtitle">
               2. Lorem, ipsum dolor.
             </h3>
-            <p class="lv-con-pg-terms-body-content-paragraph">
+            <p class="lv-pg-terms-body-content-paragraph">
               Lorem ipsum dolor sit, amet consectetur adipisicing elit.
               Qui officia sunt distinctio reiciendis autem. Voluptate animi nesciunt similique omnis itaque! Delectus ipsa quae inventore.
               Enim magni iste cum dolorem aperiam eum, ducimus blanditiis repellendus quidem eveniet dolore officiis?
@@ -70,11 +70,11 @@
           </div>
           <!-- PAGE TERMS & CONDITIONS, SECTION END -->
           <!-- PAGE TERMS & CONDITIONS, SECTION START -->
-          <div class="lv-con-pg-terms-body-content">
-            <h3 class="lv-con-pg-terms-body-content-subtitle">
+          <div class="lv-pg-terms-body-content">
+            <h3 class="lv-pg-terms-body-content-subtitle">
               3. Lorem, ipsum dolor.
             </h3>
-            <p class="lv-con-pg-terms-body-content-paragraph">
+            <p class="lv-pg-terms-body-content-paragraph">
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Ad tempore eum officiis? Eaque odio tenetur non ipsam, eveniet,
               ipsum veniam nihil sit explicabo sed molestiae repellat, deleniti ipsa?
@@ -85,11 +85,11 @@
           </div>
           <!-- PAGE TERMS & CONDITIONS, SECTION END -->
           <!-- PAGE TERMS & CONDITIONS, SECTION START -->
-          <div class="lv-con-pg-terms-body-content">
-            <h3 class="lv-con-pg-terms-body-content-subtitle">
+          <div class="lv-pg-terms-body-content">
+            <h3 class="lv-pg-terms-body-content-subtitle">
               4. Lorem, ipsum dolor.
             </h3>
-            <p class="lv-con-pg-terms-body-content-paragraph">
+            <p class="lv-pg-terms-body-content-paragraph">
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Veritatis, quia qui! Odit, maiores. Maiores a quod consequatur vero,
               fugit illo debitis placeat pariatur, alias, nemo reprehenderit eum mollitia?
@@ -109,11 +109,11 @@
           </div>
           <!-- PAGE TERMS & CONDITIONS, SECTION END -->
           <!-- PAGE TERMS & CONDITIONS, SECTION START -->
-          <div class="lv-con-pg-terms-body-content">
-            <h3 class="lv-con-pg-terms-body-content-subtitle">
+          <div class="lv-pg-terms-body-content">
+            <h3 class="lv-pg-terms-body-content-subtitle">
               5. Lorem, ipsum dolor.
             </h3>
-            <p class="lv-con-pg-terms-body-content-paragraph">
+            <p class="lv-pg-terms-body-content-paragraph">
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Ad tempore eum officiis? Eaque odio tenetur non ipsam, eveniet,
               ipsum veniam nihil sit explicabo sed molestiae repellat, deleniti ipsa?
@@ -133,7 +133,7 @@
 
 <script>
 export default {
-  name: 'TermsAndConditionsPage',
+  name: 'TermsAndConditions',
   components: {},
   layout: '',
   middleware: '',
