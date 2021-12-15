@@ -236,7 +236,7 @@
         "i_agree_with": "I agree with the ",
         "privacy_policy": "Privacy Policy",
         "swal": {
-          "title": "Thank you!",
+          "title": "Thank you, {subscriberFullName}!",
           "message": "I am grateful that you subscribed to my newsletter! You will soon receive more surprises by email from me!"
         }
       }

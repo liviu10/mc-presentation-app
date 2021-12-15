@@ -28,6 +28,7 @@ $lvContainerSectionNewsletter: (
                 border-radius: rem-convertor(0px);
                 color: map-get($lvContainerSectionNewsletter, "newsletter_font_color_btn");
                 font-weight: bold;
+                text-transform: uppercase;
                 &:focus {
                     border-color: transparent !important;
                     box-shadow: 0 rem-convertor(1px) rem-convertor(1px) transparent inset, 0 0 rem-convertor(8px) transparent !important;

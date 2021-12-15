@@ -95,15 +95,17 @@ export default {
       const apiEndPoint = '/api/unsubscribe'
       const urlParam = this.form.email
       const fullApiUrl = url + apiEndPoint + '/' + urlParam
-      axios
-        .delete(fullApiUrl)
+      await axios
+        .delete(fullApiUrl, { email: urlParam })
         .then(response => {
+          console.log(response.data)
           this.form.email = ''
           this.closeModal()
         })
       await Swal.fire({
         title: this.$t('footer.footer_menu.unsubscribe_newsletter.swal_confirmation.title'),
         text: this.$t('footer.footer_menu.unsubscribe_newsletter.swal_confirmation.message'),
+        timer: 3000,
         footer:
           '<a href="https://www.facebook.com/groups/269560668238590/?ref=share" target="_blank" rel="noreferrer">' +
             'Facebook' +

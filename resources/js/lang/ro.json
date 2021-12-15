@@ -236,7 +236,7 @@
         "i_agree_with": "Sunt de acord cu ",
         "privacy_policy": "Termenii și Condițiile",
         "swal": {
-          "title": "Mulțumesc!",
+          "title": "Mulțumesc, {subscriberFullName}!",
           "message": "Sunt recunoscătoare că te-ai abonat la newsletter-ul meu! În curând vei primi pe email mai multe surprize din partea mea!"
         }
       }
