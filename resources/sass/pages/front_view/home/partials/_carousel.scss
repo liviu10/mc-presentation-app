@@ -28,11 +28,18 @@ $lvContainerSectionBanner: (
         padding-bottom: rem-convertor(40px);
         background-color: map-get($lvContainerSectionBanner, "carousel_caption_bg_color");
         opacity: 0.70;
-        & h5, & p {
+        & p {
+            margin-bottom: 0rem;
             color: map-get($lvContainerSectionBanner, "carousel_caption_font_color");
+            font-weight: 900;
             user-select: none;
         }
+        & p:first-of-type {
+            margin: rem-convertor(8px) 0rem;
+            font-size: rem-convertor(22px);
+        }
         & .btn {
+            margin: rem-convertor(8px) 0rem;
             background-color: map-get($lvContainerSectionBanner, "carousel_caption_bg_color_btn");
             border-color: map-get($lvContainerSectionBanner, "carousel_caption_border_color_btn");
             color: map-get($lvContainerSectionBanner, "carousel_caption_font_color_btn");

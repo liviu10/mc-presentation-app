@@ -53,6 +53,9 @@
     },
     "blog_system_pages": {
       "meta_title": "Blog",
+      "blog_main_categories": {
+        "info": "Aici vei găsi:"
+      },
       "written_article_blog_pages": {
         "meta_title": "Listă articole scrise",
         "page_title": "Listă articole scrise",
