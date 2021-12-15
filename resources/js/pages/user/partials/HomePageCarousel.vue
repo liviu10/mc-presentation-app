@@ -18,7 +18,7 @@
       >
         <img :src="carousel_image.img_src" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
-          <h5>{{ carousel_image.caption_title }}</h5>
+          <p>{{ carousel_image.caption_title }}</p>
           <p>{{ carousel_image.caption_text_1 }}</p>
           <p>{{ carousel_image.caption_text_2 }}</p>
           <p>{{ carousel_image.caption_text_3 }}</p>
@@ -117,7 +117,7 @@ export default {
           id: 2,
           class: '',
           img_src: '/images/carousel/Carousel-img1_1920.webp',
-          caption_title: 'Second slide label',
+          caption_title: 'Inspirație pentru creștere',
           caption_text_1: '”Cei pe care îi servești, îți arată cum să crești”- Andy Szekely',
           caption_text_2: 'Din anul 2016 m-am lăsat ghidată de Andy Szekely în dezvoltarea mea si am crescut armonios. Participarea la evenimentele lui si comunitatea lui de oameni faini m-au inspirat și am devenit omul energic de acum.',
           caption_text_3: 'Am fost fascinată de stilul lui Andy de a povesti și de a amuza oamenii și așa îmi doresc să transmit și eu informațiile.'

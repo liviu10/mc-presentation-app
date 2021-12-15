@@ -53,6 +53,9 @@
     },
     "blog_system_pages": {
       "meta_title": "Blog",
+      "blog_main_categories": {
+        "info": "Here you will find:"
+      },
       "written_article_blog_pages": {
         "meta_title": "Written list articles",
         "page_title": "Written list articles",

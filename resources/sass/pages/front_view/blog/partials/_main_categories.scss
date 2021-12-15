@@ -14,6 +14,24 @@ $lvContainerSectionBlog: (
             text-align: center;
         }
         &-body {
+            &:first-of-type {
+                & p {
+                    font-size: rem-convertor(22px);
+                }
+            }
+            &:last-child {
+                & p {
+                    margin: rem-convertor(8px) 0rem;
+                    font-size: rem-convertor(18px);
+                }
+            }
+            &:first-of-type, &:last-child {
+                & p {
+                    font-weight: 900;
+                    text-transform: uppercase;
+                    user-select: none;
+                }
+            }
             &:nth-last-child(2) {
                 padding-bottom: rem-convertor(0px);
             }

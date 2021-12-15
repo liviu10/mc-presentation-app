@@ -3,12 +3,12 @@
     <!-- MAIN CATEGORIES: WRITTEN ARTICLES, AUDIO AND VIDEO, SECTION START -->
     <div v-for="category in displayAllBlogCategoriesAndSubcategories" :key="category.id" class="card" style="width: 20rem;">
       <div class="card-body">
-        <h5 class="card-title">
+        <p class="card-title">
           {{ category.blog_category_title }}
-        </h5>
+        </p>
       </div>
       <router-link :to="{ path: category.blog_category_path }">
-        <img :src="category.blog_image_card_url" class="d-block w-100" width="400" height="300" alt="...">
+        <img :src="category.blog_image_card_url" class="d-block w-100" width="320" height="240" alt="...">
       </router-link>
       <div class="card-body">
         <p class="card-text">
@@ -17,7 +17,7 @@
       </div>
       <div class="card-body">
         <p class="card-text">
-          Aici vei găsi:
+          {{ $t('user.blog_system_pages.blog_main_categories.info') }}
         </p>
         <a v-for="subcategory in category.blog_subcategories" :key="subcategory.id" :href="subcategory.blog_subcategory_path" :title="subcategory.blog_subcategory_title">
           {{ subcategory.blog_subcategory_title }}
