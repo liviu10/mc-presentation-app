@@ -29,10 +29,8 @@
         </div>
         <!-- EMAIL ADDRESS, SECTION END -->
         <div class="col col-xxl-2 col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12">
-          <button type="submit"
-                  class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 btn btn-success"
-          >
-            {{ capitalizeSubscribeButton }}
+          <button type="submit" class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 btn btn-success">
+            {{ $t('user.home_page.newsletter.subscribe_button') }}
           </button>
         </div>
       </div>
@@ -72,21 +70,37 @@ import Swal from 'sweetalert2/dist/sweetalert2.js'
 
 export default {
   name: 'HomePageNewsletter',
-  components: {},
   data: function () {
     return {
       form: new Form({
         full_name: '',
         email: '',
         privacy_policy: false
-      })
+      }),
+      subscriberFullName: '',
+      newsletterImages: [
+        'images/newsletter/newsletter_img0.jpg',
+        'images/newsletter/newsletter_img1.jpg',
+        'images/newsletter/newsletter_img2.jpg',
+        'images/newsletter/newsletter_img3.jpg',
+        'images/newsletter/newsletter_img4.jpg',
+        'images/newsletter/newsletter_img5.jpg',
+        'images/newsletter/newsletter_img6.jpg',
+        'images/newsletter/newsletter_img7.jpg',
+        'images/newsletter/newsletter_img8.jpg',
+        'images/newsletter/newsletter_img9.jpg',
+        'images/newsletter/newsletter_img10.jpg',
+        'images/newsletter/newsletter_img11.jpg',
+        'images/newsletter/newsletter_img12.jpg',
+        'images/newsletter/newsletter_img13.jpg',
+        'images/newsletter/newsletter_img14.jpg',
+        'images/newsletter/newsletter_img15.jpg'
+      ],
+      newsletterSelectedImage: null
     }
   },
-  computed: {
-    capitalizeSubscribeButton () {
-      const subscribeButtonLabel = this.$t('user.home_page.newsletter.subscribe_button')
-      return subscribeButtonLabel.toUpperCase()
-    }
+  created () {
+    this.newsletterSelectedImage = this.displayRandomNewsletterImage(this.newsletterImages)
   },
   methods: {
     acceptPrivacyPolicy () {
@@ -99,24 +113,34 @@ export default {
     redirectToPrivacyPolicy () {
       this.$router.push({ name: 'terms-and-conditions' })
     },
+    displayRandomNewsletterImage (images) {
+      return images[Math.floor(Math.random() * images.length)]
+    },
     async subscribe () {
       const url = window.location.origin
       const apiEndPoint = '/api/subscribe'
       const fullApiUrl = url + apiEndPoint
-      const { data } = await this.form.post(fullApiUrl)
-      console.log('>>>>>> Newsletter Api URL: ', data)
-      Swal.fire({
-        title: this.$t('user.home_page.newsletter.swal.title'),
-        text: this.$t('user.home_page.newsletter.swal.message'),
-        imageUrl: 'https://unsplash.it/400/200',
-        imageWidth: 320,
-        imageHeight: 240,
-        imageAlt: ''
-      }).then((result) => {
-        this.form.full_name = null
-        this.form.email = null
-        this.form.privacy_policy = null
-      })
+      await this.form
+        .post(fullApiUrl, {
+          full_name: this.form.full_name,
+          email: this.form.email,
+          privacy_policy: this.form.privacy_policy
+        })
+        .then(response => {
+          this.subscriberFullName = response.data.full_name
+          Swal.fire({
+            title: this.$t('user.home_page.newsletter.swal.title', { subscriberFullName: this.subscriberFullName }),
+            text: this.$t('user.home_page.newsletter.swal.message'),
+            imageUrl: this.displayRandomNewsletterImage(this.newsletterImages),
+            imageWidth: 259,
+            imageHeight: 194
+          }).then((result) => {
+            console.log(result)
+            this.form.full_name = null
+            this.form.email = null
+            this.form.privacy_policy = null
+          })
+        })
     }
   }
 }

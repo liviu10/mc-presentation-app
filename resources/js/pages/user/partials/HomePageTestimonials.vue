@@ -37,7 +37,6 @@
 <script>
 export default {
   name: 'HomePageTestimonials',
-  components: {},
   data: function () {
     return {
       carousel_indicators: [
@@ -111,7 +110,6 @@ export default {
         }
       ]
     }
-  },
-  computed: {}
+  }
 }
 </script>
