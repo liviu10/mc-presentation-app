@@ -134,17 +134,6 @@
 <script>
 export default {
   name: 'TermsAndConditions',
-  components: {},
-  layout: '',
-  middleware: '',
-  props: {},
-  data: function () {
-    return {}
-  },
-  computed: {
-    // mapped getters
-  },
-  mounted () {},
   methods: {
     showMore () {
       this.$router.push({ path: '/blog/article' })
