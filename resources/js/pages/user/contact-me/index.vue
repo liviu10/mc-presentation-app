@@ -73,11 +73,9 @@
                   <label class="form-check-label lead" for="flexCheckChecked">
                     <span @click="acceptPrivacyPolicy">
                       {{ $t('user.contact_me_page.contact_form.i_agree_with') }}
-                      <span class="a-typography"
-                            @click="redirectToPrivacyPolicy"
-                      >
+                      <router-link class="a-typography" to="/terms-and-conditions">
                         {{ $t('user.contact_me_page.contact_form.privacy_policy') }}
-                      </span>
+                      </router-link>
                     </span>
                   </label>
                 </div>
@@ -86,7 +84,7 @@
               <!-- PRIVACY POLICY, SECTION END -->
               <div class="form-button">
                 <button type="submit" class="btn btn-primary">
-                  {{ capitalizeSendMessageButton }}
+                  {{ $t('user.contact_me_page.contact_form.contact_form_button') }}
                 </button>
               </div>
             </form>
@@ -103,10 +101,6 @@ import Form from 'vform'
 
 export default {
   name: 'ContactMePage',
-  components: {},
-  layout: '',
-  middleware: '',
-  props: {},
   data: function () {
     return {
       message_success: this.$t('user.contact_me_page.contact_form.message_sent'),
@@ -118,14 +112,6 @@ export default {
       })
     }
   },
-  computed: {
-    // mapped getters
-    capitalizeSendMessageButton () {
-      const sendMessageButtonLabel = this.$t('user.contact_me_page.contact_form.contact_form_button')
-      return sendMessageButtonLabel.toUpperCase()
-    }
-  },
-  mounted () {},
   methods: {
     acceptPrivacyPolicy () {
       if (this.form.privacy_policy === true) {
@@ -134,16 +120,24 @@ export default {
         this.form.privacy_policy = true
       }
     },
-    redirectToPrivacyPolicy () {
-      this.$router.push({ name: 'terms-and-conditions' })
-    },
     async subscribe () {
-      const contactMeApi = '/api/contact-me'
-      await this.form.post(contactMeApi)
-      this.form.full_name = null
-      this.form.email = null
-      this.form.message = null
-      this.form.privacy_policy = null
+      const url = window.location.origin
+      const apiEndPoint = '/api/contact-me'
+      const fullApiUrl = url + apiEndPoint
+      await this.form
+        .post(fullApiUrl, {
+          full_name: this.form.full_name,
+          email: this.form.email,
+          message: this.form.message,
+          privacy_policy: this.form.privacy_policy
+        })
+        .then((result) => {
+          console.log(result)
+          this.form.full_name = null
+          this.form.email = null
+          this.form.message = null
+          this.form.privacy_policy = null
+        })
     }
   },
   metaInfo () {

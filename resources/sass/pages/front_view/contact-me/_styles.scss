@@ -105,6 +105,7 @@ $lvContainerPageContactFormFont: 'Merriweather Sans Bold', sans-serif;
                     & .a-typography {
                         margin: rem-convertor(8px) 0rem;
                         padding: 0rem;
+                        color: map-get($lvContainerPageContactForm, "contact_form_check_font_color");
                         font-style: normal;
                         font-variant: normal;
                         font-weight: normal;
@@ -142,6 +143,7 @@ $lvContainerPageContactFormFont: 'Merriweather Sans Bold', sans-serif;
                     border-radius: rem-convertor(0px);
                     color: map-get($lvContainerPageContactForm, "contact_form_font_color_btn");
                     font-weight: bold;
+                    text-transform: uppercase;
                     &:focus {
                         border-color: transparent !important;
                         box-shadow: 0 rem-convertor(1px) rem-convertor(1px) transparent inset, 0 0 rem-convertor(1px) transparent !important;
