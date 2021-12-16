@@ -70,7 +70,7 @@ export default {
     async commentArticle () {
       const audioArticleApi = '/blog/article-comments'
       const { data } = await this.form.post(audioArticleApi)
-      console.log('>>>>> Comment on audio articles <<<<<<')
+      console.log('>>>>> Comment on audio articles <<<<<<', data)
     }
   },
   metaInfo () {

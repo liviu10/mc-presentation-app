@@ -31,12 +31,6 @@ export default {
       displayAllBlogSubcategoryWrittenArticles: null
     }
   },
-  computed: {
-    capitalizePageTitle () {
-      const pageTitle = this.$t('user.blog_system_pages.written_article_blog_pages.page_title')
-      return pageTitle.toUpperCase()
-    }
-  },
   mounted () {
     this.getAllBlogSubcategoryWrittenArticles()
   },
@@ -49,8 +43,8 @@ export default {
       axios
         .get(fullApiUrl)
         .then(response => {
-          console.log('>>>>> Display a list of all written articles for a given blog subcategory <<<<<', response.data)
-          this.displayAllBlogSubcategoryWrittenArticles = response.data.results[0]
+          console.log('>>>>> Display a list of all written articles for a given blog subcategory <<<<<')
+          this.displayAllBlogSubcategoryWrittenArticles = response.data.records[0]
         })
     }
   },

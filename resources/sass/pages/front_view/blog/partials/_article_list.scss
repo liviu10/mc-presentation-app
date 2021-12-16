@@ -151,6 +151,7 @@ $lvContainerPageWrittenArticleFont: 'Merriweather Sans Bold', sans-serif;
                         & .a-typography {
                             margin: rem-convertor(8px) 0rem;
                             padding: 0rem;
+                            color: map-get($lvContainerPageWrittenArticle, "comment_form_check_font_color");
                             font-style: normal;
                             font-variant: normal;
                             font-weight: normal;

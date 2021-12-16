@@ -1,7 +1,7 @@
 <template>
   <div class="lv-pg-articles">
     <div class="lv-pg-articles-header">
-      <h1>{{ capitalizePageTitle }}</h1>
+      <h1>{{ $t('user.blog_system_pages.written_article_blog_pages.page_title') }}</h1>
     </div>
     <!-- LIST OF WRITTEN ARTICLES, SECTION START -->
     <div v-if="!displayAllWrittenBlogArticles" class="lv-pg-articles-body">
@@ -67,18 +67,11 @@ window.axios = require('axios')
 
 export default {
   name: 'WrittenListArticles',
-  components: {},
   data: function () {
     return {
       notifyCode: null,
       notifyMessage: null,
       displayAllWrittenBlogArticles: null
-    }
-  },
-  computed: {
-    capitalizePageTitle () {
-      const pageTitle = this.$t('user.blog_system_pages.written_article_blog_pages.page_title')
-      return pageTitle.toUpperCase()
     }
   },
   mounted () {

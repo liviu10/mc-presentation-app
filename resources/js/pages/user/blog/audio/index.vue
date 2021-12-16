@@ -14,17 +14,6 @@ export default {
   components: {
     AudioListArticles
   },
-  layout: '',
-  middleware: '',
-  props: {},
-  data: function () {
-    return {}
-  },
-  computed: {
-    // mapped getters
-  },
-  mounted () {},
-  methods: {},
   metaInfo () {
     return { title: this.$t('user.blog_system_pages.audio_article_blog_pages.meta_title') }
   }

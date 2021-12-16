@@ -31,12 +31,6 @@ export default {
       displayAllBlogSubcategoryAudioArticles: null
     }
   },
-  computed: {
-    capitalizePageTitle () {
-      const pageTitle = this.$t('user.blog_system_pages.audio_article_blog_pages.page_title')
-      return pageTitle.toUpperCase()
-    }
-  },
   mounted () {
     this.getAllBlogSubcategoryAudioArticles()
   },
@@ -49,7 +43,7 @@ export default {
       axios
         .get(fullApiUrl)
         .then(response => {
-          console.log('>>>>> Display a list of all audio articles for a given blog subcategory <<<<<', response.data)
+          console.log('>>>>> Display a list of all audio articles for a given blog subcategory <<<<<')
           this.displayAllBlogSubcategoryAudioArticles = response.data.results[0]
         })
     }

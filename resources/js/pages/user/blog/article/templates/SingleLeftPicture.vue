@@ -92,10 +92,6 @@ window.axios = require('axios')
 
 export default {
   name: 'SingleLeftPicture',
-  components: {},
-  layout: '',
-  middleware: '',
-  props: {},
   data: function () {
     return {
       notifyCode: null,
@@ -127,7 +123,6 @@ export default {
           }
         })
     }
-  },
-  metaInfo () {}
+  }
 }
 </script>
