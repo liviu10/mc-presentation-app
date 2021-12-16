@@ -20,7 +20,7 @@ export default {
   name: 'VideoArticles',
   components: {},
   layout: '',
-  middlewa: '',
+  middleware: '',
   props: {
     length: {
       type: Number,
@@ -70,7 +70,7 @@ export default {
     async commentArticle () {
       const videoArticleApi = '/blog/article-comments'
       const { data } = await this.form.post(videoArticleApi)
-      console.log('>>>>> Comment on video articles <<<<<<')
+      console.log('>>>>> Comment on video articles <<<<<<', data)
     }
   },
   metaInfo () {

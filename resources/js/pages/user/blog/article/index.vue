@@ -14,17 +14,6 @@ export default {
   components: {
     WrittenListArticles
   },
-  layout: '',
-  middleware: '',
-  props: {},
-  data: function () {
-    return {}
-  },
-  computed: {
-    // mapped getters
-  },
-  mounted () {},
-  methods: {},
   metaInfo () {
     return { title: this.$t('user.blog_system_pages.written_article_blog_pages.meta_title') }
   }

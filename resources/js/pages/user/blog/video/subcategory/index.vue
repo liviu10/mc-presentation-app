@@ -22,19 +22,13 @@ export default {
   name: 'VideoArticleSubcategories',
   components: {},
   layout: '',
-  middlewa: '',
+  middleware: '',
   props: {},
   data: function () {
     return {
       notifyCode: null,
       notifyMessage: null,
       displayAllBlogSubcategoryVideoArticles: null
-    }
-  },
-  computed: {
-    capitalizePageTitle () {
-      const pageTitle = this.$t('user.blog_system_pages.video_article_blog_pages.page_title')
-      return pageTitle.toUpperCase()
     }
   },
   mounted () {
@@ -49,7 +43,7 @@ export default {
       axios
         .get(fullApiUrl)
         .then(response => {
-          console.log('>>>>> Display a list of all video articles for a given blog subcategory <<<<<', response.data)
+          console.log('>>>>> Display a list of all video articles for a given blog subcategory <<<<<')
           this.displayAllBlogSubcategoryVideoArticles = response.data.results[0]
         })
     }

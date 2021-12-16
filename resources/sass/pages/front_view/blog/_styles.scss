@@ -30,6 +30,7 @@ $lvContainerPageBlog: (
         margin-bottom: rem-convertor(50px);
         & h1 {
             margin-bottom: rem-convertor(50px);
+            text-transform: uppercase;
             text-align: center;
         }
     }

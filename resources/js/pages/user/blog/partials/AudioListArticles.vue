@@ -1,7 +1,7 @@
 <template>
   <div class="lv-pg-audio">
     <div class="lv-pg-audio-title">
-      <h1>{{ capitalizePageTitle }}</h1>
+      <h1>{{ $t('user.blog_system_pages.audio_article_blog_pages.page_title') }}</h1>
     </div>
     <!-- LIST OF AUDIO ARTICLES, SECTION START -->
     <div v-if="!displayAllAudioBlogArticles" class="lv-pg-audio-list">
@@ -85,20 +85,11 @@ export default {
   components: {
     Aplayer
   },
-  layout: '',
-  middleware: '',
-  props: {},
   data: function () {
     return {
       notifyCode: null,
       notifyMessage: null,
       displayAllAudioBlogArticles: null
-    }
-  },
-  computed: {
-    capitalizePageTitle () {
-      const pageTitle = this.$t('user.blog_system_pages.audio_article_blog_pages.page_title')
-      return pageTitle.toUpperCase()
     }
   },
   mounted () {

@@ -125,11 +125,9 @@
                     <label class="form-check-label lead" for="flexCheckChecked">
                       <span @click="acceptPrivacyPolicy">
                         {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.comment_form.i_agree_with') }}
-                        <span class="a-typography"
-                              @click="redirectToPrivacyPolicy"
-                        >
+                        <router-link class="a-typography" to="/terms-and-conditions">
                           {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.comment_form.privacy_policy') }}
-                        </span>
+                        </router-link>
                       </span></label>
                     <has-error :form="form" field="privacy_policy" />
                   </div>
@@ -172,8 +170,6 @@ export default {
     // SingleRightPicture
     // SingleBottomPicture
   },
-  layout: '',
-  middlewa: '',
   props: {
     length: {
       type: Number,
@@ -223,7 +219,7 @@ export default {
     async commentArticle () {
       const writtenArticleApi = '/api/written-article'
       const { data } = await this.form.post(writtenArticleApi)
-      console.log('>>>>> Comment on written articles <<<<<<')
+      console.log('>>>>> Comment on written articles <<<<<<', data)
     },
     acceptPrivacyPolicy () {
       if (this.form.privacy_policy === true) {
@@ -231,9 +227,6 @@ export default {
       } else {
         this.form.privacy_policy = true
       }
-    },
-    redirectToPrivacyPolicy () {
-      this.$router.push({ name: 'terms-and-conditions' })
     }
   },
   metaInfo () {
