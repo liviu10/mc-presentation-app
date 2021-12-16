@@ -29,11 +29,7 @@
             {{ questionnaire.scope }}
           </p>
           <div class="lv-pg-appointment-button">
-            <button type="button"
-                    class="btn btn-primary btn-lg"
-                    @click="goTo(questionnaire.id)"
-            >
-              <i class="far fa-clock" />
+            <button type="button" class="btn btn-primary btn-lg" @click="goToQuestionnaire(questionnaire.id)">
               Începe chestionarul!
             </button>
           </div>
@@ -55,13 +51,6 @@ window.axios = require('axios')
 
 export default {
   name: 'ScheduleAppointment',
-  components: {},
-  layout: '',
-  middleware: '',
-  props: {},
-  data: function () {
-    return {}
-  },
   computed: {
     ...mapGetters({
       allQuestionnaires: 'questionnaire/allQuestionnaires'
@@ -77,12 +66,11 @@ export default {
   created () {
     this.fetchQuestionnaires()
   },
-  mounted () {},
   methods: {
     ...mapActions({
       fetchQuestionnaires: 'questionnaire/fetchQuestionnaires'
     }),
-    goTo (id) {
+    goToQuestionnaire (id) {
       this.$router.push({ path: '/schedule-appointment/questionnaire/' + id })
     }
   },

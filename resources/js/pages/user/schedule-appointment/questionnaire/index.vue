@@ -215,6 +215,11 @@
             </div>
           </div>
           <!-- QUESTIONNAIRE QUESTION 6, START END -->
+          <div class="form-button">
+            <button type="submit" class="btn btn-primary">
+              TRIMITE
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -233,13 +238,6 @@ window.axios = require('axios')
 
 export default {
   name: 'StartQuestionnairePage',
-  components: {},
-  layout: '',
-  middleware: '',
-  props: {},
-  data: function () {
-    return {}
-  },
   computed: {
     ...mapGetters({
       singleQuestionnaire: 'questionnaire/singleQuestionnaire'
@@ -255,7 +253,6 @@ export default {
   created () {
     this.fetchSingleQuestionnaire()
   },
-  mounted () {},
   methods: {
     ...mapActions({
       fetchSingleQuestionnaire: 'questionnaire/fetchSingleQuestionnaire'
