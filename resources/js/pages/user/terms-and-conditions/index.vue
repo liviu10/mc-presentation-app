@@ -134,11 +134,6 @@
 <script>
 export default {
   name: 'TermsAndConditions',
-  methods: {
-    showMore () {
-      this.$router.push({ path: '/blog/article' })
-    }
-  },
   metaInfo () {
     return { title: this.$t('user.blog_page.page_title') }
   }

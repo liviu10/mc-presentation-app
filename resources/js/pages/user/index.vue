@@ -40,21 +40,6 @@ export default {
     HomePageTestimonials,
     HomePageNewsletter
   },
-  layout: '',
-  middleware: '',
-  props: {},
-  data: function () {
-    return {}
-  },
-  computed: {
-    // mapped getters
-  },
-  mounted () {},
-  methods: {
-    showMore () {
-      this.$router.push({ path: '/blog/article' })
-    }
-  },
   metaInfo () {
     return { title: this.$t('user.home_page.page_title') }
   }

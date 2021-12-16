@@ -48,11 +48,9 @@
             <label class="form-check-label lead" for="privacy_policy">
               <span @click="acceptPrivacyPolicy">
                 {{ $t('user.home_page.newsletter.i_agree_with') }}
-                <span class="a-typography"
-                      @click="redirectToPrivacyPolicy"
-                >
+                <router-link class="a-typography" to="/terms-and-conditions">
                   {{ $t('user.home_page.newsletter.privacy_policy') }}
-                </span>
+                </router-link>
               </span>
             </label>
           </div>
@@ -109,9 +107,6 @@ export default {
       } else {
         this.form.privacy_policy = true
       }
-    },
-    redirectToPrivacyPolicy () {
-      this.$router.push({ name: 'terms-and-conditions' })
     },
     displayRandomNewsletterImage (images) {
       return images[Math.floor(Math.random() * images.length)]
