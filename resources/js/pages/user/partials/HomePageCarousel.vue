@@ -1,14 +1,14 @@
 <template>
-  <div id="carouselExampleCaptions" class="carousel slide lv-con-banner" data-bs-ride="carousel">
+  <div id="homePageCarousel" class="carousel slide lv-con-banner" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button v-for="carousel_indicator in carousel_indicators"
               :key="carousel_indicator.id"
-              :type="carousel_indicator.type"
-              :data-bs-target="carousel_indicator.data_bs_target"
-              :data-bs-slide-to="carousel_indicator.data_bs_slide_to"
+              type="button"
+              data-bs-target="#homePageCarousel"
+              :data-bs-slide-to="carousel_indicator.id - 1"
               :class="carousel_indicator.class"
               :aria-current="carousel_indicator.aria_current"
-              :aria-label="carousel_indicator.aria_label"
+              :aria-label="'Slide ' + carousel_indicator.id"
       />
     </div>
     <div class="carousel-inner">
@@ -16,7 +16,7 @@
            :key="carousel_image.id"
            :class="'carousel-item ' + carousel_image.class"
       >
-        <img :src="carousel_image.img_src" class="d-block w-100" alt="...">
+        <img :src="'/images/carousel/' + carousel_image.img_src" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
           <p>{{ carousel_image.caption_title }}</p>
           <p>{{ carousel_image.caption_text_1 }}</p>
@@ -32,9 +32,9 @@
     <button v-for="carousel_control in carousel_controls"
             :key="carousel_control.id"
             :class="'carousel-control-' + carousel_control.class"
-            :type="carousel_control.type"
-            :data-bs-target="carousel_control.data_bs_target"
-            :data-bs-slide="carousel_control.data_bs_slide"
+            type="button"
+            data-bs-target="#homePageCarousel"
+            :data-bs-slide="carousel_control.class"
     >
       <span :class="'carousel-control-' + carousel_control.class + '-icon'" aria-hidden="true" />
       <span class="visually-hidden">{{ carousel_control.name }}</span>
@@ -50,64 +50,40 @@ export default {
       carousel_indicators: [
         {
           id: 1,
-          type: 'button',
-          data_bs_target: '#carouselExampleCaptions',
-          data_bs_slide_to: 0,
           class: 'active',
-          aria_current: 'true',
-          aria_label: 'Slide 1'
+          aria_current: 'true'
         },
         {
           id: 2,
-          type: 'button',
-          data_bs_target: '#carouselExampleCaptions',
-          data_bs_slide_to: 1,
           class: '',
-          aria_current: '',
-          aria_label: 'Slide 2'
+          aria_current: ''
         },
         {
           id: 3,
-          type: 'button',
-          data_bs_target: '#carouselExampleCaptions',
-          data_bs_slide_to: 2,
           class: '',
-          aria_current: '',
-          aria_label: 'Slide 3'
+          aria_current: ''
         },
         {
           id: 4,
-          type: 'button',
-          data_bs_target: '#carouselExampleCaptions',
-          data_bs_slide_to: 3,
           class: '',
-          aria_current: '',
-          aria_label: 'Slide 4'
+          aria_current: ''
         },
         {
           id: 5,
-          type: 'button',
-          data_bs_target: '#carouselExampleCaptions',
-          data_bs_slide_to: 4,
           class: '',
-          aria_current: '',
-          aria_label: 'Slide 5'
+          aria_current: ''
         },
         {
           id: 6,
-          type: 'button',
-          data_bs_target: '#carouselExampleCaptions',
-          data_bs_slide_to: 5,
           class: '',
-          aria_current: '',
-          aria_label: 'Slide 6'
+          aria_current: ''
         }
       ],
       carousel_images: [
         {
           id: 1,
           class: 'active',
-          img_src: '/images/carousel/Carousel-img0_1920.webp',
+          img_src: 'Carousel-img0_1920.webp',
           caption_title: 'Iubire de oameni',
           caption_text_1: 'Întotdeauna mi-a plăcut să fiu înconjurată de oameni și am ascultat cu încântare poveștile lor de viață.',
           caption_text_2: 'Am realizat că cel mai important dar pe care îl poți oferi lumii este timpul tău și energia ta.',
@@ -116,7 +92,7 @@ export default {
         {
           id: 2,
           class: '',
-          img_src: '/images/carousel/Carousel-img1_1920.webp',
+          img_src: 'Carousel-img1_1920.webp',
           caption_title: 'Inspirație pentru creștere',
           caption_text_1: '”Cei pe care îi servești, îți arată cum să crești”- Andy Szekely',
           caption_text_2: 'Din anul 2016 m-am lăsat ghidată de Andy Szekely în dezvoltarea mea si am crescut armonios. Participarea la evenimentele lui si comunitatea lui de oameni faini m-au inspirat și am devenit omul energic de acum.',
@@ -125,7 +101,7 @@ export default {
         {
           id: 3,
           class: '',
-          img_src: '/images/carousel/Carousel-img2_1920.webp',
+          img_src: 'Carousel-img2_1920.webp',
           caption_title: 'Liniște interioară',
           caption_text_1: 'În secolul vitezei și în lumea agitată în care trăim, a rămâne calm și liniștit este un lucru măreț.',
           caption_text_2: 'Relaxarea prin meditație și dans te ajută să înfrunți provocările în viață. Vrei să încerci?'
@@ -133,7 +109,7 @@ export default {
         {
           id: 4,
           class: '',
-          img_src: '/images/carousel/Carousel-img3_1920.webp',
+          img_src: 'Carousel-img3_1920.webp',
           caption_title: 'Împlinire prin dans',
           caption_text_1: 'Când ești pasionat de ceva încă de mic și vezi că nu îți trece cu nimic în timp, înseamnă că este ceea ce ți se potrivește.',
           caption_text_2: 'Dansez de când mă știu și îmi doresc să ghidez cât mai mulți oameni să-și găseasca propriul ritm în viață.',
@@ -142,7 +118,7 @@ export default {
         {
           id: 5,
           class: '',
-          img_src: '/images/carousel/Carousel-img4_1920.webp',
+          img_src: 'Carousel-img4_1920.webp',
           caption_title: 'Sunt aici să te ascult',
           caption_text_1: 'Când suntem ascultați și ghidați de cineva, lucrurile devin mai ușor de făcut.',
           caption_text_2: 'Cum și eu am găsit inspirație și oameni care m-au ascultat și ajutat în dezvoltarea mea, așa și tu poți.',
@@ -151,7 +127,7 @@ export default {
         {
           id: 6,
           class: '',
-          img_src: '/images/carousel/Carousel-img4_1920.webp',
+          img_src: 'Carousel-img4_1920.webp',
           caption_title: 'Alergător de fapte bune',
           caption_text_1: 'Am fost o persoană sedentară mulți ani și sportul nu-mi plăcea deloc. Dar când am descoperit că pot ajuta pe alții făcând mișcare, m-am apucat de alergat.',
           caption_text_2: 'Mișcarea în natură are multe beneficii atât fizice, cât și mentale și le-am simțit din plin la cursele de 10 km de până acum.',
@@ -163,17 +139,11 @@ export default {
         {
           id: 1,
           class: 'prev',
-          type: 'button',
-          data_bs_target: '#carouselExampleCaptions',
-          data_bs_slide: 'prev',
           name: 'Previous'
         },
         {
           id: 2,
           class: 'next',
-          type: 'button',
-          data_bs_target: '#carouselExampleCaptions',
-          data_bs_slide: 'next',
           name: 'Next'
         }
       ]

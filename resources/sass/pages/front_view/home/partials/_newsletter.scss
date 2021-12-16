@@ -63,6 +63,7 @@ $lvContainerSectionNewsletter: (
                 & .a-typography {
                     margin: rem-convertor(8px) 0rem;
                     padding: 0rem;
+                    color: map-get($lvContainerSectionNewsletter, "newsletter_font_color_form_check");
                     font-style: normal;
                     font-variant: normal;
                     font-weight: normal;

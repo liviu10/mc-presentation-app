@@ -14,21 +14,20 @@
     </div>
     <div class="lv-con-heading-buttons">
       <div class="lv-con-heading-buttons-appointment">
-        <button type="button" class="btn btn-primary btn-lg" @click="goTo">
-          <i class="far fa-clock" />
+        <router-link class="btn btn-primary btn-lg" to="/schedule-appointment">
           {{ $t('user.home_page.heading.schedule_appointment_btn') }}
-        </button>
+        </router-link>
       </div>
       <div class="lv-con-heading-buttons-social-media">
         <a v-for="share_button in jumbotron_buttons"
            :key="share_button.id"
            :href="share_button.url"
-           :class="share_button.class"
-           :target="share_button.target"
+           class="btn btn-primary btn-lg"
+           target="_blank"
            :title="share_button.title"
            rel="noreferrer"
         >
-          <fa :icon="[share_button.icon.prefix, share_button.icon.class]" fixed-width />
+          <fa :icon="['fab', share_button.icon_class]" fixed-width />
         </a>
       </div>
     </div>
@@ -44,42 +43,22 @@ export default {
         {
           id: 1,
           url: 'https://www.facebook.com/groups/269560668238590/?ref=share',
-          class: 'btn btn-primary btn-lg',
-          target: '_blank',
           title: this.$t('user.home_page.heading.social_media_btn.facebook_title'),
-          icon: {
-            prefix: 'fab',
-            class: 'facebook'
-          }
+          icon_class: 'facebook'
         },
         {
           id: 2,
           url: '',
-          class: 'btn btn-primary btn-lg',
-          target: '_blank',
           title: this.$t('user.home_page.heading.social_media_btn.instagram_title'),
-          icon: {
-            prefix: 'fab',
-            class: 'instagram'
-          }
+          icon_class: 'instagram'
         },
         {
           id: 3,
           url: '',
-          class: 'btn btn-primary btn-lg',
-          target: '_blank',
           title: this.$t('user.home_page.heading.social_media_btn.youtube_title'),
-          icon: {
-            prefix: 'fab',
-            class: 'youtube'
-          }
+          icon_class: 'youtube'
         }
       ]
-    }
-  },
-  methods: {
-    goTo () {
-      this.$router.push({ path: '/schedule-appointment' })
     }
   }
 }

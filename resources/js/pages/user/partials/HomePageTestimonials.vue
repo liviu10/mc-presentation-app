@@ -1,14 +1,14 @@
 <template>
-  <div id="carouselExampleCaptions1" class="carousel slide lv-con-testimonials" data-bs-ride="carousel">
+  <div id="testimonialCarousel" class="carousel slide lv-con-testimonials" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button v-for="carousel_indicator in carousel_indicators"
               :key="carousel_indicator.id"
-              :type="carousel_indicator.type"
-              :data-bs-target="carousel_indicator.data_bs_target"
-              :data-bs-slide-to="carousel_indicator.data_bs_slide_to"
+              type="button"
+              data-bs-target="#testimonialCarousel"
+              :data-bs-slide-to="carousel_indicator.id - 1"
               :class="carousel_indicator.class"
               :aria-current="carousel_indicator.aria_current"
-              :aria-label="carousel_indicator.aria_label"
+              :aria-label="'Slide ' + carousel_indicator.id"
       />
     </div>
     <div class="carousel-inner">
@@ -24,9 +24,9 @@
     <button v-for="carousel_control in carousel_controls"
             :key="carousel_control.id"
             :class="'carousel-control-' + carousel_control.class"
-            :type="carousel_control.type"
-            :data-bs-target="carousel_control.data_bs_target"
-            :data-bs-slide="carousel_control.data_bs_slide"
+            type="button"
+            data-bs-target="#testimonialCarousel"
+            :data-bs-slide="carousel_control.class"
     >
       <span :class="'carousel-control-' + carousel_control.class + '-icon'" aria-hidden="true" />
       <span class="visually-hidden">{{ carousel_control.name }}</span>
@@ -42,30 +42,18 @@ export default {
       carousel_indicators: [
         {
           id: 1,
-          type: 'button',
-          data_bs_target: '#carouselExampleCaptions1',
-          data_bs_slide_to: 0,
           class: 'active',
-          aria_current: 'true',
-          aria_label: 'Slide 1'
+          aria_current: 'true'
         },
         {
           id: 2,
-          type: 'button',
-          data_bs_target: '#carouselExampleCaptions1',
-          data_bs_slide_to: 1,
           class: '',
-          aria_current: '',
-          aria_label: 'Slide 2'
+          aria_current: ''
         },
         {
           id: 3,
-          type: 'button',
-          data_bs_target: '#carouselExampleCaptions1',
-          data_bs_slide_to: 2,
           class: '',
-          aria_current: '',
-          aria_label: 'Slide 3'
+          aria_current: ''
         }
       ],
       carousel_captions: [
@@ -95,17 +83,11 @@ export default {
         {
           id: 1,
           class: 'prev',
-          type: 'button',
-          data_bs_target: '#carouselExampleCaptions1',
-          data_bs_slide: 'prev',
           name: 'Previous'
         },
         {
           id: 2,
           class: 'next',
-          type: 'button',
-          data_bs_target: '#carouselExampleCaptions1',
-          data_bs_slide: 'next',
           name: 'Next'
         }
       ]
