@@ -6,12 +6,9 @@
     <div class="timeline">
       <!-- HORIZONTAL TIMELINE PICTURES, SECTION START -->
       <div class="timeline-picture">
-        <div v-for="image in timelineEventImages"
-             :key="image.id"
-             class="timeline-picture-event"
-        >
+        <div v-for="image in timelineEventImages" :key="image.id" class="timeline-picture-event">
           <div class="card">
-            <img :src="image.eventImageSource"
+            <img :src="'images/about-me/Img-Timeline' + (image.id - 1) + '.jpg'"
                  class="card-img-top"
                  :alt="image.eventImageAlternativeTitle"
                  data-bs-toggle="modal"
@@ -44,9 +41,7 @@
                       aria-label="Close"
                       :title="$t('user.about_me_page.timeline_modal_close')"
                   />
-                  <img :src="image.eventImageSource"
-                       :alt="image.eventImageAlternativeTitle"
-                  >
+                  <img :src="'images/about-me/Img-Timeline' + (image.id - 1) + '.jpg'" :alt="image.eventImageAlternativeTitle">
                 </div>
               </div>
             </div>
@@ -110,46 +105,36 @@
 <script>
 export default {
   name: 'AboutMeTimeline',
-  components: {},
-  layout: '',
-  middleware: '',
-  props: {},
   data: function () {
     return {
       timelineEventImages: [
         {
           id: 1,
-          eventImageSource: 'images/about-me/Img-Timeline0.jpg',
           eventImageAlternativeTitle: '',
           eventImageText: 'Some quick example text to build on the card title and make up the bulk of the card\'s content.'
         },
         {
           id: 2,
-          eventImageSource: 'images/about-me/Img-Timeline1.jpg',
           eventImageAlternativeTitle: '',
           eventImageText: 'Some quick example text to build on the card title and make up the bulk of the card\'s content.'
         },
         {
           id: 3,
-          eventImageSource: 'images/about-me/Img-Timeline2.jpg',
           eventImageAlternativeTitle: '',
           eventImageText: 'Some quick example text to build on the card title and make up the bulk of the card\'s content.'
         },
         {
           id: 4,
-          eventImageSource: 'images/about-me/Img-Timeline3.jpg',
           eventImageAlternativeTitle: '',
           eventImageText: 'Some quick example text to build on the card title and make up the bulk of the card\'s content.'
         },
         {
           id: 5,
-          eventImageSource: 'images/about-me/Img-Timeline4.jpg',
           eventImageAlternativeTitle: '',
           eventImageText: 'Some quick example text to build on the card title and make up the bulk of the card\'s content.'
         },
         {
           id: 6,
-          eventImageSource: 'images/about-me/Img-Timeline5.jpg',
           eventImageAlternativeTitle: '',
           eventImageText: 'Some quick example text to build on the card title and make up the bulk of the card\'s content.'
         }
@@ -181,12 +166,6 @@ export default {
         }
       ]
     }
-  },
-  computed: {
-    // mapped getters}
-  },
-  mounted () {},
-  methods: {},
-  metaInfo () {}
+  }
 }
 </script>

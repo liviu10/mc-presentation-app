@@ -25,17 +25,6 @@ export default {
   components: {
     AboutMeTimeline
   },
-  layout: '',
-  middleware: '',
-  props: {},
-  data: function () {
-    return {}
-  },
-  computed: {
-    // mapped getters}
-  },
-  mounted () {},
-  methods: {},
   metaInfo () {
     return { title: this.$t('user.about_me_page.page_title') }
   }
