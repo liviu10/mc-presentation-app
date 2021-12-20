@@ -18,6 +18,24 @@ $lvContainerSectionTestimonials: (
         margin-left: auto;
         width: 70%;
         height: rem-convertor(300px);
+        @media only screen and (max-width: 991px) {
+            width: 80%;
+        }
+        @media only screen and (max-width: 991px) and (min-width: 768px) {
+            height: rem-convertor(300px);
+        }
+        @media only screen and (max-width: 767px) and (min-width: 576px) {
+            height: rem-convertor(350px);
+        }
+        @media only screen and (max-width: 575px) and (min-width: 475px) {
+            height: rem-convertor(425px);
+        }
+        @media only screen and (max-width: 474px) and (min-width: 375px) {
+            height: rem-convertor(525px);
+        }
+        @media only screen and (max-width: 374px) and (min-width: 320px) {
+            height: rem-convertor(650px);
+        }
         & .carousel-item {
             padding-right: rem-convertor(15px);
             padding-left: rem-convertor(15px);
@@ -32,6 +50,15 @@ $lvContainerSectionTestimonials: (
         height: rem-convertor(36px);
         background-color: map-get($lvContainerSectionTestimonials, "testimonials_card_bg_color_btn");
         color: map-get($lvContainerSectionTestimonials, "testimonials_font_color");
+        @media only screen and (max-width: 767px) and (min-width: 475px) {
+            margin: 5% 0rem;
+        }
+        @media only screen and (max-width: 474px) and (min-width: 375px) {
+            margin: 15% 0rem;
+        }
+        @media only screen and (max-width: 374px) and (min-width: 320px) {
+            margin: 25% 0rem;
+        }
         &-icon {
             width: rem-convertor(20px);
             height: rem-convertor(20px);
