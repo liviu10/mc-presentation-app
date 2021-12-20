@@ -6,6 +6,7 @@ $lvContainerSectionHeading: (
 
 .lv-con-heading {
     @include flex-center();
+    padding: 0rem;
     @media only screen and (max-width: 992px) {
         padding-right: 0rem !important;
         padding-left: 0rem !important;
@@ -85,6 +86,7 @@ $lvContainerSectionHeading: (
         &-appointment {
             @media only screen and (max-width: 767px) {
                 margin-top: rem-convertor(20px);
+                margin-bottom: rem-convertor(20px);
             }
             & .btn {
                 padding-right: rem-convertor(8px);

@@ -1,0 +1,113 @@
+$lvContainerSectionBanner: (
+    carousel_indicators_bg_color:      map-get($basic_colors, "color_black"),
+    carousel_caption_bg_color:         map-get($basic_colors, "color_white"),
+    carousel_caption_font_color:       map-get($basic_colors, "color_black"),
+    carousel_caption_bg_color_btn:     map-get($pale_cerulean, "color_khaki"),
+    carousel_caption_border_color_btn: map-get($pale_cerulean, "color_khaki"),
+    carousel_caption_font_color_btn:   map-get($basic_colors, "color_black"),
+    carousel_controls_bg_color:        map-get($basic_colors, "color_white"),
+    carousel_controls_font_color:      map-get($basic_colors, "color_black")
+);
+
+.lv-con-banner-v1 {
+    width: 100%;
+    & .carousel-indicators {
+        margin-left: 47%;
+        margin-right: 0%;
+        @media only screen and (max-width: 991px) {
+            margin-left: 15%;
+            margin-right: 15%;
+        }
+        & button {
+            border-radius: 50%;
+            width: rem-convertor(15px);
+            height: rem-convertor(15px);
+            background-color: map-get($lvContainerSectionBanner, "carousel_indicators_bg_color");
+        }
+    }
+    & .carousel-img {
+        @include flex-center();
+        width: 50%;
+        @media only screen and (max-width: 991px) {
+            width: auto;
+        }
+    }
+    & .carousel-inner {
+        & .carousel-item {
+            transition-duration: 1.5s;
+        }
+    }
+    & .carousel-caption {
+        right: 0%;
+        left: 44%;
+        bottom: 0rem;
+        height: 100%;
+        display: flex !important;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-direction: column;
+        padding: rem-convertor(8px) rem-convertor(16px) rem-convertor(40px) rem-convertor(16px);
+        background-color: map-get($lvContainerSectionBanner, "carousel_caption_bg_color");
+        opacity: 1;
+        @media only screen and (max-width: 991px) {
+            position: unset;
+            right: 15%;
+            left: 15%;
+            margin-left: auto;
+            margin-right: auto;
+            width: rem-convertor(495px);
+            height: auto;
+        }
+        @media only screen and (max-width: 575px) and (min-width: 475px) {
+            width: rem-convertor(451px);
+        }
+        @media only screen and (max-width: 474px) and (min-width: 375px) {
+            width: rem-convertor(351px);
+        }
+        @media only screen and (max-width: 374px) and (min-width: 320px) {
+            width: rem-convertor(296px);
+        }
+        & p {
+            @include flex-center();
+            margin: rem-convertor(8px) 0rem;
+            height: rem-convertor(100px);
+            font-size: rem-convertor(22px);
+            color: map-get($lvContainerSectionBanner, "carousel_caption_font_color");
+            font-weight: 900;
+            user-select: none;
+        }
+        &-body {
+            & p {
+                margin: rem-convertor(8px) 0rem;
+                height: auto;
+                font-size: rem-convertor(16px);
+                color: map-get($lvContainerSectionBanner, "carousel_caption_font_color");
+                font-weight: 400;
+                user-select: none;
+            }
+        }
+        & .btn {
+            margin: rem-convertor(8px) 0rem;
+            background-color: map-get($lvContainerSectionBanner, "carousel_caption_bg_color_btn");
+            border-color: map-get($lvContainerSectionBanner, "carousel_caption_border_color_btn");
+            color: map-get($lvContainerSectionBanner, "carousel_caption_font_color_btn");
+            font-weight: bold;
+            &:focus {
+                border-color: transparent !important;
+                box-shadow: 0 rem-convertor(1px) rem-convertor(1px) transparent inset, 0 0 rem-convertor(8px) transparent !important;
+                outline: 0 none !important;
+            }
+        }
+    }
+    & .carousel-control-prev, & .carousel-control-next {
+        & .fas {
+            @include flex-center();
+            border-radius: 50%;
+            width: rem-convertor(36px);
+            height: rem-convertor(36px);
+            background-color: map-get($lvContainerSectionBanner, "carousel_controls_bg_color");
+            color: map-get($lvContainerSectionBanner, "carousel_controls_font_color");
+            opacity: 1;
+        }
+    }
+}

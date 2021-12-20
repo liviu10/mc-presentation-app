@@ -6,39 +6,14 @@ $lvContainerSectionNewsletter: (
 );
 
 .lv-con-newsletter {
-    & form {
-        margin-bottom: rem-convertor(0px);
-    }
+    padding: 0rem !important;
     & .row {
+        --bs-gutter-x: 0rem !important;
+        flex-wrap: nowrap;
         &:first-child {
-            margin-right: rem-convertor(0px);
             margin-bottom: rem-convertor(16px);
-        }
-        & .col {
-            padding: rem-convertor(0px);
-            & .form-control {
-                border-radius: rem-convertor(0px);
-                height: rem-convertor(60px);
-            }
-            & .btn {
-                height: rem-convertor(60px);
-                border-radius: rem-convertor(0px);
-                background-color: map-get($lvContainerSectionNewsletter, "newsletter_bg_color_btn");
-                border-color: map-get($lvContainerSectionNewsletter, "newsletter_border_color_btn");
-                border-radius: rem-convertor(0px);
-                color: map-get($lvContainerSectionNewsletter, "newsletter_font_color_btn");
-                font-weight: bold;
-                text-transform: uppercase;
-                &:focus {
-                    border-color: transparent !important;
-                    box-shadow: 0 rem-convertor(1px) rem-convertor(1px) transparent inset, 0 0 rem-convertor(8px) transparent !important;
-                    outline: 0 none !important;
-                }
-            }
-            & input[type="text"]:focus, input[type="email"]:focus {
-                border-color: transparent;
-                box-shadow: 0 rem-convertor(1px) rem-convertor(1px) transparent inset, 0 0 rem-convertor(8px) transparent;
-                outline: 0 none;
+            @media only screen and (max-width: 991px) {
+                flex-direction: column;
             }
         }
         & .form-check {
@@ -83,11 +58,48 @@ $lvContainerSectionNewsletter: (
                     }
                 }
             }
-            & .invalid-feedback {
-                @media only screen and (max-width: 767px) {
-                    text-align: center;
-                }
+        }
+    }
+    &-form {
+        padding: rem-convertor(0px);
+        @media only screen and (max-width: 991px) {
+            width: 100%;
+        }
+        & .form-control {
+            border-radius: rem-convertor(0px);
+            height: rem-convertor(60px);
+        }
+        & .btn {
+            height: rem-convertor(60px);
+            border-radius: rem-convertor(0px);
+            background-color: map-get($lvContainerSectionNewsletter, "newsletter_bg_color_btn");
+            border-color: map-get($lvContainerSectionNewsletter, "newsletter_border_color_btn");
+            border-radius: rem-convertor(0px);
+            color: map-get($lvContainerSectionNewsletter, "newsletter_font_color_btn");
+            font-weight: bold;
+            text-transform: uppercase;
+            @media only screen and (max-width: 991px) {
+                width: 100%;
             }
+            &:focus {
+                border-color: transparent !important;
+                box-shadow: 0 rem-convertor(1px) rem-convertor(1px) transparent inset, 0 0 rem-convertor(8px) transparent !important;
+                outline: 0 none !important;
+            }
+        }
+        & input[type="text"]:focus, input[type="email"]:focus {
+            border-color: transparent;
+            box-shadow: 0 rem-convertor(1px) rem-convertor(1px) transparent inset, 0 0 rem-convertor(8px) transparent;
+            outline: 0 none;
+        }
+        & input::placeholder {
+            font-style: italic;
+        }
+    }
+    & .invalid-feedback {
+        margin-bottom: rem-convertor(4px);
+        @media only screen and (max-width: 767px) {
+            text-align: center;
         }
     }
 }

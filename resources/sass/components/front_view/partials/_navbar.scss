@@ -13,7 +13,7 @@ $navbar_link_font_family: inherit;
             margin-right: 0rem !important;
             font-size: rem-convertor(18px) !important;
         }
-        @media only screen and (max-width: 575px) {
+        @media only screen and (max-width: 767px) {
             align-items: flex-start;
             flex-direction: column !important;
             font-size: rem-convertor(20px) !important;
@@ -27,6 +27,9 @@ $navbar_link_font_family: inherit;
             word-wrap: break-word;
             @media only screen and (max-width: 575px) {
                 margin: rem-convertor(8px) 0rem !important;
+            }
+            @media only screen and (max-width: 425px) {
+                width: rem-convertor(240px);
             }
         }
     }

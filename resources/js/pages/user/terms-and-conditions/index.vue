@@ -8,10 +8,10 @@
           <p>Date last modified: September 10, 2021</p>
           <!-- PAGE TITLE & PUBLICATION DATE, SECTION END -->
           <!-- PAGE SHORT DESCRIPTION, SECTION START -->
-          <h3 class="lv-pg-terms-title-subtitle">
+          <h3 class="lv-pg-terms-header-subtitle">
             Lorem, ipsum dolor.
           </h3>
-          <p class="lv-pg-terms-title-lead">
+          <p class="lv-pg-terms-header-lead">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit.
             Fugit ad sint odio laborum tempora unde enim fuga. Est nihil modi eligendi suscipit.
             Quod, illo doloribus voluptatibus corporis non in illum perferendis, aperiam ipsa sequi commodi ducimus mollitia nobis!
@@ -24,7 +24,7 @@
             a modi deserunt doloremque velit reiciendis minus nihil impedit tempora amet blanditiis quasi eum.
           </p>
           <!-- PAGE SHORT DESCRIPTION, SECTION END -->
-          <p class="lv-pg-terms-title-info">
+          <p class="lv-pg-terms-header-info">
             PLEASE READ THIS TERMS OF USE AGREEMENT VERY CAREFULLY BEFORE USING THE WEBSITE.
           </p>
         </div>

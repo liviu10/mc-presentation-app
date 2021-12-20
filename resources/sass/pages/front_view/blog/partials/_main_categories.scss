@@ -4,48 +4,73 @@ $lvContainerSectionBlog: (
 );
 
 .lv-con-sect-categories {
+    margin-top: rem-convertor(50px);
+    margin-bottom: rem-convertor(50px);
+    @media only screen and (max-width: 991px) {
+        flex-direction: column;
+    }
     & .card {
         border-radius: rem-convertor(0px);
         background-color: map-get($lvContainerSectionBlog, "card_blog_bg_color") !important;
         border-width: rem-convertor(0px);
+        &:nth-child(2) {
+            margin: 0rem rem-convertor(16px);
+            @media only screen and (max-width: 991px) {
+                margin: rem-convertor(16px) 0rem !important;
+            }
+        }
+        @media only screen and (max-width: 991px) and (min-width: 475px) {
+            width: rem-convertor(384px) !important;
+        }
+        @media only screen and (max-width: 474px) and (min-width: 375px) {
+            width: rem-convertor(352px) !important;
+        }
+        @media only screen and (max-width: 374px) and (min-width: 320px) {
+            width: rem-convertor(320px) !important;
+        }
+        & a {
+            & img {
+                @media only screen and (max-width: 991px) and (min-width: 475px) {
+                    height: rem-convertor(288px);
+                }
+                @media only screen and (max-width: 474px) and (min-width: 375px) {
+                    height: rem-convertor(264px);
+                }
+                @media only screen and (max-width: 374px) and (min-width: 320px) {
+                    height: rem-convertor(240px);
+                }
+            }
+        }
         &-title {
             margin-bottom: rem-convertor(0px);
+            padding: rem-convertor(8px) rem-convertor(8px);
+            height: rem-convertor(50px);
             color: map-get($lvContainerSectionBlog, "card_blog_font_color") !important;
+            font-size: rem-convertor(22px);
+            font-weight: 900;
+            text-transform: uppercase;
+            user-select: none;
             text-align: center;
         }
         &-body {
-            &:first-of-type {
-                & p {
-                    font-size: rem-convertor(22px);
-                }
+            & p {
+                @include flex-center();
+                padding-bottom: rem-convertor(0px);
+                height: rem-convertor(205px);
+                font-size: rem-convertor(18px);
             }
-            &:last-child {
+            &:last-of-type {
                 & p {
                     margin: rem-convertor(8px) 0rem;
-                    font-size: rem-convertor(18px);
-                }
-            }
-            &:first-of-type, &:last-child {
-                & p {
+                    height: auto;
+                    color: map-get($lvContainerSectionBlog, "card_blog_font_color") !important;
                     font-weight: 900;
                     text-transform: uppercase;
-                    user-select: none;
+                }
+                & a {
+                    color: map-get($lvContainerSectionBlog, "card_blog_font_color") !important;
                 }
             }
-            &:nth-last-child(2) {
-                padding-bottom: rem-convertor(0px);
-            }
-            &:last-child {
-                @include flex-center();
-                flex-direction: column;
-            }
-            & a {
-                color: map-get($lvContainerSectionBlog, "card_blog_font_color") !important;
-            }
-        }
-        &-text {
-            color: map-get($lvContainerSectionBlog, "card_blog_font_color") !important;
-            text-align: justify;
         }
     }
 }

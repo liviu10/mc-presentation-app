@@ -3,7 +3,7 @@
     <form @submit.prevent="subscribe" @keydown="form.onKeydown($event)">
       <div class="row">
         <!-- FULL NAME, SECTION START -->
-        <div class="col col-xxl-5 col-xl-5 col-lg-5 col-md-6 col-sm-12 col-12">
+        <div class="lv-con-newsletter-form col-xxl-5 col-xl-5 col-lg-5">
           <input id="subscriber_full_name"
                  v-model="form.full_name"
                  type="text"
@@ -16,7 +16,7 @@
         </div>
         <!-- FULL NAME, SECTION END -->
         <!-- EMAIL ADDRESS, SECTION START -->
-        <div class="col col-xxl-5 col-xl-5 col-lg-5 col-md-6 col-sm-12 col-12">
+        <div class="lv-con-newsletter-form col-xxl-5 col-xl-5 col-lg-5">
           <input id="subscriber_email"
                  v-model="form.email"
                  type="email"
@@ -28,8 +28,8 @@
           <has-error :form="form" field="email" />
         </div>
         <!-- EMAIL ADDRESS, SECTION END -->
-        <div class="col col-xxl-2 col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12">
-          <button type="submit" class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 btn btn-success">
+        <div class="lv-con-newsletter-form col-xxl-2 col-xl-2 col-lg-2">
+          <button type="submit" class="btn btn-success">
             {{ $t('user.home_page.newsletter.subscribe_button') }}
           </button>
         </div>

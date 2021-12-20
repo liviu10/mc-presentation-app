@@ -2,11 +2,9 @@
   <div class="lv-con-sect-categories">
     <!-- MAIN CATEGORIES: WRITTEN ARTICLES, AUDIO AND VIDEO, SECTION START -->
     <div v-for="category in displayAllBlogCategoriesAndSubcategories" :key="category.id" class="card" style="width: 20rem;">
-      <div class="card-body">
-        <p class="card-title">
-          {{ category.blog_category_title }}
-        </p>
-      </div>
+      <p class="card-title">
+        {{ category.blog_category_title }}
+      </p>
       <router-link :to="{ path: category.blog_category_path }">
         <img :src="category.blog_image_card_url" class="d-block w-100" width="320" height="240" alt="...">
       </router-link>
