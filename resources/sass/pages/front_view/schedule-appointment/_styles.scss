@@ -6,57 +6,37 @@ $lvContainerPageAppointment: (
     heading_font_color_btn:   map-get($basic_colors, "color_black"),
 );
 
-.lv-pg-appointment {
-    @include flex-center();
-    flex-direction: column;
-    @media only screen and (max-width: 992px) {
-        padding-right: 0rem !important;
-        padding-left: 0rem !important;
-    }
+.lv-pg-appointment, .lv-con-pg-questionnaire {
     &-header {
-        margin-top: rem-convertor(50px);
-        margin-bottom: rem-convertor(50px);
-        @media only screen and (max-width: 575px) {
-            margin-top: 0rem !important;
-            margin-bottom: 0rem !important;
-        }
-        h1 {
-            margin-bottom: rem-convertor(0px);
+        & h1 {
+            margin: rem-convertor(64px) 0rem;
             text-align: center;
         }
-    }
-    &-body {
-        margin-top: rem-convertor(64px);
-        margin-bottom: rem-convertor(64px);
-        @media only screen and (max-width: 575px) {
-            margin-top: 0rem !important;
-            margin-bottom: 0rem !important;
+        & p {
+            margin-bottom: 0rem;
+            text-align: justify;
         }
-        & .lead {
-            margin-top: rem-convertor(64px);
-            margin-bottom: rem-convertor(64px);
-            @media only screen and (max-width: 992px) {
-                text-align: justify;
-            }
+    }
+}
+.lv-pg-appointment {
+    &-body {
+        & h1 {
+            margin: rem-convertor(64px) 0rem;
+            text-align: center;
         }
         & p {
-            margin-top: rem-convertor(16px);
-            margin-bottom: rem-convertor(16px);
-            @media only screen and (max-width: 992px) {
-                text-align: justify;
-            }
+            margin: 0rem;
+            text-align: center;
         }
     }
     &-button {
         @include flex-center();
-        margin-top: rem-convertor(16px);
-        margin-bottom: rem-convertor(16px);
+        margin: rem-convertor(32px) 0rem;
         & .btn {
-            margin-top: rem-convertor(20px);
-            margin-bottom: rem-convertor(20px);
+            margin: rem-convertor(20px) 0rem;
             background-color: map-get($lvContainerPageAppointment, "heading_bg_color_btn");
             border-color: map-get($lvContainerPageAppointment, "heading_border_color_btn");
-            border-radius: rem-convertor(0px);
+            border-radius: 0rem;
             font-weight: bold;
             color: map-get($lvContainerPageAppointment, "heading_font_color_btn");
             &:focus {
