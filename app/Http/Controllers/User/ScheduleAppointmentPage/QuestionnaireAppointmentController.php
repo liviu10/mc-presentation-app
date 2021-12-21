@@ -29,8 +29,7 @@ class QuestionnaireAppointmentController extends Controller
     {
         $allQuestionnaires = $this->modelNameQuestionnaire::select(
             'id',
-            'title',
-            'scope'
+            'title'
         )
         ->IsActive()
         ->get();
@@ -85,15 +84,17 @@ class QuestionnaireAppointmentController extends Controller
         ->where('id', '=', $id)
         ->with([
             'questionnaire_questions' => function ($query) {
+                // TODO: Paginate eloquent results and display 5-6 questions per page
                 $query->select(
                     'questionnaire_id',
                     'question_type_id',
                     'id',
                     'name',
-                    'media_card_url',
-                    'answer_suggestion'
+                    'answer_suggestion',
+                    'questionnaire_media_type_id',
+                    'media_card_url'
                 );
-            }
+            },
         ])
         ->get();
 

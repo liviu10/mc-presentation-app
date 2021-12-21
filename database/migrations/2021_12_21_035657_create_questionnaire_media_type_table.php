@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
-class CreateQuestionnaireQuestionsTable extends Migration
+class CreateQuestionnaireMediaTypeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,14 +14,9 @@ class CreateQuestionnaireQuestionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('questionnaire_questions', function (Blueprint $table) {
+        Schema::create('questionnaire_media_type', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('questionnaire_id');
-            $table->foreignId('question_type_id');
-            $table->string('name');
-            $table->string('answer_suggestion');
-            $table->foreignId('questionnaire_media_type_id');
-            $table->string('media_card_url');
+            $table->string('media_type_name');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
@@ -34,6 +29,6 @@ class CreateQuestionnaireQuestionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('questionnaire_questions');
+        Schema::dropIfExists('questionnaire_media_type');
     }
 }

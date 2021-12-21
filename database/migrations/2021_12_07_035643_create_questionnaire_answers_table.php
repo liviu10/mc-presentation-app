@@ -22,11 +22,6 @@ class CreateQuestionnaireAnswersTable extends Migration
             $table->string('answer_3');
             $table->string('answer_4');
             $table->string('answer_5');
-            $table->string('answer_6');
-            $table->string('answer_7');
-            $table->string('answer_8');
-            $table->string('answer_9');
-            $table->string('answer_10');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });

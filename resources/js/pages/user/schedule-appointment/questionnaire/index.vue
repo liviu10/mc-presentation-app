@@ -12,18 +12,28 @@
         </div>
         <div class="lv-con-pg-questionnaire-body">
           <!-- QUESTIONNAIRE QUESTION 1, START SECTION -->
-          <div class="card">
+          <div v-for="question in questionnaire.questionnaire_questions" :key="question.id" class="card">
             <div class="card-body">
               <p class="lv-con-pg-questionnaire-body-question-name">
-                {{ questionnaire.questionnaire_questions[0].id }}. {{ questionnaire.questionnaire_questions[0].name }}
+                {{ question.id }}. {{ question.name }}
               </p>
               <p class="lv-con-pg-questionnaire-body-question-suggestion">
-                {{ questionnaire.questionnaire_questions[0].answer_suggestion }}
+                {{ question.answer_suggestion }}
               </p>
-              <p class="lv-con-pg-questionnaire-body-question-image">
-                <img :src="questionnaire.questionnaire_questions[0].media_card_url" alt="" width="auto" height="auto">
+              <p v-if="question.questionnaire_media_type_id === 1" class="lv-con-pg-questionnaire-body-question-image" />
+              <p v-if="question.questionnaire_media_type_id === 2" class="lv-con-pg-questionnaire-body-question-image">
+                <img :src="question.media_card_url" alt="" width="auto" height="auto">
               </p>
-              <div class="card-text">
+              <p v-if="question.questionnaire_media_type_id === 3" class="lv-con-pg-questionnaire-body-question-image">
+                <iframe width="480" height="288"
+                        :src="question.media_card_url"
+                        title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                />
+              </p>
+              <div v-if="question.question_type_id === 1" class="card-text">
                 <div class="form-check">
                   <input id="flexCheckDefault" class="form-check-input" type="checkbox">
                   <label class="form-check-label" for="flexCheckDefault">
@@ -44,6 +54,16 @@
                 </div>
                 <div class="input-group">
                   <input type="text" class="form-control" placeholder="Altceva">
+                </div>
+              </div>
+              <div v-if="question.question_type_id === 2" class="card-text">
+                <div>
+                  Measuring scale here
+                </div>
+              </div>
+              <div v-if="question.question_type_id === 6" class="card-text">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Introduceți unul sau câteva cuvinte...">
                 </div>
               </div>
             </div>
