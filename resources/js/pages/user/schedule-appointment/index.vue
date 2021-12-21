@@ -22,15 +22,27 @@
           </p>
         </div>
         <div v-for="questionnaire in displayAllQuestionnaires" :key="questionnaire.id" class="lv-pg-appointment-body">
-          <p class="lead">
+          <h1>
             {{ questionnaire.title }}
+          </h1>
+          <p>
+            Bine te regăsesc. Mădălina sunt și îmi doresc să-ți aflu povestea emoțională.
           </p>
           <p>
-            {{ questionnaire.scope }}
+            Am creat acest chestionar pentru a te cunoaște mai bine.
+          </p>
+          <p>
+            Sunt câteva întrebări și completarea lui durează maxim 5 minute.
+          </p>
+          <p>
+            Iar în cel mult 48 de ore vei primi pe email rezultatul.
+          </p>
+          <p>
+            Mulțumesc anticipat pentru timpul acordat.
           </p>
           <div class="lv-pg-appointment-button">
             <button type="button" class="btn btn-primary btn-lg" @click="goToQuestionnaire(questionnaire.id)">
-              Începe chestionarul!
+              Începeți chestionarul acum!
             </button>
           </div>
         </div>

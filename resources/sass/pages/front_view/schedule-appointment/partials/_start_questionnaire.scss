@@ -1,0 +1,120 @@
+$lvContainerPageQuestionnaire: (
+    btn_bg_color:       map-get($pale_cerulean, "color_khaki"),
+    btn_border_color:   map-get($pale_cerulean, "color_khaki"),
+    btn_font_color:     map-get($basic_colors, "color_black"),
+    card_blog_bg_color: map-get($pale_cerulean, "color_khaki"),
+);
+
+.lv-con-pg-questionnaire {
+    &-body {
+        margin: rem-convertor(48px) 0rem;
+        & .card {
+            margin: rem-convertor(24px) auto;
+            border-radius: rem-convertor(0px);
+            background-color: map-get($lvContainerPageQuestionnaire, "card_blog_bg_color") !important;
+            border-width: rem-convertor(0px);
+            width: rem-convertor(700px);
+            @media only screen and (max-width: 767px) and (min-width: 576px) {
+                width: rem-convertor(556px);
+            }
+            @media only screen and (max-width: 575px) and (min-width: 475px) {
+                width: rem-convertor(455px);
+            }
+            @media only screen and (max-width: 474px) and (min-width: 425px) {
+                width: rem-convertor(405px);
+            }
+            @media only screen and (max-width: 424px) and (min-width: 375px) {
+                width: rem-convertor(355px);
+            }
+            @media only screen and (max-width: 374px) and (min-width: 320px) {
+                width: rem-convertor(307px);
+            }
+            &-text {
+                margin: 0rem auto;
+                width: rem-convertor(550px);
+                @media only screen and (max-width: 767px) and (min-width: 320px) {
+                    width: auto;
+                }
+                & .form-check, & .input-group {
+                    height: rem-convertor(50px);
+                }
+                & .form-check {
+                    @include flex-center-left-center();
+                    margin-top: rem-convertor(10px);
+                    margin-top: rem-convertor(10px);
+                    margin-bottom: rem-convertor(8px);
+                    border: rem-convertor(1px) solid #CED4DA;
+                    background-color: #FFFFFF;
+                    font-size: rem-convertor(18px);
+                    &-input {
+                        margin-left: rem-convertor(-10px);
+                        width: rem-convertor(18px);
+                        height: rem-convertor(18px);
+                    }
+                    &-label {
+                        margin-top: rem-convertor(3px);
+                        margin-left: rem-convertor(10px);
+                        width: 100%;
+                    }
+                }
+                & .form-control {
+                    border-radius: 0rem;
+                }
+                & input[type="text"]:focus {
+                    border-color: transparent;
+                    box-shadow: 0 rem-convertor(1px) rem-convertor(1px) transparent inset, 0 0 rem-convertor(8px) transparent;
+                    outline: 0 none;
+                    height: rem-convertor(50px);
+                }
+                & input::placeholder {
+                    font-style: italic;
+                    font-size: rem-convertor(18px);
+                }
+            }
+        }
+        &-question-name {
+            margin-bottom: 0rem;
+            font-size: rem-convertor(20px);
+            font-weight: 900;
+        }
+        &-question-suggestion {
+            margin-left: rem-convertor(20px);
+            font-style: italic;
+        }
+        &-question-image {
+            @include flex-center();
+            margin: rem-convertor(32px) 0rem;
+            & img {}
+        }
+        &-button {
+            @include flex-center();
+            & .btn {
+                margin-top: rem-convertor(20px);
+                margin-bottom: rem-convertor(20px);
+                background-color: map-get($lvContainerPageQuestionnaire, "btn_bg_color");
+                border-color: map-get($lvContainerPageQuestionnaire, "btn_border_color");
+                border-radius: rem-convertor(0px);
+                font-weight: bold;
+                color: map-get($lvContainerPageQuestionnaire, "btn_font_color");
+                @media only screen and (max-width: 767px) {
+                    margin-top: 0rem;
+                    margin-bottom: 0rem;
+                }
+                &:focus {
+                    border-color: transparent !important;
+                    box-shadow: 0 1px 1px transparent inset, 0 0 8px transparent !important;
+                    outline: 0 none !important;
+                }
+                & .svg-inline--fa {
+                    @include flex-center();
+                    width: rem-convertor(25px);
+                    height: rem-convertor(25px);
+                    @media only screen and (max-width: 767px) {
+                        width: rem-convertor(35px);
+                        height: rem-convertor(35px);
+                    }
+                }
+            }
+        }
+    }
+}
