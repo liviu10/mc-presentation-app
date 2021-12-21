@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             QuestionnaireSeeder::class,
             // QuestionnaireQuestionTypeSeeder::class,
             QuestionnaireQuestionSeeder::class,
+            QuestionnaireMediaTypeSeeder::class,
             // QuestionnaireAnswerSeeder::class,
         ]);
     }

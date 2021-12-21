@@ -53,8 +53,9 @@ class QuestionnaireQuestion extends Model
         'questionnaire_id',
         'question_type_id',
         'name',
-        'media_card_url',
         'answer_suggestion',
+        'questionnaire_media_type_id',
+        'media_card_url',
     ];
 
     /**
@@ -77,6 +78,16 @@ class QuestionnaireQuestion extends Model
     public function questionnaire()
     {
         return $this->belongsTo('App\Models\Questionnaire');
+    }
+
+    /**
+     * Eloquent relationship between questionnaire_questions and questionnaire_media_type.
+     * Many questionnaire questions may have only one questionnaire media type.
+     *
+     */
+    public function questionnaire_media_type()
+    {
+        return $this->belongsTo('App\Models\QuestionnaireMediaType');
     }
 
     /**

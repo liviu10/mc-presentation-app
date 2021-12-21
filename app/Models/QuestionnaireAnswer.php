@@ -57,11 +57,6 @@ class QuestionnaireAnswer extends Model
         'answer_3',
         'answer_4',
         'answer_5',
-        'answer_6',
-        'answer_7',
-        'answer_8',
-        'answer_9',
-        'answer_10'
     ];
 
     /**
