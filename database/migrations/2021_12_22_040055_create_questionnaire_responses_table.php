@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
-class CreateQuestionnaireContactTable extends Migration
+class CreateQuestionnaireResponsesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,13 +14,14 @@ class CreateQuestionnaireContactTable extends Migration
      */
     public function up()
     {
-        Schema::create('questionnaire_contact', function (Blueprint $table) {
+        Schema::create('questionnaire_responses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('questionnaire_id');
-            $table->string('full_name', 255)->nullable(false);
-            $table->string('email', 255)->nullable(false);
-            $table->string('telephone_number', 255)->nullable(false);
-            $table->string('privacy_policy', 3);
+            $table->foreignId('questionnaire_answer_id');
+            $table->string('response_1');
+            $table->string('response_2');
+            $table->string('response_3');
+            $table->string('response_4');
+            $table->string('response_5');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
@@ -33,6 +34,6 @@ class CreateQuestionnaireContactTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('questionnaire_contact');
+        Schema::dropIfExists('questionnaire_responses');
     }
 }
