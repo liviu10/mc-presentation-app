@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Questionnaire;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class QuestionnaireContact extends Model
+class QuestionnaireResponse extends Model
 {
     use HasFactory;
 
@@ -14,7 +14,7 @@ class QuestionnaireContact extends Model
      * 
      * @var string
      */
-    protected $table = 'questionnaire_contact';
+    protected $table = 'questionnaire_responses';
 
     /**
      * The primary key associated with the table.
@@ -35,7 +35,7 @@ class QuestionnaireContact extends Model
      * 
      * @var int
      */
-    protected $foreignKey = 'questionnaire_id';
+    protected $foreignKey = 'questionnaire_answer_id';
 
     /**
      * The data type of the foreign key.
@@ -50,20 +50,13 @@ class QuestionnaireContact extends Model
      * @var string
      */
     protected $fillable = [
-        'questionnaire_id',
-        'full_name',
-        'email',
-        'telephone_number',
-        'privacy_policy',
-    ];
-
-    /**
-     * The attributes that are mass assignable.
-     * 
-     * @var string
-     */
-    protected $attributes = [
-        'privacy_policy' => false,
+        'id',
+        'questionnaire_answer_id',
+        'response_1',
+        'response_2',
+        'response_3',
+        'response_4',
+        'response_5',
     ];
 
     /**
@@ -79,12 +72,12 @@ class QuestionnaireContact extends Model
     ];
 
     /**
-     * Eloquent relationship between questionnaire_questions and questionnaires.
-     * Many questionnaire questions may have only one questionnaire.
+     * Eloquent relationship between questionnaire_answers and questionnaire_questions.
+     * Many questionnaire answers may have only one questionnaire question.
      *
      */
-    public function questionnaire()
+    public function questionnaire_answer()
     {
-        return $this->belongsTo('App\Models\Questionnaire');
+        return $this->belongsTo('App\Models\Questionnaire\QuestionnaireAnswer');
     }
 }

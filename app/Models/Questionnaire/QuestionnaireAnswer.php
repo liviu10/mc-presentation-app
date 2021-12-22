@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Questionnaire;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -60,15 +60,6 @@ class QuestionnaireAnswer extends Model
     ];
 
     /**
-     * The attributes that are mass assignable.
-     * 
-     * @var string
-     */
-    protected $attributes = [
-        'questionnaire_question_is_active' => false,
-    ];
-
-    /**
      * The attributes that aren't mass assignable.
      *
      * @var array
@@ -87,6 +78,16 @@ class QuestionnaireAnswer extends Model
      */
     public function questionnaire_question()
     {
-        return $this->belongsTo('App\Models\QuestionnaireQuestion');
+        return $this->belongsTo('App\Models\Questionnaire\QuestionnaireQuestion');
+    }
+
+    /**
+     * Eloquent relationship between questionnaire_answers and questionnaire_responses.
+     * One questionnaire answer may have one or many questionnaire response.
+     *
+     */
+    public function questionnaire_responses()
+    {
+        return $this->hasMany('App\Models\Questionnaire\QuestionnaireResponse');
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\User\ScheduleAppointmentPage;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Questionnaire;
+use App\Models\Questionnaire\Questionnaire;
 
 class QuestionnaireAppointmentController extends Controller
 {
@@ -64,7 +64,43 @@ class QuestionnaireAppointmentController extends Controller
      */
     public function store(Request $request)
     {
-        // 
+        dd($request);
+        try 
+        {
+            $request->validate([
+                'answer_1' => 'accepted',
+                'answer_2' => 'accepted',
+                'answer_3' => 'accepted',
+                'answer_4' => 'accepted',
+                'answer_5' => 'required',
+            ]);
+            $records = $this->modelNameContactMe->create([
+                'answer_1' => $request->get('answer_1'),
+                'answer_2' => $request->get('answer_2'),
+                'answer_3' => $request->get('answer_3'),
+                'answer_4' => $request->get('answer_4'),
+                'answer_5' => $request->get('answer_5'),
+            ]);
+            $apiInsertSingleRecord = [
+                'answer_1' => $records['answer_1'],
+                'answer_2' => $records['answer_2'],
+                'answer_3' => $records['answer_3'],
+                'answer_4' => $records['answer_4'],
+                'answer_5' => $records['answer_5'],
+            ];
+            return response()->json($apiInsertSingleRecord);
+        }
+        catch  (\Illuminate\Database\QueryException $mysqlError)
+        {
+            if ($mysqlError->getCode() === '42S02') 
+            {
+                return response([], 500)->json();
+            }
+            if ($mysqlError->getCode() === '42S22') 
+            {
+                return response([], 500)->json();
+            }
+        }
     }
 
     /**
@@ -93,6 +129,17 @@ class QuestionnaireAppointmentController extends Controller
                     'answer_suggestion',
                     'questionnaire_media_type_id',
                     'media_card_url'
+                );
+            },
+            'questionnaire_questions.questionnaire_answers' => function ($query) {
+                $query->select(
+                    'questionnaire_question_id',
+                    'id',
+                    'answer_1',
+                    'answer_2',
+                    'answer_3',
+                    'answer_4',
+                    'answer_5'
                 );
             },
         ])

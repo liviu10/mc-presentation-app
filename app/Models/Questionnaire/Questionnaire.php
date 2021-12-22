@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Questionnaire;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -80,16 +80,6 @@ class Questionnaire extends Model
      */
     public function questionnaire_questions()
     {
-        return $this->hasMany('App\Models\QuestionnaireQuestion');
-    }
-
-    /**
-     * Eloquent relationship between questionnaires and questionnaire_contact.
-     * One questionnaire may have one or more questionnaire contacts.
-     *
-     */
-    public function questionnaire_contacts()
-    {
-        return $this->hasMany('App\Models\QuestionnaireContact');
+        return $this->hasMany('App\Models\Questionnaire\QuestionnaireQuestion');
     }
 }

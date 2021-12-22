@@ -3,19 +3,22 @@ import axios from 'axios'
 // state
 export const state = {
   questionnaires: [],
-  singleQuestionnaire: []
+  singleQuestionnaire: [],
+  finishQuestionnaire: []
 }
 
 // getters
 export const getters = {
   allQuestionnaires: (state) => state.questionnaires,
-  singleQuestionnaire: (state) => state.singleQuestionnaire
+  singleQuestionnaire: (state) => state.singleQuestionnaire,
+  finishQuestionnaire: (state) => state.finishQuestionnaire
 }
 
 // mutations
 export const mutations = {
   setQuestionnaires: (state, questionnaires) => (state.questionnaires = questionnaires),
-  setSingleQuestionnaires: (state, singleQuestionnaire) => (state.singleQuestionnaire = singleQuestionnaire)
+  setSingleQuestionnaires: (state, singleQuestionnaire) => (state.singleQuestionnaire = singleQuestionnaire),
+  finishQuestionnaire (state, data) { state.finishQuestionnaire[data.id] = data }
 }
 
 // actions
@@ -49,5 +52,18 @@ export const actions = {
         console.log('>>>>>> Http request error: ', response.data)
         commit('setSingleQuestionnaires', response.data)
       })
+  },
+  async finishQuestionnaire ({ commit, dispatch }, payload) {
+    try {
+      const url = window.location.origin
+      const apiEndPoint = '/api/schedule-appointment/questionnaire'
+      const fullApiUrl = url + apiEndPoint
+      const { data } = await axios.post(fullApiUrl, payload)
+      commit('finishQuestionnaire', payload)
+      return data
+    } catch (e) {
+      console.log(e)
+    }
   }
+
 }

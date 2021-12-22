@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Questionnaire;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -57,6 +57,6 @@ class QuestionnaireMediaType extends Model
      */
     public function questionnaire_questions()
     {
-        return $this->hasMany('App\Models\QuestionnaireQuestion');
+        return $this->hasMany('App\Models\Questionnaire\QuestionnaireQuestion');
     }
 }
