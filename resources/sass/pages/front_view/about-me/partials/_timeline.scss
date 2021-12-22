@@ -235,8 +235,14 @@ $lvTimeline: (
                     height: rem-convertor(30px);
                     color: #FFFFFF;
                     opacity: 1 !important;
+                    @media only screen and (max-width: 425px) {
+                        left: 91%;
+                    }
+                    @media only screen and (max-width: 375px) {
+                        left: 89%;
+                    }
                     @media only screen and (max-width: 320px) {
-                        left: 86%;
+                        left: 87%;
                     }
                 }
                 & img {
