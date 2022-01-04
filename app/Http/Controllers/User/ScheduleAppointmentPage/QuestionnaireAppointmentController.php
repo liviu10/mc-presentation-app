@@ -5,10 +5,12 @@ namespace App\Http\Controllers\User\ScheduleAppointmentPage;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Questionnaire\Questionnaire;
+use App\Models\Questionnaire\QuestionnaireResponse;
 
 class QuestionnaireAppointmentController extends Controller
 {
     protected $modelNameQuestionnaire;
+    protected $modelNameQuestionnaireResponse;
 
     /**
      * Instantiate the variables that will be used to get the model.
@@ -18,6 +20,7 @@ class QuestionnaireAppointmentController extends Controller
     public function __construct()
     {
         $this->modelNameQuestionnaire = new Questionnaire();
+        $this->modelNameQuestionnaireResponse = new QuestionnaireResponse();
     }
 
     /**
@@ -64,31 +67,25 @@ class QuestionnaireAppointmentController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
         try 
         {
-            $request->validate([
-                'answer_1' => 'accepted',
-                'answer_2' => 'accepted',
-                'answer_3' => 'accepted',
-                'answer_4' => 'accepted',
-                'answer_5' => 'required',
-            ]);
-            $records = $this->modelNameContactMe->create([
-                'answer_1' => $request->get('answer_1'),
-                'answer_2' => $request->get('answer_2'),
-                'answer_3' => $request->get('answer_3'),
-                'answer_4' => $request->get('answer_4'),
-                'answer_5' => $request->get('answer_5'),
+            $records = $this->modelNameQuestionnaireResponse->create([
+                'questionnaire_answer_id' => $request->get('questionnaire_answer_id'),
+                'response_1' => $request->get('response_1'),
+                'response_2' => $request->get('response_2'),
+                'response_3' => $request->get('response_3'),
+                'response_4' => $request->get('response_4'),
+                'response_5' => $request->get('response_5'),
             ]);
             $apiInsertSingleRecord = [
-                'answer_1' => $records['answer_1'],
-                'answer_2' => $records['answer_2'],
-                'answer_3' => $records['answer_3'],
-                'answer_4' => $records['answer_4'],
-                'answer_5' => $records['answer_5'],
+                'questionnaire_answer_id' => $request->get('questionnaire_answer_id'),
+                'response_1' => $request->get('response_1'),
+                'response_2' => $request->get('response_2'),
+                'response_3' => $request->get('response_3'),
+                'response_4' => $request->get('response_4'),
+                'response_5' => $request->get('response_5'),
             ];
-            return response()->json($apiInsertSingleRecord);
+            return response()->json(true);
         }
         catch  (\Illuminate\Database\QueryException $mysqlError)
         {

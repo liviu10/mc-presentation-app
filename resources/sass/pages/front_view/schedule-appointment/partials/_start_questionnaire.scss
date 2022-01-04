@@ -77,6 +77,11 @@ $lvContainerPageQuestionnaire: (
             font-size: rem-convertor(20px);
             font-weight: 900;
         }
+        &-question-tooltip {
+            margin-bottom: 0rem;
+            font-size: rem-convertor(14px);
+            font-style: italic;
+        }
         &-question-suggestion {
             font-style: italic;
         }
@@ -95,10 +100,6 @@ $lvContainerPageQuestionnaire: (
                 border-radius: rem-convertor(0px);
                 font-weight: bold;
                 color: map-get($lvContainerPageQuestionnaire, "btn_font_color");
-                @media only screen and (max-width: 767px) {
-                    margin-top: 0rem;
-                    margin-bottom: 0rem;
-                }
                 &:focus {
                     border-color: transparent !important;
                     box-shadow: 0 1px 1px transparent inset, 0 0 8px transparent !important;

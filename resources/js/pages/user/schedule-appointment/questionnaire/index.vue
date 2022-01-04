@@ -12,7 +12,7 @@
         </div>
         <form @submit.prevent="finishQuestionnaire" @keydown="form.onKeydown($event)">
           <div class="lv-con-pg-questionnaire-body">
-            <!-- QUESTIONNAIRE QUESTION 1, START SECTION -->
+            <!-- QUESTIONNAIRE QUESTIONS, START SECTION -->
             <div v-for="question in questionnaire.questionnaire_questions" :key="question.id" class="card">
               <div class="card-body">
                 <p class="lv-con-pg-questionnaire-body-question-name">
@@ -36,89 +36,88 @@
                 </p>
                 <div v-for="answer in question.questionnaire_answers" :key="answer.id">
                   <div v-if="question.question_type_id === 1" class="card-text">
+                    <p class="lv-con-pg-questionnaire-body-question-tooltip">
+                      (Pentru a alege altă variantă de răspuns debifează varianta aleasă inițial)
+                    </p>
                     <div class="form-check">
-                      <input id="answer_1"
+                      <input :id="answer.id + '_answer_1'"
                              v-model="form.answer_1"
-                             :class="{ 'is-invalid': form.errors.has('answer_1') }"
                              class="form-check-input"
                              type="checkbox"
                              name="answer_1"
+                             :disabled="form.answer_2 || form.answer_3 || form.answer_4 || form.answer_5 ? true : false"
                       >
-                      <label class="form-check-label" for="answer_1">
+                      <label class="form-check-label" :for="answer.id + '_answer_1'">
                         {{ answer.answer_1 }}
                       </label>
-                      <has-error :form="form" field="answer_1" />
                     </div>
                     <div class="form-check">
                       <input id="answer_2"
                              v-model="form.answer_2"
-                             :class="{ 'is-invalid': form.errors.has('answer_2') }"
                              class="form-check-input"
                              type="checkbox"
                              name="answer_2"
+                             :disabled="form.answer_1 || form.answer_3 || form.answer_4 || form.answer_5 ? true : false"
                       >
                       <label class="form-check-label" for="answer_2">
                         {{ answer.answer_2 }}
                       </label>
                     </div>
-                    <has-error :form="form" field="answer_2" />
                     <div class="form-check">
                       <input id="answer_3"
                              v-model="form.answer_3"
-                             :class="{ 'is-invalid': form.errors.has('answer_3') }"
                              class="form-check-input"
                              type="checkbox"
                              name="answer_3"
+                             :disabled="form.answer_1 || form.answer_2 || form.answer_4 || form.answer_5 ? true : false"
                       >
                       <label class="form-check-label" for="answer_3">
                         {{ answer.answer_3 }}
                       </label>
                     </div>
-                    <has-error :form="form" field="answer_3" />
                     <div class="form-check">
                       <input id="answer_4"
                              v-model="form.answer_4"
-                             :class="{ 'is-invalid': form.errors.has('answer_4') }"
                              class="form-check-input"
                              type="checkbox"
                              name="answer_4"
+                             :disabled="form.answer_1 || form.answer_2 || form.answer_3 || form.answer_5 ? true : false"
                       >
                       <label class="form-check-label" for="answer_4">
                         {{ answer.answer_4 }}
                       </label>
                     </div>
-                    <has-error :form="form" field="answer_4" />
                     <div class="input-group">
                       <input id="answer_5"
                              v-model="form.answer_5"
-                             :class="{ 'is-invalid': form.errors.has('answer_5') }"
                              class="form-control"
                              type="text"
                              :placeholder="answer.answer_5"
+                             :disabled="form.answer_1 || form.answer_2 || form.answer_3 || form.answer_4 ? true : false"
                       >
                     </div>
-                    <has-error :form="form" field="answer_5" />
                   </div>
                   <div v-if="question.question_type_id === 2" class="card-text">
                     <div>
                       {{ answer.answer_1 }}
                     </div>
                   </div>
-                  <has-error :form="form" field="answer_1" />
                   <div v-if="question.question_type_id === 6" class="card-text">
                     <div class="input-group">
                       <input type="text" class="form-control" :placeholder="answer.answer_5 + '...'">
                     </div>
                   </div>
-                  <has-error :form="form" field="answer_5" />
                 </div>
               </div>
-            </div>
-            <!-- QUESTIONNAIRE QUESTION 1, START END -->
-            <div class="lv-con-pg-questionnaire-body-button">
-              <button type="submit" class="btn btn-primary" @click="finishQuestionnaire(question.id)">
-                TRIMITE
-              </button>
+              <!-- QUESTIONNAIRE QUESTIONS, END SECTION -->
+              <div class="lv-con-pg-questionnaire-body-button">
+                <button type="submit" class="btn btn-primary" @click.stop.prevent="finishQuestionnaire(question.id)">
+                  RĂSPUNDE
+                </button>
+                <!-- <button type="submit" class="btn btn-primary" @click.stop.prevent="finishQuestionnaire(question.id)">
+                  RESETEAZĂ
+                </button> -->
+              </div>
             </div>
           </div>
         </form>
@@ -142,13 +141,16 @@ export default {
   name: 'StartQuestionnairePage',
   data: function () {
     return {
-      form: new Form({
-        answer_1: false,
-        answer_2: false,
-        answer_3: false,
-        answer_4: false,
-        answer_5: ''
-      })
+      form: new Form([
+        {
+          value: 'Varianta 1',
+          answer_1: false
+        }
+        // answer_2: false,
+        // answer_3: false,
+        // answer_4: false,
+        // answer_5: ''
+      ])
     }
   },
   computed: {
@@ -170,18 +172,18 @@ export default {
     ...mapActions({
       fetchSingleQuestionnaire: 'questionnaire/fetchSingleQuestionnaire'
     }),
+    answerHasBeenResponded () {
+      console.log('> Check form: ', this.form)
+    },
     async finishQuestionnaire (id) {
-      console.log('> Check form errors: ', this.form.errors.has('answer_1'))
-      console.log('> Check form errors: ', this.form.errors.get('answer_1'))
       const payload = {
-        id: id,
-        answer_1: this.form.answer_1,
-        answer_2: this.form.answer_2,
-        answer_3: this.form.answer_3,
-        answer_4: this.form.answer_4,
-        answer_5: this.form.answer_5
+        questionnaire_answer_id: id,
+        response_1: this.form.answer_1,
+        response_2: this.form.answer_2,
+        response_3: this.form.answer_3,
+        response_4: this.form.answer_4,
+        response_5: this.form.answer_5
       }
-      console.log('> Check form payload: ', payload)
       try {
         await this.$store.dispatch('questionnaire/finishQuestionnaire', payload)
         // TODO: route push to another page and empty the form after leaving the page
