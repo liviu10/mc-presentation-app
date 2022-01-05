@@ -32,7 +32,7 @@
         </div>
       </div>
     </div>
-    <button v-for="carousel_control in carousel_controls"
+    <!-- <button v-for="carousel_control in carousel_controls"
             :key="carousel_control.id"
             :class="'carousel-control-' + carousel_control.class"
             type="button"
@@ -41,7 +41,7 @@
     >
       <span :class="'carousel-control-' + carousel_control.class + '-icon'" aria-hidden="true" />
       <span class="visually-hidden">{{ carousel_control.name }}</span>
-    </button>
+    </button> -->
   </div>
 </template>
 
@@ -155,19 +155,19 @@ export default {
           },
           caption_quote: false
         }
-      ],
-      carousel_controls: [
-        {
-          id: 1,
-          class: 'prev',
-          name: 'Previous'
-        },
-        {
-          id: 2,
-          class: 'next',
-          name: 'Next'
-        }
       ]
+      // carousel_controls: [
+      //   {
+      //     id: 1,
+      //     class: 'prev',
+      //     name: 'Previous'
+      //   },
+      //   {
+      //     id: 2,
+      //     class: 'next',
+      //     name: 'Next'
+      //   }
+      // ]
     }
   }
 }

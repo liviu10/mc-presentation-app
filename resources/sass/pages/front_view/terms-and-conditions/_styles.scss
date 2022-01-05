@@ -6,11 +6,12 @@
     &-header {
         margin-bottom: rem-convertor(35px);
         & h1 {
-            margin-bottom: rem-convertor(0px);
+            margin-bottom: rem-convertor(36px) !important;
             font-weight: bold;
         }
         & p {
             margin-bottom: rem-convertor(35px);
+            text-align: justify;
         }
         & h1, & p:first-of-type {
             @media only screen and (max-width: 575px) {
@@ -51,6 +52,7 @@
             }
             &-paragraph {
                 margin-bottom: rem-convertor(0px);
+                text-align: justify;
                 @media only screen and (max-width: 992px) {
                     text-align: justify !important;
                 }

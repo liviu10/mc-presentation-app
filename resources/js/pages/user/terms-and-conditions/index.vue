@@ -4,7 +4,7 @@
       <div class="lv-pg-terms">
         <div class="lv-pg-terms-header">
           <!-- PAGE TITLE & PUBLICATION DATE, SECTION START -->
-          <h1>Terms and Conditions</h1>
+          <h1>Termeni și Condiții</h1>
           <p>Date last modified: September 10, 2021</p>
           <!-- PAGE TITLE & PUBLICATION DATE, SECTION END -->
           <!-- PAGE SHORT DESCRIPTION, SECTION START -->
@@ -135,7 +135,7 @@
 export default {
   name: 'TermsAndConditions',
   metaInfo () {
-    return { title: this.$t('user.blog_page.page_title') }
+    return { title: this.$t('user.terms_and_conditions_page.page_title') }
   }
 }
 </script>

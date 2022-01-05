@@ -1,6 +1,6 @@
 $lvContainerSectionNewsletter: (
-    newsletter_bg_color_btn:          map-get($pale_cerulean, "color_khaki"),
-    newsletter_border_color_btn:      map-get($pale_cerulean, "color_khaki"),
+    newsletter_bg_color_btn:          map-get($complementary_pale_cerulean, "color_sea_nymph"),
+    newsletter_border_color_btn:      map-get($complementary_pale_cerulean, "color_sea_nymph"),
     newsletter_font_color_btn:        map-get($basic_colors, "color_black"),
     newsletter_font_color_form_check: map-get($basic_colors, "color_black"),
 );

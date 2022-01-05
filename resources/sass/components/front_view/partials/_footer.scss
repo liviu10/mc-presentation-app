@@ -9,7 +9,7 @@ $lvContainerSectionFooter: (
     unsubscribe_font_color_form_check:   map-get($basic_colors, "color_black"),
 );
 
-$background_color: map-get($pale_cerulean, "color_khaki");
+$background_color: map-get($complementary_pale_cerulean, "color_sea_nymph");
 $font_color: inherit;
 
 .container-fluid {
@@ -99,9 +99,40 @@ $font_color: inherit;
                     color: $font_color;
                     font-weight: bold;
                     user-select: none;
+                    & .email {
+                        position: relative;
+                        top: rem-convertor(-3px);
+                    }
+                    & a {
+                        color: $font-color;
+                    }
                     &:last-child {
+                        @include flex-center();
                         @media only screen and (max-width: 575px) {
                             text-align: center;
+                        }
+                        & span {
+                            position: relative;
+                            top: rem-convertor(-3px);
+                        }
+                        & a {
+                            color: $font-color;
+                            & .fa-facebook, & .fa-instagram, & .fa-youtube {
+                                border-radius: 50%;
+                                padding: rem-convertor(5px);
+                                width: rem-convertor(24px);
+                                height: rem-convertor(24px);
+                                color: #FFFFFF;
+                            }
+                            & .fa-facebook {
+                                background-color: #3B5998;
+                            }
+                            & .fa-instagram {
+                                background-color: #125688;
+                            }
+                            & .fa-youtube {
+                                background-color: #BB0000;
+                            }
                         }
                     }
                     & .btn {
@@ -110,33 +141,6 @@ $font_color: inherit;
                         background-color: transparent;
                         @media only screen and (max-width: 575px) {
                             padding: 0rem !important;
-                        }
-                    }
-                    & a {
-                        color: $font-color;
-                        & .fab {
-                            @include flex-center();
-                            &.fa-facebook-f {
-                                border-radius: 50%;
-                                width: rem-convertor(30px);
-                                height: rem-convertor(30px);
-                                background-color: #3B5998;
-                                color: #FFFFFF;
-                            }
-                            &.fa-instagram {
-                                border-radius: 50%;
-                                width: rem-convertor(30px);
-                                height: rem-convertor(30px);
-                                background-color: #125688;
-                                color: #FFFFFF;
-                            }
-                            &.fa-youtube {
-                                border-radius: 50%;
-                                width: rem-convertor(30px);
-                                height: rem-convertor(30px);
-                                background-color: #BB0000;
-                                color: #FFFFFF;
-                            }
                         }
                     }
                 }
