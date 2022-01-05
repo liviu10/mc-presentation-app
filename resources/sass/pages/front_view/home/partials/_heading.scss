@@ -1,6 +1,6 @@
 $lvContainerSectionHeading: (
-    heading_bg_color_btn:     map-get($pale_cerulean, "color_khaki"),
-    heading_border_color_btn: map-get($pale_cerulean, "color_khaki"),
+    heading_bg_color_btn:     map-get($complementary_pale_cerulean, "color_sea_nymph"),
+    heading_border_color_btn: map-get($complementary_pale_cerulean, "color_sea_nymph"),
     heading_font_color_btn:   map-get($basic_colors, "color_black"),
 );
 
@@ -101,6 +101,24 @@ $lvContainerSectionHeading: (
             display: flex;
             align-items: center;
             justify-content: space-evenly;
+            & a {
+                & .fa-facebook, & .fa-instagram, & .fa-youtube {
+                    border-radius: 50%;
+                    padding: rem-convertor(5px);
+                    width: rem-convertor(24px);
+                    height: rem-convertor(24px);
+                    color: #FFFFFF;
+                }
+                & .fa-facebook {
+                    background-color: #3B5998;
+                }
+                & .fa-instagram {
+                    background-color: #125688;
+                }
+                & .fa-youtube {
+                    background-color: #BB0000;
+                }
+            }
         }
     }
 }

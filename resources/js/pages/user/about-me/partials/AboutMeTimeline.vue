@@ -59,7 +59,7 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <h4 id="readMoreImageModalLabel" class="modal-title">
-                    Modal title
+                    Descriere experiență
                   </h4>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />
                 </div>

@@ -1,6 +1,6 @@
 $lvContainerSectionTestimonials: (
-    testimonials_carousel_indicators_bg_color: map-get($basic_colors, "color_black"),
-    testimonials_card_bg_color_btn:            map-get($basic_colors, "color_black"),
+    testimonials_carousel_indicators_bg_color: map-get($complementary_pale_cerulean, "color_sea_nymph"),
+    testimonials_card_bg_color_btn:            map-get($complementary_pale_cerulean, "color_sea_nymph"),
     testimonials_font_color:                   map-get($basic_colors, "color_white"),
 );
 
@@ -50,6 +50,7 @@ $lvContainerSectionTestimonials: (
         height: rem-convertor(36px);
         background-color: map-get($lvContainerSectionTestimonials, "testimonials_card_bg_color_btn");
         color: map-get($lvContainerSectionTestimonials, "testimonials_font_color");
+        opacity: 1;
         @media only screen and (max-width: 767px) and (min-width: 475px) {
             margin: 5% 0rem;
         }

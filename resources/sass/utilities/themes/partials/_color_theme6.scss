@@ -1,0 +1,46 @@
+/***** COLOR THEME: BLIZZARD BLUE *****/
+
+// Main Color Theme: Blizzard Blue
+$blizzard_blue: (
+    color_blizzard_blue:       #A1E2E2,
+);
+
+// Complementary Color Theme based on each of the colors from the Main Color Theme
+$complementary_pale_cerulean: (
+    color_sea_nymph:           #719E9E,
+    color_dew:                 #EDFFFF,
+    color_cashmere:            #E2BBA1,
+    color_beaver:              #9E8371,
+);
+
+// Monochromatic Color Theme based on each of the colors from the Main Color Theme
+$monochromatic_pale_cerulean: (
+    color_sea_nymph:           #719E9E,
+    color_dew:                 #EDFFFF,
+    color_baby_blue:           #DAFFFF,
+    color_white:               #FFFFFF,
+);
+
+// Analogous Color Theme base on each of the colors from the Main Color Theme
+$analogous_pale_cerulean: (
+    color_sea_nymph:           #719E9E,
+    color_dull_lavender:       #A1B1E2,
+    color_granny_smith_apple:  #A1E2A1,
+    color_amulet:              #719E71,
+);
+
+// Triadic Color Theme based on each of the colors from the Main Color Theme
+$triadic_pale_cerulean: (
+    color_sea_nymph:           #719E9E,
+    color_light_orchid:        #E2A1D2,
+    color_mountbatten_pink:    #9E7193,
+    color_zombie:              #E2D5A1,
+);
+
+// Tetradic Color Theme based on each of the colors from the Main Color Theme
+$tetradic_pale_cerulean: (
+    color_cashmere:            #E2BBA1,
+    color_beaver:              #9E8371,
+    color_dark_vanilla:        #AAAAE2,
+    color_granny_smith_apple:  #77779E,
+);

@@ -10,8 +10,8 @@
         <div class="container-footer-menu-contact">
           <!-- FOOTER MENU EMAIL, SECTION START -->
           <p>
-            <i class="fas fa-at" />
-            <a href="mailto:contact@madalinacorina.ro">
+            <fa icon="at" fixed-width />
+            <a href="mailto:contact@madalinacorina.ro" class="email">
               contact@madalinacorina.ro
             </a>
           </p>
@@ -20,13 +20,13 @@
           <!-- FOOTER MENU SOCIAL MEDIA, SECTION START -->
           <p>
             <span>{{ $t('footer.social_menu.title') }}</span>
-            <a href="https://www.facebook.com/groups/269560668238590/?ref=share" class="btn btn-primary btn-lg" target="_blank" :title="$t('footer.social_menu.facebook')" rel="noreferrer">
+            <a href="https://www.facebook.com/groups/269560668238590/?ref=share" class="btn btn-primary" target="_blank" :title="$t('footer.social_menu.facebook')" rel="noreferrer">
               <fa :icon="['fab', 'facebook']" fixed-width />
             </a>
-            <a href="" class="btn btn-primary btn-lg" target="_blank" :title="$t('footer.social_menu.instagram')" rel="noreferrer">
+            <a href="" class="btn btn-primary" target="_blank" :title="$t('footer.social_menu.instagram')" rel="noreferrer">
               <fa :icon="['fab', 'instagram']" fixed-width />
             </a>
-            <a href="" class="btn btn-primary btn-lg" target="_blank" :title="$t('footer.social_menu.youtube')" rel="noreferrer">
+            <a href="" class="btn btn-primary" target="_blank" :title="$t('footer.social_menu.youtube')" rel="noreferrer">
               <fa :icon="['fab', 'youtube']" fixed-width />
             </a>
           </p>

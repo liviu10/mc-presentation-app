@@ -1,9 +1,9 @@
 $lvContainerSectionBanner: (
-    carousel_indicators_bg_color:      map-get($basic_colors, "color_black"),
-    carousel_caption_bg_color:         map-get($basic_colors, "color_white"),
+    carousel_indicators_bg_color:      map-get($complementary_pale_cerulean, "color_sea_nymph"),
+    carousel_caption_bg_color:         map-get($complementary_pale_cerulean, "color_dew"),
     carousel_caption_font_color:       map-get($basic_colors, "color_black"),
-    carousel_caption_bg_color_btn:     map-get($pale_cerulean, "color_khaki"),
-    carousel_caption_border_color_btn: map-get($pale_cerulean, "color_khaki"),
+    carousel_caption_bg_color_btn:     map-get($complementary_pale_cerulean, "color_sea_nymph"),
+    carousel_caption_border_color_btn: map-get($complementary_pale_cerulean, "color_sea_nymph"),
     carousel_caption_font_color_btn:   map-get($basic_colors, "color_black"),
     carousel_controls_bg_color:        map-get($basic_colors, "color_white"),
     carousel_controls_font_color:      map-get($basic_colors, "color_black")
@@ -12,8 +12,15 @@ $lvContainerSectionBanner: (
 .lv-con-banner-v1 {
     width: 100%;
     & .carousel-indicators {
-        margin-left: 44%;
+        // margin-left: 44%;
+        margin-left: 38%;
         margin-right: 0%;
+        @media only screen and (max-width: 1399px) {
+            margin-left: 44%;
+        }
+        @media only screen and (max-width: 1199px) {
+            margin-left: 53%;
+        }
         @media only screen and (max-width: 991px) {
             margin-left: 15%;
             margin-right: 15%;
@@ -26,9 +33,10 @@ $lvContainerSectionBanner: (
         }
     }
     & .carousel-img {
-        @include flex-center();
-        width: 50%;
+        // @include flex-center();
+        // width: 50%;
         @media only screen and (max-width: 991px) {
+            @include flex-center();
             width: auto;
         }
     }
@@ -39,7 +47,8 @@ $lvContainerSectionBanner: (
     }
     & .carousel-caption {
         right: 0%;
-        left: 44%;
+        // left: 44%;
+        left: 38%;
         bottom: 0rem;
         height: 100%;
         display: flex !important;
@@ -49,6 +58,12 @@ $lvContainerSectionBanner: (
         padding: rem-convertor(8px) rem-convertor(16px) rem-convertor(40px) rem-convertor(16px);
         background-color: map-get($lvContainerSectionBanner, "carousel_caption_bg_color");
         opacity: 1;
+        @media only screen and (max-width: 1399px) {
+            left: 44%;
+        }
+        @media only screen and (max-width: 1199px) {
+            left: 53%;
+        }
         @media only screen and (max-width: 991px) {
             position: unset;
             right: 15%;
@@ -90,6 +105,7 @@ $lvContainerSectionBanner: (
             margin: rem-convertor(8px) 0rem;
             background-color: map-get($lvContainerSectionBanner, "carousel_caption_bg_color_btn");
             border-color: map-get($lvContainerSectionBanner, "carousel_caption_border_color_btn");
+            border-radius: 0rem;
             color: map-get($lvContainerSectionBanner, "carousel_caption_font_color_btn");
             font-weight: bold;
             &:focus {
