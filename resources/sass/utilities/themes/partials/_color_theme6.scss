@@ -3,44 +3,64 @@
 // Main Color Theme: Blizzard Blue
 $blizzard_blue: (
     color_blizzard_blue:       #A1E2E2,
+    // color_blizzard_blue:       hsl(180, 53%, 85%),
 );
 
 // Complementary Color Theme based on each of the colors from the Main Color Theme
 $complementary_pale_cerulean: (
     color_sea_nymph:           #719E9E,
+    // color_sea_nymph:           hsl(180, 19%, 53%),
     color_dew:                 #EDFFFF,
+    // color_dew:                 hsl(180, 100%, 96%),
     color_cashmere:            #E2BBA1,
+    // color_cashmere:            hsl(24, 53%, 76%),
     color_beaver:              #9E8371,
+    // color_beaver:              hsl(24, 19%, 60%),
 );
 
 // Monochromatic Color Theme based on each of the colors from the Main Color Theme
 $monochromatic_pale_cerulean: (
     color_sea_nymph:           #719E9E,
+    // color_sea_nymph:           hsl(180, 19%, 65%),
     color_dew:                 #EDFFFF,
+    // color_dew:                 hsl(180, 100%, 96%),
     color_baby_blue:           #DAFFFF,
+    // color_baby_blue:           hsl(180, 100%, 93%),
     color_white:               #FFFFFF,
 );
 
 // Analogous Color Theme base on each of the colors from the Main Color Theme
 $analogous_pale_cerulean: (
     color_sea_nymph:           #719E9E,
+    // color_sea_nymph:           hsl(180, 19%, 65%),
     color_dull_lavender:       #A1B1E2,
+    // color_dull_lavender:       hsl(225, 53%, 85%),
     color_granny_smith_apple:  #A1E2A1,
+    // color_granny_smith_apple:  hsl(120, 53%, 85%),
     color_amulet:              #719E71,
+    // color_amulet:              hsl(120, 19%, 65%),
 );
 
 // Triadic Color Theme based on each of the colors from the Main Color Theme
 $triadic_pale_cerulean: (
     color_sea_nymph:           #719E9E,
+    // color_sea_nymph:           hsl(180, 19%, 65%),
     color_light_orchid:        #E2A1D2,
+    // color_light_orchid:        hsl(315, 53%, 85%),
     color_mountbatten_pink:    #9E7193,
+    // color_mountbatten_pink:    hsl(315, 19%, 75%),
     color_zombie:              #E2D5A1,
+    // color_zombie:              hsl(48, 53%, 85%),
 );
 
 // Tetradic Color Theme based on each of the colors from the Main Color Theme
 $tetradic_pale_cerulean: (
     color_cashmere:            #E2BBA1,
+    // color_cashmere:            hsl(24, 53%, 76%),
     color_beaver:              #9E8371,
-    color_dark_vanilla:        #AAAAE2,
+    // color_beaver:              hsl(24, 19%, 60%),
+    color_cold_purple:         #AAAAE2,
+    // color_cold_purple:         hsl(240, 49%, 80%),
     color_granny_smith_apple:  #77779E,
+    // color_granny_smith_apple:  hsl(120, 53%, 85%),
 );
