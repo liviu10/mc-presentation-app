@@ -58,8 +58,8 @@
       },
       "subcategory_name": "Subcategorie: ",
       "written_article_blog_pages": {
-        "meta_title": "Articole scrise",
-        "page_title": "Articole scrise",
+        "meta_title": "Articole",
+        "page_title": "Articole",
         "reading_time": {
           "less_than_one_minute": "Mai puțin de 1 min de lectură",
           "more_than_one_minute": "min de lectură"
@@ -102,8 +102,8 @@
         }
       },
       "audio_article_blog_pages": {
-        "meta_title": "Articole audio",
-        "page_title": "Articole audio",
+        "meta_title": "Audio",
+        "page_title": "Audio",
         "listening_time": {
           "less_than_one_minute": "Mai puțin de 1 min de ascultare",
           "more_than_one_minute": "min de ascultare"
@@ -146,8 +146,8 @@
         }
       },
       "video_article_blog_pages": {
-        "meta_title": "Articole video",
-        "page_title": "Articole video",
+        "meta_title": "Video",
+        "page_title": "Video",
         "listening_time": {
           "less_than_one_minute": "Mai puțin de 1 min de vizualizare",
           "more_than_one_minute": "min de vizualizare"

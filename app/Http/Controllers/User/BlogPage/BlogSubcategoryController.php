@@ -203,7 +203,8 @@ class BlogSubcategoryController extends Controller
     {
         $allWrittenBlogArticles = $this->modelNameBlogSubcategories::select(
             'id',
-            'blog_subcategory_title'
+            'blog_subcategory_title',
+            'blog_subcategory_path'
         )
         ->IsWrittenArticle()
         ->IsActive()
@@ -257,7 +258,8 @@ class BlogSubcategoryController extends Controller
     {
         $allAudioBlogArticles = $this->modelNameBlogSubcategories::select(
             'id',
-            'blog_subcategory_title'
+            'blog_subcategory_title',
+            'blog_subcategory_path'
         )
         ->IsAudioArticle()
         ->IsActive()
@@ -311,7 +313,8 @@ class BlogSubcategoryController extends Controller
     {
         $allVideoBlogArticles = $this->modelNameBlogSubcategories::select(
             'id',
-            'blog_subcategory_title'
+            'blog_subcategory_title',
+            'blog_subcategory_path'
         )
         ->IsVideoArticle()
         ->IsActive()

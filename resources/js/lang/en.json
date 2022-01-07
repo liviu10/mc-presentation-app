@@ -58,8 +58,8 @@
       },
       "subcategory_name": "Subcategory: ",
       "written_article_blog_pages": {
-        "meta_title": "Written articles",
-        "page_title": "Written articles",
+        "meta_title": "Articles",
+        "page_title": "Articles",
         "reading_time": {
           "less_than_one_minute": "Less than 1 min reading",
           "more_than_one_minute": "min reading"
@@ -102,8 +102,8 @@
         }
       },
       "audio_article_blog_pages": {
-        "meta_title": "Audio articles",
-        "page_title": "Audio articles",
+        "meta_title": "Audio",
+        "page_title": "Audio",
         "listening_time": {
           "less_than_one_minute": "Less than 1 min audio",
           "more_than_one_minute": "min audio"
@@ -146,8 +146,8 @@
         }
       },
       "video_article_blog_pages": {
-        "meta_title": "Video articles",
-        "page_title": "Video articles",
+        "meta_title": "Video",
+        "page_title": "Video",
         "listening_time": {
           "less_than_one_minute": "Less than 1 min watching",
           "more_than_one_minute": "min watching"

@@ -28,7 +28,7 @@
                 <p>
                   {{ $t('user.blog_system_pages.subcategory_name') }}
                   <span>
-                    <a href="">{{ blogContent.blog_subcategory_title }}</a>
+                    <a :href="blogContent.blog_subcategory_path">{{ blogContent.blog_subcategory_title }}</a>
                   </span>
                 </p>
                 <p v-if="writtenArticle.updated_at == writtenArticle.created_at">
