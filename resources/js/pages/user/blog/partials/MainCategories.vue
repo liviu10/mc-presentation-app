@@ -57,7 +57,6 @@ export default {
   created () {
     this.fetchBlogCategoriesAndSubcategories()
   },
-  mounted () {},
   methods: {
     ...mapActions({
       fetchBlogCategoriesAndSubcategories: 'blog/fetchBlogCategoriesAndSubcategories'

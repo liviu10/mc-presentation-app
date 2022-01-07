@@ -201,7 +201,10 @@ class BlogSubcategoryController extends Controller
      */
     public function getAllWrittenBlogArticles()
     {
-        $allWrittenBlogArticles = $this->modelNameBlogSubcategories::select('id')
+        $allWrittenBlogArticles = $this->modelNameBlogSubcategories::select(
+            'id',
+            'blog_subcategory_title'
+        )
         ->IsWrittenArticle()
         ->IsActive()
         ->with([
@@ -213,6 +216,7 @@ class BlogSubcategoryController extends Controller
                     'blog_article_title',
                     'blog_article_time',
                     'created_at',
+                    'updated_at',
                     'blog_article_short_description',
                     'blog_article_path',
                 )
@@ -251,7 +255,10 @@ class BlogSubcategoryController extends Controller
      */
     public function getAllAudioBlogArticles()
     {
-        $allAudioBlogArticles = $this->modelNameBlogSubcategories::select('id')
+        $allAudioBlogArticles = $this->modelNameBlogSubcategories::select(
+            'id',
+            'blog_subcategory_title'
+        )
         ->IsAudioArticle()
         ->IsActive()
         ->with([
@@ -263,6 +270,7 @@ class BlogSubcategoryController extends Controller
                     'blog_article_title',
                     'blog_article_time',
                     'created_at',
+                    'updated_at',
                     'blog_article_short_description',
                     'blog_article_path',
                 )
@@ -301,7 +309,10 @@ class BlogSubcategoryController extends Controller
      */
     public function getAllVideoBlogArticles()
     {
-        $allVideoBlogArticles = $this->modelNameBlogSubcategories::select('id')
+        $allVideoBlogArticles = $this->modelNameBlogSubcategories::select(
+            'id',
+            'blog_subcategory_title'
+        )
         ->IsVideoArticle()
         ->IsActive()
         ->with([
@@ -313,6 +324,7 @@ class BlogSubcategoryController extends Controller
                     'blog_article_title',
                     'blog_article_time',
                     'created_at',
+                    'updated_at',
                     'blog_article_short_description',
                     'blog_article_path',
                 )

@@ -12,13 +12,13 @@
 @import 'terms-and-conditions/_styles.scss';
 
 .lv-pg-admin, .lv-pg-about-me, 
-.lv-pg-blog, .lv-pg-articles, .lv-pg-subcategories,
+.lv-pg-blog, .lv-pg-articles, .lv-pg-audio, .lv-pg-video, .lv-pg-subcategories,
 .lv-pg-contact, .lv-pg-terms, .lv-pg-appointment {
     margin: rem-convertor(60px) 0rem;
     padding: 0rem;
 }
 
-.lv-pg-admin, .lv-pg-articles, .lv-pg-subcategories, .lv-pg-terms {
+.lv-pg-admin, .lv-pg-articles, .lv-pg-audio, .lv-pg-video, .lv-pg-subcategories, .lv-pg-terms {
     &-header, &-body {
         padding: 0rem;
     }
