@@ -25,7 +25,7 @@
               <div class="col-md-8">
                 <div class="card-body">
                   <h3 class="card-title">
-                    <a :href="videoArticle.blog_article_slug + '/' + videoArticle.id">
+                    <a :href="videoArticle.blog_article_path + '/' + videoArticle.id">
                       <span>{{ videoArticle.blog_article_title }}</span>
                     </a>
                     <span v-if="videoArticle.blog_article_time <= 1">

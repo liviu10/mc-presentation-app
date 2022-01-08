@@ -1,7 +1,7 @@
 <template>
   <div class="lv-pg-subcategories-audio">
     <div class="lv-pg-subcategories-audio-header">
-      <h1>{{ displayAllBlogSubcategoryAudioArticles.blog_subcategory_title }}</h1>
+      <h1>{{ blogSubcategoryTitle }}</h1>
     </div>
     <!-- LIST OF AUDIO ARTICLES, SECTION START -->
     <div v-if="!displayAllBlogSubcategoryAudioArticles" class="lv-pg-subcategories-audio-body">
@@ -15,7 +15,7 @@
         <div class="card">
           <div class="card-body">
             <h3 class="card-title">
-              <a :href="subcategoryAudioArticle.blog_article_slug + '/' + subcategoryAudioArticle.id">
+              <a :href="subcategoryAudioArticle.blog_article_path + '/' + subcategoryAudioArticle.id">
                 <span>{{ subcategoryAudioArticle.blog_article_title }}</span>
               </a>
               <span v-if="subcategoryAudioArticle.blog_article_time <= 1">
@@ -27,7 +27,7 @@
               <p>
                 {{ $t('user.blog_system_pages.subcategory_name') }}
                 <span>
-                  <a :href="displayAllBlogSubcategoryAudioArticles.blog_subcategory_path">{{ displayAllBlogSubcategoryAudioArticles.blog_subcategory_title }}</a>
+                  <a :href="blogSubcategoryPath">{{ blogSubcategoryTitle }}</a>
                 </span>
               </p>
               <p v-if="subcategoryAudioArticle.updated_at == subcategoryAudioArticle.created_at">
@@ -100,7 +100,9 @@ export default {
     return {
       notifyCode: null,
       notifyMessage: null,
-      displayAllBlogSubcategoryAudioArticles: null
+      displayAllBlogSubcategoryAudioArticles: null,
+      blogSubcategoryTitle: '',
+      blogSubcategoryPath: ''
     }
   },
   mounted () {
@@ -117,6 +119,8 @@ export default {
         .then(response => {
           console.log('>>>>> List of audio blog articles for a given blog subcategory: ')
           this.displayAllBlogSubcategoryAudioArticles = response.data.records[0]
+          this.blogSubcategoryTitle = response.data.records[0].blog_subcategory_title
+          this.blogSubcategoryPath = response.data.records[0].blog_subcategory_path
         })
     }
   },
