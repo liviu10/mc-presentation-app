@@ -57,13 +57,13 @@
     </div>
     <!-- LIST OF WRITTEN ARTICLES, SECTION END -->
     <!-- MORE WRITTEN ARTICLES, SECTION START -->
-    <div v-if="!displayAllWrittenBlogArticles || (displayAllWrittenBlogArticles.length >= 1 && displayAllWrittenBlogArticles.length <= 3) " />
-    <div v-else class="lv-pg-articles-button-more">
+    <!-- TODO: Paginate the articles -->
+    <!-- <div class="lv-pg-articles-button-more">
       <button type="button" class="btn btn-primary btn-lg">
         <i class="far fa-clock" />
         {{ $t('user.blog_system_pages.general_settings.more_articles', { type: 'articole' }) }}!
       </button>
-    </div>
+    </div> -->
     <!-- MORE WRITTEN ARTICLES, SECTION END -->
   </div>
 </template>

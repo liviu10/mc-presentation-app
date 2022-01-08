@@ -68,13 +68,13 @@
     </div>
     <!-- LIST OF VIDEO ARTICLES, SECTION END -->
     <!-- MORE VIDEO ARTICLES, SECTION START -->
-    <div v-if="!displayAllVideoBlogArticles || (displayAllVideoBlogArticles.length >= 1 && displayAllVideoBlogArticles.length <= 3) " />
-    <div v-else class="lv-pg-articles-button-more">
+    <!-- TODO: Paginate the articles -->
+    <!-- <div class="lv-pg-articles-button-more">
       <button type="button" class="btn btn-primary btn-lg">
         <i class="far fa-clock" />
         {{ $t('user.blog_system_pages.general_settings.more_articles', { type: 'articole video' }) }}!
       </button>
-    </div>
+    </div> -->
     <!-- MORE VIDEO ARTICLES, SECTION END -->
   </div>
 </template>

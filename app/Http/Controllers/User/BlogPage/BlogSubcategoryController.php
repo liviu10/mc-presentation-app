@@ -41,6 +41,7 @@ class BlogSubcategoryController extends Controller
             'id',
             'blog_category_id',
             'blog_subcategory_title',
+            'blog_subcategory_path'
         )
         ->where('id', '=', $id)
         ->IsWrittenArticle()
@@ -49,15 +50,16 @@ class BlogSubcategoryController extends Controller
             // TODO: How do you load a parent through the belongsTo method (many to one relationship)
             'blog_articles' => function ($query) {
                 $query->select(
-                        'blog_subcategory_id',
-                        'id',
-                        'blog_article_title',
-                        'blog_article_time',
-                        'created_at',
-                        'updated_at',
-                        'blog_article_short_description',
-                    )
-                    ->IsActive();
+                    'blog_subcategory_id',
+                    'id',
+                    'blog_article_title',
+                    'blog_article_time',
+                    'created_at',
+                    'updated_at',
+                    'blog_article_short_description',
+                    'blog_article_path',
+                )
+                ->IsActive();
             },
         ])
         ->get();
@@ -96,6 +98,7 @@ class BlogSubcategoryController extends Controller
             'id',
             'blog_category_id',
             'blog_subcategory_title',
+            'blog_subcategory_path'
         )
         ->where('id', '=', $id)
         ->IsAudioArticle()
@@ -104,15 +107,16 @@ class BlogSubcategoryController extends Controller
             // TODO: How do you load a parent through the belongsTo method (many to one relationship)
             'blog_articles' => function ($query) {
                 $query->select(
-                        'blog_subcategory_id',
-                        'id',
-                        'blog_article_title',
-                        'blog_article_time',
-                        'created_at',
-                        'updated_at',
-                        'blog_article_short_description',
-                    )
-                    ->IsActive();
+                    'blog_subcategory_id',
+                    'id',
+                    'blog_article_title',
+                    'blog_article_time',
+                    'created_at',
+                    'updated_at',
+                    'blog_article_short_description',
+                    'blog_article_path',
+                )
+                ->IsActive();
             },
         ])
         ->get();
@@ -151,6 +155,7 @@ class BlogSubcategoryController extends Controller
             'id',
             'blog_category_id',
             'blog_subcategory_title',
+            'blog_subcategory_path'
         )
         ->where('id', '=', $id)
         ->IsVideoArticle()
@@ -166,6 +171,7 @@ class BlogSubcategoryController extends Controller
                         'created_at',
                         'updated_at',
                         'blog_article_short_description',
+                        'blog_article_path',
                     )
                     ->IsActive();
             },

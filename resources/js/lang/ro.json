@@ -66,7 +66,7 @@
         },
         "read_more": "Citește mai mult!",
         "article_blog_page": {
-          "page_title": "Articol scris",
+          "page_title": "Articole",
           "rating_system": {
             "title": "Evaluează: ",
             "options": {
@@ -110,7 +110,7 @@
         },
         "read_more": "Vezi mai mult!",
         "article_blog_page": {
-          "page_title": "Articol audio",
+          "page_title": "Audio",
           "rating_system": {
             "title": "Evaluează: ",
             "options": {
@@ -154,7 +154,7 @@
         },
         "read_more": "Vezi mai mult!",
         "article_blog_page": {
-          "page_title": "Articol video",
+          "page_title": "Video",
           "rating_system": {
             "title": "Evaluează: ",
             "options": {

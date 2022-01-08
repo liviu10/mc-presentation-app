@@ -23,7 +23,8 @@ $font_color: inherit;
         padding-left: 0rem !important;
     }
 }
-.lv-pg-articles, .lv-pg-audio, .lv-pg-video {
+.lv-pg-articles, .lv-pg-audio, .lv-pg-video,
+.lv-pg-subcategories-articles, .lv-pg-subcategories-audio, .lv-pg-subcategories-video {
     @include flex-center();
     flex-direction: column;
     margin: rem-convertor(120px) 0rem;
