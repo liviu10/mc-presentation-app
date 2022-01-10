@@ -4,10 +4,12 @@ namespace App\Http\Controllers\User\BlogPage;
 
 use App\Http\Controllers\Controller;
 use App\Models\BlogSubcategory;
+use App\Models\BlogArticle;
 
 class BlogSubcategoryController extends Controller
 {
     protected $modelNameBlogSubcategories;
+    protected $modelNameBlogArticles;
 
     /**
      * Instantiate the variables that will be used to get the model.
@@ -17,6 +19,7 @@ class BlogSubcategoryController extends Controller
     public function __construct()
     {
         $this->modelNameBlogSubcategories      = new BlogSubcategory();
+        $this->modelNameBlogArticles           = new BlogArticle();
     }
 
     /**
@@ -361,6 +364,95 @@ class BlogSubcategoryController extends Controller
                 'description'        => 'The blog resource(s) was(were) successfully fetched!',
                 'http_response_code' => 200,
                 'records'            => $allVideoBlogArticles,
+            ], 200);
+        }
+    }
+
+    /**
+     * Display a single blog article together with it's comments.
+     *
+     * @param  int  $id
+     * @return Illuminate\Http\Response
+     */
+    public function displaySingleBlogArticle($id)
+    {
+        $getSubcategoryId = $this->modelNameBlogArticles::select('id', 'blog_subcategory_id')->where('id', '=', $id)->pluck('blog_subcategory_id');
+        $displayBlogArticle = $this->modelNameBlogSubcategories::select(
+            'id',
+            'blog_subcategory_title',
+            'blog_subcategory_path'
+        )
+        ->where('id', '=', $getSubcategoryId)
+        ->IsActive()
+        ->with([
+            'blog_articles' => function ($query) use ($id) {
+                $query->select(
+                    'blog_subcategory_id',
+                    'id',
+                    'blog_article_title',
+                    'blog_article_author',
+                    'created_at',
+                    'blog_article_time',
+                    'blog_article_short_description',
+                    'blog_article_content',
+                    'blog_article_rating_system',
+                    'blog_article_likes',
+                    'blog_article_dislikes',
+                    'created_at',
+                    'updated_at',
+                )
+                ->where('id', '=', $id)
+                ->IsActive()
+                ->with([
+                    'blog_article_comments' => function ($query) {
+                        $query->select(
+                            'blog_article_id',
+                            'id',
+                            'full_name',
+                            'email',
+                            'comment',
+                            'created_at',
+                            'updated_at'
+                        )
+                        ->IsCommentPublic()
+                        ->with([
+                            'blog_article_comment_replies' => function ($query) {
+                                $query->select(
+                                    'blog_article_comment_id',
+                                    'id',
+                                    'full_name',
+                                    'email',
+                                    'comment_reply',
+                                    'created_at',
+                                    'updated_at'
+                                )
+                                ->IsCommentReplyPublic();
+                            }
+                        ]);
+                    }
+                ]);
+            }
+        ])
+        ->get();
+        
+        if ($displayBlogArticle->isEmpty()) 
+        {
+            return response([
+                'title'              => 'Resource(s) not found!',
+                'notify_code'        => 'WAR_00001',
+                'description'        => 'The blog resource(s) does not exist! Please try again later!',
+                'http_response_code' => 404,
+                'records'            => [],
+            ], 404);
+        }
+        else 
+        {
+            return response([
+                'title'              => 'Success!',
+                'notify_code'        => 'INFO_00001',
+                'description'        => 'The blog resource(s) was(were) successfully fetched!',
+                'http_response_code' => 200,
+                'records'            => $displayBlogArticle,
             ], 200);
         }
     }
