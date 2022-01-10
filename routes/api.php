@@ -67,7 +67,7 @@ use Illuminate\Support\Facades\Route;
                 Route::get('/all-written-articles', [BlogSubcategoryController::class, 'getAllWrittenBlogArticles']);
                 Route::get('/all-audio-articles', [BlogSubcategoryController::class, 'getAllAudioBlogArticles']);
                 Route::get('/all-video-articles', [BlogSubcategoryController::class, 'getAllVideoBlogArticles']);
-                Route::get('/{id}', [BlogArticleController::class, 'displaySingleBlogArticle']);
+                Route::get('/{id}', [BlogSubcategoryController::class, 'displaySingleBlogArticle']);
             });
         });
 

@@ -1,7 +1,7 @@
 <template>
   <div class="lv-pg-subcategories-articles">
     <div class="lv-pg-subcategories-articles-header">
-      <h1>{{ displayAllBlogSubcategoryWrittenArticles.blog_subcategory_title }}</h1>
+      <h1>{{ blogSubcategoryTitle }}</h1>
     </div>
     <!-- LIST OF WRITTEN ARTICLES, SECTION START -->
     <div v-if="!displayAllBlogSubcategoryWrittenArticles" class="lv-pg-subcategories-articles-body">
@@ -27,7 +27,7 @@
               <p>
                 {{ $t('user.blog_system_pages.subcategory_name') }}
                 <span>
-                  <a :href="displayAllBlogSubcategoryWrittenArticles.blog_subcategory_path">{{ displayAllBlogSubcategoryWrittenArticles.blog_subcategory_title }}</a>
+                  <a :href="blogSubcategoryPath">{{ blogSubcategoryTitle }}</a>
                 </span>
               </p>
               <p v-if="subcategoryWrittenArticle.updated_at == subcategoryWrittenArticle.created_at">
@@ -79,7 +79,9 @@ export default {
     return {
       notifyCode: null,
       notifyMessage: null,
-      displayAllBlogSubcategoryWrittenArticles: null
+      displayAllBlogSubcategoryWrittenArticles: null,
+      blogSubcategoryTitle: '',
+      blogSubcategoryPath: ''
     }
   },
   mounted () {
@@ -96,6 +98,8 @@ export default {
         .then(response => {
           console.log('>>>>> List of written blog articles for a given blog subcategory: ')
           this.displayAllBlogSubcategoryWrittenArticles = response.data.records[0]
+          this.blogSubcategoryTitle = response.data.records[0].blog_subcategory_title
+          this.blogSubcategoryPath = response.data.records[0].blog_subcategory_path
         })
     }
   },

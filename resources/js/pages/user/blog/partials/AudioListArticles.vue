@@ -16,7 +16,7 @@
           <div class="card">
             <div class="card-body">
               <h3 class="card-title">
-                <a :href="audioArticle.blog_article_slug + '/' + audioArticle.id">
+                <a :href="audioArticle.blog_article_path + '/' + audioArticle.id">
                   <span>{{ audioArticle.blog_article_title }}</span>
                 </a>
                 <span v-if="audioArticle.blog_article_time <= 1">

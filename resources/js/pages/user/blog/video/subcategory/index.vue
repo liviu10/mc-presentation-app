@@ -1,7 +1,7 @@
 <template>
   <div class="lv-pg-subcategories-video">
     <div class="lv-pg-subcategories-video-header">
-      <h1>{{ displayAllBlogSubcategoryVideoArticles.blog_subcategory_title }}</h1>
+      <h1>{{ blogSubcategoryTitle }}</h1>
     </div>
     <!-- LIST OF VIDEO ARTICLES, SECTION START -->
     <div v-if="!displayAllBlogSubcategoryVideoArticles" class="lv-pg-subcategories-video-body">
@@ -24,7 +24,7 @@
             <div class="col-md-8">
               <div class="card-body">
                 <h3 class="card-title">
-                  <a :href="subcategoryVideoArticle.blog_article_slug + '/' + subcategoryVideoArticle.id">
+                  <a :href="subcategoryVideoArticle.blog_article_path + '/' + subcategoryVideoArticle.id">
                     <span>{{ subcategoryVideoArticle.blog_article_title }}</span>
                   </a>
                   <span v-if="subcategoryVideoArticle.blog_article_time <= 1">
@@ -36,7 +36,7 @@
                   <p>
                     {{ $t('user.blog_system_pages.subcategory_name') }}
                     <span>
-                      <a :href="displayAllBlogSubcategoryVideoArticles.blog_subcategory_path">{{ displayAllBlogSubcategoryVideoArticles.blog_subcategory_title }}</a>
+                      <a :href="blogSubcategoryPath">{{ blogSubcategoryTitle }}</a>
                     </span>
                   </p>
                   <p v-if="subcategoryVideoArticle.updated_at == subcategoryVideoArticle.created_at">
@@ -90,7 +90,9 @@ export default {
     return {
       notifyCode: null,
       notifyMessage: null,
-      displayAllBlogSubcategoryVideoArticles: null
+      displayAllBlogSubcategoryVideoArticles: null,
+      blogSubcategoryTitle: '',
+      blogSubcategoryPath: ''
     }
   },
   mounted () {
@@ -107,6 +109,8 @@ export default {
         .then(response => {
           console.log('>>>>> List of video blog articles for a given blog subcategory: ')
           this.displayAllBlogSubcategoryVideoArticles = response.data.records[0]
+          this.blogSubcategoryTitle = response.data.records[0].blog_subcategory_title
+          this.blogSubcategoryPath = response.data.records[0].blog_subcategory_path
         })
     }
   },
