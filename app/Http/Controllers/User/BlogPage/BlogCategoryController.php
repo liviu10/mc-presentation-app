@@ -36,7 +36,6 @@ class BlogCategoryController extends Controller
      */
     public function getAllBlogMainCategoriesAndSubcategories()
     {
-        // TODO: Limit blog_subcategories to 3 records for each blog_category record
         $allBlogCategoriesAndSubcategories = $this->modelNameBlogCategories::select(
             'id',
             'blog_category_title',

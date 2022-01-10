@@ -50,7 +50,6 @@ class BlogSubcategoryController extends Controller
         ->IsWrittenArticle()
         ->IsActive()
         ->with([
-            // TODO: How do you load a parent through the belongsTo method (many to one relationship)
             'blog_articles' => function ($query) {
                 $query->select(
                     'blog_subcategory_id',
@@ -107,7 +106,6 @@ class BlogSubcategoryController extends Controller
         ->IsAudioArticle()
         ->IsActive()
         ->with([
-            // TODO: How do you load a parent through the belongsTo method (many to one relationship)
             'blog_articles' => function ($query) {
                 $query->select(
                     'blog_subcategory_id',
@@ -164,7 +162,6 @@ class BlogSubcategoryController extends Controller
         ->IsVideoArticle()
         ->IsActive()
         ->with([
-            // TODO: How do you load a parent through the belongsTo method (many to one relationship)
             'blog_articles' => function ($query) {
                 $query->select(
                         'blog_subcategory_id',
@@ -218,7 +215,6 @@ class BlogSubcategoryController extends Controller
         ->IsWrittenArticle()
         ->IsActive()
         ->with([
-            // TODO: How do you load a parent through the belongsTo method (many to one relationship)
             'blog_articles' => function ($query) {
                 $query->select(
                     'blog_subcategory_id',
@@ -273,7 +269,6 @@ class BlogSubcategoryController extends Controller
         ->IsAudioArticle()
         ->IsActive()
         ->with([
-            // TODO: How do you load a parent through the belongsTo method (many to one relationship)
             'blog_articles' => function ($query) {
                 $query->select(
                     'blog_subcategory_id',
@@ -328,7 +323,6 @@ class BlogSubcategoryController extends Controller
         ->IsVideoArticle()
         ->IsActive()
         ->with([
-            // TODO: How do you load a parent through the belongsTo method (many to one relationship)
             'blog_articles' => function ($query) {
                 $query->select(
                     'blog_subcategory_id',
