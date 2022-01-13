@@ -1,8 +1,5 @@
-$lvContainerSectionHeading: (
-    heading_bg_color_btn:     map-get($complementary_blizzard_blue, "color_sea_nymph"),
-    heading_border_color_btn: map-get($complementary_blizzard_blue, "color_sea_nymph"),
-    heading_font_color_btn:   map-get($basic_colors, "color_black"),
-);
+@import '../../../../components/front_view/partials/_button.scss';
+@import '../../../../components/front_view/partials/_social_media_icons.scss';
 
 .lv-con-heading {
     @include flex-center();
@@ -58,20 +55,11 @@ $lvContainerSectionHeading: (
             & .btn {
                 margin-top: rem-convertor(20px);
                 margin-bottom: rem-convertor(20px);
-                background-color: map-get($lvContainerSectionHeading, "heading_bg_color_btn");
-                border-color: map-get($lvContainerSectionHeading, "heading_border_color_btn");
-                border-radius: rem-convertor(0px);
-                font-weight: bold;
-                color: map-get($lvContainerSectionHeading, "heading_font_color_btn");
                 @media only screen and (max-width: 767px) {
                     margin-top: 0rem;
                     margin-bottom: 0rem;
                 }
-                &:focus {
-                    border-color: transparent !important;
-                    box-shadow: 0 1px 1px transparent inset, 0 0 8px transparent !important;
-                    outline: 0 none !important;
-                }
+                @include button();
                 & .svg-inline--fa {
                     @include flex-center();
                     width: rem-convertor(25px);
@@ -102,22 +90,7 @@ $lvContainerSectionHeading: (
             align-items: center;
             justify-content: space-evenly;
             & a {
-                & .fa-facebook, & .fa-instagram, & .fa-youtube {
-                    border-radius: 50%;
-                    padding: rem-convertor(5px);
-                    width: rem-convertor(24px);
-                    height: rem-convertor(24px);
-                    color: #FFFFFF;
-                }
-                & .fa-facebook {
-                    background-color: #3B5998;
-                }
-                & .fa-instagram {
-                    background-color: #125688;
-                }
-                & .fa-youtube {
-                    background-color: #BB0000;
-                }
+                @include social-media-icon();
             }
         }
     }

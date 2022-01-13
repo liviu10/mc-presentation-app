@@ -1,9 +1,4 @@
-$lvContainerSectionNewsletter: (
-    newsletter_bg_color_btn:          map-get($complementary_blizzard_blue, "color_sea_nymph"),
-    newsletter_border_color_btn:      map-get($complementary_blizzard_blue, "color_sea_nymph"),
-    newsletter_font_color_btn:        map-get($basic_colors, "color_black"),
-    newsletter_font_color_form_check: map-get($basic_colors, "color_black"),
-);
+@import '../../../../components/front_view/partials/_button.scss';
 
 .lv-con-newsletter {
     padding: 0rem !important;
@@ -38,7 +33,7 @@ $lvContainerSectionNewsletter: (
                 & .a-typography {
                     margin: rem-convertor(8px) 0rem;
                     padding: 0rem;
-                    color: map-get($lvContainerSectionNewsletter, "newsletter_font_color_form_check");
+                    color: map-get($basic_colors, "color_black");
                     font-style: normal;
                     font-variant: normal;
                     font-weight: normal;
@@ -50,10 +45,10 @@ $lvContainerSectionNewsletter: (
                     text-decoration: underline;
                     text-indent: rem-convertor(0px);
                     &:visited, &:active {
-                        color: map-get($lvContainerSectionNewsletter, "newsletter_font_color_form_check");
+                        color: map-get($basic_colors, "color_black");
                     }
                     &:hover {
-                        color: map-get($lvContainerSectionNewsletter, "newsletter_font_color_form_check");
+                        color: map-get($basic_colors, "color_black");
                         cursor: pointer;
                     }
                 }
@@ -71,20 +66,10 @@ $lvContainerSectionNewsletter: (
         }
         & .btn {
             height: rem-convertor(60px);
-            border-radius: rem-convertor(0px);
-            background-color: map-get($lvContainerSectionNewsletter, "newsletter_bg_color_btn");
-            border-color: map-get($lvContainerSectionNewsletter, "newsletter_border_color_btn");
-            border-radius: rem-convertor(0px);
-            color: map-get($lvContainerSectionNewsletter, "newsletter_font_color_btn");
-            font-weight: bold;
             text-transform: uppercase;
+            @include button();
             @media only screen and (max-width: 991px) {
                 width: 100%;
-            }
-            &:focus {
-                border-color: transparent !important;
-                box-shadow: 0 rem-convertor(1px) rem-convertor(1px) transparent inset, 0 0 rem-convertor(8px) transparent !important;
-                outline: 0 none !important;
             }
         }
         & input[type="text"]:focus, input[type="email"]:focus {

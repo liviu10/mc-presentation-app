@@ -1,10 +1,4 @@
-$lvContainerPageContactForm: (
-    contact_form_bg_color_btn:     map-get($complementary_blizzard_blue, "color_sea_nymph"),
-    contact_form_border_color_btn: map-get($complementary_blizzard_blue, "color_sea_nymph"),
-    contact_form_font_color_btn:   map-get($basic_colors, "color_black"),
-    contact_form_check_font_color: map-get($basic_colors, "color_black"),
-);
-$lvContainerPageContactFormFont: 'Merriweather Sans Bold', sans-serif;
+@import '../../../components/front_view/partials/_button.scss';
 
 .lv-pg-contact {
     @include flex-center();
@@ -43,7 +37,7 @@ $lvContainerPageContactFormFont: 'Merriweather Sans Bold', sans-serif;
             margin-bottom: rem-convertor(50px);
             & h1, & p {
                 margin-bottom: rem-convertor(0px);
-                font-family: map-get($lvContainerPageContactForm, "contact_form_font_family");
+                font-family: inherit;
             }
             & p {
                 margin-top: rem-convertor(32px);
@@ -108,7 +102,7 @@ $lvContainerPageContactFormFont: 'Merriweather Sans Bold', sans-serif;
                     & .a-typography {
                         margin: rem-convertor(8px) 0rem;
                         padding: 0rem;
-                        color: map-get($lvContainerPageContactForm, "contact_form_check_font_color");
+                        color: map-get($basic_colors, "color_black");
                         font-style: normal;
                         font-variant: normal;
                         font-weight: normal;
@@ -120,10 +114,10 @@ $lvContainerPageContactFormFont: 'Merriweather Sans Bold', sans-serif;
                         text-decoration: underline;
                         text-indent: rem-convertor(0px);
                         &:visited, &:active {
-                            color: map-get($lvContainerPageContactForm, "contact_form_check_font_color");
+                            color: map-get($basic_colors, "color_black");
                         }
                         &:hover {
-                            color: map-get($lvContainerPageContactForm, "contact_form_check_font_color");
+                            color: map-get($basic_colors, "color_black");
                             cursor: pointer;
                         }
                     }
@@ -139,19 +133,9 @@ $lvContainerPageContactFormFont: 'Merriweather Sans Bold', sans-serif;
                     @include flex-center();
                 }
                 & .btn {
-                    border-radius: rem-convertor(0px);
                     height: rem-convertor(60px);
-                    background-color: map-get($lvContainerPageContactForm, "contact_form_bg_color_btn");
-                    border-color: map-get($lvContainerPageContactForm, "contact_form_border_color_btn");
-                    border-radius: rem-convertor(0px);
-                    color: map-get($lvContainerPageContactForm, "contact_form_font_color_btn");
-                    font-weight: bold;
                     text-transform: uppercase;
-                    &:focus {
-                        border-color: transparent !important;
-                        box-shadow: 0 rem-convertor(1px) rem-convertor(1px) transparent inset, 0 0 rem-convertor(1px) transparent !important;
-                        outline: 0 none !important;
-                    }
+                    @include button();
                 }
             }
         }
