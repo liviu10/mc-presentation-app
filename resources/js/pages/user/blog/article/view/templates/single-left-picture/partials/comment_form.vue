@@ -1,14 +1,15 @@
 <template>
   <div class="article-comments">
     <!-- COMMENT FORM, SECTION START -->
-    <div class="container-comment-form">
-      <div class="container-comment-form-main">
+    <div class="article-comments-form">
+      <div class="article-comments-form-main">
         <div class="form-button">
-          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            Button with data-target
+          <button class="btn btn-primary" @click="showForm = !showForm">
+            <span v-if="!showForm">Scrie un comentariu</span>
+            <span v-else>Anulează</span>
           </button>
         </div>
-        <div id="collapseExample" class="collapse">
+        <div v-show="showForm">
           <form @submit.prevent="commentArticle" @keydown="form.onKeydown($event)">
             <alert-success :form="form" :message="message_success" />
             <!-- FULL NAME, SECTION START -->
@@ -94,6 +95,7 @@ export default {
   name: 'SingleLeftPictureCommentFormDetails',
   data: function () {
     return {
+      showForm: false,
       message_success: this.$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.comment_form.success_message'),
       form: new Form({
         full_name: '',
