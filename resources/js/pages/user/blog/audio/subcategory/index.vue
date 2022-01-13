@@ -63,7 +63,7 @@
           </div>
           <div class="card-body">
             <a :href="subcategoryAudioArticle.blog_article_path + '/' + subcategoryAudioArticle.id" class="btn btn-primary">
-              <fa icon="eye" fixed-width />
+              <fa icon="headphones" fixed-width />
               {{ $t('user.blog_system_pages.audio_article_blog_pages.read_more') }}
             </a>
           </div>

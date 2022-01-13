@@ -4,10 +4,7 @@
       <h1>{{ $t('user.blog_system_pages.written_article_blog_pages.page_title') }}</h1>
     </div>
     <!-- LIST OF WRITTEN ARTICLES, SECTION START -->
-    <div v-if="!displayAllWrittenBlogArticles" class="lv-pg-articles-body">
-      <h1>{{ notifyMessage }}</h1>
-    </div>
-    <div v-else>
+    <div v-if="displayAllWrittenBlogArticles">
       <div v-for="blogContent in displayAllWrittenBlogArticles"
            :key="blogContent.id"
            class="lv-pg-articles-body"
@@ -81,10 +78,7 @@ window.axios = require('axios')
 export default {
   name: 'WrittenListArticles',
   data: function () {
-    return {
-      notifyCode: null,
-      notifyMessage: null
-    }
+    return {}
   },
   computed: {
     ...mapGetters({
