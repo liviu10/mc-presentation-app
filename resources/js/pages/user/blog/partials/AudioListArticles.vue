@@ -4,10 +4,7 @@
       <h1>{{ $t('user.blog_system_pages.audio_article_blog_pages.page_title') }}</h1>
     </div>
     <!-- LIST OF AUDIO ARTICLES, SECTION START -->
-    <div v-if="!displayAllAudioBlogArticles" class="lv-pg-audio-body">
-      <h1>{{ notifyMessage }}</h1>
-    </div>
-    <div v-else>
+    <div v-if="displayAllAudioBlogArticles">
       <div v-for="blogContent in displayAllAudioBlogArticles"
            :key="blogContent.id"
            class="lv-pg-audio-body"
@@ -64,7 +61,7 @@
             </div>
             <div class="card-body">
               <a :href="audioArticle.blog_article_path + '/' + audioArticle.id" class="btn btn-primary">
-                <fa icon="eye" fixed-width />
+                <fa icon="headphones" fixed-width />
                 {{ $t('user.blog_system_pages.audio_article_blog_pages.read_more') }}
               </a>
             </div>
@@ -102,10 +99,7 @@ export default {
     Aplayer
   },
   data: function () {
-    return {
-      notifyCode: null,
-      notifyMessage: null
-    }
+    return {}
   },
   computed: {
     ...mapGetters({

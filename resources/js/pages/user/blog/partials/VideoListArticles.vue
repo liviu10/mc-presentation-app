@@ -4,10 +4,7 @@
       <h1>{{ $t('user.blog_system_pages.video_article_blog_pages.page_title') }}</h1>
     </div>
     <!-- LIST OF VIDEO ARTICLES, SECTION START -->
-    <div v-if="!displayAllVideoBlogArticles" class="lv-pg-video-body">
-      <h1>{{ notifyMessage }}</h1>
-    </div>
-    <div v-else>
+    <div v-if="displayAllVideoBlogArticles">
       <div v-for="blogContent in displayAllVideoBlogArticles"
            :key="blogContent.id"
            class="lv-pg-video-body"
@@ -92,10 +89,7 @@ window.axios = require('axios')
 export default {
   name: 'VideoListArticles',
   data: function () {
-    return {
-      notifyCode: null,
-      notifyMessage: null
-    }
+    return {}
   },
   computed: {
     ...mapGetters({

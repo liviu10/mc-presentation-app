@@ -37,7 +37,7 @@ export const actions = {
         commit('setBlogCategoriesAndSubcategories', response.data)
       })
       .catch(({ response }) => {
-        console.log('>>>>>> Http request error: ', response.data)
+        console.log('>>>>>> Http request error: ')
         commit('setBlogCategoriesAndSubcategories', response.data)
       })
   },
@@ -52,7 +52,7 @@ export const actions = {
         commit('setListOfWrittenArticles', response.data)
       })
       .catch(({ response }) => {
-        console.log('>>>>>> Http request error: ', response.data)
+        console.log('>>>>>> Http request error: ')
         commit('setListOfWrittenArticles', response.data)
       })
   },
@@ -67,7 +67,7 @@ export const actions = {
         commit('setListOfAudioArticles', response.data)
       })
       .catch(({ response }) => {
-        console.log('>>>>>> Http request error: ', response.data)
+        console.log('>>>>>> Http request error: ')
         commit('setListOfAudioArticles', response.data)
       })
   },
@@ -82,7 +82,7 @@ export const actions = {
         commit('setListOfVideoArticles', response.data)
       })
       .catch(({ response }) => {
-        console.log('>>>>>> Http request error: ', response.data)
+        console.log('>>>>>> Http request error: ')
         commit('setListOfVideoArticles', response.data)
       })
   }
