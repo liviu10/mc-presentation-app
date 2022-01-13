@@ -4,13 +4,13 @@
 @import 'partials/_video_list.scss';
 
 $lvContainerPageBlog: (
-    card_background_color:    map-get($complementary_pale_cerulean, "color_sea_nymph"),
-    card_font_color:          map-get($complementary_pale_cerulean, "color_sea_nymph"),
+    card_background_color:    map-get($complementary_blizzard_blue, "color_sea_nymph"),
+    card_font_color:          map-get($complementary_blizzard_blue, "color_sea_nymph"),
     button_background_color:  map-get($blizzard_blue, "color_blizzard_blue"),
     button_border_color:      map-get($blizzard_blue, "color_blizzard_blue"),
     button_font_color:        map-get($basic_colors, "color_black"),
-    button_more_bg_color:     map-get($complementary_pale_cerulean, "color_sea_nymph"),
-    button_more_border_color: map-get($complementary_pale_cerulean, "color_sea_nymph"),
+    button_more_bg_color:     map-get($complementary_blizzard_blue, "color_sea_nymph"),
+    button_more_border_color: map-get($complementary_blizzard_blue, "color_sea_nymph"),
     button_more_font_color:   map-get($basic_colors, "color_black"),
 );
 $font_color: inherit;

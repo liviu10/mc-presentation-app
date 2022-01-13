@@ -2,7 +2,7 @@ $lvContainerPageQuestionnaire: (
     btn_bg_color:       map-get($blizzard_blue, "color_blizzard_blue"),
     btn_border_color:   map-get($blizzard_blue, "color_blizzard_blue"),
     btn_font_color:     map-get($basic_colors, "color_black"),
-    card_blog_bg_color: map-get($complementary_pale_cerulean, "color_sea_nymph"),
+    card_blog_bg_color: map-get($complementary_blizzard_blue, "color_sea_nymph"),
 );
 
 .lv-con-pg-questionnaire {
