@@ -405,8 +405,7 @@ class BlogSubcategoryController extends Controller
                             'full_name',
                             'email',
                             'comment',
-                            'created_at',
-                            'updated_at'
+                            'created_at'
                         )
                         ->IsCommentPublic()
                         ->with([
@@ -417,8 +416,7 @@ class BlogSubcategoryController extends Controller
                                     'full_name',
                                     'email',
                                     'comment_reply',
-                                    'created_at',
-                                    'updated_at'
+                                    'created_at'
                                 )
                                 ->IsCommentReplyPublic();
                             }
