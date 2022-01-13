@@ -1,4 +1,5 @@
 @import '../../../utilities/_global.scss';
+@import '_social_media_icons.scss';
 
 $lvContainerSectionFooter: (
     unsubscribe_bg_color_btn_cancel:     map-get($pale_cerulean, "color_khaki"),
@@ -9,7 +10,7 @@ $lvContainerSectionFooter: (
     unsubscribe_font_color_form_check:   map-get($basic_colors, "color_black"),
 );
 
-$background_color: map-get($complementary_pale_cerulean, "color_sea_nymph");
+$background_color: map-get($complementary_blizzard_blue, "color_sea_nymph");
 $font_color: inherit;
 
 .container-fluid {
@@ -94,6 +95,9 @@ $font_color: inherit;
                 @include flex-center();
                 flex-direction: column !important;
                 width: 50%;
+                @media only screen and (max-width: 574px) and (min-width: 320px) {
+                    width: 100%;
+                }
                 & p {
                     margin-bottom: rem-convertor(0px);
                     color: $font_color;
@@ -105,6 +109,7 @@ $font_color: inherit;
                     }
                     & a {
                         color: $font-color;
+                        @include social-media-icon();
                     }
                     &:last-child {
                         @include flex-center();
@@ -117,22 +122,6 @@ $font_color: inherit;
                         }
                         & a {
                             color: $font-color;
-                            & .fa-facebook, & .fa-instagram, & .fa-youtube {
-                                border-radius: 50%;
-                                padding: rem-convertor(5px);
-                                width: rem-convertor(24px);
-                                height: rem-convertor(24px);
-                                color: #FFFFFF;
-                            }
-                            & .fa-facebook {
-                                background-color: #3B5998;
-                            }
-                            & .fa-instagram {
-                                background-color: #125688;
-                            }
-                            & .fa-youtube {
-                                background-color: #BB0000;
-                            }
                         }
                     }
                     & .btn {

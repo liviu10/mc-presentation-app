@@ -1,8 +1,9 @@
+@import '../../../components/front_view/partials/_button.scss';
 @import 'partials/_start_questionnaire.scss';
 
 $lvContainerPageAppointment: (
-    heading_bg_color_btn:     map-get($complementary_pale_cerulean, "color_sea_nymph"),
-    heading_border_color_btn: map-get($complementary_pale_cerulean, "color_sea_nymph"),
+    heading_bg_color_btn:     map-get($complementary_blizzard_blue, "color_sea_nymph"),
+    heading_border_color_btn: map-get($complementary_blizzard_blue, "color_sea_nymph"),
     heading_font_color_btn:   map-get($basic_colors, "color_black"),
 );
 
@@ -34,16 +35,7 @@ $lvContainerPageAppointment: (
         margin: rem-convertor(32px) 0rem;
         & .btn {
             margin: rem-convertor(20px) 0rem;
-            background-color: map-get($lvContainerPageAppointment, "heading_bg_color_btn");
-            border-color: map-get($lvContainerPageAppointment, "heading_border_color_btn");
-            border-radius: 0rem;
-            font-weight: bold;
-            color: map-get($lvContainerPageAppointment, "heading_font_color_btn");
-            &:focus {
-                border-color: transparent !important;
-                box-shadow: 0 1px 1px transparent inset, 0 0 8px transparent !important;
-                outline: 0 none !important;
-            }
+            @include button();
             & .fab {
                 @include flex-center();
                 width: rem-convertor(25px);

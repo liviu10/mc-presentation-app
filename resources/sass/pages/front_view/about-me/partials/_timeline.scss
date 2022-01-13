@@ -1,12 +1,12 @@
 $lvTimeline: (
     timeline_arrow_bg_color:         map-get($basic_colors, "color_black_olive"),
     timeline_connector_color:        map-get($basic_colors, "color_black_olive"),
-    timeline_event_bg_color:         map-get($complementary_pale_cerulean, "color_sea_nymph"),
-    timeline_scrollbar_color:        map-get($complementary_pale_cerulean, "color_sea_nymph"),
+    timeline_event_bg_color:         map-get($complementary_blizzard_blue, "color_sea_nymph"),
+    timeline_scrollbar_color:        map-get($complementary_blizzard_blue, "color_sea_nymph"),
     expanded_image_bg_color:         map-get($blizzard_blue, "color_blizzard_blue"),
-    expanded_image_bg_color_btn:     map-get($complementary_pale_cerulean, "color_sea_nymph"),
-    expanded_image_border_color_btn: map-get($complementary_pale_cerulean, "color_sea_nymph"),
-    expanded_image_border_color:     map-get($complementary_pale_cerulean, "color_sea_nymph"),
+    expanded_image_bg_color_btn:     map-get($complementary_blizzard_blue, "color_sea_nymph"),
+    expanded_image_border_color_btn: map-get($complementary_blizzard_blue, "color_sea_nymph"),
+    expanded_image_border_color:     map-get($complementary_blizzard_blue, "color_sea_nymph"),
     expanded_image_font_color_btn:   map-get($basic_colors, "color_black"),
 );
 

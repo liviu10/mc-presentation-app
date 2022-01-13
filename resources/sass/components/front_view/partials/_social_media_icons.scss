@@ -1,0 +1,18 @@
+@mixin social-media-icon() {
+    .fa-facebook, .fa-instagram, .fa-youtube {
+        border-radius: 50% !important;
+        padding: rem-convertor(5px);
+        width: rem-convertor(24px) !important;
+        height: rem-convertor(24px) !important;
+        color: #FFFFFF;
+    }
+    .fa-facebook {
+        background-color: #3B5998;
+    }
+    .fa-instagram {
+        background-color: #125688;
+    }
+    .fa-youtube {
+        background-color: #BB0000;
+    }
+}

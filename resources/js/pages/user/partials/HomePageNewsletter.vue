@@ -48,10 +48,10 @@
             <label class="form-check-label lead" for="privacy_policy">
               <span @click="acceptPrivacyPolicy">
                 {{ $t('user.home_page.newsletter.i_agree_with') }}
-                <router-link class="a-typography" to="/terms-and-conditions">
-                  {{ $t('user.home_page.newsletter.privacy_policy') }}
-                </router-link>
               </span>
+              <router-link class="a-typography" to="/terms-and-conditions">
+                {{ $t('user.home_page.newsletter.privacy_policy') }}
+              </router-link>
             </label>
           </div>
           <has-error :form="form" field="privacy_policy" />

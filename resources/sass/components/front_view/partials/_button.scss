@@ -1,0 +1,18 @@
+$button: (
+    background_color: map-get($complementary_blizzard_blue, "color_sea_nymph"),
+    border_color: map-get($complementary_blizzard_blue, "color_sea_nymph"),
+    font_color: map-get($basic_colors, "color_black"),
+);
+
+@mixin button() {
+    background-color: map-get($button, "background_color");
+    border-color: map-get($button, "border_color");
+    border-radius: 0rem;
+    color: map-get($button, "font_color");
+    font-weight: bold;
+    &:focus {
+        border-color: transparent !important;
+        box-shadow: 0 1px 1px transparent inset, 0 0 8px transparent !important;
+        outline: 0 none !important;
+    }
+}

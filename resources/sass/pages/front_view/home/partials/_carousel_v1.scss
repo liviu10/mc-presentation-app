@@ -1,10 +1,9 @@
+@import '../../../../components/front_view/partials/_button.scss';
+
 $lvContainerSectionBanner: (
-    carousel_indicators_bg_color:      map-get($complementary_pale_cerulean, "color_sea_nymph"),
-    carousel_caption_bg_color:         map-get($complementary_pale_cerulean, "color_dew"),
+    carousel_indicators_bg_color:      map-get($complementary_blizzard_blue, "color_sea_nymph"),
+    carousel_caption_bg_color:         map-get($complementary_blizzard_blue, "color_dew"),
     carousel_caption_font_color:       map-get($basic_colors, "color_black"),
-    carousel_caption_bg_color_btn:     map-get($complementary_pale_cerulean, "color_sea_nymph"),
-    carousel_caption_border_color_btn: map-get($complementary_pale_cerulean, "color_sea_nymph"),
-    carousel_caption_font_color_btn:   map-get($basic_colors, "color_black"),
     carousel_controls_bg_color:        map-get($basic_colors, "color_white"),
     carousel_controls_font_color:      map-get($basic_colors, "color_black")
 );
@@ -103,16 +102,7 @@ $lvContainerSectionBanner: (
         }
         & .btn {
             margin: rem-convertor(8px) 0rem;
-            background-color: map-get($lvContainerSectionBanner, "carousel_caption_bg_color_btn");
-            border-color: map-get($lvContainerSectionBanner, "carousel_caption_border_color_btn");
-            border-radius: 0rem;
-            color: map-get($lvContainerSectionBanner, "carousel_caption_font_color_btn");
-            font-weight: bold;
-            &:focus {
-                border-color: transparent !important;
-                box-shadow: 0 rem-convertor(1px) rem-convertor(1px) transparent inset, 0 0 rem-convertor(8px) transparent !important;
-                outline: 0 none !important;
-            }
+            @include button();
         }
     }
     & .carousel-control-prev, & .carousel-control-next {
