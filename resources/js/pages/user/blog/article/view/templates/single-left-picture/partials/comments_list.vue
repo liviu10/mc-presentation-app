@@ -69,14 +69,12 @@
                      class="form-check-input"
                      name="privacy_policy"
               >
-              <label class="form-check-label lead" for="flexCheckChecked">
-                <span>
-                  {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.comment_form.i_agree_with') }}
-                  <router-link class="a-typography" to="/terms-and-conditions">
-                    {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.comment_form.privacy_policy') }}
-                  </router-link>
-                </span>
+              <label class="form-check-label lead" for="privacy_policy">
+                {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.comment_form.i_agree_with') }}
               </label>
+              <a class="lead a-typography" href="/terms-and-conditions">
+                {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.comment_form.privacy_policy') }}
+              </a>
               <has-error :form="form" field="privacy_policy" />
             </div>
             <!-- PRIVACY POLICY, SECTION END -->
@@ -154,14 +152,12 @@
                            class="form-check-input"
                            name="privacy_policy"
                     >
-                    <label class="form-check-label lead" for="flexCheckChecked">
-                      <span>
-                        {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.comment_form.i_agree_with') }}
-                        <router-link class="a-typography" to="/terms-and-conditions">
-                          {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.comment_form.privacy_policy') }}
-                        </router-link>
-                      </span>
+                    <label class="form-check-label lead" for="privacy_policy">
+                      {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.comment_form.i_agree_with') }}
                     </label>
+                    <a class="lead a-typography" href="/terms-and-conditions">
+                      {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.comment_form.privacy_policy') }}
+                    </a>
                     <has-error :form="form" field="privacy_policy" />
                   </div>
                   <!-- PRIVACY POLICY, SECTION END -->

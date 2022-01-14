@@ -10,6 +10,7 @@
 @import 'home/_styles.scss';
 @import 'schedule-appointment/_styles.scss';
 @import 'terms-and-conditions/_styles.scss';
+@import '../../components/front_view/partials/_button.scss';
 
 .lv-pg-admin, .lv-pg-about-me, 
 .lv-pg-blog, .lv-pg-articles, .lv-pg-audio, .lv-pg-video, .lv-pg-subcategories,
@@ -17,7 +18,6 @@
     margin: rem-convertor(60px) 0rem;
     padding: 0rem;
 }
-
 .lv-pg-admin, .lv-pg-articles, .lv-pg-audio, .lv-pg-video, .lv-pg-subcategories, .lv-pg-terms {
     &-header, &-body {
         padding: 0rem;
@@ -30,5 +30,27 @@
         }
     }
 }
-
 .lv-pg-not-found, .lv-pg-under-construction {}
+.swal2 {
+    &-popup {
+        background-color: map-get($blizzard_blue, "color_blizzard_blue");
+    }
+    &-title, &-html-container {
+        color: map-get($basic_colors, "color_black");
+        font-family: inherit;
+    }
+    &-styled.swal2-confirm {
+        @include button();
+        font-family: inherit;
+    }
+    &-icon.swal2-success {
+        border-color: $background_color;
+        color: $background_color;
+    }
+    &-footer {
+        border-top: 0rem;
+        & .btn {
+            @include button();
+        }
+    }
+}
