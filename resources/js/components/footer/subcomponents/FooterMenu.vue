@@ -1,4 +1,4 @@
-<template>
+i<template>
   <div class="container-footer-menu-button">
     <p v-for="footer_button in footer_buttons" :key="footer_button.id">
       <router-link v-if="footer_button.button_id === 'modalUnsubscribe'"
@@ -105,18 +105,18 @@ export default {
       await Swal.fire({
         title: this.$t('footer.footer_menu.unsubscribe_newsletter.swal_confirmation.title'),
         text: this.$t('footer.footer_menu.unsubscribe_newsletter.swal_confirmation.message'),
-        timer: 3000,
+        timer: 18000,
         footer:
-          '<a href="https://www.facebook.com/groups/269560668238590/?ref=share" target="_blank" rel="noreferrer">' +
+          '<a href="https://www.facebook.com/groups/269560668238590/?ref=share" target="_blank" rel="noreferrer" class="btn btn-primary">' +
             'Facebook' +
-          '</a>' + '&nbsp;&nbsp; | &nbsp;&nbsp;' +
-          '<a href="" target="_blank" rel="noreferrer">' +
+          '</a>' + '&nbsp;&nbsp;  &nbsp;&nbsp;' +
+          '<a href="" target="_blank" rel="noreferrer" class="btn btn-primary">' +
             'Instagram' +
-          '</a>' + '&nbsp;&nbsp; | &nbsp;&nbsp;' +
-          '<a href="" target="_blank" rel="noreferrer">' +
+          '</a>' + '&nbsp;&nbsp;  &nbsp;&nbsp;' +
+          '<a href="" target="_blank" rel="noreferrer" class="btn btn-primary">' +
             'Youtube' +
           '</a>',
-        icon: 'success',
+        // icon: 'success',
         showConfirmButton: false
       })
     }

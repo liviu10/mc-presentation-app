@@ -46,13 +46,11 @@
                    name="privacy_policy"
             >
             <label class="form-check-label lead" for="privacy_policy">
-              <span @click="acceptPrivacyPolicy">
-                {{ $t('user.home_page.newsletter.i_agree_with') }}
-              </span>
-              <router-link class="a-typography" to="/terms-and-conditions">
-                {{ $t('user.home_page.newsletter.privacy_policy') }}
-              </router-link>
+              {{ $t('user.home_page.newsletter.i_agree_with') }}
             </label>
+            <a class="lead a-typography" href="/terms-and-conditions">
+              {{ $t('user.home_page.newsletter.privacy_policy') }}
+            </a>
           </div>
           <has-error :form="form" field="privacy_policy" />
         </div>
@@ -101,13 +99,6 @@ export default {
     this.newsletterSelectedImage = this.displayRandomNewsletterImage(this.newsletterImages)
   },
   methods: {
-    acceptPrivacyPolicy () {
-      if (this.form.privacy_policy === true) {
-        this.form.privacy_policy = false
-      } else {
-        this.form.privacy_policy = true
-      }
-    },
     displayRandomNewsletterImage (images) {
       return images[Math.floor(Math.random() * images.length)]
     },

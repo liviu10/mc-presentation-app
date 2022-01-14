@@ -70,14 +70,12 @@
                          class="form-check-input"
                          name="privacy_policy"
                   >
-                  <label class="form-check-label lead" for="flexCheckChecked">
-                    <span @click="acceptPrivacyPolicy">
-                      {{ $t('user.contact_me_page.contact_form.i_agree_with') }}
-                      <router-link class="a-typography" to="/terms-and-conditions">
-                        {{ $t('user.contact_me_page.contact_form.privacy_policy') }}
-                      </router-link>
-                    </span>
+                  <label class="form-check-label lead" for="privacy_policy">
+                    {{ $t('user.contact_me_page.contact_form.i_agree_with') }}
                   </label>
+                  <a class="lead a-typography" href="/terms-and-conditions">
+                    {{ $t('user.contact_me_page.contact_form.privacy_policy') }}
+                  </a>
                 </div>
                 <has-error :form="form" field="privacy_policy" />
               </div>
@@ -113,13 +111,6 @@ export default {
     }
   },
   methods: {
-    acceptPrivacyPolicy () {
-      if (this.form.privacy_policy === true) {
-        this.form.privacy_policy = false
-      } else {
-        this.form.privacy_policy = true
-      }
-    },
     async subscribe () {
       const url = window.location.origin
       const apiEndPoint = '/api/contact-me'
