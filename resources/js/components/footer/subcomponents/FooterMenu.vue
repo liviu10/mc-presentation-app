@@ -109,13 +109,16 @@ export default {
         footer:
           '<a href="https://www.facebook.com/groups/269560668238590/?ref=share" target="_blank" rel="noreferrer" class="btn btn-primary">' +
             'Facebook' +
-          '</a>' + '&nbsp;&nbsp;  &nbsp;&nbsp;' +
-          '<a href="" target="_blank" rel="noreferrer" class="btn btn-primary">' +
-            'Instagram' +
-          '</a>' + '&nbsp;&nbsp;  &nbsp;&nbsp;' +
-          '<a href="" target="_blank" rel="noreferrer" class="btn btn-primary">' +
-            'Youtube' +
           '</a>',
+        // '<a href="https://www.facebook.com/groups/269560668238590/?ref=share" target="_blank" rel="noreferrer" class="btn btn-primary">' +
+        //   'Facebook' +
+        // '</a>' + '&nbsp;&nbsp;  &nbsp;&nbsp;' +
+        // '<a href="" target="_blank" rel="noreferrer" class="btn btn-primary">' +
+        //   'Instagram' +
+        // '</a>' + '&nbsp;&nbsp;  &nbsp;&nbsp;' +
+        // '<a href="" target="_blank" rel="noreferrer" class="btn btn-primary">' +
+        //   'Youtube' +
+        // '</a>',
         // icon: 'success',
         showConfirmButton: false
       })

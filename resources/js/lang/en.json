@@ -234,6 +234,7 @@
       "main_categories": {},
       "testimonials": {},
       "newsletter": {
+        "section_title": "Subscribe to newsletter",
         "input_full_name": "Your name and surname",
         "input_email_address": "Your email address",
         "subscribe_button": "Subscribe!",

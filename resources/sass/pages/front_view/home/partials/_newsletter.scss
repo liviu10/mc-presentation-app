@@ -3,6 +3,14 @@
 
 .lv-con-newsletter {
     padding: 0rem !important;
+    &-head {
+        margin-bottom: rem-convertor(32px);
+        font-family: inherit;
+        text-align: center;
+        & h1 {
+            margin-bottom: 0rem;
+        }
+    }
     & .row {
         --bs-gutter-x: 0rem !important;
         flex-wrap: nowrap;

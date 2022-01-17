@@ -234,6 +234,7 @@
       "main_categories": {},
       "testimonials": {},
       "newsletter": {
+        "section_title": "Abonare la newsletter",
         "input_full_name": "Numele și prenumele tău",
         "input_email_address": "Adresa ta de email",
         "subscribe_button": "Abonează-te!",

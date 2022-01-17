@@ -1,5 +1,8 @@
 <template>
   <div class="container lv-con-newsletter">
+    <div class="lv-con-newsletter-head">
+      <h1>Abonare la newsletter</h1>
+    </div>
     <form @submit.prevent="subscribe" @keydown="form.onKeydown($event)">
       <div class="row">
         <!-- FULL NAME, SECTION START -->
