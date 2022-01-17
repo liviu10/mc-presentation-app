@@ -418,7 +418,20 @@ class BlogSubcategoryController extends Controller
                                     'comment_reply',
                                     'created_at'
                                 )
-                                ->IsCommentReplyPublic();
+                                ->IsCommentReplyPublic()
+                                ->with([
+                                    'blog_article_comment_reply_replies' => function ($query) {
+                                        $query->select(
+                                            'blog_article_comment_reply_id',
+                                            'id',
+                                            'full_name',
+                                            'email',
+                                            'reply_to_comment_reply',
+                                            'created_at'
+                                        )
+                                        ->isCommentReplyPublic();
+                                    }
+                                ]);
                             }
                         ]);
                     }

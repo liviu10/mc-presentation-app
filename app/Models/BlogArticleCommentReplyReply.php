@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BlogArticleCommentReply extends Model
+class BlogArticleCommentReplyReply extends Model
 {
     use HasFactory;
 
@@ -14,7 +14,7 @@ class BlogArticleCommentReply extends Model
      * 
      * @var string
      */
-    protected $table = 'blog_article_comment_replies';
+    protected $table = 'blog_article_comment_reply_replies';
 
     /**
      * The primary key associated with the table.
@@ -28,7 +28,7 @@ class BlogArticleCommentReply extends Model
      * 
      * @var string
      */
-    protected $foreignKey = 'blog_article_comment_id';
+    protected $foreignKey = 'blog_article_comment_reply_id';
     
     /**
      * The data type of the database table foreign key.
@@ -43,10 +43,10 @@ class BlogArticleCommentReply extends Model
      * @var string
      */
     protected $fillable = [
-        'blog_article_comment_id',
+        'blog_article_comment_reply_id',
         'full_name',
         'email',
-        'comment_reply',
+        'reply_to_comment_reply',
         'comment_reply_is_public',
         'privacy_policy',
     ];
@@ -84,20 +84,11 @@ class BlogArticleCommentReply extends Model
     }
 
     /**
-     * Eloquent relationship between blog_article_comment_replies and blog_article_comment_reply_replies.
-     * One blog article comment reply(ies) may have one or more blog article comment reply replies.
+     * Eloquent relationship between blog_article_comment_reply_replies and blog_article_comment_replies.
+     * One or many blog article comment reply replies may have only one blog article comment reply.
      */
-    public function blog_article_comment_reply_replies()
+    public function blog_article_comment_reply()
     {
-        return $this->hasMany('App\Models\BlogArticleCommentReplyReply');
-    }
-
-    /**
-     * Eloquent relationship between blog_article_comment_replies and blog_article_comments.
-     * One or many blog article comment reply(ies) may have only one blog article comment.
-     */
-    public function blog_article_comment()
-    {
-        return $this->belongsTo('App\Models\BlogArticleComment');
+        return $this->belongsTo('App\Models\BlogArticleCommentReply');
     }
 }
