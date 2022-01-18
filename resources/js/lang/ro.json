@@ -67,16 +67,6 @@
         "read_more": "Citește mai mult!",
         "article_blog_page": {
           "page_title": "Articol",
-          "rating_system": {
-            "title": "Evaluează: ",
-            "options": {
-              "very_bad": "(Foarte Rău)",
-              "bad": "(Rău)",
-              "normal": "(Normal)",
-              "good": "(Bine)",
-              "very_good": "(Foarte Bine)"
-            }
-          },
           "article_subcategory": "Subcategorie",
           "like_dislike_system": {
             "like": " apreciază",
@@ -192,7 +182,25 @@
       "general_settings": {
         "published_on": "Publicat la:",
         "modified_on": "Modificat la:",
-        "more_articles": "Mai multe {type}"
+        "more_articles": "Mai multe {type}",
+        "rating_system": {
+          "title": "Evaluează: ",
+          "options": {
+            "very_bad": "(Foarte Rău)",
+            "bad": "(Rău)",
+            "normal": "(Normal)",
+            "good": "(Bine)",
+            "very_good": "(Foarte Bine)"
+          }
+        },
+        "comment_section": {
+          "open_add_comment_form": "Scrie un comentariu",
+          "close_add_comment_form": "Anulează",
+          "no_comment_info": "Fi primul care lasa un comentariu!",
+          "added_on": " a adăugat un comentariu pe ",
+          "open_reply_comment_form": "Răspunde",
+          "close_reply_comment_form": "Anulează"
+        }
       }
     },
     "contact_me_page": {

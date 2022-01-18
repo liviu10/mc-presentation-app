@@ -67,16 +67,6 @@
         "read_more": "Read more!",
         "article_blog_page": {
           "page_title": "Article",
-          "rating_system": {
-            "title": "Rate this: ",
-            "options": {
-              "very_bad": "(Very Bad)",
-              "bad": "(Bad)",
-              "normal": "(Normal)",
-              "good": "(Good)",
-              "very_good": "(Very Good)"
-            }
-          },
           "article_subcategory": "Subcategory",
           "like_dislike_system": {
             "like": " likes",
@@ -192,7 +182,25 @@
       "general_settings": {
         "published_on": "Published at:",
         "modified_on": "Modified at:",
-        "more_articles": "More {type}"
+        "more_articles": "More {type}",
+        "rating_system": {
+          "title": "Rate this: ",
+          "options": {
+            "very_bad": "(Very Bad)",
+            "bad": "(Bad)",
+            "normal": "(Normal)",
+            "good": "(Good)",
+            "very_good": "(Very Good)"
+          }
+        },
+        "comment_section": {
+          "open_add_comment_form": "Write a comment",
+          "close_add_comment_form": "Cancel",
+          "no_comment_info": "Be the first one to leave a comment!",
+          "added_on": " has added a comment on ",
+          "open_reply_comment_form": "Answer",
+          "close_reply_comment_form": "Cancel"
+        }
       }
     },
     "contact_me_page": {
