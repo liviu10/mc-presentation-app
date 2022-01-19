@@ -35,7 +35,7 @@
       </div>
       <div class="container-footer-copyright">
         <p>
-          Copyright &#169; 2021
+          Copyright &#169; {{ new Date().getFullYear() }}
           <router-link :to="{ name: 'home-page' }">
             <span>Mădălina Corina Marius</span>
           </router-link>
