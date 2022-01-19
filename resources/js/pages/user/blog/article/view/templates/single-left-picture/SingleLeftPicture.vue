@@ -21,7 +21,7 @@
     <!-- TEMPLATE OPTIONS (RATE, SUBCATEGORY TITLE AND SHARE BUTTONS), SECTION END -->
     <div class="comment-divider" />
     <!-- TEMPLATE COMMENT FORM, SECTION START -->
-    <single-left-picture-comment-form-details />
+    <single-left-picture-comment-form-details :blog-article-id="articleContent.blog_articles[0].id" />
     <!-- TEMPLATE COMMENT FORM, SECTION END -->
     <!-- TEMPLATE COMMENTS LIST, SECTION START -->
     <single-left-picture-comment-list-details :blog-article-comments="articleContent.blog_articles[0].blog_article_comments" />

@@ -3,17 +3,17 @@
     <!-- RATE THIS, SECTION START -->
     <div class="article-rate">
       <p>
-        {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.rating_system.title') }}
+        {{ $t('user.blog_system_pages.general_settings.rating_system.title') }}
         <rate v-model="myRate"
               :length="5"
               :value="0"
               :showcount="true"
               :ratedesc="[
-                $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.rating_system.options.very_bad'),
-                $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.rating_system.options.bad'),
-                $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.rating_system.options.normal'),
-                $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.rating_system.options.good'),
-                $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.rating_system.options.very_good')
+                $t('user.blog_system_pages.general_settings.rating_system.options.very_bad'),
+                $t('user.blog_system_pages.general_settings.rating_system.options.bad'),
+                $t('user.blog_system_pages.general_settings.rating_system.options.normal'),
+                $t('user.blog_system_pages.general_settings.rating_system.options.good'),
+                $t('user.blog_system_pages.general_settings.rating_system.options.very_good')
               ]"
         />
       </p>
@@ -45,12 +45,12 @@
       <a href="" class="btn btn-primary" target="_blank" :title="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.social_menu.facebook')">
         <fa :icon="['fab', 'facebook']" fixed-width />
       </a>
-      <a href="" class="btn btn-primary" target="_blank" :title="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.social_menu.instagram')">
+      <!-- <a href="" class="btn btn-primary" target="_blank" :title="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.social_menu.instagram')">
         <fa :icon="['fab', 'instagram']" fixed-width />
       </a>
       <a href="" class="btn btn-primary" target="_blank" :title="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.social_menu.email')">
         <fa :icon="['fa', 'envelope']" fixed-width />
-      </a>
+      </a> -->
     </div>
     <!-- SHARE THIS, SECTION END -->
   </div>

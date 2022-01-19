@@ -147,6 +147,18 @@ return [
             'required'  => ':attribute este obligatoriu.',
             'min'       => ':attribute trebuie să aibă 60 de caractere minim.',
         ],
+        'comment' => [
+            'required'  => ':attribute este obligatoriu.',
+            'min'       => ':attribute trebuie să aibă 5 de caractere minim.',
+        ],
+        'comment_reply' => [
+            'required'  => ':attribute este obligatoriu.',
+            'min'       => ':attribute trebuie să aibă 5 de caractere minim.',
+        ],
+        'reply_to_comment_reply' => [
+            'required'  => ':attribute este obligatoriu.',
+            'min'       => ':attribute trebuie să aibă 5 de caractere minim.',
+        ],
         'privacy_policy' => [
             'accepted'  => 'Trebuie să accepți :attribute.',
         ],
@@ -164,10 +176,13 @@ return [
     */
 
     'attributes' => [
-        'full_name'      => 'Numele și Prenumele',
-        'email'          => 'Adresa de Email',
-        'message'        => 'Mesajul',
-        'privacy_policy' => 'Termenii și Condițiile',
+        'full_name'              => 'Numele și Prenumele',
+        'email'                  => 'Adresa de Email',
+        'message'                => 'Mesajul',
+        'comment'                => 'Comentariul',
+        'comment_reply'          => 'Răspunsul la comentariu',
+        'reply_to_comment_reply' => 'Răspunsul la comentariu',
+        'privacy_policy'         => 'Termenii și Condițiile',
     ],
 
 ];

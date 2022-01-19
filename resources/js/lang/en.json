@@ -67,16 +67,6 @@
         "read_more": "Read more!",
         "article_blog_page": {
           "page_title": "Article",
-          "rating_system": {
-            "title": "Rate this: ",
-            "options": {
-              "very_bad": "(Very Bad)",
-              "bad": "(Bad)",
-              "normal": "(Normal)",
-              "good": "(Good)",
-              "very_good": "(Very Good)"
-            }
-          },
           "article_subcategory": "Subcategory",
           "like_dislike_system": {
             "like": " likes",
@@ -89,15 +79,6 @@
             "facebook": "Share on Facebook!",
             "instagram": "Share on Instagram!",
             "email": "Share this article on email!"
-          },
-          "comment_form": {
-            "input_full_name": "Your Name and Surname",
-            "input_email_address": "Your email address",
-            "input_message": "Enter your comment",
-            "i_agree_with": "I agree with the ",
-            "privacy_policy": "Privacy Policy",
-            "post_comment": "Post comment",
-            "success_message": "Your have successfully posted a new comment! This comment will be soon approved by an admin!"
           }
         }
       },
@@ -133,15 +114,6 @@
             "facebook": "Share on Facebook!",
             "instagram": "Share on Instagram!",
             "email": "Share this article on email!"
-          },
-          "comment_form": {
-            "input_full_name": "Your Name and Surname",
-            "input_email_address": "Your email address",
-            "input_message": "Enter your comment",
-            "i_agree_with": "I agree with the ",
-            "privacy_policy": "Privacy Policy",
-            "post_comment": "Post comment",
-            "success_message": "Your have successfully posted a new comment! This comment will be soon approved by an admin!"
           }
         }
       },
@@ -177,22 +149,47 @@
             "facebook": "Share on Facebook!",
             "instagram": "Share on Instagram!",
             "email": "Share this article on email!"
-          },
-          "comment_form": {
-            "input_full_name": "Your Name and Surname",
-            "input_email_address": "Your email address",
-            "input_message": "Enter your comment",
-            "i_agree_with": "I agree with the ",
-            "privacy_policy": "Privacy Policy",
-            "post_comment": "Post comment",
-            "success_message": "Your have successfully posted a new comment! This comment will be soon approved by an admin!"
           }
         }
       },
       "general_settings": {
         "published_on": "Published at:",
         "modified_on": "Modified at:",
-        "more_articles": "More {type}"
+        "more_articles": "More {type}",
+        "rating_system": {
+          "title": "Rate this: ",
+          "options": {
+            "very_bad": "(Very Bad)",
+            "bad": "(Bad)",
+            "normal": "(Normal)",
+            "good": "(Good)",
+            "very_good": "(Very Good)"
+          }
+        },
+        "comment_section": {
+          "open_add_comment_form": "Write a comment",
+          "close_add_comment_form": "Cancel",
+          "comment_form": {
+            "input_full_name": "Your Name and Surname",
+            "input_email_address": "Your email address",
+            "input_message": "Enter your comment",
+            "i_agree_with": "I agree with the ",
+            "privacy_policy": "Privacy Policy",
+            "post_comment": "Post comment"
+          },
+          "no_comment_info": "Be the first one to leave a comment!",
+          "added_on": " has added a comment on ",
+          "added_on_alternative": {
+            "line_1": " has replied to ",
+            "line_2": " on "
+          },
+          "swal": {
+            "title": "Thank you, {fullName}!",
+            "message": "Your comment was successfully added!"
+          },
+          "open_reply_comment_form": "Answer",
+          "close_reply_comment_form": "Cancel"
+        }
       }
     },
     "contact_me_page": {

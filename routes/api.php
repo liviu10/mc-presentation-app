@@ -27,6 +27,9 @@ use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\User\BlogPage\BlogCategoryController;
     use App\Http\Controllers\User\BlogPage\BlogSubcategoryController;
     use App\Http\Controllers\User\BlogPage\BlogArticleController;
+    use App\Http\Controllers\User\BlogPage\BlogArticleCommentController;
+    use App\Http\Controllers\User\BlogPage\BlogArticleCommentReplyController;
+    use App\Http\Controllers\User\BlogPage\BlogArticleCommentReplyReplyController;
 
     // Import the About Me page Controller files
     use App\Http\Controllers\User\AboutMePage\AboutMeController;
@@ -69,6 +72,9 @@ use Illuminate\Support\Facades\Route;
                 Route::get('/all-video-articles', [BlogSubcategoryController::class, 'getAllVideoBlogArticles']);
                 Route::get('/{id}', [BlogSubcategoryController::class, 'displaySingleBlogArticle']);
             });
+            Route::apiResource('/add-new-comment', BlogArticleCommentController::class)->only(['store']);
+            Route::apiResource('/reply-to-comment', BlogArticleCommentReplyController::class)->only(['store']);
+            Route::apiResource('/reply-to-comment-reply', BlogArticleCommentReplyReplyController::class)->only(['store']);
         });
 
         // About me page API routes

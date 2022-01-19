@@ -1,12 +1,80 @@
+
+@import '../../../../components/front_view/partials/_button.scss';
+@import '../../../../components/front_view/partials/_social_media_icons.scss';
+
 $lvContainerPageWrittenArticle: (
-    card_background_color:         map-get($complementary_blizzard_blue, "color_sea_nymph"),
-    card_font_color:               map-get($complementary_blizzard_blue, "color_sea_nymph"),
-    comment_form_bg_color_btn:     map-get($blizzard_blue, "color_blizzard_blue"),
-    comment_form_border_color_btn: map-get($blizzard_blue, "color_blizzard_blue"),
-    comment_form_font_color_btn:   map-get($basic_colors, "color_black"),
-    comment_form_check_font_color: map-get($basic_colors, "color_black"),
+    card_background_color:          map-get($complementary_blizzard_blue, "color_sea_nymph"),
+    card_font_color:                map-get($complementary_blizzard_blue, "color_sea_nymph"),
+    add_comment_btn_bg_color:       map-get($complementary_blizzard_blue, "color_sea_nymph"),
+    add_comment_btn_border_color:   map-get($complementary_blizzard_blue, "color_sea_nymph"),
+    reply_comment_btn_bg_color:     map-get($blizzard_blue, "color_blizzard_blue"),
+    reply_comment_border_color_btn: map-get($blizzard_blue, "color_blizzard_blue"),
+    comment_form_font_color_btn:    map-get($basic_colors, "color_black"),
+    comment_form_check_font_color:  map-get($basic_colors, "color_black"),
 );
 $lvContainerPageWrittenArticleFont: 'Merriweather Sans Bold', sans-serif;
+
+@mixin comment-form() {
+    & .form-control {
+        border-radius: rem-convertor(0px);
+        height: rem-convertor(60px);
+    }
+    & .form-message {
+        height: rem-convertor(300px);
+        resize: none;
+    }
+    & input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+        border-color: transparent;
+        box-shadow: 0 rem-convertor(1px) rem-convertor(1px) transparent inset, 0 0 rem-convertor(8px) transparent;
+        outline: 0 none;
+    }
+    & input::placeholder, textarea::placeholder {
+        font-style: italic;
+    }
+    & .form-check {
+        margin-bottom: rem-convertor(0px);
+        &-input {
+            width: rem-convertor(20px);
+            height: rem-convertor(20px);
+        }
+        & .invalid-feedback {
+            @media only screen and (max-width: 767px) {
+                text-align: center;
+            }
+        }
+        & .a-typography {
+            margin: rem-convertor(8px) 0rem;
+            padding: 0rem;
+            color: map-get($lvContainerPageWrittenArticle, "comment_form_check_font_color");
+            font-style: normal;
+            font-variant: normal;
+            font-weight: normal;
+            text-align: left;
+            text-decoration: none;
+            white-space: normal;
+            word-break: normal;
+            word-spacing: normal;
+            text-decoration: underline;
+            text-indent: rem-convertor(0px);
+            &:visited, &:active {
+                color: map-get($lvContainerPageWrittenArticle, "comment_form_check_font_color");
+            }
+            &:hover {
+                color: map-get($lvContainerPageWrittenArticle, "comment_form_check_font_color");
+                cursor: pointer;
+            }
+        }
+    }
+    & .form-button {
+        @include flex-center();
+        margin-top: rem-convertor(16px);
+        margin-bottom: rem-convertor(16px);
+    }
+    & .btn {
+        height: rem-convertor(60px);
+        @include button();
+    }
+}
 
 .lv-pg-single-article {
     @include flex-center();
@@ -98,23 +166,22 @@ $lvContainerPageWrittenArticleFont: 'Merriweather Sans Bold', sans-serif;
                 align-items: center;
                 margin-bottom: rem-convertor(8px);
                 & a {
+                    color: inherit;
                     font-style: italic;
                 }
             }
         }
         & .article-share {
+            display: flex;
+            flex-direction: row;
             margin-bottom: rem-convertor(16px);
+            @include social-media-icon();
             & .btn {
-                border-radius: rem-convertor(0px);
-                background-color: map-get($lvContainerPageWrittenArticle, "comment_form_bg_color_btn");
-                border-color: map-get($lvContainerPageWrittenArticle, "comment_form_border_color_btn");
-                border-radius: rem-convertor(0px);
-                color: map-get($lvContainerPageWrittenArticle, "comment_form_font_color_btn");
-                font-weight: bold;
-                &:focus {
-                    border-color: transparent !important;
-                    box-shadow: 0 rem-convertor(1px) rem-convertor(1px) transparent inset, 0 0 rem-convertor(1px) transparent !important;
-                    outline: 0 none !important;
+                @include button();
+                margin-right: rem-convertor(8px);
+                &:last-child {
+                    display: flex;
+                    margin-right: 0rem;
                 }
             }
         }
@@ -141,163 +208,44 @@ $lvContainerPageWrittenArticleFont: 'Merriweather Sans Bold', sans-serif;
                     form {
                         margin-bottom: rem-convertor(0px);
                     }
-                    & .form-control {
-                        border-radius: rem-convertor(0px);
-                        height: rem-convertor(60px);
-                    }
-                    & .form-message {
-                        height: rem-convertor(300px);
-                        resize: none;
-                    }
-                    & input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
-                        border-color: transparent;
-                        box-shadow: 0 rem-convertor(1px) rem-convertor(1px) transparent inset, 0 0 rem-convertor(8px) transparent;
-                        outline: 0 none;
-                    }
-                    & input::placeholder, textarea::placeholder {
-                        font-style: italic;
-                    }
-                    & .form-check {
-                        margin-bottom: rem-convertor(0px);
-                        &-input {
-                            width: rem-convertor(20px);
-                            height: rem-convertor(20px);
-                        }
-                        &-label {
-                            & .a-typography {
-                                margin: rem-convertor(8px) 0rem;
-                                padding: 0rem;
-                                color: map-get($lvContainerPageWrittenArticle, "comment_form_check_font_color");
-                                font-style: normal;
-                                font-variant: normal;
-                                font-weight: normal;
-                                text-align: left;
-                                text-decoration: none;
-                                white-space: normal;
-                                word-break: normal;
-                                word-spacing: normal;
-                                text-decoration: underline;
-                                text-indent: rem-convertor(0px);
-                                &:visited, &:active {
-                                    color: map-get($lvContainerPageWrittenArticle, "comment_form_check_font_color");
-                                }
-                                &:hover {
-                                    color: map-get($lvContainerPageWrittenArticle, "comment_form_check_font_color");
-                                    cursor: pointer;
-                                }
-                            }
-                        }
-                        & .invalid-feedback {
-                            @media only screen and (max-width: 767px) {
-                                text-align: center;
-                            }
-                        }
-                    }
-                    & .form-button {
-                        @include flex-center();
-                        margin-top: rem-convertor(16px);
-                        margin-bottom: rem-convertor(16px);
-                    }
-                    & .btn {
-                        border-radius: rem-convertor(0px);
-                        height: rem-convertor(60px);
-                        background-color: map-get($lvContainerPageWrittenArticle, "comment_form_bg_color_btn");
-                        border-color: map-get($lvContainerPageWrittenArticle, "comment_form_border_color_btn");
-                        border-radius: rem-convertor(0px);
-                        color: map-get($lvContainerPageWrittenArticle, "comment_form_font_color_btn");
-                        font-weight: bold;
-                        &:focus {
-                            border-color: transparent !important;
-                            box-shadow: 0 rem-convertor(1px) rem-convertor(1px) transparent inset, 0 0 rem-convertor(1px) transparent !important;
-                            outline: 0 none !important;
-                        }
-                    }
+                    @include comment-form();
                 }
             }
             &-list {
-                &-card {
+                &-info {
+                    margin: rem-convertor(32px) 0rem;
+                    & h1 {
+                        margin-bottom: 0rem;
+                        text-align: center;
+                    }
+                }
+                &-card, &-reply-card {
                     width: 100%;
                     background-color: map-get($lvContainerPageWrittenArticle, "card_background_color");
                     border: rem-convertor(0px) !important;
                     border-radius: rem-convertor(0px);
                     margin: rem-convertor(16px) 0rem;
+                    & .card-title {
+                        margin-bottom: rem-convertor(16px);
+                        & h5 {
+                            margin-bottom: 0rem;
+                        }
+                    }
                     form {
                         margin-bottom: rem-convertor(0px);
                     }
-                    & .form-control {
-                        border-radius: rem-convertor(0px);
-                        height: rem-convertor(60px);
-                    }
-                    & .form-message {
-                        height: rem-convertor(300px);
-                        resize: none;
-                    }
-                    & input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
-                        border-color: transparent;
-                        box-shadow: 0 rem-convertor(1px) rem-convertor(1px) transparent inset, 0 0 rem-convertor(8px) transparent;
-                        outline: 0 none;
-                    }
-                    & input::placeholder, textarea::placeholder {
-                        font-style: italic;
-                    }
-                    & .form-check {
-                        margin-bottom: rem-convertor(0px);
-                        &-input {
-                            width: rem-convertor(20px);
-                            height: rem-convertor(20px);
-                        }
-                        &-label {
-                            & .a-typography {
-                                margin: rem-convertor(8px) 0rem;
-                                padding: 0rem;
-                                color: map-get($lvContainerPageWrittenArticle, "comment_form_check_font_color");
-                                font-style: normal;
-                                font-variant: normal;
-                                font-weight: normal;
-                                text-align: left;
-                                text-decoration: none;
-                                white-space: normal;
-                                word-break: normal;
-                                word-spacing: normal;
-                                text-decoration: underline;
-                                text-indent: rem-convertor(0px);
-                                &:visited, &:active {
-                                    color: map-get($lvContainerPageWrittenArticle, "comment_form_check_font_color");
-                                }
-                                &:hover {
-                                    color: map-get($lvContainerPageWrittenArticle, "comment_form_check_font_color");
-                                    cursor: pointer;
-                                }
-                            }
-                        }
-                        & .invalid-feedback {
-                            @media only screen and (max-width: 767px) {
-                                text-align: center;
-                            }
-                        }
-                    }
+                    @include comment-form();
                     & .form-button {
-                        @include flex-center-left-center();
-                        margin-top: rem-convertor(16px);
-                        margin-bottom: rem-convertor(16px);
+                        justify-content: flex-start;
                     }
                     & .btn {
-                        border-radius: rem-convertor(0px);
-                        height: rem-convertor(60px);
-                        background-color: map-get($lvContainerPageWrittenArticle, "comment_form_bg_color_btn");
-                        border-color: map-get($lvContainerPageWrittenArticle, "comment_form_border_color_btn");
-                        border-radius: rem-convertor(0px);
-                        color: map-get($lvContainerPageWrittenArticle, "comment_form_font_color_btn");
-                        font-weight: bold;
-                        &:focus {
-                            border-color: transparent !important;
-                            box-shadow: 0 rem-convertor(1px) rem-convertor(1px) transparent inset, 0 0 rem-convertor(1px) transparent !important;
-                            outline: 0 none !important;
-                        }
+                        background-color: map-get($lvContainerPageWrittenArticle, "reply_comment_btn_bg_color");
+                        border-color: map-get($lvContainerPageWrittenArticle, "reply_comment_btn_bg_color");
                     }
                 }
                 &-reply-card {
                     margin: rem-convertor(16px) 0rem rem-convertor(16px) rem-convertor(100px);
+                    width: auto;
                 }
             }
         }

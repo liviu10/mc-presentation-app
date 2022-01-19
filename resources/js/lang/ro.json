@@ -67,16 +67,6 @@
         "read_more": "Citește mai mult!",
         "article_blog_page": {
           "page_title": "Articol",
-          "rating_system": {
-            "title": "Evaluează: ",
-            "options": {
-              "very_bad": "(Foarte Rău)",
-              "bad": "(Rău)",
-              "normal": "(Normal)",
-              "good": "(Bine)",
-              "very_good": "(Foarte Bine)"
-            }
-          },
           "article_subcategory": "Subcategorie",
           "like_dislike_system": {
             "like": " apreciază",
@@ -89,15 +79,6 @@
             "facebook": "Distribuie pe Facebook!",
             "instagram": "Distribuie pe Instagram!",
             "email": "Distribuie acest articol pe email!"
-          },
-          "comment_form": {
-            "input_full_name": "Numele și prenumele tău",
-            "input_email_address": "Adresa ta de email",
-            "input_message": "Inserează un comentariu",
-            "i_agree_with": "Sunt de acord cu ",
-            "privacy_policy": "Termenii și Condițiile",
-            "post_comment": "Postează un comentariu",
-            "success_message": "Comentariul tău a fost postat cu success! Acesta va fi în curând aprobat de un administrator!"
           }
         }
       },
@@ -133,15 +114,6 @@
             "facebook": "Distribuie pe Facebook!",
             "instagram": "Distribuie pe Instagram!",
             "email": "Distribuie acest articol pe email!"
-          },
-          "comment_form": {
-            "input_full_name": "Numele și prenumele tău",
-            "input_email_address": "Adresa ta de email",
-            "input_message": "Inserează un comentariu",
-            "i_agree_with": "Sunt de acord cu ",
-            "privacy_policy": "Termenii și Condițiile",
-            "post_comment": "Postează un comentariu",
-            "success_message": "Comentariul tău a fost postat cu success! Acesta va fi în curând aprobat de un administrator!"
           }
         }
       },
@@ -177,22 +149,47 @@
             "facebook": "Distribuie pe Facebook!",
             "instagram": "Distribuie pe Instagram!",
             "email": "Distribuie acest articol pe email!"
-          },
-          "comment_form": {
-            "input_full_name": "Numele și prenumele tău",
-            "input_email_address": "Adresa ta de email",
-            "input_message": "Inserează un comentariu",
-            "i_agree_with": "Sunt de acord cu ",
-            "privacy_policy": "Termenii și Condițiile",
-            "post_comment": "Postează un comentariu",
-            "success_message": "Comentariul tău a fost postat cu success! Acesta va fi în curând aprobat de un administrator!"
           }
         }
       },
       "general_settings": {
         "published_on": "Publicat la:",
         "modified_on": "Modificat la:",
-        "more_articles": "Mai multe {type}"
+        "more_articles": "Mai multe {type}",
+        "rating_system": {
+          "title": "Evaluează: ",
+          "options": {
+            "very_bad": "(Foarte Rău)",
+            "bad": "(Rău)",
+            "normal": "(Normal)",
+            "good": "(Bine)",
+            "very_good": "(Foarte Bine)"
+          }
+        },
+        "comment_section": {
+          "open_add_comment_form": "Scrie un comentariu",
+          "close_add_comment_form": "Anulează",
+          "comment_form": {
+            "input_full_name": "Numele și prenumele tău",
+            "input_email_address": "Adresa ta de email",
+            "input_comment": "Adaugă un comentariu",
+            "i_agree_with": "Sunt de acord cu ",
+            "privacy_policy": "Termenii și Condițiile",
+            "post_comment": "Postează un comentariu"
+          },
+          "swal": {
+            "title": "Mulțumesc, {fullName}!",
+            "message": "Comentariul tău a fost adăugat cu succes!"
+          },
+          "no_comment_info": "Fi primul care lasă un comentariu!",
+          "added_on": " a adăugat un comentariu pe ",
+          "added_on_alternative": {
+            "line_1": " i-a răspuns lui ",
+            "line_2": " pe "
+          },
+          "open_reply_comment_form": "Răspunde",
+          "close_reply_comment_form": "Anulează"
+        }
       }
     },
     "contact_me_page": {
