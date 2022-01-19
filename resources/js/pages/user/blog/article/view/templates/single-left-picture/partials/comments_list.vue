@@ -13,7 +13,7 @@
         <p class="card-text">
           {{ articleComment.comment }}
         </p>
-        <comment-reply-form :article-comment="articleComment" />
+        <comment-reply-form :comment-id="articleComment.id" />
       </div>
     </div>
   </div>

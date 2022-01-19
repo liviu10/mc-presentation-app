@@ -79,15 +79,6 @@
             "facebook": "Distribuie pe Facebook!",
             "instagram": "Distribuie pe Instagram!",
             "email": "Distribuie acest articol pe email!"
-          },
-          "comment_form": {
-            "input_full_name": "Numele și prenumele tău",
-            "input_email_address": "Adresa ta de email",
-            "input_message": "Inserează un comentariu",
-            "i_agree_with": "Sunt de acord cu ",
-            "privacy_policy": "Termenii și Condițiile",
-            "post_comment": "Postează un comentariu",
-            "success_message": "Comentariul tău a fost postat cu success! Acesta va fi în curând aprobat de un administrator!"
           }
         }
       },
@@ -123,15 +114,6 @@
             "facebook": "Distribuie pe Facebook!",
             "instagram": "Distribuie pe Instagram!",
             "email": "Distribuie acest articol pe email!"
-          },
-          "comment_form": {
-            "input_full_name": "Numele și prenumele tău",
-            "input_email_address": "Adresa ta de email",
-            "input_message": "Inserează un comentariu",
-            "i_agree_with": "Sunt de acord cu ",
-            "privacy_policy": "Termenii și Condițiile",
-            "post_comment": "Postează un comentariu",
-            "success_message": "Comentariul tău a fost postat cu success! Acesta va fi în curând aprobat de un administrator!"
           }
         }
       },
@@ -167,15 +149,6 @@
             "facebook": "Distribuie pe Facebook!",
             "instagram": "Distribuie pe Instagram!",
             "email": "Distribuie acest articol pe email!"
-          },
-          "comment_form": {
-            "input_full_name": "Numele și prenumele tău",
-            "input_email_address": "Adresa ta de email",
-            "input_message": "Inserează un comentariu",
-            "i_agree_with": "Sunt de acord cu ",
-            "privacy_policy": "Termenii și Condițiile",
-            "post_comment": "Postează un comentariu",
-            "success_message": "Comentariul tău a fost postat cu success! Acesta va fi în curând aprobat de un administrator!"
           }
         }
       },
@@ -196,7 +169,19 @@
         "comment_section": {
           "open_add_comment_form": "Scrie un comentariu",
           "close_add_comment_form": "Anulează",
-          "no_comment_info": "Fi primul care lasa un comentariu!",
+          "comment_form": {
+            "input_full_name": "Numele și prenumele tău",
+            "input_email_address": "Adresa ta de email",
+            "input_comment": "Adaugă un comentariu",
+            "i_agree_with": "Sunt de acord cu ",
+            "privacy_policy": "Termenii și Condițiile",
+            "post_comment": "Postează un comentariu"
+          },
+          "swal": {
+            "title": "Mulțumesc, {fullName}!",
+            "message": "Comentariul tău a fost adăugat cu succes!"
+          },
+          "no_comment_info": "Fi primul care lasă un comentariu!",
           "added_on": " a adăugat un comentariu pe ",
           "open_reply_comment_form": "Răspunde",
           "close_reply_comment_form": "Anulează"

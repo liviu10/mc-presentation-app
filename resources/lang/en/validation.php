@@ -145,7 +145,19 @@ return [
         ],
         'message' => [
             'required'  => ':attribute is required.',
-            'min'       => ':attribute must not exceed 60 characters.',
+            'min'       => ':attribute must be at least 60 characters.',
+        ],
+        'comment' => [
+            'required'  => ':attribute is required.',
+            'min'       => ':attribute must be at least 5 characters.',
+        ],
+        'comment_reply' => [
+            'required'  => ':attribute is required.',
+            'min'       => ':attribute must be at least 5 characters.',
+        ],
+        'reply_to_comment_reply' => [
+            'required'  => ':attribute is required.',
+            'min'       => ':attribute must be at least 5 characters.',
         ],
         'privacy_policy' => [
             'accepted'  => 'You must accept the :attribute.',
@@ -164,10 +176,13 @@ return [
     */
 
     'attributes' => [
-        'full_name'      => 'Name and Surname',
-        'email'          => 'Email Address',
-        'message'        => 'Message',
-        'privacy_policy' => 'Terms and Conditions',
+        'full_name'              => 'Name and Surname',
+        'email'                  => 'Email Address',
+        'message'                => 'Message',
+        'comment'                => 'Comment',
+        'comment_reply'          => 'Comment reply',
+        'reply_to_comment_reply' => 'Comment reply',
+        'privacy_policy'         => 'Terms and Conditions',
     ],
 
 ];

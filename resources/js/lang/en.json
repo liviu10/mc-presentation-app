@@ -79,15 +79,6 @@
             "facebook": "Share on Facebook!",
             "instagram": "Share on Instagram!",
             "email": "Share this article on email!"
-          },
-          "comment_form": {
-            "input_full_name": "Your Name and Surname",
-            "input_email_address": "Your email address",
-            "input_message": "Enter your comment",
-            "i_agree_with": "I agree with the ",
-            "privacy_policy": "Privacy Policy",
-            "post_comment": "Post comment",
-            "success_message": "Your have successfully posted a new comment! This comment will be soon approved by an admin!"
           }
         }
       },
@@ -123,15 +114,6 @@
             "facebook": "Share on Facebook!",
             "instagram": "Share on Instagram!",
             "email": "Share this article on email!"
-          },
-          "comment_form": {
-            "input_full_name": "Your Name and Surname",
-            "input_email_address": "Your email address",
-            "input_message": "Enter your comment",
-            "i_agree_with": "I agree with the ",
-            "privacy_policy": "Privacy Policy",
-            "post_comment": "Post comment",
-            "success_message": "Your have successfully posted a new comment! This comment will be soon approved by an admin!"
           }
         }
       },
@@ -167,15 +149,6 @@
             "facebook": "Share on Facebook!",
             "instagram": "Share on Instagram!",
             "email": "Share this article on email!"
-          },
-          "comment_form": {
-            "input_full_name": "Your Name and Surname",
-            "input_email_address": "Your email address",
-            "input_message": "Enter your comment",
-            "i_agree_with": "I agree with the ",
-            "privacy_policy": "Privacy Policy",
-            "post_comment": "Post comment",
-            "success_message": "Your have successfully posted a new comment! This comment will be soon approved by an admin!"
           }
         }
       },
@@ -196,8 +169,20 @@
         "comment_section": {
           "open_add_comment_form": "Write a comment",
           "close_add_comment_form": "Cancel",
+          "comment_form": {
+            "input_full_name": "Your Name and Surname",
+            "input_email_address": "Your email address",
+            "input_message": "Enter your comment",
+            "i_agree_with": "I agree with the ",
+            "privacy_policy": "Privacy Policy",
+            "post_comment": "Post comment"
+          },
           "no_comment_info": "Be the first one to leave a comment!",
           "added_on": " has added a comment on ",
+          "swal": {
+            "title": "Thank you, {fullName}!",
+            "message": "Your comment was successfully added!"
+          },
           "open_reply_comment_form": "Answer",
           "close_reply_comment_form": "Cancel"
         }
