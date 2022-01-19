@@ -183,6 +183,10 @@
           },
           "no_comment_info": "Fi primul care lasă un comentariu!",
           "added_on": " a adăugat un comentariu pe ",
+          "added_on_alternative": {
+            "line_1": " i-a răspuns lui ",
+            "line_2": " pe "
+          },
           "open_reply_comment_form": "Răspunde",
           "close_reply_comment_form": "Anulează"
         }

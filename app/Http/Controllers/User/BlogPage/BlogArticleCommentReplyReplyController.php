@@ -4,11 +4,11 @@ namespace App\Http\Controllers\User\BlogPage;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\BlogArticleCommentReply;
+use App\Models\BlogArticleCommentReplyReply;
 
-class BlogArticleCommentReplyController extends Controller
+class BlogArticleCommentReplyReplyController extends Controller
 {
-    protected $modelNameBlogArticleCommentReply;
+    protected $modelNameBlogArticleCommentReplyReply;
 
     /**
      * Instantiate the variables that will be used to get the model.
@@ -17,7 +17,7 @@ class BlogArticleCommentReplyController extends Controller
      */
     public function __construct()
     {
-        $this->modelNameBlogArticleCommentReply = new BlogArticleCommentReply();
+        $this->modelNameBlogArticleCommentReplyReply = new BlogArticleCommentReplyReply();
     }
 
     /**
@@ -41,41 +41,41 @@ class BlogArticleCommentReplyController extends Controller
         try 
         {
             $request->validate([
-                'full_name'      => 'required|regex:/^[a-zA-Z_ ]+$/u|max:255',
-                'email'          => 'required|email:filter|max:255',
-                'comment_reply'  => 'required|min:5',
+                'full_name'              => 'required|regex:/^[a-zA-Z_ ]+$/u|max:255',
+                'email'                  => 'required|email:filter|max:255',
+                'reply_to_comment_reply' => 'required|min:5',
             ]);
             if (is_null($request->get('comment_reply_is_public')) && is_null($request->get('privacy_policy'))) 
             {
-                $records = $this->modelNameBlogArticleCommentReply->create([
-                    'blog_article_comment_id' => $request->get('blog_article_comment_id'),
-                    'full_name'               => $request->get('full_name'),
-                    'email'                   => $request->get('email'),
-                    'comment_reply'           => $request->get('comment_reply'),
-                    'comment_reply_is_public' => '0',
-                    'privacy_policy'          => '0',
+                $records = $this->modelNameBlogArticleCommentReplyReply->create([
+                    'blog_article_comment_reply_id' => $request->get('blog_article_comment_reply_id'),
+                    'full_name'                     => $request->get('full_name'),
+                    'email'                         => $request->get('email'),
+                    'reply_to_comment_reply'        => $request->get('reply_to_comment_reply'),
+                    'comment_reply_is_public'       => '0',
+                    'privacy_policy'                => '0',
                 ]);
             }
             if ($request->get('comment_reply_is_public') === 1 && is_null($request->get('privacy_policy'))) 
             {
-                $records = $this->modelNameBlogArticleCommentReply->create([
-                    'blog_article_comment_id' => $request->get('blog_article_comment_id'),
-                    'full_name'               => $request->get('full_name'),
-                    'email'                   => $request->get('email'),
-                    'comment_reply'           => $request->get('comment_reply'),
-                    'comment_reply_is_public' => '1',
-                    'privacy_policy'          => '0',
+                $records = $this->modelNameBlogArticleCommentReplyReply->create([
+                    'blog_article_comment_reply_id' => $request->get('blog_article_comment_reply_id'),
+                    'full_name'                     => $request->get('full_name'),
+                    'email'                         => $request->get('email'),
+                    'reply_to_comment_reply'        => $request->get('reply_to_comment_reply'),
+                    'comment_reply_is_public'       => '1',
+                    'privacy_policy'                => '0',
                 ]);
             }
             if (is_null($request->get('comment_reply_is_public')) || $request->get('privacy_policy') === 1) 
             {
-                $records = $this->modelNameBlogArticleCommentReply->create([
-                    'blog_article_comment_id' => $request->get('blog_article_comment_id'),
-                    'full_name'               => $request->get('full_name'),
-                    'email'                   => $request->get('email'),
-                    'comment_reply'           => $request->get('comment_reply'),
-                    'comment_reply_is_public' => '0',
-                    'privacy_policy'          => '1',
+                $records = $this->modelNameBlogArticleCommentReplyReply->create([
+                    'blog_article_comment_reply_id' => $request->get('blog_article_comment_reply_id'),
+                    'full_name'                     => $request->get('full_name'),
+                    'email'                         => $request->get('email'),
+                    'reply_to_comment_reply'        => $request->get('reply_to_comment_reply'),
+                    'comment_reply_is_public'       => '0',
+                    'privacy_policy'                => '1',
                 ]);
             }
             $apiInsertSingleRecord = [
@@ -103,17 +103,17 @@ class BlogArticleCommentReplyController extends Controller
      */
     public function displayLastInsertedCommentReply()
     {
-        $displayLastInsertedCommentReply = $this->modelNameBlogArticleCommentReply::select(
+        $displayLastInsertedReplyToCommentReply = $this->modelNameBlogArticleCommentReplyReply::select(
             'id',
-            'blog_article_id',
+            'blog_article_comment_reply_id',
             'full_name',
             'email',
-            'comment_reply',
+            'reply_to_comment_reply',
         )
         ->IsCommentReplyPublic()
         ->get();
         
-        if ($displayLastInsertedCommentReply->isEmpty()) 
+        if ($displayLastInsertedReplyToCommentReply->isEmpty()) 
         {
             return response([
                 'title'              => 'Resource(s) not found!',
@@ -130,7 +130,7 @@ class BlogArticleCommentReplyController extends Controller
                 'notify_code'        => 'INFO_00001',
                 'description'        => 'The blog resource(s) was(were) successfully fetched!',
                 'http_response_code' => 200,
-                'records'            => $displayLastInsertedCommentReply,
+                'records'            => $displayLastInsertedReplyToCommentReply,
             ], 200);
         }
     }

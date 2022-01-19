@@ -179,6 +179,10 @@
           },
           "no_comment_info": "Be the first one to leave a comment!",
           "added_on": " has added a comment on ",
+          "added_on_alternative": {
+            "line_1": " has replied to ",
+            "line_2": " on "
+          },
           "swal": {
             "title": "Thank you, {fullName}!",
             "message": "Your comment was successfully added!"

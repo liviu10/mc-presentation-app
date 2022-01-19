@@ -95,4 +95,43 @@ class BlogArticleCommentController extends Controller
             }
         }
     }
+
+    /**
+     * Display the last inserted comment.
+     *
+     * @return Illuminate\Http\Response
+     */
+    public function displayLastInsertedComment($id)
+    {
+        $displayLastInsertedComment = $this->modelNameBlogArticleComment::select(
+            'id',
+            'blog_article_id',
+            'full_name',
+            'email',
+            'comment',
+        )
+        ->IsCommentPublic()
+        ->get();
+        
+        if ($displayLastInsertedComment->isEmpty()) 
+        {
+            return response([
+                'title'              => 'Resource(s) not found!',
+                'notify_code'        => 'WAR_00001',
+                'description'        => 'The blog resource(s) does not exist! Please try again later!',
+                'http_response_code' => 404,
+                'records'            => [],
+            ], 404);
+        }
+        else 
+        {
+            return response([
+                'title'              => 'Success!',
+                'notify_code'        => 'INFO_00001',
+                'description'        => 'The blog resource(s) was(were) successfully fetched!',
+                'http_response_code' => 200,
+                'records'            => $displayLastInsertedComment,
+            ], 200);
+        }
+    }
 }

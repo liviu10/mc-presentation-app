@@ -7,7 +7,7 @@
       </button>
     </div>
     <div v-show="showReplyToCommentReplyForm">
-      <form @submit.prevent="replyToComment()" @keydown="form.onKeydown($event)">
+      <form @submit.prevent="replyToCommentReply()" @keydown="form.onKeydown($event)">
         <!-- FULL NAME, SECTION START -->
         <div class="mb-2">
           <input id="full_name"
@@ -84,9 +84,9 @@ Vue.use(axios)
 window.axios = require('axios')
 
 export default {
-  name: 'CommentReplyForm',
+  name: 'ReplyToCommentReplyForm',
   props: {
-    commentId: {
+    commentReplyId: {
       default: null,
       type: Number
     }
@@ -95,38 +95,38 @@ export default {
     return {
       showReplyToCommentReplyForm: false,
       form: new Form({
-        blog_article_comment_id: this.commentId,
+        blog_article_comment_reply_id: this.commentReplyId,
         full_name: '',
         email: '',
-        comment_reply: '',
-        // comment_reply_is_public: false,
-        privacy_policy_comment_reply: false
+        reply_to_comment_reply: '',
+        // reply_to_comment_reply_is_public: false,
+        privacy_policy_reply_to_comment_reply: false
       }),
       fullName: ''
     }
   },
   methods: {
     clearReplyCommentReplyForm () {
-      if (this.form.full_name === '' || this.form.email === '' || this.form.comment_reply === '' || this.form.comment_reply_is_public === true || this.form.privacy_policy_comment_reply === true) {
+      if (this.form.full_name === '' || this.form.email === '' || this.form.reply_to_comment_reply === '' || this.form.reply_to_comment_reply_is_public === true || this.form.privacy_policy_reply_to_comment_reply === true) {
         this.form.full_name = ''
         this.form.email = ''
-        this.form.comment_reply = ''
-        // this.form.comment_reply_is_public = ''
-        this.form.privacy_policy_comment_reply = false
+        this.form.reply_to_comment_reply = ''
+        // this.form.reply_to_comment_reply_is_public = ''
+        this.form.privacy_policy_reply_to_comment_reply = false
       }
     },
-    async replyToComment () {
+    async replyToCommentReply () {
       const url = window.location.origin
-      const apiEndPoint = '/api/blog/reply-to-comment'
+      const apiEndPoint = '/api/blog/reply-to-comment-reply'
       const fullApiUrl = url + apiEndPoint
       await this.form
         .post(fullApiUrl, {
-          blogArticleCommentReplyId: this.form.blog_article_comment_id,
+          blogArticleCommentId: this.form.blog_article_comment_reply_id,
           full_name: this.form.full_name,
           email: this.form.email,
-          comment_reply: this.form.comment_reply,
-          // comment_reply_is_public: this.form.comment_reply_is_public,
-          privacy_policy: this.form.privacy_policy_comment_reply
+          reply_to_comment_reply: this.form.reply_to_comment_reply,
+          // reply_to_comment_reply_is_public: this.form.reply_to_comment_reply_is_public,
+          privacy_policy: this.form.privacy_policy_reply_to_comment_reply
         })
         .then(response => {
           this.fullName = response.data.full_name
@@ -137,10 +137,10 @@ export default {
             console.log(result)
             this.form.full_name = null
             this.form.email = null
-            this.form.reply_to_comment_reply = null
-            // this.form.reply_to_comment_reply_is_public = null
-            this.form.privacy_policy_reply_to_comment_reply = null
-            this.showReplyToCommentReplyForm = false
+            this.form.comment_reply = null
+            // this.form.comment_reply_is_public = null
+            this.form.privacy_policy_comment_reply = null
+            this.showReplyToCommentForm = false
           })
         })
     }
