@@ -1,12 +1,12 @@
 <template>
-  <div class="audio-article-header">
-    <div class="audio-article-header-img">
+  <div class="video-article-header">
+    <div class="video-article-header-img">
       <img src="/images/user/user-profile-img.jpg" alt=""> &bullet;
     </div>
-    <div class="audio-article-header-author">
+    <div class="video-article-header-author">
       <span>{{ blogArticleAuthor }} </span> &bullet;
     </div>
-    <div class="audio-article-header-publish-date">
+    <div class="video-article-header-publish-date">
       <span v-if="blogArticleUpdated == blogArticleCreated">
         {{ new Date(blogArticleCreated).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}
       </span>
@@ -14,12 +14,12 @@
         {{ new Date(blogArticleUpdated).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}
       </span> &bullet;
     </div>
-    <div class="audio-article-header-reading-time">
+    <div class="video-article-header-reading-time">
       <span v-if="blogArticleReadingTime <= 1">
-        {{ $t('user.blog_system_pages.audio_article_blog_pages.listening_time.less_than_one_minute') }}
+        {{ $t('user.blog_system_pages.video_article_blog_pages.listening_time.less_than_one_minute') }}
       </span>
       <span v-else>
-        {{ blogArticleReadingTime }} {{ $t('user.blog_system_pages.audio_article_blog_pages.listening_time.more_than_one_minute') }}
+        {{ blogArticleReadingTime }} {{ $t('user.blog_system_pages.video_article_blog_pages.listening_time.more_than_one_minute') }}
       </span>
     </div>
   </div>

@@ -1,8 +1,15 @@
 <template>
   <div class="row">
     <div class="col-lg-12 m-auto">
-      <div class="lv-pg-video">
-        <h1>APP DISPLAY VIDEO ARTICLE PAGE</h1>
+      <div class="lv-pg-video-article">
+        <div class="lv-pg-video-article-header">
+          <h1>{{ blogArticleTitle }}</h1>
+        </div>
+        <div class="lv-pg-video-article-body">
+          <!-- VIDEO ARTICLE TEMPLATE, SECTION START -->
+          <video-player-article v-if="displaySingleBlogArticle" :article-content="displaySingleBlogArticle" />
+          <!-- VIDEO ARTICLE TEMPLATE, SECTION END -->
+        </div>
       </div>
     </div>
   </div>
@@ -10,67 +17,41 @@
 
 <script>
 import Vue from 'vue'
-import rate from 'vue-rate'
-import 'vue-rate/dist/vue-rate.css'
-import Form from 'vform'
+import axios from 'axios'
+import VideoPlayerArticle from './templates/video-article/VideoPlayerArticle.vue'
+Vue.use(axios)
 
-Vue.use(rate)
+window.axios = require('axios')
 
 export default {
-  name: 'VideoArticles',
-  components: {},
-  layout: '',
-  middleware: '',
-  props: {
-    length: {
-      type: Number,
-      default: null
-    },
-    value: {
-      type: Number,
-      default: null
-    },
-    showcount: {
-      type: Boolean,
-      default: null
-    },
-    ratedesc: {
-      type: String,
-      default: null
-    }
+  name: 'VideoArticlesComponent',
+  components: {
+    VideoPlayerArticle
   },
   data: function () {
     return {
-      myRate: 0,
-      countLikes: 0,
-      countDislikes: 0,
-      message_success: this.$t('user.article_blog_page.comment_form.success_message'),
-      form: new Form({
-        full_name: '',
-        email: '',
-        message: '',
-        privacy_policy: false
-      })
+      notifyCode: null,
+      notifyMessage: null,
+      displaySingleBlogArticle: null,
+      blogArticleTitle: ''
     }
   },
-  computed: {
-    // mapped getters
+  mounted () {
+    this.getSingleBlogArticle()
   },
-  mounted () {},
   methods: {
-    onAfterRate () {
-      console.log('Test')
-    },
-    articleLike () {
-      this.countLikes += 1
-    },
-    articleDislikes () {
-      this.countDislikes += 1
-    },
-    async commentArticle () {
-      const videoArticleApi = '/blog/article-comments'
-      const { data } = await this.form.post(videoArticleApi)
-      console.log('>>>>> Comment on video articles <<<<<<', data)
+    getSingleBlogArticle: function () {
+      const url = window.location.origin
+      const apiEndPoint = '/api/blog/articles/'
+      const urlParameter = this.$route.params.id
+      const fullApiUrl = url + apiEndPoint + urlParameter
+      axios
+        .get(fullApiUrl)
+        .then(response => {
+          console.log('>>>>> Display a single blog video article: ')
+          this.displaySingleBlogArticle = response.data.records[0]
+          this.blogArticleTitle = response.data.records[0].blog_articles[0].blog_article_title
+        })
     }
   },
   metaInfo () {

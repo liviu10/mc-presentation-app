@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- RATE THIS, SECTION START -->
-    <div class="audio-article-rate">
+    <div class="video-article-rate">
       <p>
         {{ $t('user.blog_system_pages.general_settings.rating_system.title') }}
         <rate v-model="myRate"
@@ -20,7 +20,7 @@
     </div>
     <!-- RATE THIS, SECTION END -->
     <!-- ARTICLE SUBCATEGORY, SECTION START -->
-    <div class="audio-article-subcategory">
+    <div class="video-article-subcategory">
       <p>
         {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.article_subcategory') }}:
         &nbsp;
@@ -29,7 +29,7 @@
     </div>
     <!-- ARTICLE SUBCATEGORY, SECTION END -->
     <!-- SHARE THIS, SECTION START -->
-    <div class="audio-article-share">
+    <div class="video-article-share">
       <a class="btn btn-primary"
          target="_blank"
          :title="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.social_menu.like')"

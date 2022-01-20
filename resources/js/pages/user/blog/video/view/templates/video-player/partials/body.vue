@@ -1,5 +1,5 @@
 <template>
-  <div class="article-body-content">
+  <div class="video-article-body-content">
     <p>
       Iure dolorum quis nulla enim nemo,
       odit repudiandae assumenda aliquam inventore, voluptatem iste! Similique vitae earum quisquam, porro nam minus deleniti, placeat,

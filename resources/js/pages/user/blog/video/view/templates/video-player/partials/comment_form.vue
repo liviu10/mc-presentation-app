@@ -1,8 +1,8 @@
 <template>
-  <div class="audio-article-comments">
+  <div class="video-article-comments">
     <!-- COMMENT FORM, SECTION START -->
-    <div class="audio-article-comments-form">
-      <div class="audio-article-comments-form-main">
+    <div class="video-article-comments-form">
+      <div class="video-article-comments-form-main">
         <div class="form-button">
           <button class="btn btn-primary" @click="showAddCommentForm = !showAddCommentForm">
             <span v-if="!showAddCommentForm">{{ $t('user.blog_system_pages.general_settings.comment_section.open_add_comment_form') }}</span>
