@@ -1,8 +1,5 @@
 <template>
   <div class="lv-pg-video">
-    <div class="lv-pg-video-header">
-      <h1>{{ $t('user.blog_system_pages.video_article_blog_pages.page_title') }}</h1>
-    </div>
     <!-- LIST OF VIDEO ARTICLES, SECTION START -->
     <div class="lv-pg-video-body">
       <div class="card">
