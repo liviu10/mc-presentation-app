@@ -50,7 +50,7 @@ export default {
       return this.allBlogCategoriesAndSubcategories.records
     },
     getHttpStatusResponseCode () {
-      // TODO: How to catch api endpoint errors and display them to the user
+      // TODO Blog System: How to catch api endpoint errors and display them to the user
       return this.allBlogCategoriesAndSubcategories.http_response_code
     }
   },

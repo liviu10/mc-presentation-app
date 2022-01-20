@@ -1,6 +1,6 @@
 <template>
   <!-- VIDEO PAGE TEMPLATE, SECTION START -->
-  <!-- TODO: Prepare a template for displaying a single video article from the database -->
+  <!-- TODO Blog System: Prepare a template for displaying a single video article from the database -->
   <div />
   <!-- VIDEO PAGE TEMPLATE, SECTION END -->
 </template>
