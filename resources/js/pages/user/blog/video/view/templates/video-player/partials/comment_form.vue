@@ -1,16 +1,16 @@
 <template>
-  <div class="article-comments">
+  <div class="audio-article-comments">
     <!-- COMMENT FORM, SECTION START -->
-    <div class="container-comment-form">
-      <div class="container-comment-form-main">
+    <div class="audio-article-comments-form">
+      <div class="audio-article-comments-form-main">
         <div class="form-button">
-          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            Button with data-target
+          <button class="btn btn-primary" @click="showAddCommentForm = !showAddCommentForm">
+            <span v-if="!showAddCommentForm">{{ $t('user.blog_system_pages.general_settings.comment_section.open_add_comment_form') }}</span>
+            <span v-else @click="clearAddCommentForm">{{ $t('user.blog_system_pages.general_settings.comment_section.close_add_comment_form') }}</span>
           </button>
         </div>
-        <div id="collapseExample" class="collapse">
-          <form @submit.prevent="commentArticle" @keydown="form.onKeydown($event)">
-            <alert-success :form="form" :message="message_success" />
+        <div v-show="showAddCommentForm">
+          <form @submit.prevent="addNewComment()" @keydown="form.onKeydown($event)">
             <!-- FULL NAME, SECTION START -->
             <div class="mb-2">
               <input id="full_name"
@@ -18,7 +18,7 @@
                      type="text"
                      :class="{ 'is-invalid': form.errors.has('full_name') }"
                      class="form-control"
-                     :placeholder="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.comment_form.input_full_name')"
+                     :placeholder="$t('user.blog_system_pages.general_settings.comment_section.comment_form.input_full_name')"
                      name="full_name"
               >
               <has-error :form="form" field="full_name" />
@@ -31,7 +31,7 @@
                      type="email"
                      :class="{ 'is-invalid': form.errors.has('email') }"
                      class="form-control"
-                     :placeholder="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.comment_form.input_email_address')"
+                     :placeholder="$t('user.blog_system_pages.general_settings.comment_section.comment_form.input_email_address')"
                      name="email"
               >
               <has-error :form="form" field="email" />
@@ -39,14 +39,14 @@
             <!-- EMAIL ADDRESS, SECTION END -->
             <!-- MESSAGE, SECTION START -->
             <div class="mb-2">
-              <textarea id="message"
-                        v-model="form.message"
-                        :class="{ 'is-invalid': form.errors.has('email') }"
+              <textarea id="comment"
+                        v-model="form.comment"
+                        :class="{ 'is-invalid': form.errors.has('comment') }"
                         class="form-control form-message"
-                        :placeholder="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.comment_form.input_message')"
-                        name="message"
+                        :placeholder="$t('user.blog_system_pages.general_settings.comment_section.comment_form.input_comment')"
+                        name="comment"
               />
-              <has-error :form="form" field="message" />
+              <has-error :form="form" field="comment" />
             </div>
             <!-- MESSAGE, SECTION END -->
             <!-- PRIVACY POLICY, SECTION START -->
@@ -58,20 +58,18 @@
                      class="form-check-input"
                      name="privacy_policy"
               >
-              <label class="form-check-label lead" for="flexCheckChecked">
-                <span>
-                  {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.comment_form.i_agree_with') }}
-                  <router-link class="a-typography" to="/terms-and-conditions">
-                    {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.comment_form.privacy_policy') }}
-                  </router-link>
-                </span>
+              <label class="form-check-label lead" for="privacy_policy">
+                {{ $t('user.blog_system_pages.general_settings.comment_section.comment_form.i_agree_with') }}
               </label>
+              <a class="lead a-typography" href="/terms-and-conditions">
+                {{ $t('user.blog_system_pages.general_settings.comment_section.comment_form.privacy_policy') }}
+              </a>
               <has-error :form="form" field="privacy_policy" />
             </div>
             <!-- PRIVACY POLICY, SECTION END -->
             <div class="form-button">
               <button type="submit" class="btn btn-primary">
-                {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.comment_form.post_comment') }}
+                {{ $t('user.blog_system_pages.general_settings.comment_section.comment_form.post_comment') }}
               </button>
             </div>
           </form>
@@ -86,21 +84,71 @@
 import Vue from 'vue'
 import Form from 'vform'
 import axios from 'axios'
+import Swal from 'sweetalert2/dist/sweetalert2.js'
 
 Vue.use(axios)
 window.axios = require('axios')
 
 export default {
-  name: 'SingleLeftPictureCommentFormDetails',
+  name: 'CommentFormDetails',
+  props: {
+    blogArticleId: {
+      default: null,
+      type: Number
+    }
+  },
   data: function () {
     return {
-      message_success: this.$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.comment_form.success_message'),
+      showAddCommentForm: false,
       form: new Form({
+        blog_article_id: this.blogArticleId,
         full_name: '',
         email: '',
-        message: '',
+        comment: '',
+        // comment_is_public: false,
         privacy_policy: false
-      })
+      }),
+      fullName: ''
+    }
+  },
+  methods: {
+    clearAddCommentForm () {
+      if (this.form.full_name === '' || this.form.email === '' || this.form.comment === '' || this.form.comment_is_public === true || this.form.privacy_policy === true) {
+        this.form.full_name = ''
+        this.form.email = ''
+        this.form.comment = ''
+        // this.form.comment_is_public = false
+        this.form.privacy_policy = false
+      }
+    },
+    async addNewComment () {
+      const url = window.location.origin
+      const apiEndPoint = '/api/blog/add-new-comment'
+      const fullApiUrl = url + apiEndPoint
+      await this.form
+        .post(fullApiUrl, {
+          blogArticleId: this.form.blog_article_id,
+          full_name: this.form.full_name,
+          email: this.form.email,
+          comment: this.form.comment,
+          // comment_is_public: this.form.comment_is_public,
+          privacy_policy: this.form.privacy_policy
+        })
+        .then(response => {
+          this.fullName = response.data.full_name
+          Swal.fire({
+            title: this.$t('user.blog_system_pages.general_settings.comment_section.swal.title', { fullName: this.fullName }),
+            text: this.$t('user.blog_system_pages.general_settings.comment_section.swal.message')
+          }).then((result) => {
+            console.log(result)
+            this.form.full_name = null
+            this.form.email = null
+            this.form.comment = null
+            // this.form.comment_is_public = null
+            this.form.privacy_policy = null
+            this.showAddCommentForm = false
+          })
+        })
     }
   }
 }
