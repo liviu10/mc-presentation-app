@@ -65,7 +65,7 @@
     </div>
     <!-- LIST OF VIDEO ARTICLES, SECTION END -->
     <!-- MORE VIDEO ARTICLES, SECTION START -->
-    <!-- TODO: Paginate the articles -->
+    <!-- TODO Blog System: Paginate the articles -->
     <!-- <div class="lv-pg-articles-button-more">
       <button type="button" class="btn btn-primary btn-lg">
         <i class="far fa-clock" />
@@ -99,7 +99,7 @@ export default {
       return this.listOfVideoArticles.records
     },
     getHttpStatusResponseCode () {
-      // TODO: How to catch api endpoint errors and display them to the user
+      // TODO Blog System: How to catch api endpoint errors and display them to the user
       return this.listOfVideoArticles.http_response_code
     }
   },

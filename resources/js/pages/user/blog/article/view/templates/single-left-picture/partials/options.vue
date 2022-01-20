@@ -33,12 +33,14 @@
       <a class="btn btn-primary"
          target="_blank"
          :title="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.social_menu.like')"
+         @click="likeTheArticle()"
       >
         <fa :icon="['fa', 'thumbs-up']" fixed-width /> {{ blogArticleLikes }} {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.like_dislike_system.like') }}
       </a>
       <a class="btn btn-primary"
          target="_blank"
          :title="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.social_menu.dislike')"
+         @click="dislikeTheArticle()"
       >
         <fa :icon="['fa', 'thumbs-down']" fixed-width /> {{ blogArticleDislikes }} {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.like_dislike_system.dislike') }}
       </a>

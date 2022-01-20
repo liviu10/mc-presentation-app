@@ -66,7 +66,7 @@
     </div>
     <!-- LIST OF VIDEO ARTICLES, SECTION END -->
     <!-- MORE VIDEO ARTICLES, SECTION START -->
-    <!-- TODO: Paginate the articles -->
+    <!-- TODO Blog System: Paginate the articles -->
     <!-- <div class="lv-pg-subcategories-video-button-more">
       <button type="button" class="btn btn-primary btn-lg">
         <i class="far fa-clock" />

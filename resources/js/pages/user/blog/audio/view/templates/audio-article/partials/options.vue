@@ -1,26 +1,26 @@
 <template>
   <div>
     <!-- RATE THIS, SECTION START -->
-    <div class="article-rate">
+    <div class="audio-article-rate">
       <p>
-        {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.rating_system.title') }}
+        {{ $t('user.blog_system_pages.general_settings.rating_system.title') }}
         <rate v-model="myRate"
               :length="5"
               :value="0"
               :showcount="true"
               :ratedesc="[
-                $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.rating_system.options.very_bad'),
-                $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.rating_system.options.bad'),
-                $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.rating_system.options.normal'),
-                $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.rating_system.options.good'),
-                $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.rating_system.options.very_good')
+                $t('user.blog_system_pages.general_settings.rating_system.options.very_bad'),
+                $t('user.blog_system_pages.general_settings.rating_system.options.bad'),
+                $t('user.blog_system_pages.general_settings.rating_system.options.normal'),
+                $t('user.blog_system_pages.general_settings.rating_system.options.good'),
+                $t('user.blog_system_pages.general_settings.rating_system.options.very_good')
               ]"
         />
       </p>
     </div>
     <!-- RATE THIS, SECTION END -->
     <!-- ARTICLE SUBCATEGORY, SECTION START -->
-    <div class="article-subcategory">
+    <div class="audio-article-subcategory">
       <p>
         {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.article_subcategory') }}:
         &nbsp;
@@ -29,28 +29,30 @@
     </div>
     <!-- ARTICLE SUBCATEGORY, SECTION END -->
     <!-- SHARE THIS, SECTION START -->
-    <div class="article-share">
+    <div class="audio-article-share">
       <a class="btn btn-primary"
          target="_blank"
          :title="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.social_menu.like')"
+         @click="likeTheArticle()"
       >
         <fa :icon="['fa', 'thumbs-up']" fixed-width /> {{ blogArticleLikes }} {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.like_dislike_system.like') }}
       </a>
       <a class="btn btn-primary"
          target="_blank"
          :title="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.social_menu.dislike')"
+         @click="dislikeTheArticle()"
       >
         <fa :icon="['fa', 'thumbs-down']" fixed-width /> {{ blogArticleDislikes }} {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.like_dislike_system.dislike') }}
       </a>
       <a href="" class="btn btn-primary" target="_blank" :title="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.social_menu.facebook')">
         <fa :icon="['fab', 'facebook']" fixed-width />
       </a>
-      <a href="" class="btn btn-primary" target="_blank" :title="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.social_menu.instagram')">
+      <!-- <a href="" class="btn btn-primary" target="_blank" :title="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.social_menu.instagram')">
         <fa :icon="['fab', 'instagram']" fixed-width />
       </a>
       <a href="" class="btn btn-primary" target="_blank" :title="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.social_menu.email')">
         <fa :icon="['fa', 'envelope']" fixed-width />
-      </a>
+      </a> -->
     </div>
     <!-- SHARE THIS, SECTION END -->
   </div>
@@ -64,7 +66,7 @@ import 'vue-rate/dist/vue-rate.css'
 Vue.use(rate)
 
 export default {
-  name: 'SingleLeftPictureOptionDetails',
+  name: 'OptionDetails',
   props: {
     blogArticleRating: {
       default: null,

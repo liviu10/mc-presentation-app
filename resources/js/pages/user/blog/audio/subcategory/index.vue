@@ -72,7 +72,7 @@
     </div>
     <!-- LIST OF AUDIO ARTICLES, SECTION END -->
     <!-- MORE AUDIO ARTICLES, SECTION START -->
-    <!-- TODO: Paginate the articles -->
+    <!-- TODO Blog System: Paginate the articles -->
     <!-- <div class="lv-pg-subcategories-audio-button-more">
       <button type="button" class="btn btn-primary btn-lg">
         <i class="far fa-clock" />
