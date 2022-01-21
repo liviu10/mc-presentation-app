@@ -123,7 +123,7 @@ export default {
     },
     async addNewComment () {
       const url = window.location.origin
-      const apiEndPoint = '/api/blog/add-new-comment'
+      const apiEndPoint = '/api/blog/comment/add-new'
       const fullApiUrl = url + apiEndPoint
       await this.form
         .post(fullApiUrl, {

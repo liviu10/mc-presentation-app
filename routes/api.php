@@ -26,10 +26,7 @@ use Illuminate\Support\Facades\Route;
     // Import the Blog System Controller files
     use App\Http\Controllers\User\BlogPage\BlogCategoryController;
     use App\Http\Controllers\User\BlogPage\BlogSubcategoryController;
-    use App\Http\Controllers\User\BlogPage\BlogArticleController;
     use App\Http\Controllers\User\BlogPage\BlogArticleCommentController;
-    use App\Http\Controllers\User\BlogPage\BlogArticleCommentReplyController;
-    use App\Http\Controllers\User\BlogPage\BlogArticleCommentReplyReplyController;
 
     // Import the About Me page Controller files
     use App\Http\Controllers\User\AboutMePage\AboutMeController;
@@ -63,18 +60,22 @@ use Illuminate\Support\Facades\Route;
         // Blog page API routes
         Route::group([ 'prefix' => '/blog' ], function () {
             Route::get('/categories-and-subcategories', [BlogCategoryController::class, 'getAllBlogMainCategoriesAndSubcategories']);
-            Route::get('/subcategory/{id}/all-written-articles', [BlogSubcategoryController::class, 'getAllBlogSubcategoryWrittenArticles']);
-            Route::get('/subcategory/{id}/all-audio-articles', [BlogSubcategoryController::class, 'getAllBlogSubcategoryAudioArticles']);
-            Route::get('/subcategory/{id}/all-video-articles', [BlogSubcategoryController::class, 'getAllBlogSubcategoryVideoArticles']);
+            Route::group([ 'prefix' => '/subcategory' ], function () {
+                Route::get('/{id}/all-written-articles', [BlogSubcategoryController::class, 'getAllBlogSubcategoryWrittenArticles']);
+                Route::get('/{id}/all-audio-articles', [BlogSubcategoryController::class, 'getAllBlogSubcategoryAudioArticles']);
+                Route::get('/{id}/all-video-articles', [BlogSubcategoryController::class, 'getAllBlogSubcategoryVideoArticles']);
+            });
             Route::group([ 'prefix' => '/articles' ], function () {
                 Route::get('/all-written-articles', [BlogSubcategoryController::class, 'getAllWrittenBlogArticles']);
                 Route::get('/all-audio-articles', [BlogSubcategoryController::class, 'getAllAudioBlogArticles']);
                 Route::get('/all-video-articles', [BlogSubcategoryController::class, 'getAllVideoBlogArticles']);
                 Route::get('/{id}', [BlogSubcategoryController::class, 'displaySingleBlogArticle']);
             });
-            Route::apiResource('/add-new-comment', BlogArticleCommentController::class)->only(['store']);
-            Route::apiResource('/reply-to-comment', BlogArticleCommentReplyController::class)->only(['store']);
-            Route::apiResource('/reply-to-comment-reply', BlogArticleCommentReplyReplyController::class)->only(['store']);
+            Route::group([ 'prefix' => '/comment' ], function () {
+                Route::post('/add-new', [BlogArticleCommentController::class, 'addNewComment']);
+                Route::post('/reply', [BlogArticleCommentController::class, 'replyToComment']);
+                Route::post('/response-to-reply', [BlogArticleCommentController::class, 'respondToCommentReply']);
+            });
         });
 
         // About me page API routes
