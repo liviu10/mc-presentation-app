@@ -117,7 +117,7 @@ export default {
     },
     async replyToCommentReply () {
       const url = window.location.origin
-      const apiEndPoint = '/api/blog/reply-to-comment-reply'
+      const apiEndPoint = '/api/blog/response-to-reply'
       const fullApiUrl = url + apiEndPoint
       await this.form
         .post(fullApiUrl, {
