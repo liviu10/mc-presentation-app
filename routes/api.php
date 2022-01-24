@@ -69,12 +69,17 @@ use Illuminate\Support\Facades\Route;
                 Route::get('/all-written-articles', [BlogSubcategoryController::class, 'getAllWrittenBlogArticles']);
                 Route::get('/all-audio-articles', [BlogSubcategoryController::class, 'getAllAudioBlogArticles']);
                 Route::get('/all-video-articles', [BlogSubcategoryController::class, 'getAllVideoBlogArticles']);
+                Route::group([ 'prefix' => '/related' ], function () {
+                    Route::get('/written-articles/{id}', [BlogSubcategoryController::class, 'displayRelatedWrittenArticle']);
+                    Route::get('/audio-articles/{id}', [BlogSubcategoryController::class, 'displayRelatedAudioArticle']);
+                    Route::get('/video-articles/{id}', [BlogSubcategoryController::class, 'displayRelatedVideoArticle']);
+                });
                 Route::get('/{id}', [BlogSubcategoryController::class, 'displaySingleBlogArticle']);
             });
             Route::group([ 'prefix' => '/comment' ], function () {
                 Route::post('/add-new', [BlogArticleCommentController::class, 'addNewComment']);
-                Route::post('/reply', [BlogArticleCommentController::class, 'replyToComment']);
-                Route::post('/response-to-reply', [BlogArticleCommentController::class, 'respondToCommentReply']);
+                // Route::post('/reply', [BlogArticleCommentController::class, 'replyToComment']);
+                // Route::post('/response-to-reply', [BlogArticleCommentController::class, 'respondToCommentReply']);
             });
         });
 

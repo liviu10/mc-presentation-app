@@ -166,7 +166,14 @@
             "very_good": "(Very Good)"
           }
         },
+        "related_articles": {
+          "title": "You may also like"
+        },
         "comment_section": {
+          "no_of_comments": {
+            "singular": "comment",
+            "plural": "comments"
+          },
           "open_add_comment_form": "Write a comment",
           "close_add_comment_form": "Cancel",
           "comment_form": {

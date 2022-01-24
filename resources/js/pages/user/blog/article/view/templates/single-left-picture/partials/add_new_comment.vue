@@ -4,12 +4,12 @@
     <div class="article-comments-form">
       <div class="article-comments-form-main">
         <div class="form-button">
-          <button class="btn btn-primary" @click="showAddCommentForm = !showAddCommentForm">
-            <span v-if="!showAddCommentForm">{{ $t('user.blog_system_pages.general_settings.comment_section.open_add_comment_form') }}</span>
-            <span v-else @click="clearAddCommentForm">{{ $t('user.blog_system_pages.general_settings.comment_section.close_add_comment_form') }}</span>
+          <button class="btn btn-primary" @click="showAddNewCommentForm = !showAddNewCommentForm">
+            <span v-if="!showAddNewCommentForm">{{ $t('user.blog_system_pages.general_settings.comment_section.open_add_comment_form') }}</span>
+            <span v-else @click="clearAddNewCommentForm">{{ $t('user.blog_system_pages.general_settings.comment_section.close_add_comment_form') }}</span>
           </button>
         </div>
-        <div v-show="showAddCommentForm">
+        <div v-show="showAddNewCommentForm">
           <form @submit.prevent="addNewComment()" @keydown="form.onKeydown($event)">
             <!-- FULL NAME, SECTION START -->
             <div class="mb-2">
@@ -90,7 +90,7 @@ Vue.use(axios)
 window.axios = require('axios')
 
 export default {
-  name: 'SingleLeftPictureCommentFormDetails',
+  name: 'AddNewCommentForm',
   props: {
     blogArticleId: {
       default: null,
@@ -99,7 +99,7 @@ export default {
   },
   data: function () {
     return {
-      showAddCommentForm: false,
+      showAddNewCommentForm: false,
       form: new Form({
         blog_article_id: this.blogArticleId,
         full_name: '',
@@ -112,8 +112,9 @@ export default {
     }
   },
   methods: {
-    clearAddCommentForm () {
-      if (this.form.full_name === '' || this.form.email === '' || this.form.comment === '' || this.form.comment_is_public === true || this.form.privacy_policy === true) {
+    clearAddNewCommentForm () {
+      console.log('> clearAddNewCommentForm: ', this.form)
+      if (this.form.full_name !== '' || this.form.email !== '' || this.form.comment !== '' || this.form.comment_is_public !== true || this.form.privacy_policy !== true) {
         this.form.full_name = ''
         this.form.email = ''
         this.form.comment = ''
@@ -146,7 +147,7 @@ export default {
             this.form.comment = null
             // this.form.comment_is_public = null
             this.form.privacy_policy = null
-            this.showAddCommentForm = false
+            this.showAddNewCommentForm = false
           })
         })
     }

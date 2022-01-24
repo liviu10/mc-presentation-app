@@ -13,7 +13,7 @@
         <p class="card-text">
           {{ articleComment.comment }}
         </p>
-        <comment-reply-form :comment-id="articleComment.id" />
+        <reply-to-new-comment-form :comment-id="articleComment.id" :comment-like="articleComment.blogCommentLikes" :comment-dislike="articleComment.blogCommentDislikes" />
         <div v-if="articleComment.blog_article_comment_replies">
           <div v-for="articleCommentReply in articleComment.blog_article_comment_replies" :key="articleCommentReply.id" class="card article-comments-list-reply-card">
             <div class="card-body">
@@ -25,21 +25,7 @@
               <p class="card-text">
                 {{ articleCommentReply.comment_reply }}
               </p>
-              <reply-to-comment-reply-form :comment-reply-id="articleCommentReply.id" />
-              <div v-if="articleCommentReply.blog_article_comment_reply_replies">
-                <div v-for="articleReplyToCommentReply in articleCommentReply.blog_article_comment_reply_replies" :key="articleReplyToCommentReply.id" class="card article-comments-list-reply-card">
-                  <div class="card-body">
-                    <h5 class="card-title">
-                      <span>{{ articleReplyToCommentReply.full_name }}</span> {{ $t('user.blog_system_pages.general_settings.comment_section.added_on_alternative.line_1') }}
-                      <span>{{ articleCommentReply.full_name }}</span> {{ $t('user.blog_system_pages.general_settings.comment_section.added_on_alternative.line_2') }}
-                      <span>{{ new Date(articleReplyToCommentReply.created_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}</span>
-                    </h5>
-                    <p class="card-text">
-                      {{ articleReplyToCommentReply.reply_to_comment_reply }}
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <respond-to-comment-reply-form :comment-reply-id="articleCommentReply.id" :comment-reply-like="articleCommentReply.blogCommentReplyLikes" :comment-reply-dislike="articleCommentReply.blogCommentReplyDislikes" />
             </div>
           </div>
         </div>
@@ -50,14 +36,14 @@
 </template>
 
 <script>
-import CommentReplyForm from './comment_reply_form.vue'
-import ReplyToCommentReplyForm from './reply_to_comment_reply_form.vue'
+import ReplyToNewCommentForm from './reply_to_new_comment_form.vue'
+import RespondToCommentReplyForm from './respond_to_comment_reply_form.vue'
 
 export default {
-  name: 'SingleLeftPictureCommentListDetails',
+  name: 'CommentListDetails',
   components: {
-    CommentReplyForm,
-    ReplyToCommentReplyForm
+    ReplyToNewCommentForm,
+    RespondToCommentReplyForm
   },
   props: {
     blogArticleComments: {

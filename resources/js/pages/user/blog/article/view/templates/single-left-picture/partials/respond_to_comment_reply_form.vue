@@ -1,13 +1,31 @@
 <template>
   <div>
     <div class="form-button">
-      <button class="btn btn-primary" @click="showReplyToCommentReplyForm = !showReplyToCommentReplyForm">
-        <span v-if="!showReplyToCommentReplyForm">{{ $t('user.blog_system_pages.general_settings.comment_section.open_reply_comment_form') }}</span>
-        <span v-else @click="clearReplyCommentReplyForm">{{ $t('user.blog_system_pages.general_settings.comment_section.close_reply_comment_form') }}</span>
+      <a class="btn btn-primary"
+         target="_blank"
+         :title="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.social_menu.like')"
+         @click="likeTheComment()"
+      >
+        <span>
+          <fa :icon="['fa', 'thumbs-up']" fixed-width /> {{ blogCommentReplyLikes }} {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.like_dislike_system.like') }}
+        </span>
+      </a>
+      <a class="btn btn-primary"
+         target="_blank"
+         :title="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.social_menu.dislike')"
+         @click="dislikeTheComment()"
+      >
+        <span>
+          <fa :icon="['fa', 'thumbs-down']" fixed-width /> {{ blogCommentReplyDislikes }} {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.like_dislike_system.dislike') }}
+        </span>
+      </a>
+      <button class="btn btn-primary" @click="showRespondToCommentReplyForm = !showRespondToCommentReplyForm">
+        <span v-if="!showRespondToCommentReplyForm">{{ $t('user.blog_system_pages.general_settings.comment_section.open_reply_comment_form') }}</span>
+        <span v-else @click="clearRespondToCommentReplyForm">{{ $t('user.blog_system_pages.general_settings.comment_section.close_reply_comment_form') }}</span>
       </button>
     </div>
-    <div v-show="showReplyToCommentReplyForm">
-      <form @submit.prevent="replyToComment()" @keydown="form.onKeydown($event)">
+    <div v-show="showRespondToCommentReplyForm">
+      <form @submit.prevent="replyToCommentReply()" @keydown="form.onKeydown($event)">
         <!-- FULL NAME, SECTION START -->
         <div class="mb-2">
           <input id="full_name"
@@ -36,14 +54,14 @@
         <!-- EMAIL ADDRESS, SECTION END -->
         <!-- MESSAGE, SECTION START -->
         <div class="mb-2">
-          <textarea id="comment_reply"
-                    v-model="form.comment_reply"
-                    :class="{ 'is-invalid': form.errors.has('comment_reply') }"
+          <textarea id="respond_to_comment_reply"
+                    v-model="form.respond_to_comment_reply"
+                    :class="{ 'is-invalid': form.errors.has('respond_to_comment_reply') }"
                     class="form-control form-message"
                     :placeholder="$t('user.blog_system_pages.general_settings.comment_section.comment_form.input_comment')"
-                    name="comment_reply"
+                    name="respond_to_comment_reply"
           />
-          <has-error :form="form" field="comment_reply" />
+          <has-error :form="form" field="respond_to_comment_reply" />
         </div>
         <!-- MESSAGE, SECTION END -->
         <!-- PRIVACY POLICY, SECTION START -->
@@ -84,49 +102,57 @@ Vue.use(axios)
 window.axios = require('axios')
 
 export default {
-  name: 'CommentReplyForm',
+  name: 'RespondToCommentReplyForm',
   props: {
-    commentId: {
+    commentReplyId: {
+      default: null,
+      type: Number
+    },
+    blogCommentReplyLikes: {
+      default: null,
+      type: Number
+    },
+    blogCommentReplyDislikes: {
       default: null,
       type: Number
     }
   },
   data: function () {
     return {
-      showReplyToCommentReplyForm: false,
+      showRespondToCommentReplyForm: false,
       form: new Form({
-        blog_article_comment_id: this.commentId,
+        blog_article_comment_reply_id: this.commentReplyId,
         full_name: '',
         email: '',
-        comment_reply: '',
-        // comment_reply_is_public: false,
-        privacy_policy_comment_reply: false
+        respond_to_comment_reply: '',
+        // respond_to_comment_reply_is_public: false,
+        privacy_policy_respond_to_comment_reply: false
       }),
       fullName: ''
     }
   },
   methods: {
-    clearReplyCommentReplyForm () {
-      if (this.form.full_name === '' || this.form.email === '' || this.form.comment_reply === '' || this.form.comment_reply_is_public === true || this.form.privacy_policy_comment_reply === true) {
+    clearRespondToCommentReplyForm () {
+      if (this.form.full_name !== '' || this.form.email !== '' || this.form.respond_to_comment_reply !== '' || this.form.respond_to_comment_reply_is_public !== true || this.form.privacy_policy_respond_to_comment_reply !== true) {
         this.form.full_name = ''
         this.form.email = ''
-        this.form.comment_reply = ''
-        // this.form.comment_reply_is_public = ''
-        this.form.privacy_policy_comment_reply = false
+        this.form.respond_to_comment_reply = ''
+        // this.form.respond_to_comment_reply_is_public = ''
+        this.form.privacy_policy_respond_to_comment_reply = false
       }
     },
-    async replyToComment () {
+    async replyToCommentReply () {
       const url = window.location.origin
-      const apiEndPoint = '/api/blog/reply'
+      const apiEndPoint = '/api/blog/respond-to-reply'
       const fullApiUrl = url + apiEndPoint
       await this.form
         .post(fullApiUrl, {
-          blogArticleCommentReplyId: this.form.blog_article_comment_id,
+          blogArticleCommentId: this.form.blog_article_comment_reply_id,
           full_name: this.form.full_name,
           email: this.form.email,
-          comment_reply: this.form.comment_reply,
-          // comment_reply_is_public: this.form.comment_reply_is_public,
-          privacy_policy: this.form.privacy_policy_comment_reply
+          respond_to_comment_reply: this.form.respond_to_comment_reply,
+          // respond_to_comment_reply_is_public: this.form.respond_to_comment_reply_is_public,
+          privacy_policy: this.form.privacy_policy_respond_to_comment_reply
         })
         .then(response => {
           this.fullName = response.data.full_name
@@ -137,10 +163,10 @@ export default {
             console.log(result)
             this.form.full_name = null
             this.form.email = null
-            this.form.reply_to_comment_reply = null
-            // this.form.reply_to_comment_reply_is_public = null
-            this.form.privacy_policy_reply_to_comment_reply = null
-            this.showReplyToCommentReplyForm = false
+            this.form.comment_reply = null
+            // this.form.comment_reply_is_public = null
+            this.form.privacy_policy_comment_reply = null
+            this.showRespondToCommentReplyForm = false
           })
         })
     }
