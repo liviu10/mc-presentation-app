@@ -239,6 +239,7 @@ $lvContainerPageWrittenArticleFont: 'Merriweather Sans Bold', sans-serif;
                 border-radius: 50%;
                 padding: 0rem rem-convertor(16px);
                 font-size: rem-convertor(24px);
+                user-select: none;
             }
         }
         & .comment-info {
@@ -248,6 +249,7 @@ $lvContainerPageWrittenArticleFont: 'Merriweather Sans Bold', sans-serif;
             font-size: rem-convertor(24px);
             text-align: center;
             text-transform: uppercase;
+            user-select: none;
         }
         & .article-comments {
             margin: rem-convertor(32px) rem-convertor(0px);

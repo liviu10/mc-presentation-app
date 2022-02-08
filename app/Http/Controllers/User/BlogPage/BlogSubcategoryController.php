@@ -408,6 +408,7 @@ class BlogSubcategoryController extends Controller
                             'created_at'
                         )
                         ->IsCommentPublic()
+                        ->orderBy('created_at', 'DESC')
                         ->with([
                             'blog_article_comment_replies' => function ($query) {
                                 $query->select(
@@ -418,7 +419,8 @@ class BlogSubcategoryController extends Controller
                                     'comment_reply',
                                     'created_at'
                                 )
-                                ->IsCommentReplyPublic();
+                                ->IsCommentReplyPublic()
+                                ->orderBy('created_at', 'DESC');
                             }
                         ]);
                     }
@@ -440,11 +442,11 @@ class BlogSubcategoryController extends Controller
         else 
         {
             return response([
-                'title'              => 'Success!',
-                'notify_code'        => 'INFO_00001',
-                'description'        => 'The blog resource(s) was(were) successfully fetched!',
-                'http_response_code' => 200,
-                'records'            => $displayBlogArticle,
+                'title'                => 'Success!',
+                'notify_code'          => 'INFO_00001',
+                'description'          => 'The blog resource(s) was(were) successfully fetched!',
+                'http_response_code'   => 200,
+                'records'              => $displayBlogArticle,
             ], 200);
         }
     }

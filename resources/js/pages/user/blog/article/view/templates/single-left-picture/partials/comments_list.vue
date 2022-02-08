@@ -25,7 +25,8 @@
               <p class="card-text">
                 {{ articleCommentReply.comment_reply }}
               </p>
-              <respond-to-comment-reply-form :comment-reply-id="articleCommentReply.id" :comment-reply-like="articleCommentReply.blogCommentReplyLikes" :comment-reply-dislike="articleCommentReply.blogCommentReplyDislikes" />
+              <!-- <respond-to-comment-reply-form :comment-reply-id="articleCommentReply.id" :comment-reply-like="articleCommentReply.blogCommentReplyLikes" :comment-reply-dislike="articleCommentReply.blogCommentReplyDislikes" /> -->
+              <respond-to-comment-reply-form :comment-reply-id="articleCommentReply.id" />
             </div>
           </div>
         </div>

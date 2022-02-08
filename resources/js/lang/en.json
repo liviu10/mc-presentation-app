@@ -182,6 +182,7 @@
             "input_message": "Enter your comment",
             "i_agree_with": "I agree with the ",
             "privacy_policy": "Privacy Policy",
+            "is_comment_public": "Would you like to post this as public or a private comment? (Leave unchecked for a private comment)",
             "post_comment": "Post comment"
           },
           "no_comment_info": "Be the first one to leave a comment!",

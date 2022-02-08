@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="form-button">
-      <a class="btn btn-primary"
+      <!-- <a class="btn btn-primary"
          target="_blank"
          :title="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.social_menu.like')"
          @click="likeTheComment()"
@@ -18,7 +18,7 @@
         <span>
           <fa :icon="['fa', 'thumbs-down']" fixed-width /> {{ blogCommentReplyDislikes }} {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.like_dislike_system.dislike') }}
         </span>
-      </a>
+      </a> -->
       <button class="btn btn-primary" @click="showRespondToCommentReplyForm = !showRespondToCommentReplyForm">
         <span v-if="!showRespondToCommentReplyForm">{{ $t('user.blog_system_pages.general_settings.comment_section.open_reply_comment_form') }}</span>
         <span v-else @click="clearRespondToCommentReplyForm">{{ $t('user.blog_system_pages.general_settings.comment_section.close_reply_comment_form') }}</span>
@@ -66,22 +66,37 @@
         <!-- MESSAGE, SECTION END -->
         <!-- PRIVACY POLICY, SECTION START -->
         <div class="my-2 form-check">
-          <input id="privacy_policy"
-                 v-model="form.privacy_policy_comment_reply"
+          <input id="privacy_policy_respond_to_comment_reply"
+                 v-model="form.privacy_policy_respond_to_comment_reply"
                  type="checkbox"
-                 :class="{ 'is-invalid': form.errors.has('privacy_policy_comment_reply') }"
+                 :class="{ 'is-invalid': form.errors.has('privacy_policy_respond_to_comment_reply') }"
                  class="form-check-input"
-                 name="privacy_policy_comment_reply"
+                 name="privacy_policy_respond_to_comment_reply"
           >
-          <label class="form-check-label lead" for="privacy_policy_comment_reply">
+          <label class="form-check-label lead" for="privacy_policy_respond_to_comment_reply">
             {{ $t('user.blog_system_pages.general_settings.comment_section.comment_form.i_agree_with') }}
           </label>
           <a class="lead a-typography" href="/terms-and-conditions">
             {{ $t('user.blog_system_pages.general_settings.comment_section.comment_form.privacy_policy') }}
           </a>
-          <has-error :form="form" field="privacy_policy_comment_reply" />
+          <has-error :form="form" field="privacy_policy_respond_to_comment_reply" />
         </div>
         <!-- PRIVACY POLICY, SECTION END -->
+        <!-- PUBLIC OR PRIVATE COMMENT, SECTION START -->
+        <div class="my-2 form-check">
+          <input id="respond_to_comment_reply_is_public"
+                 v-model="form.respond_to_comment_reply_is_public"
+                 type="checkbox"
+                 :class="{ 'is-invalid': form.errors.has('respond_to_comment_reply_is_public') }"
+                 class="form-check-input"
+                 name="respond_to_comment_reply_is_public"
+          >
+          <label class="form-check-label lead" for="respond_to_comment_reply_is_public">
+            {{ $t('user.blog_system_pages.general_settings.comment_section.comment_form.is_comment_public') }}
+          </label>
+          <has-error :form="form" field="respond_to_comment_reply_is_public" />
+        </div>
+        <!-- PUBLIC OR PRIVATE COMMENT, SECTION END -->
         <div class="form-button">
           <button type="submit" class="btn btn-primary">
             {{ $t('user.blog_system_pages.general_settings.comment_section.comment_form.post_comment') }}
@@ -125,7 +140,7 @@ export default {
         full_name: '',
         email: '',
         respond_to_comment_reply: '',
-        // respond_to_comment_reply_is_public: false,
+        respond_to_comment_reply_is_public: false,
         privacy_policy_respond_to_comment_reply: false
       }),
       fullName: ''
@@ -137,13 +152,13 @@ export default {
         this.form.full_name = ''
         this.form.email = ''
         this.form.respond_to_comment_reply = ''
-        // this.form.respond_to_comment_reply_is_public = ''
+        this.form.respond_to_comment_reply_is_public = ''
         this.form.privacy_policy_respond_to_comment_reply = false
       }
     },
     async replyToCommentReply () {
       const url = window.location.origin
-      const apiEndPoint = '/api/blog/respond-to-reply'
+      const apiEndPoint = '/api/blog/comment/respond-to-reply'
       const fullApiUrl = url + apiEndPoint
       await this.form
         .post(fullApiUrl, {
@@ -151,7 +166,7 @@ export default {
           full_name: this.form.full_name,
           email: this.form.email,
           respond_to_comment_reply: this.form.respond_to_comment_reply,
-          // respond_to_comment_reply_is_public: this.form.respond_to_comment_reply_is_public,
+          respond_to_comment_reply_is_public: this.form.respond_to_comment_reply_is_public,
           privacy_policy: this.form.privacy_policy_respond_to_comment_reply
         })
         .then(response => {
@@ -161,10 +176,13 @@ export default {
             text: this.$t('user.blog_system_pages.general_settings.comment_section.swal.message')
           }).then((result) => {
             console.log(result)
+            if (this.form.comment_reply_is_public === true) {
+              window.location.reload()
+            }
             this.form.full_name = null
             this.form.email = null
             this.form.comment_reply = null
-            // this.form.comment_reply_is_public = null
+            this.form.comment_reply_is_public = null
             this.form.privacy_policy_comment_reply = null
             this.showRespondToCommentReplyForm = false
           })

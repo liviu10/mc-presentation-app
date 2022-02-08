@@ -67,6 +67,21 @@
               <has-error :form="form" field="privacy_policy" />
             </div>
             <!-- PRIVACY POLICY, SECTION END -->
+            <!-- PUBLIC OR PRIVATE COMMENT, SECTION START -->
+            <div class="my-2 form-check">
+              <input id="comment_is_public"
+                     v-model="form.comment_is_public"
+                     type="checkbox"
+                     :class="{ 'is-invalid': form.errors.has('comment_is_public') }"
+                     class="form-check-input"
+                     name="comment_is_public"
+              >
+              <label class="form-check-label lead" for="comment_is_public">
+                {{ $t('user.blog_system_pages.general_settings.comment_section.comment_form.is_comment_public') }}
+              </label>
+              <has-error :form="form" field="comment_is_public" />
+            </div>
+            <!-- PUBLIC OR PRIVATE COMMENT, SECTION END -->
             <div class="form-button">
               <button type="submit" class="btn btn-primary">
                 {{ $t('user.blog_system_pages.general_settings.comment_section.comment_form.post_comment') }}
@@ -105,7 +120,7 @@ export default {
         full_name: '',
         email: '',
         comment: '',
-        // comment_is_public: false,
+        comment_is_public: false,
         privacy_policy: false
       }),
       fullName: ''
@@ -118,7 +133,7 @@ export default {
         this.form.full_name = ''
         this.form.email = ''
         this.form.comment = ''
-        // this.form.comment_is_public = false
+        this.form.comment_is_public = false
         this.form.privacy_policy = false
       }
     },
@@ -132,7 +147,7 @@ export default {
           full_name: this.form.full_name,
           email: this.form.email,
           comment: this.form.comment,
-          // comment_is_public: this.form.comment_is_public,
+          comment_is_public: this.form.comment_is_public,
           privacy_policy: this.form.privacy_policy
         })
         .then(response => {
@@ -142,10 +157,13 @@ export default {
             text: this.$t('user.blog_system_pages.general_settings.comment_section.swal.message')
           }).then((result) => {
             console.log(result)
+            if (this.form.comment_is_public === true) {
+              window.location.reload()
+            }
             this.form.full_name = null
             this.form.email = null
             this.form.comment = null
-            // this.form.comment_is_public = null
+            this.form.comment_is_public = null
             this.form.privacy_policy = null
             this.showAddNewCommentForm = false
           })

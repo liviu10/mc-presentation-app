@@ -23,14 +23,14 @@
       </span> &bullet;
     </div>
     <div class="article-header-no-comments">
-      <span v-if="blogArticleNoComment === 1">
+      <span v-if="blogArticleComments === 1">
         <a href="#list_of_comments">
           {{ blogArticleNoComment }} {{ $t('user.blog_system_pages.general_settings.comment_section.no_of_comments.singular') }}
         </a>
       </span>
-      <span v-if="blogArticleNoComment > 1">
+      <span v-if="blogArticleComments > 1">
         <a href="#list_of_comments">
-          {{ blogArticleNoComment }} {{ $t('user.blog_system_pages.general_settings.comment_section.no_of_comments.plural') }}
+          {{ blogArticleComments }} {{ $t('user.blog_system_pages.general_settings.comment_section.no_of_comments.plural') }}
         </a>
       </span>
     </div>
@@ -57,7 +57,7 @@ export default {
       default: null,
       type: Number
     },
-    blogArticleNoComment: {
+    blogArticleComments: {
       default: null,
       type: Number
     }

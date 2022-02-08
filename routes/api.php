@@ -78,8 +78,8 @@ use Illuminate\Support\Facades\Route;
             });
             Route::group([ 'prefix' => '/comment' ], function () {
                 Route::post('/add-new', [BlogArticleCommentController::class, 'addNewComment']);
-                // Route::post('/reply', [BlogArticleCommentController::class, 'replyToComment']);
-                // Route::post('/response-to-reply', [BlogArticleCommentController::class, 'respondToCommentReply']);
+                Route::post('/respond-to-comment', [BlogArticleCommentController::class, 'respondToComment']);
+                Route::post('/respond-to-reply', [BlogArticleCommentController::class, 'respondToCommentReply']);
             });
         });
 

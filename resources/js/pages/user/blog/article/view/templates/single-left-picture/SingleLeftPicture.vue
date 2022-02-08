@@ -5,7 +5,7 @@
                     :blog-article-created="articleContent.blog_articles[0].created_at"
                     :blog-article-updated="articleContent.blog_articles[0].updated_at"
                     :blog-article-reading-time="articleContent.blog_articles[0].blog_article_time"
-                    :blog-article-no-comment="articleContent.blog_articles[0].blog_article_comments.length"
+                    :blog-article-comments="numberOfTotalComments()"
     />
     <!-- TEMPLATE TITLE, SECTION END -->
     <div class="title-divider" />
@@ -26,11 +26,11 @@
     <!-- TEMPLATE OPTIONS (RATE, SUBCATEGORY TITLE AND SHARE BUTTONS), SECTION END -->
     <div id="list_of_comments" class="comment-divider">
       <div class="line" />
-      <span>{{ articleContent.blog_articles[0].blog_article_comments.length }}</span>
+      <span>{{ numberOfTotalComments() }}</span>
       <div class="line" />
     </div>
-    <span v-if="articleContent.blog_articles[0].blog_article_comments.length === 1" class="comment-info">{{ $t('user.blog_system_pages.general_settings.comment_section.no_of_comments.singular') }}</span>
-    <span v-if="articleContent.blog_articles[0].blog_article_comments.length > 1" class="comment-info">{{ $t('user.blog_system_pages.general_settings.comment_section.no_of_comments.plural') }}</span>
+    <span v-if="numberOfTotalComments() === 1" class="comment-info">{{ $t('user.blog_system_pages.general_settings.comment_section.no_of_comments.singular') }}</span>
+    <span v-if="numberOfTotalComments() > 1" class="comment-info">{{ $t('user.blog_system_pages.general_settings.comment_section.no_of_comments.plural') }}</span>
     <!-- TEMPLATE COMMENT FORM, SECTION START -->
     <add-new-comment-form :blog-article-id="articleContent.blog_articles[0].id" />
     <!-- TEMPLATE COMMENT FORM, SECTION END -->
@@ -62,6 +62,20 @@ export default {
     articleContent: {
       default: null,
       type: Object
+    }
+  },
+  data: function () {
+    return {
+      blogComments: this.articleContent.blog_articles[0].blog_article_comments
+    }
+  },
+  methods: {
+    numberOfTotalComments () {
+      let numberOfComments = this.blogComments.length
+      this.blogComments.forEach(function count (comment) {
+        numberOfComments += comment.blog_article_comment_replies.length
+      })
+      return numberOfComments
     }
   }
 }
