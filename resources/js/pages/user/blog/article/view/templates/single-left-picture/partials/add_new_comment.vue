@@ -4,12 +4,12 @@
     <div class="article-comments-form">
       <div class="article-comments-form-main">
         <div class="form-button">
-          <button class="btn btn-primary" @click="showAddCommentForm = !showAddCommentForm">
-            <span v-if="!showAddCommentForm">{{ $t('user.blog_system_pages.general_settings.comment_section.open_add_comment_form') }}</span>
-            <span v-else @click="clearAddCommentForm">{{ $t('user.blog_system_pages.general_settings.comment_section.close_add_comment_form') }}</span>
+          <button class="btn btn-primary" @click="showAddNewCommentForm = !showAddNewCommentForm">
+            <span v-if="!showAddNewCommentForm">{{ $t('user.blog_system_pages.general_settings.comment_section.open_add_comment_form') }}</span>
+            <span v-else @click="clearAddNewCommentForm">{{ $t('user.blog_system_pages.general_settings.comment_section.close_add_comment_form') }}</span>
           </button>
         </div>
-        <div v-show="showAddCommentForm">
+        <div v-show="showAddNewCommentForm">
           <form @submit.prevent="addNewComment()" @keydown="form.onKeydown($event)">
             <!-- FULL NAME, SECTION START -->
             <div class="mb-2">
@@ -67,6 +67,21 @@
               <has-error :form="form" field="privacy_policy" />
             </div>
             <!-- PRIVACY POLICY, SECTION END -->
+            <!-- PUBLIC OR PRIVATE COMMENT, SECTION START -->
+            <div class="my-2 form-check">
+              <input id="comment_is_public"
+                     v-model="form.comment_is_public"
+                     type="checkbox"
+                     :class="{ 'is-invalid': form.errors.has('comment_is_public') }"
+                     class="form-check-input"
+                     name="comment_is_public"
+              >
+              <label class="form-check-label lead" for="comment_is_public">
+                {{ $t('user.blog_system_pages.general_settings.comment_section.comment_form.is_comment_public') }}
+              </label>
+              <has-error :form="form" field="comment_is_public" />
+            </div>
+            <!-- PUBLIC OR PRIVATE COMMENT, SECTION END -->
             <div class="form-button">
               <button type="submit" class="btn btn-primary">
                 {{ $t('user.blog_system_pages.general_settings.comment_section.comment_form.post_comment') }}
@@ -90,7 +105,7 @@ Vue.use(axios)
 window.axios = require('axios')
 
 export default {
-  name: 'SingleLeftPictureCommentFormDetails',
+  name: 'AddNewCommentForm',
   props: {
     blogArticleId: {
       default: null,
@@ -99,25 +114,26 @@ export default {
   },
   data: function () {
     return {
-      showAddCommentForm: false,
+      showAddNewCommentForm: false,
       form: new Form({
         blog_article_id: this.blogArticleId,
         full_name: '',
         email: '',
         comment: '',
-        // comment_is_public: false,
+        comment_is_public: false,
         privacy_policy: false
       }),
       fullName: ''
     }
   },
   methods: {
-    clearAddCommentForm () {
-      if (this.form.full_name === '' || this.form.email === '' || this.form.comment === '' || this.form.comment_is_public === true || this.form.privacy_policy === true) {
+    clearAddNewCommentForm () {
+      console.log('> clearAddNewCommentForm: ', this.form)
+      if (this.form.full_name !== '' || this.form.email !== '' || this.form.comment !== '' || this.form.comment_is_public !== true || this.form.privacy_policy !== true) {
         this.form.full_name = ''
         this.form.email = ''
         this.form.comment = ''
-        // this.form.comment_is_public = false
+        this.form.comment_is_public = false
         this.form.privacy_policy = false
       }
     },
@@ -131,7 +147,7 @@ export default {
           full_name: this.form.full_name,
           email: this.form.email,
           comment: this.form.comment,
-          // comment_is_public: this.form.comment_is_public,
+          comment_is_public: this.form.comment_is_public,
           privacy_policy: this.form.privacy_policy
         })
         .then(response => {
@@ -141,12 +157,15 @@ export default {
             text: this.$t('user.blog_system_pages.general_settings.comment_section.swal.message')
           }).then((result) => {
             console.log(result)
+            if (this.form.comment_is_public === true) {
+              window.location.reload()
+            }
             this.form.full_name = null
             this.form.email = null
             this.form.comment = null
-            // this.form.comment_is_public = null
+            this.form.comment_is_public = null
             this.form.privacy_policy = null
-            this.showAddCommentForm = false
+            this.showAddNewCommentForm = false
           })
         })
     }

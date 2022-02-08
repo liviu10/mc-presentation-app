@@ -66,7 +66,7 @@ import 'vue-rate/dist/vue-rate.css'
 Vue.use(rate)
 
 export default {
-  name: 'SingleLeftPictureOptionDetails',
+  name: 'OptionDetails',
   props: {
     blogArticleRating: {
       default: null,

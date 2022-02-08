@@ -408,6 +408,7 @@ class BlogSubcategoryController extends Controller
                             'created_at'
                         )
                         ->IsCommentPublic()
+                        ->orderBy('created_at', 'DESC')
                         ->with([
                             'blog_article_comment_replies' => function ($query) {
                                 $query->select(
@@ -419,19 +420,7 @@ class BlogSubcategoryController extends Controller
                                     'created_at'
                                 )
                                 ->IsCommentReplyPublic()
-                                ->with([
-                                    'blog_article_comment_reply_replies' => function ($query) {
-                                        $query->select(
-                                            'blog_article_comment_reply_id',
-                                            'id',
-                                            'full_name',
-                                            'email',
-                                            'reply_to_comment_reply',
-                                            'created_at'
-                                        )
-                                        ->isCommentReplyPublic();
-                                    }
-                                ]);
+                                ->orderBy('created_at', 'DESC');
                             }
                         ]);
                     }
@@ -453,11 +442,164 @@ class BlogSubcategoryController extends Controller
         else 
         {
             return response([
+                'title'                => 'Success!',
+                'notify_code'          => 'INFO_00001',
+                'description'          => 'The blog resource(s) was(were) successfully fetched!',
+                'http_response_code'   => 200,
+                'records'              => $displayBlogArticle,
+            ], 200);
+        }
+    }
+
+    /**
+     * Display a list of the related written blog articles based on current subcategory.
+     *
+     * @param  int  $id
+     * @return Illuminate\Http\Response
+     */
+    public function displayRelatedWrittenArticle($id)
+    {
+        $displayRelatedWrittenArticle = $this->modelNameBlogSubcategories::select('id')
+        ->IsActive()
+        ->IsWrittenArticle()
+        ->where('id', '=', $id)
+        ->with([
+            'blog_articles' => function ($query) {
+                $query->select(
+                    'blog_subcategory_id',
+                    'id',
+                    'blog_article_title',
+                    'blog_article_short_description',
+                    'blog_article_path',
+                    'created_at',
+                )
+                ->IsActive()
+                ->orderBy('created_at', 'DESC')
+                ->limit(3);
+            }
+        ])
+        ->get();
+        
+        if ($displayRelatedWrittenArticle->isEmpty()) 
+        {
+            return response([
+                'title'              => 'Resource(s) not found!',
+                'notify_code'        => 'WAR_00001',
+                'description'        => 'The blog resource(s) does not exist! Please try again later!',
+                'http_response_code' => 404,
+                'records'            => [],
+            ], 404);
+        }
+        else 
+        {
+            return response([
                 'title'              => 'Success!',
                 'notify_code'        => 'INFO_00001',
                 'description'        => 'The blog resource(s) was(were) successfully fetched!',
                 'http_response_code' => 200,
-                'records'            => $displayBlogArticle,
+                'records'            => $displayRelatedWrittenArticle,
+            ], 200);
+        }
+    }
+
+    /**
+     * Display a list of the related audio blog articles based on current subcategory.
+     *
+     * @param  int  $id
+     * @return Illuminate\Http\Response
+     */
+    public function displayRelatedAudioArticle($id)
+    {
+        $displayRelatedAudioArticle = $this->modelNameBlogSubcategories::select('id')
+        ->IsActive()
+        ->IsAudioArticle()
+        ->where('id', '=', $id)
+        ->with([
+            'blog_articles' => function ($query) {
+                $query->select(
+                    'blog_subcategory_id',
+                    'id',
+                    'blog_article_title',
+                    'blog_article_short_description',
+                    'blog_article_path',
+                    'created_at',
+                )
+                ->IsActive()
+                ->orderBy('created_at', 'DESC')
+                ->limit(3);
+            }
+        ])
+        ->get();
+        
+        if ($displayRelatedAudioArticle->isEmpty()) 
+        {
+            return response([
+                'title'              => 'Resource(s) not found!',
+                'notify_code'        => 'WAR_00001',
+                'description'        => 'The blog resource(s) does not exist! Please try again later!',
+                'http_response_code' => 404,
+                'records'            => [],
+            ], 404);
+        }
+        else 
+        {
+            return response([
+                'title'              => 'Success!',
+                'notify_code'        => 'INFO_00001',
+                'description'        => 'The blog resource(s) was(were) successfully fetched!',
+                'http_response_code' => 200,
+                'records'            => $displayRelatedAudioArticle,
+            ], 200);
+        }
+    }
+
+    /**
+     * Display a list of the related video blog articles based on current subcategory.
+     *
+     * @param  int  $id
+     * @return Illuminate\Http\Response
+     */
+    public function displayRelatedVideoArticle($id)
+    {
+        $displayRelatedVideoArticle = $this->modelNameBlogSubcategories::select('id')
+        ->IsActive()
+        ->IsVideoArticle()
+        ->where('id', '=', $id)
+        ->with([
+            'blog_articles' => function ($query) {
+                $query->select(
+                    'blog_subcategory_id',
+                    'id',
+                    'blog_article_title',
+                    'blog_article_short_description',
+                    'blog_article_path',
+                    'created_at',
+                )
+                ->IsActive()
+                ->orderBy('created_at', 'DESC')
+                ->limit(3);
+            }
+        ])
+        ->get();
+        
+        if ($displayRelatedVideoArticle->isEmpty()) 
+        {
+            return response([
+                'title'              => 'Resource(s) not found!',
+                'notify_code'        => 'WAR_00001',
+                'description'        => 'The blog resource(s) does not exist! Please try again later!',
+                'http_response_code' => 404,
+                'records'            => [],
+            ], 404);
+        }
+        else 
+        {
+            return response([
+                'title'              => 'Success!',
+                'notify_code'        => 'INFO_00001',
+                'description'        => 'The blog resource(s) was(were) successfully fetched!',
+                'http_response_code' => 200,
+                'records'            => $displayRelatedVideoArticle,
             ], 200);
         }
     }

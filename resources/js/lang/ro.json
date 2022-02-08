@@ -166,7 +166,14 @@
             "very_good": "(Foarte Bine)"
           }
         },
+        "related_articles": {
+          "title": "S-ar putea să-ți placă"
+        },
         "comment_section": {
+          "no_of_comments": {
+            "singular": "comentariu",
+            "plural": "comentarii"
+          },
           "open_add_comment_form": "Scrie un comentariu",
           "close_add_comment_form": "Anulează",
           "comment_form": {
@@ -175,6 +182,7 @@
             "input_comment": "Adaugă un comentariu",
             "i_agree_with": "Sunt de acord cu ",
             "privacy_policy": "Termenii și Condițiile",
+            "is_comment_public": "Dorești să încarci acest comentariu ca public sau privat? (Lasă nebifat pentru un comentariu privat)",
             "post_comment": "Postează un comentariu"
           },
           "swal": {

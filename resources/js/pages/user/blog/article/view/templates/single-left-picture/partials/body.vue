@@ -66,7 +66,7 @@
 
 <script>
 export default {
-  name: 'SingleLeftPictureBodyDetails',
+  name: 'BodyDetails',
   props: {
     blogArticleContent: {
       default: null,

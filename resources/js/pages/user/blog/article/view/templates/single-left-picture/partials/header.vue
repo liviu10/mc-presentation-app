@@ -20,6 +20,18 @@
       </span>
       <span v-else>
         {{ blogArticleReadingTime }} {{ $t('user.blog_system_pages.written_article_blog_pages.reading_time.more_than_one_minute') }}
+      </span> &bullet;
+    </div>
+    <div class="article-header-no-comments">
+      <span v-if="blogArticleComments === 1">
+        <a href="#list_of_comments">
+          {{ blogArticleNoComment }} {{ $t('user.blog_system_pages.general_settings.comment_section.no_of_comments.singular') }}
+        </a>
+      </span>
+      <span v-if="blogArticleComments > 1">
+        <a href="#list_of_comments">
+          {{ blogArticleComments }} {{ $t('user.blog_system_pages.general_settings.comment_section.no_of_comments.plural') }}
+        </a>
       </span>
     </div>
   </div>
@@ -27,7 +39,7 @@
 
 <script>
 export default {
-  name: 'SingleLeftPictureHeaderDetails',
+  name: 'HeaderDetails',
   props: {
     blogArticleAuthor: {
       default: null,
@@ -42,6 +54,10 @@ export default {
       type: String
     },
     blogArticleReadingTime: {
+      default: null,
+      type: Number
+    },
+    blogArticleComments: {
       default: null,
       type: Number
     }

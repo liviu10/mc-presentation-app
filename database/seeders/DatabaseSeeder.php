@@ -21,7 +21,6 @@ class DatabaseSeeder extends Seeder
             BlogArticlesSeeder::class,
             BlogArticleCommentsSeeder::class,
             BlogArticleCommentRepliesSeeder::class,
-            BlogArticleCommentReplyRepliesSeeder::class,
             QuestionnaireSeeder::class,
             // QuestionnaireQuestionTypeSeeder::class,
             QuestionnaireQuestionSeeder::class,

@@ -166,7 +166,14 @@
             "very_good": "(Very Good)"
           }
         },
+        "related_articles": {
+          "title": "You may also like"
+        },
         "comment_section": {
+          "no_of_comments": {
+            "singular": "comment",
+            "plural": "comments"
+          },
           "open_add_comment_form": "Write a comment",
           "close_add_comment_form": "Cancel",
           "comment_form": {
@@ -175,6 +182,7 @@
             "input_message": "Enter your comment",
             "i_agree_with": "I agree with the ",
             "privacy_policy": "Privacy Policy",
+            "is_comment_public": "Would you like to post this as public or a private comment? (Leave unchecked for a private comment)",
             "post_comment": "Post comment"
           },
           "no_comment_info": "Be the first one to leave a comment!",
