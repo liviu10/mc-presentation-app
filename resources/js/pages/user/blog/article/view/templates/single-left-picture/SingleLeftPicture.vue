@@ -19,12 +19,12 @@
                     :blog-article-likes="articleContent.blog_articles[0].blog_article_likes"
                     :blog-article-dislikes="articleContent.blog_articles[0].blog_article_dislikes"
     />
+    <!-- TEMPLATE OPTIONS (RATE, SUBCATEGORY TITLE AND SHARE BUTTONS), SECTION END -->
     <!-- TEMPLATE RELATED, SECTION START -->
     <!-- TODO: create a system for the blog article tags. the related articles will be linked to the current article via these tags -->
     <!-- <related-details :blog-related-articles="articleContent" /> -->
     <!-- TEMPLATE RELATED, SECTION END -->
-    <!-- TEMPLATE OPTIONS (RATE, SUBCATEGORY TITLE AND SHARE BUTTONS), SECTION END -->
-    <div id="list_of_comments" class="comment-divider">
+    <div id="article_comments" class="comment-divider">
       <div class="line" />
       <span>{{ numberOfTotalComments() }}</span>
       <div class="line" />

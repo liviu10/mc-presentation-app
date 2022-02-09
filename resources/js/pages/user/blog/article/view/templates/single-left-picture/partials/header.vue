@@ -24,12 +24,12 @@
     </div>
     <div class="article-header-no-comments">
       <span v-if="blogArticleComments === 1">
-        <a href="#list_of_comments">
-          {{ blogArticleNoComment }} {{ $t('user.blog_system_pages.general_settings.comment_section.no_of_comments.singular') }}
+        <a href="#article_comments">
+          {{ blogArticleComment }} {{ $t('user.blog_system_pages.general_settings.comment_section.no_of_comments.singular') }}
         </a>
       </span>
       <span v-if="blogArticleComments > 1">
-        <a href="#list_of_comments">
+        <a href="#article_comments">
           {{ blogArticleComments }} {{ $t('user.blog_system_pages.general_settings.comment_section.no_of_comments.plural') }}
         </a>
       </span>
