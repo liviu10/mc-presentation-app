@@ -5,6 +5,7 @@
                     :blog-article-created="articleContent.blog_articles[0].created_at"
                     :blog-article-updated="articleContent.blog_articles[0].updated_at"
                     :blog-article-reading-time="articleContent.blog_articles[0].blog_article_time"
+                    :blog-article-comments="numberOfTotalComments()"
     />
     <!-- TEMPLATE TITLE, SECTION END -->
     <div class="title-divider" />
@@ -25,9 +26,20 @@
                     :blog-article-dislikes="articleContent.blog_articles[0].blog_article_dislikes"
     />
     <!-- TEMPLATE OPTIONS (RATE, SUBCATEGORY TITLE AND SHARE BUTTONS), SECTION END -->
+    <!-- TEMPLATE RELATED, SECTION START -->
+    <!-- TODO: create a system for the blog article tags. the related articles will be linked to the current article via these tags -->
+    <!-- <related-details :blog-related-articles="articleContent" /> -->
+    <!-- TEMPLATE RELATED, SECTION END -->
+    <div id="article_comments" class="comment-divider">
+      <div class="line" />
+      <span>{{ numberOfTotalComments() }}</span>
+      <div class="line" />
+    </div>
+    <span v-if="numberOfTotalComments() === 1" class="comment-info">{{ $t('user.blog_system_pages.general_settings.comment_section.no_of_comments.singular') }}</span>
+    <span v-if="numberOfTotalComments() > 1" class="comment-info">{{ $t('user.blog_system_pages.general_settings.comment_section.no_of_comments.plural') }}</span>
     <div class="comment-divider" />
     <!-- TEMPLATE COMMENT FORM, SECTION START -->
-    <comment-form-details :blog-article-id="articleContent.blog_articles[0].id" />
+    <add-new-comment-form :blog-article-id="articleContent.blog_articles[0].id" />
     <!-- TEMPLATE COMMENT FORM, SECTION END -->
     <!-- TEMPLATE COMMENTS LIST, SECTION START -->
     <comment-list-details :blog-article-comments="articleContent.blog_articles[0].blog_article_comments" />
@@ -40,7 +52,8 @@ import HeaderDetails from './partials/header.vue'
 import VideoPlayerDetails from './partials/video_player.vue'
 import BodyDetails from './partials/body.vue'
 import OptionDetails from './partials/options.vue'
-import CommentFormDetails from './partials/comment_form.vue'
+// import RelatedDetails from './partials/related.vue'
+import AddNewCommentForm from './partials/add_new_comment.vue'
 import CommentListDetails from './partials/comments_list.vue'
 
 export default {
@@ -50,13 +63,28 @@ export default {
     VideoPlayerDetails,
     BodyDetails,
     OptionDetails,
-    CommentFormDetails,
+    // RelatedDetails,
+    AddNewCommentForm,
     CommentListDetails
   },
   props: {
     articleContent: {
       default: null,
       type: Object
+    }
+  },
+  data: function () {
+    return {
+      blogComments: this.articleContent.blog_articles[0].blog_article_comments
+    }
+  },
+  methods: {
+    numberOfTotalComments () {
+      let numberOfComments = this.blogComments.length
+      this.blogComments.forEach(function count (comment) {
+        numberOfComments += comment.blog_article_comment_replies.length
+      })
+      return numberOfComments
     }
   }
 }

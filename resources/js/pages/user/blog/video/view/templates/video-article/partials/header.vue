@@ -20,6 +20,18 @@
       </span>
       <span v-else>
         {{ blogArticleReadingTime }} {{ $t('user.blog_system_pages.video_article_blog_pages.listening_time.more_than_one_minute') }}
+      </span> &bullet;
+    </div>
+    <div class="video-article-header-no-comments">
+      <span v-if="blogArticleComments === 1">
+        <a href="#article_comments">
+          {{ blogArticleComments }} {{ $t('user.blog_system_pages.general_settings.comment_section.no_of_comments.singular') }}
+        </a>
+      </span>
+      <span v-if="blogArticleComments > 1">
+        <a href="#article_comments">
+          {{ blogArticleComments }} {{ $t('user.blog_system_pages.general_settings.comment_section.no_of_comments.plural') }}
+        </a>
       </span>
     </div>
   </div>
@@ -42,6 +54,10 @@ export default {
       type: String
     },
     blogArticleReadingTime: {
+      default: null,
+      type: Number
+    },
+    blogArticleComments: {
       default: null,
       type: Number
     }

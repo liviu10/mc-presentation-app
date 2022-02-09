@@ -15,11 +15,23 @@
       </span> &bullet;
     </div>
     <div class="audio-article-header-reading-time">
-      <span v-if="blogArticleReadingTime <= 1">
+      <span v-if="blogArticleAudioTime <= 1">
         {{ $t('user.blog_system_pages.audio_article_blog_pages.listening_time.less_than_one_minute') }}
       </span>
       <span v-else>
-        {{ blogArticleReadingTime }} {{ $t('user.blog_system_pages.audio_article_blog_pages.listening_time.more_than_one_minute') }}
+        {{ blogArticleAudioTime }} {{ $t('user.blog_system_pages.audio_article_blog_pages.listening_time.more_than_one_minute') }}
+      </span> &bullet;
+    </div>
+    <div class="audio-article-header-no-comments">
+      <span v-if="blogArticleComments === 1">
+        <a href="#article_comments">
+          {{ blogArticleComments }} {{ $t('user.blog_system_pages.general_settings.comment_section.no_of_comments.singular') }}
+        </a>
+      </span>
+      <span v-if="blogArticleComments > 1">
+        <a href="#article_comments">
+          {{ blogArticleComments }} {{ $t('user.blog_system_pages.general_settings.comment_section.no_of_comments.plural') }}
+        </a>
       </span>
     </div>
   </div>
@@ -41,7 +53,11 @@ export default {
       default: null,
       type: String
     },
-    blogArticleReadingTime: {
+    blogArticleAudioTime: {
+      default: null,
+      type: Number
+    },
+    blogArticleComments: {
       default: null,
       type: Number
     }
