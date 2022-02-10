@@ -124,7 +124,6 @@ export default {
             imageWidth: 259,
             imageHeight: 194
           }).then((result) => {
-            console.log(result)
             this.form.full_name = null
             this.form.email = null
             this.form.privacy_policy = null

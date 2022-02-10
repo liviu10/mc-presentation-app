@@ -98,7 +98,6 @@ export default {
       await axios
         .delete(fullApiUrl, { email: urlParam })
         .then(response => {
-          console.log(response.data)
           this.form.email = ''
           this.closeModal()
         })

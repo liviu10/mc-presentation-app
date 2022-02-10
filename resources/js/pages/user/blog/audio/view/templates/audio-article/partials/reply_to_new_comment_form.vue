@@ -175,7 +175,6 @@ export default {
             title: this.$t('user.blog_system_pages.general_settings.comment_section.swal.title', { fullName: this.fullName }),
             text: this.$t('user.blog_system_pages.general_settings.comment_section.swal.message')
           }).then((result) => {
-            console.log(result)
             if (this.form.comment_reply_is_public === true) {
               window.location.reload()
             }

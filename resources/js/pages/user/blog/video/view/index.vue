@@ -48,7 +48,6 @@ export default {
       axios
         .get(fullApiUrl)
         .then(response => {
-          console.log('>>>>> Display a single blog video article: ')
           this.displaySingleBlogArticle = response.data.records[0]
           this.blogArticleTitle = response.data.records[0].blog_articles[0].blog_article_title
         })

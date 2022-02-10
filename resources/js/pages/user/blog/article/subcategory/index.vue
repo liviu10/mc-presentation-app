@@ -96,7 +96,6 @@ export default {
       axios
         .get(fullApiUrl)
         .then(response => {
-          console.log('>>>>> List of written blog articles for a given blog subcategory: ')
           this.displayAllBlogSubcategoryWrittenArticles = response.data.records[0]
           this.blogSubcategoryTitle = response.data.records[0].blog_subcategory_title
           this.blogSubcategoryPath = response.data.records[0].blog_subcategory_path

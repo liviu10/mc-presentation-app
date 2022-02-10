@@ -20,7 +20,7 @@
             <img src="images/contact/dance-question-mark.jpg" class="card-img-top" alt="...">
           </div>
           <div class="lv-pg-contact-content-body">
-            <form @submit.prevent="subscribe" @keydown="form.onKeydown($event)">
+            <form @submit.prevent="contactMe" @keydown="form.onKeydown($event)">
               <alert-success :form="form" :message="message_success" />
               <!-- FULL NAME, SECTION START -->
               <div class="mb-4">
@@ -111,7 +111,7 @@ export default {
     }
   },
   methods: {
-    async subscribe () {
+    async contactMe () {
       const url = window.location.origin
       const apiEndPoint = '/api/contact-me'
       const fullApiUrl = url + apiEndPoint

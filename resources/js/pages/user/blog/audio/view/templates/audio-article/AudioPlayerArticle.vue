@@ -54,6 +54,7 @@ import OptionDetails from './partials/options.vue'
 // import RelatedDetails from './partials/related.vue'
 import AddNewCommentForm from './partials/add_new_comment.vue'
 import CommentListDetails from './partials/comments_list.vue'
+import numberOfBlogComments from '../../../../../../../mixin/numberOfBlogComments'
 
 export default {
   name: 'SingleAudioArticle',
@@ -66,6 +67,7 @@ export default {
     AddNewCommentForm,
     CommentListDetails
   },
+  mixins: [numberOfBlogComments],
   props: {
     articleContent: {
       default: null,
@@ -75,15 +77,6 @@ export default {
   data: function () {
     return {
       blogComments: this.articleContent.blog_articles[0].blog_article_comments
-    }
-  },
-  methods: {
-    numberOfTotalComments () {
-      let numberOfComments = this.blogComments.length
-      this.blogComments.forEach(function count (comment) {
-        numberOfComments += comment.blog_article_comment_replies.length
-      })
-      return numberOfComments
     }
   }
 }

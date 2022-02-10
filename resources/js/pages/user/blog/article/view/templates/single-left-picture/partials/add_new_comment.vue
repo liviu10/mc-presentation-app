@@ -128,7 +128,6 @@ export default {
   },
   methods: {
     clearAddNewCommentForm () {
-      console.log('> clearAddNewCommentForm: ', this.form)
       if (this.form.full_name !== '' || this.form.email !== '' || this.form.comment !== '' || this.form.comment_is_public !== true || this.form.privacy_policy !== true) {
         this.form.full_name = ''
         this.form.email = ''
@@ -156,7 +155,6 @@ export default {
             title: this.$t('user.blog_system_pages.general_settings.comment_section.swal.title', { fullName: this.fullName }),
             text: this.$t('user.blog_system_pages.general_settings.comment_section.swal.message')
           }).then((result) => {
-            console.log(result)
             if (this.form.comment_is_public === true) {
               window.location.reload()
             }

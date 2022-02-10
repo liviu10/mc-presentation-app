@@ -33,11 +33,9 @@ export const actions = {
     axios
       .get(fullApiUrl)
       .then(response => {
-        console.log('>>>>> Display blog categories and subcategories: ')
         commit('setBlogCategoriesAndSubcategories', response.data)
       })
       .catch(({ response }) => {
-        console.log('>>>>>> Http request error: ')
         commit('setBlogCategoriesAndSubcategories', response.data)
       })
   },
@@ -48,11 +46,9 @@ export const actions = {
     axios
       .get(fullApiUrl)
       .then(response => {
-        console.log('>>>>> List of written blog articles: ')
         commit('setListOfWrittenArticles', response.data)
       })
       .catch(({ response }) => {
-        console.log('>>>>>> Http request error: ')
         commit('setListOfWrittenArticles', response.data)
       })
   },
@@ -63,11 +59,9 @@ export const actions = {
     axios
       .get(fullApiUrl)
       .then(response => {
-        console.log('>>>>> List of audio blog articles: ')
         commit('setListOfAudioArticles', response.data)
       })
       .catch(({ response }) => {
-        console.log('>>>>>> Http request error: ')
         commit('setListOfAudioArticles', response.data)
       })
   },
@@ -78,11 +72,9 @@ export const actions = {
     axios
       .get(fullApiUrl)
       .then(response => {
-        console.log('>>>>> List of video blog articles: ')
         commit('setListOfVideoArticles', response.data)
       })
       .catch(({ response }) => {
-        console.log('>>>>>> Http request error: ')
         commit('setListOfVideoArticles', response.data)
       })
   }
