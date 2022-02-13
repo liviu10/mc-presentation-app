@@ -11,13 +11,13 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 
 import {
-  faGithub, faFacebook, faInstagram, faYoutube
+  faGithub, faFacebook, faInstagram, faYoutube, faGoogle
 } from '@fortawesome/free-brands-svg-icons'
 
 library.add(
   faUser, faLock, faSignOutAlt, faCog, faGithub, faBookOpen, faArrowLeft, faFileExport, faEye, faEdit, faTrash,
   faFacebook, faInstagram, faYoutube, faChevronRight, faChevronLeft, faQuoteLeft, faQuoteRight, faBookReader, faEnvelope,
-  faThumbsUp, faThumbsDown, faWindowClose, faAt, faHeadphones
+  faThumbsUp, faThumbsDown, faWindowClose, faAt, faHeadphones, faGoogle
 )
 
 Vue.component('Fa', FontAwesomeIcon)

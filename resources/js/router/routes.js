@@ -3,6 +3,14 @@ function page (path) {
 }
 
 export default [
+  // URL route for the User Login and Registration system
+  { path: '/login', name: 'user.auth.login', component: page('user/auth/login.vue') },
+  { path: '/register', name: 'user.auth.register', component: page('user/auth/register.vue') },
+  { path: '/password/reset', name: 'user.auth.password.request', component: page('user/auth/password/email.vue') },
+  { path: '/password/reset/:token', name: 'user.auth.password.reset', component: page('user/auth/password/reset.vue') },
+  { path: '/email/verify/:id', name: 'user.auth.verification.verify', component: page('user/auth/verification/verify.vue') },
+  { path: '/email/resend', name: 'user.auth.verification.resend', component: page('user/auth/verification/resend.vue') },
+
   // URL route for the home page
   { path: '/', name: 'home-page', component: page('user/index.vue') },
 
@@ -59,13 +67,4 @@ export default [
 
   // URL routes for different HTTP errors
   { path: '*', component: page('errors/404.vue') }
-
-  // Old URL routes for the login and register system
-  // { path: '', name: 'home', component: page('home.vue') },
-  // { path: '/login', name: 'login', component: page('auth/login.vue') },
-  // { path: '/register', name: 'register', component: page('auth/register.vue') }
-  // { path: '/password/reset', name: 'password.request', component: page('auth/password/email.vue') },
-  // { path: '/password/reset/:token', name: 'password.reset', component: page('auth/password/reset.vue') },
-  // { path: '/email/verify/:id', name: 'verification.verify', component: page('auth/verification/verify.vue') },
-  // { path: '/email/resend', name: 'verification.resend', component: page('auth/verification/resend.vue') },
 ]

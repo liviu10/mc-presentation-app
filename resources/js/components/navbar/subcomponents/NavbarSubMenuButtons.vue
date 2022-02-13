@@ -51,8 +51,8 @@ export default {
     async logout () {
       // Log out the user.
       await this.$store.dispatch('auth/logout')
-      // Redirect to login.
-      this.$router.push({ name: 'login' })
+      // Redirect to home page.
+      this.$router.push({ name: 'home-page' })
     }
   }
 }

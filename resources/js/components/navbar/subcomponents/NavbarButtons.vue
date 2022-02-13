@@ -39,6 +39,11 @@ export default {
           id: 5,
           button_url: 'contact-me',
           button_name: this.$t('navigation_bar.main_menu.fifth_button')
+        },
+        {
+          id: 6,
+          button_url: 'user.auth.login',
+          button_name: this.$t('navigation_bar.main_menu.sixth_button')
         }
       ]
     }

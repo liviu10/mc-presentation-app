@@ -33,6 +33,17 @@ use Illuminate\Support\Facades\Route;
     
     // Import the Contact Me page Controller file
     use App\Http\Controllers\User\ContactMePage\ContactMeController;
+
+    // Import User Login and Registration System Controller files
+    use App\Http\Controllers\User\Auth\ForgotPasswordController;
+    use App\Http\Controllers\User\Auth\LoginController;
+    use App\Http\Controllers\User\Auth\OAuthController;
+    use App\Http\Controllers\User\Auth\RegisterController;
+    use App\Http\Controllers\User\Auth\ResetPasswordController;
+    use App\Http\Controllers\User\Auth\UserController;
+    use App\Http\Controllers\User\Auth\VerificationController;
+    use App\Http\Controllers\User\Settings\PasswordController;
+    use App\Http\Controllers\User\Settings\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | FRONT VIEW WEB APPLICATION API ROUTES
@@ -124,15 +135,15 @@ use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\Admin\ContactMeSystem\ContactMeSystemController;    
 
     // Import Login and Registration System Controller files
-    use App\Http\Controllers\Auth\ForgotPasswordController;
-    use App\Http\Controllers\Auth\LoginController;
-    use App\Http\Controllers\Auth\OAuthController;
-    use App\Http\Controllers\Auth\RegisterController;
-    use App\Http\Controllers\Auth\ResetPasswordController;
-    use App\Http\Controllers\Auth\UserController;
-    use App\Http\Controllers\Auth\VerificationController;
-    use App\Http\Controllers\Settings\PasswordController;
-    use App\Http\Controllers\Settings\ProfileController;
+    // use App\Http\Controllers\Auth\ForgotPasswordController;
+    // use App\Http\Controllers\Auth\LoginController;
+    // use App\Http\Controllers\Auth\OAuthController;
+    // use App\Http\Controllers\Auth\RegisterController;
+    // use App\Http\Controllers\Auth\ResetPasswordController;
+    // use App\Http\Controllers\Auth\UserController;
+    // use App\Http\Controllers\Auth\VerificationController;
+    // use App\Http\Controllers\Settings\PasswordController;
+    // use App\Http\Controllers\Settings\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | API Routes for the Administration View of the Web Application

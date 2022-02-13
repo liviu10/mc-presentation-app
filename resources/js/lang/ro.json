@@ -6,13 +6,14 @@
       "second_button": "Programare",
       "third_button": "Blog",
       "forth_button": "Despre mine",
-      "fifth_button": "Contactează-mă"
+      "fifth_button": "Contactează-mă",
+      "sixth_button": "Autentificare"
     },
     "sub_menu": {
       "first_button": "Documentație",
       "second_button": "Setări Profil",
       "third_button": "Setări Aplicație",
-      "forth_button": "Delogare"
+      "forth_button": "Ieșire"
     }
   },
   "footer": {
@@ -249,6 +250,48 @@
           "title": "Mulțumesc, {subscriberFullName}!",
           "message": "Sunt recunoscătoare că te-ai abonat la newsletter-ul meu! În curând vei primi pe email mai multe surprize din partea mea!"
         }
+      }
+    },
+    "login_and_registration": {
+      "login_form": {
+        "title": "Autentificare",
+        "input_email": "Adresă de email",
+        "placeholder_email": "Inserează adresa ta de email",
+        "input_password": "Parolă",
+        "placeholder_password": "Inserează parola ta",
+        "input_remember_me": "Ține-mă minte!",
+        "input_forgot_password": "Parolă uitată?",
+        "login_button": "Autentificare",
+        "register_button": "Înregistrare",
+        "login_with": "Autentificare cu"
+      },
+      "register_form": {
+        "title": "Înregistrare",
+        "input_name": "Nume și prenume",
+        "placeholder_name": "Inserează numele și prenumele tău",
+        "input_email": "Adresă de email",
+        "placeholder_email": "Inserează adresa ta de email",
+        "input_password": "Parolă",
+        "placeholder_password": "Inserează parola ta",
+        "input_confirm_password": "Confirmă Parolă",
+        "placeholder_confirm_password": "Reinserează parola ta",
+        "register_button": "Înregistrare",
+        "back_to_login_button": "Înapoi la Autentificare",
+        "register_with": "Înregistrare cu"
+      },
+      "reset_password_form": {
+        "title": "Resetare parolă",
+        "input_email": "Adresă de email",
+        "placeholder_email": "Inserează adresa ta de email",
+        "input_password": "Parolă",
+        "placeholder_password": "Inserează parola ta",
+        "input_confirm_password": "Confirmă Parolă",
+        "placeholder_confirm_password": "Reinserează parola ta",
+        "verify_email": "Verifică adresa de email",
+        "send_verification_link": "Trimite link-ul de verificare",
+        "reset_password_button": "Trimite link-ul de resetare a parolei",
+        "reset_password_label": "Resetare parolă",
+        "back_to_login_button": "Înapoi la Autentificare"
       }
     }
   },
