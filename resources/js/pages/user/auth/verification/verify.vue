@@ -1,26 +1,28 @@
 <template>
   <div class="row">
-    <div class="col-lg-7 m-auto">
-      <card :title="$t('user.login_and_registration.reset_password_form.verify_email')">
-        <template v-if="success">
-          <div class="alert alert-success" role="alert">
-            {{ success }}
-          </div>
+    <div class="col-lg-12 m-auto">
+      <div class="lv-pg-reset-password">
+        <card :title="$t('user.login_and_registration.reset_password_form.verify_email')">
+          <template v-if="success">
+            <div class="alert alert-success" role="alert">
+              {{ success }}
+            </div>
 
-          <router-link :to="{ name: 'user.auth.login' }" class="btn btn-primary">
-            {{ $t('user.login_and_registration.login_form.login_button') }}
-          </router-link>
-        </template>
-        <template v-else>
-          <div class="alert alert-danger" role="alert">
-            {{ error || $t('user.login_and_registration.reset_password_form.failed_to_verify_email') }}
-          </div>
+            <router-link :to="{ name: 'user.auth.login' }" class="btn btn-primary">
+              {{ $t('user.login_and_registration.login_form.login_button') }}
+            </router-link>
+          </template>
+          <template v-else>
+            <div class="alert alert-danger" role="alert">
+              {{ error || $t('user.login_and_registration.reset_password_form.failed_to_verify_email') }}
+            </div>
 
-          <router-link :to="{ name: 'user.auth.verification.resend' }" class="small float-end">
-            {{ $t('user.login_and_registration.reset_password_form.resend_verification_link') }}
-          </router-link>
-        </template>
-      </card>
+            <router-link :to="{ name: 'user.auth.verification.resend' }" class="small float-end">
+              {{ $t('user.login_and_registration.reset_password_form.resend_verification_link') }}
+            </router-link>
+          </template>
+        </card>
+      </div>
     </div>
   </div>
 </template>

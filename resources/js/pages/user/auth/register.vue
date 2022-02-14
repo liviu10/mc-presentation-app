@@ -1,114 +1,118 @@
 <template>
   <div class="row">
-    <div class="col-lg-7 m-auto">
-      <card v-if="mustVerifyEmail" :title="$t('user.login_and_registration.register_form.title')">
-        <div class="alert alert-success" role="alert">
-          {{ $t('user.login_and_registration.register_form.input_name.verify_email_address') }}
-        </div>
-      </card>
-      <card v-else :title="$t('register')">
-        <form @submit.prevent="register" @keydown="form.onKeydown($event)">
-          <!-- NAME INPUT, SECTION START -->
-          <div class="mb-3 row">
-            <label class="col-md-3 col-form-label text-md-end">
-              {{ $t('user.login_and_registration.register_form.input_name') }}
-            </label>
-            <div class="col-md-7">
-              <input v-model="form.name"
-                     :class="{ 'is-invalid': form.errors.has('name') }"
-                     class="form-control"
-                     type="text"
-                     name="name"
-                     :placeholder="$t('user.login_and_registration.register_form.placeholder_name')"
-              >
-              <has-error :form="form" field="name" />
-            </div>
+    <div class="col-lg-12 m-auto">
+      <div class="lv-pg-register">
+        <card v-if="mustVerifyEmail" :title="$t('user.login_and_registration.register_form.title')">
+          <div class="alert alert-success" role="alert">
+            {{ $t('user.login_and_registration.register_form.input_name.verify_email_address') }}
           </div>
-          <!-- NAME INPUT, SECTION END -->
-
-          <!-- EMAIL INPUT, SECTION START -->
-          <div class="mb-3 row">
-            <label class="col-md-3 col-form-label text-md-end">
-              {{ $t('user.login_and_registration.register_form.input_email') }}
-            </label>
-            <div class="col-md-7">
-              <input v-model="form.email"
-                     :class="{ 'is-invalid': form.errors.has('email') }"
-                     class="form-control"
-                     type="email"
-                     name="email"
-                     :placeholder="$t('user.login_and_registration.register_form.placeholder_email')"
-              >
-              <has-error :form="form" field="email" />
+        </card>
+        <card v-else :title="$t('user.login_and_registration.register_form.title')">
+          <form @submit.prevent="register" @keydown="form.onKeydown($event)">
+            <!-- NAME INPUT, SECTION START -->
+            <div class="mb-4">
+              <label class="col-form-label">
+                {{ $t('user.login_and_registration.register_form.input_name') }}
+              </label>
+              <div class="">
+                <input v-model="form.name"
+                       :class="{ 'is-invalid': form.errors.has('name') }"
+                       class="form-control"
+                       type="text"
+                       name="name"
+                       :placeholder="$t('user.login_and_registration.register_form.placeholder_name')"
+                >
+                <has-error :form="form" field="name" />
+              </div>
             </div>
-          </div>
-          <!-- EMAIL INPUT, SECTION END -->
+            <!-- NAME INPUT, SECTION END -->
 
-          <!-- PASSWORD INPUT, SECTION START -->
-          <div class="mb-3 row">
-            <label class="col-md-3 col-form-label text-md-end">
-              {{ $t('user.login_and_registration.register_form.input_password') }}
-            </label>
-            <div class="col-md-7">
-              <input v-model="form.password"
-                     :class="{ 'is-invalid': form.errors.has('password') }"
-                     class="form-control"
-                     type="password"
-                     name="password"
-                     :placeholder="$t('user.login_and_registration.register_form.placeholder_password')"
-              >
-              <has-error :form="form" field="password" />
+            <!-- EMAIL INPUT, SECTION START -->
+            <div class="mb-4">
+              <label class="col-form-label">
+                {{ $t('user.login_and_registration.register_form.input_email') }}
+              </label>
+              <div class="">
+                <input v-model="form.email"
+                       :class="{ 'is-invalid': form.errors.has('email') }"
+                       class="form-control"
+                       type="email"
+                       name="email"
+                       :placeholder="$t('user.login_and_registration.register_form.placeholder_email')"
+                >
+                <has-error :form="form" field="email" />
+              </div>
             </div>
-          </div>
-          <!-- PASSWORD INPUT, SECTION END -->
+            <!-- EMAIL INPUT, SECTION END -->
 
-          <!-- PASSWORD CONFIRMATION INPUT, SECTION START -->
-          <div class="mb-3 row">
-            <label class="col-md-3 col-form-label text-md-end">
-              {{ $t('user.login_and_registration.register_form.input_confirm_password') }}
-            </label>
-            <div class="col-md-7">
-              <input v-model="form.password_confirmation"
-                     :class="{ 'is-invalid': form.errors.has('password_confirmation') }"
-                     class="form-control"
-                     type="password"
-                     name="password_confirmation"
-                     :placeholder="$t('user.login_and_registration.register_form.placeholder_confirm_password')"
-              >
-              <has-error :form="form" field="password_confirmation" />
+            <!-- PASSWORD INPUT, SECTION START -->
+            <div class="mb-4">
+              <label class="col-form-label">
+                {{ $t('user.login_and_registration.register_form.input_password') }}
+              </label>
+              <div class="">
+                <input v-model="form.password"
+                       :class="{ 'is-invalid': form.errors.has('password') }"
+                       class="form-control"
+                       type="password"
+                       name="password"
+                       :placeholder="$t('user.login_and_registration.register_form.placeholder_password')"
+                >
+                <has-error :form="form" field="password" />
+              </div>
             </div>
-          </div>
-          <!-- PASSWORD CONFIRMATION INPUT, SECTION END -->
+            <!-- PASSWORD INPUT, SECTION END -->
 
-          <div class="mb-3 row">
-            <div class="col-md-7 offset-md-3 d-flex">
-              <!-- REGISTER BUTTON, SECTION START -->
-              <v-button :loading="form.busy">
-                {{ $t('user.login_and_registration.register_form.register_button') }}
-              </v-button>
-              <!-- REGISTER BUTTON, SECTION END -->
-
-              <!-- BACK TO LOGIN BUTTON, SECTION START -->
-              <a href="/login" class="btn btn-primary">
-                {{ $t('user.login_and_registration.register_form.back_to_login_button') }}
-              </a>
-              <!-- BACK TO LOGIN BUTTON, SECTION END -->
+            <!-- PASSWORD CONFIRMATION INPUT, SECTION START -->
+            <div class="mb-4">
+              <label class="col-form-label">
+                {{ $t('user.login_and_registration.register_form.input_confirm_password') }}
+              </label>
+              <div class="">
+                <input v-model="form.password_confirmation"
+                       :class="{ 'is-invalid': form.errors.has('password_confirmation') }"
+                       class="form-control"
+                       type="password"
+                       name="password_confirmation"
+                       :placeholder="$t('user.login_and_registration.register_form.placeholder_confirm_password')"
+                >
+                <has-error :form="form" field="password_confirmation" />
+              </div>
             </div>
-          </div>
+            <!-- PASSWORD CONFIRMATION INPUT, SECTION END -->
 
-          <div class="mb-3 row">
-            <div class="col-md-7 offset-md-3 d-flex">
-              <!-- FACEBOOK REGISTER BUTTON, SECTION START -->
-              <login-with-facebook />
-              <!-- FACEBOOK REGISTER BUTTON, SECTION END -->
-
-              <!-- INSTAGRAM REGISTER BUTTON, SECTION START -->
-              <login-with-google />
-              <!-- INSTAGRAM REGISTER BUTTON, SECTION END -->
+            <div class="my-4 d-flex form-button">
+              <div class="col-md-6">
+                <!-- REGISTER BUTTON, SECTION START -->
+                <v-button :loading="form.busy">
+                  {{ $t('user.login_and_registration.register_form.register_button') }}
+                </v-button>
+                <!-- REGISTER BUTTON, SECTION END -->
+              </div>
+              <div class="col-md-6">
+                <!-- BACK TO LOGIN BUTTON, SECTION START -->
+                <button class="btn btn-primary" @click="goToLoginForm()">
+                  {{ $t('user.login_and_registration.register_form.back_to_login_button') }}
+                </button>
+                <!-- BACK TO LOGIN BUTTON, SECTION END -->
+              </div>
             </div>
-          </div>
-        </form>
-      </card>
+
+            <div class="my-4 d-flex form-button">
+              <div class="col-md-6">
+                <!-- FACEBOOK REGISTER BUTTON, SECTION START -->
+                <login-with-facebook />
+                <!-- FACEBOOK REGISTER BUTTON, SECTION END -->
+              </div>
+              <div class="col-md-6">
+                <!-- INSTAGRAM REGISTER BUTTON, SECTION START -->
+                <login-with-google />
+                <!-- INSTAGRAM REGISTER BUTTON, SECTION END -->
+              </div>
+            </div>
+          </form>
+        </card>
+      </div>
     </div>
   </div>
 </template>
@@ -161,6 +165,10 @@ export default {
         // Redirect home.
         this.$router.push({ name: 'home' })
       }
+    },
+
+    goToLoginForm () {
+      return this.$router.push({ name: 'user.auth.login' })
     }
   }
 }

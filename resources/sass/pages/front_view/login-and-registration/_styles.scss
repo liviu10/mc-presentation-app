@@ -1,0 +1,25 @@
+@import 'partials/_login.scss';
+@import 'partials/_register.scss';
+@import 'partials/_reset_password.scss';
+
+.lv-pg-login, .lv-pg-register, .lg-pg-reset-password {
+    margin: rem-convertor(100px) 0rem;
+}
+
+.alternative {
+    display:flex;
+    align-items: center;
+    margin: rem-convertor(24px) 0rem;
+    & .line {
+        height: rem-convertor(1px);
+        flex: 1;
+        background-color: #000000;
+    }
+    & span {
+        margin-bottom: 0rem;
+        background-color: #719E9E;
+        border-radius: 50%;
+        padding: 0rem rem-convertor(8px);
+        user-select: none;
+    }
+}

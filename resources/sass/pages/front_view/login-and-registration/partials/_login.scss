@@ -1,0 +1,83 @@
+@import '../../../../components/front_view/partials/_button.scss';
+@import '../../../../components/front_view/partials/_form_input.scss';
+
+.lv-pg-login {
+    width: 50%;
+    & .card {
+        border-width: 0rem;
+        border-radius: 0rem;
+        &-header {
+            @include flex-center();
+            height: rem-convertor(50px);
+            font-size: rem-convertor(24px);
+        }
+        &-body {
+            form {
+                margin-bottom: rem-convertor(0px);
+            }
+            & .form-control {
+                border-radius: rem-convertor(0px);
+                height: rem-convertor(60px);
+            }
+            & input[type="email"]:focus, input[type="password"]:focus {
+                border-color: map-get($basic_colors, "color_black");
+                box-shadow: 0 rem-convertor(1px) rem-convertor(1px) transparent inset, 0 0 rem-convertor(8px) transparent;
+                outline: 0 none;
+            }
+            & input::placeholder {
+                font-style: italic;
+            }
+            & .invalid-feedback {
+                margin-bottom: rem-convertor(4px);
+                @media only screen and (max-width: 767px) {
+                    text-align: center;
+                }
+            }
+            & .form-options {
+                & .col-md-6 {
+                    @include flex-center();
+                }
+                & .form-check, & .form-link {
+                    margin-bottom: rem-convertor(0px);
+                    &-input {
+                        width: rem-convertor(20px);
+                        height: rem-convertor(20px);
+                    }
+                    & .a-typography {
+                        margin: rem-convertor(8px) 0rem;
+                        padding: 0rem;
+                        color: map-get($basic_colors, "color_black");
+                        font-style: normal;
+                        font-variant: normal;
+                        font-weight: normal;
+                        text-align: left;
+                        text-decoration: none;
+                        white-space: normal;
+                        word-break: normal;
+                        word-spacing: normal;
+                        text-decoration: underline;
+                        text-indent: rem-convertor(0px);
+                        &:visited, &:active {
+                            color: map-get($basic_colors, "color_black");
+                        }
+                        &:hover {
+                            color: map-get($basic_colors, "color_black");
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+            & .form-button {
+                & .col-md-6 {
+                    @include flex-center();
+                }
+                & .btn {
+                    @include button();
+                    width: 75%;
+                    height: rem-convertor(60px);
+                    text-transform: uppercase;
+                }
+            }
+        }
+    }
+}
