@@ -9,11 +9,22 @@
         &-header {
             @include flex-center();
             height: rem-convertor(50px);
+            background-color: map-get($complementary_blizzard_blue, "color_sea_nymph");
+            border-color: map-get($complementary_blizzard_blue, "color_sea_nymph");
             font-size: rem-convertor(24px);
+            &:first-child {
+                border-radius: 0;
+            }
         }
         &-body {
             form {
                 margin-bottom: rem-convertor(0px);
+                & .mb-2 {
+                    & .col-form-label {
+                        font-weight: 900;
+                        text-transform: uppercase;
+                    }
+                }
             }
             & .form-control {
                 border-radius: rem-convertor(0px);
@@ -39,6 +50,7 @@
                 }
                 & .form-check, & .form-link {
                     margin-bottom: rem-convertor(0px);
+                    font-weight: 900;
                     &-input {
                         width: rem-convertor(20px);
                         height: rem-convertor(20px);
@@ -68,12 +80,16 @@
                 }
             }
             & .form-button {
-                & .col-md-6 {
+                & .col-md-12 {
                     @include flex-center();
+                    & span {
+                        font-size: rem-convertor(18px);
+                        font-weight: 900;
+                    }
                 }
                 & .btn {
                     @include button();
-                    width: 75%;
+                    width: 100%;
                     height: rem-convertor(60px);
                     text-transform: uppercase;
                 }

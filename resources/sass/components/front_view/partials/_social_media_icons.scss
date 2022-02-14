@@ -1,5 +1,5 @@
 @mixin social-media-icon() {
-    .fa-facebook, .fa-instagram, .fa-youtube {
+    .fa-facebook, .fa-instagram, .fa-youtube, .fa-google {
         border-radius: 50% !important;
         padding: rem-convertor(5px);
         width: rem-convertor(24px) !important;
@@ -14,5 +14,8 @@
     }
     .fa-youtube {
         background-color: #BB0000;
+    }
+    .fa-google {
+        background-color: #DB4437;
     }
 }

@@ -15,6 +15,7 @@
                 $t('user.blog_system_pages.general_settings.rating_system.options.good'),
                 $t('user.blog_system_pages.general_settings.rating_system.options.very_good')
               ]"
+              @before-rate="rateTheArticle()"
         />
       </p>
     </div>
@@ -59,6 +60,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import Swal from 'sweetalert2/dist/sweetalert2.js'
 import Vue from 'vue'
 import rate from 'vue-rate'
 import 'vue-rate/dist/vue-rate.css'
@@ -108,6 +111,41 @@ export default {
   data: function () {
     return {
       myRate: 0
+    }
+  },
+  computed: mapGetters({
+    user: 'auth/user'
+  }),
+  methods: {
+    rateTheArticle () {
+      if (!this.user) {
+        Swal.fire({
+          title: 'Test title',
+          text: 'Nu esti autentificat pentru a evalua articolul',
+          confirmButtonText: 'Save',
+          showCancelButton: true
+        })
+      }
+    },
+    likeTheArticle () {
+      if (!this.user) {
+        Swal.fire({
+          title: 'Test title',
+          text: 'Nu esti autentificat pentru a da like',
+          confirmButtonText: 'Save',
+          showCancelButton: true
+        })
+      }
+    },
+    dislikeTheArticle () {
+      if (!this.user) {
+        Swal.fire({
+          title: 'Test title',
+          text: 'Nu esti autentificat pentru a da dislike',
+          confirmButtonText: 'Save',
+          showCancelButton: true
+        })
+      }
     }
   }
 }

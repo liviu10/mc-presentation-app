@@ -1,24 +1,24 @@
 <template>
   <div>
     <div class="form-button">
-      <!-- <a class="btn btn-primary"
+      <a class="btn btn-primary"
          target="_blank"
          :title="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.social_menu.like')"
-         @click="likeTheComment()"
+         @click="likeTheCommentReply()"
       >
         <span>
-          <fa :icon="['fa', 'thumbs-up']" fixed-width /> {{ blogCommentReplyLikes }} {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.like_dislike_system.like') }}
+          <fa :icon="['fa', 'thumbs-up']" fixed-width /> {{ commentReplyLikes }} {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.like_dislike_system.like') }}
         </span>
       </a>
       <a class="btn btn-primary"
          target="_blank"
          :title="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.social_menu.dislike')"
-         @click="dislikeTheComment()"
+         @click="dislikeTheCommentReply()"
       >
         <span>
-          <fa :icon="['fa', 'thumbs-down']" fixed-width /> {{ blogCommentReplyDislikes }} {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.like_dislike_system.dislike') }}
+          <fa :icon="['fa', 'thumbs-down']" fixed-width /> {{ commentReplyDislikes }} {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.like_dislike_system.dislike') }}
         </span>
-      </a> -->
+      </a>
       <button class="btn btn-primary" @click="showRespondToCommentReplyForm = !showRespondToCommentReplyForm">
         <span v-if="!showRespondToCommentReplyForm">{{ $t('user.blog_system_pages.general_settings.comment_section.open_reply_comment_form') }}</span>
         <span v-else @click="clearRespondToCommentReplyForm">{{ $t('user.blog_system_pages.general_settings.comment_section.close_reply_comment_form') }}</span>
@@ -109,6 +109,7 @@
 
 <script>
 import Vue from 'vue'
+import { mapGetters } from 'vuex'
 import Form from 'vform'
 import axios from 'axios'
 import Swal from 'sweetalert2/dist/sweetalert2.js'
@@ -123,11 +124,11 @@ export default {
       default: null,
       type: Number
     },
-    blogCommentReplyLikes: {
+    commentReplyLikes: {
       default: null,
       type: Number
     },
-    blogCommentReplyDislikes: {
+    commentReplyDislikes: {
       default: null,
       type: Number
     }
@@ -146,6 +147,9 @@ export default {
       fullName: ''
     }
   },
+  computed: mapGetters({
+    user: 'auth/user'
+  }),
   methods: {
     clearRespondToCommentReplyForm () {
       if (this.form.full_name !== '' || this.form.email !== '' || this.form.respond_to_comment_reply !== '' || this.form.respond_to_comment_reply_is_public !== true || this.form.privacy_policy_respond_to_comment_reply !== true) {
@@ -156,36 +160,65 @@ export default {
         this.form.privacy_policy_respond_to_comment_reply = false
       }
     },
+    likeTheCommentReply () {
+      if (!this.user) {
+        Swal.fire({
+          title: 'Test title',
+          text: 'Nu esti autentificat pentru a da like la un raspuns de comentariu',
+          confirmButtonText: 'Save',
+          showCancelButton: true
+        })
+      }
+    },
+    dislikeTheCommentReply () {
+      if (!this.user) {
+        Swal.fire({
+          title: 'Test title',
+          text: 'Nu esti autentificat pentru a da dislike la un raspuns de comentariu',
+          confirmButtonText: 'Save',
+          showCancelButton: true
+        })
+      }
+    },
     async replyToCommentReply () {
       const url = window.location.origin
       const apiEndPoint = '/api/blog/comment/respond-to-reply'
       const fullApiUrl = url + apiEndPoint
-      await this.form
-        .post(fullApiUrl, {
-          blogArticleCommentId: this.form.blog_article_comment_reply_id,
-          full_name: this.form.full_name,
-          email: this.form.email,
-          respond_to_comment_reply: this.form.respond_to_comment_reply,
-          respond_to_comment_reply_is_public: this.form.respond_to_comment_reply_is_public,
-          privacy_policy: this.form.privacy_policy_respond_to_comment_reply
+      if (!this.user) {
+        Swal.fire({
+          title: 'Test title',
+          text: 'Nu esti autentificat pentru a adauga un raspunde la un comentariu',
+          confirmButtonText: 'Save',
+          showCancelButton: true
         })
-        .then(response => {
-          this.fullName = response.data.full_name
-          Swal.fire({
-            title: this.$t('user.blog_system_pages.general_settings.comment_section.swal.title', { fullName: this.fullName }),
-            text: this.$t('user.blog_system_pages.general_settings.comment_section.swal.message')
-          }).then((result) => {
-            if (this.form.comment_reply_is_public === true) {
-              window.location.reload()
-            }
-            this.form.full_name = null
-            this.form.email = null
-            this.form.comment_reply = null
-            this.form.comment_reply_is_public = null
-            this.form.privacy_policy_comment_reply = null
-            this.showRespondToCommentReplyForm = false
+      } else {
+        await this.form
+          .post(fullApiUrl, {
+            blogArticleCommentId: this.form.blog_article_comment_reply_id,
+            full_name: this.form.full_name,
+            email: this.form.email,
+            respond_to_comment_reply: this.form.respond_to_comment_reply,
+            respond_to_comment_reply_is_public: this.form.respond_to_comment_reply_is_public,
+            privacy_policy: this.form.privacy_policy_respond_to_comment_reply
           })
-        })
+          .then(response => {
+            this.fullName = response.data.full_name
+            Swal.fire({
+              title: this.$t('user.blog_system_pages.general_settings.comment_section.swal.title', { fullName: this.fullName }),
+              text: this.$t('user.blog_system_pages.general_settings.comment_section.swal.message')
+            }).then((result) => {
+              if (this.form.comment_reply_is_public === true) {
+                window.location.reload()
+              }
+              this.form.full_name = null
+              this.form.email = null
+              this.form.comment_reply = null
+              this.form.comment_reply_is_public = null
+              this.form.privacy_policy_comment_reply = null
+              this.showRespondToCommentReplyForm = false
+            })
+          })
+      }
     }
   }
 }

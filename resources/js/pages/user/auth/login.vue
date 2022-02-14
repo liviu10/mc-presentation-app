@@ -5,7 +5,7 @@
         <card :title="$t('user.login_and_registration.login_form.title')">
           <form @submit.prevent="login" @keydown="form.onKeydown($event)">
             <!-- EMAIL INPUT, SECTION START -->
-            <div class="mb-4">
+            <div class="mb-2">
               <label class="col-form-label">
                 {{ $t('user.login_and_registration.login_form.input_email') }}
               </label>
@@ -22,7 +22,7 @@
             <!-- EMAIL INPUT, SECTION END -->
 
             <!-- PASSWORD INPUT, SECTION START -->
-            <div class="mb-4">
+            <div class="mb-2">
               <label class="col-form-label">
                 {{ $t('user.login_and_registration.login_form.input_password') }}
               </label>
@@ -54,39 +54,46 @@
             </div>
             <!-- REMEMBER ME & FORGOT PASSWORD, SECTION END -->
 
-            <div class="my-4 d-flex form-button">
-              <div class="col-md-6">
+            <div class="my-2 d-flex form-button">
+              <div class="col-md-12">
                 <!-- LOGIN BUTTON, SECTION START -->
                 <v-button :loading="form.busy">
                   {{ $t('user.login_and_registration.login_form.login_button') }}
                 </v-button>
                 <!-- LOGIN BUTTON, SECTION END -->
               </div>
-              <div class="col-md-6">
-                <!-- REGISTER BUTTON, SECTION START -->
-                <button class="btn btn-primary" @click="goToRegisterForm()">
-                  {{ $t('user.login_and_registration.login_form.register_button') }}
-                </button>
-                <!-- REGISTER BUTTON, SECTION END -->
+            </div>
+
+            <div class="my-2 d-flex form-button">
+              <div class="col-md-12">
+                <!-- FACEBOOK LOGIN BUTTON, SECTION START -->
+                <login-with-facebook />
+                <!-- FACEBOOK LOGIN BUTTON, SECTION END -->
+              </div>
+            </div>
+
+            <div class="my-2 d-flex form-button">
+              <div class="col-md-12">
+                <!-- INSTAGRAM LOGIN BUTTON, SECTION START -->
+                <login-with-google />
+                <!-- INSTAGRAM LOGIN BUTTON, SECTION END -->
               </div>
             </div>
 
             <div class="alternative">
               <div class="line" />
-              <span>OR</span>
+              <span>{{ $t('user.login_and_registration.login_form.alternative_label') }}</span>
               <div class="line" />
             </div>
 
-            <div class="my-4 d-flex form-button">
-              <div class="col-md-6">
-                <!-- FACEBOOK LOGIN BUTTON, SECTION START -->
-                <login-with-facebook />
-                <!-- FACEBOOK LOGIN BUTTON, SECTION END -->
-              </div>
-              <div class="col-md-6">
-                <!-- INSTAGRAM LOGIN BUTTON, SECTION START -->
-                <login-with-google />
-                <!-- INSTAGRAM LOGIN BUTTON, SECTION END -->
+            <div class="my-2 d-flex form-button">
+              <div class="col-md-12">
+                <!-- REGISTER BUTTON, SECTION START -->
+                <span>
+                  {{ $t('user.login_and_registration.login_form.register_line_1') }}
+                  <a href="/register">{{ $t('user.login_and_registration.login_form.register_line_2') }}</a>
+                </span>
+                <!-- REGISTER BUTTON, SECTION END -->
               </div>
             </div>
           </form>
@@ -149,10 +156,6 @@ export default {
       } else {
         this.$router.push({ name: 'home-page' })
       }
-    },
-
-    goToRegisterForm () {
-      return this.$router.push({ name: 'user.auth.register' })
     }
   }
 }

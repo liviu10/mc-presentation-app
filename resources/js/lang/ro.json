@@ -262,8 +262,10 @@
         "input_remember_me": "Ține-mă minte!",
         "input_forgot_password": "Parolă uitată?",
         "login_button": "Autentificare",
-        "register_button": "Înregistrare",
-        "login_with": "Autentificare cu"
+        "register_line_1": "Dacă nu ai deja cont, te poți înregistra",
+        "register_line_2": "aici",
+        "alternative_label": "SAU",
+        "login_with": "Autentificare cu {socialMedia}"
       },
       "register_form": {
         "title": "Înregistrare",

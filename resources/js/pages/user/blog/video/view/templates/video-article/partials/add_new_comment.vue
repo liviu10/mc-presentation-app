@@ -97,6 +97,7 @@
 
 <script>
 import Vue from 'vue'
+import { mapGetters } from 'vuex'
 import Form from 'vform'
 import axios from 'axios'
 import Swal from 'sweetalert2/dist/sweetalert2.js'
@@ -126,6 +127,9 @@ export default {
       fullName: ''
     }
   },
+  computed: mapGetters({
+    user: 'auth/user'
+  }),
   methods: {
     clearAddNewCommentForm () {
       if (this.form.full_name !== '' || this.form.email !== '' || this.form.comment !== '' || this.form.comment_is_public !== true || this.form.privacy_policy !== true) {
@@ -140,32 +144,41 @@ export default {
       const url = window.location.origin
       const apiEndPoint = '/api/blog/comment/add-new'
       const fullApiUrl = url + apiEndPoint
-      await this.form
-        .post(fullApiUrl, {
-          blogArticleId: this.form.blog_article_id,
-          full_name: this.form.full_name,
-          email: this.form.email,
-          comment: this.form.comment,
-          comment_is_public: this.form.comment_is_public,
-          privacy_policy: this.form.privacy_policy
+      if (!this.user) {
+        Swal.fire({
+          title: 'Test title',
+          text: 'Nu esti autentificat pentru a adauga un comentariu',
+          confirmButtonText: 'Save',
+          showCancelButton: true
         })
-        .then(response => {
-          this.fullName = response.data.full_name
-          Swal.fire({
-            title: this.$t('user.blog_system_pages.general_settings.comment_section.swal.title', { fullName: this.fullName }),
-            text: this.$t('user.blog_system_pages.general_settings.comment_section.swal.message')
-          }).then((result) => {
-            if (this.form.comment_is_public === true) {
-              window.location.reload()
-            }
-            this.form.full_name = null
-            this.form.email = null
-            this.form.comment = null
-            this.form.comment_is_public = null
-            this.form.privacy_policy = null
-            this.showAddNewCommentForm = false
+      } else {
+        await this.form
+          .post(fullApiUrl, {
+            blogArticleId: this.form.blog_article_id,
+            full_name: this.form.full_name,
+            email: this.form.email,
+            comment: this.form.comment,
+            comment_is_public: this.form.comment_is_public,
+            privacy_policy: this.form.privacy_policy
           })
-        })
+          .then(response => {
+            this.fullName = response.data.full_name
+            Swal.fire({
+              title: this.$t('user.blog_system_pages.general_settings.comment_section.swal.title', { fullName: this.fullName }),
+              text: this.$t('user.blog_system_pages.general_settings.comment_section.swal.message')
+            }).then((result) => {
+              if (this.form.comment_is_public === true) {
+                window.location.reload()
+              }
+              this.form.full_name = null
+              this.form.email = null
+              this.form.comment = null
+              this.form.comment_is_public = null
+              this.form.privacy_policy = null
+              this.showAddNewCommentForm = false
+            })
+          })
+      }
     }
   }
 }

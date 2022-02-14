@@ -1,7 +1,6 @@
 <template>
   <button v-if="googleAuth" class="btn btn-primary" type="button" @click="login">
-    {{ $t('user.login_and_registration.login_form.login_with') }}
-    <fa :icon="['fab', 'google']" />
+    {{ $t('user.login_and_registration.login_form.login_with', {socialMedia: 'Google'}) }}
   </button>
 </template>
 

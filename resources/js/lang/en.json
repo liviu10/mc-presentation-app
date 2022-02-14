@@ -262,8 +262,10 @@
         "input_remember_me": "Remember Me!",
         "input_forgot_password": "Forgot Password?",
         "login_button": "Login",
-        "register_button": "Register",
-        "login_with": "Login with"
+        "register_line_1": "If you do not have an account, you can register",
+        "register_line_2": "here",
+        "alternative_label": "OR",
+        "login_with": "Login with {socialMedia}"
       },
       "register_form": {
         "title": "Register",

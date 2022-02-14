@@ -1,7 +1,6 @@
 <template>
   <button v-if="facebookAuth" class="btn btn-primary" type="button" @click="login">
-    {{ $t('user.login_and_registration.login_form.login_with') }}
-    <fa :icon="['fab', 'facebook']" />
+    {{ $t('user.login_and_registration.login_form.login_with', {socialMedia: 'Facebook'}) }}
   </button>
 </template>
 

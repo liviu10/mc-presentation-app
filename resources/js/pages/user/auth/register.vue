@@ -10,7 +10,7 @@
         <card v-else :title="$t('user.login_and_registration.register_form.title')">
           <form @submit.prevent="register" @keydown="form.onKeydown($event)">
             <!-- NAME INPUT, SECTION START -->
-            <div class="mb-4">
+            <div class="mb-2">
               <label class="col-form-label">
                 {{ $t('user.login_and_registration.register_form.input_name') }}
               </label>
@@ -28,7 +28,7 @@
             <!-- NAME INPUT, SECTION END -->
 
             <!-- EMAIL INPUT, SECTION START -->
-            <div class="mb-4">
+            <div class="mb-2">
               <label class="col-form-label">
                 {{ $t('user.login_and_registration.register_form.input_email') }}
               </label>
@@ -46,7 +46,7 @@
             <!-- EMAIL INPUT, SECTION END -->
 
             <!-- PASSWORD INPUT, SECTION START -->
-            <div class="mb-4">
+            <div class="mb-2">
               <label class="col-form-label">
                 {{ $t('user.login_and_registration.register_form.input_password') }}
               </label>
@@ -64,7 +64,7 @@
             <!-- PASSWORD INPUT, SECTION END -->
 
             <!-- PASSWORD CONFIRMATION INPUT, SECTION START -->
-            <div class="mb-4">
+            <div class="mb-2">
               <label class="col-form-label">
                 {{ $t('user.login_and_registration.register_form.input_confirm_password') }}
               </label>
@@ -81,33 +81,39 @@
             </div>
             <!-- PASSWORD CONFIRMATION INPUT, SECTION END -->
 
-            <div class="my-4 d-flex form-button">
-              <div class="col-md-6">
+            <div class="mt-4 d-flex form-button">
+              <div class="col-md-12">
                 <!-- REGISTER BUTTON, SECTION START -->
                 <v-button :loading="form.busy">
                   {{ $t('user.login_and_registration.register_form.register_button') }}
                 </v-button>
                 <!-- REGISTER BUTTON, SECTION END -->
               </div>
-              <div class="col-md-6">
-                <!-- BACK TO LOGIN BUTTON, SECTION START -->
-                <button class="btn btn-primary" @click="goToLoginForm()">
-                  {{ $t('user.login_and_registration.register_form.back_to_login_button') }}
-                </button>
-                <!-- BACK TO LOGIN BUTTON, SECTION END -->
-              </div>
             </div>
 
-            <div class="my-4 d-flex form-button">
-              <div class="col-md-6">
+            <div class="my-2 d-flex form-button">
+              <div class="col-md-12">
                 <!-- FACEBOOK REGISTER BUTTON, SECTION START -->
                 <login-with-facebook />
                 <!-- FACEBOOK REGISTER BUTTON, SECTION END -->
               </div>
-              <div class="col-md-6">
+            </div>
+
+            <div class="my-2 d-flex form-button">
+              <div class="col-md-12">
                 <!-- INSTAGRAM REGISTER BUTTON, SECTION START -->
                 <login-with-google />
                 <!-- INSTAGRAM REGISTER BUTTON, SECTION END -->
+              </div>
+            </div>
+
+            <div class="my-2 d-flex form-button">
+              <div class="col-md-12">
+                <!-- REGISTER BUTTON, SECTION START -->
+                <span>
+                  <a href="/login">{{ $t('user.login_and_registration.register_form.back_to_login_button') }}</a>
+                </span>
+                <!-- REGISTER BUTTON, SECTION END -->
               </div>
             </div>
           </form>
@@ -165,10 +171,6 @@ export default {
         // Redirect home.
         this.$router.push({ name: 'home' })
       }
-    },
-
-    goToLoginForm () {
-      return this.$router.push({ name: 'user.auth.login' })
     }
   }
 }
