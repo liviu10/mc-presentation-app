@@ -15,7 +15,7 @@ class CreateBlogArticlesTable extends Migration
     {
         Schema::create('blog_articles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('blog_subcategory_id')->index('idx_blog_category_id');
+            $table->foreignId('blog_subcategory_id')->index('idx_blog_subcategory_id');
             $table->string('blog_article_author');
             $table->integer('blog_article_time');
             $table->string('blog_article_title');
@@ -23,9 +23,6 @@ class CreateBlogArticlesTable extends Migration
             $table->longText('blog_article_content');
             $table->string('blog_article_path');
             $table->string('blog_article_is_active', 3)->default('0');
-            $table->integer('blog_article_rating_system');
-            $table->integer('blog_article_likes');
-            $table->integer('blog_article_dislikes');
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
         });

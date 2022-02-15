@@ -78,6 +78,15 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
     }
 
     /**
+     * Eloquent relationship between users and blog_article_appreciation.
+     * One blog article may have one or more blog article appreciation.
+     */
+    public function blog_article_appreciation()
+    {
+        return $this->hasMany('App\Models\BlogArticleAppreciation');
+    }
+
+    /**
      * Send the password reset notification.
      *
      * @param  string  $token

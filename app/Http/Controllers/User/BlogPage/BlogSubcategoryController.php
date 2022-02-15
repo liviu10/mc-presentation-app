@@ -389,9 +389,6 @@ class BlogSubcategoryController extends Controller
                     'blog_article_time',
                     'blog_article_short_description',
                     'blog_article_content',
-                    'blog_article_rating_system',
-                    'blog_article_likes',
-                    'blog_article_dislikes',
                     'created_at',
                     'updated_at',
                 )

@@ -50,9 +50,6 @@ class BlogArticle extends Model
         'blog_article_short_description',
         'blog_article_content',
         'blog_article_path',
-        'blog_article_rating_system',
-        'blog_article_likes',
-        'blog_article_dislikes',
         'blog_article_is_active',
     ];
 
@@ -85,6 +82,15 @@ class BlogArticle extends Model
     public function blog_article_comments()
     {
         return $this->hasMany('App\Models\BlogArticleComment');
+    }
+
+    /**
+     * Eloquent relationship between blog_articles and blog_article_appreciation.
+     * One blog article may have one or more blog article appreciation.
+     */
+    public function blog_article_appreciation()
+    {
+        return $this->hasMany('App\Models\BlogArticleAppreciation');
     }
 
     /**

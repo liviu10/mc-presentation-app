@@ -182,7 +182,7 @@ export default {
     },
     async replyToCommentReply () {
       const url = window.location.origin
-      const apiEndPoint = '/api/blog/comment/respond-to-reply'
+      const apiEndPoint = '/api/blog/appreciate/respond-to-reply'
       const fullApiUrl = url + apiEndPoint
       if (!this.user) {
         Swal.fire({

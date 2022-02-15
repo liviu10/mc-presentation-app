@@ -142,7 +142,7 @@ export default {
     },
     async addNewComment () {
       const url = window.location.origin
-      const apiEndPoint = '/api/blog/comment/add-new'
+      const apiEndPoint = '/api/blog/appreciate/add-new'
       const fullApiUrl = url + apiEndPoint
       if (!this.user) {
         Swal.fire({

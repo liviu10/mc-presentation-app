@@ -27,6 +27,7 @@ use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\User\BlogPage\BlogCategoryController;
     use App\Http\Controllers\User\BlogPage\BlogSubcategoryController;
     use App\Http\Controllers\User\BlogPage\BlogArticleCommentController;
+    use App\Http\Controllers\User\BlogPage\BlogArticleAppreciationController;
 
     // Import the About Me page Controller files
     use App\Http\Controllers\User\AboutMePage\AboutMeController;
@@ -87,7 +88,14 @@ use Illuminate\Support\Facades\Route;
                 });
                 Route::get('/{id}', [BlogSubcategoryController::class, 'displaySingleBlogArticle']);
             });
-            Route::group([ 'prefix' => '/comment' ], function () {
+            Route::group([ 'prefix' => '/appreciate' ], function () {
+                Route::post('/rate-article', [BlogArticleAppreciationController::class, 'rateTheArticle']);
+                Route::post('/like-article', [BlogArticleAppreciationController::class, 'likeTheArticle']);
+                Route::post('/dislike-article', [BlogArticleAppreciationController::class, 'dislikeTheArticle']);
+                Route::post('/like-comment', [BlogArticleAppreciationController::class, 'likeTheComment']);
+                Route::post('/dislike-comment', [BlogArticleAppreciationController::class, 'dislikeTheComment']);
+                Route::post('/like-comment-reply', [BlogArticleAppreciationController::class, 'likeTheCommentReply']);
+                Route::post('/dislike-comment-reply', [BlogArticleAppreciationController::class, 'dislikeTheCommentReply']);
                 Route::post('/add-new', [BlogArticleCommentController::class, 'addNewComment']);
                 Route::post('/respond-to-comment', [BlogArticleCommentController::class, 'respondToComment']);
                 Route::post('/respond-to-reply', [BlogArticleCommentController::class, 'respondToCommentReply']);
