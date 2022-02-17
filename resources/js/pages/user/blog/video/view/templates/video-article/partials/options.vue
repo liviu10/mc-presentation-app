@@ -4,7 +4,7 @@
     <div class="video-article-rate">
       <p>
         {{ $t('user.blog_system_pages.general_settings.rating_system.title') }}
-        <rate v-model="myRate"
+        <rate v-model="rate_article"
               :length="5"
               :value="0"
               :showcount="true"
@@ -23,44 +23,47 @@
     <!-- ARTICLE SUBCATEGORY, SECTION START -->
     <div class="video-article-subcategory">
       <p>
-        {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.article_subcategory') }}:
+        {{ $t('user.blog_system_pages.video_article_blog_pages.article_blog_page.article_subcategory') }}:
         &nbsp;
         <a :href="blogArticleSubcategoryPath">{{ blogArticleSubcategoryTitle }}</a>
       </p>
     </div>
     <!-- ARTICLE SUBCATEGORY, SECTION END -->
-    <!-- SHARE THIS, SECTION START -->
+    <!-- SHARE & APPRECIATION, SECTION START -->
     <div class="video-article-share">
+      <p>
+        {{ $t('user.blog_system_pages.video_article_blog_pages.article_blog_page.social_menu.title') }}:
+        <a href="" target="_blank" :title="$t('user.blog_system_pages.video_article_blog_pages.article_blog_page.social_menu.facebook')">
+          <fa :icon="['fab', 'facebook']" fixed-width />
+        </a>
+        <a href="" target="_blank" :title="$t('user.blog_system_pages.video_article_blog_pages.article_blog_page.social_menu.instagram')">
+          <fa :icon="['fab', 'instagram']" fixed-width />
+        </a>
+      </p>
+    </div>
+    <div class="video-article-appreciation">
       <a class="btn btn-primary"
          target="_blank"
-         :title="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.social_menu.like')"
+         :title="$t('user.blog_system_pages.video_article_blog_pages.article_blog_page.social_menu.like')"
          @click="likeTheArticle()"
       >
-        <fa :icon="['fa', 'thumbs-up']" fixed-width /> {{ blogArticleLikes }} {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.like_dislike_system.like') }}
+        <fa :icon="['fa', 'thumbs-up']" fixed-width /> {{ blogArticleLikes }}
       </a>
       <a class="btn btn-primary"
          target="_blank"
-         :title="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.social_menu.dislike')"
+         :title="$t('user.blog_system_pages.video_article_blog_pages.article_blog_page.social_menu.dislike')"
          @click="dislikeTheArticle()"
       >
-        <fa :icon="['fa', 'thumbs-down']" fixed-width /> {{ blogArticleDislikes }} {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.like_dislike_system.dislike') }}
+        <fa :icon="['fa', 'thumbs-down']" fixed-width /> {{ blogArticleDislikes }}
       </a>
-      <a href="" class="btn btn-primary" target="_blank" :title="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.social_menu.facebook')">
-        <fa :icon="['fab', 'facebook']" fixed-width />
-      </a>
-      <!-- <a href="" class="btn btn-primary" target="_blank" :title="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.social_menu.instagram')">
-        <fa :icon="['fab', 'instagram']" fixed-width />
-      </a>
-      <a href="" class="btn btn-primary" target="_blank" :title="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.social_menu.email')">
-        <fa :icon="['fa', 'envelope']" fixed-width />
-      </a> -->
     </div>
-    <!-- SHARE THIS, SECTION END -->
+    <!-- SHARE & APPRECIATION, SECTION END -->
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import axios from 'axios'
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import Vue from 'vue'
 import rate from 'vue-rate'
@@ -71,6 +74,10 @@ Vue.use(rate)
 export default {
   name: 'OptionDetails',
   props: {
+    blogArticleId: {
+      default: null,
+      type: Number
+    },
     blogArticleRating: {
       default: null,
       type: Number
@@ -110,41 +117,123 @@ export default {
   },
   data: function () {
     return {
-      myRate: 0
+      rate_article: 0
     }
   },
   computed: mapGetters({
     user: 'auth/user'
   }),
   methods: {
-    rateTheArticle () {
+    async rateTheArticle () {
+      const rateArticleScore = this.rate_article
       if (!this.user) {
         Swal.fire({
-          title: 'Test title',
-          text: 'Nu esti autentificat pentru a evalua articolul',
-          confirmButtonText: 'Save',
-          showCancelButton: true
+          title: this.$t('user.blog_system_pages.general_settings.rating_system.swal.title'),
+          text: this.$t('user.blog_system_pages.general_settings.rating_system.swal.message'),
+          confirmButtonText: this.$t('user.blog_system_pages.general_settings.rating_system.swal.login_button'),
+          showCancelButton: true,
+          cancelButtonText: this.$t('user.blog_system_pages.general_settings.rating_system.swal.cancel_button')
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.$router.push({ name: 'user.auth.login' })
+          } else {
+            this.rate_article = 0
+          }
         })
+      } else {
+        const url = window.location.origin
+        const apiEndPoint = '/api/blog/appreciate/rate-article'
+        const fullApiUrl = url + apiEndPoint
+        const userName = this.user.name
+        console.log('> check rating system', rateArticleScore)
+        await axios.post(fullApiUrl, {
+          user_id: this.user.id,
+          blog_article_id: this.blogArticleId,
+          blog_article_rating_system: rateArticleScore
+        })
+          .then(response => {
+            Swal.fire({
+              title: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.title', { fullName: userName }),
+              text: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.message')
+            }).then((result) => {
+              this.rate_system.rate_article = 0
+              window.location.reload()
+            })
+          })
       }
     },
-    likeTheArticle () {
+    async likeTheArticle () {
+      let likeArticle = 0
       if (!this.user) {
         Swal.fire({
-          title: 'Test title',
-          text: 'Nu esti autentificat pentru a da like',
-          confirmButtonText: 'Save',
-          showCancelButton: true
+          title: this.$t('user.blog_system_pages.general_settings.swal_like_article.title'),
+          text: this.$t('user.blog_system_pages.general_settings.swal_like_article.message'),
+          confirmButtonText: this.$t('user.blog_system_pages.general_settings.swal_like_article.login_button'),
+          showCancelButton: true,
+          cancelButtonText: this.$t('user.blog_system_pages.general_settings.swal_like_article.cancel_button')
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.$router.push({ name: 'user.auth.login' })
+          } else {
+            likeArticle = 0
+          }
         })
+      } else {
+        const url = window.location.origin
+        const apiEndPoint = '/api/blog/appreciate/like-article'
+        const fullApiUrl = url + apiEndPoint
+        const userName = this.user.name
+        await axios.post(fullApiUrl, {
+          user_id: this.user.id,
+          blog_article_id: this.blogArticleId,
+          blog_article_likes: likeArticle + 1
+        })
+          .then(response => {
+            Swal.fire({
+              title: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.title', { fullName: userName }),
+              text: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.message')
+            }).then((result) => {
+              likeArticle = 0
+              // window.location.reload()
+            })
+          })
       }
     },
-    dislikeTheArticle () {
+    async dislikeTheArticle () {
+      let dislikeArticle = 0
       if (!this.user) {
         Swal.fire({
-          title: 'Test title',
-          text: 'Nu esti autentificat pentru a da dislike',
-          confirmButtonText: 'Save',
-          showCancelButton: true
+          title: this.$t('user.blog_system_pages.general_settings.swal_dislike_article.title'),
+          text: this.$t('user.blog_system_pages.general_settings.swal_dislike_article.message'),
+          confirmButtonText: this.$t('user.blog_system_pages.general_settings.swal_dislike_article.login_button'),
+          showCancelButton: true,
+          cancelButtonText: this.$t('user.blog_system_pages.general_settings.swal_dislike_article.cancel_button')
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.$router.push({ name: 'user.auth.login' })
+          } else {
+            dislikeArticle = 0
+          }
         })
+      } else {
+        const url = window.location.origin
+        const apiEndPoint = '/api/blog/appreciate/dislike-article'
+        const fullApiUrl = url + apiEndPoint
+        const userName = this.user.name
+        await axios.post(fullApiUrl, {
+          user_id: this.user.id,
+          blog_article_id: this.blogArticleId,
+          blog_article_dislikes: dislikeArticle + 1
+        })
+          .then(response => {
+            Swal.fire({
+              title: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.title', { fullName: userName }),
+              text: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.message')
+            }).then((result) => {
+              dislikeArticle = 0
+              // window.location.reload()
+            })
+          })
       }
     }
   }

@@ -85,12 +85,30 @@ class BlogArticle extends Model
     }
 
     /**
-     * Eloquent relationship between blog_articles and blog_article_appreciation.
-     * One blog article may have one or more blog article appreciation.
+     * Eloquent relationship between blog_articles and blog_article_rate.
+     * One blog article may have one or more blog article rate.
      */
-    public function blog_article_appreciation()
+    public function blog_article_rate()
     {
-        return $this->hasMany('App\Models\BlogArticleAppreciation');
+        return $this->hasMany('App\Models\BlogArticleRate');
+    }
+
+    /**
+     * Eloquent relationship between users and blog_article_like.
+     * One blog article may have one or more blog article like.
+     */
+    public function blog_article_like()
+    {
+        return $this->hasMany('App\Models\BlogArticleLike');
+    }
+
+    /**
+     * Eloquent relationship between users and blog_article_dislike.
+     * One blog article may have one or more blog article dislike.
+     */
+    public function blog_article_dislike()
+    {
+        return $this->hasMany('App\Models\BlogArticleDislike');
     }
 
     /**

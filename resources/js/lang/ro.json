@@ -69,17 +69,12 @@
         "article_blog_page": {
           "page_title": "Articol",
           "article_subcategory": "Subcategorie",
-          "like_dislike_system": {
-            "like": " apreciază",
-            "dislike": " nu apreciază"
-          },
           "social_menu": {
-            "title": "Distribuie pe:",
+            "title": "Distribuie acest articol pe",
             "like": "Apreciez",
             "dislike": "Nu apreciez",
             "facebook": "Distribuie pe Facebook!",
-            "instagram": "Distribuie pe Instagram!",
-            "email": "Distribuie acest articol pe email!"
+            "instagram": "Distribuie pe Instagram!"
           }
         }
       },
@@ -104,17 +99,12 @@
             }
           },
           "article_subcategory": "Subcategorie",
-          "like_dislike_system": {
-            "like": " apreciază",
-            "dislike": " nu apreciază"
-          },
           "social_menu": {
-            "title": "Distribuie pe:",
+            "title": "Distribuie acest articol pe",
             "like": "Apreciez",
             "dislike": "Nu apreciez",
             "facebook": "Distribuie pe Facebook!",
-            "instagram": "Distribuie pe Instagram!",
-            "email": "Distribuie acest articol pe email!"
+            "instagram": "Distribuie pe Instagram!"
           }
         }
       },
@@ -139,17 +129,12 @@
             }
           },
           "article_subcategory": "Subcategorie",
-          "like_dislike_system": {
-            "like": " apreciază",
-            "dislike": " nu apreciază"
-          },
           "social_menu": {
-            "title": "Distribuie pe:",
+            "title": "Distribuie acest articol pe",
             "like": "Apreciez",
             "dislike": "Nu apreciez",
             "facebook": "Distribuie pe Facebook!",
-            "instagram": "Distribuie pe Instagram!",
-            "email": "Distribuie acest articol pe email!"
+            "instagram": "Distribuie pe Instagram!"
           }
         }
       },
@@ -159,6 +144,16 @@
         "more_articles": "Mai multe {type}",
         "rating_system": {
           "title": "Evaluează: ",
+          "swal": {
+            "title": "Evaluează acest articol",
+            "message": "Sunt încântată că dorești să evaluezi acest articol, dar pentru a face acest lucru trebuie să te autentifici în contul tău!",
+            "login_button": "Autentificare",
+            "cancel_button": "Închide"
+          },
+          "swal_positive": {
+            "title": "Mulțumesc, {fullName}!",
+            "message": "Evaluarea ta a fost adăugată cu success!"
+          },
           "options": {
             "very_bad": "(Foarte Rău)",
             "bad": "(Rău)",
@@ -166,6 +161,18 @@
             "good": "(Bine)",
             "very_good": "(Foarte Bine)"
           }
+        },
+        "swal_like_article": {
+          "title": "Apreciere articol",
+          "message": "Sunt încântată că dorești să apreciezi acest articol, dar pentru a face acest lucru trebuie să te autentifici în contul tău!",
+          "login_button": "Login",
+          "cancel_button": "Close"
+        },
+        "swal_dislike_article": {
+          "title": "Nu apreciez articolul",
+          "message": "TODO: De găsit un mesaj optimist pentru cineva care nu-ti apreciază munca și timpul investit în scriere unui articol! (Un fel de a spune Fuck You cu zâmbetul pe buze)",
+          "login_button": "Login",
+          "cancel_button": "Close"
         },
         "related_articles": {
           "title": "S-ar putea să-ți placă"

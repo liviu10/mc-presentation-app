@@ -154,7 +154,7 @@ export default {
         Cookies.remove('intended_url')
         this.$router.push({ path: intendedUrl })
       } else {
-        this.$router.push({ name: 'home-page' })
+        this.$router.push({ path: this.$router.history._startLocation })
       }
     }
   }

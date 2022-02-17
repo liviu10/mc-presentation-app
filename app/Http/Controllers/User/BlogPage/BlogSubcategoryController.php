@@ -395,6 +395,30 @@ class BlogSubcategoryController extends Controller
                 ->where('id', '=', $id)
                 ->IsActive()
                 ->with([
+                    'blog_article_rate' => function ($query) {
+                        $query->select(
+                            'id',
+                            'user_id',
+                            'blog_article_id',
+                            'blog_article_rating_system'
+                        );
+                    },
+                    'blog_article_like' => function ($query) {
+                        $query->select(
+                            'id',
+                            'user_id',
+                            'blog_article_id',
+                            'blog_article_likes'
+                        );
+                    },
+                    'blog_article_dislike' => function ($query) {
+                        $query->select(
+                            'id',
+                            'user_id',
+                            'blog_article_id',
+                            'blog_article_dislikes'
+                        );
+                    },
                     'blog_article_comments' => function ($query) {
                         $query->select(
                             'blog_article_id',
@@ -407,6 +431,22 @@ class BlogSubcategoryController extends Controller
                         ->IsCommentPublic()
                         ->orderBy('created_at', 'DESC')
                         ->with([
+                            'blog_article_comment_like' => function ($query) {
+                                $query->select(
+                                    'id',
+                                    'user_id',
+                                    'blog_article_comment_id',
+                                    'blog_article_comment_likes'
+                                );
+                            },
+                            'blog_article_comment_dislike' => function ($query) {
+                                $query->select(
+                                    'id',
+                                    'user_id',
+                                    'blog_article_comment_id',
+                                    'blog_article_comment_dislikes'
+                                );
+                            },
                             'blog_article_comment_replies' => function ($query) {
                                 $query->select(
                                     'blog_article_comment_id',
@@ -417,7 +457,25 @@ class BlogSubcategoryController extends Controller
                                     'created_at'
                                 )
                                 ->IsCommentReplyPublic()
-                                ->orderBy('created_at', 'DESC');
+                                ->orderBy('created_at', 'DESC')
+                                ->with([
+                                    'blog_article_comment_reply_like' => function ($query) {
+                                        $query->select(
+                                            'id',
+                                            'user_id',
+                                            'blog_article_comment_reply_id',
+                                            'blog_article_comment_reply_likes'
+                                        );
+                                    },
+                                    'blog_article_comment_reply_dislike' => function ($query) {
+                                        $query->select(
+                                            'id',
+                                            'user_id',
+                                            'blog_article_comment_reply_id',
+                                            'blog_article_comment_reply_dislikes'
+                                        );
+                                    },
+                                ]);
                             }
                         ]);
                     }

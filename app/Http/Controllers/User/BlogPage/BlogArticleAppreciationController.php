@@ -6,13 +6,29 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\BlogArticle;
-use App\Models\BlogArticleAppreciation;
+use App\Models\BlogArticleRate;
+use App\Models\BlogArticleLike;
+use App\Models\BlogArticleDislike;
+use App\Models\BlogArticleComment;
+use App\Models\BlogArticleCommentLike;
+use App\Models\BlogArticleCommentDislike;
+use App\Models\BlogArticleCommentReply;
+use App\Models\BlogArticleCommentReplyLike;
+use App\Models\BlogArticleCommentReplyDislike;
 
 class BlogArticleAppreciationController extends Controller
 {
     protected $modelNameUsers;
     protected $modelNameBlogArticles;
-    protected $modelNameBlogArticleAppreciation;
+    protected $modelNameBlogArticleRate;
+    protected $modelNameBlogArticleLike;
+    protected $modelNameBlogArticleDislike;
+    protected $modelNameBlogArticleComment;
+    protected $modelNameBlogArticleCommentLike;
+    protected $modelNameBlogArticleCommentDislike;
+    protected $modelNameBlogArticleCommentReply;
+    protected $modelNameBlogArticleCommentReplyLike;
+    protected $modelNameBlogArticleCommentReplyDislike;
 
     /**
      * Instantiate the variables that will be used to get the model.
@@ -21,9 +37,17 @@ class BlogArticleAppreciationController extends Controller
      */
     public function __construct()
     {
-        $this->modelNameUsers                   = new User();
-        $this->modelNameBlogArticles            = new BlogArticle();
-        $this->modelNameBlogArticleAppreciation = new BlogArticleAppreciation();
+        $this->modelNameUsers                          = new User();
+        $this->modelNameBlogArticles                   = new BlogArticle();
+        $this->modelNameBlogArticleRate                = new BlogArticleRate();
+        $this->modelNameBlogArticleLike                = new BlogArticleLike();
+        $this->modelNameBlogArticleDislike             = new BlogArticleDislike();
+        $this->modelNameBlogArticleComment             = new BlogArticleComment();
+        $this->modelNameBlogArticleCommentLike         = new BlogArticleCommentLike();
+        $this->modelNameBlogArticleCommentDislike      = new BlogArticleCommentDislike();
+        $this->modelNameBlogArticleCommentReply        = new BlogArticleCommentReply();
+        $this->modelNameBlogArticleCommentReplyLike    = new BlogArticleCommentReplyLike();
+        $this->modelNameBlogArticleCommentReplyDislike = new BlogArticleCommentReplyDislike();
     }
 
     /**
@@ -44,7 +68,7 @@ class BlogArticleAppreciationController extends Controller
      */
     public function rateTheArticle(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
@@ -55,7 +79,7 @@ class BlogArticleAppreciationController extends Controller
      */
     public function likeTheArticle(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
@@ -66,7 +90,7 @@ class BlogArticleAppreciationController extends Controller
      */
     public function dislikeTheArticle(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
@@ -77,7 +101,7 @@ class BlogArticleAppreciationController extends Controller
      */
     public function likeTheComment(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
@@ -88,7 +112,7 @@ class BlogArticleAppreciationController extends Controller
      */
     public function dislikeTheComment(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
@@ -99,7 +123,7 @@ class BlogArticleAppreciationController extends Controller
      */
     public function likeTheCommentReply(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
@@ -110,6 +134,6 @@ class BlogArticleAppreciationController extends Controller
      */
     public function dislikeTheCommentReply(Request $request)
     {
-        //
+        dd($request->all());
     }
 }

@@ -13,7 +13,8 @@
     <body-details :blog-article-content="articleContent.blog_articles[0].blog_article_content" />
     <!-- TEMPLATE BODY, SECTION END -->
     <!-- TEMPLATE OPTIONS (RATE, SUBCATEGORY TITLE AND SHARE BUTTONS), SECTION START -->
-    <option-details :blog-article-rating="articleContent.blog_articles[0].blog_article_rating_system"
+    <option-details :blog-article-id="articleContent.blog_articles[0].id"
+                    :blog-article-rating="articleContent.blog_articles[0].blog_article_rating_system"
                     :blog-article-subcategory-title="articleContent.blog_subcategory_title"
                     :blog-article-subcategory-path="articleContent.blog_subcategory_path"
                     :blog-article-likes="articleContent.blog_articles[0].blog_article_likes"

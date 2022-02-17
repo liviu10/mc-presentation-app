@@ -84,8 +84,26 @@ class BlogArticleCommentReply extends Model
     }
 
     /**
-     * Eloquent relationship between blog_article_comment_replies and blog_article_comments.
-     * One or many blog article comment reply(ies) may have only one blog article comment.
+     * Eloquent relationship between blog_article_comment_replies and blog_article_comment_reply_likes.
+     * One blog article comment reply may have one or more blog article comment reply likes.
+     */
+    public function blog_article_comment_reply_like()
+    {
+        return $this->hasMany('App\Models\BlogArticleCommentReplyLike');
+    }
+
+    /**
+     * Eloquent relationship between blog_article_comments and blog_article_comment_dislikes.
+     * One blog article comment may have one or more blog article comment dislikes.
+     */
+    public function blog_article_comment_reply_dislike()
+    {
+        return $this->hasMany('App\Models\BlogArticleCommentReplyDislike');
+    }
+
+    /**
+     * Eloquent relationship between blog_article_comment_replies and blog_article_comment_reply_dislikes.
+     * One blog article comment reply may have one or more blog article comment reply dislikes.
      */
     public function blog_article_comment()
     {

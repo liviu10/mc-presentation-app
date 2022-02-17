@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BlogArticleAppreciation extends Model
+class BlogArticleCommentReplyLike extends Model
 {
     use HasFactory;
 
@@ -14,7 +14,7 @@ class BlogArticleAppreciation extends Model
      * 
      * @var string
      */
-    protected $table = 'blog_article_appreciation';
+    protected $table = 'blog_article_comment_reply_like';
 
     /**
      * The primary key associated with the table.
@@ -30,7 +30,7 @@ class BlogArticleAppreciation extends Model
      */
     protected $foreignKey = [
         'user_id',
-        'blog_article_id'
+        'blog_article_comment_reply_id'
     ];
     
     /**
@@ -47,10 +47,8 @@ class BlogArticleAppreciation extends Model
      */
     protected $fillable = [
         'user_id',
-        'blog_article_id',
-        'blog_article_rating_system',
-        'blog_article_likes',
-        'blog_article_dislikes',
+        'blog_article_comment_reply_id',
+        'blog_article_comment_reply_likes',
     ];
 
     /**
@@ -75,11 +73,11 @@ class BlogArticleAppreciation extends Model
     }
 
     /**
-     * Eloquent relationship between blog_article_appreciation and blog_articles.
-     * One or many blog article appreciation may have only one blog article.
+     * Eloquent relationship between blog_article_appreciation and blog_article_comment_replies.
+     * One or many blog article comment reply like(s) appreciation may have only one blog article comment reply.
      */
-    public function blog_article()
+    public function blog_article_comment()
     {
-        return $this->belongsTo('App\Models\BlogArticle');
+        return $this->belongsTo('App\Models\BlogArticleCommentReply');
     }
 }

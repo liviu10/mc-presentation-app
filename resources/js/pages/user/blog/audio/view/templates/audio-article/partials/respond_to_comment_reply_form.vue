@@ -7,7 +7,7 @@
          @click="likeTheCommentReply()"
       >
         <span>
-          <fa :icon="['fa', 'thumbs-up']" fixed-width /> {{ commentReplyLikes }} {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.like_dislike_system.like') }}
+          <fa :icon="['fa', 'thumbs-up']" fixed-width /> {{ commentReplyLikes }}
         </span>
       </a>
       <a class="btn btn-primary"
@@ -16,7 +16,7 @@
          @click="dislikeTheCommentReply()"
       >
         <span>
-          <fa :icon="['fa', 'thumbs-down']" fixed-width /> {{ commentReplyDislikes }} {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.like_dislike_system.dislike') }}
+          <fa :icon="['fa', 'thumbs-down']" fixed-width /> {{ commentReplyDislikes }}
         </span>
       </a>
       <button class="btn btn-primary" @click="showRespondToCommentReplyForm = !showRespondToCommentReplyForm">
@@ -160,24 +160,78 @@ export default {
         this.form.privacy_policy_respond_to_comment_reply = false
       }
     },
-    likeTheCommentReply () {
+    async likeTheCommentReply () {
+      let likeCommentReply = 0
       if (!this.user) {
         Swal.fire({
-          title: 'Test title',
-          text: 'Nu esti autentificat pentru a da like la un raspuns de comentariu',
-          confirmButtonText: 'Save',
-          showCancelButton: true
+          title: this.$t('user.blog_system_pages.general_settings.swal_like_article.title'),
+          text: this.$t('user.blog_system_pages.general_settings.swal_like_article.message'),
+          confirmButtonText: this.$t('user.blog_system_pages.general_settings.swal_like_article.login_button'),
+          showCancelButton: true,
+          cancelButtonText: this.$t('user.blog_system_pages.general_settings.swal_like_article.cancel_button')
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.$router.push({ name: 'user.auth.login' })
+          } else {
+            likeCommentReply = 0
+          }
         })
+      } else {
+        const url = window.location.origin
+        const apiEndPoint = '/api/blog/appreciate/like-comment-reply'
+        const fullApiUrl = url + apiEndPoint
+        const userName = this.user.name
+        await axios.post(fullApiUrl, {
+          user_id: this.user.id,
+          blog_article_comment_id: this.commentReplyId,
+          blog_article_comment_likes: likeCommentReply + 1
+        })
+          .then(response => {
+            Swal.fire({
+              title: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.title', { fullName: userName }),
+              text: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.message')
+            }).then((result) => {
+              likeCommentReply = 0
+              // window.location.reload()
+            })
+          })
       }
     },
-    dislikeTheCommentReply () {
+    async dislikeTheCommentReply () {
+      let dislikeCommentReply = 0
       if (!this.user) {
         Swal.fire({
-          title: 'Test title',
-          text: 'Nu esti autentificat pentru a da dislike la un raspuns de comentariu',
-          confirmButtonText: 'Save',
-          showCancelButton: true
+          title: this.$t('user.blog_system_pages.general_settings.swal_dislike_article.title'),
+          text: this.$t('user.blog_system_pages.general_settings.swal_dislike_article.message'),
+          confirmButtonText: this.$t('user.blog_system_pages.general_settings.swal_dislike_article.login_button'),
+          showCancelButton: true,
+          cancelButtonText: this.$t('user.blog_system_pages.general_settings.swal_dislike_article.cancel_button')
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.$router.push({ name: 'user.auth.login' })
+          } else {
+            dislikeCommentReply = 0
+          }
         })
+      } else {
+        const url = window.location.origin
+        const apiEndPoint = '/api/blog/appreciate/dislike-comment-reply'
+        const fullApiUrl = url + apiEndPoint
+        const userName = this.user.name
+        await axios.post(fullApiUrl, {
+          user_id: this.user.id,
+          blog_article_comment_id: this.commentReplyId,
+          blog_article_comment_dislikes: dislikeCommentReply + 1
+        })
+          .then(response => {
+            Swal.fire({
+              title: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.title', { fullName: userName }),
+              text: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.message')
+            }).then((result) => {
+              dislikeCommentReply = 0
+              // window.location.reload()
+            })
+          })
       }
     },
     async replyToCommentReply () {

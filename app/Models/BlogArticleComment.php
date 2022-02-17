@@ -93,6 +93,24 @@ class BlogArticleComment extends Model
     }
 
     /**
+     * Eloquent relationship between blog_article_comments and blog_article_comment_likes.
+     * One blog article comment may have one or more blog article comment likes.
+     */
+    public function blog_article_comment_like()
+    {
+        return $this->hasMany('App\Models\BlogArticleCommentLike');
+    }
+
+    /**
+     * Eloquent relationship between blog_article_comments and blog_article_comment_dislikes.
+     * One blog article comment may have one or more blog article comment dislikes.
+     */
+    public function blog_article_comment_dislike()
+    {
+        return $this->hasMany('App\Models\BlogArticleCommentDislike');
+    }
+
+    /**
      * Eloquent relationship between blog_article_comments and blog_articles.
      * One or many blog article comment(s) may have only one blog article.
      */

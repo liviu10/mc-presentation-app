@@ -174,16 +174,30 @@ $lvContainerPageWrittenArticleFont: 'Merriweather Sans Bold', sans-serif;
                 }
             }
         }
-        & .article-share {
+        & .article-share, & .article-appreciation {
             display: flex;
             flex-direction: row;
-            margin-bottom: rem-convertor(16px);
             @include social-media-icon();
+            & p {
+                display: flex;
+                align-items: center;
+                margin-bottom: rem-convertor(8px);
+                & a {
+                    @include social-media-icon();
+                    display: flex;
+                    margin-right: rem-convertor(8px);
+                    &:first-child {
+                        margin-left: rem-convertor(8px);
+                    }
+                    &:last-child {
+                        margin-right: 0rem;
+                    }
+                }
+            }
             & .btn {
                 @include button();
                 margin-right: rem-convertor(8px);
                 &:last-child {
-                    display: flex;
                     margin-right: 0rem;
                 }
             }
