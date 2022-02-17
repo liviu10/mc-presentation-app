@@ -70,11 +70,13 @@
           "page_title": "Article",
           "article_subcategory": "Subcategory",
           "social_menu": {
+            "label": "Did you liked this article?",
             "title": "Share this article on",
             "like": "Like",
             "dislike": "Dislike",
             "facebook": "Share on Facebook!",
-            "instagram": "Share on Instagram!"
+            "instagram": "Share on Instagram!",
+            "youtube": "Share on Youtube!"
           }
         }
       },
@@ -100,11 +102,13 @@
           },
           "article_subcategory": "Subcategory",
           "social_menu": {
+            "label": "Did you liked this article?",
             "title": "Share this article on",
             "like": "Like",
             "dislike": "Dislike",
             "facebook": "Share on Facebook!",
-            "instagram": "Share on Instagram!"
+            "instagram": "Share on Instagram!",
+            "youtube": "Share on Youtube!"
           }
         }
       },
@@ -130,11 +134,13 @@
           },
           "article_subcategory": "Subcategory",
           "social_menu": {
+            "label": "Did you liked this article?",
             "title": "Share this article on",
             "like": "Like",
             "dislike": "Dislike",
             "facebook": "Share on Facebook!",
-            "instagram": "Share on Instagram!"
+            "instagram": "Share on Instagram!",
+            "youtube": "Share on Youtube!"
           }
         }
       },

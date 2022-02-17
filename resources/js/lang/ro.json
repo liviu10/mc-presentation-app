@@ -70,11 +70,13 @@
           "page_title": "Articol",
           "article_subcategory": "Subcategorie",
           "social_menu": {
+            "label": "Ți-a plăcut acest articol?",
             "title": "Distribuie acest articol pe",
             "like": "Apreciez",
             "dislike": "Nu apreciez",
             "facebook": "Distribuie pe Facebook!",
-            "instagram": "Distribuie pe Instagram!"
+            "instagram": "Distribuie pe Instagram!",
+            "youtube": "Distribuie pe Youtube!"
           }
         }
       },
@@ -100,11 +102,13 @@
           },
           "article_subcategory": "Subcategorie",
           "social_menu": {
+            "label": "Ți-a plăcut acest articol?",
             "title": "Distribuie acest articol pe",
             "like": "Apreciez",
             "dislike": "Nu apreciez",
             "facebook": "Distribuie pe Facebook!",
-            "instagram": "Distribuie pe Instagram!"
+            "instagram": "Distribuie pe Instagram!",
+            "youtube": "Distribuie pe Youtube!"
           }
         }
       },
@@ -130,11 +134,13 @@
           },
           "article_subcategory": "Subcategorie",
           "social_menu": {
+            "label": "Ți-a plăcut acest articol?",
             "title": "Distribuie acest articol pe",
             "like": "Apreciez",
             "dislike": "Nu apreciez",
             "facebook": "Distribuie pe Facebook!",
-            "instagram": "Distribuie pe Instagram!"
+            "instagram": "Distribuie pe Instagram!",
+            "youtube": "Distribuie pe Youtube!"
           }
         }
       },
