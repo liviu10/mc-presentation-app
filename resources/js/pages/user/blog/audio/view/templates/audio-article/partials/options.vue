@@ -1,5 +1,34 @@
 <template>
   <div>
+    <!-- ARTICLE SUBCATEGORY, SECTION START -->
+    <div class="audio-article-subcategory">
+      <p>
+        {{ $t('user.blog_system_pages.audio_article_blog_pages.article_blog_page.article_subcategory') }}:
+        &nbsp;
+        <a :href="blogArticleSubcategoryPath">{{ blogArticleSubcategoryTitle }}</a>
+      </p>
+    </div>
+    <!-- ARTICLE SUBCATEGORY, SECTION END -->
+    <!-- APPRECIATION, SECTION START -->
+    <div class="audio-article-appreciation">
+      <p>
+        {{ $t('user.blog_system_pages.video_article_blog_pages.article_blog_page.social_menu.label') }}
+        &nbsp;
+        <a target="_blank"
+           :title="$t('user.blog_system_pages.video_article_blog_pages.article_blog_page.social_menu.like')"
+           @click="likeTheArticle()"
+        >
+          <fa :icon="['fa', 'thumbs-up']" fixed-width /> {{ blogArticleLikes }}
+        </a>
+        <a target="_blank"
+           :title="$t('user.blog_system_pages.audio_article_blog_pages.article_blog_page.social_menu.dislike')"
+           @click="dislikeTheArticle()"
+        >
+          <fa :icon="['fa', 'thumbs-down']" fixed-width /> {{ blogArticleDislikes }}
+        </a>
+      </p>
+    </div>
+    <!-- APPRECIATION, SECTION END -->
     <!-- RATE THIS, SECTION START -->
     <div class="audio-article-rate">
       <p>
@@ -20,42 +49,21 @@
       </p>
     </div>
     <!-- RATE THIS, SECTION END -->
-    <!-- ARTICLE SUBCATEGORY, SECTION START -->
-    <div class="audio-article-subcategory">
-      <p>
-        {{ $t('user.blog_system_pages.audio_article_blog_pages.article_blog_page.article_subcategory') }}:
-        &nbsp;
-        <a :href="blogArticleSubcategoryPath">{{ blogArticleSubcategoryTitle }}</a>
-      </p>
-    </div>
-    <!-- ARTICLE SUBCATEGORY, SECTION END -->
     <!-- SHARE & APPRECIATION, SECTION START -->
     <div class="audio-article-share">
       <p>
         {{ $t('user.blog_system_pages.audio_article_blog_pages.article_blog_page.social_menu.title') }}:
+        &nbsp;
         <a href="" target="_blank" :title="$t('user.blog_system_pages.audio_article_blog_pages.article_blog_page.social_menu.facebook')">
           <fa :icon="['fab', 'facebook']" fixed-width />
         </a>
         <a href="" target="_blank" :title="$t('user.blog_system_pages.audio_article_blog_pages.article_blog_page.social_menu.instagram')">
           <fa :icon="['fab', 'instagram']" fixed-width />
         </a>
+        <a href="" target="_blank" :title="$t('user.blog_system_pages.audio_article_blog_pages.article_blog_page.social_menu.youtube')">
+          <fa :icon="['fab', 'youtube']" fixed-width />
+        </a>
       </p>
-    </div>
-    <div class="audio-article-appreciation">
-      <a class="btn btn-primary"
-         target="_blank"
-         :title="$t('user.blog_system_pages.audio_article_blog_pages.article_blog_page.social_menu.like')"
-         @click="likeTheArticle()"
-      >
-        <fa :icon="['fa', 'thumbs-up']" fixed-width /> {{ blogArticleLikes }}
-      </a>
-      <a class="btn btn-primary"
-         target="_blank"
-         :title="$t('user.blog_system_pages.audio_article_blog_pages.article_blog_page.social_menu.dislike')"
-         @click="dislikeTheArticle()"
-      >
-        <fa :icon="['fa', 'thumbs-down']" fixed-width /> {{ blogArticleDislikes }}
-      </a>
     </div>
     <!-- SHARE & APPRECIATION, SECTION END -->
   </div>

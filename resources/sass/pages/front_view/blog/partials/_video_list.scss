@@ -151,7 +151,6 @@ $lvContainerPageVideoArticleFont: 'Merriweather Sans Bold', sans-serif;
             flex-direction: column;
         }
         & .video-article-rate {
-            margin-top: rem-convertor(24px);
             & p {
                 display: flex;
                 align-items: center;
@@ -179,7 +178,7 @@ $lvContainerPageVideoArticleFont: 'Merriweather Sans Bold', sans-serif;
             & p {
                 display: flex;
                 align-items: center;
-                margin-bottom: rem-convertor(8px);
+                margin-bottom: rem-convertor(0px);
                 & a {
                     color: inherit;
                     font-style: italic;
@@ -193,25 +192,33 @@ $lvContainerPageVideoArticleFont: 'Merriweather Sans Bold', sans-serif;
             & p {
                 display: flex;
                 align-items: center;
-                margin-bottom: rem-convertor(8px);
+                margin-bottom: rem-convertor(0px);
                 & a {
                     @include social-media-icon();
                     display: flex;
                     margin-right: rem-convertor(8px);
-                    &:first-child {
-                        margin-left: rem-convertor(8px);
-                    }
                     &:last-child {
                         margin-right: 0rem;
                     }
+                    &:hover {
+                        cursor: pointer;
+                    }
                 }
             }
-            & .btn {
-                @include button();
-                margin-right: rem-convertor(8px);
-                &:last-child {
-                    margin-right: 0rem;
-                }
+        }
+        & .video-article-appreciation {
+            .fa-thumbs-up, .fa-thumbs-down {
+                border-radius: 50% !important;
+                padding: rem-convertor(5px);
+                width: rem-convertor(24px) !important;
+                height: rem-convertor(24px) !important;
+                color: #FFFFFF;
+            }
+            .fa-thumbs-up {
+                background-color: #198754;
+            }
+            .fa-thumbs-down {
+                background-color: #DC3545;
             }
         }
         & .video-article-related {
