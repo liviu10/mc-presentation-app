@@ -2,7 +2,7 @@
   <div class="article-body-content">
     <p />
     <div class="article-body-content-heading-slp">
-      <img src="/images/blog/article-img-320x320-0.jpg" alt="">
+      <img src="/images/pages/blog/articles/article-img-320x320-0.webp" alt="">
       <p>
         Lorem ipsum dolor sit, amet consectetur adipisicing elit.
         Ipsum neque consequuntur quia error dolores nemo natus temporibus est ea inventore,

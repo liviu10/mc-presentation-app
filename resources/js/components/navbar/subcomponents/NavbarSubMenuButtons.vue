@@ -15,23 +15,11 @@
           {{ $t('navigation_bar.sub_menu.first_button') }}
         </router-link>
       </li>
-      <li>
-        <router-link :to="{ name: 'settings.profile' }" class="dropdown-item ps-2 py-2">
-          <fa icon="user" fixed-width />
-          {{ $t('navigation_bar.sub_menu.second_button') }}
-        </router-link>
-      </li>
-      <li>
-        <router-link :to="{ name: '' }" class="dropdown-item ps-2 py-2">
-          <fa icon="cog" fixed-width />
-          {{ $t('navigation_bar.sub_menu.third_button') }}
-        </router-link>
-      </li>
       <div class="dropdown-divider my-0" />
       <li>
         <a href="#" class="dropdown-item ps-2 py-2" @click.prevent="logout">
           <fa icon="sign-out-alt" fixed-width />
-          {{ $t('navigation_bar.sub_menu.forth_button') }}
+          {{ $t('navigation_bar.sub_menu.second_button') }}
         </a>
       </li>
     </ul>

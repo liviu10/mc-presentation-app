@@ -4,7 +4,7 @@
       <div class="lv-pg-contact">
         <!-- PICTURE PAGE, SECTION START -->
         <div class="card" style="width: 20rem;">
-          <img src="images/contact/dance-question-mark.jpg" class="card-img-top" alt="...">
+          <img src="images/pages/contact_me/dance-question-mark_600.webp" class="card-img-top" alt="...">
         </div>
         <!-- PICTURE PAGE, SECTION END -->
 
@@ -13,11 +13,20 @@
           <div class="lv-pg-contact-content-header">
             <h1>{{ $t('user.contact_me_page.title') }}</h1>
             <p class="lead">
-              {{ $t('user.contact_me_page.paragraph') }}
+              {{ $t('user.contact_me_page.page_content.paragraph_1') }}
+            </p>
+            <p class="lead">
+              {{ $t('user.contact_me_page.page_content.paragraph_2') }}
+            </p>
+            <p class="lead">
+              {{ $t('user.contact_me_page.page_content.paragraph_3') }}
+            </p>
+            <p class="lead">
+              {{ $t('user.contact_me_page.page_content.paragraph_4') }}
             </p>
           </div>
           <div class="card-alternative m-auto" style="width: 20rem;">
-            <img src="images/contact/dance-question-mark.jpg" class="card-img-top" alt="...">
+            <img src="images/pages/contact_me/dance-question-mark_600.webp" class="card-img-top" alt="...">
           </div>
           <div class="lv-pg-contact-content-body">
             <form @submit.prevent="contactMe" @keydown="form.onKeydown($event)">

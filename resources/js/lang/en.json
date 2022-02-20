@@ -3,17 +3,15 @@
   "navigation_bar": {
     "main_menu": {
       "first_button": "Home",
-      "second_button": "Schedule Appointment",
-      "third_button": "Blog",
+      "second_button": "Blog",
+      "third_button": "Schedule Appointment",
       "forth_button": "About me",
       "fifth_button": "Contact me",
       "sixth_button": "Login"
     },
     "sub_menu": {
-      "first_button": "Documentation",
-      "second_button": "Profile Settings",
-      "third_button": "Application Settings",
-      "forth_button": "Logout"
+      "first_button": "Profile Settings",
+      "second_button": "Logout"
     }
   },
   "footer": {
@@ -74,9 +72,7 @@
             "title": "Share this article on",
             "like": "Like",
             "dislike": "Dislike",
-            "facebook": "Share on Facebook!",
-            "instagram": "Share on Instagram!",
-            "youtube": "Share on Youtube!"
+            "facebook": "Share on Facebook!"
           }
         }
       },
@@ -106,9 +102,7 @@
             "title": "Share this article on",
             "like": "Like",
             "dislike": "Dislike",
-            "facebook": "Share on Facebook!",
-            "instagram": "Share on Instagram!",
-            "youtube": "Share on Youtube!"
+            "facebook": "Share on Facebook!"
           }
         }
       },
@@ -190,7 +184,7 @@
             "input_message": "Enter your comment",
             "i_agree_with": "I agree with the ",
             "privacy_policy": "Privacy Policy",
-            "is_comment_public": "Would you like to post this as public or a private comment? (Leave unchecked for a private comment)",
+            "is_comment_public": "Check if you would like to display your comment on the website",
             "post_comment": "Post comment"
           },
           "no_comment_info": "Be the first one to leave a comment!",
@@ -210,8 +204,13 @@
     },
     "contact_me_page": {
       "page_title": "Contact me",
-      "title": "Lorem, ipsum dolor.",
-      "paragraph": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum distinctio amet eos beatae culpa autem, quis consequatur alias adipisci ipsam.",
+      "title": "Contact",
+      "page_content": {
+        "paragraph_1": "Did something caught your attention on the website and you did not find the complete information? Or you have a curiosity about me or my activity?",
+        "paragraph_2": "Do you have a proposal, recommendation or an opinion that you would like to address it to me?",
+        "paragraph_3": "Please let me you message below and I will get to you shortly.",
+        "paragraph_4": "Thank you!"
+      },
       "contact_form": {
         "input_full_name": "Your name and surname",
         "input_email_address": "Your email address",

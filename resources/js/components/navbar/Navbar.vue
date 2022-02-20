@@ -1,9 +1,9 @@
 <template>
-  <nav class="navbar navbar-expand-xl navbar-light bg-white">
+  <nav class="navbar navbar-expand-xxl navbar-light bg-white">
     <div class="container-fluid">
       <!-- NAVBAR BRAND SECTION START -->
       <router-link :to="{ name: 'home-page' }" class="navbar-brand">
-        <img src="/images/logo/Logo-img.png" width="240" height="60" alt="">
+        <img src="/images/navbar/Logo-img7_180.webp" alt="">
         <p class="text-wrap">
           Motivație cu Contribuție și Muzică
         </p>

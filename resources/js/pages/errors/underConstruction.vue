@@ -3,7 +3,7 @@
     <!-- UNDER CONSTRUCTION PAGE ACTIONS, SECTION START -->
     <div class="lv-pg-under-construction-action">
       <div class="action-body">
-        <img src="/images/error/under-construction_img.jpg" alt="">
+        <img src="/images/pages/error/under-construction_img_1024.webp" alt="">
       </div>
       <div class="lv-pg-under-construction-action-buttons">
         <!-- UNDER CONSTRUCTION PAGE TITLE, SECTION START -->

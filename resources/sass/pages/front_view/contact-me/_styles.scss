@@ -40,9 +40,13 @@
                 font-family: inherit;
             }
             & p {
-                margin-top: rem-convertor(32px);
+                margin-top: 0rem;
+                font-size: rem-convertor(16px);
                 @media only screen and (min-width: 320px) {
                     text-align: justify;
+                }
+                &:first-of-type {
+                    margin-top: rem-convertor(32px);
                 }
             }
         }

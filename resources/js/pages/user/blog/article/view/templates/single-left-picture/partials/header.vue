@@ -1,7 +1,7 @@
 <template>
   <div class="article-header">
     <div class="article-header-img">
-      <img src="/images/user/user-profile-img.jpg" alt=""> &bullet;
+      <img src="/images/user/user-profile-img_30.webp" alt=""> &bullet;
     </div>
     <div class="article-header-author">
       <span>{{ blogArticleAuthor }} </span> &bullet;

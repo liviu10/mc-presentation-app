@@ -57,12 +57,6 @@
         <a href="" target="_blank" :title="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.social_menu.facebook')">
           <fa :icon="['fab', 'facebook']" fixed-width />
         </a>
-        <a href="" target="_blank" :title="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.social_menu.instagram')">
-          <fa :icon="['fab', 'instagram']" fixed-width />
-        </a>
-        <a href="" target="_blank" :title="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.social_menu.youtube')">
-          <fa :icon="['fab', 'youtube']" fixed-width />
-        </a>
       </p>
     </div>
     <!-- SHARE & APPRECIATION, SECTION END -->

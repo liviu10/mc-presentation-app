@@ -9,13 +9,15 @@ $lvContainerPageAppointment: (
 
 .lv-pg-appointment, .lv-con-pg-questionnaire {
     &-header {
+        padding-left: rem-convertor(100px);
+        padding-right: rem-convertor(100px);
         & h1 {
             margin: rem-convertor(64px) 0rem;
             text-align: center;
         }
         & p {
             margin-bottom: 0rem;
-            text-align: justify;
+            text-align: center;
         }
     }
 }

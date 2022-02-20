@@ -3,7 +3,7 @@
     <!-- ERROR PAGE ACTIONS, SECTION START -->
     <div class="lv-pg-not-found-action">
       <div class="action-body">
-        <img src="/images/error/not-found_img.jpg" alt="">
+        <img src="/images/pages/error/not-found_img_1024.webp" alt="">
       </div>
       <div class="lv-pg-not-found-action-buttons">
         <!-- ERROR PAGE TITLE, SECTION START -->

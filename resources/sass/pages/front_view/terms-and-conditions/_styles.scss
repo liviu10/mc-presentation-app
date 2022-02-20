@@ -9,8 +9,11 @@
             margin-bottom: rem-convertor(36px) !important;
             font-weight: bold;
         }
-        & p {
+        & p:first-of-type {
             margin-bottom: rem-convertor(35px);
+        }
+        & p {
+            margin-bottom: rem-convertor(0px);
             text-align: justify;
         }
         & h1, & p:first-of-type {
@@ -18,23 +21,15 @@
                 text-align: center;
             }
         }
-        & h3 {
-            @media only screen and (max-width: 475px) {
-                text-align: center;
-            }
-        }
-        &-subtitle {
-            margin-bottom: rem-convertor(20px);
-        }
-        &-lead, &-info {
-            margin-bottom: rem-convertor(0px);
-        }
         &-lead {
+            font-size: rem-convertor(18px);
             @media only screen and (max-width: 992px) {
                 text-align: justify;
             }
         }
         &-info {
+            margin-top: rem-convertor(32px);
+            margin-bottom: rem-convertor(32px);
             font-weight: bold;
         }
     }
@@ -55,6 +50,9 @@
                 text-align: justify;
                 @media only screen and (max-width: 992px) {
                     text-align: justify !important;
+                }
+                & ul {
+                    margin-top: rem-convertor(16px);
                 }
             }
         }

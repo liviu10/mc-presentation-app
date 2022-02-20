@@ -11,7 +11,7 @@
                      title: blogArticleTitle,
                      artist: ' — ' + blogArticleAuthor,
                      src: '/audio/demo_file.mp3',
-                     pic: '/images/blog/audio-player-img.jpg',
+                     pic: '/images/pages/blog/audio_player/audio-player-img_100.webp',
                    }"
                    :audio="{
                      autoplay: false,

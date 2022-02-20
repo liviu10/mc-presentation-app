@@ -3,17 +3,15 @@
   "navigation_bar": {
     "main_menu": {
       "first_button": "Acasă",
-      "second_button": "Programare",
-      "third_button": "Blog",
+      "second_button": "Blog",
+      "third_button": "Programare",
       "forth_button": "Despre mine",
       "fifth_button": "Contactează-mă",
       "sixth_button": "Autentificare"
     },
     "sub_menu": {
-      "first_button": "Documentație",
-      "second_button": "Setări Profil",
-      "third_button": "Setări Aplicație",
-      "forth_button": "Ieșire"
+      "first_button": "Setări Profil",
+      "second_button": "Ieșire"
     }
   },
   "footer": {
@@ -74,9 +72,7 @@
             "title": "Distribuie acest articol pe",
             "like": "Apreciez",
             "dislike": "Nu apreciez",
-            "facebook": "Distribuie pe Facebook!",
-            "instagram": "Distribuie pe Instagram!",
-            "youtube": "Distribuie pe Youtube!"
+            "facebook": "Distribuie pe Facebook!"
           }
         }
       },
@@ -106,9 +102,7 @@
             "title": "Distribuie acest articol pe",
             "like": "Apreciez",
             "dislike": "Nu apreciez",
-            "facebook": "Distribuie pe Facebook!",
-            "instagram": "Distribuie pe Instagram!",
-            "youtube": "Distribuie pe Youtube!"
+            "facebook": "Distribuie pe Facebook!"
           }
         }
       },
@@ -139,8 +133,7 @@
             "like": "Apreciez",
             "dislike": "Nu apreciez",
             "facebook": "Distribuie pe Facebook!",
-            "instagram": "Distribuie pe Instagram!",
-            "youtube": "Distribuie pe Youtube!"
+            "instagram": "Distribuie pe Instagram!"
           }
         }
       },
@@ -196,7 +189,7 @@
             "input_comment": "Adaugă un comentariu",
             "i_agree_with": "Sunt de acord cu ",
             "privacy_policy": "Termenii și Condițiile",
-            "is_comment_public": "Dorești să încarci acest comentariu ca public sau privat? (Lasă nebifat pentru un comentariu privat)",
+            "is_comment_public": "Bifează dacă dorești să se afișeze comentariul tău pe site",
             "post_comment": "Postează un comentariu"
           },
           "swal": {
@@ -216,8 +209,13 @@
     },
     "contact_me_page": {
       "page_title": "Contactează-mă",
-      "title": "Lorem, ipsum dolor.",
-      "paragraph": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum distinctio amet eos beatae culpa autem, quis consequatur alias adipisci ipsam.",
+      "title": "Contact",
+      "page_content": {
+        "paragraph_1": "Ți-a atras ceva atenția pe site și nu ai găsit informația completă? Sau ai o curiozitate legată de mine sau de activitatea mea?",
+        "paragraph_2": "Ai vreo propunere, recomandare sau părere care vrei să ajungă la mine?",
+        "paragraph_3": "Te rog lasă-mi mesajul tău mai jos și îți răspund cât mai rapid.",
+        "paragraph_4": "Mulțumesc!"
+      },
       "contact_form": {
         "input_full_name": "Numele și prenumele tău",
         "input_email_address": "Adresa ta de email",

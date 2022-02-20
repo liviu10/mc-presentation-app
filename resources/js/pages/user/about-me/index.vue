@@ -5,7 +5,7 @@
         <!-- ABOUT ME VIDEO, SECTION START -->
         <div class="lv-pg-about-me-video">
           <video controls>
-            <source src="/videos/demo_video.mp4" type="video/mp4">
+            <source src="/videos/about_me.mp4" type="video/mp4">
           </video>
         </div>
         <!-- ABOUT ME VIDEO, SECTION END -->

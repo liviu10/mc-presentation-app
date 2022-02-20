@@ -3,22 +3,18 @@
     <div class="col-lg-12 m-auto">
       <div class="lv-pg-appointment">
         <div class="lv-pg-appointment-header">
-          <h1>Pregătire pentru Întâlnire</h1>
+          <h1>Primii pași în călătoria ta</h1>
           <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Excepturi ipsam qui in architecto, dolorem quisquam exercitationem unde ab
-            illum consectetur consequuntur temporibus maiores error esse neque incidunt deleniti
-            est debitis necessitatibus non! Totam, quas nihil quia adipisci,
-            voluptas perferendis culpa error incidunt laudantium sed inventore mollitia.
-            Voluptate nesciunt quod officia reiciendis! Accusantium repudiandae illum ipsa nesciunt
-            dicta laudantium at esse sed. Non praesentium nostrum unde,
-            ab fugit necessitatibus facere cumque officiis. Illum dolorem ut quam,
-            id amet eveniet incidunt hic adipisci, totam fugit suscipit ipsam repudiandae
-            minus sed rem cumque minima recusandae quod labore saepe reiciendis deleniti doloribus omnis.
-            Unde quidem error vitae. Iusto, libero? Blanditiis qui quaerat natus accusamus amet officiis iure quam quasi
-            voluptates rerum cumque eum possimus, dolores aut quis sunt quisquam quos.
-            Architecto tenetur nisi aliquid excepturi voluptatibus harum repellat numquam quibusdam doloremque nihil fuga maxime deleniti distinctio,
-            ipsa iste officiis deserunt quod autem? Sunt quam non modi animi delectus et culpa cumque fuga, asperiores at?
+            Pentru a începe călătoria e nevoie să ne pregătim bagajul. În acest caz este vorba despre bagajul emoțional.
+            Și pentru a face itinerariul potrivit, mi-ar plăcea să știu în ce stare ești, cum te simți, ce îți dorești și unde vrei să ajungi. Iar pentru asta am pregătit chestionarul de mai jos.
+            Sunt câteva întrebări pentru a descoperi nevoile tale, provocările cu care te confrunți și cum aș putea să te ajut să le înfrunți.
+          </p>
+          <p>
+            Te voi ghida prin muzică, dans și voie bună.
+            Am doar o rugăminte la tine: răspunde cât mai sincer la întrebări și scrie sau bifează primul răspuns care îți vine în minte.
+            Mulțumesc pentru timpul acordat și spor la completat.
+            De abia aștept să te cunosc.
+            Te îmbrățișez cu drag.
           </p>
         </div>
         <div v-for="questionnaire in displayAllQuestionnaires" :key="questionnaire.id" class="lv-pg-appointment-body">
@@ -41,9 +37,10 @@
             Mulțumesc anticipat pentru timpul acordat.
           </p>
           <div class="lv-pg-appointment-button">
-            <button type="button" class="btn btn-primary btn-lg" @click="goToQuestionnaire(questionnaire.id)">
+            <a href="https://www.survio.com/survey/d/K6A2D2B2T5B8Y9X9S" class="btn btn-primary btn-lg" target="_blank" rel="noreferrer">Începeți chestionarul acum!</a>
+            <!-- <button type="button" class="btn btn-primary btn-lg" @click="goToQuestionnaire(questionnaire.id)">
               Începeți chestionarul acum!
-            </button>
+            </button> -->
           </div>
         </div>
       </div>
