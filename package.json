@@ -20,7 +20,7 @@
     "bootstrap": "^5.1.0",
     "hls.js": "^1.0.10",
     "js-cookie": "^2.2.1",
-    "node-forge": "^0.10.0",
+    "node-forge": "^1.0.0",
     "nth-check": "^2.0.1",
     "postcss": "^7.0.39",
     "sweetalert2": "^11.1.2",
