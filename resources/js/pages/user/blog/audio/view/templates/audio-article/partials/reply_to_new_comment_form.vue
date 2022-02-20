@@ -181,20 +181,29 @@ export default {
         const apiEndPoint = '/api/blog/appreciate/like-comment'
         const fullApiUrl = url + apiEndPoint
         const userName = this.user.name
-        await axios.post(fullApiUrl, {
-          user_id: this.user.id,
-          blog_article_comment_id: this.commentId,
-          blog_article_comment_likes: likeComment + 1
-        })
-          .then(response => {
-            Swal.fire({
-              title: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.title', { fullName: userName }),
-              text: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.message')
-            }).then((result) => {
-              likeComment = 0
-              // window.location.reload()
-            })
+        try {
+          await axios.post(fullApiUrl, {
+            user_id: this.user.id,
+            blog_article_comment_id: this.commentId,
+            blog_article_comment_likes: likeComment + 1
           })
+            .then(response => {
+              Swal.fire({
+                title: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.title', { fullName: userName }),
+                text: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.message')
+              }).then((result) => {
+                likeComment = 0
+                window.location.reload()
+              })
+            })
+        } catch (error) {
+          if (error.response.status === 406) {
+            Swal.fire({
+              title: this.$t('user.blog_system_pages.general_settings.rating_system.swal_negative.title', { fullName: userName }),
+              text: this.$t('user.blog_system_pages.general_settings.rating_system.swal_negative.message')
+            })
+          }
+        }
       }
     },
     async dislikeTheComment () {
@@ -218,20 +227,29 @@ export default {
         const apiEndPoint = '/api/blog/appreciate/dislike-comment'
         const fullApiUrl = url + apiEndPoint
         const userName = this.user.name
-        await axios.post(fullApiUrl, {
-          user_id: this.user.id,
-          blog_article_comment_id: this.commentId,
-          blog_article_comment_dislikes: dislikeComment + 1
-        })
-          .then(response => {
-            Swal.fire({
-              title: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.title', { fullName: userName }),
-              text: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.message')
-            }).then((result) => {
-              dislikeComment = 0
-              // window.location.reload()
-            })
+        try {
+          await axios.post(fullApiUrl, {
+            user_id: this.user.id,
+            blog_article_comment_id: this.commentId,
+            blog_article_comment_dislikes: dislikeComment + 1
           })
+            .then(response => {
+              Swal.fire({
+                title: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.title', { fullName: userName }),
+                text: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.message')
+              }).then((result) => {
+                dislikeComment = 0
+                window.location.reload()
+              })
+            })
+        } catch (error) {
+          if (error.response.status === 406) {
+            Swal.fire({
+              title: this.$t('user.blog_system_pages.general_settings.rating_system.swal_negative.title', { fullName: userName }),
+              text: this.$t('user.blog_system_pages.general_settings.rating_system.swal_negative.message')
+            })
+          }
+        }
       }
     },
     async replyToComment () {
