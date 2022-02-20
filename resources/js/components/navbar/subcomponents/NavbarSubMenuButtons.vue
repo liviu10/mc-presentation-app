@@ -3,7 +3,7 @@
   <li v-if="user" class="nav-item dropdown">
     <a id="navbarDropdown" class="nav-link dropdown-toggle text-dark d-flex justify-content-start align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
       <img :src="user.photo_url" class="rounded-circle profile-photo me-1">
-      {{ user.name }}
+      {{ user.nickname }}
     </a>
     <ul class="dropdown-menu py-0" aria-labelledby="navbarDropdown">
       <li>

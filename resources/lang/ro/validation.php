@@ -134,7 +134,7 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
-        'full_name' => [
+        'name' => [
             'required'  => ':attribute sunt obligatorii.',
             'regex'     => ':attribute conține un format invalid',
             'max'       => ':attribute nu trebuie să depășească 255 de caractere.',
@@ -142,6 +142,16 @@ return [
         'email' => [
             'required'  => ':attribute este obligatorie.',
             'max'       => ':attribute nu trebuie să depășească 255 de caractere.',
+        ],
+        'nickname' => [
+            'required'  => ':attribute este obligatoriu.',
+            'regex'     => ':attribute conține un format invalid',
+            'max'       => ':attribute nu trebuie să depășească 255 de caractere.',
+        ],
+        'password' => [
+            'required'  => ':attribute este obligatorie.',
+            'regex'     => ':attribute conține un format invalid',
+            'min'       => ':attribute trebuie să aibă 8 caractere minim.',
         ],
         'message' => [
             'required'  => ':attribute este obligatoriu.',
@@ -176,8 +186,10 @@ return [
     */
 
     'attributes' => [
-        'full_name'              => 'Numele și Prenumele',
+        'name'                   => 'Numele și Prenumele',
         'email'                  => 'Adresa de Email',
+        'nickname'               => 'Nickname',
+        'password'               => 'Parola',
         'message'                => 'Mesajul',
         'comment'                => 'Comentariul',
         'comment_reply'          => 'Răspunsul la comentariu',

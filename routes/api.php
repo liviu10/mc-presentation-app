@@ -56,6 +56,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
     Route::group(['prefix' => '/'], function () {
+        // Login and Registration page API routes
+        Route::group([ 'middleware' => 'auth:api' ], function () {
+            Route::post('/logout', [LoginController::class, 'logout']);
+            Route::get('/user', [UserController::class, 'current']);
+            Route::patch('/settings/profile', [ProfileController::class, 'update']);
+            Route::patch('/settings/password', [PasswordController::class, 'update']);
+        });
+
         // Home page, Newsletter and Terms and Conditions page API routes
         Route::apiResource('', HomeController::class)->only(['index']);
         Route::apiResource('/subscribe', SubscribeToNewsletterController::class)->only(['store']);

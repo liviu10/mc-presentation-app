@@ -284,6 +284,8 @@
         "placeholder_name": "Inserează numele și prenumele tău",
         "input_email": "Adresă de email",
         "placeholder_email": "Inserează adresa ta de email",
+        "input_nickname": "Nickname",
+        "placeholder_nickname": "Inserează nickname-ul tău",
         "input_password": "Parolă",
         "placeholder_password": "Inserează parola ta",
         "input_confirm_password": "Confirmă Parolă",

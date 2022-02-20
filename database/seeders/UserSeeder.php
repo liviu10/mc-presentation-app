@@ -19,11 +19,12 @@ class UserSeeder extends Seeder
         User::truncate();
         $records = [
             [
-                'id'                => '1',
-                'name'              => 'Webmaster',
-                'email'             => 'webmaster@localhost.com',
-                'email_verified_at' => '2021-10-01 00:00:00',
-                'password'          => bcrypt('123@UserWebmaster'),
+                'id'                    => '1',
+                'name'                  => 'Webmaster',
+                'nickname'              => 'webmaster_01',
+                'email'                 => 'webmaster@localhost.com',
+                'email_verified_at'     => '2021-10-01 00:00:00',
+                'password'              => bcrypt('123@UserWebmaster'),
             ],
         ];
         User::insert($records);

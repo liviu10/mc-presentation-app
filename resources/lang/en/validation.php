@@ -134,7 +134,7 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
-        'full_name' => [
+        'name' => [
             'required'  => ':attribute is required.',
             'regex'     => ':attribute contains invalid characters.',
             'max'       => ':attribute must not exceed 255 characters.',
@@ -142,6 +142,16 @@ return [
         'email' => [
             'required'  => ':attribute is required.',
             'max'       => ':attribute must not exceed 255 characters.',
+        ],
+        'nickname' => [
+            'required'  => ':attribute is required.',
+            'regex'     => ':attribute contains invalid characters.',
+            'max'       => ':attribute must not exceed 255 characters.',
+        ],
+        'password' => [
+            'required'  => ':attribute is required.',
+            'regex'     => ':attribute contains invalid characters.',
+            'min'       => ':attribute must have a minimum of 8 characters.',
         ],
         'message' => [
             'required'  => ':attribute is required.',
@@ -176,8 +186,10 @@ return [
     */
 
     'attributes' => [
-        'full_name'              => 'Name and Surname',
+        'name'                   => 'Name and Surname',
         'email'                  => 'Email Address',
+        'nickname'               => 'Nickname',
+        'password'               => 'Password',
         'message'                => 'Message',
         'comment'                => 'Comment',
         'comment_reply'          => 'Comment reply',

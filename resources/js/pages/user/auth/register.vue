@@ -45,6 +45,24 @@
             </div>
             <!-- EMAIL INPUT, SECTION END -->
 
+            <!-- NICKNAME INPUT, SECTION START -->
+            <div class="mb-2">
+              <label class="col-form-label">
+                {{ $t('user.login_and_registration.register_form.input_nickname') }}
+              </label>
+              <div class="">
+                <input v-model="form.nickname"
+                       :class="{ 'is-invalid': form.errors.has('nickname') }"
+                       class="form-control"
+                       type="text"
+                       name="nickname"
+                       :placeholder="$t('user.login_and_registration.register_form.placeholder_nickname')"
+                >
+                <has-error :form="form" field="nickname" />
+              </div>
+            </div>
+            <!-- NICKNAME INPUT, SECTION END -->
+
             <!-- PASSWORD INPUT, SECTION START -->
             <div class="mb-2">
               <label class="col-form-label">
@@ -144,6 +162,7 @@ export default {
     form: new Form({
       name: '',
       email: '',
+      nickname: '',
       password: '',
       password_confirmation: ''
     }),
@@ -169,7 +188,7 @@ export default {
         await this.$store.dispatch('auth/updateUser', { user: data })
 
         // Redirect home.
-        this.$router.push({ name: 'home' })
+        this.$router.push({ name: 'home-page' })
       }
     }
   }
