@@ -55,13 +55,15 @@ i<template>
 </template>
 
 <script>
-import Vue from 'vue'
-import axios from 'axios'
+// import Vue from 'vue'
+// import axios from 'axios'
+
 import Form from 'vform'
 import Swal from 'sweetalert2/dist/sweetalert2.js'
-Vue.use(axios)
 
-window.axios = require('axios')
+// Vue.use(axios)
+
+// window.axios = require('axios')
 
 export default {
   name: 'FooterMenu',
@@ -95,32 +97,32 @@ export default {
       const apiEndPoint = '/api/unsubscribe'
       const urlParam = this.form.email
       const fullApiUrl = url + apiEndPoint + '/' + urlParam
-      await axios
+      await this.form
         .delete(fullApiUrl, { email: urlParam })
         .then(response => {
           this.form.email = ''
           this.closeModal()
+          Swal.fire({
+            title: this.$t('footer.footer_menu.unsubscribe_newsletter.swal_confirmation.title'),
+            text: this.$t('footer.footer_menu.unsubscribe_newsletter.swal_confirmation.message'),
+            timer: 18000,
+            footer:
+              '<a href="https://www.facebook.com/groups/269560668238590/?ref=share" target="_blank" rel="noreferrer" class="btn btn-primary">' +
+                'Facebook' +
+              '</a>',
+            // '<a href="https://www.facebook.com/groups/269560668238590/?ref=share" target="_blank" rel="noreferrer" class="btn btn-primary">' +
+            //   'Facebook' +
+            // '</a>' + '&nbsp;&nbsp;  &nbsp;&nbsp;' +
+            // '<a href="" target="_blank" rel="noreferrer" class="btn btn-primary">' +
+            //   'Instagram' +
+            // '</a>' + '&nbsp;&nbsp;  &nbsp;&nbsp;' +
+            // '<a href="" target="_blank" rel="noreferrer" class="btn btn-primary">' +
+            //   'Youtube' +
+            // '</a>',
+            // icon: 'success',
+            showConfirmButton: false
+          })
         })
-      await Swal.fire({
-        title: this.$t('footer.footer_menu.unsubscribe_newsletter.swal_confirmation.title'),
-        text: this.$t('footer.footer_menu.unsubscribe_newsletter.swal_confirmation.message'),
-        timer: 18000,
-        footer:
-          '<a href="https://www.facebook.com/groups/269560668238590/?ref=share" target="_blank" rel="noreferrer" class="btn btn-primary">' +
-            'Facebook' +
-          '</a>',
-        // '<a href="https://www.facebook.com/groups/269560668238590/?ref=share" target="_blank" rel="noreferrer" class="btn btn-primary">' +
-        //   'Facebook' +
-        // '</a>' + '&nbsp;&nbsp;  &nbsp;&nbsp;' +
-        // '<a href="" target="_blank" rel="noreferrer" class="btn btn-primary">' +
-        //   'Instagram' +
-        // '</a>' + '&nbsp;&nbsp;  &nbsp;&nbsp;' +
-        // '<a href="" target="_blank" rel="noreferrer" class="btn btn-primary">' +
-        //   'Youtube' +
-        // '</a>',
-        // icon: 'success',
-        showConfirmButton: false
-      })
     }
   }
 }
