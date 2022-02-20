@@ -23,8 +23,8 @@
                     :blog-article-rating="articleContent.blog_articles[0].blog_article_rating_system"
                     :blog-article-subcategory-title="articleContent.blog_subcategory_title"
                     :blog-article-subcategory-path="articleContent.blog_subcategory_path"
-                    :blog-article-likes="articleContent.blog_articles[0].blog_article_likes"
-                    :blog-article-dislikes="articleContent.blog_articles[0].blog_article_dislikes"
+                    :blog-article-likes="articleContent.blog_articles[0].blog_article_like"
+                    :blog-article-dislikes="articleContent.blog_articles[0].blog_article_dislike"
     />
     <!-- TEMPLATE OPTIONS (RATE, SUBCATEGORY TITLE AND SHARE BUTTONS), SECTION END -->
     <!-- TEMPLATE RELATED, SECTION START -->

@@ -163,13 +163,13 @@
         },
         "swal_like_article": {
           "title": "Apreciere articol",
-          "message": "Sunt încântată că dorești să apreciezi acest articol, dar pentru a face acest lucru trebuie să te autentifici în contul tău!",
+          "message": "Sunt încântată că dorești să evaluezi acest articol, dar pentru a face acest lucru trebuie să te autentifici în contul tău!",
           "login_button": "Login",
           "cancel_button": "Close"
         },
         "swal_dislike_article": {
           "title": "Nu apreciez articolul",
-          "message": "TODO: De găsit un mesaj optimist pentru cineva care nu-ti apreciază munca și timpul investit în scriere unui articol! (Un fel de a spune Fuck You cu zâmbetul pe buze)",
+          "message": "Sunt încântată că dorești să evaluezi acest articol, dar pentru a face acest lucru trebuie să te autentifici în contul tău!",
           "login_button": "Login",
           "cancel_button": "Close"
         },

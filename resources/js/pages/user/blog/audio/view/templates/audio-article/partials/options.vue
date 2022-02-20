@@ -82,7 +82,7 @@ export default {
     },
     blogArticleRating: {
       default: null,
-      type: Number
+      type: Array
     },
     blogArticleSubcategoryTitle: {
       default: null,
@@ -94,11 +94,11 @@ export default {
     },
     blogArticleLikes: {
       default: null,
-      type: Number
+      type: Array
     },
     blogArticleDislikes: {
       default: null,
-      type: Number
+      type: Array
     },
     length: {
       type: Number,
@@ -148,20 +148,29 @@ export default {
         const fullApiUrl = url + apiEndPoint
         const userName = this.user.name
         console.log('> check rating system', rateArticleScore)
-        await axios.post(fullApiUrl, {
-          user_id: this.user.id,
-          blog_article_id: this.blogArticleId,
-          blog_article_rating_system: rateArticleScore
-        })
-          .then(response => {
-            Swal.fire({
-              title: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.title', { fullName: userName }),
-              text: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.message')
-            }).then((result) => {
-              this.rate_system.rate_article = 0
-              window.location.reload()
-            })
+        try {
+          await axios.post(fullApiUrl, {
+            user_id: this.user.id,
+            blog_article_id: this.blogArticleId,
+            blog_article_rating_system: rateArticleScore
           })
+            .then(response => {
+              Swal.fire({
+                title: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.title', { fullName: userName }),
+                text: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.message')
+              }).then((result) => {
+                this.rate_system.rate_article = 0
+                window.location.reload()
+              })
+            })
+        } catch (error) {
+          if (error.response.status === 406) {
+            Swal.fire({
+              title: this.$t('user.blog_system_pages.general_settings.rating_system.swal_negative.title', { fullName: userName }),
+              text: this.$t('user.blog_system_pages.general_settings.rating_system.swal_negative.message')
+            })
+          }
+        }
       }
     },
     async likeTheArticle () {
@@ -185,20 +194,29 @@ export default {
         const apiEndPoint = '/api/blog/appreciate/like-article'
         const fullApiUrl = url + apiEndPoint
         const userName = this.user.name
-        await axios.post(fullApiUrl, {
-          user_id: this.user.id,
-          blog_article_id: this.blogArticleId,
-          blog_article_likes: likeArticle + 1
-        })
-          .then(response => {
-            Swal.fire({
-              title: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.title', { fullName: userName }),
-              text: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.message')
-            }).then((result) => {
-              likeArticle = 0
-              // window.location.reload()
-            })
+        try {
+          await axios.post(fullApiUrl, {
+            user_id: this.user.id,
+            blog_article_id: this.blogArticleId,
+            blog_article_likes: likeArticle + 1
           })
+            .then(response => {
+              Swal.fire({
+                title: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.title', { fullName: userName }),
+                text: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.message')
+              }).then((result) => {
+                likeArticle = 0
+                // window.location.reload()
+              })
+            })
+        } catch (error) {
+          if (error.response.status === 406) {
+            Swal.fire({
+              title: this.$t('user.blog_system_pages.general_settings.rating_system.swal_negative.title', { fullName: userName }),
+              text: this.$t('user.blog_system_pages.general_settings.rating_system.swal_negative.message')
+            })
+          }
+        }
       }
     },
     async dislikeTheArticle () {
@@ -222,20 +240,29 @@ export default {
         const apiEndPoint = '/api/blog/appreciate/dislike-article'
         const fullApiUrl = url + apiEndPoint
         const userName = this.user.name
-        await axios.post(fullApiUrl, {
-          user_id: this.user.id,
-          blog_article_id: this.blogArticleId,
-          blog_article_dislikes: dislikeArticle + 1
-        })
-          .then(response => {
-            Swal.fire({
-              title: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.title', { fullName: userName }),
-              text: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.message')
-            }).then((result) => {
-              dislikeArticle = 0
-              // window.location.reload()
-            })
+        try {
+          await axios.post(fullApiUrl, {
+            user_id: this.user.id,
+            blog_article_id: this.blogArticleId,
+            blog_article_dislikes: dislikeArticle + 1
           })
+            .then(response => {
+              Swal.fire({
+                title: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.title', { fullName: userName }),
+                text: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.message')
+              }).then((result) => {
+                dislikeArticle = 0
+                // window.location.reload()
+              })
+            })
+        } catch (error) {
+          if (error.response.status === 406) {
+            Swal.fire({
+              title: this.$t('user.blog_system_pages.general_settings.rating_system.swal_negative.title', { fullName: userName }),
+              text: this.$t('user.blog_system_pages.general_settings.rating_system.swal_negative.message')
+            })
+          }
+        }
       }
     }
   }

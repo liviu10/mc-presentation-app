@@ -4,29 +4,21 @@ namespace App\Http\Controllers\User\BlogPage;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\User;
-use App\Models\BlogArticle;
 use App\Models\BlogArticleRate;
 use App\Models\BlogArticleLike;
 use App\Models\BlogArticleDislike;
-use App\Models\BlogArticleComment;
 use App\Models\BlogArticleCommentLike;
 use App\Models\BlogArticleCommentDislike;
-use App\Models\BlogArticleCommentReply;
 use App\Models\BlogArticleCommentReplyLike;
 use App\Models\BlogArticleCommentReplyDislike;
 
 class BlogArticleAppreciationController extends Controller
 {
-    protected $modelNameUsers;
-    protected $modelNameBlogArticles;
     protected $modelNameBlogArticleRate;
     protected $modelNameBlogArticleLike;
     protected $modelNameBlogArticleDislike;
-    protected $modelNameBlogArticleComment;
     protected $modelNameBlogArticleCommentLike;
     protected $modelNameBlogArticleCommentDislike;
-    protected $modelNameBlogArticleCommentReply;
     protected $modelNameBlogArticleCommentReplyLike;
     protected $modelNameBlogArticleCommentReplyDislike;
 
@@ -37,15 +29,11 @@ class BlogArticleAppreciationController extends Controller
      */
     public function __construct()
     {
-        $this->modelNameUsers                          = new User();
-        $this->modelNameBlogArticles                   = new BlogArticle();
         $this->modelNameBlogArticleRate                = new BlogArticleRate();
         $this->modelNameBlogArticleLike                = new BlogArticleLike();
         $this->modelNameBlogArticleDislike             = new BlogArticleDislike();
-        $this->modelNameBlogArticleComment             = new BlogArticleComment();
         $this->modelNameBlogArticleCommentLike         = new BlogArticleCommentLike();
         $this->modelNameBlogArticleCommentDislike      = new BlogArticleCommentDislike();
-        $this->modelNameBlogArticleCommentReply        = new BlogArticleCommentReply();
         $this->modelNameBlogArticleCommentReplyLike    = new BlogArticleCommentReplyLike();
         $this->modelNameBlogArticleCommentReplyDislike = new BlogArticleCommentReplyDislike();
     }
@@ -79,7 +67,25 @@ class BlogArticleAppreciationController extends Controller
      */
     public function likeTheArticle(Request $request)
     {
-        dd($request->all());
+        $requestUserId = $request->get('user_id');
+        $requestBlogArticleId = $request->get('blog_article_id');
+
+        $alreadyLikedTheArticle = $this->modelNameBlogArticleLike->select('user_id', 'blog_article_id')
+                                    ->where('user_id', '=', $requestUserId)
+                                    ->where('blog_article_id', '=', $requestBlogArticleId)
+                                    ->count();
+
+        if ($alreadyLikedTheArticle !== 0) {
+            return response(false, 406);
+        }
+        else {
+            $this->modelNameBlogArticleLike->create([
+                'user_id'            => $request->get('user_id'),
+                'blog_article_id'    => $request->get('blog_article_id'),
+                'blog_article_likes' => $request->get('blog_article_likes'),
+            ]);
+            return response(true);
+        }
     }
 
     /**
@@ -90,7 +96,25 @@ class BlogArticleAppreciationController extends Controller
      */
     public function dislikeTheArticle(Request $request)
     {
-        dd($request->all());
+        $requestUserId = $request->get('user_id');
+        $requestBlogArticleId = $request->get('blog_article_id');
+
+        $alreadyDislikedTheArticle = $this->modelNameBlogArticleDislike->select('user_id', 'blog_article_id')
+                                        ->where('user_id', '=', $requestUserId)
+                                        ->where('blog_article_id', '=', $requestBlogArticleId)
+                                        ->count();
+
+        if ($alreadyDislikedTheArticle !== 0) {
+            return response(false, 406);
+        }
+        else {
+            $this->modelNameBlogArticleDislike->create([
+                'user_id'               => $request->get('user_id'),
+                'blog_article_id'       => $request->get('blog_article_id'),
+                'blog_article_dislikes' => $request->get('blog_article_dislikes'),
+            ]);
+            return response(true);
+        }
     }
 
     /**
@@ -101,7 +125,25 @@ class BlogArticleAppreciationController extends Controller
      */
     public function likeTheComment(Request $request)
     {
-        dd($request->all());
+        $requestUserId = $request->get('user_id');
+        $requestBlogArticleCommentId = $request->get('blog_article_comment_id');
+
+        $alreadyLikedTheComment = $this->modelNameBlogArticleCommentLike->select('user_id', 'blog_article_comment_id')
+                                    ->where('user_id', '=', $requestUserId)
+                                    ->where('blog_article_comment_id', '=', $requestBlogArticleCommentId)
+                                    ->count();
+
+        if ($alreadyLikedTheComment !== 0) {
+            return response(false, 406);
+        }
+        else {
+            $this->modelNameBlogArticleCommentLike->create([
+                'user_id'                    => $request->get('user_id'),
+                'blog_article_comment_id'    => $request->get('blog_article_comment_id'),
+                'blog_article_comment_likes' => $request->get('blog_article_comment_likes'),
+            ]);
+            return response(true);
+        }
     }
 
     /**
@@ -112,7 +154,25 @@ class BlogArticleAppreciationController extends Controller
      */
     public function dislikeTheComment(Request $request)
     {
-        dd($request->all());
+        $requestUserId = $request->get('user_id');
+        $requestBlogArticleCommentId = $request->get('blog_article_comment_id');
+
+        $alreadyDislikedTheComment = $this->modelNameBlogArticleCommentDislike->select('user_id', 'blog_article_comment_id')
+                                        ->where('user_id', '=', $requestUserId)
+                                        ->where('blog_article_comment_id', '=', $requestBlogArticleCommentId)
+                                        ->count();
+
+        if ($alreadyDislikedTheComment !== 0) {
+            return response(false, 406);
+        }
+        else {
+            $this->modelNameBlogArticleCommentDislike->create([
+                'user_id'                       => $request->get('user_id'),
+                'blog_article_comment_id'       => $request->get('blog_article_comment_id'),
+                'blog_article_comment_dislikes' => $request->get('blog_article_comment_dislikes'),
+            ]);
+            return response(true);
+        }
     }
 
     /**
@@ -123,7 +183,25 @@ class BlogArticleAppreciationController extends Controller
      */
     public function likeTheCommentReply(Request $request)
     {
-        dd($request->all());
+        $requestUserId = $request->get('user_id');
+        $requestBlogArticleCommentReplyId = $request->get('blog_article_comment_reply_id');
+
+        $alreadyLikedTheCommentReply = $this->modelNameBlogArticleCommentReplyLike->select('user_id', 'blog_article_comment_reply_id')
+                                            ->where('user_id', '=', $requestUserId)
+                                            ->where('blog_article_comment_reply_id', '=', $requestBlogArticleCommentReplyId)
+                                            ->count();
+
+        if ($alreadyLikedTheCommentReply !== 0) {
+            return response(false, 406);
+        }
+        else {
+            $this->modelNameBlogArticleCommentReplyLike->create([
+                'user_id'                          => $request->get('user_id'),
+                'blog_article_comment_reply_id'    => $request->get('blog_article_comment_reply_id'),
+                'blog_article_comment_reply_likes' => $request->get('blog_article_comment_reply_likes'),
+            ]);
+            return response(true);
+        }
     }
 
     /**
@@ -134,6 +212,24 @@ class BlogArticleAppreciationController extends Controller
      */
     public function dislikeTheCommentReply(Request $request)
     {
-        dd($request->all());
+        $requestUserId = $request->get('user_id');
+        $requestBlogArticleCommentReplyId = $request->get('blog_article_comment_reply_id');
+
+        $alreadyDislikedTheCommentReply = $this->modelNameBlogArticleCommentReplyDislike->select('user_id', 'blog_article_comment_reply_id')
+                                                ->where('user_id', '=', $requestUserId)
+                                                ->where('blog_article_comment_reply_id', '=', $requestBlogArticleCommentReplyId)
+                                                ->count();
+
+        if ($alreadyDislikedTheCommentReply !== 0) {
+            return response(false, 406);
+        }
+        else {
+            $this->modelNameBlogArticleCommentReplyDislike->create([
+                'user_id'                             => $request->get('user_id'),
+                'blog_article_comment_reply_id'       => $request->get('blog_article_comment_reply_id'),
+                'blog_article_comment_reply_dislikes' => $request->get('blog_article_comment_reply_dislikes'),
+            ]);
+            return response(true);
+        }
     }
 }

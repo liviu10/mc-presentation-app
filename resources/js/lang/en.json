@@ -154,6 +154,10 @@
             "title": "Thank you, {fullName}!",
             "message": "You rating score was successfully added!"
           },
+          "swal_negative": {
+            "title": "Thank you, {fullName}!",
+            "message": "You rating score was successfully added!"
+          },
           "options": {
             "very_bad": "(Very Bad)",
             "bad": "(Bad)",
