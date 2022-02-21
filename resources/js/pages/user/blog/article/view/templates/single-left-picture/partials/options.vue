@@ -14,19 +14,17 @@
       <p>
         {{ $t('user.blog_system_pages.written_article_blog_pages.article_blog_page.social_menu.label') }}
         &nbsp;
-        <a v-if="blogArticleLikes !== 0"
-           target="_blank"
+        <a target="_blank"
            :title="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.social_menu.like')"
            @click="likeTheArticle()"
         >
-          <fa :icon="['fa', 'thumbs-up']" fixed-width /> <span>{{ blogArticleLikes.length }}</span>
+          <fa :icon="['fa', 'thumbs-up']" fixed-width />&nbsp;<span v-if="blogArticleLikes.length !== 0">{{ blogArticleLikes.length }}</span>
         </a>
-        <a v-if="blogArticleDislikes !== 0"
-           target="_blank"
+        <a target="_blank"
            :title="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.social_menu.dislike')"
            @click="dislikeTheArticle()"
         >
-          <fa :icon="['fa', 'thumbs-down']" fixed-width /> <span>{{ blogArticleDislikes.length }}</span>
+          <fa :icon="['fa', 'thumbs-down']" fixed-width />&nbsp;<span v-if="blogArticleDislikes.length !== 0">{{ blogArticleDislikes.length }}</span>
         </a>
       </p>
     </div>

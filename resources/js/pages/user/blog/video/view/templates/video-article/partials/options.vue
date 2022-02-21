@@ -18,13 +18,13 @@
            :title="$t('user.blog_system_pages.video_article_blog_pages.article_blog_page.social_menu.like')"
            @click="likeTheArticle()"
         >
-          <fa :icon="['fa', 'thumbs-up']" fixed-width /> {{ blogArticleLikes }}
+          <fa :icon="['fa', 'thumbs-up']" fixed-width />&nbsp;<span v-if="blogArticleLikes.length !== 0">{{ blogArticleLikes }}</span>
         </a>
         <a target="_blank"
            :title="$t('user.blog_system_pages.video_article_blog_pages.article_blog_page.social_menu.dislike')"
            @click="dislikeTheArticle()"
         >
-          <fa :icon="['fa', 'thumbs-down']" fixed-width /> {{ blogArticleDislikes }}
+          <fa :icon="['fa', 'thumbs-down']" fixed-width />&nbsp;<span v-if="blogArticleDislikes.length !== 0">{{ blogArticleDislikes.length }}</span>
         </a>
       </p>
     </div>

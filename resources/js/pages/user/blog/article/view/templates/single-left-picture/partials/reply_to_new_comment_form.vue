@@ -7,7 +7,7 @@
          @click="likeTheComment()"
       >
         <span>
-          <fa :icon="['fa', 'thumbs-up']" fixed-width /> {{ commentLikes }}
+          <fa :icon="['fa', 'thumbs-up']" fixed-width />&nbsp;<span v-if="commentLikes.length !== 0">{{ commentLikes.length }}</span>
         </span>
       </a>
       <a class="btn btn-primary"
@@ -16,7 +16,7 @@
          @click="dislikeTheComment()"
       >
         <span>
-          <fa :icon="['fa', 'thumbs-down']" fixed-width /> {{ commentDislikes }}
+          <fa :icon="['fa', 'thumbs-down']" fixed-width />&nbsp;<span v-if="commentDislikes.length !== 0">{{ commentDislikes.length }}</span>
         </span>
       </a>
       <button class="btn btn-primary" @click="displayReplyToNewCommentForm()">
@@ -128,11 +128,11 @@ export default {
     },
     commentLikes: {
       default: null,
-      type: Number
+      type: Array
     },
     commentDislikes: {
       default: null,
-      type: Number
+      type: Array
     }
   },
   data: function () {
