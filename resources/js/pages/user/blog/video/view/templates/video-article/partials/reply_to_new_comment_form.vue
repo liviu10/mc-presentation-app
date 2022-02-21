@@ -19,9 +19,9 @@
           <fa :icon="['fa', 'thumbs-down']" fixed-width /> {{ commentDislikes }}
         </span>
       </a>
-      <button class="btn btn-primary" @click="showReplyToNewCommentForm = !showReplyToNewCommentForm">
+      <button class="btn btn-primary" @click="displayReplyToNewCommentForm()">
         <span v-if="!showReplyToNewCommentForm">{{ $t('user.blog_system_pages.general_settings.comment_section.open_reply_comment_form') }}</span>
-        <span v-else @click="clearReplyToNewCommentForm">{{ $t('user.blog_system_pages.general_settings.comment_section.close_reply_comment_form') }}</span>
+        <span v-else @click="clearReplyToNewCommentForm()">{{ $t('user.blog_system_pages.general_settings.comment_section.close_reply_comment_form') }}</span>
       </button>
     </div>
     <div v-show="showReplyToNewCommentForm">
@@ -35,6 +35,7 @@
                  class="form-control"
                  :placeholder="$t('user.blog_system_pages.general_settings.comment_section.comment_form.input_full_name')"
                  name="full_name"
+                 :disabled="disableFormInput"
           >
           <has-error :form="form" field="full_name" />
         </div>
@@ -48,6 +49,7 @@
                  class="form-control"
                  :placeholder="$t('user.blog_system_pages.general_settings.comment_section.comment_form.input_email_address')"
                  name="email"
+                 :disabled="disableFormInput"
           >
           <has-error :form="form" field="email" />
         </div>
@@ -136,6 +138,7 @@ export default {
   data: function () {
     return {
       showReplyToNewCommentForm: false,
+      disableFormInput: true,
       form: new Form({
         blog_article_comment_id: this.commentId,
         full_name: '',
@@ -151,6 +154,26 @@ export default {
     user: 'auth/user'
   }),
   methods: {
+    displayReplyToNewCommentForm () {
+      if (!this.user) {
+        Swal.fire({
+          title: this.$t('user.blog_system_pages.general_settings.rating_system.swal.title'),
+          text: this.$t('user.blog_system_pages.general_settings.rating_system.swal.message'),
+          confirmButtonText: this.$t('user.blog_system_pages.general_settings.rating_system.swal.login_button'),
+          showCancelButton: true,
+          cancelButtonText: this.$t('user.blog_system_pages.general_settings.rating_system.swal.cancel_button')
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.$router.push({ name: 'user.auth.login' })
+          }
+        })
+      } else {
+        this.showReplyToNewCommentForm = !this.showReplyToNewCommentForm
+        this.form.full_name = this.user.name
+        this.form.email = this.user.email
+        this.disableFormInput = true
+      }
+    },
     clearReplyToNewCommentForm () {
       if (this.form.full_name !== '' || this.form.email !== '' || this.form.comment_reply !== '' || this.form.comment_reply_is_public !== true || this.form.privacy_policy_comment_reply !== true) {
         this.form.full_name = ''
@@ -256,41 +279,32 @@ export default {
       const url = window.location.origin
       const apiEndPoint = '/api/blog/appreciate/respond-to-comment'
       const fullApiUrl = url + apiEndPoint
-      if (!this.user) {
-        Swal.fire({
-          title: 'Test title',
-          text: 'Nu esti autentificat pentru a adauga un raspunde la un comentariu',
-          confirmButtonText: 'Save',
-          showCancelButton: true
+      await this.form
+        .post(fullApiUrl, {
+          blogArticleCommentReplyId: this.form.blog_article_comment_id,
+          full_name: this.form.full_name,
+          email: this.form.email,
+          comment_reply: this.form.comment_reply,
+          comment_reply_is_public: this.form.comment_reply_is_public,
+          privacy_policy: this.form.privacy_policy_comment_reply
         })
-      } else {
-        await this.form
-          .post(fullApiUrl, {
-            blogArticleCommentReplyId: this.form.blog_article_comment_id,
-            full_name: this.form.full_name,
-            email: this.form.email,
-            comment_reply: this.form.comment_reply,
-            comment_reply_is_public: this.form.comment_reply_is_public,
-            privacy_policy: this.form.privacy_policy_comment_reply
+        .then(response => {
+          this.fullName = response.data.full_name
+          Swal.fire({
+            title: this.$t('user.blog_system_pages.general_settings.comment_section.swal.title', { fullName: this.fullName }),
+            text: this.$t('user.blog_system_pages.general_settings.comment_section.swal.message')
+          }).then((result) => {
+            if (this.form.comment_reply_is_public === true) {
+              window.location.reload()
+            }
+            this.form.full_name = null
+            this.form.email = null
+            this.form.comment_reply = null
+            this.form.comment_reply_is_public = null
+            this.form.privacy_policy_comment_reply = null
+            this.showReplyToNewCommentForm = false
           })
-          .then(response => {
-            this.fullName = response.data.full_name
-            Swal.fire({
-              title: this.$t('user.blog_system_pages.general_settings.comment_section.swal.title', { fullName: this.fullName }),
-              text: this.$t('user.blog_system_pages.general_settings.comment_section.swal.message')
-            }).then((result) => {
-              if (this.form.comment_reply_is_public === true) {
-                window.location.reload()
-              }
-              this.form.full_name = null
-              this.form.email = null
-              this.form.comment_reply = null
-              this.form.comment_reply_is_public = null
-              this.form.privacy_policy_comment_reply = null
-              this.showReplyToNewCommentForm = false
-            })
-          })
-      }
+        })
     }
   }
 }
