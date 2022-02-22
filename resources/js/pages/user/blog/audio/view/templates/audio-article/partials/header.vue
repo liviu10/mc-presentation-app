@@ -22,7 +22,8 @@
         {{ blogArticleAudioTime }} {{ $t('user.blog_system_pages.audio_article_blog_pages.listening_time.more_than_one_minute') }}
       </span> &bullet;
     </div>
-    <div class="audio-article-header-no-comments">
+    <div v-if="blogArticleComments" class="audio-article-header-no-comments">
+      &bullet;
       <span v-if="blogArticleComments === 1">
         <a href="#article_comments">
           {{ blogArticleComments }} {{ $t('user.blog_system_pages.general_settings.comment_section.no_of_comments.singular') }}

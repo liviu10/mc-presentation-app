@@ -56,7 +56,26 @@ class BlogArticleAppreciationController extends Controller
      */
     public function rateTheArticle(Request $request)
     {
-        dd($request->all());
+        $requestUserId = $request->get('user_id');
+        $requestBlogArticleId = $request->get('blog_article_id');
+
+        $alreadyRatedTheArticle = $this->modelNameBlogArticleRate->select('user_id', 'blog_article_id')
+                                    ->where('user_id', '=', $requestUserId)
+                                    ->where('blog_article_id', '=', $requestBlogArticleId)
+                                    ->count();
+
+        if ($alreadyRatedTheArticle !== 0) {
+            return response(false, 406);
+        }
+        else {
+            $this->modelNameBlogArticleRate->create([
+                'user_id'                    => $request->get('user_id'),
+                'blog_article_id'            => $request->get('blog_article_id'),
+                'blog_article_rating_system' => $request->get('blog_article_rating_system'),
+            ]);
+            $averageBlogArticleRates = collect($this->modelNameBlogArticleRate->select('blog_article_rating_system')->get())->avg('blog_article_rating_system');
+            return response($averageBlogArticleRates);
+        }
     }
 
     /**

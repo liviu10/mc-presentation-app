@@ -189,7 +189,7 @@
             "input_comment": "Adaugă un comentariu",
             "i_agree_with": "Sunt de acord cu ",
             "privacy_policy": "Termenii și Condițiile",
-            "is_comment_public": "Bifează dacă dorești să se afișeze comentariul tău pe site",
+            "is_comment_public": "Bifează dacă dorești să se afișeze comentariul tău pe site (va fi afișat numele și comentariul tău)",
             "post_comment": "Postează un comentariu"
           },
           "swal": {

@@ -13,7 +13,10 @@
         <p class="card-text">
           {{ articleComment.comment }}
         </p>
-        <reply-to-new-comment-form :comment-id="articleComment.id" :comment-likes="articleComment.blogCommentLikes" :comment-dislikes="articleComment.blogCommentDislikes" />
+        <reply-to-new-comment-form :comment-id="articleComment.id"
+                                   :comment-likes="articleComment.blog_article_comment_like"
+                                   :comment-dislikes="articleComment.blog_article_comment_dislike"
+        />
         <div v-if="articleComment.blog_article_comment_replies">
           <div v-for="articleCommentReply in articleComment.blog_article_comment_replies" :key="articleCommentReply.id" class="card article-comments-list-reply-card">
             <div class="card-body">
@@ -25,7 +28,10 @@
               <p class="card-text">
                 {{ articleCommentReply.comment_reply }}
               </p>
-              <respond-to-comment-reply-form :comment-reply-id="articleCommentReply.id" :comment-reply-likes="articleComment.blogCommentReplyLikes" :comment-dislikes="articleComment.blogCommentReplyDislikes" />
+              <respond-to-comment-reply-form :comment-reply-id="articleCommentReply.id"
+                                             :comment-reply-likes="articleCommentReply.blog_article_comment_reply_like"
+                                             :comment-reply-dislikes="articleCommentReply.blog_article_comment_reply_dislike"
+              />
             </div>
           </div>
         </div>

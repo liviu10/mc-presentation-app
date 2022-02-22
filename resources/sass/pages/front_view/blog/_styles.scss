@@ -94,6 +94,17 @@ $font_color: inherit;
             }
             & .aplayer {
                 margin: 0rem !important;
+                & .aplayer-body {
+                    & .aplayer-info {
+                        & .aplayer-controller {
+                            & .aplayer-time {
+                                & button.aplayer-icon.aplayer-icon-mode.inactive:first-of-type {
+                                    display: none !important;
+                                }
+                            }
+                        }
+                    }
+                }
                 @media only screen and (max-width: 360px) and (min-width: 320px) {
                     width: rem-convertor(280px) !important;
                     & .aplayer-body {

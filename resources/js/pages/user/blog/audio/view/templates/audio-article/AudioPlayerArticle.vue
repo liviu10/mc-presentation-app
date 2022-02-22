@@ -20,7 +20,8 @@
     <!-- TEMPLATE BODY, SECTION END -->
     <!-- TEMPLATE OPTIONS (RATE, SUBCATEGORY TITLE AND SHARE BUTTONS), SECTION START -->
     <option-details :blog-article-id="articleContent.blog_articles[0].id"
-                    :blog-article-rating="articleContent.blog_articles[0].blog_article_rating_system"
+                    :blog-article-rating="articleContent.blog_articles[0].blog_article_rate"
+                    :blog-article-average-rating="calculateBlogArticleAverageRates"
                     :blog-article-subcategory-title="articleContent.blog_subcategory_title"
                     :blog-article-subcategory-path="articleContent.blog_subcategory_path"
                     :blog-article-likes="articleContent.blog_articles[0].blog_article_like"
@@ -78,6 +79,16 @@ export default {
   data: function () {
     return {
       blogComments: this.articleContent.blog_articles[0].blog_article_comments
+    }
+  },
+  computed: {
+    calculateBlogArticleAverageRates: function () {
+      const rateScores = JSON.parse(JSON.stringify(this.articleContent.blog_articles[0].blog_article_rate))
+      const totalRates = rateScores.reduce(function (tot, record) {
+        return tot + record.blog_article_rating_system
+      }, 0)
+      const averageRates = totalRates / rateScores.length
+      return averageRates
     }
   }
 }
