@@ -44,8 +44,11 @@
                 $t('user.blog_system_pages.general_settings.rating_system.options.good'),
                 $t('user.blog_system_pages.general_settings.rating_system.options.very_good')
               ]"
-              @before-rate="rateTheArticle()"
+              @after-rate="rateTheArticle()"
         />
+        <span v-if="blogArticleRating && blogArticleRating.length === 0">(nici o evaluare)</span>
+        <span v-else-if="blogArticleRating && blogArticleRating.length === 1">({{ blogArticleRating.length }} evaluare)</span>
+        <span v-else>({{ blogArticleRating.length }} evaluari)</span>
       </p>
     </div>
     <!-- RATE THIS, SECTION END -->
@@ -84,6 +87,10 @@ export default {
       default: null,
       type: Array
     },
+    blogArticleAverageRating: {
+      default: null,
+      type: Number
+    },
     blogArticleSubcategoryTitle: {
       default: null,
       type: String
@@ -119,7 +126,7 @@ export default {
   },
   data: function () {
     return {
-      rate_article: 0
+      rate_article: this.blogArticleAverageRating
     }
   },
   computed: mapGetters({
@@ -147,7 +154,6 @@ export default {
         const apiEndPoint = '/api/blog/appreciate/rate-article'
         const fullApiUrl = url + apiEndPoint
         const userName = this.user.name
-        console.log('> check rating system', rateArticleScore)
         try {
           await axios.post(fullApiUrl, {
             user_id: this.user.id,
@@ -155,12 +161,11 @@ export default {
             blog_article_rating_system: rateArticleScore
           })
             .then(response => {
-              console.log(response)
               Swal.fire({
                 title: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.title', { fullName: userName }),
                 text: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.message')
               }).then((result) => {
-                this.rate_system.rate_article = 0
+                this.rate_article = response.data
                 window.location.reload()
               })
             })
@@ -260,7 +265,9 @@ export default {
           if (error.response.status === 406) {
             Swal.fire({
               title: this.$t('user.blog_system_pages.general_settings.rating_system.swal_negative.title', { fullName: userName }),
-              text: this.$t('user.blog_system_pages.general_settings.rating_system.swal_negative.message')
+              text: this.$t('user.blog_system_pages.general_settings.rating_system.swal_negative.message'),
+              showDenyButton: true,
+              denyButtonText: this.$t('user.blog_system_pages.general_settings.rating_system.swal_negative.delete_button')
             })
           }
         }
