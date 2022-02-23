@@ -79,6 +79,21 @@ class BlogArticleAppreciationController extends Controller
     }
 
     /**
+     * Remove the information about which user rated the article.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function removeTheRatedArticle(Request $request)
+    {
+        $this->modelNameBlogArticleRate->select('user_id', 'blog_article_id')
+                ->where('user_id', '=', $request->get('user_id'))
+                ->where('blog_article_id', '=', $request->get('blog_article_id'))
+                ->delete();
+        return response(true);
+    }
+
+    /**
      * Store information about which user liked the article.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -105,6 +120,21 @@ class BlogArticleAppreciationController extends Controller
             ]);
             return response(true);
         }
+    }
+
+    /**
+     * Remove the information about which user liked the article.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function removeTheLikedArticle(Request $request)
+    {
+        $this->modelNameBlogArticleLike->select('user_id', 'blog_article_id')
+                ->where('user_id', '=', $request->get('user_id'))
+                ->where('blog_article_id', '=', $request->get('blog_article_id'))
+                ->delete();
+        return response(true);
     }
 
     /**
@@ -137,6 +167,21 @@ class BlogArticleAppreciationController extends Controller
     }
 
     /**
+     * Remove the information about which user disliked the article.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function removeTheDislikedArticle(Request $request)
+    {
+        $this->modelNameBlogArticleDislike->select('user_id', 'blog_article_id')
+                ->where('user_id', '=', $request->get('user_id'))
+                ->where('blog_article_id', '=', $request->get('blog_article_id'))
+                ->delete();
+        return response(true);
+    }
+
+    /**
      * Store information about which user liked the comment.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -163,6 +208,21 @@ class BlogArticleAppreciationController extends Controller
             ]);
             return response(true);
         }
+    }
+
+    /**
+     * Remove the information about which user liked the comment.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function removeTheLikedComment(Request $request)
+    {
+        $this->modelNameBlogArticleCommentLike->select('user_id', 'blog_article_comment_id')
+                ->where('user_id', '=', $request->get('user_id'))
+                ->where('blog_article_comment_id', '=', $request->get('blog_article_comment_id'))
+                ->delete();
+        return response(true);
     }
 
     /**
@@ -195,6 +255,21 @@ class BlogArticleAppreciationController extends Controller
     }
 
     /**
+     * Remove the information about which user disliked the comment.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function removeTheDislikedComment(Request $request)
+    {
+        $this->modelNameBlogArticleCommentDislike->select('user_id', 'blog_article_comment_id')
+                ->where('user_id', '=', $request->get('user_id'))
+                ->where('blog_article_comment_id', '=', $request->get('blog_article_comment_id'))
+                ->delete();
+        return response(true);
+    }
+
+    /**
      * Store information about which user liked the comment reply.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -224,6 +299,21 @@ class BlogArticleAppreciationController extends Controller
     }
 
     /**
+     * Remove the information about which user liked the comment reply.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function removeTheLikedCommentReply(Request $request)
+    {
+        $this->modelNameBlogArticleCommentReplyLike->select('user_id', 'blog_article_comment_reply_id')
+                ->where('user_id', '=', $request->get('user_id'))
+                ->where('blog_article_comment_reply_id', '=', $request->get('blog_article_comment_reply_id'))
+                ->delete();
+        return response(true);
+    }
+
+    /**
      * Store information about which user disliked the comment reply.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -250,5 +340,20 @@ class BlogArticleAppreciationController extends Controller
             ]);
             return response(true);
         }
+    }
+
+    /**
+     * Remove the information about which user disliked the comment reply.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function removeTheDislikedCommentReply(Request $request)
+    {
+        $this->modelNameBlogArticleCommentReplyDislike->select('user_id', 'blog_article_comment_reply_id')
+                ->where('user_id', '=', $request->get('user_id'))
+                ->where('blog_article_comment_reply_id', '=', $request->get('blog_article_comment_reply_id'))
+                ->delete();
+        return response(true);
     }
 }
