@@ -202,7 +202,9 @@ export default {
       } else {
         const url = window.location.origin
         const apiEndPoint = '/api/blog/appreciate/like-comment'
+        const apiDeleteEndPoint = '/api/blog/appreciate/remove-like-comment'
         const fullApiUrl = url + apiEndPoint
+        const fullApiDeleteUrl = url + apiDeleteEndPoint
         const userName = this.user.name
         try {
           await axios.post(fullApiUrl, {
@@ -223,7 +225,20 @@ export default {
           if (error.response.status === 406) {
             Swal.fire({
               title: this.$t('user.blog_system_pages.general_settings.rating_system.swal_negative.title', { fullName: userName }),
-              text: this.$t('user.blog_system_pages.general_settings.rating_system.swal_negative.message')
+              text: this.$t('user.blog_system_pages.general_settings.rating_system.swal_negative.message'),
+              showDenyButton: true,
+              denyButtonText: this.$t('user.blog_system_pages.general_settings.rating_system.swal_negative.deny_like')
+            }).then((result) => {
+              if (result.isDenied) {
+                axios.delete(fullApiDeleteUrl, {
+                  data: {
+                    user_id: this.user.id,
+                    blog_article_comment_id: this.commentId
+                  }
+                }).then((result) => {
+                  window.location.reload()
+                })
+              }
             })
           }
         }
@@ -248,7 +263,9 @@ export default {
       } else {
         const url = window.location.origin
         const apiEndPoint = '/api/blog/appreciate/dislike-comment'
+        const apiDeleteEndPoint = '/api/blog/appreciate/remove-dislike-comment'
         const fullApiUrl = url + apiEndPoint
+        const fullApiDeleteUrl = url + apiDeleteEndPoint
         const userName = this.user.name
         try {
           await axios.post(fullApiUrl, {
@@ -269,7 +286,20 @@ export default {
           if (error.response.status === 406) {
             Swal.fire({
               title: this.$t('user.blog_system_pages.general_settings.rating_system.swal_negative.title', { fullName: userName }),
-              text: this.$t('user.blog_system_pages.general_settings.rating_system.swal_negative.message')
+              text: this.$t('user.blog_system_pages.general_settings.rating_system.swal_negative.message'),
+              showDenyButton: true,
+              denyButtonText: this.$t('user.blog_system_pages.general_settings.rating_system.swal_negative.deny_like')
+            }).then((result) => {
+              if (result.isDenied) {
+                axios.delete(fullApiDeleteUrl, {
+                  data: {
+                    user_id: this.user.id,
+                    blog_article_comment_id: this.commentId
+                  }
+                }).then((result) => {
+                  window.location.reload()
+                })
+              }
             })
           }
         }
