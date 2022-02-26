@@ -15,7 +15,7 @@ export default {
     AudioListArticles
   },
   metaInfo () {
-    return { title: this.$t('user.blog_system_pages.audio_article_blog_pages.meta_title') }
+    return { title: this.$t('user.blog_system_pages.audio_article_blog_pages.page_title') }
   }
 }
 </script>

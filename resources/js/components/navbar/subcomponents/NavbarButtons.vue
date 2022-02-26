@@ -2,32 +2,32 @@
   <ul class="navbar-nav ms-auto">
     <li>
       <router-link :to="{ name: 'home-page' }" class="nav-link">
-        {{ $t('navigation_bar.main_menu.first_button') }}
+        {{ $t('user.navigation_bar.main_menu.first_button') }}
       </router-link>
     </li>
     <li>
       <router-link :to="{ name: 'blog' }" class="nav-link">
-        {{ $t('navigation_bar.main_menu.second_button') }}
+        {{ $t('user.navigation_bar.main_menu.second_button') }}
       </router-link>
     </li>
     <li>
       <router-link :to="{ name: 'schedule-appointment' }" class="nav-link">
-        {{ $t('navigation_bar.main_menu.third_button') }}
+        {{ $t('user.navigation_bar.main_menu.third_button') }}
       </router-link>
     </li>
     <li>
       <router-link :to="{ name: 'about-me' }" class="nav-link">
-        {{ $t('navigation_bar.main_menu.forth_button') }}
+        {{ $t('user.navigation_bar.main_menu.forth_button') }}
       </router-link>
     </li>
     <li>
       <router-link :to="{ name: 'contact-me' }" class="nav-link">
-        {{ $t('navigation_bar.main_menu.fifth_button') }}
+        {{ $t('user.navigation_bar.main_menu.fifth_button') }}
       </router-link>
     </li>
     <li>
       <router-link v-if="!user" :to="{ name: 'user.auth.login' }" class="nav-link">
-        {{ $t('navigation_bar.main_menu.sixth_button') }}
+        {{ $t('user.navigation_bar.main_menu.sixth_button') }}
       </router-link>
     </li>
   </ul>

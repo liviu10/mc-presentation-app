@@ -137,11 +137,11 @@ export default {
     displayAddNewCommentForm () {
       if (!this.user) {
         Swal.fire({
-          title: this.$t('user.blog_system_pages.general_settings.rating_system.swal.title'),
-          text: this.$t('user.blog_system_pages.general_settings.rating_system.swal.message'),
-          confirmButtonText: this.$t('user.blog_system_pages.general_settings.rating_system.swal.login_button'),
+          title: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.title'),
+          text: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.add_comment'),
+          confirmButtonText: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.login_button'),
           showCancelButton: true,
-          cancelButtonText: this.$t('user.blog_system_pages.general_settings.rating_system.swal.cancel_button')
+          cancelButtonText: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.cancel_button')
         }).then((result) => {
           if (result.isConfirmed) {
             this.$router.push({ name: 'user.auth.login' })
@@ -179,8 +179,8 @@ export default {
         .then(response => {
           this.fullName = response.data.full_name
           Swal.fire({
-            title: this.$t('user.blog_system_pages.general_settings.comment_section.swal.title', { fullName: this.fullName }),
-            text: this.$t('user.blog_system_pages.general_settings.comment_section.swal.message')
+            title: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article_positive.title', { fullName: this.fullName }),
+            text: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article_positive.add_comment')
           }).then((result) => {
             if (this.form.comment_is_public === true) {
               window.location.reload()

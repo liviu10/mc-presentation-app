@@ -15,7 +15,7 @@ export default {
     VideoListArticles
   },
   metaInfo () {
-    return { title: this.$t('user.blog_system_pages.video_article_blog_pages.meta_title') }
+    return { title: this.$t('user.blog_system_pages.video_article_blog_pages.page_title') }
   }
 }
 </script>

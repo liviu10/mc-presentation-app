@@ -23,7 +23,7 @@
                   ({{ writtenArticle.blog_article_time }} {{ $t('user.blog_system_pages.written_article_blog_pages.reading_time.more_than_one_minute') }})
                 </span>
                 <p>
-                  {{ $t('user.blog_system_pages.subcategory_name') }}
+                  {{ $t('user.blog_system_pages.general_settings.subcategory_name') }}
                   <span>
                     <a :href="blogContent.blog_subcategory_path">{{ blogContent.blog_subcategory_title }}</a>
                   </span>

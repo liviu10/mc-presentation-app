@@ -1,63 +1,76 @@
 {  
   "app_name": "",
-  "navigation_bar": {
-    "main_menu": {
-      "first_button": "Acasă",
-      "second_button": "Blog",
-      "third_button": "Programare",
-      "forth_button": "Despre mine",
-      "fifth_button": "Contactează-mă",
-      "sixth_button": "Autentificare"
+  "user": {
+    "general_settings": {
+      "social_menu": {
+        "title": "Urmărește-mă pe:",
+        "facebook": "Urmărește-mă pe Facebook!",
+        "instagram": "Urmărește-mă pe Instagram!",
+        "youtube": "Urmărește-mă pe Youtube!"
+      }
     },
-    "sub_menu": {
-      "first_button": "Setări Profil",
-      "second_button": "Ieșire"
-    }
-  },
-  "footer": {
-    "footer_menu": {
-      "first_button": "Termeni și Condiții",
-      "second_button": "Dezabonează-te de la newsletter",
-      "unsubscribe_newsletter": {
+    "navigation_bar": {
+      "brand": "Motivație cu Contribuție și Muzică",
+      "main_menu": {
+        "first_button": "Acasă",
+        "second_button": "Blog",
+        "third_button": "Programare",
+        "forth_button": "Despre mine",
+        "fifth_button": "Contactează-mă",
+        "sixth_button": "Autentificare"
+      },
+      "sub_menu": {
+        "first_button": "Setări Profil",
+        "second_button": "Ieșire"
+      }
+    },
+    "footer": {
+      "footer_menu": {
+        "first_button": "Termeni și Condiții",
+        "second_button": "Dezabonează-te de la newsletter",
+        "unsubscribe_newsletter": {
+          "input_email_address": "Adresa ta de email",
+          "modal_unsubscribe": {
+            "title": "Ești sigur că vrei să te dezabonezi de le newsletter-ul meu?",
+            "message": "Pentru a te dezabona de la newsletter-ul meu te rog inserează adresa ta de email in câmpul de mai jos!",
+            "input_placeholder": "Adresa ta de email",
+            "confirm_button": "Da, Dezabonează-mă!",
+            "cancel_button": "Anulare!"
+          },
+          "swal_confirmation": {
+            "title": "Dezabonare cu success!",
+            "message": "Te-ai dezabonat cu success de la newsletter-ul meu! Totuși încă mă găsești pe: "
+          }
+        }
+      },
+      "copyright": {
+        "info": "Toate drepturile rezervate"
+      }
+    },
+    "home_page": {
+      "page_title": "Acasă",
+      "carousel": {
+        "find_out_more_btn": "Află mai multe!"
+      },
+      "heading": {
+        "schedule_appointment_btn": "Programează-te!"
+      },
+      "newsletter": {
+        "section_title": "Abonare la newsletter",
+        "input_full_name": "Numele și prenumele tău",
         "input_email_address": "Adresa ta de email",
-        "modal_unsubscribe": {
-          "title": "Ești sigur că vrei să te dezabonezi de le newsletter-ul meu?",
-          "message": "Pentru a te dezabona de la newsletter-ul meu te rog inserează adresa ta de email in câmpul de mai jos!",
-          "input_placeholder": "Adresa ta de email",
-          "confirm_button": "Da, Dezabonează-mă!",
-          "cancel_button": "Anulare!"
-        },
-        "swal_confirmation": {
-          "title": "Dezabonare cu success!",
-          "message": "Te-ai dezabonat cu success de la newsletter-ul meu! Totuși încă mă găsești pe: "
+        "subscribe_button": "Abonează-te!",
+        "i_agree_with": "Sunt de acord cu ",
+        "privacy_policy": "Termenii și Condițiile",
+        "swal": {
+          "title": "Mulțumesc, {subscriberFullName}!",
+          "message": "Sunt recunoscătoare că te-ai abonat la newsletter-ul meu! În curând vei primi pe email mai multe surprize din partea mea!"
         }
       }
     },
-    "social_menu": {
-      "title": "Urmărește-mă pe:",
-      "facebook": "Urmărește-mă pe Facebook!",
-      "instagram": "Urmărește-mă pe Instagram!",
-      "youtube": "Urmărește-mă pe Youtube!"
-    },
-    "copyright": {
-      "info": "Toate drepturile rezervate"
-    }
-  },
-  "user": {
-    "about_me_page": {
-      "page_title": "Despre mine",
-      "timeline_section_title": "Experiență",
-      "timeline_section_read_more": "Citește mai mult",
-      "timeline_modal_close": "Închide"
-    },
     "blog_system_pages": {
-      "meta_title": "Blog",
-      "blog_main_categories": {
-        "info": "Aici vei găsi:"
-      },
-      "subcategory_name": "Subcategorie: ",
+      "page_title": "Blog",
       "written_article_blog_pages": {
-        "meta_title": "Articole",
         "page_title": "Articole",
         "reading_time": {
           "less_than_one_minute": "Mai puțin de 1 min de lectură",
@@ -65,19 +78,10 @@
         },
         "read_more": "Citește mai mult!",
         "article_blog_page": {
-          "page_title": "Articol",
-          "article_subcategory": "Subcategorie",
-          "social_menu": {
-            "label": "Ți-a plăcut acest articol?",
-            "title": "Distribuie acest articol pe",
-            "like": "Apreciez",
-            "dislike": "Nu apreciez",
-            "facebook": "Distribuie pe Facebook!"
-          }
+          "page_title": "Articol"
         }
       },
       "audio_article_blog_pages": {
-        "meta_title": "Audio",
         "page_title": "Audio",
         "listening_time": {
           "less_than_one_minute": "Mai puțin de 1 min de ascultare",
@@ -85,39 +89,49 @@
         },
         "read_more": "Ascultă mai mult!",
         "article_blog_page": {
-          "page_title": "Audio",
-          "rating_system": {
-            "title": "Evaluează: ",
-            "options": {
-              "very_bad": "(Foarte Rău)",
-              "bad": "(Rău)",
-              "normal": "(Normal)",
-              "good": "(Bine)",
-              "very_good": "(Foarte Bine)"
-            }
-          },
-          "article_subcategory": "Subcategorie",
-          "social_menu": {
-            "label": "Ți-a plăcut acest articol?",
-            "title": "Distribuie acest articol pe",
-            "like": "Apreciez",
-            "dislike": "Nu apreciez",
-            "facebook": "Distribuie pe Facebook!"
-          }
+          "page_title": "Audio"
         }
       },
       "video_article_blog_pages": {
-        "meta_title": "Video",
         "page_title": "Video",
-        "listening_time": {
+        "viewing_time": {
           "less_than_one_minute": "Mai puțin de 1 min de vizualizare",
           "more_than_one_minute": "min de vizualizare"
         },
         "read_more": "Vezi mai mult!",
         "article_blog_page": {
-          "page_title": "Video",
+          "page_title": "Video"
+        }
+      },
+      "general_settings": {
+        "main_categories_info": "Aici vei găsi:",
+        "subcategory_name": "Subcategorie: ",
+        "published_on": "Publicat la:",
+        "modified_on": "Modificat la:",
+        "more_articles": "Mai multe {type}",
+        "appreciation_menu": {
+          "label": "Ți-a plăcut acest articol?",
+          "title": "Distribuie acest articol pe",
+          "like": "Apreciez",
+          "dislike": "Nu apreciez",
+          "rate": "Evaluează: ",
+          "facebook": "Distribuie pe Facebook!",
+          "swal_article": {
+            "title": "Apreciere articol",
+            "message": "Sunt încântată că dorești să evaluezi acest articol, dar pentru a face acest lucru trebuie să te autentifici în contul tău!",
+            "add_comment": "Sunt încântată că dorești să lași un comentariu, dar pentru a face acest lucru trebuie să te autentifici în contul tău!",
+            "comments": "Sunt încântată că dorești să evaluezi acest comentariu, dar pentru a face acest lucru trebuie să te autentifici în contul tău!",
+            "login_button": "Autentificare",
+            "cancel_button": "Close"
+          },
+          "swal_article_positive": {
+            "title": "Mulțumesc, {fullName}!",
+            "message": "Evaluarea ta a fost adăugată cu success!",
+            "already_message": "Evaluarea ta a fost deja înregistrată!",
+            "add_comment": "Comentariul ta a fost adăugat cu success!",
+            "deny_like": "Șterge evaluarea!"
+          },
           "rating_system": {
-            "title": "Evaluează: ",
             "options": {
               "very_bad": "(Foarte Rău)",
               "bad": "(Rău)",
@@ -125,53 +139,7 @@
               "good": "(Bine)",
               "very_good": "(Foarte Bine)"
             }
-          },
-          "article_subcategory": "Subcategorie",
-          "social_menu": {
-            "label": "Ți-a plăcut acest articol?",
-            "title": "Distribuie acest articol pe",
-            "like": "Apreciez",
-            "dislike": "Nu apreciez",
-            "facebook": "Distribuie pe Facebook!",
-            "instagram": "Distribuie pe Instagram!"
           }
-        }
-      },
-      "general_settings": {
-        "published_on": "Publicat la:",
-        "modified_on": "Modificat la:",
-        "more_articles": "Mai multe {type}",
-        "rating_system": {
-          "title": "Evaluează: ",
-          "swal": {
-            "title": "Evaluează acest articol",
-            "message": "Sunt încântată că dorești să evaluezi acest articol, dar pentru a face acest lucru trebuie să te autentifici în contul tău!",
-            "login_button": "Autentificare",
-            "cancel_button": "Închide"
-          },
-          "swal_positive": {
-            "title": "Mulțumesc, {fullName}!",
-            "message": "Evaluarea ta a fost adăugată cu success!"
-          },
-          "options": {
-            "very_bad": "(Foarte Rău)",
-            "bad": "(Rău)",
-            "normal": "(Normal)",
-            "good": "(Bine)",
-            "very_good": "(Foarte Bine)"
-          }
-        },
-        "swal_like_article": {
-          "title": "Apreciere articol",
-          "message": "Sunt încântată că dorești să evaluezi acest articol, dar pentru a face acest lucru trebuie să te autentifici în contul tău!",
-          "login_button": "Login",
-          "cancel_button": "Close"
-        },
-        "swal_dislike_article": {
-          "title": "Nu apreciez articolul",
-          "message": "Sunt încântată că dorești să evaluezi acest articol, dar pentru a face acest lucru trebuie să te autentifici în contul tău!",
-          "login_button": "Login",
-          "cancel_button": "Close"
         },
         "related_articles": {
           "title": "S-ar putea să-ți placă"
@@ -192,10 +160,6 @@
             "is_comment_public": "Bifează dacă dorești să se afișeze comentariul tău pe site (va fi afișat numele și comentariul tău)",
             "post_comment": "Postează un comentariu"
           },
-          "swal": {
-            "title": "Mulțumesc, {fullName}!",
-            "message": "Comentariul tău a fost adăugat cu succes!"
-          },
           "no_comment_info": "Fi primul care lasă un comentariu!",
           "added_on": " a adăugat un comentariu pe ",
           "added_on_alternative": {
@@ -206,6 +170,18 @@
           "close_reply_comment_form": "Anulează"
         }
       }
+    },
+    "schedule_appointment_page": {
+      "page_title": "Programează o întâlnire",
+      "start_questionnaire": {
+        "page_title": "Începe chestionarul"
+      }
+    },
+    "about_me_page": {
+      "page_title": "Despre mine",
+      "timeline_section_title": "Experiență",
+      "timeline_section_read_more": "Citește mai mult",
+      "timeline_modal_close": "Închide"
     },
     "contact_me_page": {
       "page_title": "Contactează-mă",
@@ -226,42 +202,8 @@
         "message_sent": "Mesajul tău a fost trimis cu success! Te voi contacta în cel mai scurt timp!"
       }
     },
-    "schedule_appointment_page": {
-      "page_title": "Programează o întâlnire",
-      "start_questionnaire": {
-        "page_title": "Începe chestionarul"
-      }
-    },
     "terms_and_conditions_page": {
       "page_title": "Termeni și condiții"
-    },
-    "home_page": {
-      "page_title": "Acasă",
-      "carousel": {
-        "find_out_more_btn": "Află mai multe!"
-      },
-      "heading": {
-        "schedule_appointment_btn": "Programează-te!",
-        "social_media_btn": {
-          "facebook_title": "Urmărește-mă pe Facebook!",
-          "instagram_title": "Urmărește-mă pe Instagram!",
-          "youtube_title": "Urmărește-mă pe Youtube!"
-        }
-      },
-      "main_categories": {},
-      "testimonials": {},
-      "newsletter": {
-        "section_title": "Abonare la newsletter",
-        "input_full_name": "Numele și prenumele tău",
-        "input_email_address": "Adresa ta de email",
-        "subscribe_button": "Abonează-te!",
-        "i_agree_with": "Sunt de acord cu ",
-        "privacy_policy": "Termenii și Condițiile",
-        "swal": {
-          "title": "Mulțumesc, {subscriberFullName}!",
-          "message": "Sunt recunoscătoare că te-ai abonat la newsletter-ul meu! În curând vei primi pe email mai multe surprize din partea mea!"
-        }
-      }
     },
     "login_and_registration": {
       "login_form": {

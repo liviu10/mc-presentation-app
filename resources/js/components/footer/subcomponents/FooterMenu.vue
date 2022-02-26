@@ -18,12 +18,12 @@ i<template>
         <div class="modal-content">
           <div class="modal-header">
             <h4 id="exampleModalLabel" class="modal-title">
-              {{ $t('footer.footer_menu.unsubscribe_newsletter.modal_unsubscribe.title') }}
+              {{ $t('user.footer.footer_menu.unsubscribe_newsletter.modal_unsubscribe.title') }}
             </h4>
           </div>
           <div class="modal-body">
             <p>
-              {{ $t('footer.footer_menu.unsubscribe_newsletter.modal_unsubscribe.message') }}
+              {{ $t('user.footer.footer_menu.unsubscribe_newsletter.modal_unsubscribe.message') }}
             </p>
             <form @submit.prevent="unsubscribe" @keydown="form.onKeydown($event)">
               <div class="col col-12 my-3">
@@ -32,17 +32,17 @@ i<template>
                        type="email"
                        :class="{ 'is-invalid': form.errors.has('email') }"
                        class="form-control"
-                       :placeholder="$t('footer.footer_menu.unsubscribe_newsletter.modal_unsubscribe.input_placeholder')"
+                       :placeholder="$t('user.footer.footer_menu.unsubscribe_newsletter.modal_unsubscribe.input_placeholder')"
                        name="email"
                 >
                 <has-error :form="form" field="email" />
               </div>
               <div class="modal-buttons">
                 <button ref="close" type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                  {{ $t('footer.footer_menu.unsubscribe_newsletter.modal_unsubscribe.cancel_button') }}
+                  {{ $t('user.footer.footer_menu.unsubscribe_newsletter.modal_unsubscribe.cancel_button') }}
                 </button>
                 <button type="submit" class="btn btn-primary">
-                  {{ $t('footer.footer_menu.unsubscribe_newsletter.modal_unsubscribe.confirm_button') }}
+                  {{ $t('user.footer.footer_menu.unsubscribe_newsletter.modal_unsubscribe.confirm_button') }}
                 </button>
               </div>
             </form>
@@ -76,13 +76,13 @@ export default {
         {
           id: 1,
           button_url: 'terms-and-conditions',
-          button_name: this.$t('footer.footer_menu.first_button'),
+          button_name: this.$t('user.footer.footer_menu.first_button'),
           button_id: ''
         },
         {
           id: 2,
           button_url: '',
-          button_name: this.$t('footer.footer_menu.second_button'),
+          button_name: this.$t('user.footer.footer_menu.second_button'),
           button_id: 'modalUnsubscribe'
         }
       ]
@@ -103,8 +103,8 @@ export default {
           this.form.email = ''
           this.closeModal()
           Swal.fire({
-            title: this.$t('footer.footer_menu.unsubscribe_newsletter.swal_confirmation.title'),
-            text: this.$t('footer.footer_menu.unsubscribe_newsletter.swal_confirmation.message'),
+            title: this.$t('user.footer.footer_menu.unsubscribe_newsletter.swal_confirmation.title'),
+            text: this.$t('user.footer.footer_menu.unsubscribe_newsletter.swal_confirmation.message'),
             timer: 18000,
             footer:
               '<a href="https://www.facebook.com/groups/269560668238590/?ref=share" target="_blank" rel="noreferrer" class="btn btn-primary">' +

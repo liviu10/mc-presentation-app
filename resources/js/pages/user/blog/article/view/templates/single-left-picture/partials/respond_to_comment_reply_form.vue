@@ -3,7 +3,7 @@
     <div class="form-button">
       <a class="btn btn-primary"
          target="_blank"
-         :title="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.social_menu.like')"
+         :title="$t('user.blog_system_pages.general_settings.appreciation_menu.like')"
          @click="likeTheCommentReply()"
       >
         <span>
@@ -12,7 +12,7 @@
       </a>
       <a class="btn btn-primary"
          target="_blank"
-         :title="$t('user.blog_system_pages.written_article_blog_pages.article_blog_page.social_menu.dislike')"
+         :title="$t('user.blog_system_pages.general_settings.appreciation_menu.dislike')"
          @click="dislikeTheCommentReply()"
       >
         <span>
@@ -157,11 +157,11 @@ export default {
     displayRespondToCommentReplyForm () {
       if (!this.user) {
         Swal.fire({
-          title: this.$t('user.blog_system_pages.general_settings.rating_system.swal.title'),
-          text: this.$t('user.blog_system_pages.general_settings.rating_system.swal.message'),
-          confirmButtonText: this.$t('user.blog_system_pages.general_settings.rating_system.swal.login_button'),
+          title: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.title'),
+          text: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.add_comment'),
+          confirmButtonText: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.login_button'),
           showCancelButton: true,
-          cancelButtonText: this.$t('user.blog_system_pages.general_settings.rating_system.swal.cancel_button')
+          cancelButtonText: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.cancel_button')
         }).then((result) => {
           if (result.isConfirmed) {
             this.$router.push({ name: 'user.auth.login' })
@@ -187,11 +187,11 @@ export default {
       let likeCommentReply = 0
       if (!this.user) {
         Swal.fire({
-          title: this.$t('user.blog_system_pages.general_settings.swal_like_article.title'),
-          text: this.$t('user.blog_system_pages.general_settings.swal_like_article.message'),
-          confirmButtonText: this.$t('user.blog_system_pages.general_settings.swal_like_article.login_button'),
+          title: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.title'),
+          text: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.comments'),
+          confirmButtonText: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.login_button'),
           showCancelButton: true,
-          cancelButtonText: this.$t('user.blog_system_pages.general_settings.swal_like_article.cancel_button')
+          cancelButtonText: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.cancel_button')
         }).then((result) => {
           if (result.isConfirmed) {
             this.$router.push({ name: 'user.auth.login' })
@@ -214,8 +214,8 @@ export default {
           })
             .then(response => {
               Swal.fire({
-                title: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.title', { fullName: userName }),
-                text: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.message')
+                title: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article_positive.title', { fullName: userName }),
+                text: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article_positive.message')
               }).then((result) => {
                 likeCommentReply = 0
                 window.location.reload()
@@ -224,10 +224,10 @@ export default {
         } catch (error) {
           if (error.response.status === 406) {
             Swal.fire({
-              title: this.$t('user.blog_system_pages.general_settings.rating_system.swal_negative.title', { fullName: userName }),
-              text: this.$t('user.blog_system_pages.general_settings.rating_system.swal_negative.message'),
+              title: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article_positive.title', { fullName: userName }),
+              text: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article_positive.already_message'),
               showDenyButton: true,
-              denyButtonText: this.$t('user.blog_system_pages.general_settings.rating_system.swal_negative.deny_like')
+              denyButtonText: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article_positive.deny_like')
             }).then((result) => {
               if (result.isDenied) {
                 axios.delete(fullApiDeleteUrl, {
@@ -248,11 +248,11 @@ export default {
       let dislikeCommentReply = 0
       if (!this.user) {
         Swal.fire({
-          title: this.$t('user.blog_system_pages.general_settings.swal_dislike_article.title'),
-          text: this.$t('user.blog_system_pages.general_settings.swal_dislike_article.message'),
-          confirmButtonText: this.$t('user.blog_system_pages.general_settings.swal_dislike_article.login_button'),
+          title: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.title'),
+          text: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.comments'),
+          confirmButtonText: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.login_button'),
           showCancelButton: true,
-          cancelButtonText: this.$t('user.blog_system_pages.general_settings.swal_dislike_article.cancel_button')
+          cancelButtonText: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.cancel_button')
         }).then((result) => {
           if (result.isConfirmed) {
             this.$router.push({ name: 'user.auth.login' })
@@ -275,8 +275,8 @@ export default {
           })
             .then(response => {
               Swal.fire({
-                title: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.title', { fullName: userName }),
-                text: this.$t('user.blog_system_pages.general_settings.rating_system.swal_positive.message')
+                title: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article_positive.title', { fullName: userName }),
+                text: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article_positive.message')
               }).then((result) => {
                 dislikeCommentReply = 0
                 window.location.reload()
@@ -285,10 +285,10 @@ export default {
         } catch (error) {
           if (error.response.status === 406) {
             Swal.fire({
-              title: this.$t('user.blog_system_pages.general_settings.rating_system.swal_negative.title', { fullName: userName }),
-              text: this.$t('user.blog_system_pages.general_settings.rating_system.swal_negative.message'),
+              title: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article_positive.title', { fullName: userName }),
+              text: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article_positive.already_message'),
               showDenyButton: true,
-              denyButtonText: this.$t('user.blog_system_pages.general_settings.rating_system.swal_negative.deny_like')
+              denyButtonText: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article_positive.deny_like')
             }).then((result) => {
               if (result.isDenied) {
                 axios.delete(fullApiDeleteUrl, {
@@ -321,8 +321,8 @@ export default {
         .then(response => {
           this.fullName = response.data.full_name
           Swal.fire({
-            title: this.$t('user.blog_system_pages.general_settings.comment_section.swal.title', { fullName: this.fullName }),
-            text: this.$t('user.blog_system_pages.general_settings.comment_section.swal.message')
+            title: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article_positive.title', { fullName: this.fullName }),
+            text: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article_positive.add_comment')
           }).then((result) => {
             if (this.form.comment_reply_is_public === true) {
               window.location.reload()

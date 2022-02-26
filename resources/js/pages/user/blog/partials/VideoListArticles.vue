@@ -26,13 +26,13 @@
                       <span>{{ videoArticle.blog_article_title }}</span>
                     </a>
                     <span v-if="videoArticle.blog_article_time <= 1">
-                      ({{ $t('user.blog_system_pages.video_article_blog_pages.listening_time.less_than_one_minute') }})
+                      ({{ $t('user.blog_system_pages.video_article_blog_pages.viewing_time.less_than_one_minute') }})
                     </span>
                     <span v-else>
-                      ({{ videoArticle.blog_article_time }} {{ $t('user.blog_system_pages.video_article_blog_pages.listening_time.more_than_one_minute') }})
+                      ({{ videoArticle.blog_article_time }} {{ $t('user.blog_system_pages.video_article_blog_pages.viewing_time.more_than_one_minute') }})
                     </span>
                     <p>
-                      {{ $t('user.blog_system_pages.subcategory_name') }}
+                      {{ $t('user.blog_system_pages.general_settings.subcategory_name') }}
                       <span>
                         <a :href="blogContent.blog_subcategory_path">{{ blogContent.blog_subcategory_title }}</a>
                       </span>

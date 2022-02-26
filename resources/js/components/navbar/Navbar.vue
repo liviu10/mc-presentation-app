@@ -5,7 +5,7 @@
       <router-link :to="{ name: 'home-page' }" class="navbar-brand">
         <img src="/images/navbar/Logo-img7_180.webp" alt="">
         <p class="text-wrap">
-          Motivație cu Contribuție și Muzică
+          {{ $t('user.navigation_bar.brand') }}
         </p>
       </router-link>
       <!-- NAVBAR BRAND SECTION END -->

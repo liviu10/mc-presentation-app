@@ -12,14 +12,14 @@
       <li>
         <router-link :to="{ name: '' }" class="dropdown-item ps-2 py-2">
           <fa icon="book-open" fixed-width />
-          {{ $t('navigation_bar.sub_menu.first_button') }}
+          {{ $t('user.navigation_bar.sub_menu.first_button') }}
         </router-link>
       </li>
       <div class="dropdown-divider my-0" />
       <li>
         <a href="#" class="dropdown-item ps-2 py-2" @click.prevent="logout">
           <fa icon="sign-out-alt" fixed-width />
-          {{ $t('navigation_bar.sub_menu.second_button') }}
+          {{ $t('user.navigation_bar.sub_menu.second_button') }}
         </a>
       </li>
     </ul>

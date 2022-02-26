@@ -15,7 +15,7 @@
       </div>
       <div class="card-body">
         <p class="card-text">
-          {{ $t('user.blog_system_pages.blog_main_categories.info') }}
+          {{ $t('user.blog_system_pages.general_settings.main_categories_info') }}
         </p>
         <a v-for="subcategory in category.blog_subcategories" :key="subcategory.id" :href="subcategory.blog_subcategory_path" :title="subcategory.blog_subcategory_title">
           {{ subcategory.blog_subcategory_title }}

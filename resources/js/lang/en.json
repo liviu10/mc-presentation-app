@@ -1,176 +1,145 @@
-{
+{  
   "app_name": "",
-  "navigation_bar": {
-    "main_menu": {
-      "first_button": "Home",
-      "second_button": "Blog",
-      "third_button": "Schedule Appointment",
-      "forth_button": "About me",
-      "fifth_button": "Contact me",
-      "sixth_button": "Login"
+  "user": {
+    "general_settings": {
+      "social_menu": {
+        "title": "Follow me on:",
+        "facebook": "Follow me on Facebook!",
+        "instagram": "Follow me on Instagram!",
+        "youtube": "Follow me on Youtube!"
+      }
     },
-    "sub_menu": {
-      "first_button": "Profile Settings",
-      "second_button": "Logout"
-    }
-  },
-  "footer": {
-    "footer_menu": {
-      "first_button": "Terms and Conditions",
-      "second_button": "Unsubscribe from the newsletter",
-      "unsubscribe_newsletter": {
+    "navigation_bar": {
+      "brand": "Motivation with Contribution and Music",
+      "main_menu": {
+        "first_button": "Home",
+        "second_button": "Blog",
+        "third_button": "Schedule",
+        "forth_button": "About me",
+        "fifth_button": "Contact me",
+        "sixth_button": "Login"
+      },
+      "sub_menu": {
+        "first_button": "Profile settings",
+        "second_button": "Logout"
+      }
+    },
+    "footer": {
+      "footer_menu": {
+        "first_button": "Terms and Conditions",
+        "second_button": "Unsubscribe from newsletter",
+        "unsubscribe_newsletter": {
+          "input_email_address": "Your email address",
+          "modal_unsubscribe": {
+            "title": "Are you sure you want to unsubscribe from my newsletter?",
+            "message": "To unsubscribe from my newsletter please insert your email address in the field below!",
+            "input_placeholder": "Your email address",
+            "confirm_button": "Yes, unsubscribe!",
+            "cancel_button": "Cancel!"
+          },
+          "swal_confirmation": {
+            "title": "Successfully unsubscribed!",
+            "message": "You have successfully unsubscribed from my newsletter! You can still find me on: "
+          }
+        }
+      },
+      "copyright": {
+        "info": "All rights reserved"
+      }
+    },
+    "home_page": {
+      "page_title": "Home",
+      "carousel": {
+        "find_out_more_btn": "Find out more!"
+      },
+      "heading": {
+        "schedule_appointment_btn": "Schedule!"
+      },
+      "newsletter": {
+        "section_title": "Subscribe to newsletter",
+        "input_full_name": "Your first and last name",
         "input_email_address": "Your email address",
-        "modal_unsubscribe": {
-          "title": "Are you sure you want to unsubscribe?",
-          "message": "To unsubscribe from my newsletter you need to insert you email address in the field below!",
-          "input_placeholder": "Your email address",
-          "confirm_button": "Yes, Unsubscribe me!",
-          "cancel_button": "Cancel!"
-        },
-        "swal_confirmation": {
-          "title": "Successfully unsubscribed!",
-          "message": "You have successfully unsubscribed from my newsletter! You can still find me on: "
+        "subscribe_button": "Subscribe!",
+        "i_agree_with": "I agree with ",
+        "privacy_policy": "Terms and Conditions",
+        "swal": {
+          "title": "Thank you, {subscriberFullName}!",
+          "message": "I am grateful that you subscribed to my newsletter! Soon you will receive more surprises from me on your email!"
         }
       }
     },
-    "social_menu": {
-      "title": "Follow me on:",
-      "facebook": "Follow me on Facebook!",
-      "instagram": "Follow me on Instagram!",
-      "youtube": "Follow me on Youtube!"
-    },
-    "copyright": {
-      "info": "All rights reserved"
-    }
-  },
-  "user": {
-    "about_me_page": {
-      "page_title": "About me",
-      "timeline_section_title": "Timeline",
-      "timeline_section_read_more": "Read more",
-      "timeline_modal_close": "Close"
-    },
     "blog_system_pages": {
-      "meta_title": "Blog",
-      "blog_main_categories": {
-        "info": "Here you will find:"
-      },
-      "subcategory_name": "Subcategory: ",
+      "page_title": "Blog",
       "written_article_blog_pages": {
-        "meta_title": "Articles",
         "page_title": "Articles",
         "reading_time": {
-          "less_than_one_minute": "Less than 1 min reading",
-          "more_than_one_minute": "min reading"
+          "less_than_one_minute": "Less than 1 min of reading",
+          "more_than_one_minute": "min of reading"
         },
         "read_more": "Read more!",
         "article_blog_page": {
-          "page_title": "Article",
-          "article_subcategory": "Subcategory",
-          "social_menu": {
-            "label": "Did you liked this article?",
-            "title": "Share this article on",
-            "like": "Like",
-            "dislike": "Dislike",
-            "facebook": "Share on Facebook!"
-          }
+          "page_title": "Article"
         }
       },
       "audio_article_blog_pages": {
-        "meta_title": "Audio",
         "page_title": "Audio",
         "listening_time": {
-          "less_than_one_minute": "Less than 1 min audio",
-          "more_than_one_minute": "min audio"
+          "less_than_one_minute": "Less than 1 min of listening",
+          "more_than_one_minute": "min of listening"
         },
         "read_more": "Listen more!",
         "article_blog_page": {
-          "page_title": "Audio",
-          "rating_system": {
-            "title": "Rate this: ",
-            "options": {
-              "very_bad": "(Very Bad)",
-              "bad": "(Bad)",
-              "normal": "(Normal)",
-              "good": "(Good)",
-              "very_good": "(Very Good)"
-            }
-          },
-          "article_subcategory": "Subcategory",
-          "social_menu": {
-            "label": "Did you liked this article?",
-            "title": "Share this article on",
-            "like": "Like",
-            "dislike": "Dislike",
-            "facebook": "Share on Facebook!"
-          }
+          "page_title": "Audio"
         }
       },
       "video_article_blog_pages": {
-        "meta_title": "Video",
         "page_title": "Video",
-        "listening_time": {
-          "less_than_one_minute": "Less than 1 min watching",
-          "more_than_one_minute": "min watching"
+        "viewing_time": {
+          "less_than_one_minute": "Less than 1 min of watching",
+          "more_than_one_minute": "min of watching"
         },
         "read_more": "See more!",
         "article_blog_page": {
-          "page_title": "Video",
-          "rating_system": {
-            "title": "Rate this: ",
-            "options": {
-              "very_bad": "(Very Bad)",
-              "bad": "(Bad)",
-              "normal": "(Normal)",
-              "good": "(Good)",
-              "very_good": "(Very Good)"
-            }
-          },
-          "article_subcategory": "Subcategory",
-          "social_menu": {
-            "label": "Did you liked this article?",
-            "title": "Share this article on",
-            "like": "Like",
-            "dislike": "Dislike",
-            "facebook": "Share on Facebook!",
-            "instagram": "Share on Instagram!",
-            "youtube": "Share on Youtube!"
-          }
+          "page_title": "Video"
         }
       },
       "general_settings": {
+        "main_categories_info": "Here you will find::",
+        "subcategory_name": "Subcategory: ",
         "published_on": "Published at:",
         "modified_on": "Modified at:",
         "more_articles": "More {type}",
-        "rating_system": {
-          "title": "Rate this: ",
-          "swal": {
-            "title": "Rate the article",
-            "message": "I thrilled that you want to rate this article, but in order to do this you need to login to your account!",
+        "appreciation_menu": {
+          "label": "Did you liked this article?",
+          "title": "Share this article on",
+          "like": "Like",
+          "dislike": "Dislike",
+          "rate": "Rate: ",
+          "facebook": "Share on Facebook!",
+          "swal_article": {
+            "title": "Appreciate article",
+            "message": "I am thrilled that you whish to evaluate this article, but in order to do this you have to login into your account!",
+            "add_comment": "I am thrilled that you whish to leave a comment, but in order to do this you have to login into your account!",
+            "comments": "I am thrilled that you whish to evaluate this comment, but in order to do this you have to login into your account!",
             "login_button": "Login",
             "cancel_button": "Close"
           },
-          "swal_positive": {
+          "swal_article_positive": {
             "title": "Thank you, {fullName}!",
-            "message": "You rating score was successfully added!"
+            "message": "Your evaluation was successfully added!",
+            "already_message": "Your evaluation was recorded!",
+            "add_comment": "Your comment was successfully added!",
+            "deny_like": "Delete evaluation!"
           },
-          "swal_negative": {
-            "title": "Thank you, {fullName}!",
-            "message": "You rating score was successfully added!"
-          },
-          "options": {
-            "very_bad": "(Very Bad)",
-            "bad": "(Bad)",
-            "normal": "(Normal)",
-            "good": "(Good)",
-            "very_good": "(Very Good)"
+          "rating_system": {
+            "options": {
+              "very_bad": "(Very bad)",
+              "bad": "(Bad)",
+              "normal": "(Normal)",
+              "good": "(Good)",
+              "very_good": "(Very good)"
+            }
           }
-        },
-        "swal_like_article": {
-          "title": "Like the article",
-          "message": "I thrilled that you want to evaluate this article, but in order to do this you need to login to your account!",
-          "login_button": "Login",
-          "cancel_button": "Close"
         },
         "related_articles": {
           "title": "You may also like"
@@ -183,183 +152,119 @@
           "open_add_comment_form": "Write a comment",
           "close_add_comment_form": "Cancel",
           "comment_form": {
-            "input_full_name": "Your Name and Surname",
+            "input_full_name": "Your first and last name",
             "input_email_address": "Your email address",
-            "input_message": "Enter your comment",
-            "i_agree_with": "I agree with the ",
-            "privacy_policy": "Privacy Policy",
-            "is_comment_public": "Check if you would like to display your comment on the website",
-            "post_comment": "Post comment"
+            "input_comment": "Add a comment",
+            "i_agree_with": "I agree with ",
+            "privacy_policy": "Terms and Conditions",
+            "is_comment_public": "Check if you whish to display you comment on the website (your name and comment will be displayed)",
+            "post_comment": "Post a comment"
           },
-          "no_comment_info": "Be the first one to leave a comment!",
+          "no_comment_info": "Be the first to leave a comment!",
           "added_on": " has added a comment on ",
           "added_on_alternative": {
             "line_1": " has replied to ",
             "line_2": " on "
           },
-          "swal": {
-            "title": "Thank you, {fullName}!",
-            "message": "Your comment was successfully added!"
-          },
-          "open_reply_comment_form": "Answer",
+          "open_reply_comment_form": "Respond",
           "close_reply_comment_form": "Cancel"
         }
       }
+    },
+    "schedule_appointment_page": {
+      "page_title": "Schedule a meeting",
+      "start_questionnaire": {
+        "page_title": "Begin the questionnaire"
+      }
+    },
+    "about_me_page": {
+      "page_title": "About me",
+      "timeline_section_title": "Experience",
+      "timeline_section_read_more": "Read more",
+      "timeline_modal_close": "Close"
     },
     "contact_me_page": {
       "page_title": "Contact me",
       "title": "Contact",
       "page_content": {
-        "paragraph_1": "Did something caught your attention on the website and you did not find the complete information? Or you have a curiosity about me or my activity?",
-        "paragraph_2": "Do you have a proposal, recommendation or an opinion that you would like to address it to me?",
-        "paragraph_3": "Please let me you message below and I will get to you shortly.",
+        "paragraph_1": "Did it get your attention on the site and you couldn't find the complete information? Or you have a curiosity about me or my work?",
+        "paragraph_2": "Do you have any proposal, recommendation or opinion that you want to reach me??",
+        "paragraph_3": "Please leave me your message below and I will answer you as soon as possible.",
         "paragraph_4": "Thank you!"
       },
       "contact_form": {
-        "input_full_name": "Your name and surname",
+        "input_full_name": "Your first and last name",
         "input_email_address": "Your email address",
         "input_message": "Leave me a message",
-        "i_agree_with": "I agree with the ",
-        "privacy_policy": "Privacy Policy",
+        "i_agree_with": "I agree with ",
+        "privacy_policy": "Terms and Conditions",
         "contact_form_button": "Send message",
-        "message_sent": "You have successfully sent me a message! I will contact you shortly!"
-      }
-    },
-    "schedule_appointment_page": {
-      "page_title": "Schedule appointment",
-      "start_questionnaire": {
-        "page_title": "Start the questionnaire"
+        "message_sent": "Your message was successfully sent! I will contact you shortly!"
       }
     },
     "terms_and_conditions_page": {
-      "page_title": "Terms and conditions"
-    },
-    "home_page": {
-      "page_title": "Home",
-      "carousel": {
-        "find_out_more_btn": "Find out more!"
-      },
-      "heading": {
-        "schedule_appointment_btn": "Schedule!",
-        "social_media_btn": {
-          "facebook_title": "Follow me on Facebook!",
-          "instagram_title": "Follow me on Instagram!",
-          "youtube_title": "Follow me on Youtube!"
-        }
-      },
-      "main_categories": {},
-      "testimonials": {},
-      "newsletter": {
-        "section_title": "Subscribe to newsletter",
-        "input_full_name": "Your name and surname",
-        "input_email_address": "Your email address",
-        "subscribe_button": "Subscribe!",
-        "i_agree_with": "I agree with the ",
-        "privacy_policy": "Privacy Policy",
-        "swal": {
-          "title": "Thank you, {subscriberFullName}!",
-          "message": "I am grateful that you subscribed to my newsletter! You will soon receive more surprises by email from me!"
-        }
-      }
+      "page_title": "Terms and Conditions"
     },
     "login_and_registration": {
       "login_form": {
-        "title": "Login to",
-        "input_email": "Email Address",
+        "title": "Login",
+        "input_email": "Email address",
         "placeholder_email": "Insert your email address",
         "input_password": "Password",
         "placeholder_password": "Insert your password",
-        "input_remember_me": "Remember Me!",
-        "input_forgot_password": "Forgot Password?",
+        "input_remember_me": "Remember me!",
+        "input_forgot_password": "Forgot password?",
         "login_button": "Login",
-        "register_line_1": "If you do not have an account, you can register",
+        "register_line_1": "If you do not have an account yet, you can sign up",
         "register_line_2": "here",
         "alternative_label": "OR",
         "login_with": "Login with {socialMedia}"
       },
       "register_form": {
-        "title": "Register",
-        "input_name": "First and Last Name",
+        "title": "Sign up",
+        "input_name": "First and last name",
         "placeholder_name": "Insert your first and last name",
-        "input_email": "Email Address",
+        "input_email": "Email address",
         "placeholder_email": "Insert your email address",
         "input_nickname": "Nickname",
-        "placeholder_nickname": "Insert your nickname",
+        "placeholder_nickname": "Insert your nickname here",
         "input_password": "Password",
         "placeholder_password": "Insert your password",
         "input_confirm_password": "Confirm Password",
-        "placeholder_confirm_password": "Insert your password confirmation",
-        "register_button": "Register",
+        "placeholder_confirm_password": "Confirm your password",
+        "register_button": "Sign up",
         "back_to_login_button": "Back to Login",
-        "register_with": "Register with"
+        "register_with": "Sign up with"
       },
       "reset_password_form": {
-        "title": "Password Reset",
-        "input_email": "Email Address",
+        "title": "Reset password",
+        "input_email": "Email address",
         "placeholder_email": "Insert your email address",
         "input_password": "Password",
         "placeholder_password": "Insert your password",
         "input_confirm_password": "Confirm Password",
-        "placeholder_confirm_password": "Insert your password confirmation",
-        "verify_email": "Verify Email",
-        "send_verification_link": "Send Verification Link",
-        "failed_to_verify_email": "Failed to verify Email Address",
-        "resend_verification_link": "Resend the verification link",
-        "reset_password_button": "Send password reset link",
-        "reset_password_label": "Reset Password",
+        "placeholder_confirm_password": "Confirm your password",
+        "verify_email": "Check your email address",
+        "send_verification_link": "Send the verification link",
+        "reset_password_button": "Send the reset password link",
+        "reset_password_label": "Reset password",
         "back_to_login_button": "Back to Login"
       }
     }
   },
   "error_pages": {
     "page_not_found": {
-      "title": "Page Not Found!",
+      "title": "The page you are looking for does not exist!",
       "action": {
-        "first": "Go back to Home Page!"
+        "first": "Back to home page!"
       }
     },
     "under_construction_page": {
-      "title": "This page is under construction!",
+      "title": "The page you are looking for is under construction!",
       "action": {
-        "first": "Go back to Home Page!",
-        "second": "Go back to Previous Page!"
+        "first": "Back to home page!",
+        "second": "Back to previous page!"
       }
     }
-  },
-  "ok": "Ok",
-  "cancel": "Cancel",
-  "error_alert_title": "Oops...",
-  "error_alert_text": "Something went wrong! Please try again.",
-  "token_expired_alert_title": "Session Expired!",
-  "token_expired_alert_text": "Please log in again to continue.",
-  "login": "Log In",
-  "register": "Register",
-  "logout": "Logout",
-  "email": "Email",
-  "nickname": "Nickname",
-  "remember_me": "Remember Me",
-  "password": "Password",
-  "forgot_password": "Forgot Your Password?",
-  "confirm_password": "Confirm Password",
-  "name": "Name",
-  "toggle_navigation": "Toggle navigation",
-  "home": "Home",
-  "you_are_logged_in": "You are logged in!",
-  "reset_password": "Reset Password",
-  "send_password_reset_link": "Send Password Reset Link",
-  "settings": "Settings",
-  "profile": "Profile",
-  "your_info": "Your Info",
-  "info_updated": "Your info has been updated!",
-  "update": "Update",
-  "your_password": "Your Password",
-  "password_updated": "Your password has been updated!",
-  "new_password": "New Password",
-  "login_with": "Login with",
-  "register_with": "Register with",
-  "verify_email": "Verify Email",
-  "send_verification_link": "Send Verification Link",
-  "resend_verification_link": "Resend Verification Link ?",
-  "failed_to_verify_email": "Failed to verify email.",
-  "verify_email_address": "We sent you an email with an the verification link."
+  }
 }
