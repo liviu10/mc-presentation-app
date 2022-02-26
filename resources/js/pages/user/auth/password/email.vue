@@ -8,7 +8,7 @@
 
             <!-- EMAIL INPUT, SECTION START -->
             <div class="mb-4">
-              <label class="col-md-3 col-form-label text-md-end">
+              <label class="col-form-label">
                 {{ $t('user.login_and_registration.reset_password_form.input_email') }}
               </label>
               <div class="">

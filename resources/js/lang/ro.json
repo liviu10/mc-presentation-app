@@ -234,7 +234,8 @@
         "placeholder_confirm_password": "Reinserează parola ta",
         "register_button": "Înregistrare",
         "back_to_login_button": "Înapoi la Autentificare",
-        "register_with": "Înregistrare cu"
+        "register_with": "Înregistrare cu",
+        "verify_email": "Ți-am trimis un link de verificare pe adresa de email folosită la înregistrare. Verifică și folderul de Spam, în cazul în care acest mesaj nu există în Inbox."
       },
       "reset_password_form": {
         "title": "Resetare parolă",
@@ -248,7 +249,9 @@
         "send_verification_link": "Trimite link-ul de verificare",
         "reset_password_button": "Trimite link-ul de resetare a parolei",
         "reset_password_label": "Resetare parolă",
-        "back_to_login_button": "Înapoi la Autentificare"
+        "back_to_login_button": "Înapoi la Autentificare",
+        "resend_verification_link": "Retrimite link-ul de verificare",
+        "failed_to_verify_email": "Adresa ta de email a fost deja confirmată"
       }
     }
   },

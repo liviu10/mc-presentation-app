@@ -234,7 +234,8 @@
         "placeholder_confirm_password": "Confirm your password",
         "register_button": "Sign up",
         "back_to_login_button": "Back to Login",
-        "register_with": "Sign up with"
+        "register_with": "Sign up with",
+        "verify_email": "I sent you a verification link to the email address used for registration. Also check the Spam folder if this message does not exist in your Inbox."
       },
       "reset_password_form": {
         "title": "Reset password",
@@ -248,7 +249,9 @@
         "send_verification_link": "Send the verification link",
         "reset_password_button": "Send the reset password link",
         "reset_password_label": "Reset password",
-        "back_to_login_button": "Back to Login"
+        "back_to_login_button": "Back to Login",
+        "resend_verification_link": "Resend the verification link",
+        "failed_to_verify_email": "Your email address was already confirmed"
       }
     }
   },

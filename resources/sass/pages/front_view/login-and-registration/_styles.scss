@@ -6,6 +6,43 @@
     margin: rem-convertor(100px) 0rem;
 }
 
+.lv-pg-register-verify-email {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    @media only screen and (min-width: 768px) {
+        height: 78vh;
+    }
+    @media only screen and (max-width: 767px) and (min-width: 320px) {
+        height: 76vh;
+    }
+    & .card-verify-email {
+        border-width: 0rem;
+        border-radius: 0rem;
+        width: 100%;
+        & .card-header {
+            @include flex-center();
+            height: rem-convertor(50px);
+            background-color: map-get($complementary_blizzard_blue, "color_sea_nymph");
+            border-color: map-get($complementary_blizzard_blue, "color_sea_nymph");
+            font-size: rem-convertor(24px);
+            &:first-child {
+                border-radius: 0;
+            }
+        }
+        & .card-body {
+            & .btn {
+                @include button();
+                width: 100%;
+                height: rem-convertor(60px);
+                text-transform: uppercase;
+            }
+        }
+    }
+}
+
 .alternative {
     display:flex;
     align-items: center;

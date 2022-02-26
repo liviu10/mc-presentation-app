@@ -1,13 +1,15 @@
 <template>
   <div class="row">
     <div class="col-lg-12 m-auto">
-      <div class="lv-pg-register">
-        <card v-if="mustVerifyEmail" :title="$t('user.login_and_registration.register_form.title')">
+      <div v-if="mustVerifyEmail" class="lv-pg-register-verify-email">
+        <card v-if="mustVerifyEmail" class="card-verify-email" :title="$t('user.login_and_registration.register_form.title')">
           <div class="alert alert-success" role="alert">
-            {{ $t('user.login_and_registration.register_form.input_name.verify_email_address') }}
+            {{ $t('user.login_and_registration.register_form.verify_email') }}
           </div>
         </card>
-        <card v-else :title="$t('user.login_and_registration.register_form.title')">
+      </div>
+      <div v-else class="lv-pg-register">
+        <card :title="$t('user.login_and_registration.register_form.title')">
           <form @submit.prevent="register" @keydown="form.onKeydown($event)">
             <!-- NAME INPUT, SECTION START -->
             <div class="mb-2">

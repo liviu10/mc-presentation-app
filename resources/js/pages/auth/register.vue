@@ -10,7 +10,7 @@
         <form @submit.prevent="register" @keydown="form.onKeydown($event)">
           <!-- Name -->
           <div class="mb-3 row">
-            <label class="col-md-3 col-form-label text-md-end">{{ $t('name') }}</label>
+            <label class="col-form-label">{{ $t('name') }}</label>
             <div class="col-md-7">
               <input v-model="form.name" :class="{ 'is-invalid': form.errors.has('name') }" class="form-control" type="text" name="name">
               <has-error :form="form" field="name" />
@@ -19,7 +19,7 @@
 
           <!-- Email -->
           <div class="mb-3 row">
-            <label class="col-md-3 col-form-label text-md-end">{{ $t('email') }}</label>
+            <label class="col-form-label">{{ $t('email') }}</label>
             <div class="col-md-7">
               <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" class="form-control" type="email" name="email">
               <has-error :form="form" field="email" />
@@ -28,7 +28,7 @@
 
           <!-- Password -->
           <div class="mb-3 row">
-            <label class="col-md-3 col-form-label text-md-end">{{ $t('password') }}</label>
+            <label class="col-form-label">{{ $t('password') }}</label>
             <div class="col-md-7">
               <input v-model="form.password" :class="{ 'is-invalid': form.errors.has('password') }" class="form-control" type="password" name="password">
               <has-error :form="form" field="password" />
@@ -37,7 +37,7 @@
 
           <!-- Password Confirmation -->
           <div class="mb-3 row">
-            <label class="col-md-3 col-form-label text-md-end">{{ $t('confirm_password') }}</label>
+            <label class="col-form-label">{{ $t('confirm_password') }}</label>
             <div class="col-md-7">
               <input v-model="form.password_confirmation" :class="{ 'is-invalid': form.errors.has('password_confirmation') }" class="form-control" type="password" name="password_confirmation">
               <has-error :form="form" field="password_confirmation" />
