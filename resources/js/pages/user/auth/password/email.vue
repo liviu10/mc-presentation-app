@@ -25,7 +25,7 @@
             <!-- EMAIL INPUT, SECTION END -->
 
             <!-- SEND RESET LINK, SECTION START -->
-            <div class="mb-4 d-flex form-button">
+            <div class="d-flex form-button">
               <div class="col-md-6">
                 <v-button :loading="form.busy">
                   {{ $t('user.login_and_registration.reset_password_form.reset_password_button') }}

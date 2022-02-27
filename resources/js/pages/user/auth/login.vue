@@ -5,7 +5,7 @@
         <card :title="$t('user.login_and_registration.login_form.title')">
           <form @submit.prevent="login" @keydown="form.onKeydown($event)">
             <!-- EMAIL INPUT, SECTION START -->
-            <div class="mb-2">
+            <div class="">
               <label class="col-form-label">
                 {{ $t('user.login_and_registration.login_form.input_email') }}
               </label>
@@ -22,7 +22,7 @@
             <!-- EMAIL INPUT, SECTION END -->
 
             <!-- PASSWORD INPUT, SECTION START -->
-            <div class="mb-2">
+            <div class="">
               <label class="col-form-label">
                 {{ $t('user.login_and_registration.login_form.input_password') }}
               </label>

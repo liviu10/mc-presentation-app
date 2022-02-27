@@ -246,6 +246,7 @@
         "input_confirm_password": "Confirm Password",
         "placeholder_confirm_password": "Confirm your password",
         "verify_email": "Check your email address",
+        "email_verified": "Email address verified",
         "send_verification_link": "Send the verification link",
         "reset_password_button": "Send the reset password link",
         "reset_password_label": "Reset password",

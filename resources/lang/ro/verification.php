@@ -2,10 +2,10 @@
 
 return [
 
-    'verified' => 'Your email has been verified!',
-    'invalid' => 'The verification link is invalid.',
+    'verified' => 'Adresa ta de email a fost verificată!',
+    'invalid' => 'Link-ul de verificare este invalid.',
     'already_verified' => 'Adresa ta de email a fost deja confirmată.',
-    'user' => 'We can\'t find a user with that e-mail address.',
-    'sent' => 'We have e-mailed your verification link!',
+    'user' => 'Nu putem găsi un utilizator cu acea adresă de email.',
+    'sent' => 'Ți-am trimis un email cu link-ul de verificare!',
 
 ];

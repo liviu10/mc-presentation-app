@@ -12,7 +12,7 @@
         <card :title="$t('user.login_and_registration.register_form.title')">
           <form @submit.prevent="register" @keydown="form.onKeydown($event)">
             <!-- NAME INPUT, SECTION START -->
-            <div class="mb-2">
+            <div class="">
               <label class="col-form-label">
                 {{ $t('user.login_and_registration.register_form.input_name') }}
               </label>
@@ -30,7 +30,7 @@
             <!-- NAME INPUT, SECTION END -->
 
             <!-- EMAIL INPUT, SECTION START -->
-            <div class="mb-2">
+            <div class="">
               <label class="col-form-label">
                 {{ $t('user.login_and_registration.register_form.input_email') }}
               </label>
@@ -48,7 +48,7 @@
             <!-- EMAIL INPUT, SECTION END -->
 
             <!-- NICKNAME INPUT, SECTION START -->
-            <div class="mb-2">
+            <div class="">
               <label class="col-form-label">
                 {{ $t('user.login_and_registration.register_form.input_nickname') }}
               </label>
@@ -66,7 +66,7 @@
             <!-- NICKNAME INPUT, SECTION END -->
 
             <!-- PASSWORD INPUT, SECTION START -->
-            <div class="mb-2">
+            <div class="">
               <label class="col-form-label">
                 {{ $t('user.login_and_registration.register_form.input_password') }}
               </label>
@@ -84,7 +84,7 @@
             <!-- PASSWORD INPUT, SECTION END -->
 
             <!-- PASSWORD CONFIRMATION INPUT, SECTION START -->
-            <div class="mb-2">
+            <div class="">
               <label class="col-form-label">
                 {{ $t('user.login_and_registration.register_form.input_confirm_password') }}
               </label>

@@ -246,6 +246,7 @@
         "input_confirm_password": "Confirmă Parolă",
         "placeholder_confirm_password": "Reinserează parola ta",
         "verify_email": "Verifică adresa de email",
+        "email_verified": "Adresă de email verificată",
         "send_verification_link": "Trimite link-ul de verificare",
         "reset_password_button": "Trimite link-ul de resetare a parolei",
         "reset_password_label": "Resetare parolă",

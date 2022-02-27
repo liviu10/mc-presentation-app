@@ -6,7 +6,7 @@
     margin: rem-convertor(100px) 0rem;
 }
 
-.lv-pg-register-verify-email {
+.lv-pg-register-verify-email, .lv-pg-password-request {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,7 +18,7 @@
     @media only screen and (max-width: 767px) and (min-width: 320px) {
         height: 76vh;
     }
-    & .card-verify-email {
+    & .card-verify-email, & .card-email-verified {
         border-width: 0rem;
         border-radius: 0rem;
         width: 100%;
@@ -33,7 +33,19 @@
             }
         }
         & .card-body {
+            & .alert {
+                margin-bottom: 0rem;
+                border-radius: 0rem;
+            }
+        }
+    }
+    & .card-email-verified {
+        & .card-body {
+            & .alert {
+                margin-bottom: rem-convertor(16px);
+            }
             & .btn {
+                @include flex-center();
                 @include button();
                 width: 100%;
                 height: rem-convertor(60px);

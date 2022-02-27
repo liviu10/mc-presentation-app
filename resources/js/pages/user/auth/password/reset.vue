@@ -7,7 +7,7 @@
             <alert-success :form="form" :message="status" />
 
             <!-- EMAIL INPUT, SECTION START -->
-            <div class="mb-4">
+            <div class="">
               <label class="col-form-label">
                 {{ $t('user.login_and_registration.reset_password_form.input_email') }}
               </label>
@@ -26,7 +26,7 @@
             <!-- EMAIL INPUT, SECTION END -->
 
             <!-- PASSWORD INPUT, SECTION START -->
-            <div class="mb-4">
+            <div class="">
               <label class="col-form-label">
                 {{ $t('user.login_and_registration.reset_password_form.input_password') }}
               </label>
@@ -44,7 +44,7 @@
             <!-- PASSWORD INPUT, SECTION END -->
 
             <!-- PASSWORD CONFIRMATION INPUT, SECTION START -->
-            <div class="mb-4">
+            <div class="">
               <label class="col-form-label">
                 {{ $t('user.login_and_registration.reset_password_form.input_confirm_password') }}
               </label>
@@ -62,7 +62,7 @@
             <!-- PASSWORD CONFIRMATION INPUT, SECTION END -->
 
             <!-- RESET PASSWORD BUTTON, SECTION START -->
-            <div class="mb-4 d-flex form-button">
+            <div class="mt-4 d-flex form-button">
               <div class="col-md-12">
                 <v-button :loading="form.busy">
                   {{ $t('user.login_and_registration.reset_password_form.reset_password_label') }}
@@ -105,10 +105,9 @@ export default {
   methods: {
     async reset () {
       const { data } = await this.form.post('/api/password/reset')
-
       this.status = data.status
-
       this.form.reset()
+      this.$router.push({ name: 'user.auth.login' })
     }
   }
 }
