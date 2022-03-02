@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use App\Models\BlogArticle;
 
 class BlogArticlesSeeder extends Seeder
@@ -14,6 +15,7 @@ class BlogArticlesSeeder extends Seeder
      */
     public function run()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         BlogArticle::truncate();
         $records = [
             [
@@ -265,5 +267,6 @@ class BlogArticlesSeeder extends Seeder
             ],
         ];
         BlogArticle::insert($records);
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

@@ -15,13 +15,12 @@ class CreateContactMeTable extends Migration
     public function up()
     {
         Schema::create('contact_me', function (Blueprint $table) {
-            $table->id();
-            $table->string('full_name', 255)->nullable(false);
-            $table->string('email', 255)->nullable(false);
+            $table->id()->index('idx_id');
+            $table->string('full_name')->nullable(false);
+            $table->string('email')->nullable(false);
             $table->longText('message');
             $table->string('privacy_policy', 3);
-            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamps();
         });
     }
 

@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreateBlogArticlesTable extends Migration
 {
@@ -14,7 +15,7 @@ class CreateBlogArticlesTable extends Migration
     public function up()
     {
         Schema::create('blog_articles', function (Blueprint $table) {
-            $table->id();
+            $table->id()->index('idx_id');
             $table->foreignId('blog_subcategory_id')->index('idx_blog_subcategory_id');
             $table->string('blog_article_author');
             $table->integer('blog_article_time');
@@ -26,6 +27,15 @@ class CreateBlogArticlesTable extends Migration
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
         });
+
+        DB::unprepared(
+            'ALTER TABLE `mc_presentation_app_db`.`blog_articles` 
+            ADD CONSTRAINT `fk_blog_article_id`
+                FOREIGN KEY (`blog_subcategory_id`)
+                REFERENCES `mc_presentation_app_db`.`blog_subcategories` (`id`)
+                ON DELETE CASCADE
+                ON UPDATE CASCADE'
+        );
     }
 
     /**

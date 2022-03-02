@@ -15,13 +15,12 @@ class CreateQuestionnairesTable extends Migration
     public function up()
     {
         Schema::create('questionnaires', function (Blueprint $table) {
-            $table->id();
+            $table->id()->index('idx_id');
             $table->string('title');
             $table->longText('scope');
             $table->longText('description');
             $table->string('is_active', 3);
-            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
         });
     }

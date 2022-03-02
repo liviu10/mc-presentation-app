@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreateBlogSubcategoriesTable extends Migration
 {
@@ -14,7 +15,7 @@ class CreateBlogSubcategoriesTable extends Migration
     public function up()
     {
         Schema::create('blog_subcategories', function (Blueprint $table) {
-            $table->id();
+            $table->id()->index('idx_id');
             $table->foreignId('blog_category_id')->index('idx_blog_category_id');
             $table->string('blog_subcategory_title');
             $table->string('blog_subcategory_short_description');
@@ -24,6 +25,15 @@ class CreateBlogSubcategoriesTable extends Migration
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
         });
+
+        DB::unprepared(
+            'ALTER TABLE `mc_presentation_app_db`.`blog_subcategories` 
+            ADD CONSTRAINT `fk_blog_subcategory_id`
+                FOREIGN KEY (`blog_category_id`)
+                REFERENCES `mc_presentation_app_db`.`blog_categories` (`id`)
+                ON DELETE CASCADE
+                ON UPDATE CASCADE'
+        );
     }
 
     /**

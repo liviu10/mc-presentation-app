@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use App\Models\BlogSubcategory;
 
 class BlogSubcategoriesSeeder extends Seeder
@@ -14,6 +15,7 @@ class BlogSubcategoriesSeeder extends Seeder
      */
     public function run()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         BlogSubcategory::truncate();
         $records = [
             [
@@ -117,5 +119,6 @@ class BlogSubcategoriesSeeder extends Seeder
             ],
         ];
         BlogSubcategory::insert($records);
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

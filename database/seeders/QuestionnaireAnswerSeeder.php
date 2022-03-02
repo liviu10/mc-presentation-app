@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use App\Models\Questionnaire\QuestionnaireAnswer;
 
 class QuestionnaireAnswerSeeder extends Seeder
@@ -14,6 +15,7 @@ class QuestionnaireAnswerSeeder extends Seeder
      */
     public function run()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         QuestionnaireAnswer::truncate();
         $records = [
             [
@@ -178,5 +180,6 @@ class QuestionnaireAnswerSeeder extends Seeder
             ],
         ];
         QuestionnaireAnswer::insert($records);
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

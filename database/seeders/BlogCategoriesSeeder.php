@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use App\Models\BlogCategory;
 
 class BlogCategoriesSeeder extends Seeder
@@ -14,6 +15,7 @@ class BlogCategoriesSeeder extends Seeder
      */
     public function run()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         BlogCategory::truncate();
         $records = [
             [
@@ -51,5 +53,6 @@ class BlogCategoriesSeeder extends Seeder
             ],
         ];
         BlogCategory::insert($records);
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

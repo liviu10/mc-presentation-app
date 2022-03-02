@@ -15,15 +15,14 @@ class CreateQuestionnaireAnswersTable extends Migration
     public function up()
     {
         Schema::create('questionnaire_answers', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('questionnaire_question_id');
+            $table->id()->index('idx_id');
+            $table->foreignId('questionnaire_question_id')->index('idx_questionnaire_question_id');
             $table->string('answer_1');
             $table->string('answer_2');
             $table->string('answer_3');
             $table->string('answer_4');
             $table->string('answer_5');
-            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamps();
         });
     }
 

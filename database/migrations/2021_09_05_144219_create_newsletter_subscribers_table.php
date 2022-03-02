@@ -3,9 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\DB;
 
-class CreateEventBookingsTable extends Migration
+class CreateNewsletterSubscribersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,15 +13,14 @@ class CreateEventBookingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('event_bookings', function (Blueprint $table) {
+        Schema::create('newsletter_subscribers', function (Blueprint $table) {
             $table->id()->index('idx_id');
-            $table->foreignId('event_id')->index('idx_event_id');
+            $table->foreignId('newsletter_campaigns_id')->index('idx_newsletter_campaigns_id');
             $table->string('full_name')->nullable(false);
-            $table->string('email')->nullable();
-            $table->string('phone')->nullable();
-            $table->longText('booking_notes');
+            $table->string('email')->nullable(false)->unique();
             $table->string('privacy_policy', 3);
             $table->timestamps();
+            $table->timestamp('unsubscribed_at')->nullable();
         });
     }
 
@@ -33,6 +31,6 @@ class CreateEventBookingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('event_bookings');
+        Schema::dropIfExists('newsletter_subscribers');
     }
 }

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Newsletter extends Model
+class NewsletterCampaign extends Model
 {
     use HasFactory;
 
@@ -14,7 +14,7 @@ class Newsletter extends Model
      * 
      * @var string
      */
-    protected $table = 'newsletter';
+    protected $table = 'newsletter_campaigns';
 
     /**
      * The primary key associated with the table.
@@ -36,9 +36,11 @@ class Newsletter extends Model
      * @var string
      */
     protected $fillable = [
-        'full_name',
-        'email',
-        'privacy_policy',
+        'campaign_name',
+        'campaign_description',
+        'campaign_is_active',
+        'valid_from',
+        'valid_to',
     ];
 
     /**
@@ -47,7 +49,7 @@ class Newsletter extends Model
      * @var string
      */
     protected $attributes = [
-        'privacy_policy' => false,
+        'campaign_is_active' => false,
     ];
 
     /**
@@ -59,6 +61,6 @@ class Newsletter extends Model
         'id',
         'created_at',
         'updated_at',
-        'unsubscribed_at',
+        'deleted_at',
     ];
 }

@@ -4,11 +4,11 @@ namespace App\Http\Controllers\User\HomePage;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Newsletter;
+use App\Models\NewsletterSubscriber;
 
 class SubscribeToNewsletterController extends Controller
 {
-    protected $modelNameNewsletter;
+    protected $modelNameNewsletterSubscriber;
 
     /**
      * Instantiate the variables that will be used to get the model.
@@ -17,7 +17,7 @@ class SubscribeToNewsletterController extends Controller
      */
     public function __construct()
     {
-        $this->modelNameNewsletter = new Newsletter();
+        $this->modelNameNewsletterSubscriber = new NewsletterSubscriber();
     }
 
     /**
@@ -34,23 +34,14 @@ class SubscribeToNewsletterController extends Controller
                 'full_name'      => 'required|regex:/^[a-zA-Z_ ]+$/u|max:255',
                 'email'          => 'required|email:filter|max:255|unique:newsletter',
             ]);
-            if (is_null($request->get('privacy_policy'))) 
-            {
-                $records = $this->modelNameNewsletter->create([
-                    'full_name'      => $request->get('full_name'),
-                    'email'          => $request->get('email'),
-                    'privacy_policy' => '0',
-                ]);
-            }
-            else 
-            {
-                $records = $this->modelNameNewsletter->create([
-                    'full_name'      => $request->get('full_name'),
-                    'email'          => $request->get('email'),
-                    'privacy_policy' => '1',
-                ]);
-            }
+            $records = $this->modelNameNewsletterSubscriber->create([
+                'newsletter_campaigns_id' => 1,
+                'full_name'               => $request->get('full_name'),
+                'email'                   => $request->get('email'),
+                'privacy_policy'          => $request->get('privacy_policy'),
+            ]);
             $apiInsertSingleRecord = [
+                'newsletter_campaigns_id' => $records['newsletter_campaigns_id'],
                 'full_name' => $records['full_name'],
                 'email' => $records['email'],
                 'privacy_policy' => $records['privacy_policy'],
@@ -80,20 +71,20 @@ class SubscribeToNewsletterController extends Controller
     {
         try
         {
-            $apiDisplayAllRecords = $this->modelNameNewsletter->pluck('id');
+            $apiDisplayAllRecords = $this->modelNameNewsletterSubscriber->pluck('id');
             if ($apiDisplayAllRecords->isEmpty()) 
             {
                 return response([], 404)->json();
             }
-            $getEmailAddress = $this->modelNameNewsletter->where('email', '=', $email)->pluck('email')[0];
+            $getEmailAddress = $this->modelNameNewsletterSubscriber->where('email', '=', $email)->pluck('email')[0];
             if (is_null($getEmailAddress)) 
             {
                 return response([], 404)->json();
             }
             else 
             {
-                $findUserIdByEmailAddress = $this->modelNameNewsletter->where('email', '=', $email)->pluck('id')[0];
-                $apiDeleteSingleRecord = $this->modelNameNewsletter->find($findUserIdByEmailAddress)->delete();
+                $findUserIdByEmailAddress = $this->modelNameNewsletterSubscriber->where('email', '=', $email)->pluck('id')[0];
+                $apiDeleteSingleRecord = $this->modelNameNewsletterSubscriber->find($findUserIdByEmailAddress)->delete();
                 return response(true);
             }
         }

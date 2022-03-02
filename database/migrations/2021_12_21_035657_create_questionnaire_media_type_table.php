@@ -15,10 +15,9 @@ class CreateQuestionnaireMediaTypeTable extends Migration
     public function up()
     {
         Schema::create('questionnaire_media_type', function (Blueprint $table) {
-            $table->id();
+            $table->id()->index('idx_id');
             $table->string('media_type_name');
-            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamps();
         });
     }
 

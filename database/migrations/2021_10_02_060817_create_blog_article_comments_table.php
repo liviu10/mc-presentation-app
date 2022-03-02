@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreateBlogArticleCommentsTable extends Migration
 {
@@ -14,7 +15,7 @@ class CreateBlogArticleCommentsTable extends Migration
     public function up()
     {
         Schema::create('blog_article_comments', function (Blueprint $table) {
-            $table->id();
+            $table->id()->index('idx_id');
             $table->foreignId('blog_article_id')->index('idx_blog_article_id');
             $table->string('full_name')->nullable(false);
             $table->string('email')->nullable(false);
@@ -24,6 +25,15 @@ class CreateBlogArticleCommentsTable extends Migration
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
         });
+
+        DB::unprepared(
+            'ALTER TABLE `mc_presentation_app_db`.`blog_article_comments` 
+            ADD CONSTRAINT `fk_blog_article_comment_id`
+                FOREIGN KEY (`blog_article_id`)
+                REFERENCES `mc_presentation_app_db`.`blog_articles` (`id`)
+                ON DELETE CASCADE
+                ON UPDATE CASCADE'
+        );
     }
 
     /**

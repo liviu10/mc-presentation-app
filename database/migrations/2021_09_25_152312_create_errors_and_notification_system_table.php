@@ -14,7 +14,7 @@ class CreateErrorsAndNotificationSystemTable extends Migration
     public function up()
     {
         Schema::create('errors_and_notification_system', function (Blueprint $table) {
-            $table->id();
+            $table->id()->index('idx_id');
             $table->string('notify_code', 10)->unique('notify_code');
             $table->string('notify_short_description');
             $table->string('notify_reference');

@@ -14,7 +14,7 @@ class CreateBlogCategoriesTable extends Migration
     public function up()
     {
         Schema::create('blog_categories', function (Blueprint $table) {
-            $table->id();
+            $table->id()->index('idx_id');
             $table->string('blog_category_title')->unique();
             $table->string('blog_category_short_description');
             $table->longText('blog_category_description');
