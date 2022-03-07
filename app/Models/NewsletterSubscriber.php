@@ -36,7 +36,7 @@ class NewsletterSubscriber extends Model
      * @var string
      */
     protected $fillable = [
-        'newsletter_campaigns_id',
+        'newsletter_campaign_id',
         'full_name',
         'email',
         'privacy_policy',

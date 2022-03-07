@@ -27,8 +27,8 @@ class CreateNewsletterCampaignsTable extends Migration
 
         DB::unprepared(
             'ALTER TABLE `mc_presentation_app_db`.`newsletter_subscribers`
-            ADD CONSTRAINT `fk_newsletter_campaigns_id`
-                FOREIGN KEY (`newsletter_campaigns_id`)
+            ADD CONSTRAINT `fk_newsletter_campaign_id`
+                FOREIGN KEY (`newsletter_campaign_id`)
                 REFERENCES `mc_presentation_app_db`.`newsletter_campaigns` (`id`)
                 ON DELETE CASCADE
                 ON UPDATE CASCADE'

@@ -4,10 +4,12 @@ namespace App\Http\Controllers\User\HomePage;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\NewsletterCampaign;
 use App\Models\NewsletterSubscriber;
 
 class SubscribeToNewsletterController extends Controller
 {
+    protected $modelNameNewsletterCampaign;
     protected $modelNameNewsletterSubscriber;
 
     /**
@@ -17,6 +19,7 @@ class SubscribeToNewsletterController extends Controller
      */
     public function __construct()
     {
+        $this->modelNameNewsletterCampaign = new NewsletterCampaign();
         $this->modelNameNewsletterSubscriber = new NewsletterSubscriber();
     }
 
@@ -31,17 +34,32 @@ class SubscribeToNewsletterController extends Controller
         try 
         {
             $request->validate([
-                'full_name'      => 'required|regex:/^[a-zA-Z_ ]+$/u|max:255',
-                'email'          => 'required|email:filter|max:255|unique:newsletter',
+                'full_name' => 'required|regex:/^[a-zA-Z_ ]+$/u|max:255',
+                'email'     => 'required|email:filter|max:255|unique:newsletter_subscribers',
             ]);
-            $records = $this->modelNameNewsletterSubscriber->create([
-                'newsletter_campaigns_id' => 1,
-                'full_name'               => $request->get('full_name'),
-                'email'                   => $request->get('email'),
-                'privacy_policy'          => $request->get('privacy_policy'),
-            ]);
+
+            $getCurrentActiveCampaignId = $this->modelNameNewsletterCampaign->select('id', 'campaign_is_active')->where('campaign_is_active', '=', 1)->get()->toArray();
+
+            // Allocate user to the current active newsletter campaign
+            if (count($getCurrentActiveCampaignId) !== 0 && count($getCurrentActiveCampaignId) > 1) {
+                $records = $this->modelNameNewsletterSubscriber->create([
+                    'newsletter_campaign_id'  => array_slice($getCurrentActiveCampaignId, 1)[0]['id'],
+                    'full_name'               => $request->get('full_name'),
+                    'email'                   => $request->get('email'),
+                    'privacy_policy'          => $request->get('privacy_policy'),
+                ]);
+            }
+            // Allocate user to the generic newsletter campaign
+            else {
+                $records = $this->modelNameNewsletterSubscriber->create([
+                    'newsletter_campaign_id'  => 1,
+                    'full_name'               => $request->get('full_name'),
+                    'email'                   => $request->get('email'),
+                    'privacy_policy'          => $request->get('privacy_policy'),
+                ]);
+            }
             $apiInsertSingleRecord = [
-                'newsletter_campaigns_id' => $records['newsletter_campaigns_id'],
+                'newsletter_campaign_id' => $records['newsletter_campaign_id'],
                 'full_name' => $records['full_name'],
                 'email' => $records['email'],
                 'privacy_policy' => $records['privacy_policy'],
@@ -52,11 +70,11 @@ class SubscribeToNewsletterController extends Controller
         {
             if ($mysqlError->getCode() === '42S02') 
             {
-                return response([], 500)->json();
+                return response([], 500);
             }
             if ($mysqlError->getCode() === '42S22') 
             {
-                return response([], 500)->json();
+                return response([], 500);
             }
         }
     }
