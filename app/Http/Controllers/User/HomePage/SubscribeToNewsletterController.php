@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\NewsletterCampaign;
 use App\Models\NewsletterSubscriber;
+use App\Mail\WelcomeNewsletter;
+use Illuminate\Support\Facades\Mail;
 
 class SubscribeToNewsletterController extends Controller
 {
@@ -58,6 +60,10 @@ class SubscribeToNewsletterController extends Controller
                     'privacy_policy'          => $request->get('privacy_policy'),
                 ]);
             }
+
+            $email = $records['email'];
+            Mail::to($email)->send(new WelcomeNewsletter($records));
+
             $apiInsertSingleRecord = [
                 'newsletter_campaign_id' => $records['newsletter_campaign_id'],
                 'full_name' => $records['full_name'],

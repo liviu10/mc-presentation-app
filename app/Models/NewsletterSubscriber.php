@@ -62,4 +62,13 @@ class NewsletterSubscriber extends Model
         'updated_at',
         'unsubscribed_at',
     ];
+
+    /**
+     * Eloquent relationship between newsletter_subscribers and newsletter_campaign.
+     * One or many newsletter subscriber(s) may have only one newsletter campaign.
+     */
+    public function newsletter_campaign()
+    {
+        return $this->belongsTo('App\Models\NewsletterCampaign');
+    }
 }

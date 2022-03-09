@@ -63,4 +63,24 @@ class NewsletterCampaign extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    public function scopeIsActive ($query) 
+    {
+        return $query->where('campaign_is_active', true);
+    }
+
+    public function scopeIsNotActive ($query) 
+    {
+        return $query->where('campaign_is_active', false);
+    }
+
+    /**
+     * Eloquent relationship between newsletter_campaign and newsletter_subscribers.
+     * One newsletter campaign may have one or more newsletter subscriber(s).
+     *
+     */
+    public function newsletter_subscribers()
+    {
+        return $this->hasMany('App\Models\NewsletterSubscriber');
+    }
 }
