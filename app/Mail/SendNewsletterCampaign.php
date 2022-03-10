@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use App\Events\SendNewsletter;
 
 class SendNewsletterCampaign extends Mailable implements ShouldQueue
 {
@@ -33,6 +34,10 @@ class SendNewsletterCampaign extends Mailable implements ShouldQueue
         $mailFromAddress = config('mail.from.address');
         $mailFromName = config('mail.from.name');
         $mailSubject = $this->newsletterSubscriberData[0]['campaign_name'];
+
+        $newsletterSubscriber = $this->newsletterSubscriberData;
+
+        event(new SendNewsletter($newsletterSubscriber));
 
         return $this->view('emails.sendNewsletterCampaign')
                     ->from($mailFromAddress, $mailFromName)

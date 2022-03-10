@@ -40,8 +40,8 @@ class SendNewsletter extends Command
      */
     public function handle()
     {
-        $this->modelNameBlogCategories = new NewsletterCampaign();
-        $activeCampaignSubscribers = $this->modelNameBlogCategories
+        $this->modelNameNewsletterCampaign = new NewsletterCampaign();
+        $activeCampaignSubscribers = $this->modelNameNewsletterCampaign
                                     ->select('id', 'campaign_name', 'valid_from', 'valid_to')
                                     ->isActive()
                                     ->where('id', '<>', 1)
