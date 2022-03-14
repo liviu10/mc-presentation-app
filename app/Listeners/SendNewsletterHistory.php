@@ -29,13 +29,17 @@ class SendNewsletterHistory
     {
         $newsletterSubscriberInfo = $event->newsletterSubscriber;
 
-        $newsletterSubscriberHistory = DB::table('newsletter_logs')->insert([
-            'newsletter_campaign_id' => $newsletterSubscriberInfo[0]['newsletter_subscribers'][0]['newsletter_campaign_id'],
-            'full_name' => $newsletterSubscriberInfo[0]['newsletter_subscribers'][0]['full_name'],
-            'email' => $newsletterSubscriberInfo[0]['newsletter_subscribers'][0]['email'],
-            'status' => 'trimis',
-        ]);
-
+        foreach ($newsletterSubscriberInfo[0]['newsletter_subscribers'] as $subscriberLog)
+        {
+            $newsletterSubscriberHistory = DB::table('newsletter_logs')->insert([
+                'newsletter_campaign_id' => $subscriberLog['newsletter_campaign_id'],
+                'full_name' => $subscriberLog['full_name'],
+                'email' => $subscriberLog['email'],
+                'status' => 'trimis',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ]);
+        }
         return $newsletterSubscriberHistory;
     }
 }

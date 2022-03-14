@@ -37,6 +37,7 @@ class SendNewsletterCampaign extends Mailable implements ShouldQueue
 
         $newsletterSubscriber = $this->newsletterSubscriberData;
 
+        // TODO: catch email errors and possible to retry sending the email for 3 times before doing ping and save it to logs
         event(new SendNewsletter($newsletterSubscriber));
 
         return $this->view('emails.sendNewsletterCampaign')

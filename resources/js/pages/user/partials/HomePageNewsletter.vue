@@ -77,6 +77,7 @@ export default {
         privacy_policy: false
       }),
       subscriberFullName: '',
+      subscriberEmailAddress: '',
       newsletterImages: [
         'images/pages/home/newsletter/newsletter_img0_259.webp',
         'images/pages/home/newsletter/newsletter_img1_259.webp',
@@ -120,6 +121,21 @@ export default {
           Swal.fire({
             title: this.$t('user.home_page.newsletter.swal.title', { subscriberFullName: this.subscriberFullName }),
             text: this.$t('user.home_page.newsletter.swal.message'),
+            imageUrl: this.displayRandomNewsletterImage(this.newsletterImages),
+            imageWidth: 259,
+            imageHeight: 194
+          }).then((result) => {
+            this.form.full_name = null
+            this.form.email = null
+            this.form.privacy_policy = null
+          })
+        })
+        .catch(error => {
+          this.subscriberFullName = error.response.config.full_name
+          this.subscriberEmailAddress = error.response.config.email
+          Swal.fire({
+            title: this.$t('user.home_page.newsletter.swal_error.title', { subscriberFullName: this.subscriberFullName }),
+            text: this.$t('user.home_page.newsletter.swal_error.message', { subscriberEmailAddress: this.subscriberEmailAddress }),
             imageUrl: this.displayRandomNewsletterImage(this.newsletterImages),
             imageWidth: 259,
             imageHeight: 194

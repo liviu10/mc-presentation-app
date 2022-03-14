@@ -65,6 +65,10 @@
         "swal": {
           "title": "Thank you, {subscriberFullName}!",
           "message": "I am grateful that you subscribed to my newsletter! Soon you will receive more surprises from me on your email!"
+        },
+        "swal_error": {
+          "title": "Thank you, {subscriberFullName}!",
+          "message": "I am grateful that you want to subscribe to my newsletter! Unfortunately, the email address: {subscriberEmailAddress} you have inserted is invalid! Please try again with a valid one!"
         }
       }
     },

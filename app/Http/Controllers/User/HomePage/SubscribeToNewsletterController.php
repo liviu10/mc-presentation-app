@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\NewsletterCampaign;
 use App\Models\NewsletterSubscriber;
+use App\Models\AcceptedDomain;
 use App\Mail\WelcomeNewsletter;
 use Illuminate\Support\Facades\Mail;
 
@@ -13,6 +14,7 @@ class SubscribeToNewsletterController extends Controller
 {
     protected $modelNameNewsletterCampaign;
     protected $modelNameNewsletterSubscriber;
+    protected $modelNameAcceptedDomain;
 
     /**
      * Instantiate the variables that will be used to get the model.
@@ -23,6 +25,7 @@ class SubscribeToNewsletterController extends Controller
     {
         $this->modelNameNewsletterCampaign = new NewsletterCampaign();
         $this->modelNameNewsletterSubscriber = new NewsletterSubscriber();
+        $this->modelNameAcceptedDomain = new AcceptedDomain();
     }
 
     /**
@@ -40,37 +43,54 @@ class SubscribeToNewsletterController extends Controller
                 'email'     => 'required|email:filter|max:255|unique:newsletter_subscribers',
             ]);
 
-            $getCurrentActiveCampaignId = $this->modelNameNewsletterCampaign->select('id', 'campaign_is_active')->where('campaign_is_active', '=', 1)->get()->toArray();
+            // Check the email address against the accepted domains
+            $getEmailAddressProvider = $this->modelNameAcceptedDomain->select('id', 'domain')->where('domain', '=', '.' . explode('.', substr(strstr($request->get('email'), '@'), 1))[0])->get()->toArray();
+            $getEmailAddressDomain = $this->modelNameAcceptedDomain->select('id', 'domain')->where('domain', '=', '.' . explode('.', substr(strstr($request->get('email'), '@'), 1))[1])->get()->toArray();
 
-            // Allocate user to the current active newsletter campaign
-            if (count($getCurrentActiveCampaignId) !== 0 && count($getCurrentActiveCampaignId) > 1) {
-                $records = $this->modelNameNewsletterSubscriber->create([
-                    'newsletter_campaign_id'  => array_slice($getCurrentActiveCampaignId, 1)[0]['id'],
-                    'full_name'               => $request->get('full_name'),
-                    'email'                   => $request->get('email'),
-                    'privacy_policy'          => $request->get('privacy_policy'),
-                ]);
+            if (count($getEmailAddressProvider) === 1 && count($getEmailAddressDomain) === 1) 
+            {
+                // The email provider and the domain exist in the accepted domain list and the script will proceed with the rest of the flow
+                $getCurrentActiveCampaignId = $this->modelNameNewsletterCampaign->select('id', 'campaign_is_active')->where('campaign_is_active', '=', 1)->get()->toArray();
+                // Allocate user to the current active newsletter campaign
+                if (count($getCurrentActiveCampaignId) !== 0 && count($getCurrentActiveCampaignId) > 1) {
+                    $records = $this->modelNameNewsletterSubscriber->create([
+                        'newsletter_campaign_id'  => array_slice($getCurrentActiveCampaignId, 1)[0]['id'],
+                        'full_name'               => $request->get('full_name'),
+                        'email'                   => $request->get('email'),
+                        'privacy_policy'          => $request->get('privacy_policy'),
+                    ]);
+                }
+                // Allocate user to the generic newsletter campaign
+                else {
+                    $records = $this->modelNameNewsletterSubscriber->create([
+                        'newsletter_campaign_id'  => 1,
+                        'full_name'               => $request->get('full_name'),
+                        'email'                   => $request->get('email'),
+                        'privacy_policy'          => $request->get('privacy_policy'),
+                    ]);
+                }
+
+                $email = $records['email'];
+                Mail::to($email)->send(new WelcomeNewsletter($records));
+
+                $apiInsertSingleRecord = [
+                    'newsletter_campaign_id' => $records['newsletter_campaign_id'],
+                    'full_name' => $records['full_name'],
+                    'email' => $records['email'],
+                    'privacy_policy' => $records['privacy_policy'],
+                ];
+                return response()->json($apiInsertSingleRecord);
             }
-            // Allocate user to the generic newsletter campaign
-            else {
-                $records = $this->modelNameNewsletterSubscriber->create([
-                    'newsletter_campaign_id'  => 1,
-                    'full_name'               => $request->get('full_name'),
-                    'email'                   => $request->get('email'),
-                    'privacy_policy'          => $request->get('privacy_policy'),
-                ]);
+            else
+            {
+                // The email provider and the domain does not exist in the accepted domain list
+                $completeEmailProvider = substr(strstr($request->get('email'), '@'), 1);
+                escapeshellcmd(exec('ping ' . escapeshellarg($completeEmailProvider), $output, $value));
+                if ($value === 1) 
+                {
+                    return response([], 406);
+                }
             }
-
-            $email = $records['email'];
-            Mail::to($email)->send(new WelcomeNewsletter($records));
-
-            $apiInsertSingleRecord = [
-                'newsletter_campaign_id' => $records['newsletter_campaign_id'],
-                'full_name' => $records['full_name'],
-                'email' => $records['email'],
-                'privacy_policy' => $records['privacy_policy'],
-            ];
-            return response()->json($apiInsertSingleRecord);
         }
         catch  (\Illuminate\Database\QueryException $mysqlError)
         {

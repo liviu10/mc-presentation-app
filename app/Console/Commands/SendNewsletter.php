@@ -60,8 +60,9 @@ class SendNewsletter extends Command
         foreach ($emailAddresses as $emailAddress) 
         {
             $sendNewsletterEmail = new SendNewsletterCampaign($activeCampaignSubscribers);
-            Mail::to($emailAddress)->send($sendNewsletterEmail);
         }
+
+        Mail::to($emailAddress)->send($sendNewsletterEmail);
 
         return Command::SUCCESS;
     }

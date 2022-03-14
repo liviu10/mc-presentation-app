@@ -65,6 +65,10 @@
         "swal": {
           "title": "Mulțumesc, {subscriberFullName}!",
           "message": "Sunt recunoscătoare că te-ai abonat la newsletter-ul meu! În curând vei primi pe email mai multe surprize din partea mea!"
+        },
+        "swal_error": {
+          "title": "Mulțumesc, {subscriberFullName}!",
+          "message": "Sunt recunoscătoare că vrei să te abonezi la newsletter-ul meu! Dar, din nefericire adresa de email: {subscriberEmailAddress} pe care ai introdus-o este invalidă! Te rog, să reîncerci cu una validă!"
         }
       }
     },

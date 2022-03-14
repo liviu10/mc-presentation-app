@@ -27,7 +27,8 @@ class DatabaseSeeder extends Seeder
             QuestionnaireQuestionSeeder::class,
             QuestionnaireMediaTypeSeeder::class,
             QuestionnaireAnswerSeeder::class,
-            NewsletterCampaignSeeder::class
+            NewsletterCampaignSeeder::class,
+            AcceptedDomainSeeder::class,
         ]);
     }
 }
