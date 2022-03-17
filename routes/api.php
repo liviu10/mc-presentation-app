@@ -43,8 +43,8 @@ use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\User\Auth\ResetPasswordController;
     use App\Http\Controllers\User\Auth\UserController;
     use App\Http\Controllers\User\Auth\VerificationController;
-    use App\Http\Controllers\User\Settings\PasswordController;
-    use App\Http\Controllers\User\Settings\ProfileController;
+    use App\Http\Controllers\Settings\PasswordController;
+    use App\Http\Controllers\Settings\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | FRONT VIEW WEB APPLICATION API ROUTES
@@ -134,39 +134,32 @@ use Illuminate\Support\Facades\Route;
 | only the HTTP requests that comes from the user.
 |
 */
-    // Import the Home, Newsletter and Terms and Conditions Admin Controller files
-    use App\Http\Controllers\Admin\HomeSystem\HomeSystemController;
+    // Import the Home, Newsletter and Terms and Conditions systems
     use App\Http\Controllers\Admin\HomeSystem\NewsletterSystemController;
-    use App\Http\Controllers\Admin\HomeSystem\TermsAndConditionsSystemController;
 
-    // Import the Schedule Appointment Admin Controller files
+    // Import the Schedule Appointment system
     use App\Http\Controllers\Admin\ScheduleAppointmentSystem\ScheduleAppointmentSystemController;
     use App\Http\Controllers\Admin\ScheduleAppointmentSystem\QuestionnaireAppointmentSystemController;
     use App\Http\Controllers\Admin\ScheduleAppointmentSystem\BookAppointmentSystemController;
 
-    // Import the Blog System Controller files
+    // Import the Blog System system
     use App\Http\Controllers\Admin\BlogSystem\BlogCategorySystemController;
-    use App\Http\Controllers\Admin\BlogSystem\BlogSubcategorySystemController;
     use App\Http\Controllers\Admin\BlogSystem\BlogArticleSystemController;
-    use App\Http\Controllers\Admin\BlogSystem\BlogArticleCommentSystemController;
-    use App\Http\Controllers\Admin\BlogSystem\BlogArticleCommentReplySystemController;
 
-    // Import the About Me page Controller files
+    // Import the About Me system
     use App\Http\Controllers\Admin\AboutMeSystem\AboutMeSystemController;
     
-    // Import the Contact Me page Controller file
-    use App\Http\Controllers\Admin\ContactMeSystem\ContactMeSystemController;    
+    // Import the Contact Me system
+    use App\Http\Controllers\Admin\ContactMeSystem\ContactMeSystemController;
 
-    // Import Login and Registration System Controller files
-    // use App\Http\Controllers\Auth\ForgotPasswordController;
-    // use App\Http\Controllers\Auth\LoginController;
-    // use App\Http\Controllers\Auth\OAuthController;
-    // use App\Http\Controllers\Auth\RegisterController;
-    // use App\Http\Controllers\Auth\ResetPasswordController;
-    // use App\Http\Controllers\Auth\UserController;
-    // use App\Http\Controllers\Auth\VerificationController;
-    // use App\Http\Controllers\Settings\PasswordController;
-    // use App\Http\Controllers\Settings\ProfileController;
+    // Import the Error and Notification system
+    use App\Http\Controllers\Admin\ErrorAndNotificationSystem\ErrorAndNotificationSystemController;
+
+    // Import the Accepted Domains system
+    use App\Http\Controllers\Admin\AcceptedDomainSystem\AcceptedDomainSystemController;
+
+    // Import the User List system
+    use App\Http\Controllers\Admin\UserListSystem\UserListSystemController;
 /*
 |--------------------------------------------------------------------------
 | API Routes for the Administration View of the Web Application
@@ -184,49 +177,48 @@ use Illuminate\Support\Facades\Route;
         Route::patch('/settings/profile', [ProfileController::class, 'update']);
         Route::patch('/settings/password', [PasswordController::class, 'update']);
 
-        // Home, Newsletter and Terms and Conditions System Admin API routes
-        Route::apiResource('', HomeSystemController::class);
-        Route::group([ 'prefix' => '/newsletter-system' ], function () {
-            Route::delete('/newsletter-system/delete-all', [NewsletterSystemController::class, 'deleteAllRecords']);
-            Route::apiResource('/', NewsletterSystemController::class);
+        Route::group([ 'prefix' => '/system' ], function () {
+            // Error and Notification System API routes
+            Route::delete('/error-and-notification/delete-all', [ErrorAndNotificationSystemController::class, 'deleteAllRecords']);
+            Route::apiResource('/error-and-notification', ErrorAndNotificationSystemController::class);
+
+            // Newsletter System Admin API routes
+            Route::group([ 'prefix' => '/newsletter-campaign' ], function () {
+                Route::delete('/delete-all', [NewsletterSystemController::class, 'deleteAllRecords']);
+                Route::get('/logs', [NewsletterSystemController::class, 'showNewsletterLogs']);
+                Route::apiResource('/', NewsletterSystemController::class);
+            });
+
+            // Blog System Admin API routes
+            Route::group([ 'prefix' => '/blog' ], function () {
+                // Blog categories & subcategories Admin API routes
+                Route::group([ 'prefix' => '/' ], function () {
+                    Route::delete('/delete-all-categories', [BlogCategorySystemController::class, 'deleteAllCategories']);
+                    Route::post('/create-subcategory', [BlogCategorySystemController::class, 'createSubcategory']);
+                    Route::put('/edit-subcategory/{id}', [BlogCategorySystemController::class, 'editSubcategory']);
+                    Route::delete('/delete-subcategory/{id}', [BlogCategorySystemController::class, 'deleteSubcategory']);
+                    Route::delete('/delete-all-subcategories', [BlogCategorySystemController::class, 'deleteAllSubcategories']);
+                    Route::apiResource('/categories-and-subcategories', BlogCategorySystemController::class);
+                });
+                // Blog articles, appreciations & comments Admin API routes
+                Route::group([ 'prefix' => '/' ], function () {
+                    Route::delete('/delete-all-articles', [BlogArticleSystemController::class, 'deleteAllArticles']);
+                    Route::apiResource('/articles-and-comments', BlogArticleSystemController::class);
+                });
+            });
+
+            // Contact me System Admin API routes
+            Route::group([ 'prefix' => '/' ], function () {
+                Route::delete('/contact-me/delete-all', [ContactMeSystemController::class, 'deleteAllRecords']);
+                Route::apiResource('/contact-me', ContactMeSystemController::class);
+            });
+
+            // Accepted Domains Admin API routes
+            Route::apiResource('/accepted-domains', AcceptedDomainSystemController::class);
+
+            // User List Admin API routes
+            Route::apiResource('/user-list', UserListSystemController::class);
         });
-        Route::apiResource('/terms-and-conditions', TermsAndConditionsSystemController::class)->only(['index']);
-
-        // Schedule Appointment System Admin API routes
-        Route::group([ 'prefix' => '/schedule-appointment-system' ], function () {
-            Route::apiResource('/', ScheduleAppointmentSystemController::class)->only(['index']);
-            Route::apiResource('/questionnaire', QuestionnaireAppointmentSystemController::class)->only(['index', 'store']);
-            Route::apiResource('/booking', BookAppointmentSystemController::class)->only(['index', 'store']);
-        });
-
-        // Blog System Admin API routes
-        Route::group([ 'prefix' => '/blog-system' ], function () {
-            // Blog categories Admin API routes
-            Route::delete('/delete-all-categories', [BlogCategorySystemController::class, 'deleteAllRecords']);
-            Route::apiResource('/categories', BlogCategorySystemController::class);
-
-            // Blog subcategories Admin API routes
-            Route::delete('/delete-all-subcategories', [BlogSubcategorySystemController::class, 'deleteAllRecords']);
-            Route::apiResource('/subcategories', BlogSubcategorySystemController::class);
-
-            // Blog articles Admin API routes
-            Route::delete('/delete-all-articles', [BlogArticleSystemController::class, 'deleteAllRecords']);
-            Route::apiResource('/articles', BlogArticleSystemController::class);
-
-            // Blog article comments Admin API routes
-            Route::delete('/delete-all-comments', [BlogArticleCommentSystemController::class, 'deleteAllRecords']);
-            Route::apiResource('/comments', BlogArticleCommentSystemController::class);
-
-            // Blog article comment replies Admin API routes
-            Route::delete('/delete-all-replies', [BlogArticleCommentReplySystemController::class, 'deleteAllRecords']);
-            Route::apiResource('/replies', BlogArticleCommentReplySystemController::class);
-        });
-
-        // About me System Admin API routes
-        Route::apiResource('/about-me-system', AboutMeSystemController::class);
-
-        // Contact me System Admin API routes
-        Route::apiResource('/contact-me-system', ContactMeSystemController::class);
     });
 /*
 |--------------------------------------------------------------------------
