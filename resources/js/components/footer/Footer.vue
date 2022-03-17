@@ -39,7 +39,7 @@
           <router-link :to="{ name: 'home-page' }">
             <span>Mădălina Corina Marius</span>
           </router-link>
-          {{ $t('footer.copyright.info') }}
+          {{ $t('user.footer.copyright.info') }}
         </p>
         <p>
           Designed by

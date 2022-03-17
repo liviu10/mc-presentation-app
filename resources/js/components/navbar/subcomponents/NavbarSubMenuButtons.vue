@@ -39,8 +39,13 @@ export default {
     async logout () {
       // Log out the user.
       await this.$store.dispatch('auth/logout')
+
       // Redirect to home page.
-      this.$router.push({ name: 'home-page' })
+      const adminHomePageUrl = '/admin/home'
+      const getUrlPathName = this.$route.fullPath
+      if (getUrlPathName.includes(adminHomePageUrl) === true) {
+        this.$router.push({ name: 'home-page' })
+      }
     }
   }
 }

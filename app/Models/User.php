@@ -25,6 +25,7 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
         'nickname',
         'email',
         'password',
+        'user_role_type_id',
     ];
 
     /**
@@ -103,6 +104,16 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
     public function blog_article_dislike()
     {
         return $this->hasMany('App\Models\BlogArticleDislike');
+    }
+
+    /**
+     * Eloquent relationship between users and user_role_types.
+     * One or many users may have only one user role type.
+     *
+     */
+    public function user_role_type()
+    {
+        return $this->belongsTo('App\Models\UserRoleType');
     }
 
     /**

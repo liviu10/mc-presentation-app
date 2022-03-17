@@ -19,6 +19,10 @@
         "fifth_button": "Contact me",
         "sixth_button": "Login"
       },
+      "auth_main_menu": {
+        "first_button": "Go to website",
+        "second_button": "Go to admin"
+      },
       "sub_menu": {
         "first_button": "Profile settings",
         "second_button": "Logout"

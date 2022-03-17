@@ -19,6 +19,10 @@
         "fifth_button": "Contactează-mă",
         "sixth_button": "Autentificare"
       },
+      "auth_main_menu": {
+        "first_button": "Înapoi la website",
+        "second_button": "Înapoi la admin"
+      },
       "sub_menu": {
         "first_button": "Setări Profil",
         "second_button": "Ieșire"

@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('nickname');
             $table->string('email')->unique();
+            $table->foreignId('user_role_type_id')->index('idx_user_role_type_id');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->rememberToken();
