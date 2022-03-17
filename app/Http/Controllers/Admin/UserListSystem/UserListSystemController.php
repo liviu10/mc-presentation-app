@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\UserListSystem;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\ErrorAndNotificationSystem;
 
@@ -39,7 +40,11 @@ class UserListSystemController extends Controller
     {
         try
         {
-            $apiDisplayAllRecords = $this->modelNameUser->select('*')->get();
+            $apiDisplayAllRecords = $this->modelNameUser->select('*')->with([
+                'user_role_type' => function ($query) {
+                    $query->select('*');
+                }
+            ])->get();
             if ($apiDisplayAllRecords->isEmpty())
             {
                 return response([
@@ -132,7 +137,13 @@ class UserListSystemController extends Controller
                 'email' => 'required|email:filter|max:255|unique:users',
                 'password' => 'required|min:8',
             ]);
-            $apiInsertSingleRecord = $this->modelNameUser->create(array_merge($request->input()));
+            $apiInsertSingleRecord = $this->modelNameUser->create([
+                'name'     => $request->get('name'),
+                'nickname' => $request->get('nickname'),
+                'email'    => $request->get('email'),
+                'password' => $request->get('password'),
+                'user_role_type_id' => 6,
+            ]);
             return response([
                 'title'              => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_title'),
                 'notify_code'        => 'INFO_00002',
@@ -304,6 +315,7 @@ class UserListSystemController extends Controller
     {
         try
         {
+            $getCurrentUserRole = $this->modelNameUser::select('user_role_type_id')->where('id', '=', Auth::id())->get()->toArray()[0]['user_role_type_id'];
             $request->validate([
                 'name'     => 'required|max:255',
                 'nickname' => 'required|max:255',
@@ -316,6 +328,7 @@ class UserListSystemController extends Controller
                 'nickname' => $request->get('nickname'),
                 'email'    => $request->get('email'),
                 'password' => $request->get('password'),
+                'user_role_type_id' => $getCurrentUserRole,
             ]);
             return response([
                 'title'              => __('error_and_notification_system.update.info_00002_notify.user_has_rights.message_title'),

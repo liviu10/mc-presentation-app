@@ -1437,6 +1437,7 @@ class AcceptedDomainSeeder extends Seeder
             [ 'id' => 1419, 'domain' => '.zone', 'type' => 'generic', ],
             [ 'id' => 1420, 'domain' => '.zuerich', 'type' => 'generic', ],
             [ 'id' => 1421, 'domain' => '.zw', 'type' => 'country-code', ],
+            [ 'id' => 1422, 'domain' => '.localhost', 'type' => 'local-environment', ],
         ];
         AcceptedDomain::insert($records);
     }

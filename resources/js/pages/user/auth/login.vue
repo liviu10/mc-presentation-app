@@ -104,6 +104,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import Form from 'vform'
 import Cookies from 'js-cookie'
 import LoginWithFacebook from './social-media/LoginWithFacebook.vue'
@@ -127,6 +128,10 @@ export default {
       password: ''
     }),
     remember: false
+  }),
+
+  computed: mapGetters({
+    user: 'auth/user'
   }),
 
   methods: {
@@ -154,7 +159,11 @@ export default {
         Cookies.remove('intended_url')
         this.$router.push({ path: intendedUrl })
       } else {
-        this.$router.push({ path: this.$router.history._startLocation })
+        if (this.user.user_role_type_id === 1) {
+          this.$router.push({ name: 'admin-home-page' })
+        } else {
+          this.$router.push({ path: this.$router.history._startLocation })
+        }
       }
     }
   }
