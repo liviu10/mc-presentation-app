@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AcceptedDomain extends Model
+class NewsletterLog extends Model
 {
     use HasFactory;
 
@@ -14,7 +14,7 @@ class AcceptedDomain extends Model
      * 
      * @var string
      */
-    protected $table = 'accepted_domains';
+    protected $table = 'newsletter_logs';
 
     /**
      * The primary key associated with the table.
@@ -36,8 +36,10 @@ class AcceptedDomain extends Model
      * @var string
      */
     protected $fillable = [
-        'domain',
-        'type',
+        'newsletter_campaign_id',
+        'full_name',
+        'email',
+        'status',
     ];
 
     /**
@@ -50,29 +52,4 @@ class AcceptedDomain extends Model
         'created_at',
         'updated_at',
     ];
-
-    public function scopeCountryCode ($query) 
-    {
-        return $query->where('type', '=', 'country-code');
-    }
-
-    public function scopeGeneric ($query) 
-    {
-        return $query->where('type', '=', 'generic');
-    }
-
-    public function scopeGenericRestricted ($query) 
-    {
-        return $query->where('type', '=', 'generic-restricted');
-    }
-
-    public function scopeInfrastructure ($query) 
-    {
-        return $query->where('type', '=', 'infrastructure');
-    }
-
-    public function scopeSponsored ($query) 
-    {
-        return $query->where('type', '=', 'sponsored');
-    }
 }
