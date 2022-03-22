@@ -28,10 +28,11 @@
         "second_button": "Mesaje contactează-mă",
         "third_button": "Campanii newsletter",
         "forth_button": "Domenii acceptate",
-        "fifth_button": "Documentație",
-        "sixth_button": "Listă utilizatori",
-        "seventh_button": "Setări profil",
-        "eighth_button": "Ieșire"
+        "fifth_button": "Erori și Notificări",
+        "sixth_button": "Documentație",
+        "seventh_button": "Listă utilizatori",
+        "eighth_button": "Setări profil",
+        "ninth_button": "Ieșire"
       }
     },
     "footer": {

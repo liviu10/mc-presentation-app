@@ -173,18 +173,27 @@ return [
             'accepted'  => 'You must accept the :attribute.',
         ],
         'domain' => [
-            'required'  => 'You must accept the :attribute.',
+            'required'  => ':attribute is required.',
             'regex'     => ':attribute contains invalid characters (this must contain only small letters).',
             'max'       => ':attribute must not exceed 50 characters.',
             'unique'    => ':attribute already exists in the database.',
         ],
         'type' => [
-            'required'  => 'You must accept the :attribute.',
+            'required'  => ':attribute is required.',
             'regex'     => ':attribute contains invalid characters.',
             'max'       => ':attribute must not exceed 50 characters.',
         ],
+        'notify_code' => [
+            'required'  => ':attribute is required.',
+            'regex'     => ':attribute contains invalid characters (this must contain capitalize / small letter or numbers).',
+            'max'       => ':attribute must not exceed 10 characters.',
+            'unique'    => ':attribute already exists in the database.',
+        ],
+        'notify_short_description' => [
+            'required'  => ':attribute is required.',
+            'max'       => ':attribute must not exceed 255 characters.',
+        ],
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Attributes
@@ -197,17 +206,19 @@ return [
     */
 
     'attributes' => [
-        'name'                   => 'Name and Surname',
-        'email'                  => 'Email Address',
-        'nickname'               => 'Nickname',
-        'password'               => 'Password',
-        'message'                => 'Message',
-        'comment'                => 'Comment',
-        'comment_reply'          => 'Comment reply',
-        'reply_to_comment_reply' => 'Comment reply',
-        'privacy_policy'         => 'Terms and Conditions',
-        'domain'                 => 'Domain name',
-        'type'                   => 'Domain type name',
+        'name'                     => 'Name and Surname',
+        'email'                    => 'Email Address',
+        'nickname'                 => 'Nickname',
+        'password'                 => 'Password',
+        'message'                  => 'Message',
+        'comment'                  => 'Comment',
+        'comment_reply'            => 'Comment reply',
+        'reply_to_comment_reply'   => 'Comment reply',
+        'privacy_policy'           => 'Terms and Conditions',
+        'domain'                   => 'Domain name',
+        'type'                     => 'Domain type name',
+        'notify_code'              => 'Notify code',
+        'notify_short_description' => 'Notify short description',
     ],
 
 ];

@@ -132,7 +132,7 @@ return [
         'info_00002_notify' => [
             'user_has_rights' => [
                 'message_title'           => 'Success!',
-                'message_super_admin'     => 'The record :record was successfully updated to :newNotifyCode and saved in the database table \':databaseName.:tableName\'!',
+                'message_super_admin'     => 'The record :record was successfully updated and saved in the database table \':databaseName.:tableName\'!',
             ],
             'user_do_not_have_rights' => [
                 'message_title'           => 'Insufficient rights!',

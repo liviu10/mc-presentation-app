@@ -1,60 +1,60 @@
 <template>
-  <!-- ADD NEW DOMAIN, SECTION START -->
-  <div id="createNewAcceptedDomain" class="modal fade" tabindex="-1" aria-labelledby="createNewAcceptedDomainLabel" aria-hidden="true">
+  <!-- EDIT ERROR AND NOTIFICATION, SECTION START -->
+  <div id="editErrorAndNotification" class="modal fade" tabindex="-1" aria-labelledby="editErrorAndNotificationLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 id="createNewAcceptedDomainLabel" class="modal-title">
-            CREATE NEW ACCEPTED DOMAIN
+          <h5 id="editErrorAndNotificationLabel" class="modal-title">
+            EDIT ERROR AND NOTIFICATION
           </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />
         </div>
         <div class="modal-body">
-          <form @submit.prevent="createNewAcceptedDomain" @keydown="form.onKeydown($event)">
+          <form @submit.prevent="edit" @keydown="form.onKeydown($event)">
             <div class="col col-12 my-3">
-              <input id="domain"
-                     v-model="form.domain"
+              <input id="notify_code"
+                     v-model="form.notify_code"
                      type="text"
-                     :class="{ 'is-invalid': form.errors.has('domain') }"
+                     :class="{ 'is-invalid': form.errors.has('notify_code') }"
                      class="form-control"
-                     placeholder="Insert domain name"
-                     name="domain"
+                     :placeholder="editRow.notify_code"
+                     name="notify_code"
               >
-              <has-error :form="form" field="domain" />
+              <has-error :form="form" field="notify_code" />
             </div>
             <div class="col col-12 my-3">
-              <input id="type"
-                     v-model="form.type"
+              <input id="notify_short_description"
+                     v-model="form.notify_short_description"
                      type="text"
-                     :class="{ 'is-invalid': form.errors.has('type') }"
+                     :class="{ 'is-invalid': form.errors.has('notify_short_description') }"
                      class="form-control"
-                     placeholder="Insert domain type"
-                     name="type"
+                     :placeholder="editRow.notify_short_description"
+                     name="notify_short_description"
               >
-              <has-error :form="form" field="type" />
+              <has-error :form="form" field="notify_short_description" />
             </div>
             <div class="modal-buttons">
               <button ref="close" type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                 Close
               </button>
               <button type="submit" class="btn btn-primary">
-                Save
+                Update
               </button>
             </div>
           </form>
         </div>
       </div>
     </div>
-    <!-- ADD NEW DOMAIN, SECTION END -->
   </div>
+  <!-- EDIT ERROR AND NOTIFICATION, SECTION END -->
 </template>
 
 <script>
 import Vue from 'vue'
 import Vuex, { mapGetters } from 'vuex'
-import Swal from 'sweetalert2/dist/sweetalert2.js'
 import axios from 'axios'
 import Form from 'vform'
+import Swal from 'sweetalert2/dist/sweetalert2.js'
 
 Vue.use(axios)
 Vue.use(Vuex)
@@ -62,21 +62,27 @@ Vue.use(Vuex)
 window.axios = require('axios')
 
 export default {
-  name: 'NewAcceptedDomains',
+  name: 'EditErrorAndNotification',
+  middleware: 'auth',
+  props: {
+    editRow: {
+      default: null,
+      type: Object
+    }
+  },
   data: function () {
     return {
       form: new Form({
-        domain: '',
-        type: ''
-      }),
-      showNotificationMessage: false
+        notify_code: this.editRow.notify_code,
+        notify_short_description: this.editRow.notify_short_description
+      })
     }
   },
   computed: mapGetters({
     user: 'auth/user'
   }),
   methods: {
-    async createNewAcceptedDomain () {
+    async edit () {
       if (!this.user) {
         Swal.fire({
           title: 'Unauthenticated User Title',
@@ -88,18 +94,18 @@ export default {
           if (result.isConfirmed) {
             this.$router.push({ name: 'user.auth.login' })
           } else {
-            this.form.domain = ''
-            this.form.type = ''
+            this.form.notify_code = ''
+            this.form.notify_short_description = ''
           }
         })
       } else {
         const url = window.location.origin
-        const apiEndPoint = '/api/admin/system/accepted-domains'
+        const apiEndPoint = '/api/admin/system/errors-and-notifications/' + this.editRow.id
         const fullApiUrl = url + apiEndPoint
         try {
-          await this.form.post(fullApiUrl, {
-            domain: this.form.domain,
-            type: this.form.type
+          await this.form.put(fullApiUrl, {
+            notify_code: this.form.notify_code,
+            notify_short_description: this.form.notify_short_description
           })
             .then(response => {
               console.log('> response message: ')
@@ -109,11 +115,11 @@ export default {
                 html:
                     '<p>Notify code: ' + '<a href="' + response.data.reference + '">' + response.data.notify_code + '</a>' + '</p>' +
                     '<p>' + response.data.description + '</p>' +
-                    '<p>Inserted domain name and type: ' + response.data.records.domain + ' (' + response.data.records.type + ')' + '</p>'
+                    '<p>Inserted notify code: ' + response.data.records.notify_code + '</p>'
               }).then((result) => {
                 console.log('> result message: ')
-                this.form.domain = ''
-                this.form.type = ''
+                this.form.notify_code = ''
+                this.form.notify_short_description = ''
                 window.location.reload()
               })
             })
@@ -126,18 +132,7 @@ export default {
               html:
                   '<p>Notify code: ' + '<a href="' + err.response.data.reference + '">' + err.response.data.notify_code + '</a>' + '</p>' +
                   '<p>' + err.response.data.description + '</p>' +
-                  '<p>Inserted domain name and type: ' + this.form.domain + ' (' + this.form.type + ')' + '</p>'
-            })
-          }
-          if (err.response.status === 406) {
-            console.log('> error message: ')
-            this.$refs.close.click()
-            Swal.fire({
-              title: err.response.data.title,
-              html:
-                  '<p>Notify code: ' + '<a href="' + err.response.data.reference + '">' + err.response.data.notify_code + '</a>' + '</p>' +
-                  '<p>' + err.response.data.description + '</p>' +
-                  '<p>Inserted domain name and type: ' + this.form.domain + ' (' + this.form.type + ')' + '</p>'
+                  '<p>Inserted notify code: ' + this.form.notify_code + '</p>'
             })
           }
         }
