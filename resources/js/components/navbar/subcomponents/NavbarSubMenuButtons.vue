@@ -29,26 +29,30 @@
           <fa :icon="['fab', 'internet-explorer']" fixed-width />
           {{ $t('user.navigation_bar.sub_menu.forth_button') }}
         </router-link>
+        <router-link :to="{ name: 'admin-errors-and-notifications-page' }" class="dropdown-item p-2">
+          <fa icon="cog" fixed-width />
+          {{ $t('user.navigation_bar.sub_menu.fifth_button') }}
+        </router-link>
         <router-link :to="{ name: 'admin-documentation-page' }" class="dropdown-item p-2">
           <fa icon="book" fixed-width />
-          {{ $t('user.navigation_bar.sub_menu.fifth_button') }}
+          {{ $t('user.navigation_bar.sub_menu.sixth_button') }}
         </router-link>
         <router-link :to="{ name: 'admin-user-list-page' }" class="dropdown-item p-2">
           <fa icon="users" fixed-width />
-          {{ $t('user.navigation_bar.sub_menu.sixth_button') }}
+          {{ $t('user.navigation_bar.sub_menu.seventh_button') }}
         </router-link>
       </li>
       <div class="dropdown-divider my-0" />
       <li>
         <router-link :to="{ name: 'admin-profile-settings-page' }" class="dropdown-item p-2">
           <fa icon="address-card" fixed-width />
-          {{ $t('user.navigation_bar.sub_menu.seventh_button') }}
+          {{ $t('user.navigation_bar.sub_menu.eighth_button') }}
         </router-link>
       </li>
       <li>
         <a href="#" class="dropdown-item p-2" @click.prevent="logout">
           <fa icon="sign-out-alt" fixed-width />
-          {{ $t('user.navigation_bar.sub_menu.eighth_button') }}
+          {{ $t('user.navigation_bar.sub_menu.ninth_button') }}
         </a>
       </li>
     </ul>

@@ -14,7 +14,7 @@
             <div class="col col-12 my-3">
               <input id="domain"
                      v-model="form.domain"
-                     type="domain"
+                     type="text"
                      :class="{ 'is-invalid': form.errors.has('domain') }"
                      class="form-control"
                      :placeholder="editRow.domain"
@@ -25,7 +25,7 @@
             <div class="col col-12 my-3">
               <input id="type"
                      v-model="form.type"
-                     type="type"
+                     type="text"
                      :class="{ 'is-invalid': form.errors.has('type') }"
                      class="form-control"
                      :placeholder="editRow.type"

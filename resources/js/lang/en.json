@@ -28,10 +28,11 @@
         "second_button": "Contact me messages",
         "third_button": "Newsletter campaigns",
         "forth_button": "Accepted domains",
-        "fifth_button": "Documentation",
-        "sixth_button": "User list",
-        "seventh_button": "Profile settings",
-        "eighth_button": "Logout"
+        "fifth_button": "Errors and Notifications",
+        "sixth_button": "Documentation",
+        "seventh_button": "User list",
+        "eighth_button": "Profile settings",
+        "ninth_button": "Logout"
       }
     },
     "footer": {

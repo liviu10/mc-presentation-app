@@ -183,6 +183,16 @@ return [
             'regex'     => ':attribute conține un format invalid',
             'max'       => ':attribute nu trebuie să depășească 50 de caractere.',
         ],
+        'notify_code' => [
+            'required'  => ':attribute este obligatoriu.',
+            'regex'     => ':attribute conține un format invalid (acesta trebuie să conțină litere mari / mici sau cifre).',
+            'max'       => ':attribute nu trebuie să depășească 10 de caractere.',
+            'unique'    => ':attribute există deja în baza de date.',
+        ],
+        'notify_short_description' => [
+            'required'  => ':attribute este obligatorie.',
+            'max'       => ':attribute nu trebuie să depășească 255 de caractere.',
+        ],
     ],
 
     /*
@@ -197,17 +207,19 @@ return [
     */
 
     'attributes' => [
-        'name'                   => 'Numele și Prenumele',
-        'email'                  => 'Adresa de Email',
-        'nickname'               => 'Nickname',
-        'password'               => 'Parola',
-        'message'                => 'Mesajul',
-        'comment'                => 'Comentariul',
-        'comment_reply'          => 'Răspunsul la comentariu',
-        'reply_to_comment_reply' => 'Răspunsul la comentariu',
-        'privacy_policy'         => 'Termenii și Condițiile',
-        'domain'                 => 'Numele domeniului',
-        'type'                   => 'Tipul domeniului',
+        'name'                     => 'Numele și Prenumele',
+        'email'                    => 'Adresa de Email',
+        'nickname'                 => 'Nickname',
+        'password'                 => 'Parola',
+        'message'                  => 'Mesajul',
+        'comment'                  => 'Comentariul',
+        'comment_reply'            => 'Răspunsul la comentariu',
+        'reply_to_comment_reply'   => 'Răspunsul la comentariu',
+        'privacy_policy'           => 'Termenii și Condițiile',
+        'domain'                   => 'Numele domeniului',
+        'type'                     => 'Tipul domeniului',
+        'notify_code'              => 'Codul de notificare',
+        'notify_short_description' => 'Scurta descriere a notificării',
     ],
 
 ];
