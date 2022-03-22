@@ -15,8 +15,8 @@ class CreateAcceptedDomainsTable extends Migration
     {
         Schema::create('accepted_domains', function (Blueprint $table) {
             $table->id()->index('idx_id');
-            $table->string('domain');
-            $table->string('type');
+            $table->string('domain', 50)->unique();
+            $table->string('type', 50);
             $table->timestamps();
         });
     }

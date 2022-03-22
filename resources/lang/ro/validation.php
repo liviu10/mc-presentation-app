@@ -172,6 +172,17 @@ return [
         'privacy_policy' => [
             'accepted'  => 'Trebuie să accepți :attribute.',
         ],
+        'domain' => [
+            'required'  => ':attribute este obligatoriu.',
+            'regex'     => ':attribute conține un format invalid (acesta trebuie să conțină doar litere mici).',
+            'max'       => ':attribute nu trebuie să depășească 50 de caractere.',
+            'unique'    => ':attribute există deja în baza de date.',
+        ],
+        'type' => [
+            'required'  => ':attribute este obligatoriu.',
+            'regex'     => ':attribute conține un format invalid',
+            'max'       => ':attribute nu trebuie să depășească 50 de caractere.',
+        ],
     ],
 
     /*
@@ -195,6 +206,8 @@ return [
         'comment_reply'          => 'Răspunsul la comentariu',
         'reply_to_comment_reply' => 'Răspunsul la comentariu',
         'privacy_policy'         => 'Termenii și Condițiile',
+        'domain'                 => 'Numele domeniului',
+        'type'                   => 'Tipul domeniului',
     ],
 
 ];

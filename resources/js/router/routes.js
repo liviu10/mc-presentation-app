@@ -48,6 +48,13 @@ export default [
 
   // URL routes for the Administration Panel of the Web Application
   { path: '/admin/home', name: 'admin-home-page', component: page('admin/index.vue') },
+  { path: '/admin/blog', name: 'admin-blog-page', component: page('admin/blog/index.vue') },
+  { path: '/admin/contact-me', name: 'admin-contact-me-page', component: page('admin/contact-me/index.vue') },
+  { path: '/admin/newsletter', name: 'admin-newsletter-page', component: page('admin/newsletter/index.vue') },
+  { path: '/admin/accepted-domains', name: 'admin-accepted-domains-page', component: page('admin/accepted-domains/index.vue') },
+  { path: '/admin/documentation', name: 'admin-documentation-page', component: page('admin/documentation/index.vue') },
+  { path: '/admin/user-list', name: 'admin-user-list-page', component: page('admin/user-list/index.vue') },
+  { path: '/admin/profile-settings', name: 'admin-profile-settings-page', component: page('admin/profile-settings/index.vue') },
 
   {
     path: '/settings',

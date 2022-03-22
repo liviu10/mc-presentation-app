@@ -24,8 +24,14 @@
         "second_button": "Înapoi la admin"
       },
       "sub_menu": {
-        "first_button": "Setări Profil",
-        "second_button": "Ieșire"
+        "first_button": "Blog",
+        "second_button": "Mesaje contactează-mă",
+        "third_button": "Campanii newsletter",
+        "forth_button": "Domenii acceptate",
+        "fifth_button": "Documentație",
+        "sixth_button": "Listă utilizatori",
+        "seventh_button": "Setări profil",
+        "eighth_button": "Ieșire"
       }
     },
     "footer": {
