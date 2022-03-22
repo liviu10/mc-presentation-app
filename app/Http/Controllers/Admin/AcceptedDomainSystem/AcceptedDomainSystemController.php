@@ -39,7 +39,7 @@ class AcceptedDomainSystemController extends Controller
     {
         try
         {
-            $apiDisplayAllRecords = $this->modelNameAcceptedDomain->select('*')->get();
+            $apiDisplayAllRecords = $this->modelNameAcceptedDomain->select('id', 'domain', 'type')->get();
             if ($apiDisplayAllRecords->isEmpty())
             {
                 return response([
@@ -126,10 +126,23 @@ class AcceptedDomainSystemController extends Controller
         try
         {
             $request->validate([
-                'domain' => 'required',
-                'type'   => 'required',
+                'domain' => 'required|max:50',
+                'type'   => 'required|max:50',
             ]);
-            $apiInsertSingleRecord = $this->modelNameAcceptedDomain->create(array_merge($request->input()));
+            if (substr($request->get('domain'), 0, 1) !== '.')
+            {
+                $apiInsertSingleRecord = $this->modelNameAcceptedDomain->create([
+                    'domain' => substr_replace(substr($request->get('domain'), 0, 1), '.', 0) . $request->get('domain'),
+                    'type'   => $request->get('type'),
+                ]);
+            }
+            else 
+            {
+                $apiInsertSingleRecord = $this->modelNameAcceptedDomain->create([
+                    'domain' => $request->get('domain'),
+                    'type'   => $request->get('type'),
+                ]);
+            }
             return response([
                 'title'              => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_title'),
                 'notify_code'        => 'INFO_00002',
@@ -177,6 +190,33 @@ class AcceptedDomainSystemController extends Controller
                     'records'            => [],
                 ], 500);
             }
+            if ($mysqlError->getCode() === '23000') 
+            {
+                return response([
+                    'title'              => __('error_and_notification_system.store.err_00003_notify.user_has_rights.message_title'),
+                    'notify_code'        => 'ERR_00003',
+                    'description'        => __('error_and_notification_system.store.err_00003_notify.user_has_rights.message_super_admin', [
+                        'methodName'     => $_SERVER['REQUEST_METHOD'],
+                        'apiEndpoint'    => $_SERVER['REQUEST_URI'],
+                        'serviceName' => __NAMESPACE__ . '\\' . basename(AcceptedDomainSystemController::class) . '.php',
+                        'databaseName'   => config('database.connections.mysql.database'),
+                        'tableName'      => 'accepted_domains',
+                    ]),
+                    'reference'          => config('app.url') . '/documentation/error#ERR_00001',
+                    'api_endpoint'       => $_SERVER['REQUEST_URI'],
+                    'http_response'      => [
+                        'code'           => 406,
+                        'general_message'=> 'The HyperText Transfer Protocol (HTTP) 406 Not Acceptable client error response code indicates that the server cannot produce a response matching the list of acceptable values defined in the request\'s proactive content negotiation headers, and that the server is unwilling to supply a default representation',
+                        'url'            => 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/406',
+                    ],
+                    'sql_response'       => [
+                        'sql_err_code'   => $mysqlError->getCode(),
+                        'sql_err_message'=> $mysqlError->getMessage(),
+                        'sql_err_url'    => 'https://dev.mysql.com/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_dup_entry'
+                    ],
+                    'records'            => [],
+                ], 406);
+            }
         }
     }
 
@@ -190,7 +230,7 @@ class AcceptedDomainSystemController extends Controller
     {
         try
         {
-            $apiDisplayAllRecords = $this->modelNameAcceptedDomain->select('*')->get();
+            $apiDisplayAllRecords = $this->modelNameAcceptedDomain->select('id')->get();
             $apiDisplaySingleRecord = $this->modelNameAcceptedDomain->find($id);
             if ($apiDisplayAllRecords->isEmpty())
             {
@@ -241,7 +281,7 @@ class AcceptedDomainSystemController extends Controller
                 }
                 else
                 {
-                    $apiDisplayAllRecords = $this->modelNameAcceptedDomain->select('*')->where('id', '=', $id)->get();
+                    $apiDisplayAllRecords = $this->modelNameAcceptedDomain->select('id', 'domain', 'type')->where('id', '=', $id)->get();
                     return response([
                         'title'              => __('error_and_notification_system.show.info_00001_notify.user_has_rights.message_title'),
                         'notify_code'        => 'INFO_00001',

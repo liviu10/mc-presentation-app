@@ -5,21 +5,50 @@
       <img :src="user.photo_url" class="rounded-circle profile-photo me-1">
       {{ user.nickname }}
     </a>
-    <ul class="dropdown-menu py-0" aria-labelledby="navbarDropdown">
+    <ul class="dropdown-menu pb-0" aria-labelledby="navbarDropdown">
       <li>
-        <a class="dropdown-item ps-2 py-2 dropdown-profile" href="" />
+        <a class="dropdown-item p-2 dropdown-profile" href="" />
       </li>
       <li>
-        <router-link :to="{ name: '' }" class="dropdown-item ps-2 py-2">
-          <fa icon="book-open" fixed-width />
+        <router-link :to="{ name: 'admin-blog-page' }" class="dropdown-item p-2">
+          <fa :icon="['fab', 'blogger-b']" fixed-width />
           {{ $t('user.navigation_bar.sub_menu.first_button') }}
+        </router-link>
+        <router-link :to="{ name: 'admin-contact-me-page' }" class="dropdown-item p-2">
+          <fa icon="comment" fixed-width />
+          {{ $t('user.navigation_bar.sub_menu.second_button') }}
+        </router-link>
+        <router-link :to="{ name: 'admin-newsletter-page' }" class="dropdown-item p-2">
+          <fa icon="newspaper" fixed-width />
+          {{ $t('user.navigation_bar.sub_menu.third_button') }}
         </router-link>
       </li>
       <div class="dropdown-divider my-0" />
       <li>
-        <a href="#" class="dropdown-item ps-2 py-2" @click.prevent="logout">
+        <router-link :to="{ name: 'admin-accepted-domains-page' }" class="dropdown-item p-2">
+          <fa :icon="['fab', 'internet-explorer']" fixed-width />
+          {{ $t('user.navigation_bar.sub_menu.forth_button') }}
+        </router-link>
+        <router-link :to="{ name: 'admin-documentation-page' }" class="dropdown-item p-2">
+          <fa icon="book" fixed-width />
+          {{ $t('user.navigation_bar.sub_menu.fifth_button') }}
+        </router-link>
+        <router-link :to="{ name: 'admin-user-list-page' }" class="dropdown-item p-2">
+          <fa icon="users" fixed-width />
+          {{ $t('user.navigation_bar.sub_menu.sixth_button') }}
+        </router-link>
+      </li>
+      <div class="dropdown-divider my-0" />
+      <li>
+        <router-link :to="{ name: 'admin-profile-settings-page' }" class="dropdown-item p-2">
+          <fa icon="address-card" fixed-width />
+          {{ $t('user.navigation_bar.sub_menu.seventh_button') }}
+        </router-link>
+      </li>
+      <li>
+        <a href="#" class="dropdown-item p-2" @click.prevent="logout">
           <fa icon="sign-out-alt" fixed-width />
-          {{ $t('user.navigation_bar.sub_menu.second_button') }}
+          {{ $t('user.navigation_bar.sub_menu.eighth_button') }}
         </a>
       </li>
     </ul>
@@ -41,9 +70,9 @@ export default {
       await this.$store.dispatch('auth/logout')
 
       // Redirect to home page.
-      const adminHomePageUrl = '/admin/home'
       const getUrlPathName = this.$route.fullPath
-      if (getUrlPathName.includes(adminHomePageUrl) === true) {
+      const adminPageUrls = '/admin'
+      if (getUrlPathName.includes(adminPageUrls) === true) {
         this.$router.push({ name: 'home-page' })
       }
     }

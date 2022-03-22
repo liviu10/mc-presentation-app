@@ -53,7 +53,7 @@ return [
         'info_00002_notify' => [
             'user_has_rights' => [
                 'message_title'           => 'Success!',
-                'message_super_admin'     => 'The notification code: :record was successfully inserted in the database table \':databaseName.:tableName\'!',
+                'message_super_admin'     => 'The record: :record was successfully inserted in the database table \':databaseName.:tableName\'!',
             ],
             'user_do_not_have_rights' => [
                 'message_title'           => 'Insufficient rights!',
@@ -73,8 +73,8 @@ return [
         ],
         'err_00003_notify' => [
             'user_has_rights' => [
-                'message_title'        => 'Internal Server Error!',
-                'message_super_admin'  => 'It appears that the HTTP request with the :methodName method you have sent via the api endpoint: :apiEndpoint was successfully understood by the server, but the controller file located at :serviceName could not save the records in the database: :databaseName because the following notification code: :record already exists!',
+                'message_title'        => 'Duplicate entry!',
+                'message_super_admin'  => 'It appears that the HTTP request with the :methodName method you have sent via the api endpoint: :apiEndpoint was successfully understood by the server, but the controller file located at :serviceName could not save the records in the database: :databaseName because the following record already exists!',
             ],
             'user_do_not_have_rights' => [
                 'message_title'        => 'Insufficient rights!',
@@ -132,7 +132,7 @@ return [
         'info_00002_notify' => [
             'user_has_rights' => [
                 'message_title'           => 'Success!',
-                'message_super_admin'     => 'The notification code :record was successfully updated to :newNotifyCode and saved in the database table \':databaseName.:tableName\'!',
+                'message_super_admin'     => 'The record :record was successfully updated to :newNotifyCode and saved in the database table \':databaseName.:tableName\'!',
             ],
             'user_do_not_have_rights' => [
                 'message_title'           => 'Insufficient rights!',
@@ -150,12 +150,22 @@ return [
                 'message_generic_user' => 'You do not have sufficient rights to update this resource!',
             ],
         ],
+        'err_00003_notify' => [
+            'user_has_rights' => [
+                'message_title'        => 'Duplicate entry!',
+                'message_super_admin'  => 'It appears that the HTTP request with the :methodName method you have sent via the api endpoint: :apiEndpoint was successfully understood by the server, but the controller file located at :serviceName could not save the records in the database: :databaseName because the following record already exists!',
+            ],
+            'user_do_not_have_rights' => [
+                'message_title'        => 'Insufficient rights!',
+                'message_generic_user' => 'You do not have sufficient rights to create this resource!',
+            ],
+        ],
     ],
     'delete' => [
         'info_00002_notify' => [
             'user_has_rights' => [
                 'message_title'           => 'Success!',
-                'message_super_admin'     => 'The notification code: :record was successfully deleted from the database table \':databaseName.:tableName\'!',
+                'message_super_admin'     => 'The record: :record was successfully deleted from the database table \':databaseName.:tableName\'!',
             ],
             'user_do_not_have_rights' => [
                 'message_title'           => 'Insufficient rights!',

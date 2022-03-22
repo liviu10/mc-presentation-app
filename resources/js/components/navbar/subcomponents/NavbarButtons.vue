@@ -33,9 +33,9 @@
   </ul>
   <ul v-else-if="user && user.user_role_type_id === 1" class="navbar-nav ms-auto">
     <li v-if="checkUrlPathName() === false">
-      <router-link :to="{ name: 'admin-home-page' }" class="nav-link">
+      <a class="nav-link" style="cursor:pointer" @click="goBackToPreviousAdminPage() ? $router.go(-1) : $router.push('/admin/home')">
         {{ $t('user.navigation_bar.auth_main_menu.second_button') }}
-      </router-link>
+      </a>
     </li>
     <li v-if="checkUrlPathName() === true">
       <router-link :to="{ name: 'home-page' }" class="nav-link">
@@ -56,10 +56,12 @@ export default {
   }),
   methods: {
     checkUrlPathName () {
-      const adminHomePageUrl = '/admin/home'
+      const adminPageUrls = '/admin'
       const getUrlPathName = this.$route.fullPath
-
-      return getUrlPathName.includes(adminHomePageUrl)
+      return getUrlPathName.includes(adminPageUrls)
+    },
+    goBackToPreviousAdminPage () {
+      return window.history.length > 2
     }
   }
 }

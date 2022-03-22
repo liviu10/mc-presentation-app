@@ -56,7 +56,7 @@ $navbar_link_font_family: inherit;
         }
     }
     & .dropdown-menu {
-        clip-path: polygon(50% 0%, 56% 7%, 100% 7%, 100% 100%, 0 100%, 0 7%, 42% 7%);
+        clip-path: polygon(52% 0%, 60% 7%, 100% 7%, 100% 100%, 0 100%, 0 7%, 46% 7%);
         // margin-top: rem-convertor(7.2px) !important;
         margin-top: rem-convertor(32px) !important;
         background-color: $background_color;
@@ -80,6 +80,12 @@ $navbar_link_font_family: inherit;
                 opacity: 0.7;
             }
         }
+    }
+}
+@media (min-width: 1400px)  {
+    .navbar-expand-xxl .navbar-nav .nav-link {
+        padding-right: rem-convertor(16px);
+        padding-left: rem-convertor(16px);
     }
 }
 // span.flag.f-ro.normal-flag, span.flag.f-usa.normal-flag {

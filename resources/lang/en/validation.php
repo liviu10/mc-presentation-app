@@ -172,6 +172,17 @@ return [
         'privacy_policy' => [
             'accepted'  => 'You must accept the :attribute.',
         ],
+        'domain' => [
+            'required'  => 'You must accept the :attribute.',
+            'regex'     => ':attribute contains invalid characters (this must contain only small letters).',
+            'max'       => ':attribute must not exceed 50 characters.',
+            'unique'    => ':attribute already exists in the database.',
+        ],
+        'type' => [
+            'required'  => 'You must accept the :attribute.',
+            'regex'     => ':attribute contains invalid characters.',
+            'max'       => ':attribute must not exceed 50 characters.',
+        ],
     ],
 
     /*
@@ -195,6 +206,8 @@ return [
         'comment_reply'          => 'Comment reply',
         'reply_to_comment_reply' => 'Comment reply',
         'privacy_policy'         => 'Terms and Conditions',
+        'domain'                 => 'Domain name',
+        'type'                   => 'Domain type name',
     ],
 
 ];
