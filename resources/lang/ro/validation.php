@@ -209,7 +209,7 @@ return [
     'attributes' => [
         'name'                     => 'Numele și Prenumele',
         'email'                    => 'Adresa de Email',
-        'nickname'                 => 'Nickname',
+        'nickname'                 => 'Nickname-ul',
         'password'                 => 'Parola',
         'message'                  => 'Mesajul',
         'comment'                  => 'Comentariul',

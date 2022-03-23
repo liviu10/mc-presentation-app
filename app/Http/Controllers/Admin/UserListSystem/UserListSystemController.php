@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin\UserListSystem;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\ErrorAndNotificationSystem;
@@ -40,9 +40,9 @@ class UserListSystemController extends Controller
     {
         try
         {
-            $apiDisplayAllRecords = $this->modelNameUser->select('*')->with([
+            $apiDisplayAllRecords = $this->modelNameUser->select('id', 'name', 'nickname', 'email', 'user_role_type_id', 'created_at')->with([
                 'user_role_type' => function ($query) {
-                    $query->select('*');
+                    $query->select('id', 'user_role_name');
                 }
             ])->get();
             if ($apiDisplayAllRecords->isEmpty())
@@ -135,15 +135,15 @@ class UserListSystemController extends Controller
                 'name' => 'required|max:255',
                 'nickname' => 'required|max:255',
                 'email' => 'required|email:filter|max:255|unique:users',
-                'password' => 'required|min:8',
             ]);
             $apiInsertSingleRecord = $this->modelNameUser->create([
                 'name'     => $request->get('name'),
                 'nickname' => $request->get('nickname'),
                 'email'    => $request->get('email'),
-                'password' => $request->get('password'),
+                'password' => Hash::make('password'),
                 'user_role_type_id' => 6,
             ]);
+            // TODO: Generate event to send email to user when his account was created by the admin
             return response([
                 'title'              => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_title'),
                 'notify_code'        => 'INFO_00002',
@@ -204,7 +204,11 @@ class UserListSystemController extends Controller
     {
         try
         {
-            $apiDisplayAllRecords = $this->modelNameUser->select('*')->get();
+            $apiDisplayAllRecords = $this->modelNameUser->select('id', 'name', 'nickname', 'email', 'user_role_type_id', 'created_at')->with([
+                'user_role_type' => function ($query) {
+                    $query->select('id', 'user_role_name');
+                }
+            ])->get();
             $apiDisplaySingleRecord = $this->modelNameUser->find($id);
             if ($apiDisplayAllRecords->isEmpty())
             {
@@ -320,16 +324,15 @@ class UserListSystemController extends Controller
                 'name'     => 'required|max:255',
                 'nickname' => 'required|max:255',
                 'email'    => 'required|email:filter|max:255',
-                'password' => 'required|min:8',
             ]);
             $apiUpdateSingleRecord = $this->modelNameUser->find($id);
             $apiUpdateSingleRecord->update([
                 'name'     => $request->get('name'),
                 'nickname' => $request->get('nickname'),
                 'email'    => $request->get('email'),
-                'password' => $request->get('password'),
                 'user_role_type_id' => $getCurrentUserRole,
             ]);
+            // TODO: Generate event to send email to user when his account was updated by the admin
             return response([
                 'title'              => __('error_and_notification_system.update.info_00002_notify.user_has_rights.message_title'),
                 'notify_code'        => 'INFO_00002',
