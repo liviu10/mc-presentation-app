@@ -82,7 +82,7 @@ Vue.use(Vuex)
 window.axios = require('axios')
 
 export default {
-  name: 'AdminAcceptedDomains',
+  name: 'AdminUserList',
   components: {
     VueGoodTable,
     NewUser,

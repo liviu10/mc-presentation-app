@@ -193,6 +193,27 @@ return [
             'required'  => ':attribute este obligatorie.',
             'max'       => ':attribute nu trebuie să depășească 255 de caractere.',
         ],
+        'campaign_name' => [
+            'required'  => ':attribute este obligatoriu.',
+            'regex'     => ':attribute conține un format invalid (acesta trebuie să conțină litere mari / mici sau cifre).',
+            'max'       => ':attribute nu trebuie să depășească 255 de caractere.',
+        ],
+        'campaign_description' => [
+            'required'  => ':attribute este obligatorie.',
+            'max'       => ':attribute nu trebuie să depășească 255 de caractere.',
+        ],
+        'campaign_is_active' => [
+            'required'  => 'Este necesar să activezi această campanie.',
+            'max'       => ':attribute nu trebuie să depășească 255 de caractere.',
+        ],
+        'valid_from' => [
+            'required'  => ':attribute este obligatorie.',
+            'max'       => ':attribute nu trebuie să depășească 255 de caractere.',
+        ],
+        'valid_to' => [
+            'required'  => ':attribute este obligatorie.',
+            'max'       => ':attribute nu trebuie să depășească 255 de caractere.',
+        ],
     ],
 
     /*
@@ -220,6 +241,10 @@ return [
         'type'                     => 'Tipul domeniului',
         'notify_code'              => 'Codul de notificare',
         'notify_short_description' => 'Scurta descriere a notificării',
+        'campaign_name'            => 'Numele campaniei',
+        'campaign_description'     => 'Descrierea campaniei',
+        'valid_from'               => 'Data de început a campaniei',
+        'valid_to'                 => 'Data de final a campaniei',
     ],
 
 ];

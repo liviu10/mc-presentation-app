@@ -1,10 +1,10 @@
 <template>
-  <!-- EDIT USER, SECTION START -->
-  <div id="editUser" class="modal fade" tabindex="-1" aria-labelledby="editUserLabel" aria-hidden="true">
+  <!-- EDIT CAMPAIGN, SECTION START -->
+  <div id="editCampaign" class="modal fade" tabindex="-1" aria-labelledby="editCampaignLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 id="editUserLabel" class="modal-title">
+          <h5 id="editCampaignLabel" class="modal-title">
             EDIT USER
           </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />
@@ -12,48 +12,59 @@
         <div class="modal-body">
           <form @submit.prevent="edit" @keydown="form.onKeydown($event)">
             <div class="col col-12 my-3">
-              <input id="name"
-                     v-model="form.name"
+              <input id="campaign_name"
+                     v-model="form.campaign_name"
                      type="text"
-                     :class="{ 'is-invalid': form.errors.has('name') }"
+                     :class="{ 'is-invalid': form.errors.has('campaign_name') }"
                      class="form-control"
-                     :placeholder="editRow.name"
-                     name="name"
+                     :placeholder="editRow.campaign_name"
+                     name="campaign_name"
               >
-              <has-error :form="form" field="name" />
+              <has-error :form="form" field="campaign_name" />
             </div>
             <div class="col col-12 my-3">
-              <input id="nickname"
-                     v-model="form.nickname"
+              <input id="campaign_description"
+                     v-model="form.campaign_description"
                      type="text"
-                     :class="{ 'is-invalid': form.errors.has('nickname') }"
+                     :class="{ 'is-invalid': form.errors.has('campaign_description') }"
                      class="form-control"
-                     :placeholder="editRow.nickname"
-                     name="nickname"
+                     :placeholder="editRow.campaign_description"
+                     name="campaign_description"
               >
-              <has-error :form="form" field="nickname" />
+              <has-error :form="form" field="campaign_description" />
             </div>
             <div class="col col-12 my-3">
-              <input id="email"
-                     v-model="form.email"
-                     type="email"
-                     :class="{ 'is-invalid': form.errors.has('email') }"
+              <input id="campaign_is_active"
+                     v-model="form.campaign_is_active"
+                     type="text"
+                     :class="{ 'is-invalid': form.errors.has('campaign_is_active') }"
                      class="form-control"
-                     :placeholder="editRow.email"
-                     name="email"
+                     :placeholder="editRow.campaign_is_active"
+                     name="campaign_is_active"
               >
-              <has-error :form="form" field="email" />
+              <has-error :form="form" field="campaign_is_active" />
             </div>
             <div class="col col-12 my-3">
-              <input id="user_role_type_id"
-                     v-model="form.user_role_type_id"
+              <input id="valid_from"
+                     v-model="form.valid_from"
                      type="text"
-                     :class="{ 'is-invalid': form.errors.has('user_role_type_id') }"
+                     :class="{ 'is-invalid': form.errors.has('valid_from') }"
                      class="form-control"
-                     :placeholder="editRow.user_role_type_id"
-                     name="user_role_type_id"
+                     :placeholder="editRow.valid_from"
+                     name="valid_from"
               >
-              <has-error :form="form" field="user_role_type_id" />
+              <has-error :form="form" field="valid_from" />
+            </div>
+            <div class="col col-12 my-3">
+              <input id="valid_to"
+                     v-model="form.valid_to"
+                     type="text"
+                     :class="{ 'is-invalid': form.errors.has('valid_to') }"
+                     class="form-control"
+                     :placeholder="editRow.valid_to"
+                     name="valid_to"
+              >
+              <has-error :form="form" field="valid_to" />
             </div>
             <div class="modal-buttons">
               <button ref="close" type="button" class="btn btn-secondary" data-bs-dismiss="modal">
@@ -84,7 +95,7 @@ Vue.use(Vuex)
 window.axios = require('axios')
 
 export default {
-  name: 'EditUser',
+  name: 'EditCampaign',
   middleware: 'auth',
   props: {
     editRow: {
@@ -95,10 +106,11 @@ export default {
   data: function () {
     return {
       form: new Form({
-        name: this.editRow.name,
-        nickname: this.editRow.nickname,
-        email: this.editRow.email,
-        user_role_type_id: this.editRow.user_role_type_id
+        campaign_name: this.editRow.campaign_name,
+        campaign_description: this.editRow.campaign_description,
+        campaign_is_active: this.editRow.campaign_is_active,
+        valid_from: this.editRow.valid_from,
+        valid_to: this.editRow.valid_to
       })
     }
   },
@@ -118,22 +130,24 @@ export default {
           if (result.isConfirmed) {
             this.$router.push({ name: 'user.auth.login' })
           } else {
-            this.form.name = ''
-            this.form.nickname = ''
-            this.form.email = ''
-            this.form.user_role_type_id = ''
+            this.form.campaign_name = ''
+            this.form.campaign_description = ''
+            this.form.campaign_is_active = ''
+            this.form.valid_from = ''
+            this.form.valid_to = ''
           }
         })
       } else {
         const url = window.location.origin
-        const apiEndPoint = '/api/admin/system/accepted-domains/' + this.editRow.id
+        const apiEndPoint = '/api/admin/system/newsletter-campaign/' + this.editRow.id
         const fullApiUrl = url + apiEndPoint
         try {
           await this.form.put(fullApiUrl, {
-            name: this.form.name,
-            nickname: this.form.nickname,
-            email: this.form.email,
-            user_role_type_id: this.form.user_role_type_id
+            campaign_name: this.form.campaign_name,
+            campaign_description: this.form.campaign_description,
+            campaign_is_active: this.form.campaign_is_active,
+            valid_from: this.form.valid_from,
+            valid_to: this.form.valid_to
           })
             .then(response => {
               console.log('> response message: ')
@@ -143,13 +157,14 @@ export default {
                 html:
                     '<p>Notify code: ' + '<a href="' + response.data.reference + '">' + response.data.notify_code + '</a>' + '</p>' +
                     '<p>' + response.data.description + '</p>' +
-                    '<p>Inserted user and email: ' + response.data.records.name + ' (' + response.data.records.email + ')' + '</p>'
+                    '<p>Inserted campaign name: ' + response.data.records.campaign_name + '</p>'
               }).then((result) => {
                 console.log('> result message: ')
-                this.form.name = ''
-                this.form.nickname = ''
-                this.form.email = ''
-                this.form.user_role_type_id = ''
+                this.form.campaign_name = ''
+                this.form.campaign_description = ''
+                this.form.campaign_is_active = ''
+                this.form.valid_from = ''
+                this.form.valid_to = ''
                 window.location.reload()
               })
             })
@@ -162,7 +177,7 @@ export default {
               html:
                   '<p>Notify code: ' + '<a href="' + err.response.data.reference + '">' + err.response.data.notify_code + '</a>' + '</p>' +
                   '<p>' + err.response.data.description + '</p>' +
-                  '<p>Inserted user and email: ' + this.form.name + ' (' + this.form.email + ')' + '</p>'
+                  '<p>Inserted campaign name: ' + this.form.campaign + '</p>'
             })
           }
         }
