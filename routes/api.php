@@ -182,10 +182,10 @@ use Illuminate\Support\Facades\Route;
             Route::apiResource('/errors-and-notifications', ErrorAndNotificationSystemController::class)->only(['index', 'store', 'update']);
 
             // Newsletter System Admin API routes
-            Route::group([ 'prefix' => '/newsletter-campaign' ], function () {
-                Route::delete('/delete-all', [NewsletterSystemController::class, 'deleteAllRecords']);
-                Route::get('/logs', [NewsletterSystemController::class, 'showNewsletterLogs']);
-                Route::apiResource('/', NewsletterSystemController::class);
+            Route::group([ 'prefix' => '/' ], function () {
+                Route::delete('/newsletter/delete-all', [NewsletterSystemController::class, 'deleteAllRecords']);
+                Route::get('/newsletter/logs', [NewsletterSystemController::class, 'showNewsletterLogs']);
+                Route::apiResource('/newsletter-campaign', NewsletterSystemController::class);
             });
 
             // Blog System Admin API routes

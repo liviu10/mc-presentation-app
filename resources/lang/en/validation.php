@@ -193,6 +193,27 @@ return [
             'required'  => ':attribute is required.',
             'max'       => ':attribute must not exceed 255 characters.',
         ],
+        'campaign_name' => [
+            'required'  => ':attribute is required.',
+            'regex'     => ':attribute contains invalid characters (this must contain capitalize / small letter or numbers).',
+            'max'       => ':attribute must not exceed 255 characters.',
+        ],
+        'campaign_description' => [
+            'required'  => ':attribute is required.',
+            'max'       => ':attribute must not exceed 255 characters.',
+        ],
+        'campaign_is_active' => [
+            'required'  => 'It is necessary to activate this campaign.',
+            'max'       => ':attribute must not exceed 255 characters.',
+        ],
+        'valid_from' => [
+            'required'  => ':attribute is required.',
+            'max'       => ':attribute must not exceed 255 characters.',
+        ],
+        'valid_to' => [
+            'required'  => ':attribute is required.',
+            'max'       => ':attribute must not exceed 255 characters.',
+        ],
     ],
     /*
     |--------------------------------------------------------------------------
@@ -219,6 +240,10 @@ return [
         'type'                     => 'Domain type name',
         'notify_code'              => 'Notify code',
         'notify_short_description' => 'Notify short description',
+        'campaign_name'            => 'Campaign name',
+        'campaign_description'     => 'Campaign description',
+        'valid_from'               => 'Campaign valid from date',
+        'valid_to'                 => 'Campaign valid to date',
     ],
 
 ];

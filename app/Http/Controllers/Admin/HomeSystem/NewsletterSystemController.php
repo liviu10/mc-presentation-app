@@ -48,7 +48,7 @@ class NewsletterSystemController extends Controller
     {
         try
         {
-            $apiDisplayAllRecords = $this->modelNameNewsletterCampaign->select('id', 'campaign_name', 'campaign_description', 'campaign_is_active', 'valid_from', 'valid_to')
+            $apiDisplayAllRecords = $this->modelNameNewsletterCampaign->select('id', 'campaign_name', 'campaign_description', 'campaign_is_active', 'valid_from', 'valid_to', 'created_at')
                                     ->with([
                                         'newsletter_subscribers' => function ($query) {
                                             $query->select('id', 'newsletter_campaign_id', 'full_name', 'email', 'privacy_policy');
@@ -207,7 +207,7 @@ class NewsletterSystemController extends Controller
     {
         try
         {
-            $apiDisplayAllRecords = $this->modelNameNewsletterCampaign->select('id', 'campaign_name', 'campaign_description', 'campaign_is_active', 'valid_from', 'valid_to')
+            $apiDisplayAllRecords = $this->modelNameNewsletterCampaign->select('id', 'campaign_name', 'campaign_description', 'campaign_is_active', 'valid_from', 'valid_to', 'created_at')
                                     ->with([
                                         'newsletter_subscribers' => function ($query) {
                                             $query->select('id', 'newsletter_campaign_id', 'full_name', 'email', 'privacy_policy');

@@ -141,9 +141,6 @@ export default {
         }).then((result) => {
           if (result.isConfirmed) {
             this.$router.push({ name: 'user.auth.login' })
-          } else {
-            this.form.domain = ''
-            this.form.type = ''
           }
         })
       } else {
@@ -173,8 +170,7 @@ export default {
               title: err.response.data.title,
               html:
                   '<p>Notify code: ' + '<a href="' + err.response.data.reference + '">' + err.response.data.notify_code + '</a>' + '</p>' +
-                  '<p>' + err.response.data.description + '</p>' +
-                  '<p>Deleted domain name and type: ' + this.form.domain + ' (' + this.form.type + ')' + '</p>'
+                  '<p>' + err.response.data.description + '</p>'
             })
           }
         }
