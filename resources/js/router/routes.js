@@ -57,17 +57,6 @@ export default [
   { path: '/admin/user-list', name: 'admin-user-list-page', component: page('admin/user-list/index.vue') },
   { path: '/admin/profile-settings', name: 'admin-profile-settings-page', component: page('admin/profile-settings/index.vue') },
 
-  {
-    path: '/settings',
-    name: 'profile-settings',
-    component: page('settings/index.vue'),
-    children: [
-      { path: '', redirect: { name: 'settings.profile' } },
-      { path: 'profile', name: 'settings.profile', component: page('settings/profile.vue') },
-      { path: 'password', name: 'settings.password', component: page('settings/password.vue') }
-    ]
-  },
-
   // URL routes for different HTTP errors
   { path: '*', component: page('errors/404.vue') }
 ]

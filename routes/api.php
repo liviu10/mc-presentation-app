@@ -43,8 +43,7 @@ use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\User\Auth\ResetPasswordController;
     use App\Http\Controllers\User\Auth\UserController;
     use App\Http\Controllers\User\Auth\VerificationController;
-    use App\Http\Controllers\Settings\PasswordController;
-    use App\Http\Controllers\Settings\ProfileController;
+    use App\Http\Controllers\User\Auth\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | FRONT VIEW WEB APPLICATION API ROUTES
