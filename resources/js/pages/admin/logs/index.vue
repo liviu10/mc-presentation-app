@@ -3,13 +3,13 @@
     <div class="col-lg-12 m-auto">
       <div class="lv-pg-admin">
         <div class="lv-pg-admin-header">
-          <h1>ADMIN NEWSLETTER LOGS PAGE</h1>
+          <h1>ADMIN APPLICATION LOGS PAGE</h1>
         </div>
         <div class="lv-pg-admin-body">
           <div class="lv-pg-admin-body">
             <vue-good-table
               :columns="columns"
-              :rows="displayNewsletterLogs"
+              :rows="displayLogs"
               :search-options="{
                 enabled: true
               }"
@@ -82,16 +82,12 @@ export default {
           field: 'id'
         },
         {
-          label: 'Newsletter Campaign ID',
-          field: 'newsletter_campaign_id'
+          label: 'Model Id',
+          field: 'logable_id'
         },
         {
-          label: 'Full Name',
-          field: 'full_name'
-        },
-        {
-          label: 'Email',
-          field: 'email'
+          label: 'Related Model',
+          field: 'logable_type'
         },
         {
           label: 'Status',
@@ -111,26 +107,26 @@ export default {
   computed: {
     ...mapGetters({
       user: 'auth/user',
-      listOfCampaignsLogs: 'newsletter_system/listOfCampaignsLogs'
+      listOfLogs: 'logs/listOfLogs'
     }),
-    displayNewsletterLogs () {
-      return this.listOfCampaignsLogs.records
+    displayLogs () {
+      return this.listOfLogs.records
     },
     getHttpStatusResponseCode () {
       // TODO Blog System: How to catch api endpoint errors and display them to the user
-      return this.listOfCampaignsLogs.http_response_code
+      return this.listOfLogs.http_response_code
     }
   },
   created () {
-    this.fetchListOfCampaignLogs()
+    this.fetchListOfLogs()
   },
   methods: {
     ...mapActions({
-      fetchListOfCampaignLogs: 'newsletter_system/fetchListOfCampaignLogs'
+      fetchListOfLogs: 'logs/fetchListOfLogs'
     })
   },
   metaInfo () {
-    return { title: 'Admin - Newsletter LOGS' }
+    return { title: 'Admin - Application Logs' }
   }
 }
 </script>

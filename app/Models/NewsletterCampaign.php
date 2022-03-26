@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Log;
 
 class NewsletterCampaign extends Model
 {
@@ -64,6 +65,7 @@ class NewsletterCampaign extends Model
         'deleted_at',
     ];
 
+
     public function scopeIsActive ($query) 
     {
         return $query->where('campaign_is_active', true);
@@ -82,5 +84,14 @@ class NewsletterCampaign extends Model
     public function newsletter_subscribers()
     {
         return $this->hasMany('App\Models\NewsletterSubscriber');
+    }
+
+    /**
+     * Eloquent polymorphic relationship between newsletter_campaign and logs.
+     *
+     */
+    public function log()
+    {
+        return $this->morphOne(Log::class, 'logable');
     }
 }

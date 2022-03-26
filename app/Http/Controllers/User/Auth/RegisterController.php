@@ -13,12 +13,18 @@ class RegisterController extends Controller
 {
     use RegistersUsers;
 
+    protected $modelNameUser;
+    protected $tableNameUser;
+
+
     /**
      * Create a new controller instance.
      */
     public function __construct()
     {
         $this->middleware('guest');
+        $this->modelNameUser = new User();
+        $this->tableNameUser = $this->modelNameUser->getTable();
     }
 
     /**
@@ -51,11 +57,21 @@ class RegisterController extends Controller
      */
     protected function create(array $data): User
     {
-        return User::create([
+        $registerUser = User::create([
             'name' => $data['name'],
             'nickname' => $data['nickname'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'user_role_type_id' => 6,
         ]);
+        $this->modelNameUser->find($this->modelNameUser->select('id')->latest('id')->first()->id)->log()->create([ 
+            'status'  => 'User registered',
+            'details' => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_super_admin', [
+                'record'         => $data['name'] . ' (id ' . $this->modelNameUser->select('id')->latest('id')->first()->id . ')',
+                'databaseName'   => config('database.connections.mysql.database'),
+                'tableName'      => $this->tableNameUser
+            ])
+        ]);
+        return $registerUser;
     }
 }

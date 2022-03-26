@@ -136,7 +136,6 @@ use Illuminate\Support\Facades\Route;
     // Import the Home, Newsletter and Terms and Conditions systems
     use App\Http\Controllers\Admin\HomeSystem\NewsletterCampaignSystemController;
     use App\Http\Controllers\Admin\HomeSystem\NewsletterSubscriberSystemController;
-    use App\Http\Controllers\Admin\HomeSystem\NewsletterLogSystemController;
 
     // Import the Schedule Appointment system
     use App\Http\Controllers\Admin\ScheduleAppointmentSystem\ScheduleAppointmentSystemController;
@@ -153,8 +152,9 @@ use Illuminate\Support\Facades\Route;
     // Import the Contact Me system
     use App\Http\Controllers\Admin\ContactMeSystem\ContactMeSystemController;
 
-    // Import the Error and Notification system
-    use App\Http\Controllers\Admin\ErrorAndNotificationSystem\ErrorAndNotificationSystemController;
+    // Import the Application system
+    use App\Http\Controllers\Admin\System\ErrorAndNotificationSystemController;
+    use App\Http\Controllers\Admin\System\LogSystemController;
 
     // Import the Accepted Domains system
     use App\Http\Controllers\Admin\AcceptedDomainSystem\AcceptedDomainSystemController;
@@ -179,17 +179,17 @@ use Illuminate\Support\Facades\Route;
         Route::patch('/settings/password', [PasswordController::class, 'update']);
 
         Route::group([ 'prefix' => '/system' ], function () {
-            // Error and Notification System API routes
+            // Error and Notification System Admin API routes
             Route::apiResource('/errors-and-notifications', ErrorAndNotificationSystemController::class)->only(['index', 'store', 'update']);
+            // Application logs System Admin API routes
+            Route::apiResource('/logs', LogSystemController::class)->only(['index']);
 
             // Newsletter System Admin API routes
             Route::group([ 'prefix' => '/newsletter' ], function () {
                 Route::delete('/campaigns/delete-all', [NewsletterCampaignSystemController::class, 'deleteAllCampaigns']);
                 Route::delete('/subscribers/delete-all', [NewsletterSubscriberSystemController::class, 'deleteAllSubscribers']);
-                Route::get('/newsletter/logs', [NewsletterLogSystemController::class, 'showNewsletterLogs']);
                 Route::apiResource('/campaigns', NewsletterCampaignSystemController::class);
                 Route::apiResource('/subscribers', NewsletterSubscriberSystemController::class)->only(['index', 'destroy']);
-                Route::apiResource('/logs', NewsletterLogSystemController::class)->only(['index']);
             });
 
             // Blog System Admin API routes

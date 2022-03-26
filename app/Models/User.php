@@ -117,6 +117,15 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
     }
 
     /**
+     * Eloquent polymorphic relationship between users and logs.
+     *
+     */
+    public function log()
+    {
+        return $this->morphOne(Log::class, 'logable');
+    }
+
+    /**
      * Send the password reset notification.
      *
      * @param  string  $token

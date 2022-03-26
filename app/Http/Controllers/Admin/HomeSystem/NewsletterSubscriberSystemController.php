@@ -37,7 +37,7 @@ class NewsletterSubscriberSystemController extends Controller
     {
         try
         {
-            $apiDisplayAllRecords = $this->modelNameNewsletterSubscriber->select('id', 'newsletter_campaign_id', 'full_name', 'email', 'privacy_policy')->get();
+            $apiDisplayAllRecords = $this->modelNameNewsletterSubscriber->select('id', 'newsletter_campaign_id', 'full_name', 'email', 'privacy_policy', 'created_at', 'unsubscribed_at')->get();
             if ($apiDisplayAllRecords->isEmpty())
             {
                 return response([
@@ -174,6 +174,14 @@ class NewsletterSubscriberSystemController extends Controller
                 }
                 else
                 {
+                    $this->modelNameNewsletterSubscriber->find($apiDisplaySingleRecord['id'])->log()->create([ 
+                        'status'  => 'Admin delete',
+                        'details' => __('error_and_notification_system.delete.info_00002_notify.user_has_rights.message_super_admin', [
+                            'record'         => $apiDisplaySingleRecord['full_name'] . ' (id ' . $apiDisplaySingleRecord['id'] . ')',
+                            'databaseName'   => config('database.connections.mysql.database'),
+                            'tableName'      => $this->tableNameNewsletterSubscriber
+                        ])
+                    ]);
                     $apiDeleteSingleRecord = $this->modelNameNewsletterSubscriber->find($id)->delete();
                     return response([
                         'title'              => __('error_and_notification_system.delete.info_00002_notify.user_has_rights.message_title'),
