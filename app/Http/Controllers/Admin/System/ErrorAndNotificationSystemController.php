@@ -118,15 +118,25 @@ class ErrorAndNotificationSystemController extends Controller
         try
         {
             $request->validate([
+                'notify_code_options'      => 'required',
                 'notify_code'              => 'required|regex:/^[a-zA-Z0-9_ ]+$/u|max:10',
                 'notify_short_description' => 'required|max:255',
             ]);
-            $notifyReference = explode('_', $request->get('notify_code'))[0];
-            if ($notifyReference === 'INFO')
+            if ($request->get('notify_code_options') === 1)
             {
                 $formUrl = config('app.url') . '/admin/documentation' . '/information#' . $request->get('notify_code');
-                $apiInsertSingleRecord = $this->modelName->create(array_merge($request->input(), [ 'notify_reference' => $formUrl ]));
-                $apiInsertSingleRecord->save();
+                $apiInsertSingleRecord = $this->modelName->create(array_merge([
+                    'notify_code'              => 'INFO' . '_' . $request->get('notify_code'),
+                    'notify_short_description' => 'required|max:255',
+                ], [ 'notify_reference' => $formUrl ]));
+                $this->modelName->find($apiInsertSingleRecord->id)->log()->create([ 
+                    'status'  => 'Admin create error and notification',
+                    'details' => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_super_admin', [
+                        'record'         => $request->get('notify_code') . ' (id ' . $apiInsertSingleRecord->id . ')',
+                        'databaseName'   => config('database.connections.mysql.database'),
+                        'tableName'      => $this->tableName
+                    ])
+                ]);
                 return response([
                     'title'              => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_title'),
                     'notify_code'        => 'INFO_00002',
@@ -146,11 +156,21 @@ class ErrorAndNotificationSystemController extends Controller
                     'records'            => $apiInsertSingleRecord,
                 ], 201);
             }
-            if ($notifyReference === 'WAR')
+            if ($request->get('notify_code_options') === 2)
             {
                 $formUrl = config('app.url') . '/admin/documentation' . '/warning#' . $request->get('notify_code');
-                $apiInsertSingleRecord = $this->modelName->create(array_merge($request->input(), [ 'notify_reference' => $formUrl ]));
-                $apiInsertSingleRecord->save();
+                $apiInsertSingleRecord = $this->modelName->create(array_merge([
+                    'notify_code'              => 'WAR' . '_' . $request->get('notify_code'),
+                    'notify_short_description' => 'required|max:255',
+                ], [ 'notify_reference' => $formUrl ]));
+                $this->modelName->find($apiInsertSingleRecord->id)->log()->create([ 
+                    'status'  => 'Admin create error and notification',
+                    'details' => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_super_admin', [
+                        'record'         => $request->get('notify_code') . ' (id ' . $apiInsertSingleRecord->id . ')',
+                        'databaseName'   => config('database.connections.mysql.database'),
+                        'tableName'      => $this->tableName
+                    ])
+                ]);
                 return response([
                     'title'              => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_title'),
                     'notify_code'        => 'INFO_00002',
@@ -169,11 +189,21 @@ class ErrorAndNotificationSystemController extends Controller
                     'records'            => $apiInsertSingleRecord,
                 ], 201);
             }
-            if ($notifyReference === 'ERR')
+            if ($request->get('notify_code_options') === 3)
             {
                 $formUrl = config('app.url') . '/admin/documentation' . '/error#' . $request->get('notify_code');
-                $apiInsertSingleRecord = $this->modelName->create(array_merge($request->input(), [ 'notify_reference' => $formUrl ]));
-                $apiInsertSingleRecord->save();
+                $apiInsertSingleRecord = $this->modelName->create(array_merge([
+                    'notify_code'              => 'ERR' . '_' . $request->get('notify_code'),
+                    'notify_short_description' => 'required|max:255',
+                ], [ 'notify_reference' => $formUrl ]));
+                $this->modelName->find($apiInsertSingleRecord->id)->log()->create([ 
+                    'status'  => 'Admin create error and notification',
+                    'details' => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_super_admin', [
+                        'record'         => $request->get('notify_code') . ' (id ' . $apiInsertSingleRecord->id . ')',
+                        'databaseName'   => config('database.connections.mysql.database'),
+                        'tableName'      => $this->tableName
+                    ])
+                ]);
                 return response([
                     'title'              => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_title'),
                     'notify_code'        => 'INFO_00002',
@@ -268,14 +298,22 @@ class ErrorAndNotificationSystemController extends Controller
                 'notify_short_description' => 'required|max:255',
             ]);
             $notifyReference = explode('_', $request->get('notify_code'))[0];
-            if ($notifyReference === 'INFO')
+            if ($request->get('notify_code_options') === 1)
             {
                 $apiUpdateSingleRecord = $this->modelName->find($id);
                 $formUrl = config('app.url') . '/admin/documentation' . '/information#' . $request->get('notify_code');
                 $apiUpdateSingleRecord->update([
-                    'notify_code' => $request->get('notify_code'),
+                    'notify_code' => 'INFO' . '_' . $request->get('notify_code'),
                     'notify_short_description' => $request->get('notify_short_description'),
                     'notify_reference' => $formUrl,
+                ]);
+                $this->modelName->find($apiUpdateSingleRecord->id)->log()->create([ 
+                    'status'  => 'Admin update error and notification',
+                    'details' => __('error_and_notification_system.update.info_00002_notify.user_has_rights.message_super_admin', [
+                        'record'         => $request->get('domain') . ' (id ' . $apiUpdateSingleRecord->id . ')',
+                        'databaseName'   => config('database.connections.mysql.database'),
+                        'tableName'      => $this->tableName
+                    ])
                 ]);
                 return response([
                     'title'              => __('error_and_notification_system.update.info_00002_notify.user_has_rights.message_title'),
@@ -295,14 +333,22 @@ class ErrorAndNotificationSystemController extends Controller
                     'records'            => $apiUpdateSingleRecord,
                 ], 201);
             }
-            if ($notifyReference === 'WAR')
+            if ($request->get('notify_code_options') === 2)
             {
                 $apiUpdateSingleRecord = $this->modelName->find($id);
                 $formUrl = config('app.url') . '/admin/documentation' . '/warning#' . $request->get('notify_code');
                 $apiUpdateSingleRecord->update([
-                    'notify_code' => $request->get('notify_code'),
+                    'notify_code' => 'WAR' . '_' . $request->get('notify_code'),
                     'notify_short_description' => $request->get('notify_short_description'),
                     'notify_reference' => $formUrl,
+                ]);
+                $this->modelName->find($apiUpdateSingleRecord->id)->log()->create([ 
+                    'status'  => 'Admin update error and notification',
+                    'details' => __('error_and_notification_system.update.info_00002_notify.user_has_rights.message_super_admin', [
+                        'record'         => $request->get('domain') . ' (id ' . $apiUpdateSingleRecord->id . ')',
+                        'databaseName'   => config('database.connections.mysql.database'),
+                        'tableName'      => $this->tableName
+                    ])
                 ]);
                 return response([
                     'title'              => __('error_and_notification_system.update.info_00002_notify.user_has_rights.message_title'),
@@ -322,14 +368,22 @@ class ErrorAndNotificationSystemController extends Controller
                     'records'            => $apiUpdateSingleRecord,
                 ], 201);
             }
-            if ($notifyReference === 'ERR')
+            if ($request->get('notify_code_options') === 3)
             {
                 $apiUpdateSingleRecord = $this->modelName->find($id);
                 $formUrl = config('app.url') . '/admin/documentation' . '/error#' . $request->get('notify_code');
                 $apiUpdateSingleRecord->update([
-                    'notify_code' => $request->get('notify_code'),
+                    'notify_code' => 'ERR' . '_' . $request->get('notify_code'),
                     'notify_short_description' => $request->get('notify_short_description'),
                     'notify_reference' => $formUrl,
+                ]);
+                $this->modelName->find($apiUpdateSingleRecord->id)->log()->create([ 
+                    'status'  => 'Admin update error and notification',
+                    'details' => __('error_and_notification_system.update.info_00002_notify.user_has_rights.message_super_admin', [
+                        'record'         => $request->get('domain') . ' (id ' . $apiUpdateSingleRecord->id . ')',
+                        'databaseName'   => config('database.connections.mysql.database'),
+                        'tableName'      => $this->tableName
+                    ])
                 ]);
                 return response([
                     'title'              => __('error_and_notification_system.update.info_00002_notify.user_has_rights.message_title'),

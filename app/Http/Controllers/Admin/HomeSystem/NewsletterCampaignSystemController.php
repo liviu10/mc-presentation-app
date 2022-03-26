@@ -139,7 +139,7 @@ class NewsletterCampaignSystemController extends Controller
                                             'valid_to'             => $request->get('valid_to'),
                                         ]);
             $this->modelNameNewsletterCampaign->find($apiInsertSingleRecord->id)->log()->create([ 
-                'status'  => 'Admin create',
+                'status'  => 'Admin create newsletter campaign',
                 'details' => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_super_admin', [
                     'record'         => $request->get('campaign_name') . ' (id ' . $apiInsertSingleRecord->id . ')',
                     'databaseName'   => config('database.connections.mysql.database'),
@@ -342,7 +342,7 @@ class NewsletterCampaignSystemController extends Controller
                 'valid_to'             => $request->get('valid_to'),
             ]);
             $this->modelNameNewsletterCampaign->find($apiUpdateSingleRecord->id)->log()->create([ 
-                'status'  => 'Admin update',
+                'status'  => 'Admin update newsletter campaign',
                 'details' => __('error_and_notification_system.update.info_00002_notify.user_has_rights.message_super_admin', [
                     'record'         => $request->get('campaign_name') . ' (id ' . $apiUpdateSingleRecord->id . ')',
                     'databaseName'   => config('database.connections.mysql.database'),
@@ -462,7 +462,7 @@ class NewsletterCampaignSystemController extends Controller
                 else
                 {
                     $this->modelNameNewsletterCampaign->find($apiDisplaySingleRecord['id'])->log()->create([ 
-                        'status'  => 'Admin delete',
+                        'status'  => 'Admin delete newsletter campaign',
                         'details' => __('error_and_notification_system.delete.info_00002_notify.user_has_rights.message_super_admin', [
                             'record'         => $apiDisplaySingleRecord['campaign_name'] . ' (id ' . $apiDisplaySingleRecord['id'] . ')',
                             'databaseName'   => config('database.connections.mysql.database'),

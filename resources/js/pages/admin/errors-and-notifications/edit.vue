@@ -10,17 +10,41 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />
         </div>
         <div class="modal-body">
+          {{ editRow }}
           <form @submit.prevent="edit" @keydown="form.onKeydown($event)">
             <div class="col col-12 my-3">
-              <input id="notify_code"
-                     v-model="form.notify_code"
-                     type="text"
-                     :class="{ 'is-invalid': form.errors.has('notify_code') }"
-                     class="form-control"
-                     :placeholder="editRow.notify_code"
-                     name="notify_code"
-              >
-              <has-error :form="form" field="notify_code" />
+              <div class="input-group mb-3">
+                <select id="notify_code_options"
+                        v-model="form.notify_code_options"
+                        name="form.notify_code_options"
+                        class="form-select input-group-text"
+                        aria-label=".form-select example"
+                >
+                  <option selected>
+                    Select Prefix
+                  </option>
+                  <option value="1">
+                    INFO
+                  </option>
+                  <option value="2">
+                    WAR
+                  </option>
+                  <option value="3">
+                    ERR
+                  </option>
+                </select>
+                <input id="notify_code"
+                       v-model="form.notify_code"
+                       type="text"
+                       :class="{ 'is-invalid': form.errors.has('notify_code') }"
+                       class="form-control"
+                       :placeholder="editRow.notify_code"
+                       name="notify_code"
+                       aria-label="Username"
+                       aria-describedby="basic-addon1"
+                >
+                <has-error :form="form" field="notify_code" />
+              </div>
             </div>
             <div class="col col-12 my-3">
               <input id="notify_short_description"
@@ -73,6 +97,7 @@ export default {
   data: function () {
     return {
       form: new Form({
+        notify_code_options: '',
         notify_code: this.editRow.notify_code,
         notify_short_description: this.editRow.notify_short_description
       })
