@@ -51,4 +51,13 @@ class ErrorAndNotificationSystem extends Model
         'created_at',
         'updated_at',
     ];
+
+    /**
+     * Eloquent polymorphic relationship between errors_and_notification_system and logs.
+     *
+     */
+    public function log()
+    {
+        return $this->morphOne(Log::class, 'logable');
+    }
 }

@@ -175,7 +175,7 @@ class NewsletterSubscriberSystemController extends Controller
                 else
                 {
                     $this->modelNameNewsletterSubscriber->find($apiDisplaySingleRecord['id'])->log()->create([ 
-                        'status'  => 'Admin delete',
+                        'status'  => 'Admin delete newsletter subscriber',
                         'details' => __('error_and_notification_system.delete.info_00002_notify.user_has_rights.message_super_admin', [
                             'record'         => $apiDisplaySingleRecord['full_name'] . ' (id ' . $apiDisplaySingleRecord['id'] . ')',
                             'databaseName'   => config('database.connections.mysql.database'),

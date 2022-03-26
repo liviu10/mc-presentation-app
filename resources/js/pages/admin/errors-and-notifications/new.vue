@@ -12,14 +12,38 @@
         <div class="modal-body">
           <form @submit.prevent="createErrorAndNotification" @keydown="form.onKeydown($event)">
             <div class="col col-12 my-3">
-              <input id="notify_code"
-                     v-model="form.notify_code"
-                     type="text"
-                     :class="{ 'is-invalid': form.errors.has('notify_code') }"
-                     class="form-control"
-                     placeholder="Insert notification code"
-                     name="notify_code"
-              >
+              <div class="input-group mb-3">
+                <select id="notify_code_options"
+                        v-model="form.notify_code_options"
+                        name="form.notify_code_options"
+                        class="form-select input-group-text"
+                        aria-label=".form-select example"
+                >
+                  <option selected>
+                    Select Prefix
+                  </option>
+                  <option value="1">
+                    INFO
+                  </option>
+                  <option value="2">
+                    WAR
+                  </option>
+                  <option value="3">
+                    ERR
+                  </option>
+                </select>
+                <input id="notify_code"
+                       v-model="form.notify_code"
+                       type="text"
+                       :class="{ 'is-invalid': form.errors.has('notify_code') }"
+                       class="form-control"
+                       placeholder="Insert notification code"
+                       name="notify_code"
+                       aria-label="Username"
+                       aria-describedby="basic-addon1"
+                >
+              </div>
+
               <has-error :form="form" field="notify_code" />
             </div>
             <div class="col col-12 my-3">
@@ -66,6 +90,7 @@ export default {
   data: function () {
     return {
       form: new Form({
+        notify_code_options: '',
         notify_code: '',
         notify_short_description: ''
       }),
@@ -97,7 +122,9 @@ export default {
         const apiEndPoint = '/api/admin/system/errors-and-notifications'
         const fullApiUrl = url + apiEndPoint
         try {
+          console.log('notify_code_options', this.form.notify_code_options)
           await this.form.post(fullApiUrl, {
+            notify_code_options: this.form.notify_code_options,
             notify_code: this.form.notify_code,
             notify_short_description: this.form.notify_short_description
           })
@@ -112,6 +139,7 @@ export default {
                     '<p>Inserted notify code: ' + response.data.records.notify_code + '</p>'
               }).then((result) => {
                 console.log('> result message: ')
+                this.form.notify_code_options = ''
                 this.form.notify_code = ''
                 this.form.notify_short_description = ''
                 window.location.reload()

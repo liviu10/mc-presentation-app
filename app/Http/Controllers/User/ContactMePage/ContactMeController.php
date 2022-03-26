@@ -72,7 +72,7 @@ class ContactMeController extends Controller
                 'privacy_policy' => $records['privacy_policy'],
             ];
             $this->modelNameContactMe->find($records->id)->log()->create([ 
-                'status'  => 'User message',
+                'status'  => 'User sent new contact me message',
                 'details' => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_super_admin', [
                     'record'         => $apiInsertSingleRecord['full_name'] . ' (id ' . $records->id . ')',
                     'databaseName'   => config('database.connections.mysql.database'),

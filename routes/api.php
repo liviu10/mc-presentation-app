@@ -160,7 +160,7 @@ use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\Admin\AcceptedDomainSystem\AcceptedDomainSystemController;
 
     // Import the User List system
-    use App\Http\Controllers\Admin\UserListSystem\UserListSystemController;
+    use App\Http\Controllers\Admin\System\UserListSystemController;
 /*
 |--------------------------------------------------------------------------
 | API Routes for the Administration View of the Web Application

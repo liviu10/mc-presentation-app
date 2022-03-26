@@ -82,7 +82,7 @@ class SubscribeToNewsletterController extends Controller
                     'privacy_policy' => $records['privacy_policy'],
                 ];
                 $this->modelNameNewsletterSubscriber->find($records->id)->log()->create([ 
-                    'status'  => 'User subscribed',
+                    'status'  => 'User subscribed to newsletter',
                     'details' => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_super_admin', [
                         'record'         => $apiInsertSingleRecord['full_name'] . ' (id ' . $records->id . ')',
                         'databaseName'   => config('database.connections.mysql.database'),
@@ -139,7 +139,7 @@ class SubscribeToNewsletterController extends Controller
             {
                 $findUserIdByEmailAddress = $this->modelNameNewsletterSubscriber->where('email', '=', $email)->pluck('id')[0];
                 $this->modelNameNewsletterSubscriber->find($findUserIdByEmailAddress)->log()->create([ 
-                    'status'  => 'User unsubscribed',
+                    'status'  => 'User unsubscribed from newsletter',
                     'details' => __('error_and_notification_system.delete.info_00002_notify.user_has_rights.message_super_admin', [
                         'record'         => $email . ' (id ' . $findUserIdByEmailAddress . ')',
                         'databaseName'   => config('database.connections.mysql.database'),

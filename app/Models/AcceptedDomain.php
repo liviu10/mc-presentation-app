@@ -75,4 +75,13 @@ class AcceptedDomain extends Model
     {
         return $query->where('type', '=', 'sponsored');
     }
+
+    /**
+     * Eloquent polymorphic relationship between accepted_domains and logs.
+     *
+     */
+    public function log()
+    {
+        return $this->morphOne(Log::class, 'logable');
+    }
 }

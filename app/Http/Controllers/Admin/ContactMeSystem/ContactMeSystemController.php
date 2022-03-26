@@ -132,7 +132,7 @@ class ContactMeSystemController extends Controller
             ]);
             $apiInsertSingleRecord = $this->modelNameContactMe->create(array_merge($request->input()));
             $this->modelNameContactMe->find($apiInsertSingleRecord->id)->log()->create([ 
-                'status'  => 'Admin create',
+                'status'  => 'Admin create contact me message',
                 'details' => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_super_admin', [
                     'record'         => $request->get('full_name') . ' (id ' . $apiInsertSingleRecord->id . ')',
                     'databaseName'   => config('database.connections.mysql.database'),
@@ -321,7 +321,7 @@ class ContactMeSystemController extends Controller
                 'message'   => $request->get('message')
             ]);
             $this->modelNameContactMe->find($apiUpdateSingleRecord->id)->log()->create([ 
-                'status'  => 'Admin update',
+                'status'  => 'Admin update contact me message',
                 'details' => __('error_and_notification_system.update.info_00002_notify.user_has_rights.message_super_admin', [
                     'record'         => $request->get('full_name') . ' (id ' . $apiUpdateSingleRecord->id . ')',
                     'databaseName'   => config('database.connections.mysql.database'),
@@ -467,7 +467,7 @@ class ContactMeSystemController extends Controller
                 else
                 {
                     $this->modelNameContactMe->find($apiDisplaySingleRecord['id'])->log()->create([ 
-                        'status'  => 'Admin delete',
+                        'status'  => 'Admin delete contact me message',
                         'details' => __('error_and_notification_system.delete.info_00002_notify.user_has_rights.message_super_admin', [
                             'record'         => $apiDisplaySingleRecord['campaign_name'] . ' (id ' . $apiDisplaySingleRecord['id'] . ')',
                             'databaseName'   => config('database.connections.mysql.database'),
