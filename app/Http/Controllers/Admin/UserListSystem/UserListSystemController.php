@@ -143,6 +143,14 @@ class UserListSystemController extends Controller
                 'password' => Hash::make('password'),
                 'user_role_type_id' => 6,
             ]);
+            $this->modelNameUser->find($apiInsertSingleRecord->id)->log()->create([ 
+                'status'  => 'Admin register user',
+                'details' => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_super_admin', [
+                    'record'         => $request->get('name') . ' (id ' . $apiInsertSingleRecord->id . ')',
+                    'databaseName'   => config('database.connections.mysql.database'),
+                    'tableName'      => $this->tableNameUser
+                ])
+            ]);
             // TODO: Generate event to send email to user when his account was created by the admin
             return response([
                 'title'              => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_title'),
@@ -332,6 +340,14 @@ class UserListSystemController extends Controller
                 'email'    => $request->get('email'),
                 'user_role_type_id' => $getCurrentUserRole,
             ]);
+            $this->modelNameUser->find($apiUpdateSingleRecord->id)->log()->create([ 
+                'status'  => 'Admin update user',
+                'details' => __('error_and_notification_system.update.info_00002_notify.user_has_rights.message_super_admin', [
+                    'record'         => $request->get('name') . ' (id ' . $apiUpdateSingleRecord->id . ')',
+                    'databaseName'   => config('database.connections.mysql.database'),
+                    'tableName'      => $this->tableNameUser
+                ])
+            ]);
             // TODO: Generate event to send email to user when his account was updated by the admin
             return response([
                 'title'              => __('error_and_notification_system.update.info_00002_notify.user_has_rights.message_title'),
@@ -444,6 +460,14 @@ class UserListSystemController extends Controller
                 }
                 else
                 {
+                    $this->modelNameUser->find($apiDisplaySingleRecord['id'])->log()->create([ 
+                        'status'  => 'Admin delete user',
+                        'details' => __('error_and_notification_system.delete.info_00002_notify.user_has_rights.message_super_admin', [
+                            'record'         => $apiDisplaySingleRecord['campaign_name'] . ' (id ' . $apiDisplaySingleRecord['id'] . ')',
+                            'databaseName'   => config('database.connections.mysql.database'),
+                            'tableName'      => $this->tableNameUser
+                        ])
+                    ]);
                     $apiDeleteSingleRecord = $this->modelNameUser->find($id)->delete();
                     return response([
                         'title'              => __('error_and_notification_system.delete.info_00002_notify.user_has_rights.message_title'),

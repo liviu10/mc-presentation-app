@@ -9,6 +9,7 @@ use App\Models\ContactMe;
 class ContactMeController extends Controller
 {
     protected $modelNameContactMe;
+    protected $tableNameContactMe;
 
     /**
      * Instantiate the variables that will be used to get the model.
@@ -18,6 +19,7 @@ class ContactMeController extends Controller
     public function __construct()
     {
         $this->modelNameContactMe = new ContactMe();
+        $this->tableNameContactMe = $this->modelNameContactMe->getTable();
     }
 
     /**
@@ -69,6 +71,14 @@ class ContactMeController extends Controller
                 'message' => $request->get('message'),
                 'privacy_policy' => $records['privacy_policy'],
             ];
+            $this->modelNameContactMe->find($records->id)->log()->create([ 
+                'status'  => 'User message',
+                'details' => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_super_admin', [
+                    'record'         => $apiInsertSingleRecord['full_name'] . ' (id ' . $records->id . ')',
+                    'databaseName'   => config('database.connections.mysql.database'),
+                    'tableName'      => $this->tableNameContactMe
+                ])
+            ]);
             return response()->json($apiInsertSingleRecord);
         }
         catch  (\Illuminate\Database\QueryException $mysqlError)

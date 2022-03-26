@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Log;
 
 class NewsletterSubscriber extends Model
 {
@@ -70,5 +71,14 @@ class NewsletterSubscriber extends Model
     public function newsletter_campaign()
     {
         return $this->belongsTo('App\Models\NewsletterCampaign');
+    }
+
+    /**
+     * Eloquent polymorphic relationship between newsletter_subscribers and newsletter_logs.
+     *
+     */
+    public function log()
+    {
+        return $this->morphOne(Log::class, 'logable');
     }
 }

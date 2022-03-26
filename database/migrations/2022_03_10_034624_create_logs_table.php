@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNewsletterLogsTable extends Migration
+class CreateLogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateNewsletterLogsTable extends Migration
      */
     public function up()
     {
-        Schema::create('newsletter_logs', function (Blueprint $table) {
+        Schema::create('logs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('newsletter_campaign_id')->index('idx_newsletter_campaign_id');
-            $table->string('full_name')->nullable(false);
-            $table->string('email')->nullable(false);
+            $table->unsignedBigInteger('logable_id');
+            $table->string('logable_type');
             $table->string('status')->nullable(false);
+            $table->longText('details');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateNewsletterLogsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('newsletter_logs');
+        Schema::dropIfExists('logs');
     }
 }

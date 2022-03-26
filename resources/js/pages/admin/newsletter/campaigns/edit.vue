@@ -139,7 +139,7 @@ export default {
         })
       } else {
         const url = window.location.origin
-        const apiEndPoint = '/api/admin/system/newsletter-campaign/' + this.editRow.id
+        const apiEndPoint = '/api/admin/system/newsletter/campaigns/' + this.editRow.id
         const fullApiUrl = url + apiEndPoint
         try {
           await this.form.put(fullApiUrl, {

@@ -54,11 +54,11 @@ export default [
   { path: '/admin/newsletter', name: 'admin-newsletter-page', component: page('admin/newsletter/index.vue') },
   { path: '/admin/newsletter/campaigns', name: 'admin-newsletter-campaigns-page', component: page('admin/newsletter/campaigns/index.vue') },
   { path: '/admin/newsletter/subscribers', name: 'admin-newsletter-subscribers-page', component: page('admin/newsletter/subscribers/index.vue') },
-  { path: '/admin/newsletter/logs', name: 'admin-newsletter-logs-page', component: page('admin/newsletter/logs/index.vue') },
 
   { path: '/admin/accepted-domains', name: 'admin-accepted-domains-page', component: page('admin/accepted-domains/index.vue') },
   { path: '/admin/documentation', name: 'admin-documentation-page', component: page('admin/documentation/index.vue') },
   { path: '/admin/errors-and-notifications', name: 'admin-errors-and-notifications-page', component: page('admin/errors-and-notifications/index.vue') },
+  { path: '/admin/logs', name: 'admin-logs-page', component: page('admin/logs/index.vue') },
   { path: '/admin/user-list', name: 'admin-user-list-page', component: page('admin/user-list/index.vue') },
   { path: '/admin/profile-settings', name: 'admin-profile-settings-page', component: page('admin/profile-settings/index.vue') },
 

@@ -61,4 +61,13 @@ class ContactMe extends Model
         'created_at',
         'updated_at'
     ];
+
+    /**
+     * Eloquent polymorphic relationship between contact_me and logs.
+     *
+     */
+    public function log()
+    {
+        return $this->morphOne(Log::class, 'logable');
+    }
 }

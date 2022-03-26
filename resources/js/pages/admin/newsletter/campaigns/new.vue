@@ -133,7 +133,7 @@ export default {
         })
       } else {
         const url = window.location.origin
-        const apiEndPoint = '/api/admin/system/newsletter-campaign'
+        const apiEndPoint = '/api/admin/system/newsletter/campaigns'
         const fullApiUrl = url + apiEndPoint
         try {
           await this.form.post(fullApiUrl, {

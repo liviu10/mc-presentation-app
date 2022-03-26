@@ -126,7 +126,7 @@ export default {
         })
       } else {
         const url = window.location.origin
-        const apiEndPoint = '/api/admin/system/accepted-domains/' + this.editRow.id
+        const apiEndPoint = '/api/admin/system/user-list/' + this.editRow.id
         const fullApiUrl = url + apiEndPoint
         try {
           await this.form.put(fullApiUrl, {

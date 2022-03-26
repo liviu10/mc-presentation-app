@@ -130,7 +130,23 @@ class NewsletterCampaignSystemController extends Controller
                 'valid_from'           => 'required|max:255',
                 'valid_to'             => 'required|max:255',
             ]);
-            $apiInsertSingleRecord = $this->modelNameNewsletterCampaign->create(array_merge($request->input()));
+            $apiInsertSingleRecord = $this->modelNameNewsletterCampaign
+                                        ->create([
+                                            'campaign_name'        => $request->get('campaign_name'),
+                                            'campaign_description' => $request->get('campaign_description'),
+                                            'campaign_is_active'   => $request->get('campaign_is_active'),
+                                            'valid_from'           => $request->get('valid_from'),
+                                            'valid_to'             => $request->get('valid_to'),
+                                        ]);
+            $this->modelNameNewsletterCampaign->find($apiInsertSingleRecord->id)->log()->create([ 
+                'status'  => 'Admin create',
+                'details' => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_super_admin', [
+                    'record'         => $request->get('campaign_name') . ' (id ' . $apiInsertSingleRecord->id . ')',
+                    'databaseName'   => config('database.connections.mysql.database'),
+                    'tableName'      => $this->tableNameNewsletterCampaign
+                ])
+            ]);
+
             return response([
                 'title'              => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_title'),
                 'notify_code'        => 'INFO_00002',
@@ -325,10 +341,19 @@ class NewsletterCampaignSystemController extends Controller
                 'valid_from'           => $request->get('valid_from'),
                 'valid_to'             => $request->get('valid_to'),
             ]);
+            $this->modelNameNewsletterCampaign->find($apiUpdateSingleRecord->id)->log()->create([ 
+                'status'  => 'Admin update',
+                'details' => __('error_and_notification_system.update.info_00002_notify.user_has_rights.message_super_admin', [
+                    'record'         => $request->get('campaign_name') . ' (id ' . $apiUpdateSingleRecord->id . ')',
+                    'databaseName'   => config('database.connections.mysql.database'),
+                    'tableName'      => $this->tableNameNewsletterCampaign
+                ])
+            ]);
+
             return response([
-                'title'              => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_title'),
+                'title'              => __('error_and_notification_system.update.info_00002_notify.user_has_rights.message_title'),
                 'notify_code'        => 'INFO_00002',
-                'description'        => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_super_admin', [
+                'description'        => __('error_and_notification_system.update.info_00002_notify.user_has_rights.message_super_admin', [
                     'record'         => $request->get('campaign_name'),
                     'databaseName'   => config('database.connections.mysql.database'),
                     'tableName'      => $this->tableNameNewsletterCampaign
@@ -436,7 +461,16 @@ class NewsletterCampaignSystemController extends Controller
                 }
                 else
                 {
+                    $this->modelNameNewsletterCampaign->find($apiDisplaySingleRecord['id'])->log()->create([ 
+                        'status'  => 'Admin delete',
+                        'details' => __('error_and_notification_system.delete.info_00002_notify.user_has_rights.message_super_admin', [
+                            'record'         => $apiDisplaySingleRecord['campaign_name'] . ' (id ' . $apiDisplaySingleRecord['id'] . ')',
+                            'databaseName'   => config('database.connections.mysql.database'),
+                            'tableName'      => $this->tableNameNewsletterCampaign
+                        ])
+                    ]);
                     $apiDeleteSingleRecord = $this->modelNameNewsletterCampaign->find($id)->delete();
+
                     return response([
                         'title'              => __('error_and_notification_system.delete.info_00002_notify.user_has_rights.message_title'),
                         'notify_code'        => 'INFO_00002',
@@ -526,6 +560,7 @@ class NewsletterCampaignSystemController extends Controller
                     DB::statement('SET FOREIGN_KEY_CHECKS=0;');
                     $apiDeleteSingleRecord = $this->modelNameNewsletterCampaign->truncate();
                     DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
                     return response([
                         'title'              => __('error_and_notification_system.delete_all.info_00004_notify.user_has_rights.message_title'),
                         'notify_code'        => 'INFO_00004',

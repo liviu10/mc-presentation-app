@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Admin\HomeSystem;
+namespace App\Http\Controllers\Admin\System;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\NewsletterLog;
+use App\Models\Log;
 use App\Models\ErrorAndNotificationSystem;
 
-class NewsletterLogSystemController extends Controller
+class LogSystemController extends Controller
 {
-    protected $modelNameNewsletterLog;
+    protected $modelNameLog;
     protected $modelNameErrorSystem;
-    protected $tableNameNewsletterLog;
+    protected $tableNameLog;
     protected $tableNameErrorSystem;
 
     /**
@@ -22,9 +22,9 @@ class NewsletterLogSystemController extends Controller
      */
     public function __construct()
     {
-        $this->modelNameNewsletterLog        = new NewsletterLog();
+        $this->modelNameLog                  = new Log();
         $this->modelNameErrorSystem          = new ErrorAndNotificationSystem();
-        $this->tableNameNewsletterSubscriber = $this->modelNameNewsletterLog->getTable();
+        $this->tableNameNewsletterSubscriber = $this->modelNameLog->getTable();
         $this->tableNameErrorSystem          = $this->modelNameErrorSystem->getTable();
     }
 
@@ -37,7 +37,7 @@ class NewsletterLogSystemController extends Controller
     {
         try
         {
-            $apiDisplayAllRecords = $this->modelNameNewsletterLog->select('id', 'newsletter_campaign_id', 'full_name', 'email', 'status', 'created_at')->get();
+            $apiDisplayAllRecords = $this->modelNameLog->select('id', 'logable_id', 'logable_type', 'status', 'created_at')->get();
             if ($apiDisplayAllRecords->isEmpty())
             {
                 return response([
@@ -46,9 +46,9 @@ class NewsletterLogSystemController extends Controller
                     'description'        => __('error_and_notification_system.index.war_00001_notify.user_has_rights.message_super_admin', [
                         'methodName'     => $_SERVER['REQUEST_METHOD'],
                         'apiEndpoint'    => $_SERVER['REQUEST_URI'],
-                        'serviceName' => __NAMESPACE__ . '\\' . basename(NewsletterLogSystemController::class) . '.php',
+                        'serviceName' => __NAMESPACE__ . '\\' . basename(LogSystemController::class) . '.php',
                         'databaseName'   => config('database.connections.mysql.database'),
-                        'tableName'      => $this->tableNameNewsletterLog
+                        'tableName'      => $this->tableNameLog
                     ]),
                     'reference'          => config('app.url') . '/documentation/warning#WAR_00001',
                     'api_endpoint'       => $_SERVER['REQUEST_URI'],
@@ -68,7 +68,7 @@ class NewsletterLogSystemController extends Controller
                     'description'        => __('error_and_notification_system.index.info_00001_notify.user_has_rights.message_super_admin', [
                         'numberOfRecords'=> $apiDisplayAllRecords->count(),
                         'databaseName'   => config('database.connections.mysql.database'),
-                        'tableName'      => $this->tableNameNewsletterLog
+                        'tableName'      => $this->tableNameLog
                     ]),
                     'reference'          => $this->modelNameErrorSystem::where('notify_code', '=', 'INFO_00001')->pluck('notify_reference')[0],
                     'api_endpoint'       => $_SERVER['REQUEST_URI'],
@@ -91,9 +91,9 @@ class NewsletterLogSystemController extends Controller
                     'description'        => __('error_and_notification_system.index.err_00001_notify.user_has_rights.message_super_admin', [
                         'methodName'     => $_SERVER['REQUEST_METHOD'],
                         'apiEndpoint'    => $_SERVER['REQUEST_URI'],
-                        'serviceName' => __NAMESPACE__ . '\\' . basename(NewsletterLogSystemController::class) . '.php',
+                        'serviceName' => __NAMESPACE__ . '\\' . basename(LogSystemController::class) . '.php',
                         'databaseName'   => config('database.connections.mysql.database'),
-                        'tableName'      => 'newsletter_logs',
+                        'tableName'      => 'logs',
                     ]),
                     'reference'          => config('app.url') . '/documentation/error#ERR_00001',
                     'api_endpoint'       => $_SERVER['REQUEST_URI'],

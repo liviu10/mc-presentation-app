@@ -131,6 +131,14 @@ class ContactMeSystemController extends Controller
                 'message'        => 'required|min:60',
             ]);
             $apiInsertSingleRecord = $this->modelNameContactMe->create(array_merge($request->input()));
+            $this->modelNameContactMe->find($apiInsertSingleRecord->id)->log()->create([ 
+                'status'  => 'Admin create',
+                'details' => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_super_admin', [
+                    'record'         => $request->get('full_name') . ' (id ' . $apiInsertSingleRecord->id . ')',
+                    'databaseName'   => config('database.connections.mysql.database'),
+                    'tableName'      => $this->tableNameContactMe
+                ])
+            ]);
             return response([
                 'title'              => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_title'),
                 'notify_code'        => 'INFO_00002',
@@ -312,6 +320,14 @@ class ContactMeSystemController extends Controller
                 'email'     => $request->get('email'),
                 'message'   => $request->get('message')
             ]);
+            $this->modelNameContactMe->find($apiUpdateSingleRecord->id)->log()->create([ 
+                'status'  => 'Admin update',
+                'details' => __('error_and_notification_system.update.info_00002_notify.user_has_rights.message_super_admin', [
+                    'record'         => $request->get('full_name') . ' (id ' . $apiUpdateSingleRecord->id . ')',
+                    'databaseName'   => config('database.connections.mysql.database'),
+                    'tableName'      => $this->tableNameContactMe
+                ])
+            ]);
             return response([
                 'title'              => __('error_and_notification_system.update.info_00002_notify.user_has_rights.message_title'),
                 'notify_code'        => 'INFO_00002',
@@ -450,6 +466,14 @@ class ContactMeSystemController extends Controller
                 }
                 else
                 {
+                    $this->modelNameContactMe->find($apiDisplaySingleRecord['id'])->log()->create([ 
+                        'status'  => 'Admin delete',
+                        'details' => __('error_and_notification_system.delete.info_00002_notify.user_has_rights.message_super_admin', [
+                            'record'         => $apiDisplaySingleRecord['campaign_name'] . ' (id ' . $apiDisplaySingleRecord['id'] . ')',
+                            'databaseName'   => config('database.connections.mysql.database'),
+                            'tableName'      => $this->tableNameContactMe
+                        ])
+                    ]);
                     $apiDeleteSingleRecord = $this->modelNameContactMe->find($id)->delete();
                     return response([
                         'title'              => __('error_and_notification_system.delete.info_00002_notify.user_has_rights.message_title'),

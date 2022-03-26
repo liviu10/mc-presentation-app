@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class NewsletterLog extends Model
+class Log extends Model
 {
     use HasFactory;
 
@@ -14,7 +14,7 @@ class NewsletterLog extends Model
      * 
      * @var string
      */
-    protected $table = 'newsletter_logs';
+    protected $table = 'logs';
 
     /**
      * The primary key associated with the table.
@@ -36,10 +36,8 @@ class NewsletterLog extends Model
      * @var string
      */
     protected $fillable = [
-        'newsletter_campaign_id',
-        'full_name',
-        'email',
         'status',
+        'details',
     ];
 
     /**
@@ -51,5 +49,26 @@ class NewsletterLog extends Model
         'id',
         'created_at',
         'updated_at',
+        'deleted_at',
     ];
+
+
+    public function scopeIsActive ($query) 
+    {
+        return $query->where('campaign_is_active', true);
+    }
+
+    public function scopeIsNotActive ($query) 
+    {
+        return $query->where('campaign_is_active', false);
+    }
+
+    /**
+     * Eloquent polymorphic relationship between newsletter_campaign and newsletter_logs.
+     *
+     */
+    public function logable()
+    {
+        return $this->morphTo();
+    }
 }
