@@ -19,7 +19,7 @@ class CreateBlogSubcategoriesTable extends Migration
             $table->foreignId('blog_category_id')->index('idx_blog_category_id');
             $table->string('blog_subcategory_title');
             $table->string('blog_subcategory_short_description');
-            $table->longText('blog_subcategory_description');
+            $table->longText('blog_subcategory_description')->nullable();
             $table->string('blog_subcategory_is_active', 3)->default('0');
             $table->string('blog_subcategory_path');
             $table->timestamps();

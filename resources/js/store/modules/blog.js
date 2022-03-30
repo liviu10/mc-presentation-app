@@ -5,7 +5,8 @@ export const state = {
   blogCategoriesAndSubcategories: [],
   listOfWrittenArticles: [],
   listOfAudioArticles: [],
-  listOfVideoArticles: []
+  listOfVideoArticles: [],
+  adminBlogCategoriesAndSubcategories: []
 }
 
 // getters
@@ -13,7 +14,8 @@ export const getters = {
   allBlogCategoriesAndSubcategories: (state) => state.blogCategoriesAndSubcategories,
   listOfWrittenArticles: (state) => state.listOfWrittenArticles,
   listOfAudioArticles: (state) => state.listOfAudioArticles,
-  listOfVideoArticles: (state) => state.listOfVideoArticles
+  listOfVideoArticles: (state) => state.listOfVideoArticles,
+  adminAllBlogCategoriesAndSubcategories: (state) => state.adminBlogCategoriesAndSubcategories
 }
 
 // mutations
@@ -21,7 +23,8 @@ export const mutations = {
   setBlogCategoriesAndSubcategories: (state, blogCategoriesAndSubcategories) => (state.blogCategoriesAndSubcategories = blogCategoriesAndSubcategories),
   setListOfWrittenArticles: (state, listOfWrittenArticles) => (state.listOfWrittenArticles = listOfWrittenArticles),
   setListOfAudioArticles: (state, listOfAudioArticles) => (state.listOfAudioArticles = listOfAudioArticles),
-  setListOfVideoArticles: (state, listOfVideoArticles) => (state.listOfVideoArticles = listOfVideoArticles)
+  setListOfVideoArticles: (state, listOfVideoArticles) => (state.listOfVideoArticles = listOfVideoArticles),
+  setAdminBlogCategoriesAndSubcategories: (state, adminBlogCategoriesAndSubcategories) => (state.adminBlogCategoriesAndSubcategories = adminBlogCategoriesAndSubcategories)
 }
 
 // actions
@@ -76,6 +79,19 @@ export const actions = {
       })
       .catch(({ response }) => {
         commit('setListOfVideoArticles', response.data)
+      })
+  },
+  async fetchAdminBlogCategoriesAndSubcategories ({ commit }) {
+    const url = window.location.origin
+    const apiEndPoint = '/api/admin/system/blog/categories-and-subcategories'
+    const fullApiUrl = url + apiEndPoint
+    axios
+      .get(fullApiUrl)
+      .then(response => {
+        commit('setAdminBlogCategoriesAndSubcategories', response.data)
+      })
+      .catch(({ response }) => {
+        commit('setAdminBlogCategoriesAndSubcategories', response.data)
       })
   }
 }

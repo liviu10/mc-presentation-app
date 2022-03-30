@@ -49,12 +49,12 @@ export default [
   // URL routes for the Administration Panel of the Web Application
   { path: '/admin/home', name: 'admin-home-page', component: page('admin/index.vue') },
   { path: '/admin/blog', name: 'admin-blog-page', component: page('admin/blog/index.vue') },
+  { path: '/admin/blog/categories-and-subcategories', name: 'admin-blog-categories-and-subcategories-page', component: page('admin/blog/categories-and-subcategories/index.vue') },
+  { path: '/admin/blog/articles-and-comments', name: 'admin-blog-articles-and-comments-page', component: page('admin/blog/articles-and-comments/index.vue') },
   { path: '/admin/contact-me', name: 'admin-contact-me-page', component: page('admin/contact-me/index.vue') },
-
   { path: '/admin/newsletter', name: 'admin-newsletter-page', component: page('admin/newsletter/index.vue') },
   { path: '/admin/newsletter/campaigns', name: 'admin-newsletter-campaigns-page', component: page('admin/newsletter/campaigns/index.vue') },
   { path: '/admin/newsletter/subscribers', name: 'admin-newsletter-subscribers-page', component: page('admin/newsletter/subscribers/index.vue') },
-
   { path: '/admin/accepted-domains', name: 'admin-accepted-domains-page', component: page('admin/accepted-domains/index.vue') },
   { path: '/admin/documentation', name: 'admin-documentation-page', component: page('admin/documentation/index.vue') },
   { path: '/admin/errors-and-notifications', name: 'admin-errors-and-notifications-page', component: page('admin/errors-and-notifications/index.vue') },

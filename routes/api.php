@@ -194,14 +194,19 @@ use Illuminate\Support\Facades\Route;
 
             // Blog System Admin API routes
             Route::group([ 'prefix' => '/blog' ], function () {
-                // Blog categories & subcategories Admin API routes
                 Route::group([ 'prefix' => '/' ], function () {
+                    // Blog categories admin API routes
+                    Route::post('/create-category', [BlogCategorySystemController::class, 'createCategory']);
+                    Route::post('/edit-category/{id}', [BlogCategorySystemController::class, 'editCategory']);
+                    Route::delete('/delete-category/{id}', [BlogCategorySystemController::class, 'deleteCategory']);
                     Route::delete('/delete-all-categories', [BlogCategorySystemController::class, 'deleteAllCategories']);
+                    // Blog subcategories admin API routes
                     Route::post('/create-subcategory', [BlogCategorySystemController::class, 'createSubcategory']);
                     Route::put('/edit-subcategory/{id}', [BlogCategorySystemController::class, 'editSubcategory']);
                     Route::delete('/delete-subcategory/{id}', [BlogCategorySystemController::class, 'deleteSubcategory']);
                     Route::delete('/delete-all-subcategories', [BlogCategorySystemController::class, 'deleteAllSubcategories']);
-                    Route::apiResource('/categories-and-subcategories', BlogCategorySystemController::class);
+                    // Blog categories and subcategories
+                    Route::apiResource('/categories-and-subcategories', BlogCategorySystemController::class)->only(['index']);
                 });
                 // Blog articles, appreciations & comments Admin API routes
                 Route::group([ 'prefix' => '/' ], function () {
