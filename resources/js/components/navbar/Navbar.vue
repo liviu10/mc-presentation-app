@@ -2,7 +2,13 @@
   <nav class="navbar navbar-expand-xxl navbar-light bg-white">
     <div class="container-fluid">
       <!-- NAVBAR BRAND SECTION START -->
-      <router-link :to="{ name: 'home-page' }" class="navbar-brand">
+      <router-link v-if="user && user.user_role_type_id === 1" :to="{ name: 'admin-home-page' }" class="navbar-brand">
+        <img src="/images/navbar/Logo-img7_180.webp" alt="">
+        <p class="text-wrap">
+          {{ $t('user.navigation_bar.brand') }}
+        </p>
+      </router-link>
+      <router-link v-else :to="{ name: 'home-page' }" class="navbar-brand">
         <img src="/images/navbar/Logo-img7_180.webp" alt="">
         <p class="text-wrap">
           {{ $t('user.navigation_bar.brand') }}
@@ -36,6 +42,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 // import LocaleDropdown from './subcomponents/LocaleDropdown'
 import NavbarButtons from './subcomponents/NavbarButtons.vue'
 import NavbarSubMenuButtons from './subcomponents/NavbarSubMenuButtons.vue'
@@ -45,6 +52,9 @@ export default {
     // LocaleDropdown,
     NavbarButtons,
     NavbarSubMenuButtons
-  }
+  },
+  computed: mapGetters({
+    user: 'auth/user'
+  })
 }
 </script>

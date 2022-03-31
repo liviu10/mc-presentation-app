@@ -157,7 +157,7 @@ use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\Admin\System\LogSystemController;
 
     // Import the Accepted Domains system
-    use App\Http\Controllers\Admin\AcceptedDomainSystem\AcceptedDomainSystemController;
+    use App\Http\Controllers\Admin\System\AcceptedDomainSystemController;
 
     // Import the User List system
     use App\Http\Controllers\Admin\System\UserListSystemController;
@@ -207,6 +207,14 @@ use Illuminate\Support\Facades\Route;
                     Route::delete('/delete-all-subcategories', [BlogCategorySystemController::class, 'deleteAllSubcategories']);
                     // Blog categories and subcategories
                     Route::apiResource('/categories-and-subcategories', BlogCategorySystemController::class)->only(['index']);
+                    // Blog articles admin API routes
+                    
+                    // Blog appreciation admin API routes
+                    
+                    // Blog comments admin API routes
+                    
+                    // Blog articles and comments
+                    Route::apiResource('/articles-and-comments', BlogArticleSystemController::class)->only(['index']);
                 });
                 // Blog articles, appreciations & comments Admin API routes
                 Route::group([ 'prefix' => '/' ], function () {

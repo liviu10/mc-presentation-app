@@ -48,18 +48,33 @@ export default [
 
   // URL routes for the Administration Panel of the Web Application
   { path: '/admin/home', name: 'admin-home-page', component: page('admin/index.vue') },
+
+  // URL routes for the blog system
   { path: '/admin/blog', name: 'admin-blog-page', component: page('admin/blog/index.vue') },
   { path: '/admin/blog/categories-and-subcategories', name: 'admin-blog-categories-and-subcategories-page', component: page('admin/blog/categories-and-subcategories/index.vue') },
   { path: '/admin/blog/articles-and-comments', name: 'admin-blog-articles-and-comments-page', component: page('admin/blog/articles-and-comments/index.vue') },
+
+  // URL route for application contact me
   { path: '/admin/contact-me', name: 'admin-contact-me-page', component: page('admin/contact-me/index.vue') },
+
+  // URL routes for the application newsletter
   { path: '/admin/newsletter', name: 'admin-newsletter-page', component: page('admin/newsletter/index.vue') },
   { path: '/admin/newsletter/campaigns', name: 'admin-newsletter-campaigns-page', component: page('admin/newsletter/campaigns/index.vue') },
   { path: '/admin/newsletter/subscribers', name: 'admin-newsletter-subscribers-page', component: page('admin/newsletter/subscribers/index.vue') },
-  { path: '/admin/accepted-domains', name: 'admin-accepted-domains-page', component: page('admin/accepted-domains/index.vue') },
+
+  // URL routes for the application settings
+  { path: '/admin/application-settings', name: 'admin-application-settings-page', component: page('admin/application-settings/index.vue') },
+  { path: '/admin/application-settings/accepted-domains', name: 'admin-accepted-domains-page', component: page('admin/application-settings/accepted-domains/index.vue') },
+  { path: '/admin/application-settings/errors-and-notifications', name: 'admin-errors-and-notifications-page', component: page('admin/application-settings/errors-and-notifications/index.vue') },
+  { path: '/admin/application-settings/logs', name: 'admin-logs-page', component: page('admin/application-settings/logs/index.vue') },
+
+  // URL route for the application documentation
   { path: '/admin/documentation', name: 'admin-documentation-page', component: page('admin/documentation/index.vue') },
-  { path: '/admin/errors-and-notifications', name: 'admin-errors-and-notifications-page', component: page('admin/errors-and-notifications/index.vue') },
-  { path: '/admin/logs', name: 'admin-logs-page', component: page('admin/logs/index.vue') },
+
+  // URL route for the user list
   { path: '/admin/user-list', name: 'admin-user-list-page', component: page('admin/user-list/index.vue') },
+
+  // URL route for the user profile settings
   { path: '/admin/profile-settings', name: 'admin-profile-settings-page', component: page('admin/profile-settings/index.vue') },
 
   // URL routes for different HTTP errors

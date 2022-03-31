@@ -27,13 +27,11 @@
         "first_button": "Blog",
         "second_button": "Mesaje contactează-mă",
         "third_button": "Campanii newsletter",
-        "forth_button": "Domenii acceptate",
-        "fifth_button": "Erori și Notificări",
-        "sixth_button": "Log-uri aplicație",
-        "seventh_button": "Documentație",
-        "eighth_button": "Listă utilizatori",
-        "ninth_button": "Setări profil",
-        "tenth_button": "Ieșire"
+        "forth_button": "Setări aplicație",
+        "fifth_button": "Documentație",
+        "sixth_button": "Listă utilizatori",
+        "seventh_button": "Setări profil",
+        "eighth_button": "Ieșire"
       }
     },
     "footer": {
