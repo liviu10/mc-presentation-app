@@ -3,7 +3,7 @@
     <div class="col-lg-12 m-auto">
       <div class="lv-pg-admin">
         <div class="lv-pg-admin-header">
-          <h1>ADMIN BLOG CATEGORIES AND SUBCATEGORIES PAGE</h1>
+          <h1>ADMIN BLOG ARTICLES AND COMMENTS PAGE</h1>
         </div>
         <div class="lv-pg-admin-body">
           <vue-good-table
@@ -64,12 +64,6 @@
             </template>
           </vue-good-table>
         </div>
-
-        <new-blog-category />
-
-        <new-blog-subcategory />
-
-        <edit-blog-category-and-subcategory :edit-row="selectedDataToEdit" />
       </div>
     </div>
   </div>
@@ -82,9 +76,6 @@ import Vuex, { mapGetters, mapActions } from 'vuex'
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import { VueGoodTable } from 'vue-good-table'
 import 'vue-good-table/dist/vue-good-table.css'
-import NewBlogCategory from './new-blog-category'
-import NewBlogSubcategory from './new-blog-subcategory'
-import EditBlogCategoryAndSubcategory from './edit'
 
 Vue.use(axios)
 Vue.use(Vuex)
@@ -92,12 +83,9 @@ Vue.use(Vuex)
 window.axios = require('axios')
 
 export default {
-  name: 'AdminBlogCategoriesAndSubcategories',
+  name: 'AdminBlogArticlesAndComments',
   components: {
-    VueGoodTable,
-    NewBlogCategory,
-    NewBlogSubcategory,
-    EditBlogCategoryAndSubcategory
+    VueGoodTable
   },
   middleware: 'auth',
   data: function () {

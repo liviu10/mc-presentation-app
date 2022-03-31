@@ -3,4 +3,67 @@
     Import here all the CSS pages for the administration panel.
 */
 
-@import '../../utilities/_global.scss';
+.lv-pg-admin {
+    margin: rem-convertor(60px) 0rem;
+    padding: 0rem;
+    width: 100%;
+    height: 100vh;
+    &-header, &-body {
+        padding: 0rem;
+    }
+    &-header {
+        margin: rem-convertor(32px) 0rem rem-convertor(60px) 0rem;
+        & h1 {
+            margin-bottom: 0rem;
+            text-align: center;
+        }
+    }
+    &-body {
+        & .my-4 {
+            & .nav {
+                &-link {
+                    @include flex-center();
+                    border: 0rem;
+                    border-top-left-radius: 0rem;
+                    border-top-right-radius: 0rem;
+                    height: rem-convertor(50px);
+                    color: map-get($basic_colors, "color_black");
+                    font-weight: 900;
+                    text-transform: uppercase;
+                }
+                &-link.active {
+                    background-color: map-get($complementary_blizzard_blue, "color_sea_nymph") !important;
+                    color: map-get($basic_colors, "color_black");
+                }
+            }
+            & .nav.nav-tabs {
+                border-bottom: 0rem;
+            }
+            & .tab-content {
+                & .tab-pane {
+                    & .card {
+                        border: 0rem !important;
+                        border-radius: 0rem !important;
+                        background-color: map-get($complementary_blizzard_blue, "color_sea_nymph") !important;
+                        &-title {
+                            @include flex-center-left-center();
+                            margin-bottom: 0rem;
+                            height: rem-convertor(60px);
+                            text-transform: uppercase;
+                        }
+                        &-body {
+                            & .btn {
+                                @include button();
+                                background-color: map-get($blizzard_blue, "color_blizzard_blue") !important;
+                            }
+                        }
+                        &-text {
+                            margin-bottom: 0rem;
+                            height: rem-convertor(100px);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
