@@ -2,13 +2,10 @@
   <div class="row">
     <div class="col-lg-12 m-auto">
       <div class="lv-pg-admin">
-        <div class="lv-pg-admin-header">
-          <h1>ADMIN NEWSLETTER CAMPAIGNS PAGE</h1>
-        </div>
         <div class="lv-pg-admin-body">
           <vue-good-table
             :columns="columns"
-            :rows="displayNewsletterCampaigns"
+            :rows="displayListOfUsers"
             :search-options="{
               enabled: true
             }"
@@ -31,34 +28,30 @@
               allLabel: 'All',
             }"
           >
-            <div slot="table-actions">
-              <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#createNewCampaign">
-                <fa icon="pencil-alt" fixed-width />
-              </button>
-              <button class="btn btn-danger" @click="deleteAllCampaigns()">
-                <fa icon="trash" fixed-width />
+            <div v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2" slot="table-actions">
+              <button class="btn btn-primary me-2" type="button" data-bs-toggle="modal" data-bs-target="#createNewUser">
+                <fa icon="pencil-alt" fixed-width /> Add new
               </button>
             </div>
             <template slot="table-row" slot-scope="props">
-              <span v-if="props.column.field == 'campaign_is_active'">
-                <span v-if="props.row.campaign_is_active === '1'">Yes</span>
-                <span v-else>No</span>
-              </span>
-              <span v-else-if="props.column.field == 'valid_from'">
-                {{ new Date(props.row.valid_from).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}
-              </span>
-              <span v-else-if="props.column.field == 'valid_to'">
-                {{ new Date(props.row.valid_to).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}
+              <span v-if="props.column.field == 'user_role_type_id'">
+                {{ props.row.user_role_type.user_role_name }}
               </span>
               <span v-else-if="props.column.field == 'created_at'">
                 {{ new Date(props.row.created_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}
               </span>
               <span v-else-if="props.column.field == 'actions'">
-                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#editCampaign" @click="editCampaign(props.row)">
-                  <fa icon="edit" fixed-width />
+                <button v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2"
+                        class="btn btn-warning w-100"
+                        type="button"
+                        data-bs-toggle="modal"
+                        data-bs-target="#editUser"
+                        @click="editUser(props.row)"
+                >
+                  <fa icon="edit" fixed-width /> Edit
                 </button>
-                <button class="btn btn-danger" @click="deleteCampaign(props.row)">
-                  <fa icon="trash" fixed-width />
+                <button v-if="user.user_role_type_id === 1" class="btn btn-danger w-100" @click="deleteUsers(props.row)">
+                  <fa icon="trash" fixed-width /> Delete
                 </button>
               </span>
               <span v-else>
@@ -68,9 +61,9 @@
           </vue-good-table>
         </div>
 
-        <new-campaign />
+        <new-user />
 
-        <edit-campaign :edit-row="selectedDataToEdit" />
+        <edit-user :edit-row="selectedDataToEdit" />
       </div>
     </div>
   </div>
@@ -83,8 +76,8 @@ import Vuex, { mapGetters, mapActions } from 'vuex'
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import { VueGoodTable } from 'vue-good-table'
 import 'vue-good-table/dist/vue-good-table.css'
-import NewCampaign from './new'
-import EditCampaign from './edit'
+import NewUser from './new'
+import EditUser from './edit'
 
 Vue.use(axios)
 Vue.use(Vuex)
@@ -92,11 +85,11 @@ Vue.use(Vuex)
 window.axios = require('axios')
 
 export default {
-  name: 'AdminNewsletterCampaigns',
+  name: 'AdminUserList',
   components: {
     VueGoodTable,
-    NewCampaign,
-    EditCampaign
+    NewUser,
+    EditUser
   },
   middleware: 'auth',
   data: function () {
@@ -108,31 +101,30 @@ export default {
         },
         {
           label: 'Name',
-          field: 'campaign_name'
+          field: 'name'
         },
         {
-          label: 'Description',
-          field: 'campaign_description'
+          label: 'Nickname',
+          field: 'nickname'
         },
         {
-          label: 'Active?',
-          field: 'campaign_is_active'
+          label: 'Email',
+          field: 'email'
         },
         {
-          label: 'Valid from',
-          field: 'valid_from'
+          label: 'User Role',
+          field: 'user_role_type_id'
         },
         {
-          label: 'Valid to',
-          field: 'valid_to'
-        },
-        {
-          label: 'Created at',
+          label: 'Joined at',
           field: 'created_at'
         },
         {
           label: 'Actions',
-          field: 'actions'
+          field: 'actions',
+          sortable: false,
+          tdClass: 'd-flex justify-content-center align-items-center',
+          width: '180px'
         }
       ],
       selectedDataToEdit: {}
@@ -141,28 +133,28 @@ export default {
   computed: {
     ...mapGetters({
       user: 'auth/user',
-      listOfCampaigns: 'newsletter_system/listOfCampaigns'
+      listOfUsers: 'user_list/listOfUsers'
     }),
-    displayNewsletterCampaigns () {
-      return this.listOfCampaigns.records
+    displayListOfUsers () {
+      return this.listOfUsers.records
     },
     getHttpStatusResponseCode () {
       // TODO Blog System: How to catch api endpoint errors and display them to the user
-      return this.listOfCampaigns.http_response_code
+      return this.listOfUsers.http_response_code
     }
   },
   created () {
-    this.fetchListOfCampaigns()
+    this.fetchListOfUsers()
   },
   methods: {
     ...mapActions({
-      fetchListOfCampaigns: 'newsletter_system/fetchListOfCampaigns'
+      fetchListOfUsers: 'user_list/fetchListOfUsers'
     }),
-    async editCampaign (row) {
+    async editUser (row) {
       this.selectedDataToEdit = row
       return this.selectedDataToEdit
     },
-    async deleteCampaign (row) {
+    async deleteUsers (row) {
       if (!this.user) {
         Swal.fire({
           title: 'Unauthenticated User Title',
@@ -177,7 +169,7 @@ export default {
         })
       } else {
         const url = window.location.origin
-        const apiEndPoint = '/api/admin/system/newsletter/campaigns'
+        const apiEndPoint = '/api/admin/system/user-list'
         const urlParam = row.id
         const fullApiUrl = url + apiEndPoint + '/' + urlParam
         try {
@@ -189,51 +181,7 @@ export default {
                 html:
                     '<p>Notify code: ' + '<a href="' + response.data.reference + '">' + response.data.notify_code + '</a>' + '</p>' +
                     '<p>' + response.data.description + '</p>' +
-                    '<p>Deleted campaign name: ' + response.data.records.campaign_name + '</p>'
-              }).then((result) => {
-                console.log('> result message: ')
-                window.location.reload()
-              })
-            })
-        } catch (err) {
-          if (err.response.status === 500) {
-            console.log('> error message: ')
-            Swal.fire({
-              title: err.response.data.title,
-              html:
-                  '<p>Notify code: ' + '<a href="' + err.response.data.reference + '">' + err.response.data.notify_code + '</a>' + '</p>' +
-                  '<p>' + err.response.data.description + '</p>'
-            })
-          }
-        }
-      }
-    },
-    async deleteAllCampaigns () {
-      if (!this.user) {
-        Swal.fire({
-          title: 'Unauthenticated User Title',
-          text: 'Unauthenticated User Text Message',
-          confirmButtonText: 'Login',
-          showCancelButton: true,
-          cancelButtonText: 'Cancel'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            this.$router.push({ name: 'user.auth.login' })
-          }
-        })
-      } else {
-        const url = window.location.origin
-        const apiEndPoint = '/api/admin/system/newsletter/campaigns/delete-all'
-        const fullApiUrl = url + apiEndPoint
-        try {
-          await axios.delete(fullApiUrl)
-            .then(response => {
-              console.log('> response message: ')
-              Swal.fire({
-                title: response.data.title,
-                html:
-                    '<p>Notify code: ' + '<a href="' + response.data.reference + '">' + response.data.notify_code + '</a>' + '</p>' +
-                    '<p>' + response.data.description + '</p>'
+                    '<p>Deleted user and email: ' + response.data.records.name + ' (' + response.data.records.email + ')' + '</p>'
               }).then((result) => {
                 console.log('> result message: ')
                 window.location.reload()
@@ -252,9 +200,6 @@ export default {
         }
       }
     }
-  },
-  metaInfo () {
-    return { title: 'Admin - Newsletter Campaign' }
   }
 }
 </script>

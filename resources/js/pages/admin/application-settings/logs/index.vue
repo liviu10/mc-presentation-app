@@ -2,9 +2,6 @@
   <div class="row">
     <div class="col-lg-12 m-auto">
       <div class="lv-pg-admin">
-        <div class="lv-pg-admin-header">
-          <h1>ADMIN APPLICATION LOGS PAGE</h1>
-        </div>
         <div class="lv-pg-admin-body">
           <div class="lv-pg-admin-body">
             <vue-good-table
@@ -32,17 +29,14 @@
                 allLabel: 'All',
               }"
             >
+              <div v-if="user.user_role_type_id === 1" slot="table-actions">
+                <button class="btn btn-danger me-2" @click="deleteAllLogs()">
+                  <fa icon="trash" fixed-width /> Delete all
+                </button>
+              </div>
               <template slot="table-row" slot-scope="props">
                 <span v-if="props.column.field == 'created_at'">
                   {{ new Date(props.row.created_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}
-                </span>
-                <span v-else-if="props.column.field == 'actions'">
-                  <button class="btn btn-primary" type="button" @click="actionOne()">
-                    <fa icon="edit" fixed-width />
-                  </button>
-                  <button class="btn btn-danger" type="button" @click="actionTwo()">
-                    <fa icon="trash" fixed-width />
-                  </button>
                 </span>
                 <span v-else>
                   {{ props.formattedRow[props.column.field] }}
@@ -59,6 +53,7 @@
 <script>
 import Vue from 'vue'
 import axios from 'axios'
+import Swal from 'sweetalert2/dist/sweetalert2.js'
 import Vuex, { mapGetters, mapActions } from 'vuex'
 import { VueGoodTable } from 'vue-good-table'
 import 'vue-good-table/dist/vue-good-table.css'
@@ -82,24 +77,16 @@ export default {
           field: 'id'
         },
         {
-          label: 'Model Id',
-          field: 'logable_id'
-        },
-        {
-          label: 'Related Model',
-          field: 'logable_type'
-        },
-        {
           label: 'Status',
           field: 'status'
         },
         {
-          label: 'Created at',
-          field: 'created_at'
+          label: 'Details',
+          field: 'details'
         },
         {
-          label: 'Actions',
-          field: 'actions'
+          label: 'Created at',
+          field: 'created_at'
         }
       ]
     }
@@ -123,10 +110,60 @@ export default {
   methods: {
     ...mapActions({
       fetchListOfLogs: 'logs/fetchListOfLogs'
-    })
-  },
-  metaInfo () {
-    return { title: 'Admin - Application Logs' }
+    }),
+    async deleteAllLogs () {
+      if (!this.user) {
+        Swal.fire({
+          title: 'Unauthenticated User Title',
+          text: 'Unauthenticated User Text Message',
+          confirmButtonText: 'Login',
+          showCancelButton: true,
+          cancelButtonText: 'Cancel'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.$router.push({ name: 'user.auth.login' })
+          }
+        })
+      } else {
+        const url = window.location.origin
+        const apiEndPoint = '/api/admin/system/delete-all-logs'
+        const fullApiUrl = url + apiEndPoint
+        try {
+          await axios.delete(fullApiUrl)
+            .then(response => {
+              console.log('> response message: ')
+              Swal.fire({
+                title: response.data.title,
+                html:
+                    '<p>Notify code: ' + '<a href="' + response.data.reference + '">' + response.data.notify_code + '</a>' + '</p>' +
+                    '<p>' + response.data.description + '</p>'
+              }).then((result) => {
+                console.log('> result message: ')
+                window.location.reload()
+              })
+            })
+        } catch (err) {
+          if (err.response.status === 500) {
+            console.log('> error message: ')
+            Swal.fire({
+              title: err.response.data.title,
+              html:
+                  '<p>Notify code: ' + '<a href="' + err.response.data.reference + '">' + err.response.data.notify_code + '</a>' + '</p>' +
+                  '<p>' + err.response.data.description + '</p>'
+            })
+          }
+          if (err.response.status === 404) {
+            console.log('> error message: ')
+            Swal.fire({
+              title: err.response.data.title,
+              html:
+                  '<p>Notify code: ' + '<a href="' + err.response.data.reference + '">' + err.response.data.notify_code + '</a>' + '</p>' +
+                  '<p>' + err.response.data.description + '</p>'
+            })
+          }
+        }
+      }
+    }
   }
 }
 </script>

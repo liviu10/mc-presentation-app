@@ -15,6 +15,9 @@
                 <a href="#errors_and_notifications" class="nav-link" data-bs-toggle="tab">Errors And Notifications</a>
               </li>
               <li class="nav-item">
+                <a href="#users_list" class="nav-link" data-bs-toggle="tab">Users List</a>
+              </li>
+              <li class="nav-item">
                 <a href="#logs" class="nav-link" data-bs-toggle="tab">Logs</a>
               </li>
             </ul>
@@ -22,45 +25,28 @@
               <div id="accepted_domains" class="tab-pane fade show active">
                 <div class="card">
                   <div class="card-body">
-                    <h5 class="card-title">
-                      Accepted Domains
-                    </h5>
-                    <p class="card-text">
-                      Some quick example text to build on the card title and make up the bulk of the card's content.
-                    </p>
-                    <router-link :to="{ name: 'admin-accepted-domains-page' }" class="btn btn-primary">
-                      View
-                    </router-link>
+                    <admin-accepted-domains />
                   </div>
                 </div>
               </div>
               <div id="errors_and_notifications" class="tab-pane fade">
                 <div class="card">
                   <div class="card-body">
-                    <h5 class="card-title">
-                      Errors And Notifications
-                    </h5>
-                    <p class="card-text">
-                      Some quick example text to build on the card title and make up the bulk of the card's content.
-                    </p>
-                    <router-link :to="{ name: 'admin-errors-and-notifications-page' }" class="btn btn-primary">
-                      View
-                    </router-link>
+                    <admin-errors-and-notifications />
+                  </div>
+                </div>
+              </div>
+              <div id="users_list" class="tab-pane fade">
+                <div class="card">
+                  <div class="card-body">
+                    <admin-user-list />
                   </div>
                 </div>
               </div>
               <div id="logs" class="tab-pane fade">
                 <div class="card">
                   <div class="card-body">
-                    <h5 class="card-title">
-                      Logs
-                    </h5>
-                    <p class="card-text">
-                      Some quick example text to build on the card title and make up the bulk of the card's content.
-                    </p>
-                    <router-link :to="{ name: 'admin-logs-page' }" class="btn btn-primary">
-                      View
-                    </router-link>
+                    <admin-logs />
                   </div>
                 </div>
               </div>
@@ -73,8 +59,19 @@
 </template>
 
 <script>
+import AdminAcceptedDomains from './accepted-domains/index.vue'
+import AdminErrorsAndNotifications from './errors-and-notifications/index.vue'
+import AdminUserList from './user-list/index.vue'
+import AdminLogs from './logs/index.vue'
+
 export default {
   name: 'AdminApplicationSettings',
+  components: {
+    AdminAcceptedDomains,
+    AdminErrorsAndNotifications,
+    AdminUserList,
+    AdminLogs
+  },
   middleware: 'auth',
   metaInfo () {
     return { title: 'Admin - Application Settings' }

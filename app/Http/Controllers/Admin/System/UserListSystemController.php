@@ -156,7 +156,7 @@ class UserListSystemController extends Controller
                 'title'              => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_title'),
                 'notify_code'        => 'INFO_00002',
                 'description'        => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_super_admin', [
-                    'record'         => $apiInsertSingleRecord['blog_category_title'],
+                    'record'         => $apiInsertSingleRecord['nickname'],
                     'databaseName'   => config('database.connections.mysql.database'),
                     'tableName'      => $this->tableNameUser
                 ]),
@@ -473,7 +473,7 @@ class UserListSystemController extends Controller
                         'title'              => __('error_and_notification_system.delete.info_00002_notify.user_has_rights.message_title'),
                         'notify_code'        => 'INFO_00002',
                         'description'        => __('error_and_notification_system.delete.info_00002_notify.user_has_rights.message_super_admin', [
-                            'record'         => $apiDisplaySingleRecord['blog_category_title'],
+                            'record'         => $apiDisplaySingleRecord['nickname'],
                             'databaseName'   => config('database.connections.mysql.database'),
                             'tableName'      => $this->tableNameUser
                         ]),

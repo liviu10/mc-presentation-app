@@ -58,21 +58,13 @@ export default [
   { path: '/admin/contact-me', name: 'admin-contact-me-page', component: page('admin/contact-me/index.vue') },
 
   // URL routes for the application newsletter
-  { path: '/admin/newsletter', name: 'admin-newsletter-page', component: page('admin/newsletter/index.vue') },
-  { path: '/admin/newsletter/campaigns', name: 'admin-newsletter-campaigns-page', component: page('admin/newsletter/campaigns/index.vue') },
-  { path: '/admin/newsletter/subscribers', name: 'admin-newsletter-subscribers-page', component: page('admin/newsletter/subscribers/index.vue') },
+  { path: '/admin/newsletter-settings', name: 'admin-newsletter-settings-page', component: page('admin/newsletter-settings/index.vue') },
 
   // URL routes for the application settings
   { path: '/admin/application-settings', name: 'admin-application-settings-page', component: page('admin/application-settings/index.vue') },
-  { path: '/admin/application-settings/accepted-domains', name: 'admin-accepted-domains-page', component: page('admin/application-settings/accepted-domains/index.vue') },
-  { path: '/admin/application-settings/errors-and-notifications', name: 'admin-errors-and-notifications-page', component: page('admin/application-settings/errors-and-notifications/index.vue') },
-  { path: '/admin/application-settings/logs', name: 'admin-logs-page', component: page('admin/application-settings/logs/index.vue') },
 
   // URL route for the application documentation
   { path: '/admin/documentation', name: 'admin-documentation-page', component: page('admin/documentation/index.vue') },
-
-  // URL route for the user list
-  { path: '/admin/user-list', name: 'admin-user-list-page', component: page('admin/user-list/index.vue') },
 
   // URL route for the user profile settings
   { path: '/admin/profile-settings', name: 'admin-profile-settings-page', component: page('admin/profile-settings/index.vue') },

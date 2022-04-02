@@ -2,13 +2,10 @@
   <div class="row">
     <div class="col-lg-12 m-auto">
       <div class="lv-pg-admin">
-        <div class="lv-pg-admin-header">
-          <h1>ADMIN NEWSLETTER SUBSCRIBERS PAGE</h1>
-        </div>
         <div class="lv-pg-admin-body">
           <vue-good-table
             :columns="columns"
-            :rows="displayNewsletterSubscribers"
+            :rows="displayNewsletterCampaigns"
             :search-options="{
               enabled: true
             }"
@@ -32,27 +29,42 @@
             }"
           >
             <div slot="table-actions">
-              <button class="btn btn-danger" @click="deleteAllSubscribers()">
-                <fa icon="trash" fixed-width />
+              <button v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2" class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#createNewCampaign">
+                <fa icon="pencil-alt" fixed-width /> Add new
+              </button>
+              <button v-if="user.user_role_type_id === 1" class="btn btn-danger me-2" @click="deleteAllCampaigns()">
+                <fa icon="trash" fixed-width /> Delete all
               </button>
             </div>
             <template slot="table-row" slot-scope="props">
-              <span v-if="props.column.field == 'privacy_policy'">
-                <span v-if="props.row.privacy_policy === '1'">Yes</span>
+              <span v-if="props.column.field == 'campaign_is_active'">
+                <span v-if="props.row.campaign_is_active === '1'">Yes</span>
                 <span v-else>No</span>
+              </span>
+              <span v-else-if="props.column.field == 'valid_from'">
+                {{ new Date(props.row.valid_from).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}
+              </span>
+              <span v-else-if="props.column.field == 'valid_to'">
+                {{ new Date(props.row.valid_to).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}
               </span>
               <span v-else-if="props.column.field == 'created_at'">
                 {{ new Date(props.row.created_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}
               </span>
-              <span v-else-if="props.column.field == 'unsubscribed_at'">
-                {{ new Date(props.row.unsubscribed_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}
-              </span>
               <span v-else-if="props.column.field == 'actions'">
-                <button class="btn btn-primary" type="button" @click="actionOne()">
-                  <fa icon="edit" fixed-width />
+                <button v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2"
+                        class="btn btn-warning w-100"
+                        type="button"
+                        data-bs-toggle="modal"
+                        data-bs-target="#editCampaign"
+                        @click="editCampaign(props.row)"
+                >
+                  <fa icon="edit" fixed-width /> Edit
                 </button>
-                <button class="btn btn-danger" @click="deleteSubscriber(props.row)">
-                  <fa icon="trash" fixed-width />
+                <button v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2"
+                        class="btn btn-danger w-100"
+                        @click="deleteCampaign(props.row)"
+                >
+                  <fa icon="trash" fixed-width /> Delete
                 </button>
               </span>
               <span v-else>
@@ -61,6 +73,10 @@
             </template>
           </vue-good-table>
         </div>
+
+        <new-campaign />
+
+        <edit-campaign :edit-row="selectedDataToEdit" />
       </div>
     </div>
   </div>
@@ -73,6 +89,8 @@ import Vuex, { mapGetters, mapActions } from 'vuex'
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import { VueGoodTable } from 'vue-good-table'
 import 'vue-good-table/dist/vue-good-table.css'
+import NewCampaign from './new'
+import EditCampaign from './edit'
 
 Vue.use(axios)
 Vue.use(Vuex)
@@ -80,9 +98,11 @@ Vue.use(Vuex)
 window.axios = require('axios')
 
 export default {
-  name: 'AdminNewsletterSubscribers',
+  name: 'AdminNewsletterCampaigns',
   components: {
-    VueGoodTable
+    VueGoodTable,
+    NewCampaign,
+    EditCampaign
   },
   middleware: 'auth',
   data: function () {
@@ -93,28 +113,28 @@ export default {
           field: 'id'
         },
         {
-          label: 'Newsletter Campaign',
-          field: 'newsletter_campaign_id'
+          label: 'Name',
+          field: 'campaign_name'
         },
         {
-          label: 'Full name',
-          field: 'full_name'
+          label: 'Description',
+          field: 'campaign_description'
         },
         {
-          label: 'Email',
-          field: 'email'
+          label: 'Active?',
+          field: 'campaign_is_active'
         },
         {
-          label: 'Privacy policy',
-          field: 'privacy_policy'
+          label: 'Valid from',
+          field: 'valid_from'
+        },
+        {
+          label: 'Valid to',
+          field: 'valid_to'
         },
         {
           label: 'Created at',
           field: 'created_at'
-        },
-        {
-          label: 'Unsubscribed at',
-          field: 'unsubscribed_at'
         },
         {
           label: 'Actions',
@@ -127,28 +147,28 @@ export default {
   computed: {
     ...mapGetters({
       user: 'auth/user',
-      listOfSubscribers: 'newsletter_system/listOfSubscribers'
+      listOfCampaigns: 'newsletter_system/listOfCampaigns'
     }),
-    displayNewsletterSubscribers () {
-      return this.listOfSubscribers.records
+    displayNewsletterCampaigns () {
+      return this.listOfCampaigns.records
     },
     getHttpStatusResponseCode () {
       // TODO Blog System: How to catch api endpoint errors and display them to the user
-      return this.listOfSubscribers.http_response_code
+      return this.listOfCampaigns.http_response_code
     }
   },
   created () {
-    this.fetchListOfSubscribers()
+    this.fetchListOfCampaigns()
   },
   methods: {
     ...mapActions({
-      fetchListOfSubscribers: 'newsletter_system/fetchListOfSubscribers'
+      fetchListOfCampaigns: 'newsletter_system/fetchListOfCampaigns'
     }),
-    async editSubscriber (row) {
+    async editCampaign (row) {
       this.selectedDataToEdit = row
       return this.selectedDataToEdit
     },
-    async deleteSubscriber (row) {
+    async deleteCampaign (row) {
       if (!this.user) {
         Swal.fire({
           title: 'Unauthenticated User Title',
@@ -163,7 +183,7 @@ export default {
         })
       } else {
         const url = window.location.origin
-        const apiEndPoint = '/api/admin/system/newsletter/subscribers'
+        const apiEndPoint = '/api/admin/system/newsletter/campaigns'
         const urlParam = row.id
         const fullApiUrl = url + apiEndPoint + '/' + urlParam
         try {
@@ -175,7 +195,7 @@ export default {
                 html:
                     '<p>Notify code: ' + '<a href="' + response.data.reference + '">' + response.data.notify_code + '</a>' + '</p>' +
                     '<p>' + response.data.description + '</p>' +
-                    '<p>Deleted subscriber\'s name: ' + response.data.records.full_name + '</p>'
+                    '<p>Deleted campaign name: ' + response.data.records.campaign_name + '</p>'
               }).then((result) => {
                 console.log('> result message: ')
                 window.location.reload()
@@ -194,7 +214,7 @@ export default {
         }
       }
     },
-    async deleteAllSubscribers () {
+    async deleteAllCampaigns () {
       if (!this.user) {
         Swal.fire({
           title: 'Unauthenticated User Title',
@@ -209,7 +229,7 @@ export default {
         })
       } else {
         const url = window.location.origin
-        const apiEndPoint = '/api/admin/system/newsletter/subscribers/delete-all'
+        const apiEndPoint = '/api/admin/system/newsletter/campaigns/delete-all'
         const fullApiUrl = url + apiEndPoint
         try {
           await axios.delete(fullApiUrl)
@@ -238,9 +258,6 @@ export default {
         }
       }
     }
-  },
-  metaInfo () {
-    return { title: 'Admin - Newsletter Subscribers' }
   }
 }
 </script>

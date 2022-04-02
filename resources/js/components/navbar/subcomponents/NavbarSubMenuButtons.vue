@@ -18,7 +18,7 @@
           <fa icon="comment" fixed-width />
           {{ $t('user.navigation_bar.sub_menu.second_button') }}
         </router-link>
-        <router-link :to="{ name: 'admin-newsletter-page' }" class="dropdown-item p-2">
+        <router-link :to="{ name: 'admin-newsletter-settings-page' }" class="dropdown-item p-2">
           <fa icon="newspaper" fixed-width />
           {{ $t('user.navigation_bar.sub_menu.third_button') }}
         </router-link>
@@ -33,22 +33,18 @@
           <fa icon="book" fixed-width />
           {{ $t('user.navigation_bar.sub_menu.fifth_button') }}
         </router-link>
-        <router-link :to="{ name: 'admin-user-list-page' }" class="dropdown-item p-2">
-          <fa icon="users" fixed-width />
-          {{ $t('user.navigation_bar.sub_menu.sixth_button') }}
-        </router-link>
       </li>
       <div class="dropdown-divider my-0" />
       <li>
         <router-link :to="{ name: 'admin-profile-settings-page' }" class="dropdown-item p-2">
           <fa icon="address-card" fixed-width />
-          {{ $t('user.navigation_bar.sub_menu.seventh_button') }}
+          {{ $t('user.navigation_bar.sub_menu.sixth_button') }}
         </router-link>
       </li>
       <li>
         <a href="#" class="dropdown-item p-2" @click.prevent="logout">
           <fa icon="sign-out-alt" fixed-width />
-          {{ $t('user.navigation_bar.sub_menu.eighth_button') }}
+          {{ $t('user.navigation_bar.sub_menu.seventh_button') }}
         </a>
       </li>
     </ul>
@@ -56,13 +52,13 @@
       <li>
         <router-link :to="{ name: 'admin-profile-settings-page' }" class="dropdown-item p-2">
           <fa icon="address-card" fixed-width />
-          {{ $t('user.navigation_bar.sub_menu.seventh_button') }}
+          {{ $t('user.navigation_bar.sub_menu.sixth_button') }}
         </router-link>
       </li>
       <li>
         <a href="#" class="dropdown-item p-2" @click.prevent="logout">
           <fa icon="sign-out-alt" fixed-width />
-          {{ $t('user.navigation_bar.sub_menu.eighth_button') }}
+          {{ $t('user.navigation_bar.sub_menu.seventh_button') }}
         </a>
       </li>
     </ul>

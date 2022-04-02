@@ -29,9 +29,8 @@
         "third_button": "Newsletter campaigns",
         "forth_button": "Application settings",
         "fifth_button": "Documentation",
-        "sixth_button": "User list",
-        "eighth_button": "Profile settings",
-        "ninth_button": "Logout"
+        "sixth_button": "Profile settings",
+        "eighth_button": "Logout"
       }
     },
     "footer": {
