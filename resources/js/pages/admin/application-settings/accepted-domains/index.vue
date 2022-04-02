@@ -2,9 +2,6 @@
   <div class="row">
     <div class="col-lg-12 m-auto">
       <div class="lv-pg-admin">
-        <div class="lv-pg-admin-header">
-          <h1>ADMIN ACCEPTED DOMAINS PAGE</h1>
-        </div>
         <div class="lv-pg-admin-body">
           <vue-good-table
             :columns="columns"
@@ -31,18 +28,24 @@
               allLabel: 'All',
             }"
           >
-            <div slot="table-actions">
-              <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#createNewAcceptedDomain">
-                <fa icon="pencil-alt" fixed-width />
+            <div v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2" slot="table-actions">
+              <button class="btn btn-primary me-2" type="button" data-bs-toggle="modal" data-bs-target="#createNewAcceptedDomain">
+                <fa icon="pencil-alt" fixed-width /> Add new
               </button>
             </div>
             <template slot="table-row" slot-scope="props">
               <span v-if="props.column.field == 'actions'">
-                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#editAcceptedDomain" @click="editAcceptedDomain(props.row)">
-                  <fa icon="edit" fixed-width />
+                <button v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2"
+                        class="btn btn-warning w-100"
+                        type="button"
+                        data-bs-toggle="modal"
+                        data-bs-target="#editAcceptedDomain"
+                        @click="editAcceptedDomain(props.row)"
+                >
+                  <fa icon="edit" fixed-width /> Edit
                 </button>
-                <button class="btn btn-danger" @click="deleteAcceptedDomain(props.row)">
-                  <fa icon="trash" fixed-width />
+                <button v-if="user.user_role_type_id === 1" class="btn btn-danger w-100" @click="deleteAcceptedDomain(props.row)">
+                  <fa icon="trash" fixed-width /> Delete
                 </button>
               </span>
               <span v-else>
@@ -100,7 +103,10 @@ export default {
         },
         {
           label: 'Actions',
-          field: 'actions'
+          field: 'actions',
+          sortable: false,
+          tdClass: 'd-flex justify-content-center align-items-center',
+          width: '180px'
         }
       ],
       selectedDataToEdit: {}
@@ -176,9 +182,6 @@ export default {
         }
       }
     }
-  },
-  metaInfo () {
-    return { title: 'Admin - Accepted Domains' }
   }
 }
 </script>

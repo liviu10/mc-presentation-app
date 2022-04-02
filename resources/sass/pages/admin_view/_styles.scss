@@ -7,7 +7,6 @@
     margin: rem-convertor(60px) 0rem;
     padding: 0rem;
     width: 100%;
-    height: 100vh;
     &-header, &-body {
         padding: 0rem;
     }
@@ -53,13 +52,34 @@
                         }
                         &-body {
                             & .btn {
-                                @include button();
-                                background-color: map-get($blizzard_blue, "color_blizzard_blue") !important;
+                                border-radius: 0rem;
+                                color: map-get($button, "font_color");
+                                font-weight: bold;
+                                &:focus {
+                                    border-color: transparent !important;
+                                    box-shadow: 0 1px 1px transparent inset, 0 0 8px transparent !important;
+                                    outline: 0 none !important;
+                                }
                             }
                         }
                         &-text {
                             margin-bottom: 0rem;
                             height: rem-convertor(100px);
+                        }
+                    }
+                    & .row {
+                        & .card {
+                            background-color: map-get($blizzard_blue, "color_blizzard_blue") !important;
+                            &-title {
+                                justify-content: space-between;
+                                margin-bottom: rem-convertor(24px);
+                                & a {
+                                    text-transform: capitalize;
+                                }
+                            }
+                            &-text {
+                                height: rem-convertor(50px);
+                            }
                         }
                     }
                 }

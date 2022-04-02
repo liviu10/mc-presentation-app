@@ -10,7 +10,6 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />
         </div>
         <div class="modal-body">
-          {{ editRow }}
           <form @submit.prevent="edit" @keydown="form.onKeydown($event)">
             <div class="col col-12 my-3">
               <div class="input-group mb-3">
@@ -119,6 +118,7 @@ export default {
           if (result.isConfirmed) {
             this.$router.push({ name: 'user.auth.login' })
           } else {
+            this.form.notify_code_options = ''
             this.form.notify_code = ''
             this.form.notify_short_description = ''
           }
@@ -129,6 +129,7 @@ export default {
         const fullApiUrl = url + apiEndPoint
         try {
           await this.form.put(fullApiUrl, {
+            notify_code_options: this.form.notify_code_options,
             notify_code: this.form.notify_code,
             notify_short_description: this.form.notify_short_description
           })
@@ -143,6 +144,7 @@ export default {
                     '<p>Inserted notify code: ' + response.data.records.notify_code + '</p>'
               }).then((result) => {
                 console.log('> result message: ')
+                this.form.notify_code_options = ''
                 this.form.notify_code = ''
                 this.form.notify_short_description = ''
                 window.location.reload()
@@ -150,6 +152,17 @@ export default {
             })
         } catch (err) {
           if (err.response.status === 500) {
+            console.log('> error message: ')
+            this.$refs.close.click()
+            Swal.fire({
+              title: err.response.data.title,
+              html:
+                  '<p>Notify code: ' + '<a href="' + err.response.data.reference + '">' + err.response.data.notify_code + '</a>' + '</p>' +
+                  '<p>' + err.response.data.description + '</p>' +
+                  '<p>Inserted notify code: ' + this.form.notify_code + '</p>'
+            })
+          }
+          if (err.response.status === 406) {
             console.log('> error message: ')
             this.$refs.close.click()
             Swal.fire({

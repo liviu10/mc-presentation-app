@@ -133,34 +133,29 @@ use Illuminate\Support\Facades\Route;
 | only the HTTP requests that comes from the user.
 |
 */
+    // Import the Blog System system
+    use App\Http\Controllers\Admin\BlogSystem\BlogCategorySystemController;
+    use App\Http\Controllers\Admin\BlogSystem\BlogArticleSystemController;
+
+    // Import the Contact Me system
+    use App\Http\Controllers\Admin\ContactMeSystem\ContactMeSystemController;
+
     // Import the Home, Newsletter and Terms and Conditions systems
     use App\Http\Controllers\Admin\HomeSystem\NewsletterCampaignSystemController;
     use App\Http\Controllers\Admin\HomeSystem\NewsletterSubscriberSystemController;
+    use App\Http\Controllers\Admin\HomeSystem\NewsletterKpiSystemController;
 
     // Import the Schedule Appointment system
     use App\Http\Controllers\Admin\ScheduleAppointmentSystem\ScheduleAppointmentSystemController;
     use App\Http\Controllers\Admin\ScheduleAppointmentSystem\QuestionnaireAppointmentSystemController;
     use App\Http\Controllers\Admin\ScheduleAppointmentSystem\BookAppointmentSystemController;
 
-    // Import the Blog System system
-    use App\Http\Controllers\Admin\BlogSystem\BlogCategorySystemController;
-    use App\Http\Controllers\Admin\BlogSystem\BlogArticleSystemController;
-
-    // Import the About Me system
-    use App\Http\Controllers\Admin\AboutMeSystem\AboutMeSystemController;
-    
-    // Import the Contact Me system
-    use App\Http\Controllers\Admin\ContactMeSystem\ContactMeSystemController;
-
     // Import the Application system
+    use App\Http\Controllers\Admin\System\AcceptedDomainSystemController;
     use App\Http\Controllers\Admin\System\ErrorAndNotificationSystemController;
     use App\Http\Controllers\Admin\System\LogSystemController;
-
-    // Import the Accepted Domains system
-    use App\Http\Controllers\Admin\System\AcceptedDomainSystemController;
-
-    // Import the User List system
     use App\Http\Controllers\Admin\System\UserListSystemController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes for the Administration View of the Web Application
@@ -172,26 +167,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
     Route::group(['middleware' => 'auth:api', 'prefix' => '/admin'], function () {
-        // Login and Registration System Admin API routes    
-        Route::post('/logout', [LoginController::class, 'logout']);
-        Route::get('/user', [UserController::class, 'current']);
-        Route::patch('/settings/profile', [ProfileController::class, 'update']);
-        Route::patch('/settings/password', [PasswordController::class, 'update']);
-
         Route::group([ 'prefix' => '/system' ], function () {
-            // Error and Notification System Admin API routes
-            Route::apiResource('/errors-and-notifications', ErrorAndNotificationSystemController::class)->only(['index', 'store', 'update']);
-            // Application logs System Admin API routes
-            Route::apiResource('/logs', LogSystemController::class)->only(['index']);
-
-            // Newsletter System Admin API routes
-            Route::group([ 'prefix' => '/newsletter' ], function () {
-                Route::delete('/campaigns/delete-all', [NewsletterCampaignSystemController::class, 'deleteAllCampaigns']);
-                Route::delete('/subscribers/delete-all', [NewsletterSubscriberSystemController::class, 'deleteAllSubscribers']);
-                Route::apiResource('/campaigns', NewsletterCampaignSystemController::class);
-                Route::apiResource('/subscribers', NewsletterSubscriberSystemController::class)->only(['index', 'destroy']);
-            });
-
             // Blog System Admin API routes
             Route::group([ 'prefix' => '/blog' ], function () {
                 Route::group([ 'prefix' => '/' ], function () {
@@ -222,19 +198,34 @@ use Illuminate\Support\Facades\Route;
                     Route::apiResource('/articles-and-comments', BlogArticleSystemController::class);
                 });
             });
-
             // Contact me System Admin API routes
             Route::group([ 'prefix' => '/' ], function () {
                 Route::delete('/contact-me/delete-all', [ContactMeSystemController::class, 'deleteAllRecords']);
                 Route::apiResource('/contact-me', ContactMeSystemController::class);
             });
-
-            // Accepted Domains Admin API routes
+            // Newsletter System Admin API routes
+            Route::group([ 'prefix' => '/newsletter' ], function () {
+                Route::delete('/campaigns/delete-all', [NewsletterCampaignSystemController::class, 'deleteAllCampaigns']);
+                Route::delete('/subscribers/delete-all', [NewsletterSubscriberSystemController::class, 'deleteAllSubscribers']);
+                Route::apiResource('/campaigns', NewsletterCampaignSystemController::class);
+                Route::apiResource('/subscribers', NewsletterSubscriberSystemController::class)->only(['index', 'destroy']);
+                Route::group([ 'prefix' => '/' ], function () {
+                    Route::get('/kpi', [NewsletterKpiSystemController::class, 'displayNewsletterReportKpi']);
+                    Route::get('/kpi/statistics', [NewsletterKpiSystemController::class, 'displayStatistics']);
+                });
+            });
+            // Application Settings Admin API routes
             Route::apiResource('/accepted-domains', AcceptedDomainSystemController::class);
-
-            // User List Admin API routes
+            Route::apiResource('/errors-and-notifications', ErrorAndNotificationSystemController::class)->only(['index', 'store', 'update']);
+            Route::delete('/delete-all-logs', [LogSystemController::class, 'deleteAllLogs']);
+            Route::apiResource('/logs', LogSystemController::class)->only(['index']);
             Route::apiResource('/user-list', UserListSystemController::class);
         });
+        // Login and Registration System Admin API routes    
+        Route::post('/logout', [LoginController::class, 'logout']);
+        Route::get('/user', [UserController::class, 'current']);
+        Route::patch('/settings/profile', [ProfileController::class, 'update']);
+        Route::patch('/settings/password', [PasswordController::class, 'update']);
     });
 /*
 |--------------------------------------------------------------------------

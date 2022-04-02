@@ -113,6 +113,7 @@ export default {
           if (result.isConfirmed) {
             this.$router.push({ name: 'user.auth.login' })
           } else {
+            this.form.notify_code_options = ''
             this.form.notify_code = ''
             this.form.notify_short_description = ''
           }
@@ -122,7 +123,6 @@ export default {
         const apiEndPoint = '/api/admin/system/errors-and-notifications'
         const fullApiUrl = url + apiEndPoint
         try {
-          console.log('notify_code_options', this.form.notify_code_options)
           await this.form.post(fullApiUrl, {
             notify_code_options: this.form.notify_code_options,
             notify_code: this.form.notify_code,

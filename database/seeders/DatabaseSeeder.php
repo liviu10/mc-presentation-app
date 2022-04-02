@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        // \App\Models\NewsletterSubscriber::factory(10)->create();
+        // \App\Models\NewsletterSubscriber::factory(5000)->create();
         $this->call([
             UserRoleTypeSeeder::class,
             UserSeeder::class,
@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             QuestionnaireMediaTypeSeeder::class,
             QuestionnaireAnswerSeeder::class,
             NewsletterCampaignSeeder::class,
+            NewsletterKpiSeeder::class,
             AcceptedDomainSeeder::class,
         ]);
     }

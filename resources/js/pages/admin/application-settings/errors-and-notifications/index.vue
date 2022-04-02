@@ -2,36 +2,59 @@
   <div class="row">
     <div class="col-lg-12 m-auto">
       <div class="lv-pg-admin">
-        <div class="lv-pg-admin-header">
-          <h1>ADMIN ERRORS AND NOTIFICATIONS PAGE</h1>
-        </div>
         <div class="lv-pg-admin-body">
-          <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#createErrorAndNotification">
-            Create
-          </button>
-          <div v-for="errorAndNotification in displayListOfErrorsAndNotifications" :key="errorAndNotification.id" class="card">
-            <div class="card-body">
-              <h5 class="card-title">
-                {{ errorAndNotification.notify_code }}
-              </h5>
-              <p class="card-text">
-                <a :href="errorAndNotification.notify_reference">{{ errorAndNotification.notify_reference }}</a>
-              </p>
-              <p class="card-text">
-                {{ errorAndNotification.notify_short_description }}
-              </p>
-              <button class="btn btn-primary"
-                      type="button"
-                      data-bs-toggle="modal"
-                      data-bs-target="#editErrorAndNotification"
-                      @click="editErrorAndNotification(errorAndNotification)"
-              >
-                Edit
+          <vue-good-table
+            :columns="columns"
+            :rows="displayListOfErrorsAndNotifications"
+            :search-options="{
+              enabled: true
+            }"
+            :pagination-options="{
+              enabled: true,
+              mode: 'records',
+              perPage: 50,
+              position: 'bottom',
+              perPageDropdown: [100, 200, 300, 400, 500],
+              dropdownAllowAll: false,
+              setCurrentPage: 1,
+              jumpFirstOrLast : true,
+              firstLabel : 'First Page',
+              lastLabel : 'Last Page',
+              nextLabel: 'next',
+              prevLabel: 'prev',
+              rowsPerPageLabel: 'Rows per page',
+              ofLabel: 'of',
+              pageLabel: 'page',
+              allLabel: 'All',
+            }"
+          >
+            <div v-if="user.user_role_type_id === 1" slot="table-actions">
+              <button class="btn btn-primary me-2" type="button" data-bs-toggle="modal" data-bs-target="#createErrorAndNotification">
+                <fa icon="pencil-alt" fixed-width /> Add new
               </button>
             </div>
-          </div>
+            <template slot="table-row" slot-scope="props">
+              <span v-if="props.column.field == 'notify_reference'">
+                <a :href="props.row.notify_reference" target="_blank">{{ props.row.notify_code }}</a>
+              </span>
+              <span v-else-if="props.column.field == 'actions'">
+                <button v-if="user.user_role_type_id === 1"
+                        class="btn btn-warning w-100"
+                        type="button"
+                        data-bs-toggle="modal"
+                        data-bs-target="#editErrorAndNotification"
+                        @click="editErrorAndNotification(props.row)"
+                >
+                  <fa icon="edit" fixed-width /> Edit
+                </button>
+              </span>
+              <span v-else>
+                {{ props.formattedRow[props.column.field] }}
+              </span>
+            </template>
+          </vue-good-table>
 
-          <new-accepted-domains />
+          <new-error-and-notification />
 
           <edit-error-and-notification :edit-row="selectedDataToEdit" />
         </div>
@@ -44,7 +67,9 @@
 import Vue from 'vue'
 import axios from 'axios'
 import Vuex, { mapGetters, mapActions } from 'vuex'
-import NewAcceptedDomains from './new'
+import { VueGoodTable } from 'vue-good-table'
+import 'vue-good-table/dist/vue-good-table.css'
+import NewErrorAndNotification from './new'
 import EditErrorAndNotification from './edit'
 
 Vue.use(axios)
@@ -55,12 +80,38 @@ window.axios = require('axios')
 export default {
   name: 'AdminErrorsAndNotifications',
   components: {
-    NewAcceptedDomains,
+    VueGoodTable,
+    NewErrorAndNotification,
     EditErrorAndNotification
   },
   middleware: 'auth',
   data: function () {
     return {
+      columns: [
+        {
+          label: 'Id',
+          field: 'id'
+        },
+        {
+          label: 'Notify Code',
+          field: 'notify_code'
+        },
+        {
+          label: 'Notify Description',
+          field: 'notify_short_description'
+        },
+        {
+          label: 'Notify Reference',
+          field: 'notify_reference'
+        },
+        {
+          label: 'Actions',
+          field: 'actions',
+          sortable: false,
+          tdClass: 'd-flex justify-content-center align-items-center',
+          width: '180px'
+        }
+      ],
       selectedDataToEdit: {}
     }
   },
@@ -88,9 +139,6 @@ export default {
       this.selectedDataToEdit = errorAndNotification
       return this.selectedDataToEdit
     }
-  },
-  metaInfo () {
-    return { title: 'Admin - Errors and Notifications' }
   }
 }
 </script>
