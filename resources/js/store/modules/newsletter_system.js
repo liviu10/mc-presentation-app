@@ -4,24 +4,24 @@ import axios from 'axios'
 export const state = {
   listOfCampaigns: [],
   listOfSubscribers: [],
-  newsletterReportKpi: [],
-  statistics: []
+  newsletterReportKpi: []
+  // statistics: []
 }
 
 // getters
 export const getters = {
   listOfCampaigns: (state) => state.listOfCampaigns,
   listOfSubscribers: (state) => state.listOfSubscribers,
-  newsletterReportKpi: (state) => state.newsletterReportKpi,
-  statistics: (state) => state.statistics
+  newsletterReportKpi: (state) => state.newsletterReportKpi
+  // statistics: (state) => state.statistics
 }
 
 // mutations
 export const mutations = {
   setListOfCampaigns: (state, listOfCampaigns) => (state.listOfCampaigns = listOfCampaigns),
   setListOfSubscribers: (state, listOfSubscribers) => (state.listOfSubscribers = listOfSubscribers),
-  setNewsletterReportKpi: (state, newsletterReportKpi) => (state.newsletterReportKpi = newsletterReportKpi),
-  setStatistics: (state, statistics) => (state.statistics = statistics)
+  setNewsletterReportKpi: (state, newsletterReportKpi) => (state.newsletterReportKpi = newsletterReportKpi)
+  // setStatistics: (state, statistics) => (state.statistics = statistics)
 }
 
 // actions
@@ -64,18 +64,18 @@ export const actions = {
       .catch(({ response }) => {
         commit('setNewsletterReportKpi', response.data)
       })
-  },
-  async fetchStatistics ({ commit }) {
-    const url = window.location.origin
-    const apiEndPoint = '/api/admin/system/newsletter/kpi/statistics'
-    const fullApiUrl = url + apiEndPoint
-    axios
-      .get(fullApiUrl)
-      .then(response => {
-        commit('setStatistics', response.data)
-      })
-      .catch(({ response }) => {
-        commit('setStatistics', response.data)
-      })
   }
+  // async fetchStatistics ({ commit }) {
+  //   const url = window.location.origin
+  //   const apiEndPoint = '/api/admin/system/newsletter/kpi/statistics'
+  //   const fullApiUrl = url + apiEndPoint
+  //   axios
+  //     .get(fullApiUrl)
+  //     .then(response => {
+  //       commit('setStatistics', response.data)
+  //     })
+  //     .catch(({ response }) => {
+  //       commit('setStatistics', response.data)
+  //     })
+  // }
 }

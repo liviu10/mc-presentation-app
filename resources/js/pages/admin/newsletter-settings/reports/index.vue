@@ -5,7 +5,6 @@
         <div class="lv-pg-admin-body">
           <div class="row">
             <div class="col">
-              {{ displayStatistics["Numărul total de campanii: "] }}
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title">
@@ -43,15 +42,15 @@ export default {
   computed: {
     ...mapGetters({
       user: 'auth/user',
-      newsletterReportKpi: 'newsletter_system/newsletterReportKpi',
-      statistics: 'newsletter_system/statistics'
+      newsletterReportKpi: 'newsletter_system/newsletterReportKpi'
+      // statistics: 'newsletter_system/statistics'
     }),
     displayNewsletterReportKpi () {
       return this.newsletterReportKpi.records
     },
-    displayStatistics () {
-      return this.statistics.records
-    },
+    // displayStatistics () {
+    //   return this.statistics.records
+    // },
     getHttpStatusResponseCode () {
       // TODO Blog System: How to catch api endpoint errors and display them to the user
       return this.newsletterReportKpi.http_response_code
@@ -59,12 +58,12 @@ export default {
   },
   created () {
     this.fetchNewsletterReportKpi()
-    this.fetchStatistics()
+    // this.fetchStatistics()
   },
   methods: {
     ...mapActions({
-      fetchNewsletterReportKpi: 'newsletter_system/fetchNewsletterReportKpi',
-      fetchStatistics: 'newsletter_system/fetchStatistics'
+      fetchNewsletterReportKpi: 'newsletter_system/fetchNewsletterReportKpi'
+      // fetchStatistics: 'newsletter_system/fetchStatistics'
     })
   }
 }
