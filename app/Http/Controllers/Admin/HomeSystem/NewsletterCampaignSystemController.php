@@ -37,7 +37,7 @@ class NewsletterCampaignSystemController extends Controller
     {
         try
         {
-            $apiDisplayAllRecords = $this->modelNameNewsletterCampaign->select('id', 'campaign_name', 'campaign_description', 'campaign_is_active', 'valid_from', 'valid_to', 'created_at')->get();
+            $apiDisplayAllRecords = $this->modelNameNewsletterCampaign->all();
             if ($apiDisplayAllRecords->isEmpty())
             {
                 return response([
@@ -129,6 +129,10 @@ class NewsletterCampaignSystemController extends Controller
                 'campaign_is_active'   => 'required|max:255',
                 'valid_from'           => 'required|max:255',
                 'valid_to'             => 'required|max:255',
+                'occur_times'          => 'required|min:1',
+                'occur_when'           => 'required|max:255',
+                'occur_day'            => 'required|max:255',
+                'occur_hour'           => 'required|max:255',
             ]);
             $apiInsertSingleRecord = $this->modelNameNewsletterCampaign
                                         ->create([
@@ -137,6 +141,10 @@ class NewsletterCampaignSystemController extends Controller
                                             'campaign_is_active'   => $request->get('campaign_is_active'),
                                             'valid_from'           => $request->get('valid_from'),
                                             'valid_to'             => $request->get('valid_to'),
+                                            'occur_times'          => $request->get('occur_times'),
+                                            'occur_when'           => $request->get('occur_when'),
+                                            'occur_day'            => $request->get('occur_day'),
+                                            'occur_hour'           => $request->get('occur_hour'),
                                         ]);
             $this->modelNameNewsletterCampaign->find($apiInsertSingleRecord->id)->log()->create([ 
                 'status'  => 'Admin create newsletter campaign',
@@ -332,6 +340,10 @@ class NewsletterCampaignSystemController extends Controller
                 'campaign_is_active'   => 'required|max:255',
                 'valid_from'           => 'required|max:255',
                 'valid_to'             => 'required|max:255',
+                'occur_times'          => 'required|min:1',
+                'occur_when'           => 'required|max:255',
+                'occur_day'            => 'required|max:255',
+                'occur_hour'           => 'required|max:255',
             ]);
             $apiUpdateSingleRecord = $this->modelNameNewsletterCampaign->find($id);
             $apiUpdateSingleRecord->update([
@@ -340,6 +352,10 @@ class NewsletterCampaignSystemController extends Controller
                 'campaign_is_active'   => $request->get('campaign_is_active'),
                 'valid_from'           => $request->get('valid_from'),
                 'valid_to'             => $request->get('valid_to'),
+                'occur_times'          => $request->get('occur_times'),
+                'occur_when'           => $request->get('occur_when'),
+                'occur_day'            => $request->get('occur_day'),
+                'occur_hour'           => $request->get('occur_hour'),
             ]);
             $this->modelNameNewsletterCampaign->find($apiUpdateSingleRecord->id)->log()->create([ 
                 'status'  => 'Admin update newsletter campaign',

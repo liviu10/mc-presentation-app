@@ -5,7 +5,8 @@ export const state = {
   listOfCampaigns: [],
   listOfSubscribers: [],
   newsletterReportKpi: [],
-  statistics: []
+  listOfNewsletterLogs: []
+  // statistics: []
 }
 
 // getters
@@ -13,7 +14,8 @@ export const getters = {
   listOfCampaigns: (state) => state.listOfCampaigns,
   listOfSubscribers: (state) => state.listOfSubscribers,
   newsletterReportKpi: (state) => state.newsletterReportKpi,
-  statistics: (state) => state.statistics
+  listOfNewsletterLogs: (state) => state.listOfNewsletterLogs
+  // statistics: (state) => state.statistics
 }
 
 // mutations
@@ -21,7 +23,8 @@ export const mutations = {
   setListOfCampaigns: (state, listOfCampaigns) => (state.listOfCampaigns = listOfCampaigns),
   setListOfSubscribers: (state, listOfSubscribers) => (state.listOfSubscribers = listOfSubscribers),
   setNewsletterReportKpi: (state, newsletterReportKpi) => (state.newsletterReportKpi = newsletterReportKpi),
-  setStatistics: (state, statistics) => (state.statistics = statistics)
+  setListOfNewsletterLogs: (state, listOfNewsletterLogs) => (state.listOfNewsletterLogs = listOfNewsletterLogs)
+  // setStatistics: (state, statistics) => (state.statistics = statistics)
 }
 
 // actions
@@ -65,17 +68,30 @@ export const actions = {
         commit('setNewsletterReportKpi', response.data)
       })
   },
-  async fetchStatistics ({ commit }) {
+  async fetchListOfNewsletterLogs ({ commit }) {
     const url = window.location.origin
-    const apiEndPoint = '/api/admin/system/newsletter/kpi/statistics'
+    const apiEndPoint = '/api/admin/system/newsletter/logs'
     const fullApiUrl = url + apiEndPoint
     axios
       .get(fullApiUrl)
       .then(response => {
-        commit('setStatistics', response.data)
+        commit('setListOfNewsletterLogs', response.data)
       })
       .catch(({ response }) => {
-        commit('setStatistics', response.data)
+        commit('setListOfNewsletterLogs', response.data)
       })
   }
+  // async fetchStatistics ({ commit }) {
+  //   const url = window.location.origin
+  //   const apiEndPoint = '/api/admin/system/newsletter/kpi/statistics'
+  //   const fullApiUrl = url + apiEndPoint
+  //   axios
+  //     .get(fullApiUrl)
+  //     .then(response => {
+  //       commit('setStatistics', response.data)
+  //     })
+  //     .catch(({ response }) => {
+  //       commit('setStatistics', response.data)
+  //     })
+  // }
 }

@@ -23,10 +23,11 @@ class NewsletterSubscriberFactory extends Factory
     public function definition()
     {
         return [
-            'newsletter_campaign_id' => 2,
+            'newsletter_campaign_id' => 1,
             'full_name'              => $this->faker->name,
             'email'                  => $this->faker->unique()->safeEmail,
             'privacy_policy'         => 1,
+            'valid_email'            => 1,
             'created_at'             => now(),
         ];
     }

@@ -60,6 +60,7 @@ class SubscribeToNewsletterController extends Controller
                         'full_name'               => $request->get('full_name'),
                         'email'                   => $request->get('email'),
                         'privacy_policy'          => $request->get('privacy_policy'),
+                        'valid_email'             => 1,
                     ]);
                 }
                 // Allocate user to the generic newsletter campaign
@@ -69,6 +70,7 @@ class SubscribeToNewsletterController extends Controller
                         'full_name'               => $request->get('full_name'),
                         'email'                   => $request->get('email'),
                         'privacy_policy'          => $request->get('privacy_policy'),
+                        'valid_email'             => 1,
                     ]);
                 }
 
