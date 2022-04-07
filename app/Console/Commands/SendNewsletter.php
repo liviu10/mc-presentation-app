@@ -21,7 +21,7 @@ class SendNewsletter extends Command
      *
      * @var string
      */
-    protected $description = 'This command will execute on a certain day, every week and will automatically send an email newsletter to all subscribers';
+    protected $description = 'This command will be executed on a certain day, every week and will automatically send an email newsletter to all subscribers';
 
     /**
      * Create a new command instance.

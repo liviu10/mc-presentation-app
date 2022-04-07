@@ -214,6 +214,22 @@ return [
             'required'  => ':attribute is required.',
             'max'       => ':attribute must not exceed 255 characters.',
         ],
+        'occur_times' => [
+            'required'  => ':attribute is required.',
+            'max'       => ':attribute must not exceed 255 characters.',
+        ],
+        'occur_when' => [
+            'required'  => ':attribute is required.',
+            'max'       => ':attribute must not exceed 255 characters.',
+        ],
+        'occur_day' => [
+            'required'  => ':attribute is required.',
+            'max'       => ':attribute must not exceed 255 characters.',
+        ],
+        'occur_hour' => [
+            'required'  => ':attribute is required.',
+            'max'       => ':attribute must not exceed 255 characters.',
+        ],
     ],
     /*
     |--------------------------------------------------------------------------
@@ -244,6 +260,10 @@ return [
         'campaign_description'     => 'Campaign description',
         'valid_from'               => 'Campaign valid from date',
         'valid_to'                 => 'Campaign valid to date',
+        'occur_times'              => 'Occurrence no. of times',
+        'occur_when'               => 'Occurrence period',
+        'occur_day'                => 'Occurrence day',
+        'occur_time'               => 'Occurrence time',
     ],
 
 ];

@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Log;
 
 class NewsletterCampaign extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     /**
      * The table associated with the model.
@@ -42,6 +43,10 @@ class NewsletterCampaign extends Model
         'campaign_is_active',
         'valid_from',
         'valid_to',
+        'occur_times',
+        'occur_when',
+        'occur_day',
+        'occur_hour',
     ];
 
     /**
@@ -84,6 +89,16 @@ class NewsletterCampaign extends Model
     public function newsletter_subscribers()
     {
         return $this->hasMany('App\Models\NewsletterSubscriber');
+    }
+
+    /**
+     * Eloquent relationship between newsletter_campaign and newsletter_logs.
+     * One newsletter campaign may have one or more newsletter log(s).
+     *
+     */
+    public function newsletter_logs()
+    {
+        return $this->hasMany('App\Models\NewsletterLogs');
     }
 
     /**

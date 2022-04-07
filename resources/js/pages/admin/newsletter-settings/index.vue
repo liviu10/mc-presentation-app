@@ -14,7 +14,7 @@
               <li class="nav-item">
                 <a href="#newsletter_subscribers" class="nav-link" data-bs-toggle="tab">Newsletter Subscribers</a>
               </li>
-              <li class="nav-item">
+              <li v-if="user.user_role_type_id === 1" class="nav-item">
                 <a href="#newsletter_reports" class="nav-link" data-bs-toggle="tab">Newsletter Reports</a>
               </li>
               <li class="nav-item">
@@ -25,18 +25,18 @@
               <div id="newsletter_campaigns" class="tab-pane fade show active">
                 <div class="card">
                   <div class="card-body">
-                    <admin-newsletter-campaigns />
+                    <admin-newsletter-campaigns @campaign-list="getCampaignListFromChild" />
                   </div>
                 </div>
               </div>
               <div id="newsletter_subscribers" class="tab-pane fade">
                 <div class="card">
                   <div class="card-body">
-                    <admin-newsletter-subscribers />
+                    <admin-newsletter-subscribers :campaign-name="newsletterCampaignsList" />
                   </div>
                 </div>
               </div>
-              <div id="newsletter_reports" class="tab-pane fade">
+              <div v-if="user.user_role_type_id === 1" id="newsletter_reports" class="tab-pane fade">
                 <div class="card">
                   <div class="card-body">
                     <admin-newsletter-reports />
@@ -59,10 +59,14 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import Vuex, { mapGetters } from 'vuex'
 import AdminNewsletterCampaigns from './campaigns/index.vue'
 import AdminNewsletterSubscribers from './subscribers/index.vue'
 import AdminNewsletterReports from './reports/index.vue'
 import AdminNewsletterSettings from './settings/index.vue'
+
+Vue.use(Vuex)
 
 export default {
   name: 'AdminNewsletter',
@@ -73,6 +77,21 @@ export default {
     AdminNewsletterSettings
   },
   middleware: 'auth',
+  data: function () {
+    return {
+      newsletterCampaignsList: []
+    }
+  },
+  computed: {
+    ...mapGetters({
+      user: 'auth/user'
+    })
+  },
+  methods: {
+    getCampaignListFromChild (value) {
+      this.newsletterCampaignsList = JSON.parse(JSON.stringify(value))
+    }
+  },
   metaInfo () {
     return { title: 'Admin - Newsletter Settings' }
   }
