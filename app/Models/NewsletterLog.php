@@ -36,6 +36,7 @@ class NewsletterLog extends Model
      * @var string
      */
     protected $fillable = [
+        'newsletter_campaign_id',
         'newsletter_subscriber_id',
         'email_status',
     ];
@@ -50,4 +51,22 @@ class NewsletterLog extends Model
         'created_at',
         'updated_at',
     ];
+
+    /**
+     * Eloquent relationship between newsletter_logs and newsletter_campaign.
+     * One or many newsletter log(s) may have only one newsletter campaign.
+     */
+    public function newsletter_campaign()
+    {
+        return $this->belongsTo('App\Models\NewsletterCampaign');
+    }
+
+    /**
+     * Eloquent relationship between newsletter_logs and newsletter_subscribers.
+     * One or many newsletter log(s) may have only one newsletter subscribers.
+     */
+    public function newsletter_subscriber()
+    {
+        return $this->belongsTo('App\Models\NewsletterSubscriber');
+    }
 }

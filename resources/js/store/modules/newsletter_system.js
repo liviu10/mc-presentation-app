@@ -4,7 +4,8 @@ import axios from 'axios'
 export const state = {
   listOfCampaigns: [],
   listOfSubscribers: [],
-  newsletterReportKpi: []
+  newsletterReportKpi: [],
+  listOfNewsletterLogs: []
   // statistics: []
 }
 
@@ -12,7 +13,8 @@ export const state = {
 export const getters = {
   listOfCampaigns: (state) => state.listOfCampaigns,
   listOfSubscribers: (state) => state.listOfSubscribers,
-  newsletterReportKpi: (state) => state.newsletterReportKpi
+  newsletterReportKpi: (state) => state.newsletterReportKpi,
+  listOfNewsletterLogs: (state) => state.listOfNewsletterLogs
   // statistics: (state) => state.statistics
 }
 
@@ -20,7 +22,8 @@ export const getters = {
 export const mutations = {
   setListOfCampaigns: (state, listOfCampaigns) => (state.listOfCampaigns = listOfCampaigns),
   setListOfSubscribers: (state, listOfSubscribers) => (state.listOfSubscribers = listOfSubscribers),
-  setNewsletterReportKpi: (state, newsletterReportKpi) => (state.newsletterReportKpi = newsletterReportKpi)
+  setNewsletterReportKpi: (state, newsletterReportKpi) => (state.newsletterReportKpi = newsletterReportKpi),
+  setListOfNewsletterLogs: (state, listOfNewsletterLogs) => (state.listOfNewsletterLogs = listOfNewsletterLogs)
   // setStatistics: (state, statistics) => (state.statistics = statistics)
 }
 
@@ -63,6 +66,19 @@ export const actions = {
       })
       .catch(({ response }) => {
         commit('setNewsletterReportKpi', response.data)
+      })
+  },
+  async fetchListOfNewsletterLogs ({ commit }) {
+    const url = window.location.origin
+    const apiEndPoint = '/api/admin/system/newsletter/logs'
+    const fullApiUrl = url + apiEndPoint
+    axios
+      .get(fullApiUrl)
+      .then(response => {
+        commit('setListOfNewsletterLogs', response.data)
+      })
+      .catch(({ response }) => {
+        commit('setListOfNewsletterLogs', response.data)
       })
   }
   // async fetchStatistics ({ commit }) {

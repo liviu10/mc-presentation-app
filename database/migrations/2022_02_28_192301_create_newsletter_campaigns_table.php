@@ -21,8 +21,12 @@ class CreateNewsletterCampaignsTable extends Migration
             $table->string('campaign_is_active', 3)->default('0');
             $table->string('valid_from')->nullable(false);
             $table->string('valid_to')->nullable(false);
+            $table->string('occur_times');
+            $table->string('occur_when');
+            $table->string('occur_day');
+            $table->string('occur_hour');
             $table->timestamps();
-            $table->timestamp('deleted_at')->nullable();
+            $table->softDeletes();
         });
 
         DB::unprepared(

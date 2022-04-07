@@ -19,8 +19,8 @@ class CreateNewsletterSubscribersTable extends Migration
             $table->string('full_name')->nullable(false);
             $table->string('email')->nullable(false)->unique();
             $table->string('privacy_policy', 3);
+            $table->string('valid_email', 3);
             $table->timestamps();
-            $table->timestamp('unsubscribed_at')->nullable();
         });
     }
 

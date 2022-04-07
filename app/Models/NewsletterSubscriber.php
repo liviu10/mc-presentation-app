@@ -41,6 +41,7 @@ class NewsletterSubscriber extends Model
         'full_name',
         'email',
         'privacy_policy',
+        'valid_email',
     ];
 
     /**
@@ -50,6 +51,7 @@ class NewsletterSubscriber extends Model
      */
     protected $attributes = [
         'privacy_policy' => false,
+        'valid_email' => false,
     ];
 
     /**
@@ -61,8 +63,17 @@ class NewsletterSubscriber extends Model
         'id',
         'created_at',
         'updated_at',
-        'unsubscribed_at',
     ];
+
+    public function scopeIsValidEmail ($query) 
+    {
+        return $query->where('valid_email', true);
+    }
+
+    public function scopeIsNotValidEmail ($query) 
+    {
+        return $query->where('valid_email', false);
+    }
 
     /**
      * Eloquent relationship between newsletter_subscribers and newsletter_campaign.
@@ -71,6 +82,16 @@ class NewsletterSubscriber extends Model
     public function newsletter_campaign()
     {
         return $this->belongsTo('App\Models\NewsletterCampaign');
+    }
+
+    /**
+     * Eloquent relationship between newsletter_subscribers and newsletter_logs.
+     * One newsletter subscribers may have one or more newsletter log(s).
+     *
+     */
+    public function newsletter_logs()
+    {
+        return $this->hasMany('App\Models\NewsletterLogs');
     }
 
     /**

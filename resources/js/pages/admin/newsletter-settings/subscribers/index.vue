@@ -12,9 +12,9 @@
             :pagination-options="{
               enabled: true,
               mode: 'records',
-              perPage: 50,
+              perPage: 15,
               position: 'bottom',
-              perPageDropdown: [100, 200, 300, 400, 500],
+              perPageDropdown: [30, 45, 60, 'All'],
               dropdownAllowAll: false,
               setCurrentPage: 1,
               jumpFirstOrLast : true,
@@ -29,9 +29,8 @@
             }"
           >
             <template slot="table-row" slot-scope="props">
-              <span v-if="props.column.field == 'privacy_policy'">
-                <span v-if="props.row.privacy_policy === '1'">Yes</span>
-                <span v-else>No</span>
+              <span v-if="props.column.field == 'newsletter_campaign'">
+                {{ props.formattedRow[props.column.field].campaign_name }}
               </span>
               <span v-else-if="props.column.field == 'created_at'">
                 {{ new Date(props.row.created_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}
@@ -42,12 +41,25 @@
                   {{ new Date(props.row.unsubscribed_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}
                 </span>
               </span>
+              <span v-else-if="props.column.field == 'actions'">
+                <button v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2"
+                        class="btn btn-info w-100"
+                        type="button"
+                        data-bs-toggle="modal"
+                        data-bs-target="#setNewCampaign"
+                        @click="setNewCampaigns(props.row)"
+                >
+                  <fa icon="eye" fixed-width /> Set campaign(s)
+                </button>
+              </span>
               <span v-else>
                 {{ props.formattedRow[props.column.field] }}
               </span>
             </template>
           </vue-good-table>
         </div>
+
+        <set-new-campaign :show-row="selectedData" :campaign-details="campaignName" />
       </div>
     </div>
   </div>
@@ -59,6 +71,7 @@ import axios from 'axios'
 import Vuex, { mapGetters, mapActions } from 'vuex'
 import { VueGoodTable } from 'vue-good-table'
 import 'vue-good-table/dist/vue-good-table.css'
+import SetNewCampaign from './set-new-campaign'
 
 Vue.use(axios)
 Vue.use(Vuex)
@@ -68,9 +81,16 @@ window.axios = require('axios')
 export default {
   name: 'AdminNewsletterSubscribers',
   components: {
-    VueGoodTable
+    VueGoodTable,
+    SetNewCampaign
   },
   middleware: 'auth',
+  props: {
+    campaignName: {
+      default: null,
+      type: Array
+    }
+  },
   data: function () {
     return {
       columns: [
@@ -79,31 +99,28 @@ export default {
           field: 'id'
         },
         {
-          label: 'Newsletter Campaign',
-          field: 'newsletter_campaign_id'
+          label: 'Campaign name',
+          field: 'newsletter_campaign'
         },
         {
           label: 'Full name',
           field: 'full_name'
         },
         {
-          label: 'Email',
+          label: 'Email address',
           field: 'email'
         },
         {
-          label: 'Privacy policy',
-          field: 'privacy_policy'
-        },
-        {
-          label: 'Created at',
+          label: 'Subscribed at',
           field: 'created_at'
         },
         {
-          label: 'Unsubscribed at',
-          field: 'unsubscribed_at'
+          label: 'Actions',
+          field: 'actions',
+          sortable: false
         }
       ],
-      selectedDataToEdit: {}
+      selectedData: {}
     }
   },
   computed: {
@@ -125,7 +142,11 @@ export default {
   methods: {
     ...mapActions({
       fetchListOfSubscribers: 'newsletter_system/fetchListOfSubscribers'
-    })
+    }),
+    setNewCampaigns (row) {
+      this.selectedData = row
+      return this.selectedData
+    }
   }
 }
 </script>

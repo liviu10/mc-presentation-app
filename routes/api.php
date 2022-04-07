@@ -205,14 +205,14 @@ use Illuminate\Support\Facades\Route;
             });
             // Newsletter System Admin API routes
             Route::group([ 'prefix' => '/newsletter' ], function () {
+                Route::get('/logs', [NewsletterSubscriberSystemController::class, 'newsletterLogs']);
                 Route::delete('/campaigns/delete-all', [NewsletterCampaignSystemController::class, 'deleteAllCampaigns']);
-                Route::delete('/subscribers/delete-all', [NewsletterSubscriberSystemController::class, 'deleteAllSubscribers']);
                 Route::post('/resend-emails', [NewsletterSubscriberSystemController::class, 'newsletterResendEmails']);
                 Route::post('/change-send-day', [NewsletterSubscriberSystemController::class, 'newsletterChangeSendDay']);
                 Route::post('/change-welcome-template', [NewsletterSubscriberSystemController::class, 'newsletterChangeWelcomeTemplate']);
                 Route::post('/change-template', [NewsletterSubscriberSystemController::class, 'newsletterChangeTemplate']);
                 Route::apiResource('/campaigns', NewsletterCampaignSystemController::class);
-                Route::apiResource('/subscribers', NewsletterSubscriberSystemController::class)->only(['index', 'destroy']);
+                Route::apiResource('/subscribers', NewsletterSubscriberSystemController::class)->only(['index']);
                 Route::group([ 'prefix' => '/' ], function () {
                     Route::get('/kpi', [NewsletterKpiSystemController::class, 'displayNewsletterReportKpi']);
                     Route::get('/kpi/statistics', [NewsletterKpiSystemController::class, 'displayStatistics']);

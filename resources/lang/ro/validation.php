@@ -214,6 +214,22 @@ return [
             'required'  => ':attribute este obligatorie.',
             'max'       => ':attribute nu trebuie să depășească 255 de caractere.',
         ],
+        'occur_times' => [
+            'required'  => ':attribute este obligatorie.',
+            'max'       => ':attribute nu trebuie să depășească 255 de caractere.',
+        ],
+        'occur_when' => [
+            'required'  => ':attribute este obligatorie.',
+            'max'       => ':attribute nu trebuie să depășească 255 de caractere.',
+        ],
+        'occur_day' => [
+            'required'  => ':attribute este obligatorie.',
+            'max'       => ':attribute nu trebuie să depășească 255 de caractere.',
+        ],
+        'occur_hour' => [
+            'required'  => ':attribute este obligatorie.',
+            'max'       => ':attribute nu trebuie să depășească 255 de caractere.',
+        ],
     ],
 
     /*
@@ -245,6 +261,10 @@ return [
         'campaign_description'     => 'Descrierea campaniei',
         'valid_from'               => 'Data de început a campaniei',
         'valid_to'                 => 'Data de final a campaniei',
+        'occur_times'              => 'Numărul de recurențe',
+        'occur_when'               => 'Perioada recurenței',
+        'occur_day'                => 'Ziua recurenței',
+        'occur_hour'               => 'Timpul recurenței',
     ],
 
 ];
