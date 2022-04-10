@@ -3,48 +3,59 @@
     <div class="col-lg-12 m-auto">
       <div class="lv-pg-admin">
         <div class="lv-pg-admin-body">
-          <div class="lv-pg-admin-body">
-            <vue-good-table
-              :columns="columns"
-              :rows="displayLogs"
-              :search-options="{
-                enabled: true
-              }"
-              :pagination-options="{
-                enabled: true,
-                mode: 'records',
-                perPage: 50,
-                position: 'bottom',
-                perPageDropdown: [100, 200, 300, 400, 500],
-                dropdownAllowAll: false,
-                setCurrentPage: 1,
-                jumpFirstOrLast : true,
-                firstLabel : 'First Page',
-                lastLabel : 'Last Page',
-                nextLabel: 'next',
-                prevLabel: 'prev',
-                rowsPerPageLabel: 'Rows per page',
-                ofLabel: 'of',
-                pageLabel: 'page',
-                allLabel: 'All',
-              }"
-            >
-              <div v-if="user.user_role_type_id === 1" slot="table-actions">
-                <button class="btn btn-danger me-2" @click="deleteAllLogs()">
-                  <fa icon="trash" fixed-width /> Delete all
+          <vue-good-table
+            :columns="columns"
+            :rows="displayLogs"
+            :search-options="{
+              enabled: true
+            }"
+            :pagination-options="{
+              enabled: true,
+              mode: 'records',
+              perPage: 50,
+              position: 'bottom',
+              perPageDropdown: [100, 200, 300, 400, 500],
+              dropdownAllowAll: false,
+              setCurrentPage: 1,
+              jumpFirstOrLast : true,
+              firstLabel : 'First Page',
+              lastLabel : 'Last Page',
+              nextLabel: 'next',
+              prevLabel: 'prev',
+              rowsPerPageLabel: 'Rows per page',
+              ofLabel: 'of',
+              pageLabel: 'page',
+              allLabel: 'All',
+            }"
+          >
+            <div v-if="user.user_role_type_id === 1" slot="table-actions">
+              <button class="btn btn-danger me-2" @click="deleteAllLogs()">
+                <fa icon="trash" fixed-width /> Delete all
+              </button>
+            </div>
+            <template slot="table-row" slot-scope="props">
+              <span v-if="props.column.field == 'created_at'">
+                {{ new Date(props.row.created_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}
+              </span>
+              <span v-else-if="props.column.field == 'actions'">
+                <button v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2"
+                        class="btn btn-info w-100"
+                        type="button"
+                        data-bs-toggle="modal"
+                        data-bs-target="#showLogs"
+                        @click="showLogs(props.row)"
+                >
+                  <fa icon="eye" fixed-width /> Show
                 </button>
-              </div>
-              <template slot="table-row" slot-scope="props">
-                <span v-if="props.column.field == 'created_at'">
-                  {{ new Date(props.row.created_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}
-                </span>
-                <span v-else>
-                  {{ props.formattedRow[props.column.field] }}
-                </span>
-              </template>
-            </vue-good-table>
-          </div>
+              </span>
+              <span v-else>
+                {{ props.formattedRow[props.column.field] }}
+              </span>
+            </template>
+          </vue-good-table>
         </div>
+
+        <show-logs :show-row="selectedData" />
       </div>
     </div>
   </div>
@@ -57,6 +68,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js'
 import Vuex, { mapGetters, mapActions } from 'vuex'
 import { VueGoodTable } from 'vue-good-table'
 import 'vue-good-table/dist/vue-good-table.css'
+import ShowLogs from './show'
 
 Vue.use(axios)
 Vue.use(Vuex)
@@ -66,7 +78,8 @@ window.axios = require('axios')
 export default {
   name: 'AdminNewsletterLogs',
   components: {
-    VueGoodTable
+    VueGoodTable,
+    ShowLogs
   },
   middleware: 'auth',
   data: function () {
@@ -81,14 +94,35 @@ export default {
           field: 'status'
         },
         {
-          label: 'Details',
-          field: 'details'
+          label: 'Status description',
+          field: 'status_description'
         },
         {
-          label: 'Created at',
+          label: 'Request details',
+          field: 'request_details',
+          hidden: true
+        },
+        {
+          label: 'Response details',
+          field: 'response_details',
+          hidden: true
+        },
+        {
+          label: 'SQL details',
+          field: 'sql_details',
+          hidden: true
+        },
+        {
+          label: 'Logged at',
           field: 'created_at'
+        },
+        {
+          label: 'Actions',
+          field: 'actions',
+          sortable: false
         }
-      ]
+      ],
+      selectedData: {}
     }
   },
   computed: {
@@ -111,6 +145,10 @@ export default {
     ...mapActions({
       fetchListOfLogs: 'logs/fetchListOfLogs'
     }),
+    async showLogs (row) {
+      this.selectedData = row
+      return this.selectedData
+    },
     async deleteAllLogs () {
       if (!this.user) {
         Swal.fire({

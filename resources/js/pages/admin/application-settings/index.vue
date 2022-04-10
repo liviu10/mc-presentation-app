@@ -17,9 +17,6 @@
               <li class="nav-item">
                 <a href="#users_list" class="nav-link" data-bs-toggle="tab">Users List</a>
               </li>
-              <li class="nav-item">
-                <a href="#logs" class="nav-link" data-bs-toggle="tab">Logs</a>
-              </li>
             </ul>
             <div class="tab-content">
               <div id="accepted_domains" class="tab-pane fade show active">
@@ -43,13 +40,6 @@
                   </div>
                 </div>
               </div>
-              <div id="logs" class="tab-pane fade">
-                <div class="card">
-                  <div class="card-body">
-                    <admin-logs />
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -62,15 +52,13 @@
 import AdminAcceptedDomains from './accepted-domains/index.vue'
 import AdminErrorsAndNotifications from './errors-and-notifications/index.vue'
 import AdminUserList from './user-list/index.vue'
-import AdminLogs from './logs/index.vue'
 
 export default {
   name: 'AdminApplicationSettings',
   components: {
     AdminAcceptedDomains,
     AdminErrorsAndNotifications,
-    AdminUserList,
-    AdminLogs
+    AdminUserList
   },
   middleware: 'auth',
   metaInfo () {

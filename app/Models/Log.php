@@ -37,7 +37,10 @@ class Log extends Model
      */
     protected $fillable = [
         'status',
-        'details',
+        'status_description',
+        'request_details',
+        'response_details',
+        'sql_details',
     ];
 
     /**
@@ -51,17 +54,6 @@ class Log extends Model
         'updated_at',
         'deleted_at',
     ];
-
-
-    public function scopeIsActive ($query) 
-    {
-        return $query->where('campaign_is_active', true);
-    }
-
-    public function scopeIsNotActive ($query) 
-    {
-        return $query->where('campaign_is_active', false);
-    }
 
     /**
      * Eloquent polymorphic relationship between newsletter_campaign and newsletter_logs.

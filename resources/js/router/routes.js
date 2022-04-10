@@ -63,6 +63,9 @@ export default [
   // URL routes for the application settings
   { path: '/admin/application-settings', name: 'admin-application-settings-page', component: page('admin/application-settings/index.vue') },
 
+  // URL routes for the application logs
+  { path: '/admin/application-logs', name: 'admin-application-logs-page', component: page('admin/application-logs/index.vue') },
+
   // URL route for the application documentation
   { path: '/admin/documentation', name: 'admin-documentation-page', component: page('admin/documentation/index.vue') },
 

@@ -15,10 +15,13 @@ class CreateLogsTable extends Migration
     {
         Schema::create('logs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('logable_id');
-            $table->string('logable_type');
-            $table->string('status')->nullable(false);
-            $table->longText('details');
+            $table->unsignedBigInteger('logable_id')->nullable();
+            $table->string('logable_type')->nullable();
+            $table->string('status')->nullable();
+            $table->string('status_description')->nullable();
+            $table->longText('request_details')->nullable();
+            $table->string('response_details')->nullable();
+            $table->string('sql_details')->nullable();
             $table->timestamps();
         });
     }

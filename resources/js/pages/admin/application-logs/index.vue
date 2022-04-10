@@ -3,20 +3,20 @@
     <div class="col-lg-12 m-auto">
       <div class="lv-pg-admin">
         <div class="lv-pg-admin-header">
-          <h1>ADMIN CONTACT ME MESSAGE</h1>
+          <h1>ADMIN APPLICATION LOGS</h1>
         </div>
         <div class="lv-pg-admin-body">
           <div class="my-4">
             <ul id="myTab" class="nav nav-tabs">
               <li class="nav-item">
-                <a href="#contact_me_messages" class="nav-link active" data-bs-toggle="tab">Contact me Message</a>
+                <a href="#application_logs" class="nav-link active" data-bs-toggle="tab">Application Logs</a>
               </li>
             </ul>
             <div class="tab-content">
-              <div id="contact_me_messages" class="tab-pane fade show active">
+              <div id="application_logs" class="tab-pane fade show active">
                 <div class="card">
                   <div class="card-body">
-                    <admin-contact-me-messages />
+                    <admin-application-logs />
                   </div>
                 </div>
               </div>
@@ -31,14 +31,14 @@
 <script>
 import Vue from 'vue'
 import Vuex, { mapGetters } from 'vuex'
-import AdminContactMeMessages from './contact-me/index.vue'
+import AdminApplicationLogs from './logs/index.vue'
 
 Vue.use(Vuex)
 
 export default {
   name: 'AdminNewsletter',
   components: {
-    AdminContactMeMessages
+    AdminApplicationLogs
   },
   middleware: 'auth',
   computed: {
@@ -47,7 +47,7 @@ export default {
     })
   },
   metaInfo () {
-    return { title: 'Admin - Contact me messages' }
+    return { title: 'Admin - Application Logs' }
   }
 }
 </script>

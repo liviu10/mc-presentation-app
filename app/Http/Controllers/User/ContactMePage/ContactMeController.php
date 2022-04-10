@@ -5,11 +5,14 @@ namespace App\Http\Controllers\User\ContactMePage;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ContactMe;
+use App\Models\Log;
 
 class ContactMeController extends Controller
 {
     protected $modelNameContactMe;
+    protected $modelNameLog;
     protected $tableNameContactMe;
+    protected $tableNameLog;
 
     /**
      * Instantiate the variables that will be used to get the model.
@@ -19,7 +22,9 @@ class ContactMeController extends Controller
     public function __construct()
     {
         $this->modelNameContactMe = new ContactMe();
+        $this->modelNameLog = new Log();
         $this->tableNameContactMe = $this->modelNameContactMe->getTable();
+        $this->tableNameLog = $this->modelNameLog->getTable();
     }
 
     /**
@@ -71,13 +76,15 @@ class ContactMeController extends Controller
                 'message' => $request->get('message'),
                 'privacy_policy' => $records['privacy_policy'],
             ];
-            $this->modelNameContactMe->find($records->id)->log()->create([ 
-                'status'  => 'User sent new contact me message',
-                'details' => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_super_admin', [
-                    'record'         => $apiInsertSingleRecord['full_name'] . ' (id ' . $records->id . ')',
+            $this->modelNameContactMe->find($records->id)->log()->create([
+                'status'             => 'Create',
+                'status_description' => $records['full_name'] . ' has just send you a message. To view this message please go to contact me settings.',
+                'request_details'    => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_super_admin', [
+                    'record'         => $records['id'],
                     'databaseName'   => config('database.connections.mysql.database'),
-                    'tableName'      => $this->tableNameContactMe
-                ])
+                    'tableName'      => $this->tableNameContactMe,
+                ]),
+                'response_details'   => 'The HTTP 201 Created success status response code indicates that the request has succeeded and has led to the creation of a resource.',
             ]);
             return response()->json($apiInsertSingleRecord);
         }
@@ -85,11 +92,21 @@ class ContactMeController extends Controller
         {
             if ($mysqlError->getCode() === '42S02') 
             {
-                return response([], 500)->json();
-            }
-            if ($mysqlError->getCode() === '42S22') 
-            {
-                return response([], 500)->json();
+                $this->modelNameLog->create([
+                    'status'             => 'Error',
+                    'status_description' => 'The table you are looking for does not exist in the database!',
+                    'request_details'    => 'Test request_details',
+                    'request_details'    => __('error_and_notification_system.store.err_00001_notify.user_has_rights.message_super_admin', [
+                        'methodName'     => $_SERVER['REQUEST_METHOD'],
+                        'apiEndpoint'    => $_SERVER['REQUEST_URI'],
+                        'serviceName'    => __NAMESPACE__ . '\\' . basename(ContactMeController::class) . '.php',
+                        'databaseName'   => config('database.connections.mysql.database'),
+                        'tableName'      => 'contact_me',
+                    ]),
+                    'response_details'   => 'The HyperText Transfer Protocol (HTTP) 500 Internal Server Error server error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.',
+                    'sql_response'       => $mysqlError->getCode() . ' ' . $mysqlError->getMessage(),
+                ]);
+                return response([], 500);
             }
         }
     }
