@@ -201,7 +201,8 @@ use Illuminate\Support\Facades\Route;
             // Contact me System Admin API routes
             Route::group([ 'prefix' => '/' ], function () {
                 Route::delete('/contact-me/delete-all', [ContactMeSystemController::class, 'deleteAllRecords']);
-                Route::apiResource('/contact-me', ContactMeSystemController::class);
+                Route::post('/contact-me/respond', [ContactMeSystemController::class, 'respondToMessage']);
+                Route::apiResource('/contact-me', ContactMeSystemController::class)->only(['index', 'destroy']);
             });
             // Newsletter System Admin API routes
             Route::group([ 'prefix' => '/newsletter' ], function () {

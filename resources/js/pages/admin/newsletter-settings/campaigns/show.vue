@@ -1,6 +1,13 @@
 <template>
   <!-- EDIT CAMPAIGN, SECTION START -->
-  <div id="showCampaign" class="modal fade" tabindex="-1" aria-labelledby="showCampaignLabel" aria-hidden="true">
+  <div id="showCampaign"
+       class="modal fade"
+       tabindex="-1"
+       data-bs-backdrop="static"
+       data-bs-keyboard="false"
+       aria-labelledby="showCampaignLabel"
+       aria-hidden="true"
+  >
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">

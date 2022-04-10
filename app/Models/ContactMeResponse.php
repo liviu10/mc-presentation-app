@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ContactMe extends Model
+class ContactMeResponse extends Model
 {
     use HasFactory, SoftDeletes;
 
@@ -15,7 +15,7 @@ class ContactMe extends Model
      * 
      * @var string
      */
-    protected $table = 'contact_me';
+    protected $table = 'contact_me_responses';
 
     /**
      * The primary key associated with the table.
@@ -37,20 +37,8 @@ class ContactMe extends Model
      * @var string
      */
     protected $fillable = [
-        'full_name',
-        'email',
-        'message',
-        'privacy_policy',
-        'message_status',
-    ];
-
-    /**
-     * The attributes that are mass assignable.
-     * 
-     * @var string
-     */
-    protected $attributes = [
-        'privacy_policy' => false,
+        'contact_me_id',
+        'message_response',
     ];
 
     /**
@@ -65,13 +53,12 @@ class ContactMe extends Model
     ];
 
     /**
-     * Eloquent relationship between contact_me and contact_me_responses.
-     * One contact me message may have one or more contact me responses.
-     *
+     * Eloquent relationship between contact_me_responses and contact_me.
+     * One or many contact me response(s) may have only one contact me message.
      */
-    public function contact_me_responses()
+    public function contact_me_response()
     {
-        return $this->hasMany('App\Models\ContactMeResponse');
+        return $this->belongsTo('App\Models\ContactMe');
     }
 
     /**

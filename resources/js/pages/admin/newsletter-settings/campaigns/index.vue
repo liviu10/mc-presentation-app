@@ -138,7 +138,14 @@
         <show-campaign :show-row="selectedData" />
 
         <!-- EDIT CAMPAIGN, SECTION START -->
-        <div id="editCampaign" class="modal fade" tabindex="-1" aria-labelledby="editCampaignLabel" aria-hidden="true">
+        <div id="editCampaign"
+             class="modal fade"
+             tabindex="-1"
+             data-bs-backdrop="static"
+             data-bs-keyboard="false"
+             aria-labelledby="editCampaignLabel"
+             aria-hidden="true"
+        >
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -322,7 +329,7 @@
             </div>
           </div>
         </div>
-        <!-- EDIT USER, SECTION END -->
+        <!-- EDIT CAMPAIGN, SECTION END -->
       </div>
     </div>
   </div>
