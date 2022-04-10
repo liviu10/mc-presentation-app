@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\ContactMe;
 use App\Models\ContactMeResponse;
 use App\Models\ErrorAndNotificationSystem;
+use Illuminate\Support\Facades\Auth;
 
 class ContactMeSystemController extends Controller
 {
@@ -187,13 +188,15 @@ class ContactMeSystemController extends Controller
                 }
                 else
                 {
-                    $this->modelNameContactMe->find($apiDisplaySingleRecord['id'])->log()->create([ 
-                        'status'  => 'Admin delete contact me message',
-                        'details' => __('error_and_notification_system.delete.info_00002_notify.user_has_rights.message_super_admin', [
-                            'record'         => $apiDisplaySingleRecord['campaign_name'] . ' (id ' . $apiDisplaySingleRecord['id'] . ')',
+                    $this->modelNameContactMe->find($apiDisplaySingleRecord->id)->log()->create([
+                        'status'             => 'Delete',
+                        'status_description' => Auth::user()->name . ' had deleted ' . $apiDisplaySingleRecord->full_name . ' message. To recover this message please go to contact me settings.',
+                        'request_details'    => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_super_admin', [
+                            'record'         => $apiDisplaySingleRecord->id,
                             'databaseName'   => config('database.connections.mysql.database'),
-                            'tableName'      => $this->tableNameContactMe
-                        ])
+                            'tableName'      => $this->tableNameContactMeResponse,
+                        ]),
+                        'response_details'   => 'The HTTP 201 Created success status response code indicates that the request has succeeded and has led to the creation of a resource.',
                     ]);
                     $apiDeleteSingleRecord = $this->modelNameContactMe->find($id)->delete();
                     return response([
@@ -266,14 +269,16 @@ class ContactMeSystemController extends Controller
                 'message_response' => $request->get('message_response'),
             ]);
             $this->modelNameContactMe->select('id')->where('id', '=', $apiInsertSingleRecord->contact_me_id)->update(['message_status' => 'Mesaj trimis']);
-            // dd($this->modelNameContactMe->select('id', 'message_status')->where('id', '=', $apiInsertSingleRecord->contact_me_id)->get());
-            $this->modelNameContactMeResponse->find($apiInsertSingleRecord->id)->log()->create([ 
-                'status'  => 'Admin create contact me message',
-                'details' => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_super_admin', [
-                    'record'         => 'Ai adaugat un raspuns nou la XXX',
+            $getSenderName = $this->modelNameContactMe->select('full_name')->where('id', '=', $apiInsertSingleRecord->contact_me_id)->get()->toArray()[0]['full_name'];
+            $this->modelNameContactMeResponse->find($apiInsertSingleRecord->id)->log()->create([
+                'status'             => 'Create',
+                'status_description' => Auth::user()->name . ' has replied to ' . $getSenderName . '. To view this message please go to contact me settings.',
+                'request_details'    => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_super_admin', [
+                    'record'         => $apiInsertSingleRecord->id,
                     'databaseName'   => config('database.connections.mysql.database'),
-                    'tableName'      => $this->tableNameContactMeResponse
-                ])
+                    'tableName'      => $this->tableNameContactMeResponse,
+                ]),
+                'response_details'   => 'The HTTP 201 Created success status response code indicates that the request has succeeded and has led to the creation of a resource.',
             ]);
             return response([
                 'title'              => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_title'),
@@ -297,6 +302,20 @@ class ContactMeSystemController extends Controller
         {
             if ($mysqlError->getCode() === '42S02')
             {
+                $this->modelNameLog->create([
+                    'status'             => 'Error',
+                    'status_description' => 'The table you are looking for does not exist in the database!',
+                    'request_details'    => 'Test request_details',
+                    'request_details'    => __('error_and_notification_system.store.err_00001_notify.user_has_rights.message_super_admin', [
+                        'methodName'     => $_SERVER['REQUEST_METHOD'],
+                        'apiEndpoint'    => $_SERVER['REQUEST_URI'],
+                        'serviceName'    => __NAMESPACE__ . '\\' . basename(ContactMeSystemController::class) . '.php',
+                        'databaseName'   => config('database.connections.mysql.database'),
+                        'tableName'      => 'contact_me_responses',
+                    ]),
+                    'response_details'   => 'The HyperText Transfer Protocol (HTTP) 500 Internal Server Error server error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.',
+                    'sql_response'       => $mysqlError->getCode() . ' ' . $mysqlError->getMessage(),
+                ]);
                 return response([
                     'title'              => __('error_and_notification_system.store.err_00001_notify.user_has_rights.message_title'),
                     'notify_code'        => 'ERR_00001',
@@ -362,6 +381,16 @@ class ContactMeSystemController extends Controller
                     DB::statement('SET FOREIGN_KEY_CHECKS=0;');
                     $apiDeleteSingleRecord = $this->modelNameContactMe->truncate();
                     DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+                    $this->modelNameContactMe->create([
+                        'status'             => 'Delete',
+                        'status_description' => Auth::user()->name . ' has deleted all contact me message. To recover this message please go to contact me settings.',
+                        'request_details'    => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_super_admin', [
+                            'record'         => 0,
+                            'databaseName'   => config('database.connections.mysql.database'),
+                            'tableName'      => $this->tableNameContactMeResponse,
+                        ]),
+                        'response_details'   => 'The HTTP 201 Created success status response code indicates that the request has succeeded and has led to the creation of a resource.',
+                    ]);
                     return response([
                         'title'              => __('error_and_notification_system.delete_all.info_00004_notify.user_has_rights.message_title'),
                         'notify_code'        => 'INFO_00004',

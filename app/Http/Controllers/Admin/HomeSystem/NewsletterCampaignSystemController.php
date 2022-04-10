@@ -146,14 +146,14 @@ class NewsletterCampaignSystemController extends Controller
                                             'occur_day'            => $request->get('occur_day'),
                                             'occur_hour'           => $request->get('occur_hour'),
                                         ]);
-            $this->modelNameNewsletterCampaign->find($apiInsertSingleRecord->id)->log()->create([ 
-                'status'  => 'Admin create newsletter campaign',
-                'details' => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_super_admin', [
-                    'record'         => $request->get('campaign_name') . ' (id ' . $apiInsertSingleRecord->id . ')',
-                    'databaseName'   => config('database.connections.mysql.database'),
-                    'tableName'      => $this->tableNameNewsletterCampaign
-                ])
-            ]);
+            // $this->modelNameNewsletterCampaign->find($apiInsertSingleRecord->id)->log()->create([ 
+            //     'status'  => 'Admin create newsletter campaign',
+            //     'details' => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_super_admin', [
+            //         'record'         => $request->get('campaign_name') . ' (id ' . $apiInsertSingleRecord->id . ')',
+            //         'databaseName'   => config('database.connections.mysql.database'),
+            //         'tableName'      => $this->tableNameNewsletterCampaign
+            //     ])
+            // ]);
 
             return response([
                 'title'              => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_title'),
@@ -357,14 +357,14 @@ class NewsletterCampaignSystemController extends Controller
                 'occur_day'            => $request->get('occur_day'),
                 'occur_hour'           => $request->get('occur_hour'),
             ]);
-            $this->modelNameNewsletterCampaign->find($apiUpdateSingleRecord->id)->log()->create([ 
-                'status'  => 'Admin update newsletter campaign',
-                'details' => __('error_and_notification_system.update.info_00002_notify.user_has_rights.message_super_admin', [
-                    'record'         => $request->get('campaign_name') . ' (id ' . $apiUpdateSingleRecord->id . ')',
-                    'databaseName'   => config('database.connections.mysql.database'),
-                    'tableName'      => $this->tableNameNewsletterCampaign
-                ])
-            ]);
+            // $this->modelNameNewsletterCampaign->find($apiUpdateSingleRecord->id)->log()->create([ 
+            //     'status'  => 'Admin update newsletter campaign',
+            //     'details' => __('error_and_notification_system.update.info_00002_notify.user_has_rights.message_super_admin', [
+            //         'record'         => $request->get('campaign_name') . ' (id ' . $apiUpdateSingleRecord->id . ')',
+            //         'databaseName'   => config('database.connections.mysql.database'),
+            //         'tableName'      => $this->tableNameNewsletterCampaign
+            //     ])
+            // ]);
 
             return response([
                 'title'              => __('error_and_notification_system.update.info_00002_notify.user_has_rights.message_title'),
@@ -477,14 +477,14 @@ class NewsletterCampaignSystemController extends Controller
                 }
                 else
                 {
-                    $this->modelNameNewsletterCampaign->find($apiDisplaySingleRecord['id'])->log()->create([ 
-                        'status'  => 'Admin delete newsletter campaign',
-                        'details' => __('error_and_notification_system.delete.info_00002_notify.user_has_rights.message_super_admin', [
-                            'record'         => $apiDisplaySingleRecord['campaign_name'] . ' (id ' . $apiDisplaySingleRecord['id'] . ')',
-                            'databaseName'   => config('database.connections.mysql.database'),
-                            'tableName'      => $this->tableNameNewsletterCampaign
-                        ])
-                    ]);
+                    // $this->modelNameNewsletterCampaign->find($apiDisplaySingleRecord['id'])->log()->create([ 
+                    //     'status'  => 'Admin delete newsletter campaign',
+                    //     'details' => __('error_and_notification_system.delete.info_00002_notify.user_has_rights.message_super_admin', [
+                    //         'record'         => $apiDisplaySingleRecord['campaign_name'] . ' (id ' . $apiDisplaySingleRecord['id'] . ')',
+                    //         'databaseName'   => config('database.connections.mysql.database'),
+                    //         'tableName'      => $this->tableNameNewsletterCampaign
+                    //     ])
+                    // ]);
                     $apiDeleteSingleRecord = $this->modelNameNewsletterCampaign->find($id)->delete();
 
                     return response([

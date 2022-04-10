@@ -24,9 +24,9 @@ class CreateContactMeResponsesTable extends Migration
 
         DB::unprepared(
             'ALTER TABLE `mc_presentation_app_db`.`contact_me_responses`
-            ADD CONSTRAINT `fk_contact_me_id`
+            ADD CONSTRAINT `fk_contact_me_responses`
                 FOREIGN KEY (`contact_me_id`)
-                REFERENCES `mc_presentation_app_db`.`contact_me` (`id`)
+                REFERENCES `mc_presentation_app_db`.`contact_me_responses` (`id`)
                 ON DELETE CASCADE
                 ON UPDATE CASCADE'
         );

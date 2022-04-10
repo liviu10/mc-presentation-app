@@ -28,9 +28,10 @@
         "second_button": "Mesaje contactează-mă",
         "third_button": "Campanii newsletter",
         "forth_button": "Setări aplicație",
-        "fifth_button": "Documentație",
-        "sixth_button": "Setări profil",
-        "seventh_button": "Ieșire"
+        "fifth_button": "Log-uri aplicație",
+        "sixth_button": "Documentație",
+        "seventh_button": "Setări profil",
+        "eighth_button": "Ieșire"
       }
     },
     "footer": {

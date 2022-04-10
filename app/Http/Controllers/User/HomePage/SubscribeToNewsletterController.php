@@ -83,14 +83,14 @@ class SubscribeToNewsletterController extends Controller
                     'email' => $records['email'],
                     'privacy_policy' => $records['privacy_policy'],
                 ];
-                $this->modelNameNewsletterSubscriber->find($records->id)->log()->create([ 
-                    'status'  => 'User subscribed to newsletter',
-                    'details' => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_super_admin', [
-                        'record'         => $apiInsertSingleRecord['full_name'] . ' (id ' . $records->id . ')',
-                        'databaseName'   => config('database.connections.mysql.database'),
-                        'tableName'      => $this->tableNameNewsletterSubscriber
-                    ])
-                ]);
+                // $this->modelNameNewsletterSubscriber->find($records->id)->log()->create([ 
+                //     'status'  => 'User subscribed to newsletter',
+                //     'details' => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_super_admin', [
+                //         'record'         => $apiInsertSingleRecord['full_name'] . ' (id ' . $records->id . ')',
+                //         'databaseName'   => config('database.connections.mysql.database'),
+                //         'tableName'      => $this->tableNameNewsletterSubscriber
+                //     ])
+                // ]);
                 return response()->json($apiInsertSingleRecord);
             }
             else
@@ -140,14 +140,14 @@ class SubscribeToNewsletterController extends Controller
             else 
             {
                 $findUserIdByEmailAddress = $this->modelNameNewsletterSubscriber->where('email', '=', $email)->pluck('id')[0];
-                $this->modelNameNewsletterSubscriber->find($findUserIdByEmailAddress)->log()->create([ 
-                    'status'  => 'User unsubscribed from newsletter',
-                    'details' => __('error_and_notification_system.delete.info_00002_notify.user_has_rights.message_super_admin', [
-                        'record'         => $email . ' (id ' . $findUserIdByEmailAddress . ')',
-                        'databaseName'   => config('database.connections.mysql.database'),
-                        'tableName'      => $this->tableNameNewsletterSubscriber
-                    ])
-                ]);
+                // $this->modelNameNewsletterSubscriber->find($findUserIdByEmailAddress)->log()->create([ 
+                //     'status'  => 'User unsubscribed from newsletter',
+                //     'details' => __('error_and_notification_system.delete.info_00002_notify.user_has_rights.message_super_admin', [
+                //         'record'         => $email . ' (id ' . $findUserIdByEmailAddress . ')',
+                //         'databaseName'   => config('database.connections.mysql.database'),
+                //         'tableName'      => $this->tableNameNewsletterSubscriber
+                //     ])
+                // ]);
                 $apiDeleteSingleRecord = $this->modelNameNewsletterSubscriber->find($findUserIdByEmailAddress)->delete();
                 return response(true);
             }

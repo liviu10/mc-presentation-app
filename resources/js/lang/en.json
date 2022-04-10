@@ -28,8 +28,9 @@
         "second_button": "Contact me messages",
         "third_button": "Newsletter campaigns",
         "forth_button": "Application settings",
-        "fifth_button": "Documentation",
-        "sixth_button": "Profile settings",
+        "fifth_button": "Application logs",
+        "sixth_button": "Documentation",
+        "seventh_button": "Profile settings",
         "eighth_button": "Logout"
       }
     },
