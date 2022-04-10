@@ -55,7 +55,7 @@ export default [
   { path: '/admin/blog/articles-and-comments', name: 'admin-blog-articles-and-comments-page', component: page('admin/blog/articles-and-comments/index.vue') },
 
   // URL route for application contact me
-  { path: '/admin/contact-me', name: 'admin-contact-me-page', component: page('admin/contact-me/index.vue') },
+  { path: '/admin/contact-me-settings', name: 'admin-contact-me-settings-page', component: page('admin/contact-me-settings/index.vue') },
 
   // URL routes for the application newsletter
   { path: '/admin/newsletter-settings', name: 'admin-newsletter-settings-page', component: page('admin/newsletter-settings/index.vue') },

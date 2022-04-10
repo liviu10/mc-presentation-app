@@ -14,7 +14,7 @@
           <fa :icon="['fab', 'blogger-b']" fixed-width />
           {{ $t('user.navigation_bar.sub_menu.first_button') }}
         </router-link>
-        <router-link :to="{ name: 'admin-contact-me-page' }" class="dropdown-item p-2">
+        <router-link :to="{ name: 'admin-contact-me-settings-page' }" class="dropdown-item p-2">
           <fa icon="comment" fixed-width />
           {{ $t('user.navigation_bar.sub_menu.second_button') }}
         </router-link>

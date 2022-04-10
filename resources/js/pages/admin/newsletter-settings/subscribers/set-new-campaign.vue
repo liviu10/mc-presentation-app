@@ -1,6 +1,13 @@
 <template>
   <!-- SET NEW CAMPAIGNS, SECTION START -->
-  <div id="setNewCampaign" class="modal fade" tabindex="-1" aria-labelledby="setNewCampaignLabel" aria-hidden="true">
+  <div id="setNewCampaign"
+       class="modal fade"
+       data-bs-backdrop="static"
+       data-bs-keyboard="false"
+       tabindex="-1"
+       aria-labelledby="setNewCampaignLabel"
+       aria-hidden="true"
+  >
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">

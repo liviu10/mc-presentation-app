@@ -30,7 +30,6 @@
           </div>
           <div class="lv-pg-contact-content-body">
             <form @submit.prevent="contactMe" @keydown="form.onKeydown($event)">
-              <alert-success :form="form" :message="message_success" />
               <!-- FULL NAME, SECTION START -->
               <div class="mb-4">
                 <input id="full_name"
@@ -90,7 +89,7 @@
               </div>
               <!-- PRIVACY POLICY, SECTION END -->
               <div class="form-button">
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#contactMessageNotification">
                   {{ $t('user.contact_me_page.contact_form.contact_form_button') }}
                 </button>
               </div>
@@ -98,6 +97,22 @@
           </div>
         </div>
         <!-- CONTACT FORM, SECTION END -->
+        <!-- NOTIFY MESSAGE, SECTION START -->
+        <div id="contactMessageNotification" class="modal fade" tabindex="-1" aria-labelledby="contactMessageNotificationLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-body">
+                {{ $t('user.contact_me_page.contact_form.message_sent') }}
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                  OK
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- NOTIFY MESSAGE, SECTION END -->
       </div>
     </div>
   </div>
@@ -110,7 +125,6 @@ export default {
   name: 'ContactMePage',
   data: function () {
     return {
-      message_success: this.$t('user.contact_me_page.contact_form.message_sent'),
       form: new Form({
         full_name: '',
         email: '',
