@@ -23,6 +23,9 @@
                 <div class="col col-12 my-3">
                   <label class="col-form-label">
                     <b>Campaign name:</b>
+                    <div id="new_campaigns_help" class="form-text mt-0">
+                      You can select multiple newsletter campaigns at once by holding down CTRL keyboard button and left clicking on the mouse.
+                    </div>
                   </label>
                   <select id="new_campaigns"
                           v-model="form.new_campaigns"

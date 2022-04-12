@@ -212,7 +212,7 @@ use Illuminate\Support\Facades\Route;
                 Route::post('/change-send-day', [NewsletterSubscriberSystemController::class, 'newsletterChangeSendDay']);
                 Route::post('/change-welcome-template', [NewsletterSubscriberSystemController::class, 'newsletterChangeWelcomeTemplate']);
                 Route::post('/change-template', [NewsletterSubscriberSystemController::class, 'newsletterChangeTemplate']);
-                Route::apiResource('/campaigns', NewsletterCampaignSystemController::class);
+                Route::apiResource('/campaigns', NewsletterCampaignSystemController::class)->only(['index', 'store', 'update', 'destroy']);
                 Route::apiResource('/subscribers', NewsletterSubscriberSystemController::class)->only(['index']);
                 Route::group([ 'prefix' => '/' ], function () {
                     Route::get('/kpi', [NewsletterKpiSystemController::class, 'displayNewsletterReportKpi']);
