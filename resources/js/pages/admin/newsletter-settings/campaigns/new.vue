@@ -216,10 +216,10 @@ export default {
         campaign_is_active: '',
         valid_from: '',
         valid_to: '',
-        occur_times: 1,
-        occur_when: '2',
-        occur_day: '3',
-        occur_hour: '12:00'
+        occur_times: null,
+        occur_when: null,
+        occur_day: null,
+        occur_hour: null
       }),
       showNotificationMessage: false
     }

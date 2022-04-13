@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Log;
 
 class BlogSubcategory extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     /**
      * The table associated with the model.
@@ -46,7 +48,6 @@ class BlogSubcategory extends Model
         'blog_category_id',
         'blog_subcategory_title',
         'blog_subcategory_short_description',
-        'blog_subcategory_description',
         'blog_subcategory_is_active',
         'blog_subcategory_path',
     ];
@@ -113,5 +114,14 @@ class BlogSubcategory extends Model
     public function blog_category()
     {
         return $this->belongsTo('App\Models\BlogCategory');
+    }
+
+    /**
+     * Eloquent polymorphic relationship between blog_subcategories and logs.
+     *
+     */
+    public function log()
+    {
+        return $this->morphOne(Log::class, 'logable');
     }
 }

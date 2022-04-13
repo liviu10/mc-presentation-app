@@ -8,13 +8,15 @@ use Illuminate\Support\Facades\DB;
 use App\Models\ContactMe;
 use App\Models\ContactMeResponse;
 use App\Models\ErrorAndNotificationSystem;
+use App\Models\Log;
 use Illuminate\Support\Facades\Auth;
 
 class ContactMeSystemController extends Controller
 {
     protected $modelNameContactMe;
+    protected $modelNameContactMeResponse;
     protected $modelNameErrorSystem;
-
+    protected $modelNameLog;
     protected $tableNameContactMe;
     protected $tableNameErrorSystem;
 
@@ -28,7 +30,7 @@ class ContactMeSystemController extends Controller
         $this->modelNameContactMe         = new ContactMe();
         $this->modelNameContactMeResponse = new ContactMeResponse();
         $this->modelNameErrorSystem       = new ErrorAndNotificationSystem();
-
+        $this->modelNameLog               = new Log();
         $this->tableNameContactMe         = $this->modelNameContactMe->getTable();
         $this->tableNameContactMeResponse = $this->modelNameContactMeResponse->getTable();
         $this->tableNameErrorSystem       = $this->modelNameErrorSystem->getTable();

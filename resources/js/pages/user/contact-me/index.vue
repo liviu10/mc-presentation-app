@@ -89,7 +89,7 @@
               </div>
               <!-- PRIVACY POLICY, SECTION END -->
               <div class="form-button">
-                <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#contactMessageNotification">
+                <button type="submit" class="btn btn-primary">
                   {{ $t('user.contact_me_page.contact_form.contact_form_button') }}
                 </button>
               </div>
@@ -97,22 +97,6 @@
           </div>
         </div>
         <!-- CONTACT FORM, SECTION END -->
-        <!-- NOTIFY MESSAGE, SECTION START -->
-        <div id="contactMessageNotification" class="modal fade" tabindex="-1" aria-labelledby="contactMessageNotificationLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-body">
-                {{ $t('user.contact_me_page.contact_form.message_sent') }}
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
-                  OK
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- NOTIFY MESSAGE, SECTION END -->
       </div>
     </div>
   </div>
@@ -120,6 +104,7 @@
 
 <script>
 import Form from 'vform'
+import Swal from 'sweetalert2/dist/sweetalert2.js'
 
 export default {
   name: 'ContactMePage',
@@ -145,12 +130,33 @@ export default {
           message: this.form.message,
           privacy_policy: this.form.privacy_policy
         })
-        .then((result) => {
-          console.log(result)
-          this.form.full_name = null
-          this.form.email = null
-          this.form.message = null
-          this.form.privacy_policy = null
+        .then(response => {
+          this.senderFullName = response.data.full_name
+          Swal.fire({
+            title: this.$t('user.contact_me_page.contact_form.swal.title', { senderFullName: this.senderFullName }),
+            text: this.$t('user.contact_me_page.contact_form.swal.message')
+          }).then((result) => {
+            this.form.full_name = null
+            this.form.email = null
+            this.form.message = null
+            this.form.privacy_policy = null
+          })
+        })
+        .catch(error => {
+          this.senderFullName = error.response.config.full_name
+          this.senderEmailAddress = error.response.config.email
+          Swal.fire({
+            title: this.$t('user.contact_me_page.contact_form.swal_error.title', { senderFullName: this.senderFullName }),
+            text: this.$t('user.contact_me_page.contact_form.swal_error.message', { senderEmailAddress: this.senderEmailAddress }),
+            imageUrl: this.displayRandomNewsletterImage(this.newsletterImages),
+            imageWidth: 259,
+            imageHeight: 194
+          }).then((result) => {
+            this.form.full_name = null
+            this.form.email = null
+            this.form.message = null
+            this.form.privacy_policy = null
+          })
         })
     }
   },

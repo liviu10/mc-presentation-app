@@ -20,7 +20,6 @@ class CreateBlogArticleRateTable extends Migration
             $table->foreignId('blog_article_id')->index('idx_blog_article_id');
             $table->integer('blog_article_rating_system');
             $table->timestamps();
-            $table->timestamp('deleted_at')->nullable();
         });
 
         DB::unprepared(

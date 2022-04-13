@@ -6,7 +6,9 @@ export const state = {
   listOfWrittenArticles: [],
   listOfAudioArticles: [],
   listOfVideoArticles: [],
-  adminBlogCategoriesAndSubcategories: []
+  // Admin records
+  blogCategories: [],
+  blogSubcategories: []
 }
 
 // getters
@@ -15,7 +17,9 @@ export const getters = {
   listOfWrittenArticles: (state) => state.listOfWrittenArticles,
   listOfAudioArticles: (state) => state.listOfAudioArticles,
   listOfVideoArticles: (state) => state.listOfVideoArticles,
-  adminAllBlogCategoriesAndSubcategories: (state) => state.adminBlogCategoriesAndSubcategories
+  // Admin records
+  blogCategories: (state) => state.blogCategories,
+  blogSubcategories: (state) => state.blogSubcategories
 }
 
 // mutations
@@ -24,7 +28,9 @@ export const mutations = {
   setListOfWrittenArticles: (state, listOfWrittenArticles) => (state.listOfWrittenArticles = listOfWrittenArticles),
   setListOfAudioArticles: (state, listOfAudioArticles) => (state.listOfAudioArticles = listOfAudioArticles),
   setListOfVideoArticles: (state, listOfVideoArticles) => (state.listOfVideoArticles = listOfVideoArticles),
-  setAdminBlogCategoriesAndSubcategories: (state, adminBlogCategoriesAndSubcategories) => (state.adminBlogCategoriesAndSubcategories = adminBlogCategoriesAndSubcategories)
+  // Admin records
+  setBlogCategories: (state, blogCategories) => (state.blogCategories = blogCategories),
+  setBlogSubcategories: (state, blogSubcategories) => (state.blogSubcategories = blogSubcategories)
 }
 
 // actions
@@ -81,17 +87,31 @@ export const actions = {
         commit('setListOfVideoArticles', response.data)
       })
   },
-  async fetchAdminBlogCategoriesAndSubcategories ({ commit }) {
+  // Admin records
+  async fetchBlogCategories ({ commit }) {
     const url = window.location.origin
-    const apiEndPoint = '/api/admin/system/blog/categories-and-subcategories'
+    const apiEndPoint = '/api/admin/system/blog/display-categories'
     const fullApiUrl = url + apiEndPoint
     axios
       .get(fullApiUrl)
       .then(response => {
-        commit('setAdminBlogCategoriesAndSubcategories', response.data)
+        commit('setBlogCategories', response.data)
       })
       .catch(({ response }) => {
-        commit('setAdminBlogCategoriesAndSubcategories', response.data)
+        commit('setBlogCategories', response.data)
+      })
+  },
+  async fetchBlogSubcategories ({ commit }) {
+    const url = window.location.origin
+    const apiEndPoint = '/api/admin/system/blog/display-subcategories'
+    const fullApiUrl = url + apiEndPoint
+    axios
+      .get(fullApiUrl)
+      .then(response => {
+        commit('setBlogSubcategories', response.data)
+      })
+      .catch(({ response }) => {
+        commit('setBlogSubcategories', response.data)
       })
   }
 }

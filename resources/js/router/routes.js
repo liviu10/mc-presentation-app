@@ -50,9 +50,7 @@ export default [
   { path: '/admin/home', name: 'admin-home-page', component: page('admin/index.vue') },
 
   // URL routes for the blog system
-  { path: '/admin/blog', name: 'admin-blog-page', component: page('admin/blog/index.vue') },
-  { path: '/admin/blog/categories-and-subcategories', name: 'admin-blog-categories-and-subcategories-page', component: page('admin/blog/categories-and-subcategories/index.vue') },
-  { path: '/admin/blog/articles-and-comments', name: 'admin-blog-articles-and-comments-page', component: page('admin/blog/articles-and-comments/index.vue') },
+  { path: '/admin/blog-settings', name: 'admin-blog-settings-page', component: page('admin/blog-settings/index.vue') },
 
   // URL route for application contact me
   { path: '/admin/contact-me-settings', name: 'admin-contact-me-settings-page', component: page('admin/contact-me-settings/index.vue') },

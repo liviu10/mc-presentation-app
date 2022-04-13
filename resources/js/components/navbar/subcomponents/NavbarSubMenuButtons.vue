@@ -10,7 +10,7 @@
         <a class="dropdown-item p-2 dropdown-profile" href="" />
       </li>
       <li>
-        <router-link :to="{ name: 'admin-blog-page' }" class="dropdown-item p-2">
+        <router-link :to="{ name: 'admin-blog-settings-page' }" class="dropdown-item p-2">
           <fa :icon="['fab', 'blogger-b']" fixed-width />
           {{ $t('user.navigation_bar.sub_menu.first_button') }}
         </router-link>

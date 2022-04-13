@@ -79,6 +79,10 @@
         "swal_error": {
           "title": "Mulțumesc, {subscriberFullName}!",
           "message": "Sunt recunoscătoare că vrei să te abonezi la newsletter-ul meu! Dar, din nefericire adresa de email: {subscriberEmailAddress} pe care ai introdus-o este invalidă! Te rog, să reîncerci cu una validă!"
+        },
+        "swal_warning": {
+          "title": "Mulțumesc, {subscriberFullName}!",
+          "message": "Sunt recunoscătoare că vrei să te abonezi la newsletter-ul meu! Eşti deja înscris la newsletter-ul meu cu adresa de email: {subscriberEmailAddress}!"
         }
       }
     },
@@ -213,7 +217,14 @@
         "i_agree_with": "Sunt de acord cu ",
         "privacy_policy": "Termenii și Condițiile",
         "contact_form_button": "Trimite mesajul",
-        "message_sent": "Mesajul tău a fost trimis cu success! Te voi contacta în cel mai scurt timp!"
+        "swal": {
+          "title": "Mulțumesc, {senderFullName}!",
+          "message": "Sunt recunoscătoare pentru mesajul pe care mi l-ai trimis! Voi reveni la tine în cel mai scurt timp posibil!"
+        },
+        "swal_error": {
+          "title": "Mulțumesc, {senderFullName}!",
+          "message": "Sunt recunoscătoare pentru mesajul pe care vrei să mi-l trimiţi! Dar, din nefericire adresa de email: {senderEmailAddress} pe care ai introdus-o este invalidă! Te rog, să reîncerci cu una validă!"
+        }
       }
     },
     "terms_and_conditions_page": {

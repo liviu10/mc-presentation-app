@@ -9,7 +9,7 @@ use App\Models\BlogCategory;
 use App\Models\BlogSubcategory;
 use App\Models\ErrorAndNotificationSystem;
 
-class BlogCategorySystemController extends Controller
+class BlogCategoryAndSubcategorySystemController extends Controller
 {
     protected $modelNameBlogCategory;
     protected $modelNameBlogSubcategory;
@@ -42,6 +42,16 @@ class BlogCategorySystemController extends Controller
      */
     public function index()
     {
+        // 
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function displayBlogCategories()
+    {
         try
         {
             $apiDisplayAllRecords = $this->modelNameBlogCategory->select(
@@ -53,9 +63,181 @@ class BlogCategorySystemController extends Controller
                                         'blog_category_path',
                                         'created_at',
                                     )
+                                    ->get();
+            if ($apiDisplayAllRecords->isEmpty())
+            {
+                return response([
+                    'title'              => __('error_and_notification_system.index.war_00001_notify.user_has_rights.message_title'),
+                    'notify_code'        => 'WAR_00001',
+                    'description'        => __('error_and_notification_system.index.war_00001_notify.user_has_rights.message_super_admin', [
+                        'methodName'     => $_SERVER['REQUEST_METHOD'],
+                        'apiEndpoint'    => $_SERVER['REQUEST_URI'],
+                        'serviceName' => __NAMESPACE__ . '\\' . basename(BlogCategorySystemController::class) . '.php',
+                        'databaseName'   => config('database.connections.mysql.database'),
+                        'tableName'      => $this->tableNameBlogCategory
+                    ]),
+                    'reference'          => config('app.url') . '/documentation/warning#WAR_00001',
+                    'api_endpoint'       => $_SERVER['REQUEST_URI'],
+                    'http_response'      => [
+                        'code'           => 404,
+                        'general_message'=> 'The HTTP 404 Not Found client error response code indicates that the server can\'t find the requested resource.',
+                        'url'            => 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404',
+                    ],
+                    'records'            => [],
+                ], 404);
+            }
+            else
+            {
+                return response([
+                    'title'              => __('error_and_notification_system.index.info_00001_notify.user_has_rights.message_title'),
+                    'notify_code'        => 'INFO_00001',
+                    'description'        => __('error_and_notification_system.index.info_00001_notify.user_has_rights.message_super_admin', [
+                        'numberOfRecords'=> $apiDisplayAllRecords->count(),
+                        'databaseName'   => config('database.connections.mysql.database'),
+                        'tableName'      => $this->tableNameBlogCategory
+                    ]),
+                    'reference'          => $this->modelNameErrorSystem::where('notify_code', '=', 'INFO_00001')->pluck('notify_reference')[0],
+                    'api_endpoint'       => $_SERVER['REQUEST_URI'],
+                    'http_response'      => [
+                        'code'           => 200,
+                        'general_message'=> 'The HTTP 200 OK success status response code indicates that the request has succeeded. A 200 response is cacheable by default.',
+                        'url'            => 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200',
+                    ],
+                    'records'            => $apiDisplayAllRecords,
+                ], 200);
+            }
+        }
+        catch (\Illuminate\Database\QueryException $mysqlError)
+        {
+            if ($mysqlError->getCode() === '42S02')
+            {
+                return response([
+                    'title'              => __('error_and_notification_system.index.err_00001_notify.user_has_rights.message_title'),
+                    'notify_code'        => 'ERR_00001',
+                    'description'        => __('error_and_notification_system.index.err_00001_notify.user_has_rights.message_super_admin', [
+                        'methodName'     => $_SERVER['REQUEST_METHOD'],
+                        'apiEndpoint'    => $_SERVER['REQUEST_URI'],
+                        'serviceName' => __NAMESPACE__ . '\\' . basename(BlogCategorySystemController::class) . '.php',
+                        'databaseName'   => config('database.connections.mysql.database'),
+                        'tableName'      => 'blog_categories',
+                    ]),
+                    'reference'          => config('app.url') . '/documentation/error#ERR_00001',
+                    'api_endpoint'       => $_SERVER['REQUEST_URI'],
+                    'http_response'      => [
+                        'code'           => 500,
+                        'general_message'=> 'The HyperText Transfer Protocol (HTTP) 500 Internal Server Error server error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.',
+                        'url'            => 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500',
+                    ],
+                    'sql_response'       => [
+                        'sql_err_code'   => $mysqlError->getCode(),
+                        'sql_err_message'=> $mysqlError->getMessage(),
+                        'sql_err_url'    => 'https://dev.mysql.com/doc/refman/8.0/en/cannot-find-table.html'
+                    ],
+                    'records'            => [],
+                ], 500);
+            }
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function editCategory(Request $request, $id)
+    {
+        try
+        {
+            $request->validate([
+                'blog_category_title'             => 'required|regex:/^[a-zA-Z_ ]+$/u|max:255',
+                'blog_category_short_description' => 'required|max:255',
+                'blog_category_is_active'         => 'required',
+                // 'blog_image_card_url'             => 'mimes:jpeg',
+                // 'blog_category_path'              => 'required|max:255',
+            ]);
+            $getFile = $request->file('blog_image_card_url');
+            $getFileName = $request->file('blog_image_card_url')->getClientOriginalName();
+            $getDestinationPath = '/images/pages/blog/main_categories/';
+    
+            $apiUpdateSingleRecord = $this->modelNameBlogCategory->find($id);
+            $apiUpdateSingleRecord->update([
+                'blog_category_title'             => $request->get('blog_category_title'),
+                'blog_category_short_description' => $request->get('blog_category_short_description'),
+                'blog_category_is_active'         => $request->get('blog_category_is_active'),
+                'blog_image_card_url'             => $getFile->move($getDestinationPath, $getFileName),
+            ]);
+            return response([
+                'title'              => __('error_and_notification_system.update.info_00002_notify.user_has_rights.message_title'),
+                'notify_code'        => 'INFO_00002',
+                'description'        => __('error_and_notification_system.update.info_00002_notify.user_has_rights.message_super_admin', [
+                    'record'         => $apiUpdateSingleRecord['blog_category_title'],
+                    'databaseName'   => config('database.connections.mysql.database'),
+                    'tableName'      => $this->tableNameBlogCategory
+                ]),
+                'reference'          => $this->modelNameErrorSystem::where('notify_code', '=', 'INFO_00002')->pluck('notify_reference')[0],
+                'api_endpoint'       => $_SERVER['REQUEST_URI'],
+                'http_response'      => [
+                    'code'           => 201,
+                    'general_message'=> 'The HTTP 201 Created success status response code indicates that the request has succeeded and has led to the creation of a resource.',
+                    'url'            => 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201',
+                ],
+                'records'            => $apiUpdateSingleRecord,
+            ], 201);
+        }
+        catch (\Illuminate\Database\QueryException $mysqlError)
+        {
+            if ($mysqlError->getCode() === '42S02')
+            {
+                return response([
+                    'title'              => __('error_and_notification_system.update.err_00001_notify.user_has_rights.message_title'),
+                    'notify_code'        => 'ERR_00001',
+                    'description'        => __('error_and_notification_system.update.err_00001_notify.user_has_rights.message_super_admin', [
+                        'methodName'     => $_SERVER['REQUEST_METHOD'],
+                        'apiEndpoint'    => $_SERVER['REQUEST_URI'],
+                        'serviceName' => __NAMESPACE__ . '\\' . basename(BlogCategorySystemController::class) . '.php',
+                        'databaseName'   => config('database.connections.mysql.database'),
+                        'tableName'      => 'blog_categories',
+                    ]),
+                    'reference'          => config('app.url') . '/documentation/error#ERR_00001',
+                    'api_endpoint'       => $_SERVER['REQUEST_URI'],
+                    'http_response'      => [
+                        'code'           => 500,
+                        'general_message'=> 'The HyperText Transfer Protocol (HTTP) 500 Internal Server Error server error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.',
+                        'url'            => 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500',
+                    ],
+                    'sql_response'       => [
+                        'sql_err_code'   => $mysqlError->getCode(),
+                        'sql_err_message'=> $mysqlError->getMessage(),
+                        'sql_err_url'    => 'https://dev.mysql.com/doc/refman/8.0/en/cannot-find-table.html'
+                    ],
+                    'records'            => [],
+                ], 500);
+            }
+        }
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function displayBlogSubcategories()
+    {
+        try
+        {
+            $apiDisplayAllRecords = $this->modelNameBlogSubcategory->select(
+                                        'id',
+                                        'blog_category_id',
+                                        'blog_subcategory_title',
+                                        'blog_subcategory_is_active',
+                                        'blog_subcategory_path',
+                                        'created_at',
+                                    )
                                     ->with([
-                                        'blog_subcategories' => function ($query) {
-                                            $query->select('id', 'blog_category_id', 'blog_subcategory_title', 'blog_subcategory_path');
+                                        'blog_category' => function ($query) {
+                                            $query->select('id', 'blog_category_title');
                                         }
                                     ])
                                     ->get();
@@ -140,369 +322,6 @@ class BlogCategorySystemController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function createCategory(Request $request)
-    {
-        try
-        {
-            $request->validate([
-                'blog_category_title'             => 'required|regex:/^[a-zA-Z_ ]+$/u|max:255',
-                'blog_category_short_description' => 'required|max:255',
-                // 'blog_category_description'       => 'required|min:60',
-                'blog_category_is_active'         => 'required',
-                // 'blog_image_card_url'             => 'mimes:jpeg',
-                // 'blog_category_path'              => 'required|max:255',
-            ]);
-            $getFile = $request->file('blog_image_card_url');
-            $getFileName = $request->file('blog_image_card_url')->getClientOriginalName();
-            $getDestinationPath = public_path() . '/images/pages/blog/main_categories/';
-    
-            $apiInsertSingleRecord = $this->modelNameBlogCategory->create([
-                'blog_category_title'             => $request->get('blog_category_title'),
-                'blog_category_short_description' => $request->get('blog_category_short_description'),
-                // 'blog_category_description'       => $request->get('blog_category_description'),
-                'blog_category_is_active'         => $request->get('blog_category_is_active'),
-                'blog_image_card_url'             => $getFile->move($getDestinationPath, $getFileName),
-                'blog_category_path'              => '/blog/' . strtolower(str_replace(' ', '-', $request->get('blog_category_title'))),
-            ]);
-            return response([
-                'title'              => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_title'),
-                'notify_code'        => 'INFO_00002',
-                'description'        => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_super_admin', [
-                    'record'         => $apiInsertSingleRecord['blog_category_title'],
-                    'databaseName'   => config('database.connections.mysql.database'),
-                    'tableName'      => $this->tableNameBlogCategory
-                ]),
-                'reference'          => $this->modelNameErrorSystem::where('notify_code', '=', 'INFO_00002')->pluck('notify_reference')[0],
-                'api_endpoint'       => $_SERVER['REQUEST_URI'],
-                'http_response'      => [
-                    'code'           => 201,
-                    'general_message'=> 'The HTTP 201 Created success status response code indicates that the request has succeeded and has led to the creation of a resource.',
-                    'url'            => 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201',
-                ],
-                'records'            => $apiInsertSingleRecord,
-            ], 201);
-        }
-        catch  (\Illuminate\Database\QueryException $mysqlError)
-        {
-            if ($mysqlError->getCode() === '42S02')
-            {
-                return response([
-                    'title'              => __('error_and_notification_system.store.err_00001_notify.user_has_rights.message_title'),
-                    'notify_code'        => 'ERR_00001',
-                    'description'        => __('error_and_notification_system.store.err_00001_notify.user_has_rights.message_super_admin', [
-                        'methodName'     => $_SERVER['REQUEST_METHOD'],
-                        'apiEndpoint'    => $_SERVER['REQUEST_URI'],
-                        'serviceName' => __NAMESPACE__ . '\\' . basename(BlogCategorySystemController::class) . '.php',
-                        'databaseName'   => config('database.connections.mysql.database'),
-                        'tableName'      => 'blog_categories',
-                    ]),
-                    'reference'          => config('app.url') . '/documentation/error#ERR_00001',
-                    'api_endpoint'       => $_SERVER['REQUEST_URI'],
-                    'http_response'      => [
-                        'code'           => 500,
-                        'general_message'=> 'The HyperText Transfer Protocol (HTTP) 500 Internal Server Error server error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.',
-                        'url'            => 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500',
-                    ],
-                    'sql_response'       => [
-                        'sql_err_code'   => $mysqlError->getCode(),
-                        'sql_err_message'=> $mysqlError->getMessage(),
-                        'sql_err_url'    => 'https://dev.mysql.com/doc/refman/8.0/en/cannot-find-table.html'
-                    ],
-                    'records'            => [],
-                ], 500);
-            }
-        }
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function editCategory(Request $request, $id)
-    {
-        try
-        {
-            $request->validate([
-                'blog_category_title'             => 'required|regex:/^[a-zA-Z_ ]+$/u|max:255',
-                'blog_category_short_description' => 'required|max:255',
-                // 'blog_category_description'       => 'required|min:60',
-                'blog_category_is_active'         => 'required',
-                // 'blog_image_card_url'             => 'mimes:jpeg',
-                // 'blog_category_path'              => 'required|max:255',
-            ]);
-            $getFile = $request->file('blog_image_card_url');
-            $getFileName = $request->file('blog_image_card_url')->getClientOriginalName();
-            $getDestinationPath = '/images/pages/blog/main_categories/';
-    
-            $apiUpdateSingleRecord = $this->modelNameBlogCategory->find($id);
-            $apiUpdateSingleRecord->update([
-                'blog_category_title'             => $request->get('blog_category_title'),
-                'blog_category_short_description' => $request->get('blog_category_short_description'),
-                // 'blog_category_description'       => $request->get('blog_category_description'),
-                'blog_category_is_active'         => $request->get('blog_category_is_active'),
-                'blog_image_card_url'             => $getFile->move($getDestinationPath, $getFileName),
-                // 'blog_category_path'              => $request->get('blog_category_path'),
-            ]);
-            return response([
-                'title'              => __('error_and_notification_system.update.info_00002_notify.user_has_rights.message_title'),
-                'notify_code'        => 'INFO_00002',
-                'description'        => __('error_and_notification_system.update.info_00002_notify.user_has_rights.message_super_admin', [
-                    'record'         => $apiUpdateSingleRecord['blog_category_title'],
-                    'databaseName'   => config('database.connections.mysql.database'),
-                    'tableName'      => $this->tableNameBlogCategory
-                ]),
-                'reference'          => $this->modelNameErrorSystem::where('notify_code', '=', 'INFO_00002')->pluck('notify_reference')[0],
-                'api_endpoint'       => $_SERVER['REQUEST_URI'],
-                'http_response'      => [
-                    'code'           => 201,
-                    'general_message'=> 'The HTTP 201 Created success status response code indicates that the request has succeeded and has led to the creation of a resource.',
-                    'url'            => 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201',
-                ],
-                'records'            => $apiUpdateSingleRecord,
-            ], 201);
-        }
-        catch (\Illuminate\Database\QueryException $mysqlError)
-        {
-            if ($mysqlError->getCode() === '42S02')
-            {
-                return response([
-                    'title'              => __('error_and_notification_system.update.err_00001_notify.user_has_rights.message_title'),
-                    'notify_code'        => 'ERR_00001',
-                    'description'        => __('error_and_notification_system.update.err_00001_notify.user_has_rights.message_super_admin', [
-                        'methodName'     => $_SERVER['REQUEST_METHOD'],
-                        'apiEndpoint'    => $_SERVER['REQUEST_URI'],
-                        'serviceName' => __NAMESPACE__ . '\\' . basename(BlogCategorySystemController::class) . '.php',
-                        'databaseName'   => config('database.connections.mysql.database'),
-                        'tableName'      => 'blog_categories',
-                    ]),
-                    'reference'          => config('app.url') . '/documentation/error#ERR_00001',
-                    'api_endpoint'       => $_SERVER['REQUEST_URI'],
-                    'http_response'      => [
-                        'code'           => 500,
-                        'general_message'=> 'The HyperText Transfer Protocol (HTTP) 500 Internal Server Error server error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.',
-                        'url'            => 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500',
-                    ],
-                    'sql_response'       => [
-                        'sql_err_code'   => $mysqlError->getCode(),
-                        'sql_err_message'=> $mysqlError->getMessage(),
-                        'sql_err_url'    => 'https://dev.mysql.com/doc/refman/8.0/en/cannot-find-table.html'
-                    ],
-                    'records'            => [],
-                ], 500);
-            }
-        }
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function deleteCategory($id)
-    {
-        try
-        {
-            $apiDisplayAllRecords = $this->modelNameBlogCategory->select('id')->get();
-            $apiDisplaySingleRecord = $this->modelNameBlogCategory->find($id);
-            if ($apiDisplayAllRecords->isEmpty())
-            {
-                return response([
-                    'title'              => __('error_and_notification_system.delete.war_00001_notify.user_has_rights.message_title'),
-                    'notify_code'        => 'WAR_00001',
-                    'description'        => __('error_and_notification_system.delete.war_00001_notify.user_has_rights.message_super_admin', [
-                        'methodName'     => $_SERVER['REQUEST_METHOD'],
-                        'apiEndpoint'    => $_SERVER['REQUEST_URI'],
-                        'serviceName' => __NAMESPACE__ . '\\' . basename(BlogCategorySystemController::class) . '.php',
-                        'databaseName'   => config('database.connections.mysql.database'),
-                        'tableName'      => $this->tableNameBlogCategory
-                    ]),
-                    'reference'          => $this->modelNameErrorSystem::where('notify_code', '=', 'WAR_00001')->pluck('notify_reference')[0],
-                    'api_endpoint'       => $_SERVER['REQUEST_URI'],
-                    'http_response'      => [
-                        'code'           => 404,
-                        'general_message'=> 'The HTTP 404 Not Found client error response code indicates that the server can\'t find the requested resource.',
-                        'url'            => 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404',
-                    ],
-                    'records'            => [],
-                ], 404);
-            }
-            else
-            {
-                if (is_null($apiDisplaySingleRecord))
-                {
-                    return response([
-                        'title'              => __('error_and_notification_system.delete.info_00006_notify.user_has_rights.message_title'),
-                        'notify_code'        => 'INFO_00006',
-                        'description'        => __('error_and_notification_system.delete.info_00006_notify.user_has_rights.message_super_admin', [
-                            'methodName'     => $_SERVER['REQUEST_METHOD'],
-                            'apiEndpoint'    => $_SERVER['REQUEST_URI'],
-                            'serviceName' => __NAMESPACE__ . '\\' . basename(BlogCategorySystemController::class) . '.php',
-                            'databaseName'   => config('database.connections.mysql.database'),
-                            'tableName'      => $this->tableNameBlogCategory,
-                            'lookupRecord'   => $id,
-                        ]),
-                        'reference'          => $this->modelNameErrorSystem::where('notify_code', '=', 'INFO_00006')->pluck('notify_reference')[0],
-                        'api_endpoint'       => $_SERVER['REQUEST_URI'],
-                        'http_response'      => [
-                            'code'           => 404,
-                            'general_message'=> 'The HTTP 404 Not Found client error response code indicates that the server can\'t find the requested resource.',
-                            'url'            => 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404',
-                        ],
-                        'records'            => [],
-                    ], 404);
-                }
-                else
-                {
-                    $apiDeleteSingleRecord = $this->modelNameBlogCategory->find($id)->delete();
-                    return response([
-                        'title'              => __('error_and_notification_system.delete.info_00002_notify.user_has_rights.message_title'),
-                        'notify_code'        => 'INFO_00002',
-                        'description'        => __('error_and_notification_system.delete.info_00002_notify.user_has_rights.message_super_admin', [
-                            'record'         => $apiDisplaySingleRecord['blog_category_title'],
-                            'databaseName'   => config('database.connections.mysql.database'),
-                            'tableName'      => $this->tableNameBlogCategory
-                        ]),
-                        'reference'          => $this->modelNameErrorSystem::where('notify_code', '=', 'INFO_00002')->pluck('notify_reference')[0],
-                        'api_endpoint'       => $_SERVER['REQUEST_URI'],
-                        'http_response'      => [
-                            'code'           => 200,
-                            'general_message'=> 'The HTTP 200 OK success status response code indicates that the request has succeeded. A 200 response is cacheable by default.',
-                            'url'            => 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200',
-                        ],
-                        'records'            => $apiDisplaySingleRecord,
-                    ], 200);
-                }
-            }
-        }
-        catch (\Illuminate\Database\QueryException $mysqlError)
-        {
-            if ($mysqlError->getCode() === '42S02')
-            {
-                return response([
-                    'title'              => __('error_and_notification_system.delete.err_00001_notify.user_has_rights.message_title'),
-                    'notify_code'        => 'ERR_00001',
-                    'description'        => __('error_and_notification_system.delete.err_00001_notify.user_has_rights.message_super_admin', [
-                        'methodName'     => $_SERVER['REQUEST_METHOD'],
-                        'apiEndpoint'    => $_SERVER['REQUEST_URI'],
-                        'serviceName' => __NAMESPACE__ . '\\' . basename(BlogCategorySystemController::class) . '.php',
-                        'databaseName'   => config('database.connections.mysql.database'),
-                        'tableName'      => 'blog_categories',
-                    ]),
-                    'reference'          => $this->modelNameErrorSystem::where('notify_code', '=', 'ERR_00001')->pluck('notify_reference')[0],
-                    'api_endpoint'       => $_SERVER['REQUEST_URI'],
-                    'http_response'      => [
-                        'code'           => 500,
-                        'general_message'=> 'The HyperText Transfer Protocol (HTTP) 500 Internal Server Error server error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.',
-                        'url'            => 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500',
-                    ],
-                    'sql_response'       => [
-                        'sql_err_code'   => $mysqlError->getCode(),
-                        'sql_err_message'=> $mysqlError->getMessage(),
-                        'sql_err_url'    => 'https://dev.mysql.com/doc/refman/8.0/en/cannot-find-table.html'
-                    ],
-                    'records'            => [],
-                ], 500);
-            }
-        }
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function deleteAllCategories()
-    {
-        try
-        {
-            $apiDisplayAllRecords = $this->modelNameBlogCategory->all();
-            if ($apiDisplayAllRecords->isEmpty())
-                {
-                    return response([
-                        'title'              => __('error_and_notification_system.delete_all.war_00001_notify.user_has_rights.message_title'),
-                        'notify_code'        => 'WAR_00001',
-                        'description'        => __('error_and_notification_system.delete_all.war_00001_notify.user_has_rights.message_super_admin', [
-                            'methodName'     => $_SERVER['REQUEST_METHOD'],
-                            'apiEndpoint'    => $_SERVER['REQUEST_URI'],
-                            'serviceName' => __NAMESPACE__ . '\\' . basename(BlogCategorySystemController::class) . '.php',
-                            'databaseName'   => config('database.connections.mysql.database'),
-                            'tableName'      => $this->tableNameBlogCategory
-                        ]),
-                        'reference'          => $this->modelNameErrorSystem::where('notify_code', '=', 'WAR_00001')->pluck('notify_reference')[0],
-                        'api_endpoint'       => $_SERVER['REQUEST_URI'],
-                        'http_response'      => [
-                            'code'           => 404,
-                            'general_message'=> 'The HTTP 404 Not Found client error response code indicates that the server can\'t find the requested resource.',
-                            'url'            => 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404',
-                        ],
-                        'records'            => [],
-                    ], 404);
-                }
-                else
-                {
-                    DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-                    $apiDeleteSingleRecord = $this->modelNameBlogCategory->truncate();
-                    DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-                    return response([
-                        'title'              => __('error_and_notification_system.delete_all.info_00004_notify.user_has_rights.message_title'),
-                        'notify_code'        => 'INFO_00004',
-                        'description'        => __('error_and_notification_system.delete_all.info_00004_notify.user_has_rights.message_super_admin', [
-                            'databaseName'   => config('database.connections.mysql.database'),
-                            'tableName'      => $this->tableNameBlogCategory
-                        ]),
-                        'reference'          => $this->modelNameErrorSystem::where('notify_code', '=', 'INFO_00004')->pluck('notify_reference')[0],
-                        'api_endpoint'       => $_SERVER['REQUEST_URI'],
-                        'http_response'      => [
-                            'code'           => 200,
-                            'general_message'=> 'The HTTP 200 OK success status response code indicates that the request has succeeded. A 200 response is cacheable by default.',
-                            'url'            => 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200',
-                        ],
-                        'records'            => $apiDisplayAllRecords,
-                    ], 200);
-                }
-        }
-        catch (\Illuminate\Database\QueryException $mysqlError)
-        {
-            if ($mysqlError->getCode() === '42S02')
-            {
-                return response([
-                    'title'              => __('error_and_notification_system.delete_all.err_00001_notify.user_has_rights.message_title'),
-                    'notify_code'        => 'ERR_00001',
-                    'description'        => __('error_and_notification_system.delete_all.err_00001_notify.user_has_rights.message_super_admin', [
-                        'methodName'     => $_SERVER['REQUEST_METHOD'],
-                        'apiEndpoint'    => $_SERVER['REQUEST_URI'],
-                        'serviceName' => __NAMESPACE__ . '\\' . basename(BlogCategorySystemController::class) . '.php',
-                        'databaseName'   => config('database.connections.mysql.database'),
-                        'tableName'      => 'blog_categories',
-                    ]),
-                    'reference'          => $this->modelNameErrorSystem::where('notify_code', '=', 'ERR_00001')->pluck('notify_reference')[0],
-                    'api_endpoint'       => $_SERVER['REQUEST_URI'],
-                    'http_response'      => [
-                        'code'           => 500,
-                        'general_message'=> 'The HyperText Transfer Protocol (HTTP) 500 Internal Server Error server error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.',
-                        'url'            => 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500',
-                    ],
-                    'sql_response'       => [
-                        'sql_err_code'   => $mysqlError->getCode(),
-                        'sql_err_message'=> $mysqlError->getMessage(),
-                        'sql_err_url'    => 'https://dev.mysql.com/doc/refman/8.0/en/cannot-find-table.html'
-                    ],
-                    'records'            => [],
-                ], 500);
-            }
-        }
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function createSubcategory(Request $request)
     {
         try
@@ -510,8 +329,6 @@ class BlogCategorySystemController extends Controller
             $request->validate([
                 'blog_category_id'                   => 'required',
                 'blog_subcategory_title'             => 'required|regex:/^[a-zA-Z_ ]+$/u|max:255',
-                'blog_subcategory_short_description' => 'required|max:255',
-                // 'blog_subcategory_description'       => 'required|min:60',
                 'blog_subcategory_is_active'         => 'required',
                 // 'blog_subcategory_path'              => 'required|max:255',
             ]);
@@ -522,9 +339,8 @@ class BlogCategorySystemController extends Controller
                     'blog_category_id'                   => $request->get('blog_category_id'),
                     'blog_subcategory_title'             => $request->get('blog_subcategory_title'),
                     'blog_subcategory_short_description' => $request->get('blog_subcategory_short_description'),
-                    // 'blog_subcategory_description'    => $request->get('blog_subcategory_description'),
                     'blog_subcategory_is_active'         => $request->get('blog_subcategory_is_active'),
-                    'blog_subcategory_path'              => '/blog/subcategory/' . $getLastInsertedRecord + 1 . '/all-written-articles',
+                    'blog_subcategory_path'              => '/blog/subcategory/' . ($getLastInsertedRecord + 1) . '/all-written-articles',
                 ]);
             }
             elseif ($request->get('blog_category_id') === 2)
@@ -533,9 +349,8 @@ class BlogCategorySystemController extends Controller
                     'blog_category_id'                   => $request->get('blog_category_id'),
                     'blog_subcategory_title'             => $request->get('blog_subcategory_title'),
                     'blog_subcategory_short_description' => $request->get('blog_subcategory_short_description'),
-                    // 'blog_subcategory_description'    => $request->get('blog_subcategory_description'),
                     'blog_subcategory_is_active'         => $request->get('blog_subcategory_is_active'),
-                    'blog_subcategory_path'              => '/blog/subcategory/' . $getLastInsertedRecord + 1 . '/all-audio-articles',
+                    'blog_subcategory_path'              => '/blog/subcategory/' . ($getLastInsertedRecord + 1) . '/all-audio-articles',
                 ]);
             }
             else
@@ -544,9 +359,8 @@ class BlogCategorySystemController extends Controller
                     'blog_category_id'                   => $request->get('blog_category_id'),
                     'blog_subcategory_title'             => $request->get('blog_subcategory_title'),
                     'blog_subcategory_short_description' => $request->get('blog_subcategory_short_description'),
-                    // 'blog_subcategory_description'    => $request->get('blog_subcategory_description'),
                     'blog_subcategory_is_active'         => $request->get('blog_subcategory_is_active'),
-                    'blog_subcategory_path'              => '/blog/subcategory/' . $getLastInsertedRecord + 1 . '/all-video-articles',
+                    'blog_subcategory_path'              => '/blog/subcategory/' . ($getLastInsertedRecord + 1) . '/all-video-articles',
                 ]);
             }
             return response([
@@ -613,50 +427,45 @@ class BlogCategorySystemController extends Controller
             $request->validate([
                 'blog_category_id'                   => 'required',
                 'blog_subcategory_title'             => 'required|regex:/^[a-zA-Z_ ]+$/u|max:255',
-                'blog_subcategory_short_description' => 'required|max:255',
-                // 'blog_subcategory_description'       => 'required|min:60',
                 'blog_subcategory_is_active'         => 'required',
                 // 'blog_subcategory_path'              => 'required|max:255',
             ]);
-            $apiUpdateSingleRecord = $this->modelNameBlogSubcategory->find($id);
+            $apiDisplaySingleRecord = $this->modelNameBlogSubcategory->find($id);
             if ($request->get('blog_category_id') === 1)
             {
-                $apiUpdateSingleRecord = $this->modelNameBlogSubcategory->update([
+                $apiUpdateSingleRecord = $this->modelNameBlogSubcategory->where('id', '=', $apiDisplaySingleRecord->id)->update([
                     'blog_category_id'                   => $request->get('blog_category_id'),
                     'blog_subcategory_title'             => $request->get('blog_subcategory_title'),
                     'blog_subcategory_short_description' => $request->get('blog_subcategory_short_description'),
-                    // 'blog_subcategory_description'    => $request->get('blog_subcategory_description'),
                     'blog_subcategory_is_active'         => $request->get('blog_subcategory_is_active'),
-                    'blog_subcategory_path'              => '/blog/subcategory/' . $apiUpdateSingleRecord + 1 . '/all-written-articles',
+                    'blog_subcategory_path'              => '/blog/subcategory/' . $apiDisplaySingleRecord->id . '/all-written-articles',
                 ]);
             }
             elseif ($request->get('blog_category_id') === 2)
             {
-                $apiUpdateSingleRecord = $this->modelNameBlogSubcategory->update([
+                $apiUpdateSingleRecord = $this->modelNameBlogSubcategory->where('id', '=', $apiDisplaySingleRecord->id)->update([
                     'blog_category_id'                   => $request->get('blog_category_id'),
                     'blog_subcategory_title'             => $request->get('blog_subcategory_title'),
                     'blog_subcategory_short_description' => $request->get('blog_subcategory_short_description'),
-                    // 'blog_subcategory_description'    => $request->get('blog_subcategory_description'),
                     'blog_subcategory_is_active'         => $request->get('blog_subcategory_is_active'),
-                    'blog_subcategory_path'              => '/blog/subcategory/' . $apiUpdateSingleRecord + 1 . '/all-audio-articles',
+                    'blog_subcategory_path'              => '/blog/subcategory/' . $apiDisplaySingleRecord->id . '/all-audio-articles',
                 ]);
             }
             else
             {
-                $apiUpdateSingleRecord = $this->modelNameBlogSubcategory->update([
+                $apiUpdateSingleRecord = $this->modelNameBlogSubcategory->where('id', '=', $apiDisplaySingleRecord->id)->update([
                     'blog_category_id'                   => $request->get('blog_category_id'),
                     'blog_subcategory_title'             => $request->get('blog_subcategory_title'),
                     'blog_subcategory_short_description' => $request->get('blog_subcategory_short_description'),
-                    // 'blog_subcategory_description'    => $request->get('blog_subcategory_description'),
                     'blog_subcategory_is_active'         => $request->get('blog_subcategory_is_active'),
-                    'blog_subcategory_path'              => '/blog/subcategory/' . $apiUpdateSingleRecord + 1 . '/all-video-articles',
+                    'blog_subcategory_path'              => '/blog/subcategory/' . $apiDisplaySingleRecord->id . '/all-video-articles',
                 ]);
             }
             return response([
                 'title'              => __('error_and_notification_system.update.info_00002_notify.user_has_rights.message_title'),
                 'notify_code'        => 'INFO_00002',
                 'description'        => __('error_and_notification_system.update.info_00002_notify.user_has_rights.message_super_admin', [
-                    'record'         => $apiUpdateSingleRecord['blog_category_title'],
+                    'record'         => $apiDisplaySingleRecord->blog_subcategory_title,
                     'databaseName'   => config('database.connections.mysql.database'),
                     'tableName'      => $this->tableNameBlogSubcategory
                 ]),
@@ -667,7 +476,7 @@ class BlogCategorySystemController extends Controller
                     'general_message'=> 'The HTTP 201 Created success status response code indicates that the request has succeeded and has led to the creation of a resource.',
                     'url'            => 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201',
                 ],
-                'records'            => $apiUpdateSingleRecord,
+                'records'            => [],
             ], 201);
         }
         catch (\Illuminate\Database\QueryException $mysqlError)
@@ -792,93 +601,6 @@ class BlogCategorySystemController extends Controller
                     'title'              => __('error_and_notification_system.delete.err_00001_notify.user_has_rights.message_title'),
                     'notify_code'        => 'ERR_00001',
                     'description'        => __('error_and_notification_system.delete.err_00001_notify.user_has_rights.message_super_admin', [
-                        'methodName'     => $_SERVER['REQUEST_METHOD'],
-                        'apiEndpoint'    => $_SERVER['REQUEST_URI'],
-                        'serviceName' => __NAMESPACE__ . '\\' . basename(BlogCategorySystemController::class) . '.php',
-                        'databaseName'   => config('database.connections.mysql.database'),
-                        'tableName'      => 'blog_subcategories',
-                    ]),
-                    'reference'          => $this->modelNameErrorSystem::where('notify_code', '=', 'ERR_00001')->pluck('notify_reference')[0],
-                    'api_endpoint'       => $_SERVER['REQUEST_URI'],
-                    'http_response'      => [
-                        'code'           => 500,
-                        'general_message'=> 'The HyperText Transfer Protocol (HTTP) 500 Internal Server Error server error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.',
-                        'url'            => 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500',
-                    ],
-                    'sql_response'       => [
-                        'sql_err_code'   => $mysqlError->getCode(),
-                        'sql_err_message'=> $mysqlError->getMessage(),
-                        'sql_err_url'    => 'https://dev.mysql.com/doc/refman/8.0/en/cannot-find-table.html'
-                    ],
-                    'records'            => [],
-                ], 500);
-            }
-        }
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function deleteAllSubcategories()
-    {
-        try
-        {
-            $apiDisplayAllRecords = $this->modelNameBlogSubcategory->all();
-            if ($apiDisplayAllRecords->isEmpty())
-                {
-                    return response([
-                        'title'              => __('error_and_notification_system.delete_all.war_00001_notify.user_has_rights.message_title'),
-                        'notify_code'        => 'WAR_00001',
-                        'description'        => __('error_and_notification_system.delete_all.war_00001_notify.user_has_rights.message_super_admin', [
-                            'methodName'     => $_SERVER['REQUEST_METHOD'],
-                            'apiEndpoint'    => $_SERVER['REQUEST_URI'],
-                            'serviceName' => __NAMESPACE__ . '\\' . basename(BlogCategorySystemController::class) . '.php',
-                            'databaseName'   => config('database.connections.mysql.database'),
-                            'tableName'      => $this->tableNameBlogSubcategory
-                        ]),
-                        'reference'          => $this->modelNameErrorSystem::where('notify_code', '=', 'WAR_00001')->pluck('notify_reference')[0],
-                        'api_endpoint'       => $_SERVER['REQUEST_URI'],
-                        'http_response'      => [
-                            'code'           => 404,
-                            'general_message'=> 'The HTTP 404 Not Found client error response code indicates that the server can\'t find the requested resource.',
-                            'url'            => 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404',
-                        ],
-                        'records'            => [],
-                    ], 404);
-                }
-                else
-                {
-                    DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-                    $apiDeleteSingleRecord = $this->modelNameBlogSubcategory->truncate();
-                    DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-                    return response([
-                        'title'              => __('error_and_notification_system.delete_all.info_00004_notify.user_has_rights.message_title'),
-                        'notify_code'        => 'INFO_00004',
-                        'description'        => __('error_and_notification_system.delete_all.info_00004_notify.user_has_rights.message_super_admin', [
-                            'databaseName'   => config('database.connections.mysql.database'),
-                            'tableName'      => $this->tableNameBlogSubcategory
-                        ]),
-                        'reference'          => $this->modelNameErrorSystem::where('notify_code', '=', 'INFO_00004')->pluck('notify_reference')[0],
-                        'api_endpoint'       => $_SERVER['REQUEST_URI'],
-                        'http_response'      => [
-                            'code'           => 200,
-                            'general_message'=> 'The HTTP 200 OK success status response code indicates that the request has succeeded. A 200 response is cacheable by default.',
-                            'url'            => 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200',
-                        ],
-                        'records'            => $apiDisplayAllRecords,
-                    ], 200);
-                }
-        }
-        catch (\Illuminate\Database\QueryException $mysqlError)
-        {
-            if ($mysqlError->getCode() === '42S02')
-            {
-                return response([
-                    'title'              => __('error_and_notification_system.delete_all.err_00001_notify.user_has_rights.message_title'),
-                    'notify_code'        => 'ERR_00001',
-                    'description'        => __('error_and_notification_system.delete_all.err_00001_notify.user_has_rights.message_super_admin', [
                         'methodName'     => $_SERVER['REQUEST_METHOD'],
                         'apiEndpoint'    => $_SERVER['REQUEST_URI'],
                         'serviceName' => __NAMESPACE__ . '\\' . basename(BlogCategorySystemController::class) . '.php',
