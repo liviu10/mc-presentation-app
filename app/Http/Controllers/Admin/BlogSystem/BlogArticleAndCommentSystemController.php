@@ -17,7 +17,7 @@ use App\Models\BlogArticleCommentReplyLike;
 use App\Models\BlogArticleCommentReplyDislike;
 use App\Models\ErrorAndNotificationSystem;
 
-class BlogArticleSystemController extends Controller
+class BlogArticleAndCommentSystemController extends Controller
 {
     protected $modelNameBlogArticle; // $modelNameBlogCategory
     protected $modelNameErrorSystem;

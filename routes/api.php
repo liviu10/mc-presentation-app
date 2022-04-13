@@ -134,8 +134,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
     // Import the Blog System system
-    use App\Http\Controllers\Admin\BlogSystem\BlogCategorySystemController;
-    use App\Http\Controllers\Admin\BlogSystem\BlogArticleSystemController;
+    use App\Http\Controllers\Admin\BlogSystem\BlogCategoryAndSubcategorySystemController;
+    use App\Http\Controllers\Admin\BlogSystem\BlogArticleAndCommentSystemController;
 
     // Import the Contact Me system
     use App\Http\Controllers\Admin\ContactMeSystem\ContactMeSystemController;
@@ -172,17 +172,13 @@ use Illuminate\Support\Facades\Route;
             Route::group([ 'prefix' => '/blog' ], function () {
                 Route::group([ 'prefix' => '/' ], function () {
                     // Blog categories admin API routes
-                    Route::post('/create-category', [BlogCategorySystemController::class, 'createCategory']);
-                    Route::post('/edit-category/{id}', [BlogCategorySystemController::class, 'editCategory']);
-                    Route::delete('/delete-category/{id}', [BlogCategorySystemController::class, 'deleteCategory']);
-                    Route::delete('/delete-all-categories', [BlogCategorySystemController::class, 'deleteAllCategories']);
+                    Route::get('/display-categories', [BlogCategoryAndSubcategorySystemController::class, 'displayBlogCategories']);
+                    Route::post('/edit-category/{id}', [BlogCategoryAndSubcategorySystemController::class, 'editCategory']);
                     // Blog subcategories admin API routes
-                    Route::post('/create-subcategory', [BlogCategorySystemController::class, 'createSubcategory']);
-                    Route::put('/edit-subcategory/{id}', [BlogCategorySystemController::class, 'editSubcategory']);
-                    Route::delete('/delete-subcategory/{id}', [BlogCategorySystemController::class, 'deleteSubcategory']);
-                    Route::delete('/delete-all-subcategories', [BlogCategorySystemController::class, 'deleteAllSubcategories']);
-                    // Blog categories and subcategories
-                    Route::apiResource('/categories-and-subcategories', BlogCategorySystemController::class)->only(['index']);
+                    Route::get('/display-subcategories', [BlogCategoryAndSubcategorySystemController::class, 'displayBlogSubcategories']);
+                    Route::post('/create-subcategory', [BlogCategoryAndSubcategorySystemController::class, 'createSubcategory']);
+                    Route::post('/edit-subcategory/{id}', [BlogCategoryAndSubcategorySystemController::class, 'editSubcategory']);
+                    Route::delete('/delete-subcategory/{id}', [BlogCategoryAndSubcategorySystemController::class, 'deleteSubcategory']);
                     // Blog articles admin API routes
                     
                     // Blog appreciation admin API routes
@@ -190,12 +186,12 @@ use Illuminate\Support\Facades\Route;
                     // Blog comments admin API routes
                     
                     // Blog articles and comments
-                    Route::apiResource('/articles-and-comments', BlogArticleSystemController::class)->only(['index']);
+                    Route::apiResource('/articles-and-comments', BlogArticleAndCommentSystemController::class)->only(['index']);
                 });
                 // Blog articles, appreciations & comments Admin API routes
                 Route::group([ 'prefix' => '/' ], function () {
-                    Route::delete('/delete-all-articles', [BlogArticleSystemController::class, 'deleteAllArticles']);
-                    Route::apiResource('/articles-and-comments', BlogArticleSystemController::class);
+                    Route::delete('/delete-all-articles', [BlogArticleAndCommentSystemController::class, 'deleteAllArticles']);
+                    Route::apiResource('/articles-and-comments', BlogArticleAndCommentSystemController::class);
                 });
             });
             // Contact me System Admin API routes
