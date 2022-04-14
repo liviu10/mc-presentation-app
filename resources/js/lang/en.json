@@ -24,6 +24,23 @@
         "second_button": "Go to admin"
       },
       "sub_menu": {
+        "section_1": {
+          "first_button": "Home",
+          "second_button": "Blog",
+          "third_button": "Schedule",
+          "forth_button": "About me",
+          "fifth_button": "Contact me",
+          "sixth_button": "Newsletter"
+        },
+        "section_2": {
+          "fist_button": "Application settings",
+          "second_button": "Application logs",
+          "third_button": "Documentation"
+        },
+        "section_3": {
+          "first_button": "Profile settings",
+          "second_button": "Logout"
+        },
         "first_button": "Blog",
         "second_button": "Contact me messages",
         "third_button": "Newsletter campaigns",

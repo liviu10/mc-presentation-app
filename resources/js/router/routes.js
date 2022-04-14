@@ -49,23 +49,28 @@ export default [
   // URL routes for the Administration Panel of the Web Application
   { path: '/admin/home', name: 'admin-home-page', component: page('admin/index.vue') },
 
-  // URL routes for the blog system
-  { path: '/admin/blog-settings', name: 'admin-blog-settings-page', component: page('admin/blog-settings/index.vue') },
-
-  // URL route for application contact me
-  { path: '/admin/contact-me-settings', name: 'admin-contact-me-settings-page', component: page('admin/contact-me-settings/index.vue') },
-
-  // URL routes for the application newsletter
-  { path: '/admin/newsletter-settings', name: 'admin-newsletter-settings-page', component: page('admin/newsletter-settings/index.vue') },
+  // URL routes for admin user home page and sections
+  { path: '/admin/user/home-page', name: 'admin-user-home-page', component: page('admin/user/home-page/index.vue') },
+  { path: '/admin/user/home-page/section/carousel', name: 'admin-user-home-page-section-carousel', component: page('admin/user/home-page/section/carousel/index.vue') },
+  { path: '/admin/user/home-page/section/jumbotron', name: 'admin-user-home-page-section-jumbotron', component: page('admin/user/home-page/section/jumbotron/index.vue') },
+  { path: '/admin/user/home-page/section/newsletter', name: 'admin-user-home-page-section-newsletter', component: page('admin/user/home-page/section/newsletter/index.vue') },
+  { path: '/admin/user/home-page/section/testimonials', name: 'admin-user-home-page-section-testimonials', component: page('admin/user/home-page/section/testimonials/index.vue') },
+  { path: '/admin/user/home-page/section/footer', name: 'admin-user-home-page-section-footer', component: page('admin/user/home-page/section/footer/index.vue') },
+  // URL routes for admin blog page and sections
+  { path: '/admin/user/blog-page', name: 'admin-user-blog-page', component: page('admin/user/blog-page/index.vue') },
+  // URL routes for admin schedule page and sections
+  { path: '/admin/user/schedule-page', name: 'admin-user-schedule-page', component: page('admin/user/schedule-page/index.vue') },
+  // URL routes for admin about me page and sections
+  { path: '/admin/user/about-page', name: 'admin-user-about-page', component: page('admin/user/about-page/index.vue') },
+  // URL routes for admin contact me page and sections
+  { path: '/admin/user/contact-page', name: 'admin-user-contact-page', component: page('admin/user/contact-page/index.vue') },
 
   // URL routes for the application settings
-  { path: '/admin/application-settings', name: 'admin-application-settings-page', component: page('admin/application-settings/index.vue') },
-
+  { path: '/admin/settings/application', name: 'admin-settings-application-page', component: page('admin/settings/application/index.vue') },
   // URL routes for the application logs
-  { path: '/admin/application-logs', name: 'admin-application-logs-page', component: page('admin/application-logs/index.vue') },
-
+  { path: '/admin/settings/logs', name: 'admin-settings-logs-page', component: page('admin/settings/logs/index.vue') },
   // URL route for the application documentation
-  { path: '/admin/documentation', name: 'admin-documentation-page', component: page('admin/documentation/index.vue') },
+  { path: '/admin/settings/documentation', name: 'admin-settings-documentation-page', component: page('admin/settings/documentation/index.vue') },
 
   // URL route for the user profile settings
   { path: '/admin/profile-settings', name: 'admin-profile-settings-page', component: page('admin/profile-settings/index.vue') },

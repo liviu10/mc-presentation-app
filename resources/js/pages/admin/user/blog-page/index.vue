@@ -3,7 +3,7 @@
     <div class="col-lg-12 m-auto">
       <div class="lv-pg-admin">
         <div class="lv-pg-admin-header">
-          <h1>ADMIN APPLICATION BLOG</h1>
+          <h1>USER BLOG</h1>
         </div>
         <div class="lv-pg-admin-body">
           <div class="my-4">
@@ -47,7 +47,7 @@ import AdminBlogSubcategories from './subcategories/index.vue'
 Vue.use(Vuex)
 
 export default {
-  name: 'AdminApplicationBlog',
+  name: 'AdminUserBlog',
   components: {
     AdminBlogCategories,
     AdminBlogSubcategories
@@ -69,7 +69,7 @@ export default {
     }
   },
   metaInfo () {
-    return { title: 'Admin - Application Blog' }
+    return { title: 'Admin - User Blog' }
   }
 }
 </script>

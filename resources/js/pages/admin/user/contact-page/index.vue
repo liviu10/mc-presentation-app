@@ -3,7 +3,7 @@
     <div class="col-lg-12 m-auto">
       <div class="lv-pg-admin">
         <div class="lv-pg-admin-header">
-          <h1>ADMIN CONTACT ME MESSAGE</h1>
+          <h1>USER CONTACT ME MESSAGES</h1>
         </div>
         <div class="lv-pg-admin-body">
           <div class="my-4">
@@ -36,7 +36,7 @@ import AdminContactMeMessages from './contact-me/index.vue'
 Vue.use(Vuex)
 
 export default {
-  name: 'AdminNewsletter',
+  name: 'AdminUserContactMeMessages',
   components: {
     AdminContactMeMessages
   },
