@@ -8,7 +8,7 @@ import {
   faUser, faLock, faSignOutAlt, faCog, faBookOpen, faArrowLeft, faFileExport, faEye, faEdit, faTrash,
   faChevronRight, faChevronLeft, faQuoteLeft, faQuoteRight, faBookReader, faEnvelope, faThumbsUp, faThumbsDown,
   faWindowClose, faAt, faHeadphones, faComment, faNewspaper, faBook, faUsers, faAddressCard, faPencilAlt, faFileContract,
-  faClipboard, faExternalLinkAlt
+  faClipboard, faExternalLinkAlt, faHome, faCalendarCheck
 } from '@fortawesome/free-solid-svg-icons'
 
 import {
@@ -19,7 +19,7 @@ library.add(
   faUser, faLock, faSignOutAlt, faCog, faGithub, faBookOpen, faArrowLeft, faFileExport, faEye, faEdit, faTrash,
   faFacebook, faInstagram, faYoutube, faChevronRight, faChevronLeft, faQuoteLeft, faQuoteRight, faBookReader, faEnvelope,
   faThumbsUp, faThumbsDown, faWindowClose, faAt, faHeadphones, faGoogle, faBloggerB, faComment, faNewspaper, faInternetExplorer,
-  faBook, faUsers, faAddressCard, faPencilAlt, faFileContract, faClipboard, faExternalLinkAlt
+  faBook, faUsers, faAddressCard, faPencilAlt, faFileContract, faClipboard, faExternalLinkAlt, faHome, faCalendarCheck
 )
 
 Vue.component('Fa', FontAwesomeIcon)

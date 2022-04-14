@@ -24,6 +24,23 @@
         "second_button": "Înapoi la admin"
       },
       "sub_menu": {
+        "section_1": {
+          "first_button": "Acasă",
+          "second_button": "Blog",
+          "third_button": "Programare",
+          "forth_button": "Despre mine",
+          "fifth_button": "Contactează-mă",
+          "sixth_button": "Newsletter"
+        },
+        "section_2": {
+          "fist_button": "Setări aplicație",
+          "second_button": "Log-uri aplicație",
+          "third_button": "Documentație"
+        },
+        "section_3": {
+          "first_button": "Setări profil",
+          "second_button": "Ieșire"
+        },
         "first_button": "Blog",
         "second_button": "Mesaje contactează-mă",
         "third_button": "Campanii newsletter",

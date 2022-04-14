@@ -10,30 +10,38 @@
         <a class="dropdown-item p-2 dropdown-profile" href="" />
       </li>
       <li>
-        <router-link :to="{ name: 'admin-blog-settings-page' }" class="dropdown-item p-2">
+        <router-link :to="{ name: 'admin-user-home-page' }" class="dropdown-item p-2">
+          <fa :icon="['fas', 'home']" fixed-width />
+          {{ $t('user.navigation_bar.sub_menu.section_1.first_button') }}
+        </router-link>
+        <router-link :to="{ name: 'admin-user-blog-page' }" class="dropdown-item p-2">
           <fa :icon="['fab', 'blogger-b']" fixed-width />
-          {{ $t('user.navigation_bar.sub_menu.first_button') }}
+          {{ $t('user.navigation_bar.sub_menu.section_1.second_button') }}
         </router-link>
-        <router-link :to="{ name: 'admin-contact-me-settings-page' }" class="dropdown-item p-2">
-          <fa icon="comment" fixed-width />
-          {{ $t('user.navigation_bar.sub_menu.second_button') }}
+        <router-link :to="{ name: 'admin-user-schedule-page' }" class="dropdown-item p-2">
+          <fa :icon="['fa', 'calendar-check']" fixed-width />
+          {{ $t('user.navigation_bar.sub_menu.section_1.third_button') }}
         </router-link>
-        <router-link :to="{ name: 'admin-newsletter-settings-page' }" class="dropdown-item p-2">
-          <fa icon="newspaper" fixed-width />
-          {{ $t('user.navigation_bar.sub_menu.third_button') }}
+        <router-link :to="{ name: 'admin-user-about-page' }" class="dropdown-item p-2">
+          <fa :icon="['fa', 'address-card']" fixed-width />
+          {{ $t('user.navigation_bar.sub_menu.section_1.forth_button') }}
+        </router-link>
+        <router-link :to="{ name: 'admin-user-contact-page' }" class="dropdown-item p-2">
+          <fa :icon="['fa', 'comment']" fixed-width />
+          {{ $t('user.navigation_bar.sub_menu.section_1.fifth_button') }}
         </router-link>
       </li>
       <div class="dropdown-divider my-0" />
       <li>
-        <router-link :to="{ name: 'admin-application-settings-page' }" class="dropdown-item p-2">
+        <router-link :to="{ name: 'admin-settings-application-page' }" class="dropdown-item p-2">
           <fa icon="cog" fixed-width />
           {{ $t('user.navigation_bar.sub_menu.forth_button') }}
         </router-link>
-        <router-link :to="{ name: 'admin-application-logs-page' }" class="dropdown-item p-2">
+        <router-link :to="{ name: 'admin-settings-logs-page' }" class="dropdown-item p-2">
           <fa icon="clipboard" fixed-width />
           {{ $t('user.navigation_bar.sub_menu.fifth_button') }}
         </router-link>
-        <router-link :to="{ name: 'admin-documentation-page' }" class="dropdown-item p-2">
+        <router-link :to="{ name: 'admin-settings-documentation-page' }" class="dropdown-item p-2">
           <fa icon="book" fixed-width />
           {{ $t('user.navigation_bar.sub_menu.sixth_button') }}
         </router-link>
