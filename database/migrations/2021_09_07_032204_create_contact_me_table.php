@@ -20,7 +20,9 @@ class CreateContactMeTable extends Migration
             $table->string('email')->nullable(false);
             $table->longText('message');
             $table->string('privacy_policy', 3);
+            $table->string('message_status')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

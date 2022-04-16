@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Log;
 
 class ContactMe extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     /**
      * The table associated with the model.
@@ -40,6 +42,7 @@ class ContactMe extends Model
         'email',
         'message',
         'privacy_policy',
+        'message_status',
     ];
 
     /**
@@ -61,6 +64,16 @@ class ContactMe extends Model
         'created_at',
         'updated_at'
     ];
+
+    /**
+     * Eloquent relationship between contact_me and contact_me_responses.
+     * One contact me message may have one or more contact me responses.
+     *
+     */
+    public function contact_me_responses()
+    {
+        return $this->hasMany('App\Models\ContactMeResponse');
+    }
 
     /**
      * Eloquent polymorphic relationship between contact_me and logs.

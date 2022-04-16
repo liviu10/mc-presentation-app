@@ -64,14 +64,14 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
             'user_role_type_id' => 6,
         ]);
-        $this->modelNameUser->find($this->modelNameUser->select('id')->latest('id')->first()->id)->log()->create([ 
-            'status'  => 'User registered',
-            'details' => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_super_admin', [
-                'record'         => $data['name'] . ' (id ' . $this->modelNameUser->select('id')->latest('id')->first()->id . ')',
-                'databaseName'   => config('database.connections.mysql.database'),
-                'tableName'      => $this->tableNameUser
-            ])
-        ]);
+        // $this->modelNameUser->find($this->modelNameUser->select('id')->latest('id')->first()->id)->log()->create([ 
+        //     'status'  => 'User registered',
+        //     'details' => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_super_admin', [
+        //         'record'         => $data['name'] . ' (id ' . $this->modelNameUser->select('id')->latest('id')->first()->id . ')',
+        //         'databaseName'   => config('database.connections.mysql.database'),
+        //         'tableName'      => $this->tableNameUser
+        //     ])
+        // ]);
         return $registerUser;
     }
 }
