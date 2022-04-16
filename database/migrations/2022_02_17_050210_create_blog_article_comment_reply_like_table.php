@@ -20,7 +20,6 @@ class CreateBlogArticleCommentReplyLikeTable extends Migration
             $table->foreignId('blog_article_comment_reply_id')->index('idx_blog_article_comment_reply_id');
             $table->integer('blog_article_comment_reply_likes');
             $table->timestamps();
-            $table->timestamp('deleted_at')->nullable();
         });
 
         DB::unprepared(
