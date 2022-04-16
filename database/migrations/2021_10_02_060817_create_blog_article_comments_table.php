@@ -23,7 +23,6 @@ class CreateBlogArticleCommentsTable extends Migration
             $table->string('comment_is_public', 3)->default('0');
             $table->string('privacy_policy', 3)->default('0');
             $table->timestamps();
-            $table->timestamp('deleted_at')->nullable();
         });
 
         DB::unprepared(
