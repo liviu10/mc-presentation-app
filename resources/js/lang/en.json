@@ -24,12 +24,30 @@
         "second_button": "Go to admin"
       },
       "sub_menu": {
+        "section_1": {
+          "first_button": "Home",
+          "second_button": "Blog",
+          "third_button": "Schedule",
+          "forth_button": "About me",
+          "fifth_button": "Contact me",
+          "sixth_button": "Newsletter"
+        },
+        "section_2": {
+          "fist_button": "Application settings",
+          "second_button": "Application logs",
+          "third_button": "Documentation"
+        },
+        "section_3": {
+          "first_button": "Profile settings",
+          "second_button": "Logout"
+        },
         "first_button": "Blog",
         "second_button": "Contact me messages",
         "third_button": "Newsletter campaigns",
         "forth_button": "Application settings",
-        "fifth_button": "Documentation",
-        "sixth_button": "Profile settings",
+        "fifth_button": "Application logs",
+        "sixth_button": "Documentation",
+        "seventh_button": "Profile settings",
         "eighth_button": "Logout"
       }
     },
@@ -78,6 +96,10 @@
         "swal_error": {
           "title": "Thank you, {subscriberFullName}!",
           "message": "I am grateful that you want to subscribe to my newsletter! Unfortunately, the email address: {subscriberEmailAddress} you have inserted is invalid! Please try again with a valid one!"
+        },
+        "swal_warning": {
+          "title": "Thank you, {subscriberFullName}!",
+          "message": "I am grateful that you want to subscribe to my newsletter! You are already subscribed to my newsletter with the email address: {subscriberEmailAddress}!"
         }
       }
     },
@@ -212,7 +234,14 @@
         "i_agree_with": "I agree with ",
         "privacy_policy": "Terms and Conditions",
         "contact_form_button": "Send message",
-        "message_sent": "Your message was successfully sent! I will contact you shortly!"
+        "swal": {
+          "title": "Thank you, {senderFullName}!",
+          "message": "I am grateful for the message you have sent me! I will get back to you as soon as possible!"
+        },
+        "swal_error": {
+          "title": "Thank you, {senderFullName}!",
+          "message": "I am grateful for the message you whish to send me! Unfortunately, the email address: {senderEmailAddress} you have inserted is invalid! Please try again with a valid one!"
+        }
       }
     },
     "terms_and_conditions_page": {

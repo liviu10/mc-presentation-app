@@ -141,14 +141,14 @@ class AcceptedDomainSystemController extends Controller
                     'type'   => $request->get('type'),
                 ]);
             }
-            $this->modelNameAcceptedDomain->find($apiInsertSingleRecord->id)->log()->create([ 
-                'status'  => 'Admin create accepted domain',
-                'details' => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_super_admin', [
-                    'record'         => $request->get('domain') . ' (id ' . $apiInsertSingleRecord->id . ')',
-                    'databaseName'   => config('database.connections.mysql.database'),
-                    'tableName'      => $this->tableNameAcceptedDomain
-                ])
-            ]);
+            // $this->modelNameAcceptedDomain->find($apiInsertSingleRecord->id)->log()->create([ 
+            //     'status'  => 'Admin create accepted domain',
+            //     'details' => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_super_admin', [
+            //         'record'         => $request->get('domain') . ' (id ' . $apiInsertSingleRecord->id . ')',
+            //         'databaseName'   => config('database.connections.mysql.database'),
+            //         'tableName'      => $this->tableNameAcceptedDomain
+            //     ])
+            // ]);
             return response([
                 'title'              => __('error_and_notification_system.store.info_00002_notify.user_has_rights.message_title'),
                 'notify_code'        => 'INFO_00002',
@@ -356,14 +356,14 @@ class AcceptedDomainSystemController extends Controller
                 'domain' => $request->get('domain'),
                 'type'   => $request->get('type'),
             ]);
-            $this->modelNameAcceptedDomain->find($apiUpdateSingleRecord->id)->log()->create([ 
-                'status'  => 'Admin update accepted domain',
-                'details' => __('error_and_notification_system.update.info_00002_notify.user_has_rights.message_super_admin', [
-                    'record'         => $request->get('domain') . ' (id ' . $apiUpdateSingleRecord->id . ')',
-                    'databaseName'   => config('database.connections.mysql.database'),
-                    'tableName'      => $this->tableNameAcceptedDomain
-                ])
-            ]);
+            // $this->modelNameAcceptedDomain->find($apiUpdateSingleRecord->id)->log()->create([ 
+            //     'status'  => 'Admin update accepted domain',
+            //     'details' => __('error_and_notification_system.update.info_00002_notify.user_has_rights.message_super_admin', [
+            //         'record'         => $request->get('domain') . ' (id ' . $apiUpdateSingleRecord->id . ')',
+            //         'databaseName'   => config('database.connections.mysql.database'),
+            //         'tableName'      => $this->tableNameAcceptedDomain
+            //     ])
+            // ]);
             return response([
                 'title'              => __('error_and_notification_system.update.info_00002_notify.user_has_rights.message_title'),
                 'notify_code'        => 'INFO_00002',
@@ -475,14 +475,14 @@ class AcceptedDomainSystemController extends Controller
                 }
                 else
                 {
-                    $this->modelNameAcceptedDomain->find($apiDisplaySingleRecord['id'])->log()->create([ 
-                        'status'  => 'Admin delete accepted domain',
-                        'details' => __('error_and_notification_system.delete.info_00002_notify.user_has_rights.message_super_admin', [
-                            'record'         => $apiDisplaySingleRecord['domain'] . ' (id ' . $apiDisplaySingleRecord['id'] . ')',
-                            'databaseName'   => config('database.connections.mysql.database'),
-                            'tableName'      => $this->tableNameAcceptedDomain
-                        ])
-                    ]);
+                    // $this->modelNameAcceptedDomain->find($apiDisplaySingleRecord['id'])->log()->create([ 
+                    //     'status'  => 'Admin delete accepted domain',
+                    //     'details' => __('error_and_notification_system.delete.info_00002_notify.user_has_rights.message_super_admin', [
+                    //         'record'         => $apiDisplaySingleRecord['domain'] . ' (id ' . $apiDisplaySingleRecord['id'] . ')',
+                    //         'databaseName'   => config('database.connections.mysql.database'),
+                    //         'tableName'      => $this->tableNameAcceptedDomain
+                    //     ])
+                    // ]);
                     $apiDeleteSingleRecord = $this->modelNameAcceptedDomain->find($id)->delete();
                     return response([
                         'title'              => __('error_and_notification_system.delete.info_00002_notify.user_has_rights.message_title'),

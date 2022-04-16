@@ -14,7 +14,7 @@ class CreateNewsletterKpisTable extends Migration
     public function up()
     {
         Schema::create('newsletter_kpi', function (Blueprint $table) {
-            $table->id();
+            $table->id()->index('idx_id');
             $table->string('kpi_name')->nullable(false);
             $table->string('kpi_description');
             $table->string('kpi_formula');

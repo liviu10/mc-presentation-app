@@ -70,7 +70,6 @@ class BlogArticleCommentReply extends Model
         'id',
         'created_at',
         'updated_at',
-        'deleted_at',
     ];
 
     public function scopeIsCommentReplyPublic ($query) 
