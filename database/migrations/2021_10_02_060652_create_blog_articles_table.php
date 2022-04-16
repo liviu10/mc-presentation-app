@@ -25,7 +25,7 @@ class CreateBlogArticlesTable extends Migration
             $table->string('blog_article_path');
             $table->string('blog_article_is_active', 3)->default('0');
             $table->timestamps();
-            $table->timestamp('deleted_at')->nullable();
+            $table->softDeletes();
         });
 
         DB::unprepared(

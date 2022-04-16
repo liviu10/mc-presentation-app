@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Log;
 
 class BlogArticle extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     /**
      * The table associated with the model.
@@ -118,5 +120,14 @@ class BlogArticle extends Model
     public function blog_subcategory()
     {
         return $this->belongsTo('App\Models\BlogSubcategory');
+    }
+
+    /**
+     * Eloquent polymorphic relationship between blog_articles and logs.
+     *
+     */
+    public function log()
+    {
+        return $this->morphOne(Log::class, 'logable');
     }
 }

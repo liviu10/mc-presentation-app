@@ -17,12 +17,11 @@ class CreateBlogCategoriesTable extends Migration
             $table->id()->index('idx_id');
             $table->string('blog_category_title')->unique();
             $table->string('blog_category_short_description');
-            $table->longText('blog_category_description')->nullable();
             $table->string('blog_category_is_active', 3)->default('0');
             $table->string('blog_image_card_url');
             $table->string('blog_category_path');
             $table->timestamps();
-            $table->timestamp('deleted_at')->nullable();
+            $table->softDeletes();
         });
     }
 
