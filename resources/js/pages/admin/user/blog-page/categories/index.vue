@@ -12,7 +12,7 @@
             :pagination-options="{
               enabled: true,
               mode: 'records',
-              perPage: 15,
+              perPage: 3,
               position: 'bottom',
               perPageDropdown: [30, 45, 60, 'All'],
               dropdownAllowAll: false,

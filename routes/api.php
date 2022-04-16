@@ -180,6 +180,7 @@ use Illuminate\Support\Facades\Route;
                     Route::post('/edit-subcategory/{id}', [BlogCategoryAndSubcategorySystemController::class, 'editSubcategory']);
                     Route::delete('/delete-subcategory/{id}', [BlogCategoryAndSubcategorySystemController::class, 'deleteSubcategory']);
                     // Blog articles admin API routes
+                    Route::get('/display-articles', [BlogArticleAndCommentSystemController::class, 'displayArticles']);
                     
                     // Blog appreciation admin API routes
                     
@@ -191,7 +192,7 @@ use Illuminate\Support\Facades\Route;
                 // Blog articles, appreciations & comments Admin API routes
                 Route::group([ 'prefix' => '/' ], function () {
                     Route::delete('/delete-all-articles', [BlogArticleAndCommentSystemController::class, 'deleteAllArticles']);
-                    Route::apiResource('/articles-and-comments', BlogArticleAndCommentSystemController::class);
+                    // Route::apiResource('/articles-and-comments', BlogArticleAndCommentSystemController::class);
                 });
             });
             // Contact me System Admin API routes

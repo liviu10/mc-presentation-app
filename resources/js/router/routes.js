@@ -58,6 +58,9 @@ export default [
   { path: '/admin/user/home-page/section/footer', name: 'admin-user-home-page-section-footer', component: page('admin/user/home-page/section/footer/index.vue') },
   // URL routes for admin blog page and sections
   { path: '/admin/user/blog-page', name: 'admin-user-blog-page', component: page('admin/user/blog-page/index.vue') },
+  { path: '/admin/user/blog-page/new-article', name: 'admin-user-blog-page-new-article', component: page('admin/user/blog-page/articles/new-article.vue') },
+  { path: '/admin/user/blog-page/edit-article', name: 'admin-user-blog-page-edit-article', component: page('admin/user/blog-page/articles/edit-article.vue') },
+  { path: '/admin/user/blog-page/comments', name: 'admin-user-blog-page-comments', component: page('admin/user/blog-page/articles/comments.vue') },
   // URL routes for admin schedule page and sections
   { path: '/admin/user/schedule-page', name: 'admin-user-schedule-page', component: page('admin/user/schedule-page/index.vue') },
   // URL routes for admin about me page and sections

@@ -123,7 +123,7 @@ Vue.use(Vuex)
 window.axios = require('axios')
 
 export default {
-  name: 'NewUser',
+  name: 'NewBlogSubcategory',
   props: {
     categoryDetails: {
       default: null,

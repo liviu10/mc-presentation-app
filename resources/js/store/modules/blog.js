@@ -8,7 +8,8 @@ export const state = {
   listOfVideoArticles: [],
   // Admin records
   blogCategories: [],
-  blogSubcategories: []
+  blogSubcategories: [],
+  blogArticles: []
 }
 
 // getters
@@ -19,7 +20,8 @@ export const getters = {
   listOfVideoArticles: (state) => state.listOfVideoArticles,
   // Admin records
   blogCategories: (state) => state.blogCategories,
-  blogSubcategories: (state) => state.blogSubcategories
+  blogSubcategories: (state) => state.blogSubcategories,
+  blogArticles: (state) => state.blogArticles
 }
 
 // mutations
@@ -30,7 +32,8 @@ export const mutations = {
   setListOfVideoArticles: (state, listOfVideoArticles) => (state.listOfVideoArticles = listOfVideoArticles),
   // Admin records
   setBlogCategories: (state, blogCategories) => (state.blogCategories = blogCategories),
-  setBlogSubcategories: (state, blogSubcategories) => (state.blogSubcategories = blogSubcategories)
+  setBlogSubcategories: (state, blogSubcategories) => (state.blogSubcategories = blogSubcategories),
+  setBlogArticles: (state, blogArticles) => (state.blogArticles = blogArticles)
 }
 
 // actions
@@ -112,6 +115,19 @@ export const actions = {
       })
       .catch(({ response }) => {
         commit('setBlogSubcategories', response.data)
+      })
+  },
+  async fetchBlogArticles ({ commit }) {
+    const url = window.location.origin
+    const apiEndPoint = '/api/admin/system/blog/display-articles'
+    const fullApiUrl = url + apiEndPoint
+    axios
+      .get(fullApiUrl)
+      .then(response => {
+        commit('setBlogArticles', response.data)
+      })
+      .catch(({ response }) => {
+        commit('setBlogArticles', response.data)
       })
   }
 }
