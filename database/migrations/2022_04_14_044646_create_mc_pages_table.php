@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNewsletterKpisTable extends Migration
+class CreateMcPagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateNewsletterKpisTable extends Migration
      */
     public function up()
     {
-        Schema::create('newsletter_kpi', function (Blueprint $table) {
+        Schema::create('mc_pages', function (Blueprint $table) {
             $table->id()->index('idx_id');
-            $table->string('kpi_name')->nullable(false);
-            $table->string('kpi_description');
-            $table->string('kpi_formula');
+            $table->string('page_name');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateNewsletterKpisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('newsletter_kpi');
+        Schema::dropIfExists('mc_pages');
     }
 }

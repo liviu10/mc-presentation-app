@@ -12,7 +12,7 @@
             :pagination-options="{
               enabled: true,
               mode: 'records',
-              perPage: 15,
+              perPage: 10,
               position: 'bottom',
               perPageDropdown: [30, 45, 60, 'All'],
               dropdownAllowAll: false,
@@ -27,6 +27,11 @@
               pageLabel: 'page',
               allLabel: 'All',
             }"
+            :filter-dropdown-items="[
+              'Article',
+              'Audio',
+              'Video'
+            ]"
           >
             <div slot="table-actions">
               <button v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2" class="btn btn-primary me-2" type="button" data-bs-toggle="modal" data-bs-target="#createNewBlogSubcategory">
@@ -80,7 +85,7 @@
           </vue-good-table>
         </div>
 
-        <new-blog-category :category-details="blogCategoriesList" />
+        <new-blog-subcategory :category-details="blogCategoriesList" />
 
         <!-- EDIT BLOG CATEGORY, SECTION START -->
         <div id="editBlogSubcategory"
@@ -206,7 +211,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js'
 import Form from 'vform'
 import { VueGoodTable } from 'vue-good-table'
 import 'vue-good-table/dist/vue-good-table.css'
-import NewBlogCategory from './new'
+import NewBlogSubcategory from './new'
 
 Vue.use(axios)
 Vue.use(Vuex)
@@ -217,7 +222,7 @@ export default {
   name: 'AdminBlogCategories',
   components: {
     VueGoodTable,
-    NewBlogCategory
+    NewBlogSubcategory
   },
   middleware: 'auth',
   props: {
@@ -256,7 +261,8 @@ export default {
         {
           label: 'Actions',
           field: 'actions',
-          sortable: false
+          sortable: false,
+          width: '150px'
         }
       ],
       selectedData: {},
@@ -286,6 +292,9 @@ export default {
   },
   created () {
     this.fetchBlogSubcategories()
+  },
+  updated () {
+    this.emitToParentSubcategoryList()
   },
   methods: {
     ...mapActions({
@@ -417,6 +426,9 @@ export default {
           }
         })
       }
+    },
+    emitToParentSubcategoryList (event) {
+      this.$emit('blog-subcategories', this.displayAllBlogSubcategories)
     }
   }
 }

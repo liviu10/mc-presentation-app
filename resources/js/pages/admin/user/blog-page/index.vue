@@ -9,10 +9,13 @@
           <div class="my-4">
             <ul id="myTab" class="nav nav-tabs">
               <li class="nav-item">
-                <a href="#blog_categories" class="nav-link active" data-bs-toggle="tab">Blog categories</a>
+                <a href="#blog_categories" class="nav-link active" data-bs-toggle="tab">Categories</a>
               </li>
               <li class="nav-item">
-                <a href="#blog_subcategories" class="nav-link" data-bs-toggle="tab">Blog subcategories</a>
+                <a href="#blog_subcategories" class="nav-link" data-bs-toggle="tab">Subcategories</a>
+              </li>
+              <li class="nav-item">
+                <a href="#blog_articles" class="nav-link" data-bs-toggle="tab">Articles</a>
               </li>
             </ul>
             <div class="tab-content">
@@ -26,7 +29,20 @@
               <div id="blog_subcategories" class="tab-pane fade show">
                 <div class="card">
                   <div class="card-body">
-                    <admin-blog-subcategories :blog-categories-list="blogCategoriesList" />
+                    <admin-blog-subcategories
+                      :blog-categories-list="blogCategoriesList"
+                      @blog-subcategories="getBlogSubcategoriesListFromChild"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div id="blog_articles" class="tab-pane fade show">
+                <div class="card">
+                  <div class="card-body">
+                    <admin-blog-articles
+                      :blog-categories-list="blogCategoriesList"
+                      :blog-subcategories-list="blogSubcategoriesList"
+                    />
                   </div>
                 </div>
               </div>
@@ -43,6 +59,7 @@ import Vue from 'vue'
 import Vuex, { mapGetters } from 'vuex'
 import AdminBlogCategories from './categories/index.vue'
 import AdminBlogSubcategories from './subcategories/index.vue'
+import AdminBlogArticles from './articles/index.vue'
 
 Vue.use(Vuex)
 
@@ -50,12 +67,14 @@ export default {
   name: 'AdminUserBlog',
   components: {
     AdminBlogCategories,
-    AdminBlogSubcategories
+    AdminBlogSubcategories,
+    AdminBlogArticles
   },
   middleware: 'auth',
   data: function () {
     return {
-      blogCategoriesList: []
+      blogCategoriesList: [],
+      blogSubcategoriesList: []
     }
   },
   computed: {
@@ -65,7 +84,10 @@ export default {
   },
   methods: {
     getBlogCategoriesListFromChild (value) {
-      this.blogCategoriesList = JSON.parse(JSON.stringify(value))
+      this.blogCategoriesList = value
+    },
+    getBlogSubcategoriesListFromChild (value) {
+      this.blogSubcategoriesList = value
     }
   },
   metaInfo () {

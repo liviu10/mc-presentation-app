@@ -34,7 +34,6 @@ class BlogArticleAndCommentSystemController extends Controller
     {
         $this->modelNameBlogArticle = new BlogArticle();
         $this->modelNameErrorSystem = new ErrorAndNotificationSystem();
-
         $this->tableNameBlogArticle = $this->modelNameBlogArticle->getTable();
         $this->tableNameErrorSystem = $this->modelNameErrorSystem->getTable();
     }
@@ -46,21 +45,55 @@ class BlogArticleAndCommentSystemController extends Controller
      */
     public function index()
     {
+        // 
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function displayArticles()
+    {
         try
         {
             $apiDisplayAllRecords = $this->modelNameBlogArticle->select('*')
                                     ->with([
+                                        'blog_subcategory' => function ($query) {
+                                            $query->select('id', 'blog_category_id', 'blog_subcategory_title', 'blog_subcategory_path')->with([
+                                                'blog_category' => function ($query) {
+                                                    $query->select('id', 'blog_category_title', 'blog_category_path');
+                                                }
+                                            ]);
+                                        },
                                         'blog_article_like' => function ($query) {
-                                            $query->select('*');
+                                            $query->select('id', 'user_id', 'blog_article_id', 'blog_article_likes');
                                         },
                                         'blog_article_dislike' => function ($query) {
-                                            $query->select('*');
+                                            $query->select('id', 'user_id', 'blog_article_id', 'blog_article_dislikes');
                                         },
                                         'blog_article_rate' => function ($query) {
-                                            $query->select('*');
+                                            $query->select('id', 'user_id', 'blog_article_id', 'blog_article_rating_system');
                                         },
                                         'blog_article_comments' => function ($query) {
-                                            $query->select('*');
+                                            $query->select('id', 'blog_article_id', 'full_name', 'email', 'comment', 'comment_is_public', 'privacy_policy', 'created_at')->with([
+                                                'blog_article_comment_like' => function($query) {
+                                                    $query->select('id', 'user_id', 'blog_article_comment_id', 'blog_article_comment_likes');
+                                                },
+                                                'blog_article_comment_dislike' => function($query) {
+                                                    $query->select('id', 'user_id', 'blog_article_comment_id', 'blog_article_comment_dislikes');
+                                                },
+                                                'blog_article_comment_replies' => function($query) {
+                                                    $query->select('id', 'blog_article_comment_id', 'full_name', 'email', 'comment_reply', 'comment_reply_is_public', 'privacy_policy', 'created_at')->with([
+                                                        'blog_article_comment_reply_like' => function ($query) {
+                                                            $query->select('id', 'user_id', 'blog_article_comment_reply_id', 'blog_article_comment_reply_likes');
+                                                        },
+                                                        'blog_article_comment_reply_dislike' => function ($query) {
+                                                            $query->select('id', 'user_id', 'blog_article_comment_reply_id', 'blog_article_comment_reply_dislikes');
+                                                        }
+                                                    ]);
+                                                }
+                                            ]);
                                         }
                                     ])
                                     ->get();
@@ -72,7 +105,7 @@ class BlogArticleAndCommentSystemController extends Controller
                     'description'        => __('error_and_notification_system.index.war_00001_notify.user_has_rights.message_super_admin', [
                         'methodName'     => $_SERVER['REQUEST_METHOD'],
                         'apiEndpoint'    => $_SERVER['REQUEST_URI'],
-                        'serviceName' => __NAMESPACE__ . '\\' . basename(BlogArticleSystemController::class) . '.php',
+                        'serviceName' => __NAMESPACE__ . '\\' . basename(BlogArticleAndCommentSystemController::class) . '.php',
                         'databaseName'   => config('database.connections.mysql.database'),
                         'tableName'      => $this->tableNameBlogArticle
                     ]),
@@ -117,9 +150,9 @@ class BlogArticleAndCommentSystemController extends Controller
                     'description'        => __('error_and_notification_system.index.err_00001_notify.user_has_rights.message_super_admin', [
                         'methodName'     => $_SERVER['REQUEST_METHOD'],
                         'apiEndpoint'    => $_SERVER['REQUEST_URI'],
-                        'serviceName' => __NAMESPACE__ . '\\' . basename(BlogArticleSystemController::class) . '.php',
+                        'serviceName' => __NAMESPACE__ . '\\' . basename(BlogArticleAndCommentSystemController::class) . '.php',
                         'databaseName'   => config('database.connections.mysql.database'),
-                        'tableName'      => 'blog_articles',
+                        'tableName'      => 'blog_categories',
                     ]),
                     'reference'          => config('app.url') . '/documentation/error#ERR_00001',
                     'api_endpoint'       => $_SERVER['REQUEST_URI'],
