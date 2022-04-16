@@ -24,13 +24,31 @@
         "second_button": "Înapoi la admin"
       },
       "sub_menu": {
+        "section_1": {
+          "first_button": "Acasă",
+          "second_button": "Blog",
+          "third_button": "Programare",
+          "forth_button": "Despre mine",
+          "fifth_button": "Contactează-mă",
+          "sixth_button": "Newsletter"
+        },
+        "section_2": {
+          "fist_button": "Setări aplicație",
+          "second_button": "Log-uri aplicație",
+          "third_button": "Documentație"
+        },
+        "section_3": {
+          "first_button": "Setări profil",
+          "second_button": "Ieșire"
+        },
         "first_button": "Blog",
         "second_button": "Mesaje contactează-mă",
         "third_button": "Campanii newsletter",
         "forth_button": "Setări aplicație",
-        "fifth_button": "Documentație",
-        "sixth_button": "Setări profil",
-        "seventh_button": "Ieșire"
+        "fifth_button": "Log-uri aplicație",
+        "sixth_button": "Documentație",
+        "seventh_button": "Setări profil",
+        "eighth_button": "Ieșire"
       }
     },
     "footer": {
@@ -78,6 +96,10 @@
         "swal_error": {
           "title": "Mulțumesc, {subscriberFullName}!",
           "message": "Sunt recunoscătoare că vrei să te abonezi la newsletter-ul meu! Dar, din nefericire adresa de email: {subscriberEmailAddress} pe care ai introdus-o este invalidă! Te rog, să reîncerci cu una validă!"
+        },
+        "swal_warning": {
+          "title": "Mulțumesc, {subscriberFullName}!",
+          "message": "Sunt recunoscătoare că vrei să te abonezi la newsletter-ul meu! Eşti deja înscris la newsletter-ul meu cu adresa de email: {subscriberEmailAddress}!"
         }
       }
     },
@@ -212,7 +234,14 @@
         "i_agree_with": "Sunt de acord cu ",
         "privacy_policy": "Termenii și Condițiile",
         "contact_form_button": "Trimite mesajul",
-        "message_sent": "Mesajul tău a fost trimis cu success! Te voi contacta în cel mai scurt timp!"
+        "swal": {
+          "title": "Mulțumesc, {senderFullName}!",
+          "message": "Sunt recunoscătoare pentru mesajul pe care mi l-ai trimis! Voi reveni la tine în cel mai scurt timp posibil!"
+        },
+        "swal_error": {
+          "title": "Mulțumesc, {senderFullName}!",
+          "message": "Sunt recunoscătoare pentru mesajul pe care vrei să mi-l trimiţi! Dar, din nefericire adresa de email: {senderEmailAddress} pe care ai introdus-o este invalidă! Te rog, să reîncerci cu una validă!"
+        }
       }
     },
     "terms_and_conditions_page": {

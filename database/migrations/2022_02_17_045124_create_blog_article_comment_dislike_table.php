@@ -20,7 +20,6 @@ class CreateBlogArticleCommentDislikeTable extends Migration
             $table->foreignId('blog_article_comment_id')->index('idx_blog_article_comment_id');
             $table->integer('blog_article_comment_dislikes');
             $table->timestamps();
-            $table->timestamp('deleted_at')->nullable();
         });
 
         DB::unprepared(

@@ -30,7 +30,6 @@
           </div>
           <div class="lv-pg-contact-content-body">
             <form @submit.prevent="contactMe" @keydown="form.onKeydown($event)">
-              <alert-success :form="form" :message="message_success" />
               <!-- FULL NAME, SECTION START -->
               <div class="mb-4">
                 <input id="full_name"
@@ -105,12 +104,12 @@
 
 <script>
 import Form from 'vform'
+import Swal from 'sweetalert2/dist/sweetalert2.js'
 
 export default {
   name: 'ContactMePage',
   data: function () {
     return {
-      message_success: this.$t('user.contact_me_page.contact_form.message_sent'),
       form: new Form({
         full_name: '',
         email: '',
@@ -131,12 +130,33 @@ export default {
           message: this.form.message,
           privacy_policy: this.form.privacy_policy
         })
-        .then((result) => {
-          console.log(result)
-          this.form.full_name = null
-          this.form.email = null
-          this.form.message = null
-          this.form.privacy_policy = null
+        .then(response => {
+          this.senderFullName = response.data.full_name
+          Swal.fire({
+            title: this.$t('user.contact_me_page.contact_form.swal.title', { senderFullName: this.senderFullName }),
+            text: this.$t('user.contact_me_page.contact_form.swal.message')
+          }).then((result) => {
+            this.form.full_name = null
+            this.form.email = null
+            this.form.message = null
+            this.form.privacy_policy = null
+          })
+        })
+        .catch(error => {
+          this.senderFullName = error.response.config.full_name
+          this.senderEmailAddress = error.response.config.email
+          Swal.fire({
+            title: this.$t('user.contact_me_page.contact_form.swal_error.title', { senderFullName: this.senderFullName }),
+            text: this.$t('user.contact_me_page.contact_form.swal_error.message', { senderEmailAddress: this.senderEmailAddress }),
+            imageUrl: this.displayRandomNewsletterImage(this.newsletterImages),
+            imageWidth: 259,
+            imageHeight: 194
+          }).then((result) => {
+            this.form.full_name = null
+            this.form.email = null
+            this.form.message = null
+            this.form.privacy_policy = null
+          })
         })
     }
   },
