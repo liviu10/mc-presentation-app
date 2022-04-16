@@ -37,7 +37,7 @@ class LogSystemController extends Controller
     {
         try
         {
-            $apiDisplayAllRecords = $this->modelNameLog->select('id', 'status', 'details', 'created_at')->get();
+            $apiDisplayAllRecords = $this->modelNameLog->select('*')->get();
             if ($apiDisplayAllRecords->isEmpty())
             {
                 return response([
