@@ -4,6 +4,18 @@
 
 .lv-pg-login, .lv-pg-register, .lg-pg-reset-password {
     margin: rem-convertor(100px) 0rem;
+    @media only screen and (max-width: 992px) and (min-width: 769px) {
+        width: 60%;
+    }
+    @media only screen and (max-width: 768px) and (min-width: 577px) {
+        width: 70%;
+    }
+    @media only screen and (max-width: 576px) and (min-width: 475px) {
+        width: 80%;
+    }
+    @media only screen and (max-width: 474px) and (min-width: 320px) {
+        width: 100%;
+    }
 }
 
 .lv-pg-register-verify-email, .lv-pg-password-request {

@@ -26,7 +26,7 @@ $appCss = mix('dist/css/app.css');
   >
 
   <title>{{ config('app.name') }}</title>
-
+  <link rel="preload" href="{{ url('images/pages/home/carousel-v1/Carousel-img0_495.webp') }}" as="image">
   <link rel="stylesheet" href="{{ (str_starts_with($appCss, '//') ? 'http:' : '').$appCss }}">
 </head>
 <body>

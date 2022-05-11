@@ -25,10 +25,10 @@
             </a>
             <!-- <a href="" class="btn btn-primary" target="_blank" :title="$t('user.general_settings.social_menu.instagram')" rel="noreferrer">
               <fa :icon="['fab', 'instagram']" fixed-width />
-            </a>
-            <a href="" class="btn btn-primary" target="_blank" :title="$t('user.general_settings.social_menu.youtube')" rel="noreferrer">
-              <fa :icon="['fab', 'youtube']" fixed-width />
             </a> -->
+            <a href="https://www.youtube.com/channel/UCvyAUdyF4qG1j6S8IX67W5A/featured" class="btn btn-primary" target="_blank" :title="$t('user.general_settings.social_menu.youtube')" rel="noreferrer">
+              <fa :icon="['fab', 'youtube']" fixed-width />
+            </a>
           </p>
           <!-- FOOTER MENU, SECTION START -->
         </div>

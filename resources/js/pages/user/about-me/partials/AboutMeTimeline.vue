@@ -52,13 +52,13 @@
           <div :id="'readMoreImageModal' + image.id"
                class="modal fade"
                tabindex="-1"
-               aria-labelledby="readMoreImageModalLabel"
+               :aria-labelledby="'readMoreImageModalLabel' + image.id"
                aria-hidden="true"
           >
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h4 id="readMoreImageModalLabel" class="modal-title">
+                  <h4 :id="'readMoreImageModalLabel' + image.id" class="modal-title">
                     {{ image.eventDate }} &#8212; {{ image.eventImageText }}
                   </h4>
                 </div>

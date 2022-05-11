@@ -47,6 +47,9 @@
             & .form-options {
                 & .col-md-6 {
                     @include flex-center();
+                    @media only screen and (max-width: 768px) {
+                        width: 50%;
+                    }
                 }
                 & .form-check, & .form-link {
                     margin-bottom: rem-convertor(0px);
@@ -82,6 +85,9 @@
             & .form-button {
                 & .col-md-12 {
                     @include flex-center();
+                    @media only screen and (max-width: 768px) {
+                        width: 100%;
+                    }
                     & span {
                         font-size: rem-convertor(18px);
                         font-weight: 900;

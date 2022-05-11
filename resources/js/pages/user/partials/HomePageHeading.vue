@@ -45,19 +45,19 @@ export default {
           url: 'https://www.facebook.com/groups/269560668238590/?ref=share',
           title: this.$t('user.general_settings.social_menu.facebook'),
           icon_class: 'facebook'
-        }
+        },
         // {
         //   id: 2,
         //   url: '',
         //   title: this.$t('user.general_settings.social_menu.instagram'),
         //   icon_class: 'instagram'
         // },
-        // {
-        //   id: 3,
-        //   url: '',
-        //   title: this.$t('user.general_settings.social_menu.youtube'),
-        //   icon_class: 'youtube'
-        // }
+        {
+          id: 3,
+          url: 'https://www.youtube.com/channel/UCvyAUdyF4qG1j6S8IX67W5A/featured',
+          title: this.$t('user.general_settings.social_menu.youtube'),
+          icon_class: 'youtube'
+        }
       ]
     }
   }

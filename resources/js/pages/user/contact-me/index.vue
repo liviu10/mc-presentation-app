@@ -32,7 +32,7 @@
             <form @submit.prevent="contactMe" @keydown="form.onKeydown($event)">
               <!-- FULL NAME, SECTION START -->
               <div class="mb-4">
-                <input id="full_name"
+                <input id="contact_full_name"
                        v-model="form.full_name"
                        type="text"
                        :class="{ 'is-invalid': form.errors.has('full_name') }"
@@ -45,7 +45,7 @@
               <!-- FULL NAME, SECTION END -->
               <!-- EMAIL ADDRESS, SECTION START -->
               <div class="mb-4">
-                <input id="email"
+                <input id="contact_email"
                        v-model="form.email"
                        type="email"
                        :class="{ 'is-invalid': form.errors.has('email') }"
@@ -58,7 +58,7 @@
               <!-- EMAIL ADDRESS, SECTION END -->
               <!-- MESSAGE, SECTION START -->
               <div class="mb-4">
-                <textarea id="message"
+                <textarea id="contact_message"
                           v-model="form.message"
                           :class="{ 'is-invalid': form.errors.has('email') }"
                           class="form-control form-message"
@@ -71,14 +71,14 @@
               <!-- PRIVACY POLICY, SECTION START -->
               <div class="my-4 form-check">
                 <div class="form-check-privacy-policy">
-                  <input id="privacy_policy"
+                  <input id="contact_privacy_policy"
                          v-model="form.privacy_policy"
                          type="checkbox"
                          :class="{ 'is-invalid': form.errors.has('privacy_policy') }"
                          class="form-check-input"
                          name="privacy_policy"
                   >
-                  <label class="form-check-label lead" for="privacy_policy">
+                  <label class="form-check-label lead" for="contact_privacy_policy">
                     {{ $t('user.contact_me_page.contact_form.i_agree_with') }}
                   </label>
                   <a class="lead a-typography" href="/terms-and-conditions">
