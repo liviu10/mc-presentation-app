@@ -26,10 +26,10 @@ class CreateBlogArticleCommentRepliesTable extends Migration
         });
 
         DB::unprepared(
-            'ALTER TABLE `mc_presentation_app_db`.`blog_article_comment_replies` 
+            'ALTER TABLE `blog_article_comment_replies` 
             ADD CONSTRAINT `fk_blog_article_comment_reply_id`
                 FOREIGN KEY (`blog_article_comment_id`)
-                REFERENCES `mc_presentation_app_db`.`blog_article_comments` (`id`)
+                REFERENCES `blog_article_comments` (`id`)
                 ON DELETE CASCADE
                 ON UPDATE CASCADE'
         );

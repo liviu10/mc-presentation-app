@@ -26,10 +26,10 @@ class CreateBlogSubcategoriesTable extends Migration
         });
 
         DB::unprepared(
-            'ALTER TABLE `mc_presentation_app_db`.`blog_subcategories` 
+            'ALTER TABLE `blog_subcategories` 
             ADD CONSTRAINT `fk_blog_subcategory_id`
                 FOREIGN KEY (`blog_category_id`)
-                REFERENCES `mc_presentation_app_db`.`blog_categories` (`id`)
+                REFERENCES `blog_categories` (`id`)
                 ON DELETE CASCADE
                 ON UPDATE CASCADE'
         );

@@ -25,10 +25,10 @@ class CreateMcPageSectionCarouselTable extends Migration
         });
 
         DB::unprepared(
-            'ALTER TABLE `mc_presentation_app_db`.`mc_page_section_carousel` 
-            ADD CONSTRAINT `fk_mc_page_section_id`
+            'ALTER TABLE `mc_page_section_carousel` 
+            ADD CONSTRAINT `fk_mc_page_section_carousel_id`
                 FOREIGN KEY (`mc_page_section_id`)
-                REFERENCES `mc_presentation_app_db`.`mc_page_sections` (`id`)
+                REFERENCES `mc_page_sections` (`id`)
                 ON DELETE CASCADE
                 ON UPDATE CASCADE'
         );

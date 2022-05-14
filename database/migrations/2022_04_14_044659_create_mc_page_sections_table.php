@@ -22,10 +22,10 @@ class CreateMcPageSectionsTable extends Migration
         });
 
         DB::unprepared(
-            'ALTER TABLE `mc_presentation_app_db`.`mc_page_sections` 
-            ADD CONSTRAINT `fk_mc_page_id`
+            'ALTER TABLE `mc_page_sections` 
+            ADD CONSTRAINT `fk_mc_page_sections_id`
                 FOREIGN KEY (`mc_page_id`)
-                REFERENCES `mc_presentation_app_db`.`mc_pages` (`id`)
+                REFERENCES `mc_pages` (`id`)
                 ON DELETE CASCADE
                 ON UPDATE CASCADE'
         );

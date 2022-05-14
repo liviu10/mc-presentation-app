@@ -23,15 +23,15 @@ class CreateBlogArticleCommentReplyDislikeTable extends Migration
         });
 
         DB::unprepared(
-            'ALTER TABLE `mc_presentation_app_db`.`blog_article_comment_reply_dislike` 
+            'ALTER TABLE `blog_article_comment_reply_dislike` 
             ADD CONSTRAINT `fk_user_blog_article_comment_reply_dislike_id`
                 FOREIGN KEY (`user_id`)
-                REFERENCES `mc_presentation_app_db`.`users` (`id`)
+                REFERENCES `users` (`id`)
                 ON DELETE CASCADE
                 ON UPDATE CASCADE,
             ADD CONSTRAINT `fk_blog_article_comment_reply_dislike_id`
                 FOREIGN KEY (`blog_article_comment_reply_id`)
-                REFERENCES `mc_presentation_app_db`.`blog_article_comment_replies` (`id`)
+                REFERENCES `blog_article_comment_replies` (`id`)
                 ON DELETE CASCADE
                 ON UPDATE CASCADE;'
         );

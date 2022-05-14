@@ -24,10 +24,10 @@ class CreateUserRoleTypesTable extends Migration
         });
 
         DB::unprepared(
-            'ALTER TABLE `mc_presentation_app_db`.`users` 
+            'ALTER TABLE `users` 
             ADD CONSTRAINT `fk_user_role_type_id`
                 FOREIGN KEY (`user_role_type_id`)
-                REFERENCES `mc_presentation_app_db`.`user_role_types` (`id`)
+                REFERENCES `user_role_types` (`id`)
                 ON DELETE CASCADE
                 ON UPDATE CASCADE'
         );
