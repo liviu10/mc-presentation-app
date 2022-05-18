@@ -6,9 +6,18 @@
         <div class="row g-0">
           <div class="col-md-12">
             <!-- VIDEO PLAYER, SECTION START -->
-            <video controls>
+            <!-- <video controls>
               <source src="/videos/demo_video.mp4" type="video/mp4">
-            </video>
+            </video> -->
+            <iframe
+              width="640"
+              height="480"
+              src="https://www.youtube.com/embed/34XymEDY9Wc"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            />
             <!-- VIDEO PLAYER, SECTION END -->
           </div>
         </div>

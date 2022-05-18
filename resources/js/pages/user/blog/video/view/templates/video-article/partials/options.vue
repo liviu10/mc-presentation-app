@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="video-article-appreciation-system">
     <!-- ARTICLE SUBCATEGORY, SECTION START -->
     <div class="video-article-subcategory">
       <p>
-        {{ $t('user.blog_system_pages.general_settings.subcategory_name') }}:
+        {{ $t('user.blog_system_pages.general_settings.subcategory_name') }}
         &nbsp;
         <a :href="blogArticleSubcategoryPath">{{ blogArticleSubcategoryTitle }}</a>
       </p>
@@ -18,7 +18,7 @@
            :title="$t('user.blog_system_pages.general_settings.appreciation_menu.like')"
            @click="likeTheArticle()"
         >
-          <fa :icon="['fa', 'thumbs-up']" fixed-width />&nbsp;<span v-if="blogArticleLikes.length !== 0">{{ blogArticleLikes }}</span>
+          <fa :icon="['fa', 'thumbs-up']" fixed-width />&nbsp;<span v-if="blogArticleLikes.length !== 0">{{ blogArticleLikes.length }}</span>
         </a>
         <a target="_blank"
            :title="$t('user.blog_system_pages.general_settings.appreciation_menu.dislike')"
@@ -57,7 +57,7 @@
       <p>
         {{ $t('user.blog_system_pages.general_settings.appreciation_menu.title') }}:
         &nbsp;
-        <a href="" target="_blank" :title="$t('user.blog_system_pages.general_settings.appreciation_menu.facebook')">
+        <a href="" target="_blank" :title="$t('user.blog_system_pages.general_settings')">
           <fa :icon="['fab', 'facebook']" fixed-width />
         </a>
         <a href="" target="_blank" :title="$t('user.blog_system_pages.general_settings.appreciation_menu.instagram')">
@@ -144,12 +144,15 @@ export default {
           text: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.message'),
           confirmButtonText: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.login_button'),
           showCancelButton: true,
-          cancelButtonText: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.cancel_button')
+          cancelButtonText: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.cancel_button'),
+          reverseButtons: true,
+          allowOutsideClick: false,
+          allowEscapeKey: false
         }).then((result) => {
           if (result.isConfirmed) {
             this.$router.push({ name: 'user.auth.login' })
           } else {
-            this.rate_article = 0
+            this.rate_article = this.blogArticleAverageRating
           }
         })
       } else {
@@ -191,6 +194,8 @@ export default {
                 }).then((result) => {
                   window.location.reload()
                 })
+              } else {
+                this.rate_article = this.blogArticleAverageRating
               }
             })
           }
@@ -205,7 +210,10 @@ export default {
           text: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.message'),
           confirmButtonText: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.login_button'),
           showCancelButton: true,
-          cancelButtonText: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.cancel_button')
+          cancelButtonText: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.cancel_button'),
+          reverseButtons: true,
+          allowOutsideClick: false,
+          allowEscapeKey: false
         }).then((result) => {
           if (result.isConfirmed) {
             this.$router.push({ name: 'user.auth.login' })
@@ -266,7 +274,10 @@ export default {
           text: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.message'),
           confirmButtonText: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.login_button'),
           showCancelButton: true,
-          cancelButtonText: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.cancel_button')
+          cancelButtonText: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.cancel_button'),
+          reverseButtons: true,
+          allowOutsideClick: false,
+          allowEscapeKey: false
         }).then((result) => {
           if (result.isConfirmed) {
             this.$router.push({ name: 'user.auth.login' })

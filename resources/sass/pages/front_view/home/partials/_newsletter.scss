@@ -3,10 +3,14 @@
 
 .lv-con-newsletter {
     padding: 0rem !important;
+    ::selection {
+        background-color: map-get($complementary_blizzard_blue, "color_sea_nymph");
+    }
     &-head {
         margin-bottom: rem-convertor(32px);
         font-family: inherit;
         text-align: center;
+        user-select: none;
         & h1 {
             margin-bottom: 0rem;
         }

@@ -38,6 +38,7 @@ $font_color: inherit;
                 & .modal {
                     &-content {
                         background-color: map-get($blizzard_blue, "color_blizzard_blue");
+                        border-radius: 0rem;
                         color: map-get($basic_colors, "color_black");
                         font-family: inherit;
                         user-select: none;

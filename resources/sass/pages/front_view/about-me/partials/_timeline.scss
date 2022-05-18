@@ -14,6 +14,9 @@ $lvTimeline: (
     margin-top: rem-convertor(100px);
     margin-bottom: rem-convertor(100px);
     width: rem-convertor(992px);
+    ::selection {
+        background-color: map-get($complementary_blizzard_blue, "color_sea_nymph");
+    }
     @media only screen and (max-width: 1199px) {
         width: rem-convertor(992px - 30px);
     }
@@ -38,7 +41,7 @@ $lvTimeline: (
     }
     & .bar {
         position: relative;
-        top: rem-convertor(330px);
+        top: rem-convertor(332px);
         left: 0rem;
         width: 98%;
         height: rem-convertor(4px);
@@ -246,6 +249,7 @@ $lvTimeline: (
             &-content {
                 // width: auto !important;
                 background-color: map-get($lvTimeline, "expanded_image_bg_color");
+                border-radius: 0rem;
             }
             &-header {
                 white-space: normal;

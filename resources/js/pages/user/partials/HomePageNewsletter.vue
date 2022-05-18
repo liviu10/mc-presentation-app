@@ -118,46 +118,37 @@ export default {
         })
         .then(response => {
           this.subscriberFullName = response.data.full_name
-          if (response.status === 422) {
-            Swal.fire({
-              title: this.$t('user.home_page.newsletter.swal_warning.title', { subscriberFullName: this.subscriberFullName }),
-              text: this.$t('user.home_page.newsletter.swal_warning.message', { subscriberEmailAddress: this.subscriberEmailAddress }),
-              imageUrl: this.displayRandomNewsletterImage(this.newsletterImages),
-              imageWidth: 259,
-              imageHeight: 194
-            }).then((result) => {
-              this.form.full_name = null
-              this.form.email = null
-              this.form.privacy_policy = null
-            })
-          } else {
-            Swal.fire({
-              title: this.$t('user.home_page.newsletter.swal.title', { subscriberFullName: this.subscriberFullName }),
-              text: this.$t('user.home_page.newsletter.swal.message'),
-              imageUrl: this.displayRandomNewsletterImage(this.newsletterImages),
-              imageWidth: 259,
-              imageHeight: 194
-            }).then((result) => {
-              this.form.full_name = null
-              this.form.email = null
-              this.form.privacy_policy = null
-            })
-          }
+          Swal.fire({
+            title: this.$t('user.home_page.newsletter.swal.title', { subscriberFullName: this.subscriberFullName }),
+            text: this.$t('user.home_page.newsletter.swal.message'),
+            imageUrl: this.displayRandomNewsletterImage(this.newsletterImages),
+            imageWidth: 259,
+            imageHeight: 194
+          }).then((result) => {
+            this.form.full_name = null
+            this.form.email = null
+            this.form.privacy_policy = null
+          })
         })
         .catch(error => {
           this.subscriberFullName = error.response.config.full_name
           this.subscriberEmailAddress = error.response.config.email
-          if (error.response.status === 500) {
+          if (error.response.status === 406 || error.response.status === 500) {
             Swal.fire({
               title: this.$t('user.home_page.newsletter.swal_error.title', { subscriberFullName: this.subscriberFullName }),
               text: this.$t('user.home_page.newsletter.swal_error.message', { subscriberEmailAddress: this.subscriberEmailAddress }),
               imageUrl: this.displayRandomNewsletterImage(this.newsletterImages),
               imageWidth: 259,
               imageHeight: 194
-            }).then((result) => {
-              this.form.full_name = null
-              this.form.email = null
-              this.form.privacy_policy = null
+            })
+          }
+          if (error.response.status === 422) {
+            Swal.fire({
+              title: this.$t('user.home_page.newsletter.swal_warning.title', { subscriberFullName: this.subscriberFullName }),
+              text: this.$t('user.home_page.newsletter.swal_warning.message', { subscriberEmailAddress: this.subscriberEmailAddress }),
+              imageUrl: this.displayRandomNewsletterImage(this.newsletterImages),
+              imageWidth: 259,
+              imageHeight: 194
             })
           }
         })

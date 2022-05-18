@@ -139,6 +139,11 @@ return [
             'regex'     => ':attribute contains invalid characters.',
             'max'       => ':attribute must not exceed 255 characters.',
         ],
+        'full_name' => [
+            'required'  => ':attribute is required.',
+            'regex'     => ':attribute contains invalid characters.',
+            'max'       => ':attribute must not exceed 255 characters.',
+        ],
         'email' => [
             'required'  => ':attribute is required.',
             'max'       => ':attribute must not exceed 255 characters.',
@@ -244,6 +249,7 @@ return [
 
     'attributes' => [
         'name'                     => 'Name and Surname',
+        'full_name'                => 'Name and Surname',
         'email'                    => 'Email Address',
         'nickname'                 => 'Nickname',
         'password'                 => 'Password',

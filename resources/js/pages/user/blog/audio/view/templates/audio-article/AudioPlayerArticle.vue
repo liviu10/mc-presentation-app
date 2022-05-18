@@ -84,11 +84,15 @@ export default {
   computed: {
     calculateBlogArticleAverageRates: function () {
       const rateScores = JSON.parse(JSON.stringify(this.articleContent.blog_articles[0].blog_article_rate))
-      const totalRates = rateScores.reduce(function (tot, record) {
-        return tot + record.blog_article_rating_system
-      }, 0)
-      const averageRates = totalRates / rateScores.length
-      return averageRates
+      if (rateScores.length !== 0) {
+        const totalRates = rateScores.reduce(function (tot, record) {
+          return tot + record.blog_article_rating_system
+        }, 0)
+        const averageRates = totalRates / rateScores.length
+        return averageRates
+      } else {
+        return 0
+      }
     }
   }
 }

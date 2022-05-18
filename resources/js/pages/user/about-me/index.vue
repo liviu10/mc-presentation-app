@@ -4,9 +4,18 @@
       <div class="lv-pg-about-me">
         <!-- ABOUT ME VIDEO, SECTION START -->
         <div class="lv-pg-about-me-video">
-          <video controls>
+          <!-- <video controls>
             <source src="/videos/about_me.mp4" type="video/mp4">
-          </video>
+          </video> -->
+          <iframe
+            width="640"
+            height="480"
+            src="https://www.youtube.com/embed/34XymEDY9Wc"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          />
         </div>
         <!-- ABOUT ME VIDEO, SECTION END -->
         <!-- TIMELINE, SECTION START -->

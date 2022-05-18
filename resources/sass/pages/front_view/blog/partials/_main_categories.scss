@@ -13,6 +13,7 @@ $lvContainerSectionBlog: (
         border-radius: rem-convertor(0px);
         background-color: map-get($lvContainerSectionBlog, "card_blog_bg_color") !important;
         border-width: rem-convertor(0px);
+        user-select: none;
         &:nth-child(2) {
             margin: 0rem rem-convertor(16px);
             @media only screen and (max-width: 991px) {

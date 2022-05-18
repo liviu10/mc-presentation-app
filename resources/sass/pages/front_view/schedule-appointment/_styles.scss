@@ -8,6 +8,9 @@ $lvContainerPageAppointment: (
 );
 
 .lv-pg-appointment, .lv-con-pg-questionnaire {
+    ::selection {
+        background-color: map-get($complementary_blizzard_blue, "color_sea_nymph");
+    }
     &-header {
         padding-left: rem-convertor(100px);
         padding-right: rem-convertor(100px);

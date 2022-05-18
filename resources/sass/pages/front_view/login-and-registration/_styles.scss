@@ -4,6 +4,7 @@
 
 .lv-pg-login, .lv-pg-register, .lg-pg-reset-password {
     margin: rem-convertor(100px) 0rem;
+    user-select: none;
     @media only screen and (max-width: 992px) and (min-width: 769px) {
         width: 60%;
     }
@@ -24,6 +25,7 @@
     justify-content: center;
     height: 100vh;
     width: 100%;
+    user-select: none;
     @media only screen and (min-width: 768px) {
         height: 78vh;
     }

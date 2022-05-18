@@ -141,7 +141,10 @@ export default {
           text: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.add_comment'),
           confirmButtonText: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.login_button'),
           showCancelButton: true,
-          cancelButtonText: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.cancel_button')
+          cancelButtonText: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.cancel_button'),
+          reverseButtons: true,
+          allowOutsideClick: false,
+          allowEscapeKey: false
         }).then((result) => {
           if (result.isConfirmed) {
             this.$router.push({ name: 'user.auth.login' })

@@ -5,6 +5,7 @@ $lvContainerSectionTestimonials: (
 );
 
 .lv-con-testimonials {
+    user-select: none;
     & .carousel-indicators {
         & button {
             border-radius: 50%;

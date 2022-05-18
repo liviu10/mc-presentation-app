@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="article-appreciation-system">
     <!-- ARTICLE SUBCATEGORY, SECTION START -->
     <div class="article-subcategory">
       <p>
@@ -141,12 +141,15 @@ export default {
           text: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.message'),
           confirmButtonText: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.login_button'),
           showCancelButton: true,
-          cancelButtonText: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.cancel_button')
+          cancelButtonText: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.cancel_button'),
+          reverseButtons: true,
+          allowOutsideClick: false,
+          allowEscapeKey: false
         }).then((result) => {
           if (result.isConfirmed) {
             this.$router.push({ name: 'user.auth.login' })
           } else {
-            this.rate_article = 0
+            this.rate_article = this.blogArticleAverageRating
           }
         })
       } else {
@@ -188,6 +191,8 @@ export default {
                 }).then((result) => {
                   window.location.reload()
                 })
+              } else {
+                this.rate_article = this.blogArticleAverageRating
               }
             })
           }
@@ -202,7 +207,10 @@ export default {
           text: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.message'),
           confirmButtonText: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.login_button'),
           showCancelButton: true,
-          cancelButtonText: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.cancel_button')
+          cancelButtonText: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.cancel_button'),
+          reverseButtons: true,
+          allowOutsideClick: false,
+          allowEscapeKey: false
         }).then((result) => {
           if (result.isConfirmed) {
             this.$router.push({ name: 'user.auth.login' })
@@ -263,7 +271,10 @@ export default {
           text: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.message'),
           confirmButtonText: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.login_button'),
           showCancelButton: true,
-          cancelButtonText: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.cancel_button')
+          cancelButtonText: this.$t('user.blog_system_pages.general_settings.appreciation_menu.swal_article.cancel_button'),
+          reverseButtons: true,
+          allowOutsideClick: false,
+          allowEscapeKey: false
         }).then((result) => {
           if (result.isConfirmed) {
             this.$router.push({ name: 'user.auth.login' })

@@ -75,11 +75,16 @@ $lvContainerPageAudioArticleFont: 'Merriweather Sans Bold', sans-serif;
         @include button();
     }
 }
-
+.lv-pg-audio-body {
+    width: 100%;
+}
 .lv-pg-audio-article {
     @include flex-center();
     flex-direction: column;
     margin: rem-convertor(120px) 0rem;
+    ::selection {
+        background-color: map-get($lvContainerPageAudioArticle, "card_background_color");
+    }
     &-header {
         & h1 {
             margin-bottom: rem-convertor(50px);
@@ -91,11 +96,21 @@ $lvContainerPageAudioArticleFont: 'Merriweather Sans Bold', sans-serif;
         & .audio-article-header {
             display: flex;
             align-items: center;
+            @media only screen and (max-width: 539px) and (min-width: 320px) {
+                flex-direction: column;
+            }
             &-img, &-author, &-publish-date, &-reading-time, &-no-comments {
                 margin-right: rem-convertor(5px);
+                @media only screen and (max-width: 640px) and (min-width: 540px) {
+                    margin-right: rem-convertor(2.5px);
+                }
                 & img, & span {
                     margin-right: rem-convertor(5px);
                     margin-left: rem-convertor(5px);
+                    @media only screen and (max-width: 575px) and (min-width: 320px) {
+                        margin-right: 0rem;
+                        margin-left: 0rem;
+                    }
                 }
                 & span {
                     font-style: italic;
@@ -138,11 +153,21 @@ $lvContainerPageAudioArticleFont: 'Merriweather Sans Bold', sans-serif;
         & .audio-article-body-content-bottom-btm {
             flex-direction: column;
         }
+        & .audio-article-appreciation-system {
+            user-select: none;
+            @media only screen and (max-width: 475px) and (min-width: 320px) {
+                flex-direction: column;
+            }
+        }
         & .audio-article-rate {
             & p {
                 display: flex;
                 align-items: center;
                 margin-bottom: rem-convertor(0px);
+                @media only screen and (max-width: 475px) and (min-width: 320px) {
+                    align-items: flex-start;
+                    flex-direction: column;
+                }
                 & .Rate {
                     display: flex;
                     &__star {
@@ -166,7 +191,7 @@ $lvContainerPageAudioArticleFont: 'Merriweather Sans Bold', sans-serif;
             & p {
                 display: flex;
                 align-items: center;
-                margin-bottom: rem-convertor(0px);
+                margin-bottom: rem-convertor(8px);
                 & a {
                     color: inherit;
                     font-style: italic;
@@ -308,6 +333,9 @@ $lvContainerPageAudioArticleFont: 'Merriweather Sans Bold', sans-serif;
                     border: rem-convertor(0px) !important;
                     border-radius: rem-convertor(0px);
                     margin: rem-convertor(16px) 0rem;
+                    ::selection {
+                        background-color: map-get($lvContainerPageAudioArticle, "reply_comment_btn_bg_color");
+                    }
                     & .card-title {
                         margin-bottom: rem-convertor(16px);
                         & h5 {
@@ -327,11 +355,25 @@ $lvContainerPageAudioArticleFont: 'Merriweather Sans Bold', sans-serif;
                         height: rem-convertor(40px);
                         background-color: map-get($lvContainerPageAudioArticle, "reply_comment_btn_bg_color");
                         border-color: map-get($lvContainerPageAudioArticle, "reply_comment_btn_bg_color");
+                        &:last-child {
+                            @media only screen and (max-width: 375px) and (min-width: 320px) {
+                                margin-right: 0rem;
+                            }
+                        }
                     }
                 }
                 &-reply-card {
                     margin-left: rem-convertor(16px);
                     width: auto;
+                    @media only screen and (max-width: 375px) and (min-width: 320px) {
+                        margin-left: 0rem;
+                    }
+                }
+                &-show {
+                    @include flex-center();
+                    & .btn {
+                        margin-right: 0rem;
+                    }
                 }
             }
         }

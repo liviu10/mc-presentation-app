@@ -145,18 +145,18 @@ export default {
         .catch(error => {
           this.senderFullName = error.response.config.full_name
           this.senderEmailAddress = error.response.config.email
-          Swal.fire({
-            title: this.$t('user.contact_me_page.contact_form.swal_error.title', { senderFullName: this.senderFullName }),
-            text: this.$t('user.contact_me_page.contact_form.swal_error.message', { senderEmailAddress: this.senderEmailAddress }),
-            imageUrl: this.displayRandomNewsletterImage(this.newsletterImages),
-            imageWidth: 259,
-            imageHeight: 194
-          }).then((result) => {
-            this.form.full_name = null
-            this.form.email = null
-            this.form.message = null
-            this.form.privacy_policy = null
-          })
+          if (error.response.status === 406 || error.response.status === 500) {
+            Swal.fire({
+              title: this.$t('user.contact_me_page.contact_form.swal_error.title', { senderFullName: this.senderFullName }),
+              text: this.$t('user.contact_me_page.contact_form.swal_error.message', { senderEmailAddress: this.senderEmailAddress })
+            })
+          }
+          if (error.response.status === 422) {
+            Swal.fire({
+              title: this.$t('user.contact_me_page.contact_form.swal_warning.title'),
+              text: this.$t('user.contact_me_page.contact_form.swal_warning.message')
+            })
+          }
         })
     }
   },

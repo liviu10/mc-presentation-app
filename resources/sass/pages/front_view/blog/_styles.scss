@@ -88,9 +88,6 @@ $font_color: inherit;
                 & audio {
                     width: 100%;
                 }
-                &:last-of-type {
-                    @include flex-center();
-                }
             }
             & .aplayer {
                 margin: 0rem !important;

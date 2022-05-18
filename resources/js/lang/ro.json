@@ -67,7 +67,9 @@
           "swal_confirmation": {
             "title": "Dezabonare cu success!",
             "message": "Te-ai dezabonat cu success de la newsletter-ul meu! Totuși încă mă găsești pe: "
-          }
+          },
+          "wrong_email_input": "Adresa de email pe care ai inserat-o nu este validă! Te rog reîncearcă cu una validă!",
+          "empty_email_input": "Te rog inserează adresa ta email!"
         }
       },
       "copyright": {
@@ -151,19 +153,20 @@
           "dislike": "Nu apreciez",
           "rate": "Evaluează: ",
           "facebook": "Distribuie pe Facebook!",
+          "instagram": "Distribuie pe Instagram!",
           "swal_article": {
             "title": "Apreciere articol",
             "message": "Sunt încântată că dorești să evaluezi acest articol, dar pentru a face acest lucru trebuie să te autentifici în contul tău!",
             "add_comment": "Sunt încântată că dorești să lași un comentariu, dar pentru a face acest lucru trebuie să te autentifici în contul tău!",
             "comments": "Sunt încântată că dorești să evaluezi acest comentariu, dar pentru a face acest lucru trebuie să te autentifici în contul tău!",
             "login_button": "Autentificare",
-            "cancel_button": "Close"
+            "cancel_button": "Închide"
           },
           "swal_article_positive": {
             "title": "Mulțumesc, {fullName}!",
             "message": "Evaluarea ta a fost adăugată cu success!",
             "already_message": "Evaluarea ta a fost deja înregistrată!",
-            "add_comment": "Comentariul ta a fost adăugat cu success!",
+            "add_comment": "Comentariul tău a fost adăugat cu success!",
             "deny_like": "Șterge evaluarea!"
           },
           "rating_system": {
@@ -202,7 +205,9 @@
             "line_2": " pe "
           },
           "open_reply_comment_form": "Răspunde",
-          "close_reply_comment_form": "Anulează"
+          "close_reply_comment_form": "Anulează",
+          "show_comment_replies": "Afişează răspunsurile",
+          "hide_comment_replies": "Ascunde răspunsurile"
         }
       }
     },
@@ -241,6 +246,10 @@
         "swal_error": {
           "title": "Mulțumesc, {senderFullName}!",
           "message": "Sunt recunoscătoare pentru mesajul pe care vrei să mi-l trimiţi! Dar, din nefericire adresa de email: {senderEmailAddress} pe care ai introdus-o este invalidă! Te rog, să reîncerci cu una validă!"
+        },
+        "swal_warning": {
+          "title": "Mulțumesc!",
+          "message": "Sunt recunoscătoare pentru mesajul pe care vrei să mi-l trimiţi! Dar, câmpurile acestui formular trebuie completate!"
         }
       }
     },

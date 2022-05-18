@@ -17,21 +17,35 @@
                                    :comment-likes="articleComment.blog_article_comment_like"
                                    :comment-dislikes="articleComment.blog_article_comment_dislike"
         />
-        <div v-if="articleComment.blog_article_comment_replies">
-          <div v-for="articleCommentReply in articleComment.blog_article_comment_replies" :key="articleCommentReply.id" class="card article-comments-list-reply-card">
-            <div class="card-body">
-              <h5 class="card-title">
-                <span>{{ articleCommentReply.full_name }}</span> {{ $t('user.blog_system_pages.general_settings.comment_section.added_on_alternative.line_1') }}
-                <span>{{ articleComment.full_name }}</span> {{ $t('user.blog_system_pages.general_settings.comment_section.added_on_alternative.line_2') }}
-                <span>{{ new Date(articleCommentReply.created_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}</span>
-              </h5>
-              <p class="card-text">
-                {{ articleCommentReply.comment_reply }}
-              </p>
-              <respond-to-comment-reply-form :comment-reply-id="articleCommentReply.id"
-                                             :comment-reply-likes="articleCommentReply.blog_article_comment_reply_like"
-                                             :comment-reply-dislikes="articleCommentReply.blog_article_comment_reply_dislike"
-              />
+        <div v-if="articleComment.blog_article_comment_replies.length" class="article-comments-list-show">
+          <button class="btn btn-primary text-center" @click="displayCommentReplies()">
+            <span v-if="!showCommentReplies">
+              <fa :icon="['fa', 'angle-down']" fixed-width />&nbsp;
+              {{ $t('user.blog_system_pages.general_settings.comment_section.show_comment_replies') }}
+            </span>
+            <span v-else>
+              <fa :icon="['fa', 'angle-up']" fixed-width />&nbsp;
+              {{ $t('user.blog_system_pages.general_settings.comment_section.hide_comment_replies') }}
+            </span>
+          </button>
+        </div>
+        <div v-show="showCommentReplies">
+          <div v-if="articleComment.blog_article_comment_replies">
+            <div v-for="articleCommentReply in articleComment.blog_article_comment_replies" :key="articleCommentReply.id" class="card article-comments-list-reply-card">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <span>{{ articleCommentReply.full_name }}</span> {{ $t('user.blog_system_pages.general_settings.comment_section.added_on_alternative.line_1') }}
+                  <span>{{ articleComment.full_name }}</span> {{ $t('user.blog_system_pages.general_settings.comment_section.added_on_alternative.line_2') }}
+                  <span>{{ new Date(articleCommentReply.created_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}</span>
+                </h5>
+                <p class="card-text">
+                  {{ articleCommentReply.comment_reply }}
+                </p>
+                <respond-to-comment-reply-form :comment-reply-id="articleCommentReply.id"
+                                               :comment-reply-likes="articleCommentReply.blog_article_comment_reply_like"
+                                               :comment-reply-dislikes="articleCommentReply.blog_article_comment_reply_dislike"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -55,6 +69,16 @@ export default {
     blogArticleComments: {
       default: null,
       type: Array
+    }
+  },
+  data: function () {
+    return {
+      showCommentReplies: false
+    }
+  },
+  methods: {
+    displayCommentReplies () {
+      this.showCommentReplies = !this.showCommentReplies
     }
   }
 }

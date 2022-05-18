@@ -100,11 +100,10 @@ class SubscribeToNewsletterController extends Controller
             }
             else
             {
-                // TODO: running this command on ubuntu will freeze the whole server because the request will always remain on pending
                 // The email provider and the domain does not exist in the accepted domain list
                 $completeEmailProvider = substr(strstr($request->get('email'), '@'), 1);
                 escapeshellcmd(exec('ping ' . escapeshellarg($completeEmailProvider), $output, $value));
-                if ($value === 1) 
+                if ($value === 1 || $value === 2) 
                 {
                     return response([], 406);
                 }

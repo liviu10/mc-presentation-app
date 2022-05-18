@@ -97,7 +97,7 @@ return [
     'password' => 'Parola este incorectă.',
     'present' => 'Câmpul :attribute trebuie să fie vizibil.',
     'regex' => ':attribute formatul este invalid.',
-    'required' => 'Câmpul :attribute este obligatoriu.',
+    'required' => 'Câmpul :attribute este obligatoriu.aaaa',
     'required_if' => 'Câmpul :attribute este obligatoriu atunci când :other este :value.',
     'required_unless' => 'Câmpul :attribute este obligatoriu numai dacă :other conține valorile :values.',
     'required_with' => 'Câmpul :attribute este obligatoriu când valoarea :values există.',
@@ -135,6 +135,11 @@ return [
             'rule-name' => 'custom-message',
         ],
         'name' => [
+            'required'  => ':attribute sunt obligatorii.',
+            'regex'     => ':attribute conține un format invalid',
+            'max'       => ':attribute nu trebuie să depășească 255 de caractere.',
+        ],
+        'full_name' => [
             'required'  => ':attribute sunt obligatorii.',
             'regex'     => ':attribute conține un format invalid',
             'max'       => ':attribute nu trebuie să depășească 255 de caractere.',
@@ -245,6 +250,7 @@ return [
 
     'attributes' => [
         'name'                     => 'Numele și Prenumele',
+        'full_name'                => 'Numele și Prenumele',
         'email'                    => 'Adresa de Email',
         'nickname'                 => 'Nickname-ul',
         'password'                 => 'Parola',

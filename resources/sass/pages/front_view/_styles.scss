@@ -35,14 +35,20 @@
 .swal2 {
     &-popup {
         background-color: map-get($blizzard_blue, "color_blizzard_blue");
+        &.swal2-modal.swal2-show {
+            border-radius: 0rem;
+        }
     }
     &-title, &-html-container {
         color: map-get($basic_colors, "color_black");
         font-family: inherit;
     }
-    &-styled.swal2-confirm {
+    &-styled.swal2-confirm, &-styled.swal2-cancel, &-styled.swal2-deny {
         @include button();
         font-family: inherit;
+    }
+    &-styled.swal2-deny {
+        background-color: map-get($map: $basic_colors, $key: "color_red");
     }
     &-icon.swal2-success {
         border-color: $background_color;

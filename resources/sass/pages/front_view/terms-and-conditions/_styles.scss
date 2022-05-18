@@ -1,6 +1,9 @@
 @import '../../../components/front_view/partials/_button.scss';
 
 .lv-pg-terms {
+    ::selection {
+        background-color: map-get($complementary_blizzard_blue, "color_sea_nymph");
+    }
     @media only screen and (max-width: 475px) {
         padding-right: 0rem !important;
         padding-left: 0rem !important;

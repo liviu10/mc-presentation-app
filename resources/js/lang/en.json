@@ -67,7 +67,9 @@
           "swal_confirmation": {
             "title": "Successfully unsubscribed!",
             "message": "You have successfully unsubscribed from my newsletter! You can still find me on: "
-          }
+          },
+          "wrong_email_input": "The email address you have inserted is not valid! Please try again with a valid one!",
+          "empty_email_input": "Please insert your email address!"
         }
       },
       "copyright": {
@@ -151,6 +153,7 @@
           "dislike": "Dislike",
           "rate": "Rate: ",
           "facebook": "Share on Facebook!",
+          "instagram": "Share on Instagram!",
           "swal_article": {
             "title": "Appreciate article",
             "message": "I am thrilled that you whish to evaluate this article, but in order to do this you have to login into your account!",
@@ -202,7 +205,9 @@
             "line_2": " on "
           },
           "open_reply_comment_form": "Respond",
-          "close_reply_comment_form": "Cancel"
+          "close_reply_comment_form": "Cancel",
+          "show_comment_replies": "Show replies",
+          "hide_comment_replies": "Hide replies"
         }
       }
     },
@@ -241,6 +246,10 @@
         "swal_error": {
           "title": "Thank you, {senderFullName}!",
           "message": "I am grateful for the message you whish to send me! Unfortunately, the email address: {senderEmailAddress} you have inserted is invalid! Please try again with a valid one!"
+        },
+        "swal_warning": {
+          "title": "Thank you!",
+          "message": "I am grateful for the message you whish to send me! But, the fields of this form must be filled in!"
         }
       }
     },
