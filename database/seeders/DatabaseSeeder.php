@@ -13,25 +13,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
         $this->call([
-            UserRoleTypeSeeder::class,
-            UserSeeder::class,
-            ErrorAndNotificationSystemSeeder::class,
+            AcceptedDomainSeeder::class,
+            BlogArticlesSeeder::class,
             BlogCategoriesSeeder::class,
             BlogSubcategoriesSeeder::class,
-            BlogArticlesSeeder::class,
-            BlogArticleCommentsSeeder::class,
-            BlogArticleCommentRepliesSeeder::class,
-            QuestionnaireSeeder::class,
-            // QuestionnaireQuestionTypeSeeder::class,
-            QuestionnaireQuestionSeeder::class,
-            QuestionnaireMediaTypeSeeder::class,
-            QuestionnaireAnswerSeeder::class,
+            ErrorAndNotificationSystemSeeder::class,
             NewsletterCampaignSeeder::class,
             NewsletterKpiSeeder::class,
-            AcceptedDomainSeeder::class,
+            QuestionnaireSeeder::class,
+            UserRoleTypeSeeder::class,
+            UserSeeder::class,
         ]);
-        \App\Models\NewsletterSubscriber::factory(15)->create();
     }
 }
