@@ -96,6 +96,7 @@ $lvContainerPageAudioArticleFont: 'Merriweather Sans Bold', sans-serif;
         & .audio-article-header {
             display: flex;
             align-items: center;
+            user-select: none;
             @media only screen and (max-width: 539px) and (min-width: 320px) {
                 flex-direction: column;
             }

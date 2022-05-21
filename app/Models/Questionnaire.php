@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class EventBooking extends Model
+class Questionnaire extends Model
 {
     use HasFactory;
 
@@ -14,7 +14,7 @@ class EventBooking extends Model
      * 
      * @var string
      */
-    protected $table = 'event_bookings';
+    protected $table = 'questionnaires';
 
     /**
      * The primary key associated with the table.
@@ -31,30 +31,15 @@ class EventBooking extends Model
     protected $keyType = 'int';
 
     /**
-     * The foreign key associated with the table.
-     * 
-     * @var string
-     */
-    protected $foreignKey = 'event_id';
-
-    /**
-     * The data type of the foreign key.
-     *
-     * @var string
-     */
-    protected $foreignKeyType = 'int';
-
-    /**
      * The attributes that are mass assignable.
      * 
      * @var string
      */
     protected $fillable = [
-        'full_name',
-        'email',
-        'phone',
-        'booking_notes',
-        'privacy_policy',
+        'title',
+        'scope',
+        'description',
+        'is_active',
     ];
 
     /**
@@ -63,7 +48,7 @@ class EventBooking extends Model
      * @var string
      */
     protected $attributes = [
-        'privacy_policy' => false,
+        'is_active' => false,
     ];
 
     /**
@@ -74,15 +59,27 @@ class EventBooking extends Model
     protected $guarded = [
         'id',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'deleted_at',
     ];
 
-    /**
-     * Eloquent relationship between Events and Event Bookings.
-     * Many event bookings may have only one event.
-     */
-    public function event()
+    public function scopeIsActive ($query) 
     {
-        return $this->belongsTo('App\Models\Event');
+        return $query->where('is_active', true);
+    }
+
+    public function scopeIsNotActive ($query) 
+    {
+        return $query->where('is_active', false);
+    }
+
+    /**
+     * Eloquent relationship between questionnaires and questionnaire_questions.
+     * One questionnaire may have one or more questionnaire questions.
+     *
+     */
+    public function questionnaire_questions()
+    {
+        return $this->hasMany('App\Models\Questionnaire\QuestionnaireQuestion');
     }
 }

@@ -50,7 +50,11 @@ class BlogArticle extends Model
         'blog_article_time',
         'blog_article_title',
         'blog_article_short_description',
-        'blog_article_content',
+        'blog_article_content_section_1',
+        'blog_article_content_section_2',
+        'blog_article_content_section_3',
+        'blog_article_content_section_4',
+        'blog_article_content_section_5',
         'blog_article_path',
         'blog_article_is_active',
     ];

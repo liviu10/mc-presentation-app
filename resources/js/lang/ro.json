@@ -14,7 +14,7 @@
       "main_menu": {
         "first_button": "Acasă",
         "second_button": "Blog",
-        "third_button": "Programare",
+        "third_button": "Reflexie",
         "forth_button": "Despre mine",
         "fifth_button": "Contactează-mă",
         "sixth_button": "Autentificare"
@@ -27,7 +27,7 @@
         "section_1": {
           "first_button": "Acasă",
           "second_button": "Blog",
-          "third_button": "Programare",
+          "third_button": "Reflexie",
           "forth_button": "Despre mine",
           "fifth_button": "Contactează-mă",
           "sixth_button": "Newsletter"
@@ -82,7 +82,7 @@
         "find_out_more_btn": "Află mai multe!"
       },
       "heading": {
-        "schedule_appointment_btn": "Programează-te!"
+        "schedule_appointment_btn": "Să ne cunoaştem mai bine!"
       },
       "newsletter": {
         "section_title": "Abonare la newsletter",
@@ -212,7 +212,7 @@
       }
     },
     "schedule_appointment_page": {
-      "page_title": "Programează o întâlnire",
+      "page_title": "Să ne cunoaştem mai bine",
       "start_questionnaire": {
         "page_title": "Începe chestionarul"
       }

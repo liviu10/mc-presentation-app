@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Questionnaire\Questionnaire;
+use App\Models\Questionnaire;
 
 class QuestionnaireSeeder extends Seeder
 {

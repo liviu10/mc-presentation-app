@@ -4,13 +4,11 @@ namespace App\Http\Controllers\User\ScheduleAppointmentPage;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Questionnaire\Questionnaire;
-use App\Models\Questionnaire\QuestionnaireResponse;
+use App\Models\Questionnaire;
 
 class QuestionnaireAppointmentController extends Controller
 {
     protected $modelNameQuestionnaire;
-    protected $modelNameQuestionnaireResponse;
 
     /**
      * Instantiate the variables that will be used to get the model.
@@ -20,7 +18,6 @@ class QuestionnaireAppointmentController extends Controller
     public function __construct()
     {
         $this->modelNameQuestionnaire = new Questionnaire();
-        $this->modelNameQuestionnaireResponse = new QuestionnaireResponse();
     }
 
     /**
@@ -56,47 +53,6 @@ class QuestionnaireAppointmentController extends Controller
                 'http_response_code' => 200,
                 'records'            => $allQuestionnaires,
             ], 200);
-        }
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        try 
-        {
-            $records = $this->modelNameQuestionnaireResponse->create([
-                'questionnaire_answer_id' => $request->get('questionnaire_answer_id'),
-                'response_1' => $request->get('response_1'),
-                'response_2' => $request->get('response_2'),
-                'response_3' => $request->get('response_3'),
-                'response_4' => $request->get('response_4'),
-                'response_5' => $request->get('response_5'),
-            ]);
-            $apiInsertSingleRecord = [
-                'questionnaire_answer_id' => $request->get('questionnaire_answer_id'),
-                'response_1' => $request->get('response_1'),
-                'response_2' => $request->get('response_2'),
-                'response_3' => $request->get('response_3'),
-                'response_4' => $request->get('response_4'),
-                'response_5' => $request->get('response_5'),
-            ];
-            return response()->json(true);
-        }
-        catch  (\Illuminate\Database\QueryException $mysqlError)
-        {
-            if ($mysqlError->getCode() === '42S02') 
-            {
-                return response([], 500)->json();
-            }
-            if ($mysqlError->getCode() === '42S22') 
-            {
-                return response([], 500)->json();
-            }
         }
     }
 

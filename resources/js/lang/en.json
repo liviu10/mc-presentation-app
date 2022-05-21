@@ -14,7 +14,7 @@
       "main_menu": {
         "first_button": "Home",
         "second_button": "Blog",
-        "third_button": "Schedule",
+        "third_button": "Reflection",
         "forth_button": "About me",
         "fifth_button": "Contact me",
         "sixth_button": "Login"
@@ -27,7 +27,7 @@
         "section_1": {
           "first_button": "Home",
           "second_button": "Blog",
-          "third_button": "Schedule",
+          "third_button": "Reflection",
           "forth_button": "About me",
           "fifth_button": "Contact me",
           "sixth_button": "Newsletter"
@@ -82,7 +82,7 @@
         "find_out_more_btn": "Find out more!"
       },
       "heading": {
-        "schedule_appointment_btn": "Schedule!"
+        "schedule_appointment_btn": "To know each other better!"
       },
       "newsletter": {
         "section_title": "Subscribe to newsletter",
@@ -212,7 +212,7 @@
       }
     },
     "schedule_appointment_page": {
-      "page_title": "Schedule a meeting",
+      "page_title": "To know each other better",
       "start_questionnaire": {
         "page_title": "Begin the questionnaire"
       }
