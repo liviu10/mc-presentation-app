@@ -55,6 +55,7 @@ class BlogArticle extends Model
         'blog_article_content_section_3',
         'blog_article_content_section_4',
         'blog_article_content_section_5',
+        'blog_article_media_url',
         'blog_article_path',
         'blog_article_is_active',
     ];

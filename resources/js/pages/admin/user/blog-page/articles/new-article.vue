@@ -6,32 +6,29 @@
           <h1>ADMIN CREATE NEW BLOG ARTICLES</h1>
         </div>
         <div class="lv-pg-admin-body">
-          <form @submit.prevent="createNewArticle" @keydown="form.onKeydown($event)">
+          <form @submit.prevent="publishArticle" @keydown="form.onKeydown($event)">
             <!-- BLOG SUBCATEGORY, SECTION START -->
             <div class="col col-12 my-3 lv-pg-admin-body-blog-subcategory">
               <label class="col-form-label">
                 Select the blog subcategory for this article
-                <div id="blog_subcategory_id_help" class="form-text mt-0">
+                <div id="blog_subcategory_help" class="form-text mt-0">
                   You can select only one blog subcategory. Each of the three blog categories will generate its specific template for writing articles.
                 </div>
               </label>
-              <select id="blog_subcategory_id"
-                      v-model="form.blog_subcategory_id"
+              <select id="blog_subcategory"
+                      v-model="form.blog_subcategory"
                       class="form-select"
-                      :class="{ 'is-invalid': form.errors.has('blog_subcategory_id') }"
-                      name="blog_subcategory_id"
+                      :class="{ 'is-invalid': form.errors.has('blog_subcategory') }"
+                      name="blog_subcategory"
                       aria-label="Default select example"
               >
-                <!-- <option v-for="subcategory in displayAllBlogCategoriesAndSubcategories" :key="subcategory.id" :value="subcategory.id">
-                  {{ subcategory.blog_category_title }}
-                </option> -->
                 <optgroup v-for="category in displayAllBlogCategoriesAndSubcategories" :key="category.id" :label="'Category: ' + category.blog_category_title">
-                  <option v-for="subcategory in category.blog_subcategories" :key="subcategory.id" :value="subcategory.id">
+                  <option v-for="subcategory in category.blog_subcategories" :key="subcategory.id" :value="subcategory">
                     {{ subcategory.blog_subcategory_title }}
                   </option>
                 </optgroup>
               </select>
-              <has-error :form="form" field="blog_subcategory_id" />
+              <has-error :form="form" field="blog_subcategory" />
             </div>
             <!-- BLOG SUBCATEGORY, SECTION END -->
 
@@ -76,20 +73,32 @@
             <div class="col col-12 my-3 lv-pg-admin-body-blog-media">
               <label class="col-form-label">
                 Article media
-                <div id="blog_article_image_url_help" class="form-text mt-0">
-                  Blog article media refers to image, audio or video that you whish to include in your article. Based on your blog subcategory selection, this section will be different
+                <div id="blog_article_media_url_help" class="form-text mt-0">
+                  Blog article media refers to image, audio or video content that you whish to include in your article. Based on your blog subcategory selection, this section will be different
                   (eg. if you select a subcategory that belongs to Written blog articles category, you can upload a picture)
                 </div>
               </label>
-              <input id="blog_article_image_url"
+              <input v-if="form.blog_subcategory && form.blog_subcategory.blog_category_id === 1"
+                     id="blog_article_media_url"
                      type="file"
-                     :class="{ 'is-invalid': form.errors.has('blog_article_image_url') }"
+                     :class="{ 'is-invalid': form.errors.has('blog_article_media_url') }"
                      class="form-control"
-                     name="blog_article_image_url"
+                     name="blog_article_media_url"
                      accept="image/png, image/jpeg, image/jpg"
                      @change="uploadBlogArticleImage($event)"
               >
-              <has-error :form="form" field="blog_article_image_url" />
+              <input v-else-if="form.blog_subcategory && (form.blog_subcategory.blog_category_id === 2 || form.blog_subcategory.blog_category_id === 3)"
+                     id="blog_article_media_url"
+                     v-model="form.blog_article_media_url"
+                     type="text"
+                     :class="{ 'is-invalid': form.errors.has('blog_article_media_url') }"
+                     class="form-control"
+                     name="blog_article_media_url"
+              >
+              <p v-else>
+                In order to upload your first media content, please choose a blog subcategory!
+              </p>
+              <has-error :form="form" field="blog_article_media_url" />
             </div>
             <!-- BLOG ARTICLE MEDIA, SECTION END -->
 
@@ -103,31 +112,26 @@
                 </div>
               </label>
             </div>
-            <div class="col col-12 my-3 lv-pg-admin-body-blog-content-section">
-              <label class="col-form-label">
-                Section 1
-              </label>
-              <textarea id="blog_article_content_section_1"
-                        v-model="form.blog_article_content.section_1"
-                        type="text"
-                        :class="{ 'is-invalid': form.errors.has('blog_article_content.section_1') }"
-                        class="form-control"
-                        name="blog_article_content_section_1"
-                        rows="8"
-                        style="resize:none"
-              />
-              <has-error :form="form" field="blog_article_content_section_1" />
-            </div>
-            <div class="col col-12 my-3 lv-pg-admin-body-blog-content-button">
-              <button type="button" class="btn btn-success" :hidden="settings.section_1.hideShowNextSectionButton" @click="showSection2()">
-                <fa icon="plus" fixed-width /> Add a new section
-              </button>
-            </div>
-
-            <div v-if="settings.section_1.displaySection2">
+            <div v-if="form.blog_subcategory && form.blog_subcategory.blog_category_id === 1">
               <div class="col col-12 my-3 lv-pg-admin-body-blog-content-section">
                 <label class="col-form-label">
-                  Section 2
+                  Paragraph 1
+                </label>
+                <textarea id="blog_article_content_section_1"
+                          v-model="form.blog_article_content.section_1"
+                          type="text"
+                          :class="{ 'is-invalid': form.errors.has('blog_article_content.section_1') }"
+                          class="form-control"
+                          name="blog_article_content_section_1"
+                          rows="8"
+                          style="resize:none"
+                />
+                <has-error :form="form" field="blog_article_content_section_1" />
+              </div>
+
+              <div class="col col-12 my-3 lv-pg-admin-body-blog-content-section">
+                <label class="col-form-label">
+                  Paragraph 2
                 </label>
                 <textarea id="blog_article_content_section_2"
                           v-model="form.blog_article_content.section_2"
@@ -140,20 +144,10 @@
                 />
                 <has-error :form="form" field="blog_article_content_section_2" />
               </div>
-              <div class="col col-12 my-3 lv-pg-admin-body-blog-content-button">
-                <button type="button" class="btn btn-success" :hidden="settings.section_2.hideShowNextSectionButton" @click="showSection3()">
-                  <fa icon="plus" fixed-width /> Add a new section
-                </button>
-                <button type="button" class="btn btn-warning" :hidden="settings.section_2.hideRemoveCurrentSectionButton" @click="removeSection2()">
-                  <fa icon="times" fixed-width /> Remove section
-                </button>
-              </div>
-            </div>
 
-            <div v-if="settings.section_2.displaySection3">
               <div class="col col-12 my-3 lv-pg-admin-body-blog-content-section">
                 <label class="col-form-label">
-                  Section 3
+                  Paragraph 3
                 </label>
                 <textarea id="blog_article_content_section_3"
                           v-model="form.blog_article_content.section_3"
@@ -166,20 +160,10 @@
                 />
                 <has-error :form="form" field="blog_article_content_section_3" />
               </div>
-              <div class="col col-12 my-3 lv-pg-admin-body-blog-content-button">
-                <button type="button" class="btn btn-success" :hidden="settings.section_3.hideShowNextSectionButton" @click="showSection4()">
-                  <fa icon="plus" fixed-width /> Add a new section
-                </button>
-                <button type="button" class="btn btn-warning" :hidden="settings.section_3.hideRemoveCurrentSectionButton" @click="removeSection3()">
-                  <fa icon="times" fixed-width /> Remove section
-                </button>
-              </div>
-            </div>
 
-            <div v-if="settings.section_3.displaySection4">
               <div class="col col-12 my-3 lv-pg-admin-body-blog-content-section">
                 <label class="col-form-label">
-                  Section 4
+                  Paragraph 4
                 </label>
                 <textarea id="blog_article_content_section_4"
                           v-model="form.blog_article_content.section_4"
@@ -192,20 +176,10 @@
                 />
                 <has-error :form="form" field="blog_article_content_section_4" />
               </div>
-              <div class="col col-12 my-3 lv-pg-admin-body-blog-content-button">
-                <button type="button" class="btn btn-success" :hidden="settings.section_4.hideShowNextSectionButton" @click="showSection5()">
-                  <fa icon="plus" fixed-width /> Add a new section
-                </button>
-                <button type="button" class="btn btn-warning" :hidden="settings.section_4.hideRemoveCurrentSectionButton" @click="removeSection4()">
-                  <fa icon="times" fixed-width /> Remove section
-                </button>
-              </div>
-            </div>
 
-            <div v-if="settings.section_4.displaySection5">
               <div class="col col-12 my-3 lv-pg-admin-body-blog-content-section">
                 <label class="col-form-label">
-                  Section 5
+                  Paragraph 5
                 </label>
                 <textarea id="blog_article_content_section_5"
                           v-model="form.blog_article_content.section_5"
@@ -218,11 +192,28 @@
                 />
                 <has-error :form="form" field="blog_article_content_section_5" />
               </div>
-              <div class="col col-12 my-3 lv-pg-admin-body-blog-content-button">
-                <button type="button" class="btn btn-warning" @click="removeSection5()">
-                  <fa icon="times" fixed-width /> Remove section
-                </button>
+            </div>
+            <div v-else-if="form.blog_subcategory && (form.blog_subcategory.blog_category_id === 2 || form.blog_subcategory.blog_category_id === 3)">
+              <div class="col col-12 my-3 lv-pg-admin-body-blog-content-section">
+                <label class="col-form-label">
+                  Paragraph
+                </label>
+                <textarea id="blog_article_content_section_1"
+                          v-model="form.blog_article_content.section_1"
+                          type="text"
+                          :class="{ 'is-invalid': form.errors.has('blog_article_content.section_1') }"
+                          class="form-control"
+                          name="blog_article_content_section_1"
+                          rows="8"
+                          style="resize:none"
+                />
+                <has-error :form="form" field="blog_article_content_section_1" />
               </div>
+            </div>
+            <div v-else>
+              <p>
+                In order to write your first content, please choose a blog subcategory!
+              </p>
             </div>
             <!-- BLOG ARTICLE CONTENT, SECTION END -->
 
@@ -248,22 +239,24 @@
                   Yes, activate it!
                 </option>
               </select>
-              <has-error :form="form" field="blog_subcategory_id" />
+              <has-error :form="form" field="blog_article_is_active" />
             </div>
             <!-- BLOG ARTICLE IS ACTIVE, SECTION END -->
-
-            <div class="lv-pg-admin-body-buttons">
-              <button type="button" class="btn btn-secondary">
-                Cancel
-              </button>
-              <button type="submit" class="btn btn-success" @click="publishOrSaveDraftArticle()">
-                Publish article
-              </button>
-              <button type="submit" class="btn btn-info" @click="publishOrSaveDraftArticle()">
-                Save draft
-              </button>
-            </div>
           </form>
+
+          <div class="lv-pg-admin-body-buttons">
+            <button type="button" class="btn btn-secondary" @click="cancelNewArticle()">
+              Cancel
+            </button>
+            <button v-if="form.blog_article_is_active" type="submit" class="btn btn-success" @click="publishArticle()">
+              <span v-if="form.blog_article_is_active === '0'">
+                Save article as draft
+              </span>
+              <span v-if="form.blog_article_is_active === '1'">
+                Publish article
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -288,10 +281,10 @@ export default {
   data () {
     return {
       form: new Form({
-        blog_subcategory_id: '',
+        blog_subcategory: null,
         blog_article_title: '',
-        blog_article_image_url: '',
         blog_article_short_description: '',
+        blog_article_media_url: '',
         blog_article_content: {
           section_1: '',
           section_2: '',
@@ -300,29 +293,7 @@ export default {
           section_5: ''
         },
         blog_article_is_active: false
-      }),
-      hideBlogSubcategoryList: false,
-      settings: {
-        section_1: {
-          hideShowNextSectionButton: false,
-          displaySection2: false
-        },
-        section_2: {
-          hideShowNextSectionButton: false,
-          hideRemoveCurrentSectionButton: true,
-          displaySection3: false
-        },
-        section_3: {
-          hideShowNextSectionButton: false,
-          hideRemoveCurrentSectionButton: true,
-          displaySection4: false
-        },
-        section_4: {
-          hideShowNextSectionButton: false,
-          hideRemoveCurrentSectionButton: true,
-          displaySection5: false
-        }
-      }
+      })
     }
   },
   computed: {
@@ -350,45 +321,53 @@ export default {
       fetchBlogCategoriesAndSubcategories: 'blog/fetchBlogCategoriesAndSubcategories',
       fetchBlogSubcategories: 'blog/fetchBlogSubcategories'
     }),
-    showSection2 () {
-      this.settings.section_1.hideShowNextSectionButton = true
-      this.settings.section_1.displaySection2 = true
+    cancelNewArticle () {
+      console.log('> form: ', this.form)
+      if (Object.values(this.form).every(formProperty => formProperty !== null || formProperty !== '')) {
+        Swal.fire({
+          title: 'Unsaved changes!',
+          text: 'You have started creating a new blog article but you did not finished it! Close this window and save the changes!',
+          showCancelButton: true,
+          cancelButtonText: 'Cancel',
+          confirmButtonText: 'Yes, leave the page!',
+          reverseButtons: true,
+          allowOutsideClick: false,
+          allowEscapeKey: false
+        }).then(result => {
+          if (result.isConfirmed) {
+            this.$router.push({ name: 'admin-user-blog-page' })
+            this.form.blog_subcategory = null
+            this.form.blog_article_title = ''
+            this.form.blog_article_short_description = ''
+            this.form.blog_article_media_url = ''
+            this.form.section_1 = ''
+            this.form.section_2 = ''
+            this.form.section_3 = ''
+            this.form.section_4 = ''
+            this.form.section_5 = ''
+            this.form.blog_article_is_active = false
+          }
+        })
+      }
     },
-    removeSection2 () {
-      this.settings.section_1.hideShowNextSectionButton = false
-      this.settings.section_1.displaySection2 = false
-    },
-    showSection3 () {
-      this.settings.section_2.hideShowNextSectionButton = true
-      this.settings.section_2.hideRemoveCurrentSectionButton = false
-      this.settings.section_2.displaySection3 = true
-    },
-    removeSection3 () {
-      this.settings.section_2.displaySection3 = false
-    },
-    showSection4 () {
-      this.settings.section_3.hideShowNextSectionButton = true
-      this.settings.section_3.hideRemoveCurrentSectionButton = false
-      this.settings.section_3.displaySection4 = true
-    },
-    removeSection4 () {
-      this.settings.section_3.displaySection4 = false
-    },
-    showSection5 () {
-      this.settings.section_4.hideShowNextSectionButton = true
-      this.settings.section_4.hideRemoveCurrentSectionButton = false
-      this.settings.section_4.displaySection5 = true
-    },
-    removeSection5 () {
-      this.settings.section_4.displaySection5 = false
-    },
-    async createNewArticle () {
+    async publishArticle () {
       const url = window.location.origin
-      const apiEndPoint = '/api/'
+      const apiEndPoint = '/api/admin/system/blog/create-article'
       const fullApiUrl = url + apiEndPoint
       await this.form
         .post(fullApiUrl, {
-          blog_subcategory_id: this.form.blog_subcategory_id
+          blog_subcategory: this.form.blog_subcategory.id,
+          blog_article_title: this.form.blog_article_title,
+          blog_article_short_description: this.form.blog_article_short_description,
+          blog_article_media_url: 'test', // this.form.blog_article_media_url,
+          blog_article_content: {
+            section_1: this.form.blog_article_content.section_1,
+            section_2: this.form.blog_article_content.section_2,
+            section_3: this.form.blog_article_content.section_3,
+            section_4: this.form.blog_article_content.section_4,
+            section_5: this.form.blog_article_content.section_5
+          },
+          blog_article_is_active: this.form.blog_article_is_active
         })
         .then(response => {
           this.blogSubcategoryTitle = response.data.blog_subcategory_title
@@ -396,7 +375,7 @@ export default {
             title: 'Title article created successfully',
             text: 'Body article created successfully'
           }).then((result) => {
-            this.form.blog_subcategory_id = null
+            this.form.blog_subcategory = null
           })
         })
         .catch(error => {

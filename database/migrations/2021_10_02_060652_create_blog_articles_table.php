@@ -26,6 +26,7 @@ class CreateBlogArticlesTable extends Migration
             $table->longText('blog_article_content_section_3');
             $table->longText('blog_article_content_section_4');
             $table->longText('blog_article_content_section_5');
+            $table->string('blog_article_media_url');
             $table->string('blog_article_path');
             $table->string('blog_article_is_active', 3)->default('0');
             $table->timestamps();

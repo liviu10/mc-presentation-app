@@ -47,7 +47,7 @@ class BlogCategoryController extends Controller
         ->whereIn('blog_category_title', ['ARTICOLE', 'AUDIO', 'VIDEO'])
         ->with([
             'blog_subcategories' => function ($query) {
-                $query->select('blog_category_id', 'blog_subcategory_title', 'blog_subcategory_path')->IsActive();
+                $query->select('id', 'blog_category_id', 'blog_subcategory_title', 'blog_subcategory_path')->IsActive();
             }
         ])
         ->get();

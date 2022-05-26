@@ -388,7 +388,11 @@ class BlogSubcategoryController extends Controller
                     'created_at',
                     'blog_article_time',
                     'blog_article_short_description',
-                    'blog_article_content',
+                    'blog_article_content_section_1',
+                    'blog_article_content_section_2',
+                    'blog_article_content_section_3',
+                    'blog_article_content_section_4',
+                    'blog_article_content_section_5',
                     'created_at',
                     'updated_at',
                 )

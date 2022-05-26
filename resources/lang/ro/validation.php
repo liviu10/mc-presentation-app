@@ -97,7 +97,7 @@ return [
     'password' => 'Parola este incorectă.',
     'present' => 'Câmpul :attribute trebuie să fie vizibil.',
     'regex' => ':attribute formatul este invalid.',
-    'required' => 'Câmpul :attribute este obligatoriu.aaaa',
+    'required' => 'Câmpul :attribute este obligatoriu.',
     'required_if' => 'Câmpul :attribute este obligatoriu atunci când :other este :value.',
     'required_unless' => 'Câmpul :attribute este obligatoriu numai dacă :other conține valorile :values.',
     'required_with' => 'Câmpul :attribute este obligatoriu când valoarea :values există.',

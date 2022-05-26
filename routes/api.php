@@ -180,7 +180,7 @@ use Illuminate\Support\Facades\Route;
                     Route::delete('/delete-subcategory/{id}', [BlogCategoryAndSubcategorySystemController::class, 'deleteSubcategory']);
                     // Blog articles admin API routes
                     Route::get('/display-articles', [BlogArticleAndCommentSystemController::class, 'displayArticles']);
-                    
+                    Route::post('/create-article', [BlogArticleAndCommentSystemController::class, 'createArticle']);
                     // Blog appreciation admin API routes
                     
                     // Blog comments admin API routes
