@@ -1,17 +1,13 @@
-@import '../../../utilities/_global.scss';
 @import '_social_media_icons.scss';
 @import '_form_input.scss';
 @import '_button.scss';
-
-$background_color: map-get($complementary_blizzard_blue, "color_sea_nymph");
-$font_color: inherit;
 
 .container-fluid {
     &.container-footer {
         @include flex-center();
         flex-direction: column;
         height: 15%;
-        background-color: $background_color;
+        background-color: map-get($complementary_blizzard_blue, "color_sea_nymph");
         & .container-footer-menu {
             @include flex-center();
             flex-direction: row !important;
@@ -32,7 +28,7 @@ $font_color: inherit;
                     margin-bottom: rem-convertor(0px);
                     font-weight: bold;
                     & a {
-                        color: $font_color;
+                        color: inherit;
                     }
                 }
                 & .modal {
@@ -95,7 +91,7 @@ $font_color: inherit;
                 }
                 & p {
                     margin-bottom: rem-convertor(0px);
-                    color: $font_color;
+                    color: inherit;
                     font-weight: bold;
                     user-select: none;
                     & .email {
@@ -103,7 +99,7 @@ $font_color: inherit;
                         top: rem-convertor(-3px);
                     }
                     & a {
-                        color: $font-color;
+                        color: inherit;
                         @include social-media-icon();
                     }
                     &:last-child {
@@ -116,7 +112,7 @@ $font_color: inherit;
                             top: rem-convertor(-3px);
                         }
                         & a {
-                            color: $font-color;
+                            color: inherit;
                         }
                     }
                     & .btn {
@@ -137,7 +133,7 @@ $font_color: inherit;
             width: 100%;
             & p {
                 margin-bottom: rem-convertor(0px);
-                color: $font_color !important;
+                color: inherit !important;
                 font-size: rem-convertor(14px);
                 font-weight: bold;
                 user-select: none;
@@ -147,7 +143,7 @@ $font_color: inherit;
                     }
                 }
                 & a {
-                    color: $font_color !important;
+                    color: inherit !important;
                 }
             }
         }

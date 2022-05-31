@@ -1,7 +1,4 @@
-@import '../../../../components/front_view/partials/_button.scss';
-@import '../../../../components/front_view/partials/_form_input.scss';
-
-.lv-pg-login {
+.lv-pg-login, .lv-pg-register, .lv-pg-reset-password {
     width: 50%;
     & .card {
         border-width: 0rem;
@@ -30,7 +27,7 @@
                 border-radius: rem-convertor(0px);
                 height: rem-convertor(60px);
             }
-            & input[type="email"]:focus, input[type="password"]:focus {
+            & input[type="text"]:focus, & input[type="email"]:focus, input[type="password"]:focus {
                 border-color: map-get($basic_colors, "color_black");
                 box-shadow: 0 rem-convertor(1px) rem-convertor(1px) transparent inset, 0 0 rem-convertor(8px) transparent;
                 outline: 0 none;
@@ -98,6 +95,46 @@
                     width: 100%;
                     height: rem-convertor(60px);
                     text-transform: uppercase;
+                }
+            }
+        }
+    }
+}
+.lv-pg-reset-password {
+    @include flex-center();
+    height: 100vh;
+    width: 100%;
+    @media only screen and (min-width: 768px) {
+        height: 78vh;
+    }
+    @media only screen and (max-width: 767px) and (min-width: 320px) {
+        height: 76vh;
+    }
+    & .card {
+        width: 100%;
+        &-body {
+            form {
+                & .alert {
+                    margin-bottom: 0rem;
+                    border-radius: 0rem;
+                }
+                & .form-button {
+                    justify-content: space-around;
+                    align-items: center;
+                    @media only screen and (max-width: 575px) and (min-width: 320px) {
+                        flex-direction: column;
+                    }
+                    & .col-md-6 {
+                        width: 40%;
+                        @media only screen and (max-width: 575px) and (min-width: 320px) {
+                            width: 100%;
+                        }
+                        &:first-of-type {
+                            @media only screen and (max-width: 575px) and (min-width: 320px) {
+                                margin-bottom: rem-convertor(8px);
+                            }
+                        }
+                    }
                 }
             }
         }

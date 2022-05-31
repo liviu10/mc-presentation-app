@@ -1,15 +1,3 @@
-$lvTimeline: (
-    timeline_arrow_bg_color:         map-get($basic_colors, "color_black_olive"),
-    timeline_connector_color:        map-get($basic_colors, "color_black_olive"),
-    timeline_event_bg_color:         map-get($complementary_blizzard_blue, "color_sea_nymph"),
-    timeline_scrollbar_color:        map-get($complementary_blizzard_blue, "color_sea_nymph"),
-    expanded_image_bg_color:         map-get($blizzard_blue, "color_blizzard_blue"),
-    expanded_image_bg_color_btn:     map-get($complementary_blizzard_blue, "color_sea_nymph"),
-    expanded_image_border_color_btn: map-get($complementary_blizzard_blue, "color_sea_nymph"),
-    expanded_image_border_color:     map-get($complementary_blizzard_blue, "color_sea_nymph"),
-    expanded_image_font_color_btn:   map-get($basic_colors, "color_black"),
-);
-
 .lv-con-about-me-timeline {
     margin-top: rem-convertor(100px);
     margin-bottom: rem-convertor(100px);
@@ -45,7 +33,7 @@ $lvTimeline: (
         left: 0rem;
         width: 98%;
         height: rem-convertor(4px);
-        background: map-get($lvTimeline, "timeline_arrow_bg_color");
+        background: map-get($basic_colors, "color_black_olive");
         @media only screen and (max-width: 991px) {
             width: 100%;
         }
@@ -87,7 +75,7 @@ $lvTimeline: (
                         top: rem-convertor(290px);
                         left: 104%;
                         border-top: rem-convertor(10px) solid transparent;
-                        border-left: rem-convertor(10px) solid map-get($lvTimeline, "timeline_connector_color");
+                        border-left: rem-convertor(10px) solid map-get($basic_colors, "color_black_olive");
                         border-bottom: rem-convertor(10px) solid transparent;
                         @media only screen and (max-width: 991px) {
                             left: 109.15%;
@@ -103,7 +91,7 @@ $lvTimeline: (
                 &:after {
                     content: '';
                     display: block;
-                    background: map-get($lvTimeline, "timeline_connector_color");
+                    background: map-get($basic_colors, "color_black_olive");
                     width: rem-convertor(5px);
                     height: rem-convertor(15px);
                     position: absolute;
@@ -185,7 +173,7 @@ $lvTimeline: (
                 &:before {
                     content: '';
                     display: block;
-                    background:  map-get($lvTimeline, "timeline_connector_color");
+                    background:  map-get($basic_colors, "color_black_olive");
                     width: rem-convertor(5px);
                     height: rem-convertor(15px);
                     position: absolute;
@@ -203,8 +191,8 @@ $lvTimeline: (
                     width: rem-convertor(12px);
                     height: rem-convertor(12px);
                     border-radius: rem-convertor(6px);
-                    border: rem-convertor(3px) solid  map-get($lvTimeline, "timeline_connector_color");
-                    background-color: map-get($lvTimeline, "timeline_connector_color");
+                    border: rem-convertor(3px) solid map-get($basic_colors, "color_black_olive");
+                    background-color: map-get($basic_colors, "color_black_olive");
                     position: absolute;
                     left: rem-convertor(180px);
                     top: rem-convertor(-26px);
@@ -219,7 +207,7 @@ $lvTimeline: (
             border: 0rem;
             border-radius: 0rem;
             width: rem-convertor(352px);
-            background-color: map-get($lvTimeline, "timeline_event_bg_color");
+            background-color: map-get($complementary_blizzard_blue, "color_sea_nymph");
             white-space: normal;
             @media only screen and (max-width: 374px) {
                 width: rem-convertor(352px - 52px);
@@ -248,12 +236,12 @@ $lvTimeline: (
             }
             &-content {
                 // width: auto !important;
-                background-color: map-get($lvTimeline, "expanded_image_bg_color");
+                background-color: map-get($blizzard_blue, "color_blizzard_blue");
                 border-radius: 0rem;
             }
             &-header {
                 white-space: normal;
-                border-bottom-color: map-get($lvTimeline, "expanded_image_border_color");
+                border-bottom-color: map-get($complementary_blizzard_blue, "color_sea_nymph");
             }
             &-title {
                 border-bottom: 0rem;
@@ -300,11 +288,11 @@ $lvTimeline: (
                 & .btn {
                     margin-top: rem-convertor(20px);
                     margin-bottom: rem-convertor(20px);
-                    background-color: map-get($lvTimeline, "expanded_image_bg_color_btn");
-                    border-color: map-get($lvTimeline, "expanded_image_border_color_btn");
+                    background-color: map-get($complementary_blizzard_blue, "color_sea_nymph");
+                    border-color: map-get($complementary_blizzard_blue, "color_sea_nymph");
                     border-radius: rem-convertor(0px);
                     font-weight: bold;
-                    color: map-get($lvTimeline, "expanded_image_font_color_btn");
+                    color: map-get($basic_colors, "color_black");
                     @media only screen and (max-width: 767px) {
                         margin-top: 0rem;
                         margin-bottom: 0rem;
@@ -325,11 +313,11 @@ $lvTimeline: (
             width: 1rem;
         }
         &::-webkit-scrollbar-track {
-            box-shadow: inset 0 0 rem-convertor(6px) map-get($lvTimeline, "timeline_scrollbar_color");
+            box-shadow: inset 0 0 rem-convertor(6px) map-get($complementary_blizzard_blue, "color_sea_nymph");
         }
         &::-webkit-scrollbar-thumb {
-            background-color: map-get($lvTimeline, "timeline_scrollbar_color");
-            outline: rem-convertor(1px) solid map-get($lvTimeline, "timeline_scrollbar_color");;
+            background-color: map-get($complementary_blizzard_blue, "color_sea_nymph");
+            outline: rem-convertor(1px) solid map-get($complementary_blizzard_blue, "color_sea_nymph");
         }
     }
 }

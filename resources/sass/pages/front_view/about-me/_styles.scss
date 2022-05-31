@@ -1,14 +1,7 @@
 @import 'partials/_timeline.scss';
 
 .lv-pg-about-me {
-    @include flex-center();
     flex-direction: column;
-    ::selection {
-        background-color: map-get($complementary_blizzard_blue, "color_sea_nymph");
-    }
-    ::selection {
-        background-color: map-get($complementary_blizzard_blue, "color_sea_nymph");
-    }
     &-video, & video {
         width: rem-convertor(720px);
         height: rem-convertor(480px);

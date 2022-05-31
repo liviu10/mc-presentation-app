@@ -1,10 +1,5 @@
-$background_color: map-get($complementary_blizzard_blue, "color_sea_nymph");
-$font_color: inherit;
-$navbar_brand_font_family: 'Charm Regular', cursive;
-$navbar_link_font_family: inherit;
-
 .navbar {
-    background-color: $background_color !important;
+    background-color: map-get($complementary_blizzard_blue, "color_sea_nymph") !important;
     &-brand {
         @include flex-center-left-center();
         padding-top: rem-convertor(0px) !important;
@@ -18,8 +13,8 @@ $navbar_link_font_family: inherit;
         & p {
             margin-bottom: rem-convertor(0px) !important;
             margin-left: rem-convertor(8px);
-            color: $font_color;
-            font-family: $navbar_brand_font_family;
+            color: inherit;
+            font-family: 'Charm Regular', cursive;
             font-style: italic;
             word-wrap: break-word;
             @media only screen and (max-width: 575px) {
@@ -47,7 +42,7 @@ $navbar_link_font_family: inherit;
         }
     }
     & .nav-link {
-        color: $font_color !important;
+        color: inherit !important;
         font-weight: bold;
         text-transform: uppercase;
         user-select: none;
@@ -59,7 +54,7 @@ $navbar_link_font_family: inherit;
         clip-path: polygon(52% 0%, 60% 7%, 100% 7%, 100% 100%, 0 100%, 0 7%, 46% 7%);
         // margin-top: rem-convertor(7.2px) !important;
         margin-top: rem-convertor(32px) !important;
-        background-color: $background_color;
+        background-color: map-get($complementary_blizzard_blue, "color_sea_nymph");
         border-top: rem-convertor(0px) !important;
         & li:first-of-type {
             margin-top: rem-convertor(8px);
@@ -67,17 +62,17 @@ $navbar_link_font_family: inherit;
         & .dropdown-item {
             padding-right: rem-convertor(4px);
             padding-left: rem-convertor(4px);
-            color: $font_color;
+            color: inherit;
             &:first-child {
                 margin-bottom: 0rem !important;
             }
             & span {
-                color: $font_color;
+                color: inherit;
                 font-size: rem-convertor(12px);
                 font-weight: bold;
             }
             &:active, &:focus, &:hover {
-                background-color: $background_color !important;
+                background-color: map-get($complementary_blizzard_blue, "color_sea_nymph") !important;
             }
             &:hover {
                 opacity: 0.7;

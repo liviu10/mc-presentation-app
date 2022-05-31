@@ -1,9 +1,3 @@
-$lvContainerSectionTestimonials: (
-    testimonials_carousel_indicators_bg_color: map-get($complementary_blizzard_blue, "color_sea_nymph"),
-    testimonials_card_bg_color_btn:            map-get($complementary_blizzard_blue, "color_sea_nymph"),
-    testimonials_font_color:                   map-get($basic_colors, "color_white"),
-);
-
 .lv-con-testimonials {
     user-select: none;
     & .carousel-indicators {
@@ -11,7 +5,7 @@ $lvContainerSectionTestimonials: (
             border-radius: 50%;
             width: rem-convertor(15px);
             height: rem-convertor(15px);
-            background-color: map-get($lvContainerSectionTestimonials, "testimonials_carousel_indicators_bg_color");
+            background-color: map-get($complementary_blizzard_blue, "color_sea_nymph");
         }
     }
     & .carousel-inner {
@@ -49,8 +43,8 @@ $lvContainerSectionTestimonials: (
         border-radius: 50%;
         width: rem-convertor(36px);
         height: rem-convertor(36px);
-        background-color: map-get($lvContainerSectionTestimonials, "testimonials_card_bg_color_btn");
-        color: map-get($lvContainerSectionTestimonials, "testimonials_font_color");
+        background-color: map-get($complementary_blizzard_blue, "color_sea_nymph");
+        color: map-get($basic_colors, "color_white");
         opacity: 1;
         @media only screen and (max-width: 767px) and (min-width: 475px) {
             margin: 5% 0rem;

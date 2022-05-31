@@ -93,6 +93,7 @@ use Illuminate\Support\Facades\Route;
                     Route::get('/video-articles/{id}', [BlogSubcategoryController::class, 'displayRelatedVideoArticle']);
                 });
                 Route::get('/{id}', [BlogSubcategoryController::class, 'displaySingleBlogArticle']);
+                Route::get('/{id}/comments', [BlogSubcategoryController::class, 'displayBlogArticleComments']);
             });
             Route::group(['middleware' => 'auth:api', 'prefix' => '/appreciate'], function () {
                 Route::post('/rate-article', [BlogArticleAppreciationController::class, 'rateTheArticle']);

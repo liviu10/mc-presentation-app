@@ -1,13 +1,3 @@
-@import '../../../../components/front_view/partials/_button.scss';
-
-$lvContainerSectionBanner: (
-    carousel_indicators_bg_color:      map-get($complementary_blizzard_blue, "color_sea_nymph"),
-    carousel_caption_bg_color:         map-get($complementary_blizzard_blue, "color_dew"),
-    carousel_caption_font_color:       map-get($basic_colors, "color_black"),
-    carousel_controls_bg_color:        map-get($basic_colors, "color_white"),
-    carousel_controls_font_color:      map-get($basic_colors, "color_black")
-);
-
 .lv-con-banner-v1 {
     width: 100%;
     & .carousel-indicators {
@@ -28,7 +18,7 @@ $lvContainerSectionBanner: (
             border-radius: 50%;
             width: rem-convertor(15px);
             height: rem-convertor(15px);
-            background-color: map-get($lvContainerSectionBanner, "carousel_indicators_bg_color");
+            background-color: map-get($complementary_blizzard_blue, "color_sea_nymph");
         }
     }
     & .carousel-img {
@@ -55,7 +45,7 @@ $lvContainerSectionBanner: (
         justify-content: space-evenly;
         flex-direction: column;
         padding: rem-convertor(8px) rem-convertor(16px) rem-convertor(40px) rem-convertor(16px);
-        background-color: map-get($lvContainerSectionBanner, "carousel_caption_bg_color");
+        background-color: map-get($complementary_blizzard_blue, "color_dew");
         opacity: 1;
         @media only screen and (max-width: 1399px) {
             left: 44%;
@@ -80,7 +70,7 @@ $lvContainerSectionBanner: (
             margin: rem-convertor(8px) 0rem;
             height: rem-convertor(100px);
             font-size: rem-convertor(22px);
-            color: map-get($lvContainerSectionBanner, "carousel_caption_font_color");
+            color: map-get($basic_colors, "color_black");
             font-weight: 900;
             user-select: none;
         }
@@ -89,7 +79,7 @@ $lvContainerSectionBanner: (
                 margin: rem-convertor(8px) 0rem;
                 height: auto;
                 font-size: rem-convertor(16px);
-                color: map-get($lvContainerSectionBanner, "carousel_caption_font_color");
+                color: map-get($basic_colors, "color_black");
                 font-weight: 400;
                 user-select: none;
             }
@@ -105,8 +95,8 @@ $lvContainerSectionBanner: (
             border-radius: 50%;
             width: rem-convertor(36px);
             height: rem-convertor(36px);
-            background-color: map-get($lvContainerSectionBanner, "carousel_controls_bg_color");
-            color: map-get($lvContainerSectionBanner, "carousel_controls_font_color");
+            background-color: map-get($basic_colors, "color_white");
+            color: map-get($basic_colors, "color_black");
             opacity: 1;
         }
     }

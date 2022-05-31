@@ -1,19 +1,3 @@
-
-@import '../../../../components/front_view/partials/_button.scss';
-@import '../../../../components/front_view/partials/_social_media_icons.scss';
-
-$lvContainerPageWrittenArticle: (
-    card_background_color:          map-get($complementary_blizzard_blue, "color_sea_nymph"),
-    card_font_color:                map-get($complementary_blizzard_blue, "color_sea_nymph"),
-    add_comment_btn_bg_color:       map-get($complementary_blizzard_blue, "color_sea_nymph"),
-    add_comment_btn_border_color:   map-get($complementary_blizzard_blue, "color_sea_nymph"),
-    reply_comment_btn_bg_color:     map-get($blizzard_blue, "color_blizzard_blue"),
-    reply_comment_border_color_btn: map-get($blizzard_blue, "color_blizzard_blue"),
-    comment_form_font_color_btn:    map-get($basic_colors, "color_black"),
-    comment_form_check_font_color:  map-get($basic_colors, "color_black"),
-);
-$lvContainerPageWrittenArticleFont: 'Merriweather Sans Bold', sans-serif;
-
 @mixin comment-form() {
     & .form-control {
         border-radius: rem-convertor(0px);
@@ -45,7 +29,7 @@ $lvContainerPageWrittenArticleFont: 'Merriweather Sans Bold', sans-serif;
         & .a-typography {
             margin: rem-convertor(8px) 0rem;
             padding: 0rem;
-            color: map-get($lvContainerPageWrittenArticle, "comment_form_check_font_color");
+            color: map-get($basic_colors, "color_black");
             font-style: normal;
             font-variant: normal;
             font-weight: normal;
@@ -57,10 +41,10 @@ $lvContainerPageWrittenArticleFont: 'Merriweather Sans Bold', sans-serif;
             text-decoration: underline;
             text-indent: rem-convertor(0px);
             &:visited, &:active {
-                color: map-get($lvContainerPageWrittenArticle, "comment_form_check_font_color");
+                color: map-get($basic_colors, "color_black");
             }
             &:hover {
-                color: map-get($lvContainerPageWrittenArticle, "comment_form_check_font_color");
+                color: map-get($basic_colors, "color_black");
                 cursor: pointer;
             }
         }
@@ -76,12 +60,15 @@ $lvContainerPageWrittenArticleFont: 'Merriweather Sans Bold', sans-serif;
     }
 }
 
-.lv-pg-single-article {
+.lv-pg-audio-body {
+    width: 100%;
+}
+.lv-pg-single-article, .lv-pg-audio-article, .lv-pg-video-article {
     @include flex-center();
     flex-direction: column;
     margin: rem-convertor(120px) 0rem;
     ::selection {
-        background-color: map-get($lvContainerPageWrittenArticle, "card_background_color");
+        background-color: map-get($complementary_blizzard_blue, "color_sea_nymph");
     }
     &-header {
         & h1 {
@@ -91,7 +78,7 @@ $lvContainerPageWrittenArticleFont: 'Merriweather Sans Bold', sans-serif;
         }
     }
     &-body {
-        & .article-header {
+        & .article-header, & .audio-article-header, & .video-article-header {
             display: flex;
             align-items: center;
             user-select: none;
@@ -132,14 +119,34 @@ $lvContainerPageWrittenArticleFont: 'Merriweather Sans Bold', sans-serif;
             margin: rem-convertor(8px) rem-convertor(0px);
             border: rem-convertor(1px) solid #000000;
         }
-        & .article-body-content {
+        & .card {
+            & .row {
+                // TODO: create responsive design for the video player or install a package for the video player and style it
+                & .col-md-12 {
+                    display: flex;
+                    & video {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+        }
+        & .article-body-content, & .audio-article-body-content, & .video-article-body-content {
             & p {
                 margin-top: rem-convertor(16px);
                 line-height: 2;
                 text-align: justify;
             }
         }
-        & .article-body-content-heading-slp, .article-body-content-heading-srp, .article-body-content-bottom-btm {
+        & .article-body-content-heading-slp,
+        & .article-body-content-heading-srp,
+        & .article-body-content-bottom-btm,
+        & .audio-article-body-content-heading-slp,
+        & .audio-article-body-content-heading-srp,
+        & .audio-article-body-content-bottom-btm,
+        & .video-article-body-content-heading-slp,
+        & .video-article-body-content-heading-srp,
+        & .video-article-body-content-bottom-btm {
             display: flex;
             @media only screen and (max-width: 1400px) and (min-width: 320px) {
                 align-items: center;
@@ -164,19 +171,19 @@ $lvContainerPageWrittenArticleFont: 'Merriweather Sans Bold', sans-serif;
                 }
             }
         }
-        & .article-body-content-heading-srp {
+        & .article-body-content-heading-srp, & .audio-article-body-content-heading-srp, & .video-article-body-content-heading-srp {
             flex-direction: row-reverse;
         }
-        & .article-body-content-bottom-btm {
+        & .article-body-content-bottom-btm, & .audio-article-body-content-bottom-btm, & .video-article-body-content-bottom-btm {
             flex-direction: column;
         }
-        & .article-appreciation-system {
+        & .article-appreciation-system, & .audio-article-appreciation-system, & .video-article-appreciation-system {
             user-select: none;
             @media only screen and (max-width: 475px) and (min-width: 320px) {
                 flex-direction: column;
             }
         }
-        & .article-subcategory {
+        & .article-subcategory, & .audio-article-subcategory, & .video-article-subcategory {
             & p {
                 display: flex;
                 align-items: center;
@@ -187,7 +194,7 @@ $lvContainerPageWrittenArticleFont: 'Merriweather Sans Bold', sans-serif;
                 }
             }
         }
-        & .article-rate {
+        & .article-rate, & .audio-article-rate, & .video-article-rate {
             & p {
                 display: flex;
                 align-items: center;
@@ -215,7 +222,9 @@ $lvContainerPageWrittenArticleFont: 'Merriweather Sans Bold', sans-serif;
                 }
             }
         }
-        & .article-share, & .article-appreciation {
+        & .article-share, & .article-appreciation,
+        & .audio-article-share, & .audio-article-appreciation,
+        & .video-article-share, & .video-article-appreciation {
             display: flex;
             flex-direction: row;
             @include social-media-icon();
@@ -236,7 +245,7 @@ $lvContainerPageWrittenArticleFont: 'Merriweather Sans Bold', sans-serif;
                 }
             }
         }
-        & .article-appreciation {
+        & .article-appreciation, & .audio-article-appreciation, & .video-article-appreciation {
             .fa-thumbs-up, .fa-thumbs-down {
                 border-radius: 50% !important;
                 padding: rem-convertor(5px);
@@ -251,7 +260,7 @@ $lvContainerPageWrittenArticleFont: 'Merriweather Sans Bold', sans-serif;
                 background-color: #DC3545;
             }
         }
-        & .article-related {
+        & .article-related, & .audio-article-related, & .video-article-related {
             margin: rem-convertor(24px) 0rem;
             & h1 {
                 margin: rem-convertor(32px) 0rem;
@@ -314,7 +323,7 @@ $lvContainerPageWrittenArticleFont: 'Merriweather Sans Bold', sans-serif;
             text-transform: uppercase;
             user-select: none;
         }
-        & .article-comments {
+        & .article-comments, & .audio-article-comments, & .video-article-comments {
             margin: rem-convertor(32px) rem-convertor(0px);
             &-form {
                 &-head {
@@ -323,7 +332,7 @@ $lvContainerPageWrittenArticleFont: 'Merriweather Sans Bold', sans-serif;
                     margin-bottom: rem-convertor(50px);
                     & h1, & p {
                         margin-bottom: rem-convertor(0px);
-                        font-family: map-get($lvContainerPageWrittenArticle, "comment_form_font_family");
+                        font-family: 'Merriweather Sans Bold', sans-serif;
                     }
                     & p {
                         margin-top: rem-convertor(32px);
@@ -346,12 +355,12 @@ $lvContainerPageWrittenArticleFont: 'Merriweather Sans Bold', sans-serif;
                 }
                 &-card, &-reply-card {
                     width: 100%;
-                    background-color: map-get($lvContainerPageWrittenArticle, "card_background_color");
+                    background-color: map-get($complementary_blizzard_blue, "color_sea_nymph");
                     border: rem-convertor(0px) !important;
                     border-radius: rem-convertor(0px);
                     margin: rem-convertor(16px) 0rem;
                     ::selection {
-                        background-color: map-get($lvContainerPageWrittenArticle, "reply_comment_btn_bg_color");
+                        background-color: map-get($blizzard_blue, "color_blizzard_blue");
                     }
                     & .card-title {
                         margin-bottom: rem-convertor(16px);
@@ -370,8 +379,8 @@ $lvContainerPageWrittenArticleFont: 'Merriweather Sans Bold', sans-serif;
                         @include flex-center();
                         margin-right: rem-convertor(8px);
                         height: rem-convertor(40px);
-                        background-color: map-get($lvContainerPageWrittenArticle, "reply_comment_btn_bg_color");
-                        border-color: map-get($lvContainerPageWrittenArticle, "reply_comment_btn_bg_color");
+                        background-color: map-get($blizzard_blue, "color_blizzard_blue");
+                        border-color: map-get($blizzard_blue, "color_blizzard_blue");
                         &:last-child {
                             @media only screen and (max-width: 375px) and (min-width: 320px) {
                                 margin-right: 0rem;

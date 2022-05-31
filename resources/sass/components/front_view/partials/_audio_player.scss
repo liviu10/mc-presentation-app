@@ -1,12 +1,3 @@
-@import '../../../utilities/_global.scss';
-
-$audioPlayer: (
-    audio_player_bg_color_btn:     map-get($pale_cerulean, "color_khaki"),
-    audio_player_border_color_btn: map-get($pale_cerulean, "color_khaki"),
-    audio_player_font_color_btn:   map-get($basic_colors, "color_black"),
-    audio_player_check_font_color: map-get($basic_colors, "color_black"),
-);
-
 .aplayer {
     &-info {
         padding: rem-convertor(12px) !important;

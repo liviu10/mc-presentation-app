@@ -37,14 +37,21 @@
               <label class="col-form-label">
                 Article title
               </label>
-              <input id="blog_article_title"
-                     v-model="form.blog_article_title"
-                     type="text"
-                     :class="{ 'is-invalid': form.errors.has('blog_article_title') }"
-                     class="form-control"
-                     name="blog_article_title"
-              >
-              <has-error :form="form" field="blog_article_title" />
+              <div v-if="form.blog_subcategory">
+                <input id="blog_article_title"
+                       v-model="form.blog_article_title"
+                       type="text"
+                       :class="{ 'is-invalid': form.errors.has('blog_article_title') }"
+                       class="form-control"
+                       name="blog_article_title"
+                >
+                <has-error :form="form" field="blog_article_title" />
+              </div>
+              <div v-else>
+                <p>
+                  In order to write your article's title, please choose a blog subcategory!
+                </p>
+              </div>
             </div>
             <!-- BLOG ARTICLE TITLE, SECTION END -->
 
@@ -56,16 +63,23 @@
                   The blog article short description will be visible when the user will visit the list of all articles no matter the subcategory they belong to.
                 </div>
               </label>
-              <textarea id="blog_article_short_description"
-                        v-model="form.blog_article_short_description"
-                        type="text"
-                        :class="{ 'is-invalid': form.errors.has('blog_article_short_description') }"
-                        class="form-control"
-                        name="blog_article_short_description"
-                        rows="8"
-                        style="resize:none"
-              />
-              <has-error :form="form" field="blog_article_short_description" />
+              <div v-if="form.blog_subcategory">
+                <textarea id="blog_article_short_description"
+                          v-model="form.blog_article_short_description"
+                          type="text"
+                          :class="{ 'is-invalid': form.errors.has('blog_article_short_description') }"
+                          class="form-control"
+                          name="blog_article_short_description"
+                          rows="8"
+                          style="resize:none"
+                />
+                <has-error :form="form" field="blog_article_short_description" />
+              </div>
+              <div v-else>
+                <p>
+                  In order to write your article's short description, please choose a blog subcategory!
+                </p>
+              </div>
             </div>
             <!-- BLOG ARTICLE SHORT DESCRIPTION, SECTION END -->
 
@@ -96,7 +110,7 @@
                      name="blog_article_media_url"
               >
               <p v-else>
-                In order to upload your first media content, please choose a blog subcategory!
+                In order to upload article's media content, please choose a blog subcategory!
               </p>
               <has-error :form="form" field="blog_article_media_url" />
             </div>
@@ -212,7 +226,7 @@
             </div>
             <div v-else>
               <p>
-                In order to write your first content, please choose a blog subcategory!
+                In order to write your article's content, please choose a blog subcategory!
               </p>
             </div>
             <!-- BLOG ARTICLE CONTENT, SECTION END -->
@@ -225,21 +239,28 @@
                   You can choose weather or not to activate the blog article. If you select 'No', the article will not be visible on the website.
                 </div>
               </label>
-              <select id="blog_article_is_active"
-                      v-model="form.blog_article_is_active"
-                      class="form-select"
-                      :class="{ 'is-invalid': form.errors.has('blog_article_is_active') }"
-                      name="blog_article_is_active"
-                      aria-label="Default select example"
-              >
-                <option value="0">
-                  No, do not activate it!
-                </option>
-                <option value="1">
-                  Yes, activate it!
-                </option>
-              </select>
-              <has-error :form="form" field="blog_article_is_active" />
+              <div v-if="form.blog_subcategory">
+                <select id="blog_article_is_active"
+                        v-model="form.blog_article_is_active"
+                        class="form-select"
+                        :class="{ 'is-invalid': form.errors.has('blog_article_is_active') }"
+                        name="blog_article_is_active"
+                        aria-label="Default select example"
+                >
+                  <option value="0">
+                    No, do not activate it!
+                  </option>
+                  <option value="1">
+                    Yes, activate it!
+                  </option>
+                </select>
+                <has-error :form="form" field="blog_article_is_active" />
+              </div>
+              <div v-else>
+                <p>
+                  In order to activate this article, please choose a blog subcategory!
+                </p>
+              </div>
             </div>
             <!-- BLOG ARTICLE IS ACTIVE, SECTION END -->
           </form>

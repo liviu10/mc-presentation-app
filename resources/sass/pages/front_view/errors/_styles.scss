@@ -1,2 +1,50 @@
-@import 'partials/_404.scss';
-@import 'partials/_under_construction.scss';
+.lv-pg-not-found, .lv-pg-under-construction {
+    &-action {
+        @include flex-center();
+        &-buttons {
+            position: absolute;
+            top: 15%;
+            right: 35%;
+            padding: rem-convertor(20px);
+            width: 30%;
+            background-color: white;
+            opacity: 0.65;
+            & .title, .btn {
+                @include flex-center();
+                margin-top: rem-convertor(20px);
+                margin-bottom: rem-convertor(20px);
+            }
+            & .title {
+                & h3 {
+                    margin: rem-convertor(0px) !important;
+                }
+            }
+            & .buttons {
+                @include flex-center();
+                & .btn {
+                    background-color: map-get($pale_cerulean, "color_khaki");
+                    border-color: map-get($pale_cerulean, "color_khaki");
+                    border-radius: rem-convertor(0px);
+                    font-weight: bold;
+                    color: map-get($basic_colors, "color_black");
+                    &:focus {
+                        border-color: transparent !important;
+                        box-shadow: 0 1px 1px transparent inset, 0 0 8px transparent !important;
+                        outline: 0 none !important;
+                    }
+                }
+            }
+        }
+    }
+}
+.lv-pg-under-construction {
+    &-action {
+        &-buttons {
+            & .title {
+                & h3 {
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

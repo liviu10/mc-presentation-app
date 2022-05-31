@@ -3,6 +3,15 @@
     Import here all the CSS pages for the administration panel.
 */
 
+// @import 'about-me/_styles.scss';
+// @import 'application-logs/_styles.scss';
+// @import 'blog/_styles.scss';
+// @import 'contact-me/_styles.scss';
+// @import 'documentation/_styles.scss';
+// @import 'home/_styles.scss';
+// @import 'schedule-appointment/_styles.scss';
+// @import 'user-profile/_styles.scss';
+
 .lv-pg-admin {
     margin: rem-convertor(60px) 0rem;
     padding: 0rem;
@@ -53,7 +62,7 @@
                         &-body {
                             & .btn {
                                 border-radius: 0rem;
-                                color: map-get($button, "font_color");
+                                // color: map-get($button, "font_color");
                                 font-weight: bold;
                                 &:focus {
                                     border-color: transparent !important;

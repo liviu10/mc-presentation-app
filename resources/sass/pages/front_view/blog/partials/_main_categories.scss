@@ -1,8 +1,3 @@
-$lvContainerSectionBlog: (
-    card_blog_bg_color:   map-get($complementary_blizzard_blue, "color_sea_nymph"),
-    card_blog_font_color: map-get($basic_colors, "color_black"),
-);
-
 .lv-con-sect-categories {
     margin-top: rem-convertor(50px);
     margin-bottom: rem-convertor(50px);
@@ -11,7 +6,7 @@ $lvContainerSectionBlog: (
     }
     & .card {
         border-radius: rem-convertor(0px);
-        background-color: map-get($lvContainerSectionBlog, "card_blog_bg_color") !important;
+        background-color: map-get($complementary_blizzard_blue, "color_sea_nymph") !important;
         border-width: rem-convertor(0px);
         user-select: none;
         &:nth-child(2) {
@@ -46,7 +41,7 @@ $lvContainerSectionBlog: (
             margin-bottom: rem-convertor(0px);
             padding: rem-convertor(8px) rem-convertor(8px);
             height: rem-convertor(50px);
-            color: map-get($lvContainerSectionBlog, "card_blog_font_color") !important;
+            color: map-get($basic_colors, "color_black") !important;
             font-size: rem-convertor(22px);
             font-weight: 900;
             text-transform: uppercase;
@@ -64,12 +59,12 @@ $lvContainerSectionBlog: (
                 & p {
                     margin: rem-convertor(8px) 0rem;
                     height: auto;
-                    color: map-get($lvContainerSectionBlog, "card_blog_font_color") !important;
+                    color: map-get($basic_colors, "color_black") !important;
                     font-weight: 900;
                     text-transform: uppercase;
                 }
                 & a {
-                    color: map-get($lvContainerSectionBlog, "card_blog_font_color") !important;
+                    color: map-get($basic_colors, "color_black") !important;
                 }
             }
         }

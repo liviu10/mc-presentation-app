@@ -1,22 +1,7 @@
 @import 'partials/_article_list.scss';
-@import 'partials/_audio_list.scss';
 @import 'partials/_main_categories.scss';
-@import 'partials/_video_list.scss';
-
-$lvContainerPageBlog: (
-    card_background_color:    map-get($complementary_blizzard_blue, "color_sea_nymph"),
-    card_font_color:          map-get($complementary_blizzard_blue, "color_sea_nymph"),
-    button_background_color:  map-get($blizzard_blue, "color_blizzard_blue"),
-    button_border_color:      map-get($blizzard_blue, "color_blizzard_blue"),
-    button_font_color:        map-get($basic_colors, "color_black"),
-    button_more_bg_color:     map-get($complementary_blizzard_blue, "color_sea_nymph"),
-    button_more_border_color: map-get($complementary_blizzard_blue, "color_sea_nymph"),
-    button_more_font_color:   map-get($basic_colors, "color_black"),
-);
-$font_color: inherit;
 
 .lv-pg-blog {
-    @include flex-center();
     flex-direction: column;
     @media only screen and (max-width: 992px) {
         padding-right: 0rem !important;
@@ -33,14 +18,13 @@ $font_color: inherit;
         & h1 {
             margin-bottom: rem-convertor(50px);
             text-transform: uppercase;
-            text-align: center;
         }
     }
     &-body {
         & .card {
             margin: rem-convertor(20px) 0rem;
             width: 100%;
-            background-color: map-get($lvContainerPageBlog, "card_background_color");
+            background-color: map-get($complementary_blizzard_blue, "color_sea_nymph");
             border: rem-convertor(0px) !important;
             border-radius: rem-convertor(0px);
             &-title {
@@ -49,7 +33,7 @@ $font_color: inherit;
                 font-size: rem-convertor(24px);
                 text-align: left !important;
                 & a {
-                    color: $font-color;
+                    color: map-get($basic_colors, "color_black");
                     & span {
                         font-size: rem-convertor(20px);
                     }
@@ -74,10 +58,10 @@ $font_color: inherit;
             &-body {
                 & .btn {
                     float: right;
-                    background-color: map-get($lvContainerPageBlog, "button_background_color");
-                    border-color: map-get($lvContainerPageBlog, "button_border_color");
+                    background-color: map-get($blizzard_blue, "color_blizzard_blue");
+                    border-color: map-get($blizzard_blue, "color_blizzard_blue");
                     border-radius: rem-convertor(0px);
-                    color: map-get($lvContainerPageBlog, "button_font_color");
+                    color: map-get($basic_colors, "color_black");
                     font-weight: bold;
                     &:focus {
                         border-color: transparent !important;
@@ -114,7 +98,6 @@ $font_color: inherit;
                 }
             }
             & .row {
-                // TODO: create responsive design for the video player or install a package for the video player and style it
                 & .col-md-4 {
                     display: flex;
                     & video {
@@ -134,11 +117,11 @@ $font_color: inherit;
         & .btn {
             margin-top: rem-convertor(50px);
             margin-bottom: rem-convertor(20px);
-            background-color: map-get($lvContainerPageBlog, "button_more_bg_color");
-            border-color: map-get($lvContainerPageBlog, "button_more_border_color");
+            background-color: map-get($complementary_blizzard_blue, "color_sea_nymph");
+            border-color: map-get($complementary_blizzard_blue, "color_sea_nymph");
             border-radius: rem-convertor(0px);
             font-weight: bold;
-            color: map-get($lvContainerPageBlog, "button_more_font_color");
+            color: map-get($basic_colors, "color_black");
             &:focus {
                 border-color: transparent !important;
                 box-shadow: 0 1px 1px transparent inset, 0 0 8px transparent !important;
