@@ -5,14 +5,14 @@
 
 // @import 'about-me/_styles.scss';
 // @import 'application-logs/_styles.scss';
-// @import 'blog/_styles.scss';
+@import 'blog/_styles.scss';
 // @import 'contact-me/_styles.scss';
 // @import 'documentation/_styles.scss';
 @import 'home/_styles.scss';
 // @import 'schedule-appointment/_styles.scss';
 // @import 'user-profile/_styles.scss';
 
-.lv-pg-admin-home, .lv-pg-admin-user-home {
+.lv-pg-admin-home, .lv-pg-admin-user-home, .lv-pg-admin-user-blog {
     margin: rem-convertor(60px) 0rem;
     padding: 0rem;
     width: 100%;

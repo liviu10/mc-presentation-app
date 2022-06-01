@@ -12,7 +12,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 id="createNewBlogSubcategoryLabel" class="modal-title">
-            Create a new blog subcategory
+            {{ $t('admin.blog_page.subcategories.new_record.dialog_title') }}
           </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />
         </div>
@@ -21,7 +21,7 @@
             <div class="col col-12 my-3">
               <div class="col col-12 my-3">
                 <label class="col-form-label">
-                  Category title:
+                  {{ $t('admin.blog_page.subcategories.new_record.category_title.label') }}:
                 </label>
                 <select id="blog_category_id"
                         v-model="form.blog_category_id"
@@ -30,17 +30,17 @@
                         name="blog_category_id"
                         aria-label="Default select example"
                 >
-                  <optgroup v-for="item in categoryDetails" :key="item.id" label="Category">
+                  <optgroup v-for="item in categoryDetails" :key="item.id" :label="$t('admin.blog_page.subcategories.new_record.category_title.option_label')">
                     <option :value="item.id">
                       {{ item.blog_category_title }}
                     </option>
                     <option disabled>
-                      Status:
+                      {{ $t('admin.blog_page.subcategories.new_record.category_title.second_option.label') }}:
                       <span v-if="item.blog_category_is_active === '1'">
-                        active
+                        {{ $t('admin.blog_page.subcategories.new_record.category_title.second_option.active') }}
                       </span>
                       <span v-else>
-                        inactive
+                        {{ $t('admin.blog_page.subcategories.new_record.category_title.second_option.inactive') }}
                       </span>
                     </option>
                   </optgroup>
@@ -50,7 +50,7 @@
             </div>
             <div class="col col-12 my-3">
               <label class="col-form-label">
-                Subcategory title
+                {{ $t('admin.blog_page.subcategories.new_record.subcategory_title_label') }}
               </label>
               <input id="blog_subcategory_title"
                      v-model="form.blog_subcategory_title"
@@ -63,7 +63,7 @@
             </div>
             <div class="col col-12 my-3">
               <label class="col-form-label">
-                Subcategory description
+                {{ $t('admin.blog_page.subcategories.new_record.subcategory_short_desc_label') }}
               </label>
               <textarea id="blog_subcategory_short_description"
                         v-model="form.blog_subcategory_short_description"
@@ -76,7 +76,7 @@
             </div>
             <div class="col col-12 my-3">
               <label class="col-form-label">
-                Activate blog subcategory?
+                {{ $t('admin.blog_page.subcategories.new_record.subcategory_status_label') }}
               </label>
               <select id="blog_subcategory_is_active"
                       v-model="form.blog_subcategory_is_active"
@@ -86,20 +86,20 @@
                       aria-label="Default select example"
               >
                 <option value="1">
-                  Yes
+                  {{ $t('admin.general_settings.table.active_label') }}
                 </option>
                 <option value="2">
-                  No
+                  {{ $t('admin.general_settings.table.inactive_label') }}
                 </option>
               </select>
               <has-error :form="form" field="blog_subcategory_is_active" />
             </div>
             <div class="modal-buttons">
               <button ref="close" type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                Close
+                {{ $t('admin.general_settings.cancel_btn_label') }}
               </button>
               <button type="submit" class="btn btn-primary">
-                Save
+                {{ $t('admin.general_settings.save_btn_label') }}
               </button>
             </div>
           </form>

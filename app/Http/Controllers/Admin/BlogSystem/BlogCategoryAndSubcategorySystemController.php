@@ -231,6 +231,7 @@ class BlogCategoryAndSubcategorySystemController extends Controller
                                         'id',
                                         'blog_category_id',
                                         'blog_subcategory_title',
+                                        'blog_subcategory_short_description',
                                         'blog_subcategory_is_active',
                                         'blog_subcategory_path',
                                         'created_at',

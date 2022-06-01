@@ -1,11 +1,11 @@
 <template>
   <div class="row">
     <div class="col-lg-12 m-auto">
-      <div class="lv-pg-admin">
-        <div class="lv-pg-admin-header">
+      <div class="lv-pg-admin-comments">
+        <div class="lv-pg-admin-comments-header">
           <h1>ADMIN BLOG ARTICLE COMMENTS</h1>
         </div>
-        <div class="lv-pg-admin-body">
+        <div class="lv-pg-admin-comments-body">
           <vue-good-table
             :columns="columns"
             :rows="displayAllBlogArticleComments"

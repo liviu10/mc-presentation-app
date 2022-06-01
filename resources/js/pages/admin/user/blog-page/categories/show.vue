@@ -12,27 +12,27 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 id="showBlogCategoryLabel" class="modal-title">
-            Blog category title "{{ showRow.blog_category_title }}"
+            {{ $t('admin.blog_page.categories.display_record.dialog_title') }} "{{ showRow.blog_category_title }}"
           </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />
         </div>
         <div class="modal-body">
           <ul class="list-group">
             <li class="list-group-item">
-              <b>Category short description:</b>
+              <b>{{ $t('admin.blog_page.categories.display_record.category_short_desc_label') }}:</b>
               {{ showRow.blog_category_short_description }}
             </li>
             <li class="list-group-item">
-              <b>Status:</b>
+              <b>{{ $t('admin.blog_page.categories.display_record.category_status.label') }}:</b>
               <span v-if="showRow.blog_category_is_active === '1'">
-                Category is active
+                {{ $t('admin.blog_page.categories.display_record.category_status.active') }}
               </span>
               <span v-else>
-                Category is not active
+                {{ $t('admin.blog_page.categories.display_record.category_status.inactive') }}
               </span>
             </li>
             <li class="list-group-item">
-              <b>Category URL:</b>
+              <b>{{ $t('admin.blog_page.categories.display_record.category_path_label') }}:</b>
               <span>
                 <a :href="locationUrl + '' + showRow.blog_category_path" target="_blank">
                   {{ showRow.blog_category_title }}
@@ -43,7 +43,7 @@
               </span>
             </li>
             <li class="list-group-item">
-              <b>Date created:</b>
+              <b>{{ $t('admin.blog_page.categories.display_record.category_date_label') }}:</b>
               {{ new Date(showRow.created_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}
             </li>
           </ul>

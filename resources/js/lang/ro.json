@@ -307,6 +307,110 @@
       }
     }
   },
+  "admin": {
+    "general_settings": {
+      "cancel_btn_label": "Anulează",
+      "save_btn_label": "Salvează",
+      "edit_btn_label": "Actualizează",
+      "table": {
+        "id_column_label": "Nr. Crt.",
+        "created_date_column_label": "Dată creare",
+        "action_column_label": "Acţiuni",
+        "active_label": "Da",
+        "inactive_label": "Nu",
+        "first_page_label": "Prima pagină",
+        "last_page_label": "Ultima pagină",
+        "next_label": "următor",
+        "previous_label": "anterior",
+        "rows_per_page": "Rânduri per pagină",
+        "of_label": "din",
+        "page_label": "page",
+        "all_label": "Toate",
+        "actions": {
+          "new_record_label": "Înregistrare nouă",
+          "show_record_label": "Vezi {typeOfRecord}",
+          "edit_record_label": "Editează",
+          "delete_record_label": "Şterge"
+        }
+      }
+    },
+    "home_page": {
+      "page_title": "Pagină principală"
+    },
+    "blog_page": {
+      "page_title": "Blog",
+      "tab_labels": {
+        "first": "Categorii",
+        "second": "Subcategorii",
+        "third": "Articole"
+      },
+      "categories": {
+        "table": {
+          "category_column_label": "Titlu",
+          "category_short_desc_column_label": "Scurtă descriere",
+          "category_active_column_label": "Activ?",
+          "category_image_column_label": "Imagine",
+          "category_path_column_label": "URL"
+        },
+        "display_record": {
+          "dialog_title": "Titlu categorie",
+          "category_short_desc_label": "Scurtă descriere categorie",
+          "category_status": {
+            "label": "Status",
+            "active": "Categoria este activă",
+            "inactive": "Categoria este inactivă"
+          },
+          "category_path_label": "URL categorie",
+          "category_date_label": "Dată adăugare categorie"
+        },
+        "edit_record": {
+          "dialog_title": "Editare categorie",
+          "category_title_label": "Titlu categorie",
+          "category_short_desc_label": "Scurtă descriere categorie",
+          "category_status_label": "Activezi această categorie de blog?",
+          "category_image_label": "Actualizează imaginea acestei categorii"
+        }
+      },
+      "subcategories": {
+        "table": {
+          "category_column_label": "Titlu categorie",
+          "subcategory_column_label": "Titlu subcategorie",
+          "subcategory_active_column_label": "Activ?",
+          "subcategory_path_column_label": "URL subcategorie"
+        },
+        "new_record": {
+          "dialog_title": "Creare subcategorie nouă",
+          "category_title": {
+            "label": "Titlu categorie",
+            "option_label": "Categorie",
+            "second_option": {
+              "label": "Status",
+              "active": "activ",
+              "inactive": "inactiv"
+            }
+          },
+          "subcategory_title_label": "Titlu subcategorie",
+          "subcategory_short_desc_label": "Scurtă descriere subcategorie",
+          "subcategory_status_label": "Activezi această subcategorie de blog?"
+        },
+        "edit_record": {
+          "dialog_title": "Editare subcategorie",
+          "category_title": {
+            "label": "Titlu categorie",
+            "option_label": "Categorie",
+            "second_option": {
+              "label": "Status",
+              "active": "activ",
+              "inactive": "inactiv"
+            }
+          },
+          "subcategory_title_label": "Titlu subcategorie",
+          "subcategory_short_desc_label": "Scurtă descriere subcategorie",
+          "subcategory_status_label": "Activezi această subcategorie de blog?"
+        }
+      }
+    }
+  },
   "error_pages": {
     "page_not_found": {
       "title": "Pagina solicitată nu există!",

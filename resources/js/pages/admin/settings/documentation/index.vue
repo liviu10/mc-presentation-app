@@ -16,18 +16,7 @@
 <script>
 export default {
   name: 'AdminDocumentation',
-  components: {},
-  layout: '',
   middleware: 'auth',
-  props: {},
-  data: function () {
-    return {}
-  },
-  computed: {
-    // mapped getters}
-  },
-  mounted () {},
-  methods: {},
   metaInfo () {
     return { title: 'Admin' }
   }

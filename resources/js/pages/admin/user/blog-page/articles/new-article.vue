@@ -1,11 +1,11 @@
 <template>
   <div class="row">
     <div class="col-lg-12 m-auto">
-      <div class="lv-pg-admin">
-        <div class="lv-pg-admin-header">
+      <div class="lv-pg-admin-new-article">
+        <div class="lv-pg-admin-new-article-header">
           <h1>ADMIN CREATE NEW BLOG ARTICLES</h1>
         </div>
-        <div class="lv-pg-admin-body">
+        <div class="lv-pg-admin-new-article-body">
           <form @submit.prevent="publishArticle" @keydown="form.onKeydown($event)">
             <!-- BLOG SUBCATEGORY, SECTION START -->
             <div class="col col-12 my-3 lv-pg-admin-body-blog-subcategory">
