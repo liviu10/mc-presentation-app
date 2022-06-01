@@ -26,7 +26,7 @@
           allLabel: 'All',
         }"
       >
-        <div v-if="user.user_role_type_id === 1" slot="table-actions">
+        <div v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2" slot="table-actions">
           <button class="btn btn-primary me-2" type="button" data-bs-toggle="modal" data-bs-target="#createErrorAndNotification">
             <fa icon="pencil-alt" fixed-width /> Add new
           </button>
@@ -36,7 +36,7 @@
             <a :href="props.row.notify_reference" target="_blank">{{ props.row.notify_code }}</a>
           </span>
           <span v-else-if="props.column.field == 'actions'">
-            <button v-if="user.user_role_type_id === 1"
+            <button v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2"
                     class="btn btn-warning w-100"
                     type="button"
                     data-bs-toggle="modal"
