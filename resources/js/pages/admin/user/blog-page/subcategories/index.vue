@@ -32,7 +32,7 @@
         ]"
       >
         <div slot="table-actions">
-          <button v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2" class="btn btn-primary me-2" type="button" data-bs-toggle="modal" data-bs-target="#createNewBlogSubcategory">
+          <button v-if="user.user_role_type_id === 1" class="btn btn-primary me-2" type="button" data-bs-toggle="modal" data-bs-target="#createNewBlogSubcategory">
             <fa icon="pencil-alt" fixed-width /> {{ $t('admin.general_settings.table.actions.new_record_label') }}
           </button>
         </div>
@@ -60,7 +60,7 @@
             {{ new Date(props.formattedRow['created_at']).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}
           </span>
           <span v-else-if="props.column.field == 'actions'">
-            <button v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2"
+            <button v-if="user.user_role_type_id === 1"
                     class="btn btn-warning w-100"
                     type="button"
                     data-bs-toggle="modal"
@@ -69,7 +69,7 @@
             >
               <fa icon="edit" fixed-width /> Edit
             </button>
-            <button v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2"
+            <button v-if="user.user_role_type_id === 1"
                     class="btn btn-danger w-100"
                     @click="deleteBlogSubcategory(props.row)"
             >

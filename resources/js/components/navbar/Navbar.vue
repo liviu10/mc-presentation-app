@@ -2,13 +2,7 @@
   <nav class="navbar navbar-expand-xxl navbar-light bg-white">
     <div class="container-fluid">
       <!-- NAVBAR BRAND SECTION START -->
-      <router-link v-if="user && user.user_role_type_id === 1" :to="{ name: 'admin-home-page' }" class="navbar-brand">
-        <img src="/images/navbar/Logo-img7_180.webp" alt="">
-        <p class="text-wrap">
-          {{ $t('user.navigation_bar.brand') }}
-        </p>
-      </router-link>
-      <router-link v-else :to="{ name: 'home-page' }" class="navbar-brand">
+      <router-link v-if="user" :to="{ name: 'admin-home-page' }" class="navbar-brand">
         <img src="/images/navbar/Logo-img7_180.webp" alt="">
         <p class="text-wrap">
           {{ $t('user.navigation_bar.brand') }}
@@ -17,7 +11,15 @@
       <!-- NAVBAR BRAND SECTION END -->
 
       <!-- NAVBAR HAMBURGER MENU SECTION START -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon" />
       </button>
       <!-- NAVBAR HAMBURGER MENU SECTION END -->

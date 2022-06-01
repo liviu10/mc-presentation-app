@@ -5,7 +5,7 @@
       <img :src="user.photo_url" class="rounded-circle profile-photo me-1">
       {{ user.nickname }}
     </a>
-    <ul v-if="user.user_role_type_id === 1" class="dropdown-menu pb-0" aria-labelledby="navbarDropdown">
+    <ul v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2" class="dropdown-menu pb-0" aria-labelledby="navbarDropdown">
       <li>
         <a class="dropdown-item p-2 dropdown-profile" href="" />
       </li>
@@ -64,13 +64,13 @@
       <li>
         <router-link :to="{ name: 'admin-profile-settings-page' }" class="dropdown-item p-2">
           <fa icon="address-card" fixed-width />
-          {{ $t('user.navigation_bar.sub_menu.sixth_button') }}
+          {{ $t('user.navigation_bar.sub_menu.seventh_button') }}
         </router-link>
       </li>
       <li>
         <a href="#" class="dropdown-item p-2" @click.prevent="logout">
           <fa icon="sign-out-alt" fixed-width />
-          {{ $t('user.navigation_bar.sub_menu.seventh_button') }}
+          {{ $t('user.navigation_bar.sub_menu.eighth_button') }}
         </a>
       </li>
     </ul>

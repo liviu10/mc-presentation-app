@@ -31,7 +31,7 @@
       </router-link>
     </li>
   </ul>
-  <ul v-else-if="user && user.user_role_type_id === 1" class="navbar-nav ms-auto">
+  <ul v-else-if="user" class="navbar-nav ms-auto">
     <li v-if="checkUrlPathName() === false">
       <a class="nav-link" style="cursor:pointer" @click="goBackToPreviousAdminPage() ? $router.go(-1) : $router.push('/admin/home')">
         {{ $t('user.navigation_bar.auth_main_menu.second_button') }}

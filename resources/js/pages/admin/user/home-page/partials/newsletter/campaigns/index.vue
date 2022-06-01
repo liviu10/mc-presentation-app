@@ -27,7 +27,7 @@
         }"
       >
         <div slot="table-actions">
-          <button v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2" class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#createNewCampaign">
+          <button v-if="user.user_role_type_id === 1" class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#createNewCampaign">
             <fa icon="pencil-alt" fixed-width /> Add new
           </button>
           <button v-if="user.user_role_type_id === 1" class="btn btn-danger me-2" @click="deleteAllCampaigns()">
@@ -99,7 +99,7 @@
             </span>
           </span>
           <span v-else-if="props.column.field == 'actions'">
-            <button v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2"
+            <button v-if="user.user_role_type_id === 1"
                     class="btn btn-info w-100"
                     type="button"
                     data-bs-toggle="modal"
@@ -108,7 +108,7 @@
             >
               <fa icon="eye" fixed-width /> Show
             </button>
-            <button v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2"
+            <button v-if="user.user_role_type_id === 1"
                     class="btn btn-warning w-100"
                     type="button"
                     data-bs-toggle="modal"
@@ -117,7 +117,7 @@
             >
               <fa icon="edit" fixed-width /> Edit
             </button>
-            <button v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2"
+            <button v-if="user.user_role_type_id === 1"
                     class="btn btn-danger w-100"
                     @click="deleteCampaign(props.row)"
             >

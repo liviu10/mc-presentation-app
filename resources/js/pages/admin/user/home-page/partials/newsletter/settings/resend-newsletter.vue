@@ -5,7 +5,7 @@
         Press the button below to retry resending the email newsletter
       </p>
       <p class="card-text">
-        <button v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2" class="btn btn-primary" type="button">
+        <button v-if="user.user_role_type_id === 1" class="btn btn-primary" type="button">
           Resend newsletter email
         </button>
       </p>

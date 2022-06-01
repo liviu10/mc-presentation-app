@@ -26,7 +26,7 @@
           allLabel: 'All',
         }"
       >
-        <div v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2" slot="table-actions">
+        <div v-if="user.user_role_type_id === 1" slot="table-actions">
           <button class="btn btn-primary me-2" type="button" data-bs-toggle="modal" data-bs-target="#createNewUser">
             <fa icon="pencil-alt" fixed-width /> Add new
           </button>
@@ -39,7 +39,7 @@
             {{ new Date(props.row.created_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}
           </span>
           <span v-else-if="props.column.field == 'actions'">
-            <button v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2"
+            <button v-if="user.user_role_type_id === 1"
                     class="btn btn-warning w-100"
                     type="button"
                     data-bs-toggle="modal"
