@@ -8,6 +8,12 @@
           {{ $t('user.navigation_bar.brand') }}
         </p>
       </router-link>
+      <router-link v-else :to="{ name: 'home-page' }" class="navbar-brand">
+        <img src="/images/navbar/Logo-img7_180.webp" alt="">
+        <p class="text-wrap">
+          {{ $t('user.navigation_bar.brand') }}
+        </p>
+      </router-link>
       <!-- NAVBAR BRAND SECTION END -->
 
       <!-- NAVBAR HAMBURGER MENU SECTION START -->

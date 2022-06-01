@@ -159,7 +159,7 @@ export default {
         Cookies.remove('intended_url')
         this.$router.push({ path: intendedUrl })
       } else {
-        if (this.user.user_role_type_id === 1 || this.user.user_role_type_id === 2) {
+        if (this.user.user_role_type_id <= 6) {
           this.$router.push({ name: 'admin-home-page' })
         } else {
           this.$router.push({ path: this.$router.history._startLocation })
