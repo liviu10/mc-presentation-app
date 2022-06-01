@@ -3,16 +3,21 @@
     Import here all the CSS pages for the administration panel.
 */
 
-// @import 'about-me/_styles.scss';
-// @import 'application-logs/_styles.scss';
+@import 'about-me/_styles.scss';
+@import 'application-logs/_styles.scss';
+@import 'application-settings/_styles.scss';
 @import 'blog/_styles.scss';
-// @import 'contact-me/_styles.scss';
-// @import 'documentation/_styles.scss';
+@import 'contact-me/_styles.scss';
+@import 'documentation/_styles.scss';
 @import 'home/_styles.scss';
-// @import 'schedule-appointment/_styles.scss';
-// @import 'user-profile/_styles.scss';
+@import 'schedule-appointment/_styles.scss';
+@import 'user-profile/_styles.scss';
 
-.lv-pg-admin-home, .lv-pg-admin-user-home, .lv-pg-admin-user-blog {
+.lv-pg-admin-about-me, .lv-pg-admin-app-logs,
+.lv-pg-admin-app-settings, .lv-pg-admin-user-blog,
+.lv-pg-admin-contact-me, .lv-pg-admin-documentation,
+.lv-pg-admin-home, .lv-pg-admin-user-home,
+.lv-pg-admin-schedule-appointment, .lv-pg-admin-user-profile {
     margin: rem-convertor(60px) 0rem;
     padding: 0rem;
     width: 100%;
@@ -24,4 +29,168 @@
             text-align: center;
         }
     }
+}
+
+.lv-pg-admin-user-home, .lv-pg-admin-documentation {
+    &-body {
+        & .card {
+            margin: rem-convertor(20px) 0rem;
+            width: 100%;
+            background-color: map-get($complementary_blizzard_blue, "color_sea_nymph");
+            border: rem-convertor(0px) !important;
+            border-radius: rem-convertor(0px);
+            &-title {
+                margin-bottom: rem-convertor(16px) !important;
+                width: 100%;
+                font-size: rem-convertor(24px);
+                text-align: left !important;
+                & a {
+                    color: map-get($basic_colors, "color_black");
+                    & span {
+                        font-size: rem-convertor(20px);
+                    }
+                }
+                & span {
+                    font-size: rem-convertor(16px);
+                    font-style: italic;
+                }
+                & p {
+                    font-size: rem-convertor(16px);
+                    &:first-of-type {
+                        margin-bottom: rem-convertor(4px) !important;
+                    }
+                }
+            }
+            &-text {
+                margin-top: rem-convertor(16px);
+                @media only screen and (max-width: 474px) {
+                    text-align: justify;
+                }
+            }
+            &-body {
+                &  .btn-section {
+                    float: right;
+                    background-color: map-get($blizzard_blue, "color_blizzard_blue");
+                    border-color: map-get($blizzard_blue, "color_blizzard_blue");
+                    border-radius: rem-convertor(0px);
+                    color: map-get($basic_colors, "color_black");
+                    font-weight: bold;
+                    &:focus {
+                        border-color: transparent !important;
+                        box-shadow: 0 1px 1px transparent inset, 0 0 8px transparent !important;
+                        outline: 0 none !important;
+                    }
+                }
+            }
+        }
+    }
+    &-button-more {
+        margin-top: rem-convertor(50px);
+        & .btn {
+            margin-top: rem-convertor(50px);
+            margin-bottom: rem-convertor(20px);
+            background-color: map-get($complementary_blizzard_blue, "color_sea_nymph");
+            border-color: map-get($complementary_blizzard_blue, "color_sea_nymph");
+            border-radius: rem-convertor(0px);
+            font-weight: bold;
+            color: map-get($basic_colors, "color_black");
+            &:focus {
+                border-color: transparent !important;
+                box-shadow: 0 1px 1px transparent inset, 0 0 8px transparent !important;
+                outline: 0 none !important;
+            }
+            & .fab {
+                @include flex-center();
+                width: rem-convertor(25px);
+                height: rem-convertor(25px);
+            }
+        }
+    }
+}
+
+.lv-pg-admin-app-logs, .lv-pg-admin-app-settings,
+.lv-pg-admin-user-blog, .lv-pg-admin-contact-me {
+    &-body {
+        & .my-3 {
+            padding: 0rem;
+            & .nav {
+                &-link {
+                    @include flex-center();
+                    border: 0rem;
+                    border-top-left-radius: 0rem;
+                    border-top-right-radius: 0rem;
+                    height: rem-convertor(50px);
+                    color: map-get($basic_colors, "color_black");
+                    font-weight: 900;
+                    text-transform: uppercase;
+                }
+                &-link.active {
+                    background-color: map-get($basic_colors, "color_white") !important;
+                    color: map-get($basic_colors, "color_black");
+                }
+            }
+            & .nav.nav-tabs {
+                border-bottom: 0rem;
+            }
+            & .tab-content {
+                & .tab-pane {
+                    & .card {
+                        margin: 0rem;
+                        border: 0rem !important;
+                        border-radius: 0rem !important;
+                        background-color: map-get($complementary_blizzard_blue, "color_sea_nymph") !important;
+                        &-title {
+                            @include flex-center-left-center();
+                            margin-bottom: 0rem;
+                            height: rem-convertor(60px);
+                            text-transform: uppercase;
+                        }
+                        &-body {
+                            padding: 0rem;
+                            & .newsletter-subsection {
+                                &-body {
+                                    & .btn {
+                                        
+                                    }
+                                }
+                            }
+                            & .btn {
+                                border-radius: 0rem;
+                                color: map-get($basic_colors, "color_black");
+                                font-weight: bold;
+                                &:focus {
+                                    border-color: transparent !important;
+                                    box-shadow: 0 1px 1px transparent inset, 0 0 8px transparent !important;
+                                    outline: 0 none !important;
+                                }
+                            }
+                        }
+                        &-text {
+                            margin-bottom: 0rem;
+                            height: rem-convertor(100px);
+                        }
+                    }
+                    & .row {
+                        & .card {
+                            background-color: map-get($blizzard_blue, "color_blizzard_blue") !important;
+                            &-title {
+                                justify-content: space-between;
+                                margin-bottom: rem-convertor(24px);
+                                & a {
+                                    text-transform: capitalize;
+                                }
+                            }
+                            &-text {
+                                height: rem-convertor(50px);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.lv-pg-admin-home, .lv-pg-admin-about-me, .lv-pg-admin-schedule-appointment {
+    height: 100vh;
 }

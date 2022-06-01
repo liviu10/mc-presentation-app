@@ -1,71 +1,67 @@
 <template>
-  <div class="row">
-    <div class="col-lg-12 m-auto">
-      <div class="lv-pg-admin">
-        <div class="lv-pg-admin-body">
-          <vue-good-table
-            :columns="columns"
-            :rows="displayListOfUsers"
-            :search-options="{
-              enabled: true
-            }"
-            :pagination-options="{
-              enabled: true,
-              mode: 'records',
-              perPage: 50,
-              position: 'bottom',
-              perPageDropdown: [100, 200, 300, 400, 500],
-              dropdownAllowAll: false,
-              setCurrentPage: 1,
-              jumpFirstOrLast : true,
-              firstLabel : 'First Page',
-              lastLabel : 'Last Page',
-              nextLabel: 'next',
-              prevLabel: 'prev',
-              rowsPerPageLabel: 'Rows per page',
-              ofLabel: 'of',
-              pageLabel: 'page',
-              allLabel: 'All',
-            }"
-          >
-            <div v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2" slot="table-actions">
-              <button class="btn btn-primary me-2" type="button" data-bs-toggle="modal" data-bs-target="#createNewUser">
-                <fa icon="pencil-alt" fixed-width /> Add new
-              </button>
-            </div>
-            <template slot="table-row" slot-scope="props">
-              <span v-if="props.column.field == 'user_role_type_id'">
-                {{ props.row.user_role_type.user_role_name }}
-              </span>
-              <span v-else-if="props.column.field == 'created_at'">
-                {{ new Date(props.row.created_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}
-              </span>
-              <span v-else-if="props.column.field == 'actions'">
-                <button v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2"
-                        class="btn btn-warning w-100"
-                        type="button"
-                        data-bs-toggle="modal"
-                        data-bs-target="#editUser"
-                        @click="editUser(props.row)"
-                >
-                  <fa icon="edit" fixed-width /> Edit
-                </button>
-                <button v-if="user.user_role_type_id === 1" class="btn btn-danger w-100" @click="deleteUsers(props.row)">
-                  <fa icon="trash" fixed-width /> Delete
-                </button>
-              </span>
-              <span v-else>
-                {{ props.formattedRow[props.column.field] }}
-              </span>
-            </template>
-          </vue-good-table>
+  <div class="lv-pg-admin-app-settings-section">
+    <div class="lv-pg-admin-app-settings-section-body">
+      <vue-good-table
+        :columns="columns"
+        :rows="displayListOfUsers"
+        :search-options="{
+          enabled: true
+        }"
+        :pagination-options="{
+          enabled: true,
+          mode: 'records',
+          perPage: 50,
+          position: 'bottom',
+          perPageDropdown: [100, 200, 300, 400, 500],
+          dropdownAllowAll: false,
+          setCurrentPage: 1,
+          jumpFirstOrLast : true,
+          firstLabel : 'First Page',
+          lastLabel : 'Last Page',
+          nextLabel: 'next',
+          prevLabel: 'prev',
+          rowsPerPageLabel: 'Rows per page',
+          ofLabel: 'of',
+          pageLabel: 'page',
+          allLabel: 'All',
+        }"
+      >
+        <div v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2" slot="table-actions">
+          <button class="btn btn-primary me-2" type="button" data-bs-toggle="modal" data-bs-target="#createNewUser">
+            <fa icon="pencil-alt" fixed-width /> Add new
+          </button>
         </div>
-
-        <new-user />
-
-        <edit-user :edit-row="selectedDataToEdit" />
-      </div>
+        <template slot="table-row" slot-scope="props">
+          <span v-if="props.column.field == 'user_role_type_id'">
+            {{ props.row.user_role_type.user_role_name }}
+          </span>
+          <span v-else-if="props.column.field == 'created_at'">
+            {{ new Date(props.row.created_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}
+          </span>
+          <span v-else-if="props.column.field == 'actions'">
+            <button v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2"
+                    class="btn btn-warning w-100"
+                    type="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#editUser"
+                    @click="editUser(props.row)"
+            >
+              <fa icon="edit" fixed-width /> Edit
+            </button>
+            <button v-if="user.user_role_type_id === 1" class="btn btn-danger w-100" @click="deleteUsers(props.row)">
+              <fa icon="trash" fixed-width /> Delete
+            </button>
+          </span>
+          <span v-else>
+            {{ props.formattedRow[props.column.field] }}
+          </span>
+        </template>
+      </vue-good-table>
     </div>
+
+    <new-user />
+
+    <edit-user :edit-row="selectedDataToEdit" />
   </div>
 </template>
 

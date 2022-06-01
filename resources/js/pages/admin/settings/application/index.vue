@@ -1,12 +1,12 @@
 <template>
   <div class="row">
     <div class="col-lg-12 m-auto">
-      <div class="lv-pg-admin">
-        <div class="lv-pg-admin-header">
-          <h1>ADMIN APPLICATION SETTINGS PAGE</h1>
+      <div class="lv-pg-admin-app-settings">
+        <div class="lv-pg-admin-app-settings-header">
+          <h1>ADMIN PAGE: APPLICATION SETTINGS PAGE</h1>
         </div>
-        <div class="lv-pg-admin-body">
-          <div class="my-4">
+        <div class="lv-pg-admin-app-settings-body">
+          <div class="my-3">
             <ul id="myTab" class="nav nav-tabs">
               <li class="nav-item">
                 <a href="#accepted_domains" class="nav-link active" data-bs-toggle="tab">Accepted Domains</a>

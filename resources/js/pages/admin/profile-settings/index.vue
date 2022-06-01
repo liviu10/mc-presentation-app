@@ -1,11 +1,11 @@
 <template>
   <div class="row">
     <div class="col-lg-12 m-auto">
-      <div class="lv-pg-admin">
-        <div class="lv-pg-admin-header">
-          <h1>ADMIN PROFILE SETTINGS PAGE</h1>
+      <div class="lv-pg-admin-user-profile">
+        <div class="lv-pg-admin-user-profile-header">
+          <h1>PROFILE SETTINGS PAGE</h1>
         </div>
-        <div class="lv-pg-admin-body">
+        <div class="lv-pg-admin-user-profile-body">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">

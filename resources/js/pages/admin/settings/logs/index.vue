@@ -1,12 +1,12 @@
 <template>
   <div class="row">
     <div class="col-lg-12 m-auto">
-      <div class="lv-pg-admin">
-        <div class="lv-pg-admin-header">
-          <h1>ADMIN APPLICATION LOGS</h1>
+      <div class="lv-pg-admin-app-logs">
+        <div class="lv-pg-admin-app-logs-header">
+          <h1>ADMIN PAGE: APPLICATION LOGS</h1>
         </div>
-        <div class="lv-pg-admin-body">
-          <div class="my-4">
+        <div class="lv-pg-admin-app-logs-body">
+          <div class="my-3">
             <ul id="myTab" class="nav nav-tabs">
               <li class="nav-item">
                 <a href="#application_logs" class="nav-link active" data-bs-toggle="tab">Application Logs</a>

@@ -1,6 +1,6 @@
 <template>
-  <div class="categories-sections">
-    <div class="categories-body">
+  <div class="lv-pg-admin-blog-section">
+    <div class="lv-pg-admin-blog-section-body">
       <vue-good-table
         :columns="columns"
         :rows="displayAllBlogCategories"

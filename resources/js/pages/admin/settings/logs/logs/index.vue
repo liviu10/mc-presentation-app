@@ -1,63 +1,59 @@
 <template>
-  <div class="row">
-    <div class="col-lg-12 m-auto">
-      <div class="lv-pg-admin">
-        <div class="lv-pg-admin-body">
-          <vue-good-table
-            :columns="columns"
-            :rows="displayLogs"
-            :search-options="{
-              enabled: true
-            }"
-            :pagination-options="{
-              enabled: true,
-              mode: 'records',
-              perPage: 50,
-              position: 'bottom',
-              perPageDropdown: [100, 200, 300, 400, 500],
-              dropdownAllowAll: false,
-              setCurrentPage: 1,
-              jumpFirstOrLast : true,
-              firstLabel : 'First Page',
-              lastLabel : 'Last Page',
-              nextLabel: 'next',
-              prevLabel: 'prev',
-              rowsPerPageLabel: 'Rows per page',
-              ofLabel: 'of',
-              pageLabel: 'page',
-              allLabel: 'All',
-            }"
-          >
-            <div v-if="user.user_role_type_id === 1" slot="table-actions">
-              <button class="btn btn-danger me-2" @click="deleteAllLogs()">
-                <fa icon="trash" fixed-width /> Delete all
-              </button>
-            </div>
-            <template slot="table-row" slot-scope="props">
-              <span v-if="props.column.field == 'created_at'">
-                {{ new Date(props.row.created_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}
-              </span>
-              <span v-else-if="props.column.field == 'actions'">
-                <button v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2"
-                        class="btn btn-info w-100"
-                        type="button"
-                        data-bs-toggle="modal"
-                        data-bs-target="#showLogs"
-                        @click="showLogs(props.row)"
-                >
-                  <fa icon="eye" fixed-width /> Show
-                </button>
-              </span>
-              <span v-else>
-                {{ props.formattedRow[props.column.field] }}
-              </span>
-            </template>
-          </vue-good-table>
+  <div class="lv-pg-admin-app-logs-section">
+    <div class="lv-pg-admin-app-logs-section-body">
+      <vue-good-table
+        :columns="columns"
+        :rows="displayLogs"
+        :search-options="{
+          enabled: true
+        }"
+        :pagination-options="{
+          enabled: true,
+          mode: 'records',
+          perPage: 50,
+          position: 'bottom',
+          perPageDropdown: [100, 200, 300, 400, 500],
+          dropdownAllowAll: false,
+          setCurrentPage: 1,
+          jumpFirstOrLast : true,
+          firstLabel : 'First Page',
+          lastLabel : 'Last Page',
+          nextLabel: 'next',
+          prevLabel: 'prev',
+          rowsPerPageLabel: 'Rows per page',
+          ofLabel: 'of',
+          pageLabel: 'page',
+          allLabel: 'All',
+        }"
+      >
+        <div v-if="user.user_role_type_id === 1" slot="table-actions">
+          <button class="btn btn-danger me-2" @click="deleteAllLogs()">
+            <fa icon="trash" fixed-width /> Delete all
+          </button>
         </div>
-
-        <show-logs :show-row="selectedData" />
-      </div>
+        <template slot="table-row" slot-scope="props">
+          <span v-if="props.column.field == 'created_at'">
+            {{ new Date(props.row.created_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}
+          </span>
+          <span v-else-if="props.column.field == 'actions'">
+            <button v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2"
+                    class="btn btn-info w-100"
+                    type="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#showLogs"
+                    @click="showLogs(props.row)"
+            >
+              <fa icon="eye" fixed-width /> Show
+            </button>
+          </span>
+          <span v-else>
+            {{ props.formattedRow[props.column.field] }}
+          </span>
+        </template>
+      </vue-good-table>
     </div>
+
+    <show-logs :show-row="selectedData" />
   </div>
 </template>
 

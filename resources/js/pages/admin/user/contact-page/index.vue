@@ -1,12 +1,12 @@
 <template>
   <div class="row">
     <div class="col-lg-12 m-auto">
-      <div class="lv-pg-admin-contact">
-        <div class="lv-pg-admin-contact-header">
+      <div class="lv-pg-admin-contact-me">
+        <div class="lv-pg-admin-contact-me-header">
           <h1>USER CONTACT ME MESSAGES</h1>
         </div>
-        <div class="lv-pg-admin-contact-body">
-          <div class="my-4">
+        <div class="lv-pg-admin-contact-me-body">
+          <div class="my-3">
             <ul id="myTab" class="nav nav-tabs">
               <li class="nav-item">
                 <a href="#contact_me_messages" class="nav-link active" data-bs-toggle="tab">Contact me Message</a>
