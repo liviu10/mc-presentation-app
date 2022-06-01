@@ -46,7 +46,7 @@
             {{ new Date(props.formattedRow['created_at']).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}
           </span>
           <span v-else-if="props.column.field == 'actions'">
-            <button v-if="user.user_role_type_id === 1"
+            <button v-if="user.user_role_type_id <= 6"
                     class="btn btn-info w-100"
                     type="button"
                     data-bs-toggle="modal"
@@ -55,7 +55,7 @@
             >
               <fa icon="eye" fixed-width /> {{ $t('admin.general_settings.table.actions.show_record_label', { typeOfRecord: ''}) }}
             </button>
-            <button v-if="user.user_role_type_id === 1"
+            <button v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2"
                     class="btn btn-warning w-100"
                     type="button"
                     data-bs-toggle="modal"
