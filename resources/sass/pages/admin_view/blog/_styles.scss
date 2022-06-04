@@ -1,0 +1,37 @@
+@mixin new-article-button() {
+    background-color: map-get($complementary_blizzard_blue, "color_sea_nymph");
+    border-color: map-get($complementary_blizzard_blue, "color_sea_nymph");
+    border-radius: rem-convertor(0px);
+    font-weight: bold;
+    color: map-get($basic_colors, "color_black");
+    &:focus {
+        border-color: transparent !important;
+        box-shadow: 0 1px 1px transparent inset, 0 0 8px transparent !important;
+        outline: 0 none !important;
+    }
+}
+
+.lv-pg-admin-new-article {
+    &-body {
+        &-subcategory {
+            & .col-form-label {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            & .btn {
+                @include new-article-button();
+            }
+        }
+        &-buttons {
+            @include flex-center();
+            & .btn {
+                @include new-article-button();
+                margin: rem-convertor(30px) 0px;
+            }
+            & .btn:last-of-type {
+                margin-left: rem-convertor(8px);
+            }
+        }
+    }
+}

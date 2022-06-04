@@ -3,17 +3,22 @@
     <div class="col-lg-12 m-auto">
       <div class="lv-pg-admin-new-article">
         <div class="lv-pg-admin-new-article-header">
-          <h1>ADMIN CREATE NEW BLOG ARTICLES</h1>
+          <h1>CREATE NEW BLOG ARTICLE</h1>
         </div>
         <div class="lv-pg-admin-new-article-body">
           <form @submit.prevent="publishArticle" @keydown="form.onKeydown($event)">
             <!-- BLOG SUBCATEGORY, SECTION START -->
-            <div class="col col-12 my-3 lv-pg-admin-body-blog-subcategory">
+            <div class="col col-12 my-3 lv-pg-admin-new-article-body-subcategory">
               <label class="col-form-label">
-                Select the blog subcategory for this article
-                <div id="blog_subcategory_help" class="form-text mt-0">
-                  You can select only one blog subcategory. Each of the three blog categories will generate its specific template for writing articles.
+                <div>
+                  Select the blog subcategory for this article
+                  <div id="blog_subcategory_help" class="form-text mt-0">
+                    You can select only one blog subcategory. Each of the three blog categories will generate its specific template for writing articles.
+                  </div>
                 </div>
+                <button type="button" class="btn btn-primary" @click="clearSubcategoryButton()">
+                  <fa icon="times" fixed-width />
+                </button>
               </label>
               <select id="blog_subcategory"
                       v-model="form.blog_subcategory"
@@ -33,9 +38,9 @@
             <!-- BLOG SUBCATEGORY, SECTION END -->
 
             <!-- BLOG ARTICLE TITLE, SECTION START -->
-            <div class="col col-12 my-3 lv-pg-admin-body-blog-title">
+            <div class="col col-12 my-3 lv-pg-admin-new-article-body-title">
               <label class="col-form-label">
-                Article title
+                Title
               </label>
               <div v-if="form.blog_subcategory">
                 <input id="blog_article_title"
@@ -56,9 +61,9 @@
             <!-- BLOG ARTICLE TITLE, SECTION END -->
 
             <!-- BLOG ARTICLE SHORT DESCRIPTION, SECTION START -->
-            <div class="col col-12 my-3 lv-pg-admin-body-blog-short-description">
+            <div class="col col-12 my-3 lv-pg-admin-new-article-body-short-description">
               <label class="col-form-label">
-                Article short description
+                Short description
                 <div id="blog_article_short_description_help" class="form-text mt-0">
                   The blog article short description will be visible when the user will visit the list of all articles no matter the subcategory they belong to.
                 </div>
@@ -84,9 +89,9 @@
             <!-- BLOG ARTICLE SHORT DESCRIPTION, SECTION END -->
 
             <!-- BLOG ARTICLE MEDIA, SECTION START -->
-            <div class="col col-12 my-3 lv-pg-admin-body-blog-media">
+            <div class="col col-12 my-3 lv-pg-admin-new-article-body-media">
               <label class="col-form-label">
-                Article media
+                Media files
                 <div id="blog_article_media_url_help" class="form-text mt-0">
                   Blog article media refers to image, audio or video content that you whish to include in your article. Based on your blog subcategory selection, this section will be different
                   (eg. if you select a subcategory that belongs to Written blog articles category, you can upload a picture)
@@ -117,9 +122,9 @@
             <!-- BLOG ARTICLE MEDIA, SECTION END -->
 
             <!-- BLOG ARTICLE CONTENT, SECTION START -->
-            <div class="col col-12 my-3 lv-pg-admin-body-blog-content">
+            <div class="col col-12 my-3 lv-pg-admin-new-article-body-content">
               <label class="col-form-label">
-                Article content
+                Content
                 <div id="blog_article_content_help" class="form-text mt-0">
                   An article content can have up to 5 paragraphs (called sections). Based on your blog subcategory selection, this section will be different
                   (eg. if you selected a subcategory that belongs to Written blog articles category, you can generate a maximum of 5 section for your article)
@@ -127,7 +132,7 @@
               </label>
             </div>
             <div v-if="form.blog_subcategory && form.blog_subcategory.blog_category_id === 1">
-              <div class="col col-12 my-3 lv-pg-admin-body-blog-content-section">
+              <div class="col col-12 my-3 lv-pg-admin-new-article-body-content-section">
                 <label class="col-form-label">
                   Paragraph 1
                 </label>
@@ -143,7 +148,7 @@
                 <has-error :form="form" field="blog_article_content_section_1" />
               </div>
 
-              <div class="col col-12 my-3 lv-pg-admin-body-blog-content-section">
+              <div class="col col-12 my-3 lv-pg-admin-new-article-body-content-section">
                 <label class="col-form-label">
                   Paragraph 2
                 </label>
@@ -159,7 +164,7 @@
                 <has-error :form="form" field="blog_article_content_section_2" />
               </div>
 
-              <div class="col col-12 my-3 lv-pg-admin-body-blog-content-section">
+              <div class="col col-12 my-3 lv-pg-admin-new-article-body-content-section">
                 <label class="col-form-label">
                   Paragraph 3
                 </label>
@@ -175,7 +180,7 @@
                 <has-error :form="form" field="blog_article_content_section_3" />
               </div>
 
-              <div class="col col-12 my-3 lv-pg-admin-body-blog-content-section">
+              <div class="col col-12 my-3 lv-pg-admin-new-article-body-content-section">
                 <label class="col-form-label">
                   Paragraph 4
                 </label>
@@ -191,7 +196,7 @@
                 <has-error :form="form" field="blog_article_content_section_4" />
               </div>
 
-              <div class="col col-12 my-3 lv-pg-admin-body-blog-content-section">
+              <div class="col col-12 my-3 lv-pg-admin-new-article-body-content-section">
                 <label class="col-form-label">
                   Paragraph 5
                 </label>
@@ -208,7 +213,7 @@
               </div>
             </div>
             <div v-else-if="form.blog_subcategory && (form.blog_subcategory.blog_category_id === 2 || form.blog_subcategory.blog_category_id === 3)">
-              <div class="col col-12 my-3 lv-pg-admin-body-blog-content-section">
+              <div class="col col-12 my-3 lv-pg-admin-new-article-body-content-section">
                 <label class="col-form-label">
                   Paragraph
                 </label>
@@ -232,9 +237,9 @@
             <!-- BLOG ARTICLE CONTENT, SECTION END -->
 
             <!-- BLOG ARTICLE IS ACTIVE, SECTION START -->
-            <div class="col col-12 my-3 lv-pg-admin-body-blog-subcategory">
+            <div class="col col-12 my-3 lv-pg-admin-new-article-body-active">
               <label class="col-form-label">
-                Activate this blog article?
+                Activate this article?
                 <div id="blog_article_is_active_help" class="form-text mt-0">
                   You can choose weather or not to activate the blog article. If you select 'No', the article will not be visible on the website.
                 </div>
@@ -265,7 +270,7 @@
             <!-- BLOG ARTICLE IS ACTIVE, SECTION END -->
           </form>
 
-          <div class="lv-pg-admin-body-buttons">
+          <div class="lv-pg-admin-new-article-body-buttons">
             <button type="button" class="btn btn-secondary" @click="cancelNewArticle()">
               Cancel
             </button>
@@ -342,9 +347,22 @@ export default {
       fetchBlogCategoriesAndSubcategories: 'blog/fetchBlogCategoriesAndSubcategories',
       fetchBlogSubcategories: 'blog/fetchBlogSubcategories'
     }),
+    clearSubcategoryButton () {
+      this.form.blog_subcategory = null
+      this.form.blog_article_title = ''
+      this.form.blog_article_short_description = ''
+      this.form.blog_article_media_url = ''
+      this.form.section_1 = ''
+      this.form.section_2 = ''
+      this.form.section_3 = ''
+      this.form.section_4 = ''
+      this.form.section_5 = ''
+      this.form.blog_article_is_active = false
+    },
     cancelNewArticle () {
-      console.log('> form: ', this.form)
-      if (Object.values(this.form).every(formProperty => formProperty !== null || formProperty !== '')) {
+      console.log('> check ', Object.values(this.form).every(formProperty => formProperty === null))
+      if (Object.values(this.form).every(formProperty => formProperty !== null || formProperty !== '' || formProperty !== false)) {
+        console.log('> cancelNewArticle: ', this.form)
         Swal.fire({
           title: 'Unsaved changes!',
           text: 'You have started creating a new blog article but you did not finished it! Close this window and save the changes!',
@@ -369,6 +387,8 @@ export default {
             this.form.blog_article_is_active = false
           }
         })
+      } else {
+        this.$router.push({ name: 'admin-user-blog-page' })
       }
     },
     async publishArticle () {
