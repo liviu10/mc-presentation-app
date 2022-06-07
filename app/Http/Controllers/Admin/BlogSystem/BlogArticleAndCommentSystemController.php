@@ -176,21 +176,23 @@ class BlogArticleAndCommentSystemController extends Controller
             $request->validate([
                 'blog_article_title'             => 'required|regex:/^[a-zA-Z_ ]+$/u|max:255',
                 'blog_article_short_description' => 'required|max:255',
+                'blog_article_media_url'         => 'required|max:255',
+                'blog_article_time'              => 'required|regex:/^[0-9_ ]+$/u',
                 'blog_article_is_active'         => 'required',
             ]);
 
-            $readWordsPerMinute = 200;
-            $blogArticleSections = $request->get('blog_article_content');
-            $totalNumberOfWords = 0;
-            $totalReadingTime = 0;
-            foreach ($blogArticleSections as $section)
-            {
-                $totalNumberOfWords += str_word_count(strip_tags($section));
-            }
-            $totalReadingTime = $totalNumberOfWords / $readWordsPerMinute;
-
             if ($request->get('blog_subcategory')['blog_category_id'] === 1)
             {
+                $readWordsPerMinute = 200;
+                $blogArticleSections = $request->get('blog_article_content');
+                $totalNumberOfWords = 0;
+                $totalReadingTime = 0;
+                foreach ($blogArticleSections as $section)
+                {
+                    $totalNumberOfWords += str_word_count(strip_tags($section));
+                }
+                $totalReadingTime = $totalNumberOfWords / $readWordsPerMinute;
+
                 $apiInsertSingleRecord = $this->modelNameBlogArticle->create([
                     'blog_subcategory_id'            => $request->get('blog_subcategory')['id'],
                     'blog_article_author'            => Auth::user()->name,
@@ -212,7 +214,7 @@ class BlogArticleAndCommentSystemController extends Controller
                 $apiInsertSingleRecord = $this->modelNameBlogArticle->create([
                     'blog_subcategory_id'            => $request->get('blog_subcategory')['id'],
                     'blog_article_author'            => Auth::user()->name,
-                    'blog_article_time'              => $totalReadingTime,
+                    'blog_article_time'              => $request->get('blog_article_time'),
                     'blog_article_title'             => $request->get('blog_article_title'),
                     'blog_article_short_description' => $request->get('blog_article_short_description'),
                     'blog_article_content_section_1' => $request->get('blog_article_content')['section_1'],
@@ -227,10 +229,11 @@ class BlogArticleAndCommentSystemController extends Controller
             }
             else
             {
+                $processYoutubeUrl = str_replace('watch?v=', 'embed/', $request->get('blog_article_media_url'));
                 $apiInsertSingleRecord = $this->modelNameBlogArticle->create([
                     'blog_subcategory_id'            => $request->get('blog_subcategory')['id'],
                     'blog_article_author'            => Auth::user()->name,
-                    'blog_article_time'              => $totalReadingTime,
+                    'blog_article_time'              => $request->get('blog_article_time'),
                     'blog_article_title'             => $request->get('blog_article_title'),
                     'blog_article_short_description' => $request->get('blog_article_short_description'),
                     'blog_article_content_section_1' => $request->get('blog_article_content')['section_1'],
@@ -238,7 +241,7 @@ class BlogArticleAndCommentSystemController extends Controller
                     'blog_article_content_section_3' => $request->get('blog_article_content')['section_3'],
                     'blog_article_content_section_4' => $request->get('blog_article_content')['section_4'],
                     'blog_article_content_section_5' => $request->get('blog_article_content')['section_5'],
-                    'blog_article_media_url'         => 'test',// $request->get('blog_article_media_url'),
+                    'blog_article_media_url'         => $processYoutubeUrl,
                     'blog_article_path'              => '/blog/video/view',
                     'blog_article_is_active'         => $request->get('blog_article_is_active'),
                 ]);

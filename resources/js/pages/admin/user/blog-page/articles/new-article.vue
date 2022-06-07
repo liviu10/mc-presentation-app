@@ -97,23 +97,37 @@
                   (eg. if you select a subcategory that belongs to Written blog articles category, you can upload a picture)
                 </div>
               </label>
-              <input v-if="form.blog_subcategory && form.blog_subcategory.blog_category_id === 1"
-                     id="blog_article_media_url"
-                     type="file"
-                     :class="{ 'is-invalid': form.errors.has('blog_article_media_url') }"
-                     class="form-control"
-                     name="blog_article_media_url"
-                     accept="image/png, image/jpeg, image/jpg"
-                     @change="uploadBlogArticleImage($event)"
-              >
-              <input v-else-if="form.blog_subcategory && (form.blog_subcategory.blog_category_id === 2 || form.blog_subcategory.blog_category_id === 3)"
-                     id="blog_article_media_url"
-                     v-model="form.blog_article_media_url"
-                     type="text"
-                     :class="{ 'is-invalid': form.errors.has('blog_article_media_url') }"
-                     class="form-control"
-                     name="blog_article_media_url"
-              >
+              <div v-if="form.blog_subcategory && form.blog_subcategory.blog_category_id === 1">
+                <input id="blog_article_media_url"
+                       type="file"
+                       :class="{ 'is-invalid': form.errors.has('blog_article_media_url') }"
+                       class="form-control"
+                       name="blog_article_media_url"
+                       accept="image/png, image/jpeg, image/jpg"
+                       @change="uploadBlogArticleImage($event)"
+                >
+              </div>
+              <div v-else-if="form.blog_subcategory && (form.blog_subcategory.blog_category_id === 2 || form.blog_subcategory.blog_category_id === 3)">
+                <input id="blog_article_media_url"
+                       v-model="form.blog_article_media_url"
+                       type="text"
+                       :class="{ 'is-invalid': form.errors.has('blog_article_media_url') }"
+                       class="form-control"
+                       name="blog_article_media_url"
+                >
+                <div class="input-group">
+                  <span class="input-group-text"># of minutes</span>
+                  <input id="blog_article_time"
+                         v-model="form.blog_article_time"
+                         type="number"
+                         :class="{ 'is-invalid': form.errors.has('blog_article_time') }"
+                         class="form-control"
+                         name="blog_article_time"
+                         min="1"
+                         step="1"
+                  >
+                </div>
+              </div>
               <p v-else>
                 In order to upload article's media content, please choose a blog subcategory!
               </p>
@@ -311,6 +325,7 @@ export default {
         blog_article_title: '',
         blog_article_short_description: '',
         blog_article_media_url: '',
+        blog_article_time: null,
         blog_article_content: {
           section_1: '',
           section_2: '',
@@ -352,6 +367,7 @@ export default {
       this.form.blog_article_title = ''
       this.form.blog_article_short_description = ''
       this.form.blog_article_media_url = ''
+      this.form.blog_article_time = null
       this.form.section_1 = ''
       this.form.section_2 = ''
       this.form.section_3 = ''
@@ -360,16 +376,26 @@ export default {
       this.form.blog_article_is_active = false
     },
     cancelNewArticle () {
-      console.log('> check ', Object.values(this.form).every(formProperty => formProperty === null))
-      if (Object.values(this.form).every(formProperty => formProperty !== null || formProperty !== '' || formProperty !== false)) {
-        console.log('> cancelNewArticle: ', this.form)
+      if (
+        this.form.blog_subcategory !== null ||
+        this.form.blog_article_title !== '' ||
+        this.form.blog_article_short_description !== '' ||
+        this.form.blog_article_media_url !== '' ||
+        this.form.blog_article_time !== null ||
+        this.form.blog_article_content.section_1 !== '' ||
+        this.form.blog_article_content.section_2 !== '' ||
+        this.form.blog_article_content.section_3 !== '' ||
+        this.form.blog_article_content.section_4 !== '' ||
+        this.form.blog_article_content.section_5 !== '' ||
+        this.form.blog_article_is_active !== false
+      ) {
+        console.log('> what form payload I have? ', this.form.originalData)
         Swal.fire({
           title: 'Unsaved changes!',
           text: 'You have started creating a new blog article but you did not finished it! Close this window and save the changes!',
           showCancelButton: true,
-          cancelButtonText: 'Cancel',
+          cancelButtonText: 'Close',
           confirmButtonText: 'Yes, leave the page!',
-          reverseButtons: true,
           allowOutsideClick: false,
           allowEscapeKey: false
         }).then(result => {
@@ -379,6 +405,7 @@ export default {
             this.form.blog_article_title = ''
             this.form.blog_article_short_description = ''
             this.form.blog_article_media_url = ''
+            this.form.blog_article_time = ''
             this.form.section_1 = ''
             this.form.section_2 = ''
             this.form.section_3 = ''
@@ -388,10 +415,12 @@ export default {
           }
         })
       } else {
+        console.log('> what form payload I have? ', this.form)
         this.$router.push({ name: 'admin-user-blog-page' })
       }
     },
     async publishArticle () {
+      console.log('> what form payload I have? ', this.form)
       const url = window.location.origin
       const apiEndPoint = '/api/admin/system/blog/create-article'
       const fullApiUrl = url + apiEndPoint
@@ -400,7 +429,8 @@ export default {
           blog_subcategory: this.form.blog_subcategory.id,
           blog_article_title: this.form.blog_article_title,
           blog_article_short_description: this.form.blog_article_short_description,
-          blog_article_media_url: 'test', // this.form.blog_article_media_url,
+          blog_article_media_url: this.form.blog_article_media_url,
+          blog_article_time: this.form.blog_article_time,
           blog_article_content: {
             section_1: this.form.blog_article_content.section_1,
             section_2: this.form.blog_article_content.section_2,
@@ -417,6 +447,17 @@ export default {
             text: 'Body article created successfully'
           }).then((result) => {
             this.form.blog_subcategory = null
+            this.form.blog_article_title = ''
+            this.form.blog_article_short_description = ''
+            this.form.blog_article_media_url = ''
+            this.form.blog_article_time = ''
+            this.form.section_1 = ''
+            this.form.section_2 = ''
+            this.form.section_3 = ''
+            this.form.section_4 = ''
+            this.form.section_5 = ''
+            this.form.blog_article_is_active = false
+            this.$router.push({ name: 'admin-user-blog-page' })
           })
         })
         .catch(error => {
@@ -425,7 +466,9 @@ export default {
           if (error.response.status === 406 || error.response.status === 500) {
             Swal.fire({
               title: 'Title article error',
-              text: 'Body article error'
+              text: 'Body article error',
+              allowOutsideClick: false,
+              allowEscapeKey: false
             })
           }
           if (error.response.status === 422) {

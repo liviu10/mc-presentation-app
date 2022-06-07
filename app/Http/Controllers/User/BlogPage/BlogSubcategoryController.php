@@ -393,6 +393,7 @@ class BlogSubcategoryController extends Controller
                     'blog_article_content_section_3',
                     'blog_article_content_section_4',
                     'blog_article_content_section_5',
+                    'blog_article_media_url',
                     'created_at',
                     'updated_at',
                 )

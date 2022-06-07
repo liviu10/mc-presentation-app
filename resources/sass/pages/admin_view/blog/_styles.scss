@@ -23,6 +23,14 @@
                 @include new-article-button();
             }
         }
+        &-media {
+            & div {
+                @include flex-center();
+                & .input-group {
+                    width: 30%;
+                }
+            }
+        }
         &-buttons {
             @include flex-center();
             & .btn {

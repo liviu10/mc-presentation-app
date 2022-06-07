@@ -16,7 +16,7 @@
     />
     <!-- TEMPLATE AUDIO PLAYER, SECTION END -->
     <!-- TEMPLATE BODY, SECTION START -->
-    <body-details :blog-article-content="articleContent.blog_articles[0].blog_article_short_description" />
+    <body-details :first-blog-article-content-section="articleContent.blog_articles[0].blog_article_content_section_1" />
     <!-- TEMPLATE BODY, SECTION END -->
     <!-- TEMPLATE OPTIONS (RATE, SUBCATEGORY TITLE AND SHARE BUTTONS), SECTION START -->
     <option-details :blog-article-id="articleContent.blog_articles[0].id"

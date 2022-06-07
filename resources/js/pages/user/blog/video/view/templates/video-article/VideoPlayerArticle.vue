@@ -4,19 +4,16 @@
     <header-details :blog-article-author="articleContent.blog_articles[0].blog_article_author"
                     :blog-article-created="articleContent.blog_articles[0].created_at"
                     :blog-article-updated="articleContent.blog_articles[0].updated_at"
-                    :blog-article-reading-time="articleContent.blog_articles[0].blog_article_time"
+                    :blog-article-viewing-time="articleContent.blog_articles[0].blog_article_time"
                     :blog-article-comments="numberOfTotalComments()"
     />
     <!-- TEMPLATE TITLE, SECTION END -->
     <div class="title-divider" />
     <!-- TEMPLATE VIDEO PLAYER, SECTION START -->
-    <video-player-details :blog-article-title="articleContent.blog_articles[0].blog_article_title"
-                          :blog-article-author="articleContent.blog_articles[0].blog_article_author"
-                          :blog-article-video-path="articleContent.blog_articles[0].blog_article_video_path"
-    />
+    <video-player-details :blog-article-video-path="articleContent.blog_articles[0].blog_article_media_url" />
     <!-- TEMPLATE VIDEO PLAYER, SECTION END -->
     <!-- TEMPLATE BODY, SECTION START -->
-    <body-details :blog-article-content="articleContent.blog_articles[0].blog_article_short_description" />
+    <body-details :first-blog-article-content-section="articleContent.blog_articles[0].blog_article_content_section_1" />
     <!-- TEMPLATE BODY, SECTION END -->
     <!-- TEMPLATE OPTIONS (RATE, SUBCATEGORY TITLE AND SHARE BUTTONS), SECTION START -->
     <option-details :blog-article-id="articleContent.blog_articles[0].id"

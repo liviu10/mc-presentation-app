@@ -21,11 +21,11 @@ class CreateBlogArticlesTable extends Migration
             $table->integer('blog_article_time');
             $table->string('blog_article_title');
             $table->string('blog_article_short_description');
-            $table->longText('blog_article_content_section_1');
-            $table->longText('blog_article_content_section_2');
-            $table->longText('blog_article_content_section_3');
-            $table->longText('blog_article_content_section_4');
-            $table->longText('blog_article_content_section_5');
+            $table->longText('blog_article_content_section_1')->nullable();
+            $table->longText('blog_article_content_section_2')->nullable();
+            $table->longText('blog_article_content_section_3')->nullable();
+            $table->longText('blog_article_content_section_4')->nullable();
+            $table->longText('blog_article_content_section_5')->nullable();
             $table->string('blog_article_media_url');
             $table->string('blog_article_path');
             $table->string('blog_article_is_active', 3)->default('0');

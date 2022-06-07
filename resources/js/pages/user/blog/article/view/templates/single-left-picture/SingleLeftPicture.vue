@@ -10,7 +10,13 @@
     <!-- TEMPLATE TITLE, SECTION END -->
     <div class="title-divider" />
     <!-- TEMPLATE BODY, SECTION START -->
-    <body-details :blog-article-content="articleContent.blog_articles[0].blog_article_content" />
+    <body-details :first-blog-article-content-section="articleContent.blog_articles[0].blog_article_content_section_1"
+                  :second-blog-article-content-section="articleContent.blog_articles[0].blog_article_content_section_2"
+                  :third-blog-article-content-section="articleContent.blog_articles[0].blog_article_content_section_3"
+                  :forth-blog-article-content-section="articleContent.blog_articles[0].blog_article_content_section_4"
+                  :fifth-blog-article-content-section="articleContent.blog_articles[0].blog_article_content_section_5"
+                  :blog-article-media-url="articleContent.blog_articles[0].blog_article_media_url"
+    />
     <!-- TEMPLATE BODY, SECTION END -->
     <!-- TEMPLATE OPTIONS (RATE, SUBCATEGORY TITLE AND SHARE BUTTONS), SECTION START -->
     <option-details :blog-article-id="articleContent.blog_articles[0].id"

@@ -15,11 +15,11 @@
       </span> &bullet;
     </div>
     <div class="video-article-header-reading-time">
-      <span v-if="blogArticleReadingTime <= 1">
+      <span v-if="blogArticleViewingTime <= 1">
         {{ $t('user.blog_system_pages.video_article_blog_pages.viewing_time.less_than_one_minute') }}
       </span>
       <span v-else>
-        {{ blogArticleReadingTime }} {{ $t('user.blog_system_pages.video_article_blog_pages.viewing_time.more_than_one_minute') }}
+        {{ blogArticleViewingTime }} {{ $t('user.blog_system_pages.video_article_blog_pages.viewing_time.more_than_one_minute') }}
       </span>
     </div>
     <div v-if="blogArticleComments" class="video-article-header-no-comments">
@@ -54,7 +54,7 @@ export default {
       default: null,
       type: String
     },
-    blogArticleReadingTime: {
+    blogArticleViewingTime: {
       default: null,
       type: Number
     },
