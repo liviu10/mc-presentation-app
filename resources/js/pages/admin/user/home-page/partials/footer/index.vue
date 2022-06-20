@@ -1,10 +1,10 @@
 <template>
-  <div class="description-section">
+  <div class="footer-section">
     <h1>
-      DESCRIPTION SECTION
+      FOOTER SECTION
     </h1>
-    <div class="description-section-body">
-      {{ displayAllUserJumbotronSection }}
+    <div class="footer-section-body">
+      {{ displayAllUserFooterSection }}
     </div>
   </div>
 </template>
@@ -20,14 +20,14 @@ Vue.use(Vuex)
 window.axios = require('axios')
 
 export default {
-  name: 'AdminUserJumbotron',
+  name: 'AdminUserFooter',
   middleware: 'auth',
   computed: {
     ...mapGetters({
-      allUserJumbotronSection: 'user_home_page/allUserJumbotronSection'
+      allUserFooterSection: 'user_home_page/allUserFooterSection'
     }),
-    displayAllUserJumbotronSection () {
-      return this.allUserJumbotronSection.records
+    displayAllUserFooterSection () {
+      return this.allUserFooterSection.records
     },
     getHttpStatusResponseCode () {
       // TODO Blog System: How to catch api endpoint errors and display them to the user
@@ -35,11 +35,11 @@ export default {
     }
   },
   created () {
-    this.fetchUserJumbotronSection()
+    this.fetchUserFooterSection()
   },
   methods: {
     ...mapActions({
-      fetchUserJumbotronSection: 'user_home_page/fetchUserJumbotronSection'
+      fetchUserFooterSection: 'user_home_page/fetchUserFooterSection'
     })
   }
 }

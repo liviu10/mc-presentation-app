@@ -4,18 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Log;
 
-class HomePageSection extends Model
+class PageSectionCarousel extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     /**
      * The table associated with the model.
      * 
      * @var string
      */
-    protected $table = 'home_page_sections';
+    protected $table = 'page_section_carousel';
 
     /**
      * The primary key associated with the table.
@@ -25,11 +25,18 @@ class HomePageSection extends Model
     protected $primaryKey = 'id';
 
     /**
+     * The data type of the auto-incrementing ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'int';
+
+    /**
      * The foreign key associated with the table.
      * 
      * @var string
      */
-    protected $foreignKey = 'home_page_id';
+    protected $foreignKey = 'page_section_id';
     
     /**
      * The data type of the database table foreign key.
@@ -44,10 +51,14 @@ class HomePageSection extends Model
      * @var string
      */
     protected $fillable = [
-        'home_page_id',
-        'section_name',
-        'section_description',
-        'section_slug_name',
+        'page_section_id',
+        'image_path',
+        'caption_text_1',
+        'caption_text_2',
+        'caption_text_3',
+        'caption_text_4',
+        'button_label',
+        'link_to_blog_article',
     ];
 
     /**
@@ -59,24 +70,24 @@ class HomePageSection extends Model
         'id',
         'created_at',
         'updated_at',
-        'deleted_at',
     ];
 
     /**
-     * Eloquent relationship between home_page_sections and home_page_section_contents.
-     * One home page section may have one or more home page section contents.
+     * Eloquent relationship between page_sections and page_section_carousel.
+     * One page section may have one or more page section content.
+     *
      */
-    public function home_page_section_contents()
+    public function page_sections()
     {
-        return $this->hasMany('App\Models\HomePageSectionContent');
+        return $this->belongsTo('App\Models\PageSection');
     }
 
     /**
-     * Eloquent relationship between home_page_sections and home_page.
-     * One or many home page section(s) may have only one home page.
+     * Eloquent polymorphic relationship between page_section_carousel and logs.
+     *
      */
-    public function home_page()
+    public function log()
     {
-        return $this->belongsTo('App\Models\HomePage');
+        return $this->morphOne(Log::class, 'logable');
     }
 }

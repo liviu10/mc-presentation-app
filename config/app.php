@@ -17,6 +17,32 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Application Owner Name
+    |--------------------------------------------------------------------------
+    |
+    | This value is the name of your application. This value is used when the
+    | framework needs to place the application's owner name in a notification or 
+    | any other location as required by the application or its packages.
+    |
+    */
+
+    'owner_name' => env('APP_OWNER', 'Owner Name'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Contact Email Address
+    |--------------------------------------------------------------------------
+    |
+    | This value is the name of your application. This value is used when the
+    | framework needs to place the application's contact email address in a 
+    | notification or any other location as required by the application or its packages.
+    |
+    */
+
+    'contact_email' => env('APP_CONTACT_EMAIL', 'contact@domain.ro'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Environment
     |--------------------------------------------------------------------------
     |

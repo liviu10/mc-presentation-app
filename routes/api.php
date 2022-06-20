@@ -154,6 +154,7 @@ use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\Admin\System\AcceptedDomainSystemController;
     use App\Http\Controllers\Admin\System\ErrorAndNotificationSystemController;
     use App\Http\Controllers\Admin\System\LogSystemController;
+    use App\Http\Controllers\Admin\System\PageSectionController;
     use App\Http\Controllers\Admin\System\UserListSystemController;
 
 /*
@@ -168,6 +169,25 @@ use Illuminate\Support\Facades\Route;
 */
     Route::group(['middleware' => 'auth:api', 'prefix' => '/admin'], function () {
         Route::group([ 'prefix' => '/system' ], function () {
+            // Home page System Admin API routes
+            Route::group([ 'prefix' => 'home-page' ], function () {
+                // User carousel sections
+                Route::get('/display-carousel', [PageSectionController::class, 'displayCarouselSection']);
+                Route::post('/create-carousel', [PageSectionController::class, 'createCarouselSection']);
+                Route::put('/update-carousel', [PageSectionController::class, 'updateCarouselSection']);
+                // User jumbotron section
+                Route::get('/display-jumbotron', [PageSectionController::class, 'displayJumbotronSection']);
+                Route::post('/create-jumbotron', [PageSectionController::class, 'createJumbotronSection']);
+                Route::put('/update-jumbotron', [PageSectionController::class, 'updateJumbotronSection']);
+                // User testimonials sections
+                Route::get('/display-testimonials', [PageSectionController::class, 'displayTestimonialSection']);
+                Route::post('/create-testimonials', [PageSectionController::class, 'createTestimonialSection']);
+                Route::put('/update-testimonials', [PageSectionController::class, 'updateTestimonialSection']);
+                // User footer section
+                Route::get('/display-footer', [PageSectionController::class, 'displayFooterSection']);
+                Route::post('/create-footer', [PageSectionController::class, 'createFooterSection']);
+                Route::put('/update-footer', [PageSectionController::class, 'updateFooterSection']);
+            });
             // Blog System Admin API routes
             Route::group([ 'prefix' => '/blog' ], function () {
                 Route::group([ 'prefix' => '/' ], function () {

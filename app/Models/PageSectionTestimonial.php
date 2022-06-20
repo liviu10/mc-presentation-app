@@ -4,18 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Log;
 
-class HomePageSectionContent extends Model
+class PageSectionTestimonial extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     /**
      * The table associated with the model.
      * 
      * @var string
      */
-    protected $table = 'home_page_section_contents';
+    protected $table = 'page_section_testimonials';
 
     /**
      * The primary key associated with the table.
@@ -25,11 +25,18 @@ class HomePageSectionContent extends Model
     protected $primaryKey = 'id';
 
     /**
+     * The data type of the auto-incrementing ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'int';
+
+    /**
      * The foreign key associated with the table.
      * 
      * @var string
      */
-    protected $foreignKey = 'home_page_section_id';
+    protected $foreignKey = 'page_section_id';
     
     /**
      * The data type of the database table foreign key.
@@ -44,15 +51,10 @@ class HomePageSectionContent extends Model
      * @var string
      */
     protected $fillable = [
-        'home_page_section_id',
-        'content_1',
-        'content_2',
-        'content_3',
-        'content_4',
-        'media_path',
-        'blog_article_path',
-        'facebook_url',
-        'youtube_url',
+        'page_section_id',
+        'name',
+        'occupation',
+        'description',
     ];
 
     /**
@@ -64,15 +66,24 @@ class HomePageSectionContent extends Model
         'id',
         'created_at',
         'updated_at',
-        'deleted_at',
     ];
 
     /**
-     * Eloquent relationship between home_page_section_contents and home_page_sections.
-     * One or many home page section content(s) may have only one home page section.
+     * Eloquent relationship between page_sections and page_section_testimonials.
+     * One page section may have one or more page section content.
+     *
      */
-    public function home_page_section()
+    public function page_sections()
     {
-        return $this->belongsTo('App\Models\HomePageSection');
+        return $this->belongsTo('App\Models\PageSection');
+    }
+
+    /**
+     * Eloquent polymorphic relationship between page_section_testimonials and logs.
+     *
+     */
+    public function log()
+    {
+        return $this->morphOne(Log::class, 'logable');
     }
 }
