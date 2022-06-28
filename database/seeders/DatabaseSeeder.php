@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             PageSectionJumbotronSeeder::class,
             PageSectionTestimonialSeeder::class,
             PageSectionFooterSeeder::class,
+            PageSectionContactSeeder::class,
             QuestionnaireSeeder::class,
             UserRoleTypeSeeder::class,
             UserSeeder::class,

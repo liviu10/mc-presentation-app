@@ -93,6 +93,16 @@ class PageSection extends Model
     }
 
     /**
+     * Eloquent relationship between page_sections and page_section_contact.
+     * One page section may have one or more page section content.
+     *
+     */
+    public function page_section_contact()
+    {
+        return $this->hasMany('App\Models\PageSectionContact');
+    }
+
+    /**
      * Eloquent polymorphic relationship between page_sections and logs.
      *
      */

@@ -43,6 +43,11 @@ class PageSectionSeeder extends Seeder
                 'section_name' => 'Footer',
                 'section_slug' => 'Footer',
             ],
+            [
+                'id'           => '6',
+                'section_name' => 'Contact Me',
+                'section_slug' => 'contact-me',
+            ],
         ];
         PageSection::insert($records);
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');

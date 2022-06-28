@@ -173,20 +173,19 @@ use Illuminate\Support\Facades\Route;
             Route::group([ 'prefix' => 'home-page' ], function () {
                 // User carousel sections
                 Route::get('/display-carousel', [PageSectionController::class, 'displayCarouselSection']);
-                Route::post('/create-carousel', [PageSectionController::class, 'createCarouselSection']);
                 Route::put('/update-carousel', [PageSectionController::class, 'updateCarouselSection']);
                 // User jumbotron section
                 Route::get('/display-jumbotron', [PageSectionController::class, 'displayJumbotronSection']);
-                Route::post('/create-jumbotron', [PageSectionController::class, 'createJumbotronSection']);
                 Route::put('/update-jumbotron', [PageSectionController::class, 'updateJumbotronSection']);
                 // User testimonials sections
                 Route::get('/display-testimonials', [PageSectionController::class, 'displayTestimonialSection']);
-                Route::post('/create-testimonials', [PageSectionController::class, 'createTestimonialSection']);
                 Route::put('/update-testimonials', [PageSectionController::class, 'updateTestimonialSection']);
                 // User footer section
                 Route::get('/display-footer', [PageSectionController::class, 'displayFooterSection']);
-                Route::post('/create-footer', [PageSectionController::class, 'createFooterSection']);
                 Route::put('/update-footer', [PageSectionController::class, 'updateFooterSection']);
+                // User contact section
+                Route::get('/display-contact', [PageSectionController::class, 'displayContactSection']);
+                Route::put('/update-contact', [PageSectionController::class, 'updateContactSection']);
             });
             // Blog System Admin API routes
             Route::group([ 'prefix' => '/blog' ], function () {
