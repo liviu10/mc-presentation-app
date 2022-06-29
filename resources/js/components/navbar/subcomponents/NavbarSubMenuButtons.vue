@@ -5,7 +5,7 @@
       <img :src="user.photo_url" class="rounded-circle profile-photo me-1">
       {{ user.nickname }}
     </a>
-    <ul v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2" class="dropdown-menu pb-0" aria-labelledby="navbarDropdown">
+    <ul v-if="user.user_role_type_id == '1' || user.user_role_type_id == '2'" class="dropdown-menu pb-0" aria-labelledby="navbarDropdown">
       <li>
         <a class="dropdown-item p-2 dropdown-profile" href="" />
       </li>

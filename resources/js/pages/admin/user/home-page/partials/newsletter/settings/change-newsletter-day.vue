@@ -5,7 +5,7 @@
         Change the day when the newsletter email is send
       </p>
       <p class="card-text">
-        <button v-if="user.user_role_type_id === 1" class="btn btn-primary" type="button" @click="activateChangeNewsletterSendDay()">
+        <button v-if="user.user_role_type_id == '1'" class="btn btn-primary" type="button" @click="activateChangeNewsletterSendDay()">
           Change day
         </button>
         current_newsletter_day_here

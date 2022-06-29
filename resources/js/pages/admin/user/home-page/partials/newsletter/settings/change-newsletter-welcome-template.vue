@@ -5,7 +5,7 @@
         Change newsletter welcome template
       </p>
       <p class="card-text">
-        <button v-if="user.user_role_type_id === 1" class="btn btn-primary" type="button" @click="activateChangeNewsletterWelcomeTemplate()">
+        <button v-if="user.user_role_type_id == '1'" class="btn btn-primary" type="button" @click="activateChangeNewsletterWelcomeTemplate()">
           Change
         </button>
       </p>

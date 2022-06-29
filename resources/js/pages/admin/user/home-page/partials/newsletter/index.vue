@@ -8,10 +8,10 @@
         <li class="nav-item">
           <a href="#newsletter_subscribers" class="nav-link" data-bs-toggle="tab">Newsletter Subscribers</a>
         </li>
-        <li v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2" class="nav-item">
+        <li v-if="user.user_role_type_id == '1' || user.user_role_type_id == '2'" class="nav-item">
           <a href="#newsletter_reports" class="nav-link" data-bs-toggle="tab">Newsletter Reports</a>
         </li>
-        <li v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2" class="nav-item">
+        <li v-if="user.user_role_type_id == '1' || user.user_role_type_id == '2'" class="nav-item">
           <a href="#newsletter_settings" class="nav-link" data-bs-toggle="tab">Newsletter Settings</a>
         </li>
       </ul>
@@ -30,7 +30,7 @@
             </div>
           </div>
         </div>
-        <div v-if="user.user_role_type_id === 1" id="newsletter_reports" class="tab-pane fade">
+        <div v-if="user.user_role_type_id == '1'" id="newsletter_reports" class="tab-pane fade">
           <div class="card">
             <div class="card-body">
               <admin-user-newsletter-reports />

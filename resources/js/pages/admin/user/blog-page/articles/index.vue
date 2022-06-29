@@ -27,7 +27,7 @@
         }"
       >
         <div slot="table-actions">
-          <button v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2"
+          <button v-if="user.user_role_type_id == '1' || user.user_role_type_id == '2'"
                   class="btn btn-primary me-2"
                   type="button"
                   @click="createNewBlogArticles()"
@@ -124,14 +124,14 @@
             >
               <fa icon="comment" fixed-width /> Show Comments
             </button>
-            <button v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2"
+            <button v-if="user.user_role_type_id == '1' || user.user_role_type_id == '2'"
                     class="btn btn-warning w-100"
                     type="button"
                     @click="editBlogArticle(props.row)"
             >
               <fa icon="edit" fixed-width /> Edit
             </button>
-            <button v-if="user.user_role_type_id === 1 || user.user_role_type_id === 2"
+            <button v-if="user.user_role_type_id == '1' || user.user_role_type_id == '2'"
                     class="btn btn-danger w-100"
                     @click="deleteBlogArticle(props.row)"
             >
