@@ -105,7 +105,7 @@ export default {
             caption_text_2: 'Am realizat că cel mai important dar pe care îl poți oferi lumii este timpul tău și energia ta.',
             caption_text_3: 'Și din toată inima îmi doresc să pot ajuta cât mai mulți oameni cu ceea ce au nevoie.'
           },
-          see_more_link: 'http://127.0.0.1:8001/blog/article/view/1',
+          see_more_link: window.location.href + 'blog/article/view/1',
           caption_quote: false
         },
         {
@@ -118,7 +118,7 @@ export default {
             caption_text_2: 'Din anul 2016 m-am lăsat ghidată de Andy Szekely în dezvoltarea mea si am crescut armonios. Participarea la evenimentele lui si comunitatea lui de oameni faini m-au inspirat și am devenit omul energic de acum.',
             caption_text_3: 'Am fost fascinată de stilul lui Andy de a povesti și de a amuza oamenii și așa îmi doresc să transmit și eu informațiile.'
           },
-          see_more_link: 'http://127.0.0.1:8001/blog/article/view/18',
+          see_more_link: window.location.href + 'blog/article/view/18',
           caption_quote: true
         },
         {
@@ -130,7 +130,7 @@ export default {
             caption_text_1: 'În secolul vitezei și în lumea agitată în care trăim, a rămâne calm și liniștit este un lucru măreț.',
             caption_text_2: 'Relaxarea prin meditație și dans te ajută să înfrunți provocările în viață. Vrei să încerci?'
           },
-          see_more_link: 'http://127.0.0.1:8001/blog/audio/view/4',
+          see_more_link: window.location.href + 'blog/audio/view/4',
           caption_quote: false
         },
         {
@@ -143,7 +143,7 @@ export default {
             caption_text_2: 'Dansez de când mă știu și îmi doresc să ghidez cât mai mulți oameni să-și găseasca propriul ritm în viață.',
             caption_text_3: 'Totul începe cu primul pas.'
           },
-          see_more_link: 'http://127.0.0.1:8001/blog/audio/view/6',
+          see_more_link: window.location.href + 'blog/audio/view/6',
           caption_quote: false
         },
         {
@@ -157,7 +157,7 @@ export default {
             caption_text_3: 'Eu mă încadrez în a doua categorie. Tu?',
             caption_text_4: 'La cursul de tehnician nutriționist am învățat cum să am un stil de viață sănătos și mi-ar plăcea să îți împărtășesc și ție din cunoștințele mele. Accepți?'
           },
-          see_more_link: 'http://127.0.0.1:8001/blog/video/view/7',
+          see_more_link: window.location.href + 'blog/video/view/7',
           caption_quote: false
         },
         {
@@ -171,7 +171,7 @@ export default {
             caption_text_3: 'Așa am reușit să fiu mai sănătoasă și să mă implic în activități caritabile.',
             caption_text_4: 'Run for a good life.'
           },
-          see_more_link: 'http://127.0.0.1:8001/blog/video/view/8',
+          see_more_link: window.location.href + 'blog/video/view/8',
           caption_quote: false
         }
       ]

@@ -65,6 +65,7 @@ use Illuminate\Support\Facades\Route;
 
         // Home page, Newsletter and Terms and Conditions page API routes
         Route::apiResource('', HomeController::class)->only(['index']);
+        Route::get('/display-testimonials', [HomeController::class, 'displayTestimonialSection']);
         Route::apiResource('/subscribe', SubscribeToNewsletterController::class)->only(['store']);
         Route::apiResource('/unsubscribe', SubscribeToNewsletterController::class)->only(['destroy']);
         Route::apiResource('/terms-and-conditions', TermsAndConditionsController::class)->only(['index']);

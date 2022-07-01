@@ -28,7 +28,7 @@ export const mutations = {
 export const actions = {
   async fetchUserCarouselSection ({ commit }) {
     const url = window.location.origin
-    const apiEndPoint = '/api/admin/system/home-page/display-carousel'
+    const apiEndPoint = '/api/display-carousel'
     const fullApiUrl = url + apiEndPoint
     axios
       .get(fullApiUrl)
@@ -41,7 +41,7 @@ export const actions = {
   },
   async fetchUserJumbotronSection ({ commit }) {
     const url = window.location.origin
-    const apiEndPoint = '/api/admin/system/home-page/display-jumbotron'
+    const apiEndPoint = '/api/display-jumbotron'
     const fullApiUrl = url + apiEndPoint
     axios
       .get(fullApiUrl)
@@ -54,7 +54,7 @@ export const actions = {
   },
   async fetchUserTestimonialSection ({ commit }) {
     const url = window.location.origin
-    const apiEndPoint = '/api/admin/system/home-page/display-testimonials'
+    const apiEndPoint = '/api/display-testimonials'
     const fullApiUrl = url + apiEndPoint
     axios
       .get(fullApiUrl)
@@ -67,7 +67,7 @@ export const actions = {
   },
   async fetchUserFooterSection ({ commit }) {
     const url = window.location.origin
-    const apiEndPoint = '/api/admin/system/home-page/display-footer'
+    const apiEndPoint = '/api/display-footer'
     const fullApiUrl = url + apiEndPoint
     axios
       .get(fullApiUrl)

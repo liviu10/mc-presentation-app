@@ -124,7 +124,6 @@ export default {
           })
         })
         .catch(error => {
-          console.log('> method not allowed status code 405', error.response)
           if (error.response.status === 500) {
             this.wrongEmailInputErrorMessage = this.$t('user.footer.footer_menu.unsubscribe_newsletter.wrong_email_input')
           }

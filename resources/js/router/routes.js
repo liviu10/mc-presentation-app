@@ -79,5 +79,5 @@ export default [
   { path: '/admin/profile-settings', name: 'admin-profile-settings-page', component: page('admin/profile-settings/index.vue') },
 
   // URL routes for different HTTP errors
-  { path: '*', component: page('errors/404.vue') }
+  { path: '*', name: 'not-found-page', component: page('errors/404.vue') }
 ]

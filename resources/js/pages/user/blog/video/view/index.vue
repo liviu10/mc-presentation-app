@@ -51,6 +51,11 @@ export default {
           this.displaySingleBlogArticle = response.data.records[0]
           this.blogArticleTitle = response.data.records[0].blog_articles[0].blog_article_title
         })
+        .catch(error => {
+          if (error.response.status === 404) {
+            this.$router.push({ name: 'not-found-page' })
+          }
+        })
     }
   },
   metaInfo () {

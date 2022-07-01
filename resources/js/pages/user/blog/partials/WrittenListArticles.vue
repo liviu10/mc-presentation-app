@@ -3,54 +3,63 @@
     <div class="lv-pg-articles-header">
       <h1>{{ $t('user.blog_system_pages.written_article_blog_pages.page_title') }}</h1>
     </div>
+    {{ displayAllWrittenBlogArticles.blog_articles }}
     <!-- LIST OF WRITTEN ARTICLES, SECTION START -->
-    <div v-if="displayAllWrittenBlogArticles">
-      <div v-for="blogContent in displayAllWrittenBlogArticles"
-           :key="blogContent.id"
-           class="lv-pg-articles-body"
-      >
-        <div v-for="writtenArticle in blogContent.blog_articles" :key="writtenArticle.id" class="my-3">
-          <div class="card">
-            <div class="card-body">
-              <h3 class="card-title">
-                <a :href="writtenArticle.blog_article_path + '/' + writtenArticle.id">
-                  <span>{{ writtenArticle.blog_article_title }}</span>
-                </a>
-                <span v-if="writtenArticle.blog_article_time <= 1">
-                  ({{ $t('user.blog_system_pages.written_article_blog_pages.reading_time.less_than_one_minute') }})
-                </span>
-                <span v-else>
-                  ({{ writtenArticle.blog_article_time }} {{ $t('user.blog_system_pages.written_article_blog_pages.reading_time.more_than_one_minute') }})
-                </span>
-                <p>
-                  {{ $t('user.blog_system_pages.general_settings.subcategory_name') }}
-                  <span>
-                    <a :href="blogContent.blog_subcategory_path">{{ blogContent.blog_subcategory_title }}</a>
+    <div v-if="displayAllWrittenBlogArticles && displayAllWrittenBlogArticles.length">
+      <div v-if="displayAllWrittenBlogArticles.blog_articles && displayAllWrittenBlogArticles.blog_articles.length">
+        <div v-for="blogContent in displayAllWrittenBlogArticles"
+             :key="blogContent.id"
+             class="lv-pg-articles-body"
+        >
+          <div v-for="writtenArticle in blogContent.blog_articles" :key="writtenArticle.id" class="my-3">
+            <div class="card">
+              <div class="card-body">
+                <h3 class="card-title">
+                  <a :href="writtenArticle.blog_article_path + '/' + writtenArticle.id">
+                    <span>{{ writtenArticle.blog_article_title }}</span>
+                  </a>
+                  <span v-if="writtenArticle.blog_article_time <= 1">
+                    ({{ $t('user.blog_system_pages.written_article_blog_pages.reading_time.less_than_one_minute') }})
                   </span>
+                  <span v-else>
+                    ({{ writtenArticle.blog_article_time }} {{ $t('user.blog_system_pages.written_article_blog_pages.reading_time.more_than_one_minute') }})
+                  </span>
+                  <p>
+                    {{ $t('user.blog_system_pages.general_settings.subcategory_name') }}
+                    <span>
+                      <a :href="blogContent.blog_subcategory_path">{{ blogContent.blog_subcategory_title }}</a>
+                    </span>
+                  </p>
+                  <p v-if="writtenArticle.updated_at == writtenArticle.created_at">
+                    {{ $t('user.blog_system_pages.general_settings.published_on') }}
+                    <span>{{ new Date(writtenArticle.created_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}</span>
+                  </p>
+                  <p v-else>
+                    {{ $t('user.blog_system_pages.general_settings.modified_on') }}
+                    <span>{{ new Date(writtenArticle.updated_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}</span>
+                  </p>
+                </h3>
+                <p class="card-text">
+                  <fa icon="quote-left" fixed-width />
+                  {{ writtenArticle.blog_article_short_description }}
                 </p>
-                <p v-if="writtenArticle.updated_at == writtenArticle.created_at">
-                  {{ $t('user.blog_system_pages.general_settings.published_on') }}
-                  <span>{{ new Date(writtenArticle.created_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}</span>
-                </p>
-                <p v-else>
-                  {{ $t('user.blog_system_pages.general_settings.modified_on') }}
-                  <span>{{ new Date(writtenArticle.updated_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}</span>
-                </p>
-              </h3>
-              <p class="card-text">
-                <fa icon="quote-left" fixed-width />
-                {{ writtenArticle.blog_article_short_description }}
-              </p>
-            </div>
-            <div class="card-body">
-              <a :href="writtenArticle.blog_article_path + '/' + writtenArticle.id" class="btn btn-primary">
-                <fa icon="book-reader" fixed-width />
-                {{ $t('user.blog_system_pages.written_article_blog_pages.read_more') }}
-              </a>
+              </div>
+              <div class="card-body">
+                <a :href="writtenArticle.blog_article_path + '/' + writtenArticle.id" class="btn btn-primary">
+                  <fa icon="book-reader" fixed-width />
+                  {{ $t('user.blog_system_pages.written_article_blog_pages.read_more') }}
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <div v-else>
+        {{ $t('user.blog_system_pages.general_settings.no_articles_for_category') }}
+      </div>
+    </div>
+    <div v-else>
+      {{ getNotifyMessage }}
     </div>
     <!-- LIST OF WRITTEN ARTICLES, SECTION END -->
     <!-- MORE WRITTEN ARTICLES, SECTION START -->
@@ -90,6 +99,9 @@ export default {
     getHttpStatusResponseCode () {
       // TODO Blog System: How to catch api endpoint errors and display them to the user
       return this.listOfWrittenArticles.http_response_code
+    },
+    getNotifyMessage () {
+      return this.listOfWrittenArticles.description
     }
   },
   created () {

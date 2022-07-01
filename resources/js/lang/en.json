@@ -208,7 +208,9 @@
           "close_reply_comment_form": "Cancel",
           "show_comment_replies": "Show replies",
           "hide_comment_replies": "Hide replies"
-        }
+        },
+        "no_articles_for_category": "There are no articles for this category!",
+        "no_articles_for_subcategory": "There are no articles for this subcategory!"
       }
     },
     "schedule_appointment_page": {

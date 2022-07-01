@@ -52,11 +52,10 @@ export default {
       axios
         .get(fullApiUrl)
         .then(response => {
-          console.log('>>>>> Display a list of related video blog articles: ')
           this.displayRelatedVideoArticles = response.data.records[0]
         })
-        .catch(({ response }) => {
-          console.log('>>>>>> Http request error: ')
+        .catch(error => {
+          console.log(error.response)
         })
     }
   }

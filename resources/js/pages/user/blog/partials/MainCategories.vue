@@ -1,5 +1,5 @@
 <template>
-  <div class="lv-con-sect-categories">
+  <div v-if="displayAllBlogCategoriesAndSubcategories && displayAllBlogCategoriesAndSubcategories.length" class="lv-con-sect-categories">
     <!-- MAIN CATEGORIES: WRITTEN ARTICLES, AUDIO AND VIDEO, SECTION START -->
     <div v-for="category in displayAllBlogCategoriesAndSubcategories" :key="category.id" class="card" style="width: 20rem;">
       <p class="card-title">
@@ -14,7 +14,7 @@
         </p>
       </div>
       <div class="card-body">
-        <p class="card-text">
+        <p v-if="category.blog_subcategories && category.blog_subcategories.length" class="card-text">
           {{ $t('user.blog_system_pages.general_settings.main_categories_info') }}
         </p>
         <a v-for="subcategory in category.blog_subcategories" :key="subcategory.id" :href="subcategory.blog_subcategory_path" :title="subcategory.blog_subcategory_title">
@@ -23,6 +23,12 @@
       </div>
     </div>
     <!-- MAIN CATEGORIES: WRITTEN ARTICLES, AUDIO AND VIDEO, SECTION END -->
+  </div>
+  <div v-else>
+    <div v-if="$route.name !== 'home-page'">
+      {{ getNotificationError }}
+    </div>
+    <div v-else />
   </div>
 </template>
 
@@ -52,6 +58,9 @@ export default {
     getHttpStatusResponseCode () {
       // TODO Blog System: How to catch api endpoint errors and display them to the user
       return this.allBlogCategoriesAndSubcategories.http_response_code
+    },
+    getNotificationError () {
+      return this.allBlogCategoriesAndSubcategories.description
     }
   },
   created () {

@@ -208,7 +208,9 @@
           "close_reply_comment_form": "Anulează",
           "show_comment_replies": "Afişează răspunsurile",
           "hide_comment_replies": "Ascunde răspunsurile"
-        }
+        },
+        "no_articles_for_category": "Nu există articole pentru această categorie!",
+        "no_articles_for_subcategory": "Nu există articole pentru această subcategorie!"
       }
     },
     "schedule_appointment_page": {

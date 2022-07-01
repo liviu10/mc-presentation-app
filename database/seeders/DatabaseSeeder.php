@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             AcceptedDomainSeeder::class,
-            BlogArticlesSeeder::class,
+            // BlogArticlesSeeder::class,
             BlogCategoriesSeeder::class,
             BlogSubcategoriesSeeder::class,
             ErrorAndNotificationSystemSeeder::class,

@@ -370,144 +370,152 @@ class BlogSubcategoryController extends Controller
      */
     public function displaySingleBlogArticle($id)
     {
-        $getSubcategoryId = $this->modelNameBlogArticles::select('id', 'blog_subcategory_id')->where('id', '=', $id)->pluck('blog_subcategory_id');
-        $displayBlogArticle = $this->modelNameBlogSubcategories::select(
-            'id',
-            'blog_subcategory_title',
-            'blog_subcategory_path'
-        )
-        ->where('id', '=', $getSubcategoryId)
-        ->IsActive()
-        ->with([
-            'blog_articles' => function ($query) use ($id) {
-                $query->select(
-                    'blog_subcategory_id',
+        try
+        {
+            $getSubcategoryId = $this->modelNameBlogArticles::select('id', 'blog_subcategory_id')->where('id', '=', $id)->pluck('blog_subcategory_id');
+            $checkIfArticleExists = $this->modelNameBlogArticles::select('id')->where('id', '=', $id)->get();
+            if($checkIfArticleExists->isEmpty())
+            {
+                return response([
+                    'title'              => 'Resource(s) not found!',
+                    'notify_code'        => 'WAR_00001',
+                    'description'        => 'The blog resource(s) does not exist! Please try again later!',
+                    'http_response_code' => 404,
+                    'records'            => [],
+                ], 404);
+            }
+            else
+            {
+                $displayBlogArticle = $this->modelNameBlogSubcategories::select(
                     'id',
-                    'blog_article_title',
-                    'blog_article_author',
-                    'created_at',
-                    'blog_article_time',
-                    'blog_article_short_description',
-                    'blog_article_content_section_1',
-                    'blog_article_content_section_2',
-                    'blog_article_content_section_3',
-                    'blog_article_content_section_4',
-                    'blog_article_content_section_5',
-                    'blog_article_media_url',
-                    'created_at',
-                    'updated_at',
+                    'blog_subcategory_title',
+                    'blog_subcategory_path'
                 )
-                ->where('id', '=', $id)
+                ->where('id', '=', $getSubcategoryId)
                 ->IsActive()
                 ->with([
-                    'blog_article_rate' => function ($query) {
+                    'blog_articles' => function ($query) use ($id) {
                         $query->select(
+                            'blog_subcategory_id',
                             'id',
-                            'user_id',
-                            'blog_article_id',
-                            'blog_article_rating_system'
-                        );
-                    },
-                    'blog_article_like' => function ($query) {
-                        $query->select(
-                            'id',
-                            'user_id',
-                            'blog_article_id',
-                            'blog_article_likes'
-                        );
-                    },
-                    'blog_article_dislike' => function ($query) {
-                        $query->select(
-                            'id',
-                            'user_id',
-                            'blog_article_id',
-                            'blog_article_dislikes'
-                        );
-                    },
-                    'blog_article_comments' => function ($query) {
-                        $query->select(
-                            'blog_article_id',
-                            'id',
-                            'full_name',
-                            'email',
-                            'comment',
-                            'created_at'
+                            'blog_article_title',
+                            'blog_article_author',
+                            'created_at',
+                            'blog_article_time',
+                            'blog_article_short_description',
+                            'blog_article_content_section_1',
+                            'blog_article_content_section_2',
+                            'blog_article_content_section_3',
+                            'blog_article_content_section_4',
+                            'blog_article_content_section_5',
+                            'blog_article_media_url',
+                            'created_at',
+                            'updated_at',
                         )
-                        ->IsCommentPublic()
-                        ->orderBy('created_at', 'DESC')
+                        ->where('id', '=', $id)
+                        ->IsActive()
                         ->with([
-                            'blog_article_comment_like' => function ($query) {
+                            'blog_article_rate' => function ($query) {
                                 $query->select(
                                     'id',
                                     'user_id',
-                                    'blog_article_comment_id',
-                                    'blog_article_comment_likes'
+                                    'blog_article_id',
+                                    'blog_article_rating_system'
                                 );
                             },
-                            'blog_article_comment_dislike' => function ($query) {
+                            'blog_article_like' => function ($query) {
                                 $query->select(
                                     'id',
                                     'user_id',
-                                    'blog_article_comment_id',
-                                    'blog_article_comment_dislikes'
+                                    'blog_article_id',
+                                    'blog_article_likes'
                                 );
                             },
-                            'blog_article_comment_replies' => function ($query) {
+                            'blog_article_dislike' => function ($query) {
                                 $query->select(
-                                    'blog_article_comment_id',
+                                    'id',
+                                    'user_id',
+                                    'blog_article_id',
+                                    'blog_article_dislikes'
+                                );
+                            },
+                            'blog_article_comments' => function ($query) {
+                                $query->select(
+                                    'blog_article_id',
                                     'id',
                                     'full_name',
                                     'email',
-                                    'comment_reply',
+                                    'comment',
                                     'created_at'
                                 )
-                                ->IsCommentReplyPublic()
+                                ->IsCommentPublic()
                                 ->orderBy('created_at', 'DESC')
                                 ->with([
-                                    'blog_article_comment_reply_like' => function ($query) {
+                                    'blog_article_comment_like' => function ($query) {
                                         $query->select(
                                             'id',
                                             'user_id',
-                                            'blog_article_comment_reply_id',
-                                            'blog_article_comment_reply_likes'
+                                            'blog_article_comment_id',
+                                            'blog_article_comment_likes'
                                         );
                                     },
-                                    'blog_article_comment_reply_dislike' => function ($query) {
+                                    'blog_article_comment_dislike' => function ($query) {
                                         $query->select(
                                             'id',
                                             'user_id',
-                                            'blog_article_comment_reply_id',
-                                            'blog_article_comment_reply_dislikes'
+                                            'blog_article_comment_id',
+                                            'blog_article_comment_dislikes'
                                         );
                                     },
+                                    'blog_article_comment_replies' => function ($query) {
+                                        $query->select(
+                                            'blog_article_comment_id',
+                                            'id',
+                                            'full_name',
+                                            'email',
+                                            'comment_reply',
+                                            'created_at'
+                                        )
+                                        ->IsCommentReplyPublic()
+                                        ->orderBy('created_at', 'DESC')
+                                        ->with([
+                                            'blog_article_comment_reply_like' => function ($query) {
+                                                $query->select(
+                                                    'id',
+                                                    'user_id',
+                                                    'blog_article_comment_reply_id',
+                                                    'blog_article_comment_reply_likes'
+                                                );
+                                            },
+                                            'blog_article_comment_reply_dislike' => function ($query) {
+                                                $query->select(
+                                                    'id',
+                                                    'user_id',
+                                                    'blog_article_comment_reply_id',
+                                                    'blog_article_comment_reply_dislikes'
+                                                );
+                                            },
+                                        ]);
+                                    }
                                 ]);
                             }
                         ]);
                     }
-                ]);
+                ])
+                ->get();
+
+                return response([
+                    'title'                => 'Success!',
+                    'notify_code'          => 'INFO_00001',
+                    'description'          => 'The blog resource(s) was(were) successfully fetched!',
+                    'http_response_code'   => 200,
+                    'records'              => $displayBlogArticle,
+                ], 200);
             }
-        ])
-        ->get();
-        
-        if ($displayBlogArticle->isEmpty()) 
-        {
-            return response([
-                'title'              => 'Resource(s) not found!',
-                'notify_code'        => 'WAR_00001',
-                'description'        => 'The blog resource(s) does not exist! Please try again later!',
-                'http_response_code' => 404,
-                'records'            => [],
-            ], 404);
         }
-        else 
+        catch (\Illuminate\Database\QueryException $mysqlError)
         {
-            return response([
-                'title'                => 'Success!',
-                'notify_code'          => 'INFO_00001',
-                'description'          => 'The blog resource(s) was(were) successfully fetched!',
-                'http_response_code'   => 200,
-                'records'              => $displayBlogArticle,
-            ], 200);
+
         }
     }
 

@@ -8,60 +8,65 @@
       <h1>{{ notifyMessage }}</h1>
     </div>
     <div v-else>
-      <div v-for="subcategoryVideoArticle in displayAllBlogSubcategoryVideoArticles.blog_articles"
-           :key="subcategoryVideoArticle.id"
-           class="my-3 lv-pg-subcategories-video-body"
-      >
-        <div class="card">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <!-- VIDEO PLAYER, SECTION START -->
-              <video controls>
-                <source src="/videos/demo_video.mp4" type="video/mp4">
-              </video>
+      <div v-if="displayAllBlogSubcategoryVideoArticles.blog_articles && displayAllBlogSubcategoryVideoArticles.blog_articles.length">
+        <div v-for="subcategoryVideoArticle in displayAllBlogSubcategoryVideoArticles.blog_articles"
+             :key="subcategoryVideoArticle.id"
+             class="my-3 lv-pg-subcategories-video-body"
+        >
+          <div class="card">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <!-- VIDEO PLAYER, SECTION START -->
+                <video controls>
+                  <source src="/videos/demo_video.mp4" type="video/mp4">
+                </video>
               <!-- VIDEO PLAYER, SECTION END -->
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h3 class="card-title">
-                  <a :href="subcategoryVideoArticle.blog_article_path + '/' + subcategoryVideoArticle.id">
-                    <span>{{ subcategoryVideoArticle.blog_article_title }}</span>
-                  </a>
-                  <span v-if="subcategoryVideoArticle.blog_article_time <= 1">
-                    ({{ $t('user.blog_system_pages.video_article_blog_pages.listening_time.less_than_one_minute') }})
-                  </span>
-                  <span v-else>
-                    ({{ subcategoryVideoArticle.blog_article_time }} {{ $t('user.blog_system_pages.video_article_blog_pages.listening_time.more_than_one_minute') }})
-                  </span>
-                  <p>
-                    {{ $t('user.blog_system_pages.general_settings.subcategory_name') }}
-                    <span>
-                      <a :href="blogSubcategoryPath">{{ blogSubcategoryTitle }}</a>
-                    </span>
-                  </p>
-                  <p v-if="subcategoryVideoArticle.updated_at == subcategoryVideoArticle.created_at">
-                    {{ $t('user.blog_system_pages.general_settings.published_on') }}
-                    <span>{{ new Date(subcategoryVideoArticle.created_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}</span>
-                  </p>
-                  <p v-else>
-                    {{ $t('user.blog_system_pages.general_settings.modified_on') }}
-                    <span>{{ new Date(subcategoryVideoArticle.updated_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}</span>
-                  </p>
-                </h3>
-                <p class="card-text">
-                  <fa icon="quote-left" fixed-width />
-                  {{ subcategoryVideoArticle.blog_article_short_description }}
-                </p>
               </div>
-              <div class="card-body">
-                <a :href="subcategoryVideoArticle.blog_article_path + '/' + subcategoryVideoArticle.id" class="btn btn-primary">
-                  <fa icon="eye" fixed-width />
-                  {{ $t('user.blog_system_pages.video_article_blog_pages.read_more') }}
-                </a>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h3 class="card-title">
+                    <a :href="subcategoryVideoArticle.blog_article_path + '/' + subcategoryVideoArticle.id">
+                      <span>{{ subcategoryVideoArticle.blog_article_title }}</span>
+                    </a>
+                    <span v-if="subcategoryVideoArticle.blog_article_time <= 1">
+                      ({{ $t('user.blog_system_pages.video_article_blog_pages.listening_time.less_than_one_minute') }})
+                    </span>
+                    <span v-else>
+                      ({{ subcategoryVideoArticle.blog_article_time }} {{ $t('user.blog_system_pages.video_article_blog_pages.listening_time.more_than_one_minute') }})
+                    </span>
+                    <p>
+                      {{ $t('user.blog_system_pages.general_settings.subcategory_name') }}
+                      <span>
+                        <a :href="blogSubcategoryPath">{{ blogSubcategoryTitle }}</a>
+                      </span>
+                    </p>
+                    <p v-if="subcategoryVideoArticle.updated_at == subcategoryVideoArticle.created_at">
+                      {{ $t('user.blog_system_pages.general_settings.published_on') }}
+                      <span>{{ new Date(subcategoryVideoArticle.created_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}</span>
+                    </p>
+                    <p v-else>
+                      {{ $t('user.blog_system_pages.general_settings.modified_on') }}
+                      <span>{{ new Date(subcategoryVideoArticle.updated_at).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) }}</span>
+                    </p>
+                  </h3>
+                  <p class="card-text">
+                    <fa icon="quote-left" fixed-width />
+                    {{ subcategoryVideoArticle.blog_article_short_description }}
+                  </p>
+                </div>
+                <div class="card-body">
+                  <a :href="subcategoryVideoArticle.blog_article_path + '/' + subcategoryVideoArticle.id" class="btn btn-primary">
+                    <fa icon="eye" fixed-width />
+                    {{ $t('user.blog_system_pages.video_article_blog_pages.read_more') }}
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      <div v-else class="">
+        {{ $t('user.blog_system_pages.general_settings.no_articles_for_subcategory') }}
       </div>
     </div>
     <!-- LIST OF VIDEO ARTICLES, SECTION END -->
