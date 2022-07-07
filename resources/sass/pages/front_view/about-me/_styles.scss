@@ -2,7 +2,7 @@
 
 .lv-pg-about-me {
     flex-direction: column;
-    &-video, & video {
+    &-video, & iframe {
         width: rem-convertor(720px);
         height: rem-convertor(480px);
         @media only screen and (max-width: 767px) {

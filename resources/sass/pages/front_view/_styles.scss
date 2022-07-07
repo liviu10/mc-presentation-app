@@ -13,7 +13,8 @@
 @import 'terms-and-conditions/_styles.scss';
 
 .lv-pg-about-me, .lv-pg-blog, .lv-pg-articles,
-.lv-pg-audio, .lv-pg-video, .lv-pg-subcategories,
+.lv-pg-audio, .lv-pg-video, .lv-pg-subcategories-articles,
+.lv-pg-subcategories-audio, .lv-pg-subcategories-video,
 .lv-pg-contact, .lv-pg-terms, .lv-pg-appointment {
     @include flex-center();
     margin: rem-convertor(60px) 0rem;
@@ -23,15 +24,21 @@
     }
 }
 .lv-pg-articles, .lv-pg-audio, .lv-pg-video, .lv-pg-subcategories, .lv-pg-terms {
-    &-header, &-body {
+    &-header, &-body,
+    &-articles-header, &-articles-body,
+    &-audio-header, &-audio-body,
+    &-video-header, &-video-body {
         padding: 0rem;
     }
-    &-header {
+    &-header, &-articles-header, &-audio-header, &-video-header {
         margin: rem-convertor(32px) 0rem;
         & h1 {
             margin-bottom: 0rem;
             text-align: center;
         }
+    }
+    &-body, &-articles-body, &-audio-body, &-video-body {
+        height: 75vh;
     }
 }
 .swal2 {

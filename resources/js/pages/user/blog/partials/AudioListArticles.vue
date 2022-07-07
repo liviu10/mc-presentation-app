@@ -70,7 +70,7 @@
           </div>
         </div>
       </div>
-      <div v-else>
+      <div v-else class="lv-pg-audio-body">
         {{ $t('user.blog_system_pages.general_settings.no_articles_for_category') }}
       </div>
     </div>
