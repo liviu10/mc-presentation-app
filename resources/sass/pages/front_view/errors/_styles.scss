@@ -1,6 +1,37 @@
 .lv-pg-not-found, .lv-pg-under-construction {
     &-action {
         @include flex-center();
+        &-body {
+            overflow: hidden;
+            @media only screen and (max-width: 1150px) and (min-width: 376px) {
+                text-indent: -10%;
+            }
+            @media only screen and (max-width: 1150px) and (min-width: 1025px) {
+                max-width: rem-convertor(1001px);
+            }
+            @media only screen and (max-width: 1024px) and (min-width: 993px) {
+                max-width: rem-convertor(969px);
+            }
+            @media only screen and (max-width: 992px) and (min-width: 769px) {
+                max-width: rem-convertor(745px);
+            }
+            @media only screen and (max-width: 768px) and (min-width: 576px) {
+                max-width: rem-convertor(553px);
+            }
+            @media only screen and (max-width: 575px) and (min-width: 425px) {
+                max-width: rem-convertor(401px);
+            }
+            @media only screen and (max-width: 424px) and (min-width: 376px) {
+                max-width: rem-convertor(352px);
+            }
+            @media only screen and (max-width: 375px) and (min-width: 320px) {
+                max-width: rem-convertor(300px);
+                text-indent: -70%;
+            }
+            & img {
+                max-width: initial;
+            }
+        }
         &-buttons {
             position: absolute;
             top: 15%;
@@ -9,6 +40,14 @@
             width: 30%;
             background-color: white;
             opacity: 0.65;
+            @media only screen and (max-width: 768px) and (min-width: 576px) {
+                top: 20%;
+            }
+            @media only screen and (max-width: 575px) and (min-width: 320px) {
+                top: 23%;
+                right: 22%;
+                width: 50%;
+            }
             & .title, .btn {
                 margin-top: rem-convertor(20px);
                 margin-bottom: rem-convertor(20px);

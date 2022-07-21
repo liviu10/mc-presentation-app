@@ -2,7 +2,7 @@
   <div class="lv-pg-not-found">
     <!-- ERROR PAGE ACTIONS, SECTION START -->
     <div class="lv-pg-not-found-action">
-      <div class="action-body">
+      <div class="lv-pg-not-found-action-body">
         <img src="/images/pages/error/not-found_img_1024.webp" alt="">
       </div>
       <div class="lv-pg-not-found-action-buttons">

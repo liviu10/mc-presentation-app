@@ -2,7 +2,7 @@
   <div class="lv-pg-under-construction">
     <!-- UNDER CONSTRUCTION PAGE ACTIONS, SECTION START -->
     <div class="lv-pg-under-construction-action">
-      <div class="action-body">
+      <div class="lv-pg-under-construction-action-body">
         <img src="/images/pages/error/under-construction_img_1024.webp" alt="">
       </div>
       <div class="lv-pg-under-construction-action-buttons">
