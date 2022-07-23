@@ -247,11 +247,11 @@
         },
         "swal_error": {
           "title": "Thank you, {senderFullName}!",
-          "message": "I am grateful for the message you whish to send me! Unfortunately, the email address: {senderEmailAddress} you have inserted is invalid! Please try again with a valid one!"
+          "message": "I am grateful for the message you whish to send me! Unfortunately, the email address: {senderEmailAddress} you have inserted is invalid! Please, try again with a valid one!"
         },
         "swal_warning": {
           "title": "Thank you!",
-          "message": "I am grateful for the message you whish to send me! But, the fields of this form must be filled in!"
+          "message": "I am grateful for the message you whish to send me! But, in order to do this your name and email address must be valid! Please, try again!"
         }
       }
     },

@@ -100,8 +100,8 @@
           "message": "Sunt recunoscătoare că vrei să te abonezi la newsletter-ul meu! Dar, din nefericire adresa de email: {subscriberEmailAddress} pe care ai introdus-o este invalidă! Te rog, să reîncerci cu una validă!"
         },
         "swal_warning": {
-          "title": "Mulțumesc, {subscriberFullName}!",
-          "message": "Sunt recunoscătoare că vrei să te abonezi la newsletter-ul meu! Eşti deja înscris la newsletter-ul meu cu adresa de email: {subscriberEmailAddress}!"
+          "title": "Mulțumesc!",
+          "message": "Sunt recunoscătoare că vrei să te abonezi la newsletter-ul meu! Dar, pentru a face acest lucru numele și adresa ta de email trebuie să fie valide! Te rog, să reîncerci!"
         }
       }
     },

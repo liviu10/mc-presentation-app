@@ -117,6 +117,7 @@ export default {
           privacy_policy: this.form.privacy_policy
         })
         .then(response => {
+          console.log('> subscriber full name: ', response.data)
           this.subscriberFullName = response.data.full_name
           Swal.fire({
             title: this.$t('user.home_page.newsletter.swal.title', { subscriberFullName: this.subscriberFullName }),
@@ -125,9 +126,9 @@ export default {
             imageWidth: 259,
             imageHeight: 194
           }).then((result) => {
-            this.form.full_name = null
-            this.form.email = null
-            this.form.privacy_policy = null
+            this.form.full_name = ''
+            this.form.email = ''
+            this.form.privacy_policy = false
           })
         })
         .catch(error => {
